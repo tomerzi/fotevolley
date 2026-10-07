@@ -1,0 +1,434 @@
+frame,time_sec,rally,ball_x,ball_y,ball_side,velocity_jump,player,team,body_part,limb_side,confidence,gap_m,depth_ratio,second_player,second_part,second_cost_margin,note
+3,0.12,1,544.5,367.5,LEFT,8.9,BRA_B,BRA,chest,,1.0,-0.286,1.21,,,10.0,
+8,0.32,1,581.3,488.3,LEFT,54.4,BRA_A,BRA,head,,0.26,0.023,0.95,BRA_B,thigh,0.04,2D overlap with BRA_B thigh (gap -0.23 m); depth ball/expected 0.95 vs 1.16; part close to chest
+38,1.52,1,916.5,259.9,LEFT,46.7,BRA_B,BRA,foot,right,0.68,0.078,1.18,,,10.0,part close to shin
+51,2.04,1,1669.5,547.5,RIGHT,9.1,ISR_A,ISR,thigh,left,1.0,-0.121,0.94,,,10.0,
+122,4.88,2,756.0,566.6,LEFT,26.0,BRA_A,BRA,foot,right,1.0,-0.016,0.89,,,10.0,
+135,5.4,2,555.4,544.5,LEFT,11.0,BRA_B,BRA,foot,left,1.0,-0.057,1.04,,,10.0,part close to shin
+150,6.0,2,582.0,546.8,LEFT,29.6,BRA_B,BRA,foot,left,1.0,-0.078,1.01,BRA_A,head,3.45,
+156,6.24,2,835.5,555.8,LEFT,22.8,BRA_A,BRA,thigh,right,0.73,0.063,0.89,,,10.0,part close to knee
+275,11.0,3,1746.0,464.3,RIGHT,8.0,ISR_A,ISR,hand,left,1.0,-0.109,0.92,,,10.0,"part close to arm; hand: ball held/caught, probably dead ball"
+408,16.32,4,630.0,494.6,LEFT,61.9,BRA_A,BRA,head,,0.91,0.018,1.03,,,10.0,part close to chest
+441,17.64,4,891.8,294.4,LEFT,43.2,BRA_B,BRA,foot,left,1.0,-0.113,1.13,,,10.0,
+468,18.72,4,1707.0,579.4,RIGHT,7.6,ISR_B,ISR,torso,,1.0,-0.078,0.98,,,10.0,part close to chest
+475,19.0,4,1717.5,616.2,RIGHT,9.7,ISR_B,ISR,thigh,right,1.0,-0.188,0.92,,,10.0,
+480,19.2,4,1717.5,706.5,RIGHT,49.2,ISR_B,ISR,thigh,right,1.0,-0.156,0.93,,,10.0,part close to knee
+489,19.56,4,1394.2,433.5,RIGHT,10.1,ISR_A,ISR,shoulder,left,1.0,-0.132,1.06,,,10.0,part close to chest
+531,21.24,4,1636.5,570.0,RIGHT,73.2,ISR_B,ISR,shoulder,right,0.28,-0.107,0.86,ISR_A,hand,0.03,2D overlap with ISR_A hand (gap 0.02 m); depth ball/expected 0.86 vs 1.05; part close to chest
+567,22.68,4,1327.5,481.5,RIGHT,61.1,ISR_A,ISR,chest,,1.0,-0.124,0.93,,,10.0,part close to shoulder
+600,24.0,4,1024.5,421.5,NET,15.3,ISR_B,ISR,head,,0.85,0.033,1.09,,,10.0,
+612,24.48,4,767.2,829.5,LEFT,41.0,BRA_B,BRA,foot,right,0.01,0.215,0.99,BRA_A,foot,-1.06,2D overlap with BRA_A foot (gap 0.08 m); depth ball/expected 0.99 vs 0.88
+619,24.76,4,653.6,829.5,LEFT,11.9,BRA_A,BRA,shin,right,1.0,-0.129,0.9,,,10.0,
+648,25.92,4,737.3,925.5,LEFT,43.9,BRA_A,BRA,foot,right,1.0,-0.074,1.07,,,10.0,
+679,27.16,4,732.8,401.6,LEFT,50.3,BRA_B,BRA,head,,1.0,-0.23,0.98,,,10.0,
+712,28.48,4,917.3,304.9,LEFT,31.0,BRA_A,BRA,head,,0.69,0.074,1.05,BRA_B,head,3.48,
+769,30.76,4,1195.5,457.1,RIGHT,61.1,ISR_A,ISR,head,,1.0,-0.189,0.98,,,10.0,
+805,32.2,4,1192.5,402.4,RIGHT,58.4,ISR_A,ISR,chest,,0.33,-0.2,1.2,ISR_B,head,0.14,2D overlap with ISR_B head (gap 0.06 m); depth ball/expected 1.20 vs 0.99
+828,33.12,4,865.5,359.6,LEFT,18.1,BRA_B,BRA,foot,left,1.0,-0.168,0.93,,,10.0,
+877,35.08,4,1053.0,757.5,NET,10.4,ISR_B,ISR,hand,left,0.8,0.045,0.67,,,10.0,"part close to arm; hand: ball held/caught, probably dead ball"
+915,36.6,4,1683.0,591.0,RIGHT,88.7,BRA_A,BRA,foot,right,0.38,-0.081,1.07,BRA_B,chest,0.25,2D overlap with BRA_B chest (gap 0.01 m); depth ball/expected 1.07 vs 0.85; part close to shin
+950,38.0,4,1254.0,443.6,RIGHT,50.9,BRA_A,BRA,head,,1.0,-0.19,0.98,,,10.0,
+983,39.32,4,1029.8,316.8,NET,24.1,BRA_B,BRA,foot,left,0.52,-0.061,1.02,ISR_A,foot,0.53,2D overlap with ISR_A foot (gap 0.04 m); depth ball/expected 1.02 vs 1.07
+996,39.84,4,773.2,471.0,LEFT,40.0,ISR_B,ISR,shin,right,0.77,0.052,0.95,,,10.0,part close to foot
+1066,42.64,4,709.5,461.6,LEFT,62.4,ISR_A,ISR,head,,1.0,-0.121,0.94,,,10.0,
+1100,44.0,4,853.5,268.7,LEFT,46.1,ISR_B,ISR,head,,1.0,-0.021,1.16,,,10.0,
+1185,47.4,5,1379.2,486.0,RIGHT,63.7,BRA_B,BRA,chest,,0.81,0.033,0.96,BRA_A,hand,2.1,part close to shoulder
+1190,47.6,5,1341.0,330.6,RIGHT,7.7,BRA_A,BRA,shoulder,right,0.18,0.343,1.08,,,10.0,
+1217,48.68,5,1086.0,287.2,RIGHT,21.2,BRA_A,BRA,foot,right,1.0,-0.095,1.14,,,10.0,
+1257,50.28,5,588.4,653.6,LEFT,11.1,ISR_A,ISR,foot,left,1.0,-0.058,0.93,,,10.0,
+1299,51.96,5,889.5,432.4,LEFT,70.6,ISR_A,ISR,hand,right,1.0,-0.027,1.0,,,10.0,"part close to arm; hand: ball held/caught, probably dead ball"
+1334,53.36,5,880.5,321.0,LEFT,64.3,ISR_B,ISR,head,,0.9,0.022,1.09,,,10.0,
+1347,53.88,5,1460.2,313.5,RIGHT,46.0,BRA_A,BRA,head,,1.0,-0.027,0.95,,,10.0,
+1388,55.52,5,1632.3,384.1,RIGHT,72.3,BRA_B,BRA,shoulder,left,1.0,-0.08,0.94,,,10.0,part close to chest
+1419,56.76,5,1170.8,213.6,RIGHT,33.4,BRA_A,BRA,head,,1.0,-0.035,1.13,,,10.0,
+1437,57.48,5,476.2,370.1,LEFT,46.0,ISR_B,ISR,arm,right,0.65,0.086,0.95,,,10.0,part close to shoulder
+1472,58.88,5,690.8,430.5,LEFT,50.4,ISR_A,ISR,chest,,0.77,0.051,1.01,,,10.0,
+1509,60.36,5,986.2,220.8,NET,46.0,ISR_B,ISR,head,,1.0,-0.089,1.2,,,10.0,
+1573,62.92,5,1830.0,616.1,RIGHT,93.6,BRA_B,BRA,chest,,0.99,0.002,0.94,,,10.0,part close to shoulder
+1608,64.32,5,1344.0,467.2,RIGHT,59.6,BRA_A,BRA,chest,,1.0,-0.122,0.94,,,10.0,part close to head
+1643,65.72,5,1033.5,326.1,RIGHT,29.2,BRA_B,BRA,foot,right,1.0,-0.076,0.99,,,10.0,
+1655,66.2,5,799.5,365.6,LEFT,13.5,ISR_B,ISR,thigh,right,0.56,0.117,0.93,,,10.0,part close to knee
+1661,66.44,5,742.0,334.0,LEFT,26.5,ISR_B,ISR,chest,,1.0,-0.146,0.87,,,10.0,
+1748,69.92,6,496.5,354.8,LEFT,15.0,BRA_A,BRA,shin,right,0.22,0.029,1.1,ISR_B,shin,-0.04,2D overlap with ISR_B shin (gap 0.02 m); depth ball/expected 1.10 vs 1.10; part close to foot
+1756,70.24,6,494.6,297.4,LEFT,7.3,ISR_B,ISR,arm,left,0.41,0.025,1.11,BRA_A,hand,0.42,2D overlap with BRA_A hand (gap 0.07 m); depth ball/expected 1.11 vs 1.10; part close to hand
+1825,73.0,7,160.9,410.2,LEFT,21.6,ISR_B,ISR,thigh,left,0.53,-0.196,1.05,ISR_A,shoulder,0.56,2D overlap with ISR_A shoulder (gap 0.06 m); depth ball/expected 1.05 vs 0.95
+1865,74.6,7,1415.2,394.5,RIGHT,26.8,BRA_A,BRA,thigh,right,0.43,0.169,0.97,,,10.0,part close to hand
+1870,74.8,7,1654.5,541.5,RIGHT,82.9,BRA_B,BRA,foot,left,0.19,-0.16,0.88,BRA_A,thigh,-0.22,2D overlap with BRA_A thigh (gap -0.19 m); depth ball/expected 0.88 vs 0.99
+1905,76.2,7,1538.6,297.0,RIGHT,39.8,BRA_A,BRA,foot,right,1.0,-0.146,1.09,,,10.0,
+1944,77.76,7,1127.2,426.4,RIGHT,77.6,BRA_B,BRA,head,,1.0,-0.027,0.94,,,10.0,
+1962,78.48,7,1117.5,676.5,RIGHT,28.6,BRA_B,BRA,chest,,1.0,-0.185,0.82,,,10.0,
+1989,79.56,7,559.2,486.0,LEFT,64.1,BRA_A,BRA,head,,0.39,0.015,0.99,BRA_B,foot,0.34,2D overlap with BRA_B foot (gap -0.19 m); depth ball/expected 0.99 vs 1.21
+2025,81.0,7,856.5,314.6,LEFT,29.8,BRA_B,BRA,head,,0.87,0.027,1.14,,,10.0,
+2046,81.84,7,1266.8,540.0,RIGHT,37.9,ISR_A,ISR,shin,right,1.0,-0.18,0.99,,,10.0,part close to thigh
+2068,82.72,7,1467.8,566.2,RIGHT,54.4,ISR_B,ISR,head,,0.53,0.127,0.86,,,10.0,
+2106,84.24,7,1075.5,264.6,RIGHT,37.8,ISR_A,ISR,head,,0.87,0.028,1.15,,,10.0,
+2131,85.24,7,234.8,502.0,LEFT,75.8,BRA_A,BRA,chest,,1.0,-0.221,0.95,,,10.0,
+2162,86.48,7,812.2,446.2,LEFT,53.5,BRA_B,BRA,shoulder,right,1.0,-0.107,0.98,,,10.0,part close to chest
+2191,87.64,7,867.0,385.2,LEFT,67.5,BRA_A,BRA,head,,0.35,-0.019,1.03,BRA_B,shoulder,0.2,2D overlap with BRA_B shoulder (gap -0.00 m); depth ball/expected 1.03 vs 1.11
+2206,88.24,7,1399.5,563.3,RIGHT,49.5,ISR_B,ISR,foot,right,1.0,-0.152,0.89,,,10.0,
+2339,93.56,8,1137.0,467.6,RIGHT,53.0,ISR_A,ISR,head,,1.0,-0.181,0.96,,,10.0,
+2369,94.76,8,1203.0,364.5,RIGHT,39.3,ISR_B,ISR,head,,0.98,0.002,1.11,ISR_A,shoulder,2.62,
+2393,95.72,8,688.5,841.5,LEFT,45.5,BRA_A,BRA,foot,left,1.0,-0.136,1.04,,,10.0,
+2402,96.08,8,511.1,789.0,LEFT,8.0,BRA_A,BRA,hand,left,1.0,-0.037,1.13,,,10.0,"part close to arm; hand: ball held/caught, probably dead ball"
+2409,96.36,8,357.1,882.3,LEFT,12.1,BRA_A,BRA,head,,1.0,-0.074,1.18,,,10.0,
+2443,97.72,8,780.8,506.2,LEFT,66.4,BRA_A,BRA,chest,,0.81,0.042,0.94,,,10.0,part close to head
+2474,98.96,8,942.0,281.8,NET,37.5,BRA_B,BRA,foot,left,1.0,-0.12,1.1,,,10.0,
+2484,99.36,8,1431.7,422.6,RIGHT,50.9,ISR_A,ISR,shoulder,right,1.0,-0.032,0.95,,,10.0,part close to arm
+2515,100.6,8,1438.5,470.2,RIGHT,56.2,ISR_A,ISR,thigh,left,0.78,-0.214,1.09,ISR_B,chest,1.12,
+2547,101.88,8,1033.5,243.0,RIGHT,25.2,BRA_A,BRA,foot,right,1.0,-0.061,0.87,,,10.0,
+2555,102.2,8,672.8,409.5,LEFT,12.3,BRA_B,BRA,thigh,right,1.0,-0.186,1.03,BRA_A,head,3.59,
+2560,102.4,8,451.2,569.7,LEFT,71.3,BRA_A,BRA,chest,,1.0,-0.231,0.96,,,10.0,part close to torso
+2638,105.52,9,968.3,305.6,NET,24.4,BRA_A,BRA,foot,right,1.0,-0.063,1.09,,,10.0,
+2649,105.96,9,1342.5,582.0,RIGHT,37.4,ISR_B,ISR,shoulder,right,0.42,-0.043,0.92,ISR_A,foot,0.34,2D overlap with ISR_A foot (gap 0.04 m); depth ball/expected 0.92 vs 0.94; part close to head
+2659,106.36,9,1506.8,496.2,RIGHT,14.7,ISR_A,ISR,thigh,left,1.0,-0.179,0.94,,,10.0,
+2676,107.04,9,1480.3,435.6,RIGHT,7.3,ISR_A,ISR,chest,,1.0,-0.235,0.81,,,10.0,
+2683,107.32,9,1464.0,442.1,RIGHT,7.2,ISR_A,ISR,chest,,1.0,-0.199,0.81,,,10.0,part close to torso
+2719,108.76,9,1183.5,467.2,RIGHT,40.4,ISR_A,ISR,head,,1.0,-0.195,0.96,,,10.0,
+2745,109.8,9,1056.8,399.0,RIGHT,41.7,ISR_B,ISR,head,,0.64,0.089,1.08,,,10.0,
+2766,110.64,9,219.0,594.0,LEFT,59.0,BRA_B,BRA,shin,right,1.0,-0.167,0.99,,,10.0,
+2787,111.48,9,633.0,639.8,LEFT,45.7,BRA_A,BRA,head,,0.62,0.095,0.88,,,10.0,
+2829,113.16,9,1133.2,639.0,RIGHT,78.3,ISR_B,ISR,foot,right,1.0,-0.135,0.89,,,10.0,
+2868,114.72,9,1238.2,460.5,RIGHT,59.1,ISR_A,ISR,chest,,1.0,-0.097,1.0,,,10.0,part close to head
+2901,116.04,9,1171.5,397.5,RIGHT,42.8,ISR_B,ISR,hand,right,0.75,0.057,0.99,,,10.0,"part close to head; hand: ball held/caught, probably dead ball"
+2946,117.84,9,826.5,584.6,LEFT,24.5,BRA_A,BRA,foot,right,1.0,-0.048,0.94,,,10.0,
+2969,118.76,9,710.6,521.2,LEFT,74.8,BRA_A,BRA,chest,,0.97,0.007,0.9,,,10.0,
+2998,119.92,9,879.7,280.1,LEFT,33.6,BRA_B,BRA,foot,right,1.0,-0.02,1.18,,,10.0,
+3012,120.48,9,1538.6,574.1,RIGHT,54.7,ISR_B,ISR,head,,0.41,0.18,0.74,,,10.0,
+3055,122.2,9,621.0,397.5,LEFT,53.8,ISR_B,ISR,chest,,1.0,-0.081,0.97,,,10.0,part close to arm
+3076,123.04,9,876.7,384.8,LEFT,43.4,ISR_A,ISR,head,,0.87,0.028,0.98,,,10.0,
+3100,124.0,9,1491.8,352.5,RIGHT,50.4,BRA_A,BRA,foot,right,1.0,-0.07,0.89,,,10.0,
+3144,125.76,9,1092.0,228.0,RIGHT,37.0,BRA_B,BRA,foot,left,1.0,-0.012,1.08,,,10.0,
+3153,126.12,9,740.2,363.0,LEFT,59.7,ISR_B,ISR,head,,0.72,0.065,0.98,,,10.0,
+3188,127.52,9,1697.2,303.8,RIGHT,60.7,BRA_A,BRA,foot,right,1.0,-0.139,1.07,,,10.0,
+3238,129.52,9,905.2,456.0,LEFT,40.1,ISR_B,ISR,shin,right,1.0,-0.04,1.02,,,10.0,
+3252,130.08,9,1005.0,433.1,NET,14.3,BRA_B,BRA,shoulder,left,0.76,0.056,1.01,,,10.0,part close to head
+3266,130.64,9,961.5,601.8,LEFT,67.1,ISR_A,ISR,foot,right,0.39,0.17,0.85,ISR_B,foot,1.73,part close to shin
+3302,132.08,9,921.0,191.2,LEFT,41.9,ISR_B,ISR,head,,1.0,-0.193,1.24,,,10.0,
+3376,135.04,10,696.7,481.2,LEFT,56.7,ISR_A,ISR,chest,,0.96,0.007,0.96,ISR_B,foot,3.0,
+3399,135.96,10,936.1,185.2,NET,28.0,ISR_B,ISR,hand,left,0.45,0.16,1.26,,,10.0,"part close to head; hand: ball held/caught, probably dead ball"
+3417,136.68,10,1587.0,442.9,RIGHT,43.5,BRA_A,BRA,foot,right,0.77,0.053,0.94,,,10.0,part close to shin
+3455,138.2,10,1522.5,765.7,RIGHT,89.6,BRA_B,BRA,thigh,left,1.0,-0.139,1.04,BRA_A,foot,3.48,part close to knee
+3473,138.92,10,1632.0,865.5,RIGHT,18.9,BRA_B,BRA,thigh,left,1.0,-0.101,0.48,,,10.0,part close to torso
+3497,139.88,10,1290.0,229.1,RIGHT,51.0,BRA_A,BRA,head,,1.0,-0.053,1.14,,,10.0,
+3522,140.88,10,338.6,244.5,LEFT,18.4,ISR_B,ISR,head,,0.75,0.058,1.07,,,10.0,
+3597,143.88,11,315.2,276.8,LEFT,45.7,ISR_B,ISR,foot,right,1.0,-0.094,1.0,,,10.0,
+3629,145.16,11,1626.0,366.8,RIGHT,52.7,BRA_A,BRA,arm,right,1.0,-0.11,1.04,,,10.0,part close to shoulder
+3670,146.8,11,1860.0,633.8,RIGHT,68.2,BRA_B,BRA,head,,1.0,-0.123,1.04,,,10.0,part close to hand
+3697,147.88,11,1311.8,429.0,RIGHT,31.5,BRA_A,BRA,head,,1.0,-0.047,0.99,,,10.0,
+3724,148.96,11,740.2,763.5,LEFT,73.8,ISR_A,ISR,foot,right,1.0,0.001,0.85,,,10.0,part close to shin
+3748,149.92,11,816.8,396.0,LEFT,34.8,ISR_B,ISR,chest,,1.0,-0.224,1.08,,,10.0,
+3782,151.28,11,972.0,420.4,NET,50.2,ISR_A,ISR,head,,0.89,-0.035,1.07,ISR_B,shoulder,1.55,
+3790,151.6,11,1425.0,566.3,RIGHT,69.9,BRA_B,BRA,head,,0.25,0.041,0.99,BRA_A,shin,0.1,2D overlap with BRA_A shin (gap -0.18 m); depth ball/expected 0.99 vs 1.22
+3916,156.64,12,623.3,847.5,LEFT,13.1,ISR_A,ISR,foot,right,1.0,-0.042,0.85,,,10.0,
+3935,157.4,12,741.0,817.5,LEFT,14.3,ISR_A,ISR,foot,left,1.0,-0.066,0.91,,,10.0,
+3981,159.24,12,577.8,464.7,LEFT,68.4,ISR_A,ISR,arm,right,1.0,-0.035,0.91,,,10.0,part close to thigh
+3986,159.44,12,558.7,297.6,LEFT,14.1,ISR_B,ISR,shoulder,left,0.02,0.317,1.07,ISR_A,head,-0.73,part close to head
+4020,160.8,12,603.0,261.4,LEFT,43.5,ISR_B,ISR,head,,0.63,0.091,1.08,,,10.0,
+4100,164.0,13,702.8,387.8,LEFT,38.7,ISR_B,ISR,shoulder,left,1.0,-0.129,0.97,,,10.0,part close to chest
+4120,164.8,13,654.4,357.6,LEFT,10.4,ISR_A,ISR,head,,0.46,0.15,0.92,ISR_B,shoulder,2.29,
+4127,165.08,13,651.7,486.5,LEFT,58.8,ISR_A,ISR,chest,,1.0,-0.111,0.91,ISR_B,foot,4.32,part close to shoulder
+4165,166.6,13,666.8,310.5,LEFT,34.8,ISR_B,ISR,head,,0.78,0.049,1.11,,,10.0,
+4239,169.56,13,668.2,382.4,LEFT,53.4,ISR_B,ISR,shoulder,left,1.0,-0.192,1.0,,,10.0,
+4267,170.68,13,784.5,448.9,LEFT,52.7,ISR_A,ISR,chest,,0.33,0.023,1.0,ISR_B,thigh,0.23,2D overlap with ISR_B thigh (gap -0.15 m); depth ball/expected 1.00 vs 1.20
+4300,172.0,13,967.5,304.2,NET,46.6,ISR_B,ISR,head,,0.7,0.07,1.14,,,10.0,
+4323,172.92,13,1755.0,435.8,RIGHT,31.4,BRA_A,BRA,shoulder,right,0.48,0.147,0.84,,,10.0,part close to head
+4427,177.08,14,1671.0,456.8,RIGHT,72.0,BRA_A,BRA,shoulder,right,1.0,-0.186,0.89,,,10.0,
+4468,178.72,14,1212.0,448.9,RIGHT,62.1,BRA_B,BRA,chest,,1.0,-0.018,0.96,,,10.0,
+4499,179.96,14,1045.5,256.4,RIGHT,10.7,BRA_A,BRA,foot,right,0.96,-0.151,1.14,ISR_A,foot,2.12,2D overlap with ISR_A foot (gap -0.15 m); depth ball/expected 1.14 vs 1.18
+4714,188.56,16,266.0,993.0,LEFT,9.8,BRA_A,BRA,shin,left,1.0,-0.032,0.99,,,10.0,part close to foot
+4722,188.88,16,195.2,972.8,LEFT,35.0,BRA_A,BRA,foot,right,0.94,0.013,0.96,,,10.0,part close to hand
+4737,189.48,16,128.0,774.0,LEFT,7.7,BRA_A,BRA,hand,left,1.0,-0.004,0.95,,,10.0,"hand: ball held/caught, probably dead ball"
+4744,189.76,16,152.4,780.0,LEFT,22.9,BRA_A,BRA,chest,,1.0,-0.184,0.95,,,10.0,part close to torso
+4751,190.04,16,238.6,721.5,LEFT,24.1,BRA_A,BRA,torso,,1.0,-0.205,0.85,,,10.0,part close to chest
+4799,191.96,16,1161.8,385.9,RIGHT,40.9,ISR_A,ISR,head,,1.0,-0.099,0.98,,,10.0,
+4830,193.2,16,1192.5,299.2,RIGHT,43.1,ISR_B,ISR,head,,0.19,0.067,1.12,ISR_A,head,-0.02,2D overlap with ISR_A head (gap 0.06 m); depth ball/expected 1.12 vs 1.14; part close to hand
+4852,194.08,16,846.8,344.8,LEFT,31.6,BRA_B,BRA,foot,left,1.0,-0.112,0.99,,,10.0,
+4883,195.32,16,709.8,264.4,LEFT,9.8,BRA_B,BRA,arm,right,1.0,-0.024,1.32,,,10.0,
+4890,195.6,16,691.5,544.9,LEFT,82.4,BRA_A,BRA,head,,0.77,-0.057,0.92,BRA_B,foot,1.1,2D overlap with BRA_B foot (gap 0.06 m); depth ball/expected 0.92 vs 1.27
+4935,197.4,16,1000.9,497.6,NET,36.4,ISR_A,ISR,foot,right,0.51,0.061,0.99,BRA_B,head,0.92,
+4941,197.64,16,943.5,519.0,LEFT,8.1,BRA_B,BRA,head,,0.79,0.048,0.91,,,10.0,
+5085,203.4,17,1629.0,566.6,RIGHT,11.3,ISR_A,ISR,arm,left,1.0,-0.03,0.86,,,10.0,part close to hand
+5091,203.64,17,1521.0,816.0,RIGHT,92.2,ISR_A,ISR,thigh,left,1.0,-0.151,0.87,,,10.0,part close to knee
+5127,205.08,17,1263.0,468.7,RIGHT,48.3,ISR_B,ISR,head,,0.87,0.028,0.95,,,10.0,
+5143,205.72,17,303.0,684.0,LEFT,83.9,BRA_A,BRA,head,,0.98,-0.079,0.91,BRA_B,foot,2.54,part close to chest
+5174,206.96,17,470.8,245.9,LEFT,34.9,BRA_B,BRA,head,,0.71,0.068,1.01,,,10.0,
+5179,207.16,17,508.5,364.3,LEFT,51.2,BRA_B,BRA,head,,1.0,-0.223,1.01,,,10.0,
+5213,208.52,17,887.9,336.1,LEFT,57.8,BRA_A,BRA,head,,0.94,0.013,0.96,,,10.0,
+5314,212.56,18,465.0,537.0,LEFT,21.1,BRA_A,BRA,head,,0.38,-0.115,0.98,BRA_B,shin,0.25,2D overlap with BRA_B shin (gap -0.15 m); depth ball/expected 0.98 vs 1.14; part close to shoulder
+5342,213.68,18,636.8,405.7,LEFT,38.5,BRA_B,BRA,head,,1.0,-0.182,0.95,,,10.0,
+5376,215.04,18,921.0,325.1,LEFT,61.2,BRA_A,BRA,hand,left,1.0,-0.056,1.05,,,10.0,"part close to head; hand: ball held/caught, probably dead ball"
+5388,215.52,18,1620.0,411.0,RIGHT,71.8,ISR_A,ISR,head,,1.0,-0.068,0.94,,,10.0,
+5431,217.24,18,1459.5,438.8,RIGHT,74.8,ISR_A,ISR,head,,0.32,-0.128,0.95,ISR_B,shoulder,0.12,2D overlap with ISR_B shoulder (gap -0.06 m); depth ball/expected 0.95 vs 1.08
+5470,218.8,18,855.8,379.2,LEFT,56.3,BRA_B,BRA,shin,left,1.0,-0.076,0.98,,,10.0,part close to foot
+5510,220.4,18,967.5,456.7,NET,69.2,BRA_A,BRA,foot,right,1.0,-0.077,0.97,,,10.0,part close to shin
+5543,221.72,18,919.5,240.4,LEFT,46.5,BRA_B,BRA,foot,left,1.0,-0.083,1.14,,,10.0,
+5557,222.28,18,1576.5,604.5,RIGHT,93.8,ISR_A,ISR,shin,right,0.27,-0.132,1.09,ISR_B,foot,0.0,2D overlap with ISR_B foot (gap -0.09 m); depth ball/expected 1.09 vs 0.89; part close to foot
+5576,223.04,18,1002.0,503.3,NET,20.4,BRA_B,BRA,shoulder,left,0.55,0.119,1.06,,,10.0,part close to chest
+5582,223.28,18,1010.4,515.6,NET,13.6,BRA_B,BRA,shoulder,left,0.38,0.194,1.06,,,10.0,
+5592,223.68,18,1093.5,621.0,RIGHT,35.2,ISR_A,ISR,shin,right,0.89,0.023,1.01,,,10.0,
+5627,225.08,18,1408.5,695.2,RIGHT,104.4,ISR_B,ISR,head,,1.0,-0.019,0.98,,,10.0,
+5658,226.32,18,253.7,364.5,LEFT,39.4,BRA_B,BRA,head,,0.96,0.009,1.0,,,10.0,
+5694,227.76,18,659.2,440.2,LEFT,49.8,BRA_A,BRA,chest,,0.57,0.111,0.96,,,10.0,part close to shoulder
+5729,229.16,18,780.0,308.6,LEFT,53.5,BRA_B,BRA,head,,1.0,-0.099,1.03,,,10.0,
+5753,230.12,18,1789.5,509.2,RIGHT,32.0,ISR_A,ISR,thigh,left,0.88,-0.127,0.94,ISR_B,head,1.49,part close to torso
+5764,230.56,18,1684.5,542.2,RIGHT,30.8,ISR_B,ISR,shoulder,left,1.0,-0.101,0.91,,,10.0,part close to arm
+5860,234.4,19,1105.5,480.0,RIGHT,61.6,ISR_B,ISR,head,,0.59,0.104,1.0,,,10.0,
+5873,234.92,19,317.4,620.2,LEFT,80.8,BRA_B,BRA,shin,left,0.93,-0.139,1.03,BRA_A,head,1.76,part close to thigh
+5978,239.12,20,593.6,381.0,LEFT,41.1,BRA_B,BRA,head,,0.78,0.049,1.03,,,10.0,
+6014,240.56,20,1734.0,619.5,RIGHT,71.7,ISR_B,ISR,hand,right,1.0,-0.038,0.9,,,10.0,"part close to shoulder; hand: ball held/caught, probably dead ball"
+6047,241.88,20,1279.5,509.6,RIGHT,55.4,ISR_A,ISR,head,,1.0,-0.178,0.92,,,10.0,
+6079,243.16,20,1046.2,380.2,RIGHT,43.1,ISR_B,ISR,head,,0.57,0.112,1.0,,,10.0,
+6092,243.68,20,568.5,318.0,LEFT,40.2,BRA_B,BRA,head,,1.0,-0.029,1.05,,,10.0,
+6132,245.28,20,662.6,428.3,LEFT,50.1,BRA_A,BRA,head,,1.0,-0.085,0.92,,,10.0,
+6168,246.72,20,766.5,312.0,LEFT,57.4,BRA_B,BRA,head,,1.0,-0.076,1.1,,,10.0,
+6186,247.44,20,1654.5,452.6,RIGHT,43.1,ISR_A,ISR,chest,,1.0,-0.039,1.03,,,10.0,part close to head
+6284,251.36,21,1264.5,520.5,RIGHT,56.6,ISR_A,ISR,head,,1.0,-0.196,0.92,,,10.0,
+6314,252.56,21,1134.7,398.3,RIGHT,24.4,ISR_B,ISR,head,,0.92,0.016,1.16,,,10.0,
+6335,253.4,21,856.5,707.2,LEFT,68.2,BRA_A,BRA,foot,right,0.76,0.054,1.01,,,10.0,part close to shin
+6373,254.92,21,798.8,386.2,LEFT,43.2,BRA_B,BRA,chest,,1.0,-0.135,1.07,,,10.0,part close to head
+6407,256.28,21,900.0,371.8,LEFT,45.0,BRA_A,BRA,head,,0.7,0.071,1.0,,,10.0,
+6429,257.16,21,1111.5,418.1,RIGHT,27.1,ISR_A,ISR,foot,right,1.0,-0.007,1.02,,,10.0,
+6457,258.28,21,1213.9,491.8,RIGHT,68.1,ISR_B,ISR,shoulder,left,0.23,-0.112,0.88,ISR_A,foot,-0.1,2D overlap with ISR_A foot (gap -0.17 m); depth ball/expected 0.88 vs 1.08; part close to chest
+6491,259.64,21,1123.5,265.5,RIGHT,28.8,ISR_A,ISR,head,,0.79,0.047,1.19,,,10.0,
+6514,260.56,21,807.8,445.5,LEFT,37.0,BRA_B,BRA,foot,left,1.0,-0.077,0.99,,,10.0,
+6540,261.6,21,1326.0,336.0,RIGHT,10.4,ISR_A,ISR,head,,0.51,0.135,1.27,,,10.0,
+6548,261.92,21,1536.0,644.2,RIGHT,92.3,ISR_B,ISR,head,,0.6,-0.042,1.04,ISR_A,thigh,0.7,2D overlap with ISR_A thigh (gap -0.00 m); depth ball/expected 1.04 vs 1.34; part close to hand
+6583,263.32,21,1455.0,506.2,RIGHT,58.6,ISR_A,ISR,chest,,1.0,-0.084,0.94,,,10.0,part close to shoulder
+6620,264.8,21,1086.7,453.8,RIGHT,49.4,ISR_B,ISR,arm,right,1.0,-0.089,1.14,,,10.0,part close to hand
+6638,265.52,21,395.2,435.4,LEFT,8.5,BRA_B,BRA,head,,1.0,-0.1,1.34,,,10.0,
+6647,265.88,21,124.5,692.3,LEFT,82.4,BRA_A,BRA,chest,,1.0,-0.199,1.06,,,10.0,part close to torso
+6685,267.4,21,576.0,402.7,LEFT,52.7,BRA_B,BRA,head,,1.0,-0.213,1.0,,,10.0,
+6718,268.72,21,963.0,281.2,NET,33.6,BRA_A,BRA,foot,left,1.0,-0.175,1.05,,,10.0,
+6728,269.12,21,1382.3,553.9,RIGHT,57.7,ISR_A,ISR,foot,left,0.37,-0.014,1.01,ISR_B,shoulder,0.23,2D overlap with ISR_B shoulder (gap -0.11 m); depth ball/expected 1.01 vs 0.91
+6776,271.04,21,1075.5,413.6,RIGHT,36.3,ISR_A,ISR,foot,right,1.0,-0.056,1.11,,,10.0,
+6787,271.48,21,477.8,623.2,LEFT,78.7,BRA_A,BRA,head,,0.32,-0.024,0.91,BRA_B,shin,0.11,2D overlap with BRA_B shin (gap -0.18 m); depth ball/expected 0.91 vs 1.14
+6827,273.08,21,720.4,554.2,LEFT,69.8,BRA_B,BRA,head,,1.0,-0.157,0.94,,,10.0,
+6863,274.52,21,912.0,420.0,LEFT,39.1,BRA_A,BRA,head,,0.82,0.04,0.97,,,10.0,
+6886,275.44,21,1156.5,645.7,RIGHT,53.8,ISR_B,ISR,foot,right,1.0,-0.056,0.86,,,10.0,
+6899,275.96,21,1314.8,481.5,RIGHT,32.5,ISR_A,ISR,shin,left,1.0,-0.161,1.01,,,10.0,
+6935,277.4,21,1507.5,455.2,RIGHT,71.6,ISR_B,ISR,foot,right,1.0,-0.113,0.88,ISR_A,hand,4.04,part close to head
+6966,278.64,21,438.4,368.2,LEFT,48.2,BRA_B,BRA,shoulder,left,1.0,-0.159,1.03,,,10.0,part close to chest
+6972,278.88,21,454.2,220.1,LEFT,85.7,BRA_B,BRA,arm,left,1.0,-0.019,1.04,,,10.0,part close to hand
+7003,280.12,21,723.7,434.3,LEFT,54.1,BRA_A,BRA,chest,,0.72,0.065,1.03,,,10.0,
+7033,281.32,21,930.0,223.5,LEFT,34.4,BRA_B,BRA,foot,left,0.87,0.027,1.23,,,10.0,part close to shin
+7049,281.96,21,1557.0,549.8,RIGHT,44.7,ISR_B,ISR,head,,0.45,0.16,0.76,,,10.0,
+7103,284.12,21,1635.0,501.4,RIGHT,7.1,ISR_A,ISR,chest,,1.0,-0.265,1.31,,,10.0,
+7148,285.92,21,1197.0,540.4,RIGHT,59.6,ISR_A,ISR,head,,1.0,-0.198,0.98,,,10.0,
+7173,286.92,21,1193.2,478.1,RIGHT,36.5,ISR_B,ISR,hand,right,0.16,0.041,0.98,ISR_A,chest,-0.19,"2D overlap with ISR_A chest (gap -0.27 m); depth ball/expected 0.98 vs 1.12; part close to head; hand: ball held/caught, probably dead ball"
+7178,287.12,21,1101.0,406.5,RIGHT,8.1,ISR_A,ISR,shoulder,right,0.32,0.231,1.1,,,10.0,part close to head
+7233,289.32,21,823.2,554.0,LEFT,7.0,BRA_B,BRA,shin,right,0.95,-0.141,0.96,BRA_A,hand,1.99,
+7245,289.8,21,815.7,528.7,LEFT,17.3,BRA_A,BRA,chest,,1.0,-0.216,0.82,,,10.0,
+7383,295.32,22,810.0,554.2,LEFT,8.4,ISR_A,ISR,foot,right,1.0,-0.018,0.96,,,10.0,part close to shin
+7390,295.6,22,751.8,540.4,LEFT,16.8,ISR_A,ISR,shin,right,0.86,0.03,0.99,,,10.0,part close to foot
+7407,296.28,22,684.7,468.0,LEFT,7.6,ISR_A,ISR,hand,right,0.99,-0.052,1.06,ISR_B,head,2.86,"hand: ball held/caught, probably dead ball"
+7521,300.84,23,19.8,571.1,LEFT,9.7,ISR_A,ISR,torso,,1.0,-0.216,0.93,,,10.0,
+7740,309.6,25,1309.5,444.8,RIGHT,64.9,BRA_B,BRA,head,,1.0,-0.199,0.92,,,10.0,
+7772,310.88,25,1092.0,251.2,RIGHT,38.6,BRA_A,BRA,head,,1.0,-0.063,1.17,,,10.0,
+7793,311.72,25,229.5,618.8,LEFT,59.2,ISR_B,ISR,thigh,left,1.0,-0.138,1.0,,,10.0,
+7833,313.32,25,279.4,778.5,LEFT,88.3,ISR_A,ISR,foot,right,1.0,-0.035,1.08,ISR_B,foot,4.18,
+7877,315.08,25,946.5,337.5,NET,41.4,ISR_B,ISR,foot,left,0.95,0.011,1.25,,,10.0,
+7888,315.52,25,1465.5,624.4,RIGHT,71.8,BRA_B,BRA,foot,left,0.37,0.038,0.9,BRA_A,thigh,0.39,2D overlap with BRA_A thigh (gap 0.09 m); depth ball/expected 0.90 vs 1.05
+7923,316.92,25,1128.8,319.2,RIGHT,43.3,BRA_A,BRA,foot,right,1.0,-0.113,1.07,,,10.0,
+7962,318.48,25,1436.2,420.7,RIGHT,71.7,BRA_B,BRA,head,,1.0,-0.049,1.01,,,10.0,
+8062,322.48,26,795.0,428.2,LEFT,43.7,ISR_A,ISR,thigh,right,0.96,0.008,1.01,,,10.0,
+8092,323.68,26,906.0,235.9,LEFT,38.3,ISR_B,ISR,head,,0.69,0.074,1.18,,,10.0,
+8164,326.56,27,1552.5,318.0,RIGHT,46.4,BRA_A,BRA,head,,1.0,-0.22,1.04,,,10.0,
+8198,327.92,27,1047.0,292.2,RIGHT,29.3,BRA_B,BRA,foot,left,1.0,-0.063,1.06,,,10.0,
+8206,328.24,27,722.2,438.0,LEFT,72.3,ISR_B,ISR,thigh,right,1.0,-0.078,1.04,,,10.0,part close to knee
+8319,332.76,28,247.9,399.4,LEFT,58.9,ISR_B,ISR,chest,,1.0,-0.231,1.05,,,10.0,
+8354,334.16,28,777.8,499.5,LEFT,69.8,ISR_A,ISR,head,,1.0,-0.173,0.96,,,10.0,
+8381,335.24,28,880.5,295.6,LEFT,28.1,ISR_B,ISR,hand,left,1.0,-0.107,1.07,,,10.0,"part close to arm; hand: ball held/caught, probably dead ball"
+8407,336.28,28,1095.0,487.9,RIGHT,38.0,BRA_A,BRA,shin,right,1.0,-0.013,1.02,,,10.0,part close to foot
+8441,337.64,28,1617.0,785.3,RIGHT,111.7,BRA_B,BRA,thigh,right,1.0,-0.213,1.05,,,10.0,
+8481,339.24,28,1200.0,307.5,RIGHT,41.1,BRA_A,BRA,head,,1.0,-0.04,1.12,,,10.0,
+8504,340.16,28,804.0,523.8,LEFT,43.1,ISR_A,ISR,thigh,right,0.59,0.107,0.92,,,10.0,part close to knee
+8530,341.2,28,697.5,331.8,LEFT,27.2,ISR_B,ISR,shoulder,left,1.0,-0.115,1.07,,,10.0,
+8561,342.44,28,926.2,337.8,LEFT,39.1,ISR_A,ISR,head,,0.73,0.062,1.07,,,10.0,
+8581,343.24,28,1249.5,421.1,RIGHT,42.0,BRA_A,BRA,shin,right,1.0,-0.075,1.05,,,10.0,
+8621,344.84,28,1444.5,903.0,RIGHT,124.2,BRA_B,BRA,thigh,right,1.0,-0.023,1.05,,,10.0,part close to shin
+8662,346.48,28,1221.0,361.3,RIGHT,63.5,BRA_A,BRA,head,,1.0,-0.042,1.01,,,10.0,
+8681,347.24,28,363.4,496.5,LEFT,79.2,ISR_A,ISR,arm,right,0.95,0.01,0.84,,,10.0,part close to shoulder
+8690,347.6,28,709.5,395.2,LEFT,9.9,ISR_B,ISR,head,,0.79,0.048,0.79,,,10.0,
+8770,350.8,28,791.2,486.0,LEFT,68.5,ISR_A,ISR,chest,,0.94,0.013,0.95,,,10.0,
+8802,352.08,28,918.0,318.6,LEFT,29.5,ISR_B,ISR,head,,0.79,0.046,1.12,,,10.0,
+8822,352.88,28,1218.0,573.7,RIGHT,54.4,BRA_A,BRA,shin,right,1.0,-0.046,0.99,,,10.0,part close to foot
+8851,354.04,28,1471.5,465.0,RIGHT,59.1,BRA_B,BRA,head,,0.98,0.005,0.92,,,10.0,
+8887,355.48,28,1187.2,275.1,RIGHT,43.7,BRA_A,BRA,head,,1.0,-0.03,1.1,,,10.0,
+8905,356.2,28,489.4,332.2,LEFT,70.3,ISR_B,ISR,foot,left,1.0,-0.025,0.99,,,10.0,
+8950,358.0,28,1344.4,392.4,RIGHT,52.1,BRA_A,BRA,thigh,left,0.98,0.005,0.97,,,10.0,
+9018,360.72,29,1638.0,369.8,RIGHT,8.6,BRA_A,BRA,thigh,left,1.0,-0.123,1.01,,,10.0,
+9068,362.72,29,759.0,496.9,LEFT,58.1,ISR_A,ISR,chest,,0.98,-0.02,0.98,ISR_B,thigh,2.4,
+9096,363.84,29,958.5,287.6,NET,13.6,ISR_B,ISR,head,,1.0,-0.091,1.12,,,10.0,
+9112,364.48,29,1408.5,756.0,RIGHT,102.7,BRA_B,BRA,foot,left,1.0,-0.03,0.87,,,10.0,
+9148,365.92,29,1021.5,405.0,NET,52.8,BRA_A,BRA,foot,right,1.0,-0.116,1.01,,,10.0,part close to shin
+9193,367.72,29,1227.7,627.7,RIGHT,54.1,BRA_A,BRA,foot,left,0.17,0.359,0.97,,,10.0,
+9262,370.48,30,1525.5,555.4,RIGHT,14.4,BRA_A,BRA,shin,right,1.0,-0.014,0.9,,,10.0,part close to foot
+9283,371.32,30,1599.6,474.4,RIGHT,12.9,BRA_A,BRA,hand,right,1.0,-0.068,0.87,,,10.0,"part close to arm; hand: ball held/caught, probably dead ball"
+9290,371.6,30,1629.0,500.2,RIGHT,11.5,BRA_A,BRA,hand,right,1.0,-0.098,0.9,,,10.0,"hand: ball held/caught, probably dead ball"
+9388,375.52,31,665.2,562.1,LEFT,67.7,ISR_A,ISR,head,,0.99,-0.181,0.91,ISR_B,thigh,3.02,
+9415,376.6,31,801.0,331.2,LEFT,28.5,ISR_B,ISR,head,,0.7,0.072,1.05,,,10.0,
+9434,377.36,31,1317.0,355.1,RIGHT,39.1,BRA_A,BRA,foot,right,1.0,-0.062,1.0,,,10.0,
+9471,378.84,31,1258.5,510.8,RIGHT,78.5,BRA_B,BRA,head,,0.58,-0.097,0.98,BRA_A,thigh,0.66,2D overlap with BRA_A thigh (gap -0.02 m); depth ball/expected 0.98 vs 1.30
+9505,380.2,31,1041.0,290.4,RIGHT,35.4,BRA_A,BRA,foot,right,1.0,-0.12,1.2,,,10.0,
+9514,380.56,31,665.2,674.2,LEFT,123.3,ISR_A,ISR,shin,right,0.99,-0.046,0.91,ISR_B,foot,2.88,part close to thigh
+9519,380.76,31,792.8,380.2,LEFT,9.1,ISR_B,ISR,head,,1.0,-0.018,1.1,,,10.0,
+9607,384.28,32,1387.5,404.2,RIGHT,61.7,BRA_A,BRA,shoulder,right,1.0,-0.113,0.98,,,10.0,part close to chest
+9638,385.52,32,1117.5,366.0,RIGHT,61.4,BRA_B,BRA,foot,left,1.0,-0.057,1.17,,,10.0,
+9698,387.92,32,710.2,538.5,LEFT,81.7,ISR_A,ISR,chest,,0.96,-0.038,0.94,ISR_B,thigh,2.09,
+9733,389.32,32,855.0,283.3,LEFT,46.5,ISR_B,ISR,head,,1.0,-0.041,1.07,,,10.0,
+9756,390.24,32,1687.5,360.0,RIGHT,81.9,BRA_A,BRA,hand,left,0.34,0.215,0.94,,,10.0,"hand: ball held/caught, probably dead ball"
+9897,395.88,33,352.1,495.0,LEFT,74.3,BRA_A,BRA,chest,,1.0,-0.005,0.98,,,10.0,part close to arm
+9934,397.36,33,918.0,360.8,LEFT,38.1,BRA_B,BRA,head,,1.0,-0.199,0.93,,,10.0,
+9968,398.72,33,879.0,302.6,LEFT,33.3,BRA_A,BRA,head,,0.82,0.04,1.05,,,10.0,
+9974,398.96,33,969.4,231.4,NET,7.0,BRA_B,BRA,head,,0.18,0.339,1.13,,,10.0,
+10033,401.32,33,1293.0,358.5,RIGHT,9.3,ISR_A,ISR,thigh,left,0.6,0.103,1.28,,,10.0,part close to knee
+10039,401.56,33,1299.7,269.2,RIGHT,36.2,ISR_A,ISR,arm,left,1.0,-0.104,1.18,,,10.0,
+10049,401.96,33,1291.5,267.4,RIGHT,27.0,ISR_A,ISR,thigh,left,1.0,-0.203,1.08,,,10.0,
+10054,402.16,33,1290.0,356.4,RIGHT,27.4,ISR_A,ISR,thigh,left,1.0,-0.206,1.09,,,10.0,
+10084,403.36,33,1450.2,288.4,RIGHT,10.1,ISR_A,ISR,chest,,1.0,-0.102,1.01,,,10.0,
+10092,403.68,33,1482.0,277.5,RIGHT,7.5,ISR_A,ISR,hand,left,1.0,-0.053,0.92,,,10.0,"part close to arm; hand: ball held/caught, probably dead ball"
+10296,411.84,34,579.7,511.1,LEFT,50.0,BRA_B,BRA,head,,1.0,-0.218,0.94,,,10.0,
+10326,413.04,34,963.7,352.6,NET,49.8,BRA_A,BRA,foot,right,1.0,-0.083,1.13,,,10.0,
+10339,413.56,34,1614.0,574.5,RIGHT,64.6,ISR_B,ISR,foot,right,1.0,-0.032,0.84,,,10.0,
+10380,415.2,34,1326.8,616.5,RIGHT,51.9,ISR_A,ISR,head,,1.0,-0.222,0.88,,,10.0,
+10404,416.16,34,1152.0,592.8,RIGHT,60.9,ISR_B,ISR,foot,right,1.0,-0.04,0.84,,,10.0,part close to shin
+10438,417.52,34,811.5,384.0,LEFT,44.8,BRA_B,BRA,foot,left,1.0,-0.096,1.02,,,10.0,part close to shin
+10473,418.92,34,836.2,432.0,LEFT,53.0,BRA_A,BRA,foot,left,0.41,-0.026,1.17,BRA_B,chest,0.33,2D overlap with BRA_B chest (gap 0.06 m); depth ball/expected 1.17 vs 0.96
+10505,420.2,34,1011.0,283.8,NET,22.4,BRA_B,BRA,foot,left,0.01,0.152,1.09,BRA_A,foot,-1.43,2D overlap with BRA_A foot (gap -0.01 m); depth ball/expected 1.09 vs 1.16
+10522,420.88,34,937.5,554.2,LEFT,74.4,BRA_A,BRA,shin,right,1.0,-0.035,0.99,,,10.0,part close to foot
+10563,422.52,34,793.5,355.5,LEFT,43.4,BRA_B,BRA,head,,1.0,-0.22,1.01,,,10.0,
+10592,423.68,34,831.8,360.0,LEFT,57.3,BRA_A,BRA,head,,1.0,-0.035,1.01,,,10.0,
+10611,424.44,34,1752.0,514.5,RIGHT,46.9,ISR_A,ISR,thigh,left,1.0,-0.207,1.01,ISR_B,head,3.61,part close to knee
+10620,424.8,34,1726.3,560.6,RIGHT,21.5,ISR_B,ISR,head,,0.16,-0.193,0.79,ISR_A,torso,-0.32,2D overlap with ISR_A torso (gap -0.24 m); depth ball/expected 0.79 vs 0.92
+10634,425.36,34,1659.0,546.7,RIGHT,22.8,ISR_A,ISR,foot,left,0.98,-0.179,1.02,ISR_B,head,2.4,
+10727,429.08,34,1260.0,538.5,RIGHT,65.6,ISR_A,ISR,head,,1.0,-0.178,0.91,,,10.0,
+10760,430.4,34,1154.2,431.6,RIGHT,85.4,ISR_B,ISR,head,,1.0,-0.043,1.12,,,10.0,
+10788,431.52,34,1079.2,510.8,RIGHT,9.7,ISR_B,ISR,hand,right,1.0,-0.013,0.92,,,10.0,"hand: ball held/caught, probably dead ball"
+10824,432.96,34,1040.3,634.5,NET,14.9,ISR_B,ISR,hand,right,0.78,0.05,0.92,,,10.0,"hand: ball held/caught, probably dead ball"
+10843,433.72,34,552.4,621.0,LEFT,16.4,BRA_A,BRA,hand,right,0.97,0.007,0.87,,,10.0,"part close to arm; hand: ball held/caught, probably dead ball"
+10850,434.0,34,421.8,620.5,LEFT,7.5,BRA_B,BRA,shin,left,0.44,-0.068,0.95,BRA_A,torso,0.38,2D overlap with BRA_A torso (gap -0.20 m); depth ball/expected 0.95 vs 0.82
+10855,434.2,34,342.1,622.1,LEFT,21.7,BRA_A,BRA,arm,left,0.64,-0.075,0.78,BRA_B,thigh,0.79,
+10957,438.28,35,1611.0,513.4,RIGHT,62.6,ISR_A,ISR,head,,1.0,-0.22,0.97,,,10.0,
+10996,439.84,35,1487.3,445.8,RIGHT,73.8,ISR_B,ISR,head,,1.0,-0.042,1.02,,,10.0,
+11011,440.44,35,498.0,464.2,LEFT,7.7,BRA_B,BRA,hand,left,0.82,0.039,1.06,,,10.0,"part close to arm; hand: ball held/caught, probably dead ball"
+11016,440.64,35,255.7,567.8,LEFT,68.5,BRA_B,BRA,shin,right,0.3,-0.188,1.09,BRA_A,head,0.07,2D overlap with BRA_A head (gap -0.02 m); depth ball/expected 1.09 vs 0.89
+11049,441.96,35,631.2,615.0,LEFT,65.5,BRA_A,BRA,foot,left,1.0,-0.061,0.91,,,10.0,part close to shin
+11084,443.36,35,943.5,422.2,LEFT,50.2,BRA_B,BRA,foot,left,1.0,-0.059,1.0,,,10.0,
+11095,443.8,35,1572.0,534.7,RIGHT,10.0,ISR_A,ISR,thigh,right,1.0,-0.096,1.06,ISR_B,head,4.28,
+11230,449.2,36,1806.0,589.8,RIGHT,91.7,ISR_B,ISR,shoulder,right,1.0,-0.119,0.88,,,10.0,part close to chest
+11265,450.6,36,1218.0,420.7,RIGHT,51.8,ISR_A,ISR,head,,1.0,-0.196,0.93,,,10.0,
+11301,452.04,36,1236.0,369.6,RIGHT,46.1,ISR_B,ISR,head,,0.32,0.045,1.05,ISR_A,shoulder,0.3,2D overlap with ISR_A shoulder (gap 0.04 m); depth ball/expected 1.05 vs 1.16
+11306,452.24,36,1154.2,290.3,RIGHT,8.4,ISR_A,ISR,head,,1.0,-0.011,1.15,,,10.0,
+11405,456.2,37,1096.5,450.0,RIGHT,19.6,ISR_A,ISR,foot,right,1.0,-0.06,1.03,,,10.0,
+11552,462.08,38,314.5,475.7,LEFT,27.1,BRA_B,BRA,torso,,1.0,-0.179,0.82,,,10.0,part close to thigh
+11559,462.36,38,275.6,520.5,LEFT,12.4,BRA_B,BRA,hand,right,0.96,0.009,1.02,,,10.0,"hand: ball held/caught, probably dead ball"
+11589,463.56,38,1234.5,473.6,RIGHT,46.9,ISR_A,ISR,head,,1.0,-0.224,0.95,,,10.0,
+11625,465.0,38,1120.5,377.6,RIGHT,32.1,ISR_B,ISR,head,,0.2,0.066,1.12,ISR_A,head,0.02,2D overlap with ISR_A head (gap 0.06 m); depth ball/expected 1.12 vs 1.16
+11643,465.72,38,764.2,619.5,LEFT,65.5,BRA_A,BRA,foot,right,1.0,-0.064,0.87,,,10.0,
+11679,467.16,38,645.8,340.5,LEFT,37.3,BRA_B,BRA,shoulder,left,1.0,-0.139,1.11,,,10.0,part close to chest
+11712,468.48,38,848.2,369.4,LEFT,54.5,BRA_A,BRA,head,,1.0,-0.065,1.02,,,10.0,
+11794,471.76,39,717.0,421.1,LEFT,50.9,ISR_A,ISR,hand,right,0.45,-0.092,1.0,ISR_B,thigh,0.39,"2D overlap with ISR_B thigh (gap -0.20 m); depth ball/expected 1.00 vs 1.18; hand: ball held/caught, probably dead ball"
+11835,473.4,39,1082.2,502.5,RIGHT,75.3,BRA_B,BRA,foot,left,1.0,-0.121,0.91,,,10.0,
+11878,475.12,39,1132.5,238.2,RIGHT,53.2,BRA_A,BRA,head,,1.0,-0.096,1.14,,,10.0,
+11974,478.96,39,783.0,357.4,LEFT,56.2,ISR_A,ISR,hand,left,1.0,-0.082,1.08,ISR_B,hand,4.45,"part close to arm; hand: ball held/caught, probably dead ball"
+12007,480.28,39,883.5,242.2,LEFT,28.8,ISR_B,ISR,head,,1.0,-0.013,1.23,,,10.0,
+12027,481.08,39,1224.8,453.8,RIGHT,53.3,BRA_B,BRA,hand,right,1.0,-0.012,1.0,,,10.0,"part close to arm; hand: ball held/caught, probably dead ball"
+12069,482.76,39,1206.8,321.0,RIGHT,51.1,BRA_A,BRA,hand,right,1.0,-0.131,1.12,,,10.0,"part close to chest; hand: ball held/caught, probably dead ball"
+12095,483.8,39,1129.5,348.8,RIGHT,34.8,BRA_B,BRA,head,,0.46,0.132,0.97,BRA_A,thigh,1.52,
+12115,484.6,39,472.5,316.5,LEFT,48.7,ISR_B,ISR,head,,1.0,-0.093,1.04,,,10.0,
+12146,485.84,39,652.9,492.8,LEFT,63.9,ISR_A,ISR,head,,0.39,0.021,0.99,ISR_B,thigh,0.37,2D overlap with ISR_B thigh (gap -0.21 m); depth ball/expected 0.99 vs 1.24
+12188,487.52,39,856.5,339.8,LEFT,54.3,ISR_B,ISR,head,,1.0,-0.082,1.13,,,10.0,part close to chest
+12348,493.92,40,429.0,349.1,LEFT,55.6,ISR_B,ISR,arm,left,1.0,-0.101,1.0,,,10.0,
+12385,495.4,40,900.0,477.8,LEFT,53.9,ISR_A,ISR,shoulder,left,0.84,0.034,1.04,,,10.0,part close to head
+12486,499.44,41,665.2,379.6,LEFT,42.8,ISR_A,ISR,chest,,0.69,0.073,1.02,,,10.0,
+12523,500.92,41,890.2,277.8,LEFT,47.5,ISR_B,ISR,head,,0.84,0.035,1.05,,,10.0,
+12536,501.44,41,1476.0,330.8,RIGHT,56.2,BRA_A,BRA,head,,1.0,-0.033,1.0,,,10.0,
+12579,503.16,41,1450.5,350.6,RIGHT,71.1,BRA_B,BRA,shoulder,right,0.32,-0.138,0.98,BRA_A,shoulder,0.11,2D overlap with BRA_A shoulder (gap -0.16 m); depth ball/expected 0.98 vs 1.05; part close to arm
+12610,504.4,41,1170.0,243.2,RIGHT,37.9,BRA_A,BRA,head,,1.0,-0.089,1.17,,,10.0,
+12632,505.28,41,328.8,495.8,LEFT,82.8,ISR_A,ISR,head,,1.0,-0.051,0.97,,,10.0,part close to shoulder
+12669,506.76,41,590.2,495.0,LEFT,67.7,ISR_B,ISR,head,,1.0,-0.131,0.92,,,10.0,part close to chest
+12705,508.2,41,846.0,417.8,LEFT,75.0,ISR_A,ISR,head,,1.0,-0.079,1.07,,,10.0,
+12818,512.72,42,810.0,430.9,LEFT,63.9,ISR_A,ISR,chest,,1.0,-0.058,1.01,,,10.0,
+12847,513.88,42,881.2,256.8,LEFT,38.2,ISR_B,ISR,head,,0.9,0.022,1.13,,,10.0,
+12861,514.44,42,1474.5,265.2,RIGHT,31.3,BRA_A,BRA,head,,1.0,-0.031,1.12,,,10.0,
+12897,515.88,42,1581.0,613.5,RIGHT,67.2,BRA_B,BRA,hand,right,1.0,-0.061,0.9,,,10.0,"hand: ball held/caught, probably dead ball"
+12937,517.48,42,1104.0,243.6,RIGHT,36.7,BRA_A,BRA,head,,0.69,0.073,1.14,,,10.0,
+12950,518.0,42,569.2,386.2,LEFT,45.3,ISR_B,ISR,thigh,right,0.89,0.024,1.05,,,10.0,part close to knee
+12989,519.56,42,584.3,387.8,LEFT,40.1,ISR_A,ISR,chest,,0.69,0.056,0.98,ISR_B,arm,1.67,part close to shoulder
+13023,520.92,42,885.8,271.6,LEFT,36.1,ISR_B,ISR,head,,1.0,-0.216,1.26,,,10.0,
+13055,522.2,42,1312.5,363.4,RIGHT,24.8,BRA_A,BRA,foot,right,1.0,-0.14,1.04,,,10.0,
+13060,522.4,42,1233.0,375.0,RIGHT,23.1,BRA_A,BRA,thigh,right,1.0,0.0,1.08,,,10.0,part close to shin
+13106,524.24,42,1137.0,477.4,RIGHT,45.0,BRA_B,BRA,head,,1.0,-0.053,1.03,,,10.0,
+13129,525.16,42,713.2,923.2,LEFT,92.0,ISR_A,ISR,foot,right,1.0,-0.117,1.0,,,10.0,
+13147,525.88,42,796.5,818.2,LEFT,7.4,ISR_B,ISR,foot,left,0.16,0.365,1.09,,,10.0,
+13200,528.0,42,1782.0,590.2,RIGHT,94.0,ISR_B,ISR,hand,right,1.0,-0.07,0.81,,,10.0,"part close to shoulder; hand: ball held/caught, probably dead ball"
+13235,529.4,42,1191.0,441.8,RIGHT,55.2,ISR_A,ISR,head,,1.0,-0.228,0.96,,,10.0,
+13269,530.76,42,1114.5,307.9,RIGHT,47.7,ISR_B,ISR,head,,0.82,0.04,1.1,,,10.0,
+13286,531.44,42,380.2,484.5,LEFT,44.7,BRA_B,BRA,shoulder,left,0.76,0.054,0.98,,,10.0,part close to head
+13322,532.88,42,425.6,544.5,LEFT,62.0,BRA_B,BRA,arm,right,0.65,-0.091,1.1,BRA_A,head,0.8,2D overlap with BRA_A head (gap 0.10 m); depth ball/expected 1.10 vs 0.95; part close to hand
+13360,534.4,42,964.5,336.7,NET,31.4,BRA_B,BRA,head,,1.0,-0.073,1.08,,,10.0,
+13381,535.24,42,1395.0,746.6,RIGHT,72.7,ISR_B,ISR,foot,left,0.84,0.035,0.89,,,10.0,part close to shin
+13413,536.52,42,1324.5,319.0,RIGHT,12.6,ISR_A,ISR,hand,right,1.0,-0.03,0.96,,,10.0,"hand: ball held/caught, probably dead ball"
+13435,537.4,42,1457.4,388.7,RIGHT,14.9,ISR_A,ISR,head,,1.0,-0.151,0.82,,,10.0,
+13453,538.12,42,518.2,486.8,LEFT,63.7,BRA_B,BRA,head,,1.0,-0.216,0.95,,,10.0,
+13488,539.52,42,884.3,411.0,LEFT,44.6,BRA_A,BRA,hand,left,1.0,-0.045,0.99,,,10.0,"hand: ball held/caught, probably dead ball"
+13510,540.4,42,1191.0,401.2,RIGHT,31.6,ISR_A,ISR,foot,right,1.0,-0.172,0.96,,,10.0,
+13529,541.16,42,1252.5,329.0,RIGHT,8.0,ISR_A,ISR,shoulder,left,1.0,-0.062,1.3,,,10.0,
+13535,541.4,42,1275.7,462.4,RIGHT,49.6,ISR_B,ISR,hand,right,0.02,0.167,0.93,ISR_A,foot,-1.14,"2D overlap with ISR_A foot (gap 0.01 m); depth ball/expected 0.93 vs 1.25; hand: ball held/caught, probably dead ball"
+13571,542.84,42,931.5,457.5,LEFT,30.9,BRA_B,BRA,shin,left,1.0,-0.028,1.06,,,10.0,part close to foot
+13597,543.88,42,690.0,699.8,LEFT,77.4,BRA_A,BRA,torso,,1.0,-0.232,1.05,,,10.0,
+13644,545.76,42,686.2,336.8,LEFT,46.1,BRA_B,BRA,head,,1.0,-0.019,1.08,,,10.0,
+13672,546.88,42,1678.5,497.2,RIGHT,63.2,ISR_B,ISR,arm,right,1.0,-0.044,0.98,,,10.0,
+13706,548.24,42,1200.0,403.5,RIGHT,50.8,ISR_A,ISR,head,,1.0,-0.223,0.99,,,10.0,
+13735,549.4,42,1053.0,327.4,RIGHT,20.4,ISR_B,ISR,head,,1.0,-0.063,1.07,,,10.0,
+13758,550.32,42,940.5,877.5,LEFT,46.5,BRA_A,BRA,foot,right,1.0,-0.161,0.89,,,10.0,
+13763,550.52,42,902.2,889.5,LEFT,7.6,BRA_A,BRA,foot,right,1.0,-0.151,0.86,,,10.0,part close to shin
+13824,552.96,42,857.2,492.0,LEFT,64.7,BRA_B,BRA,head,,1.0,-0.196,0.95,,,10.0,
+13855,554.2,42,961.5,322.5,NET,32.1,BRA_A,BRA,foot,right,0.23,0.264,1.0,BRA_B,foot,1.44,part close to shin
+13869,554.76,42,1220.3,397.5,RIGHT,36.0,ISR_A,ISR,head,,1.0,-0.022,0.98,,,10.0,
+13900,556.0,42,1525.5,527.6,RIGHT,76.8,ISR_B,ISR,head,,1.0,-0.033,0.9,,,10.0,
+13935,557.4,42,1183.5,397.1,RIGHT,44.3,ISR_A,ISR,head,,1.0,-0.009,1.1,,,10.0,
+13959,558.36,42,603.4,618.2,LEFT,76.9,BRA_B,BRA,shin,right,0.33,-0.062,1.08,BRA_A,head,0.14,2D overlap with BRA_A head (gap -0.14 m); depth ball/expected 1.08 vs 0.86; part close to foot
+13999,559.96,42,524.2,406.5,LEFT,55.6,BRA_B,BRA,head,,1.0,-0.127,1.0,,,10.0,part close to chest
+14034,561.36,42,889.5,355.5,LEFT,38.6,BRA_A,BRA,hand,right,0.56,0.115,1.0,,,10.0,"part close to head; hand: ball held/caught, probably dead ball"
+14114,564.56,42,1896.0,601.5,RIGHT,70.6,ISR_B,ISR,head,,1.0,-0.143,0.9,,,10.0,
+14153,566.12,42,1321.5,409.5,RIGHT,53.7,ISR_A,ISR,head,,1.0,-0.172,0.96,,,10.0,part close to chest
+14184,567.36,42,1217.3,393.0,RIGHT,35.9,ISR_B,ISR,head,,0.76,0.056,0.97,,,10.0,part close to hand
+14207,568.28,42,697.5,618.8,LEFT,50.7,BRA_A,BRA,foot,right,0.63,0.093,0.83,,,10.0,
+14241,569.64,42,580.5,369.2,LEFT,45.6,BRA_B,BRA,chest,,1.0,-0.143,0.98,,,10.0,part close to head
+14274,570.96,42,906.0,356.3,LEFT,34.3,BRA_A,BRA,hand,right,0.95,0.011,1.03,,,10.0,"hand: ball held/caught, probably dead ball"
+14294,571.76,42,994.5,609.0,NET,10.5,BRA_A,BRA,foot,left,1.0,-0.159,1.05,,,10.0,
+14335,573.4,42,907.5,988.5,LEFT,16.5,ISR_B,ISR,foot,right,0.25,0.277,0.84,,,10.0,
+14362,574.48,42,704.6,624.8,LEFT,59.8,BRA_A,BRA,chest,,0.12,0.09,1.02,BRA_B,foot,-0.22,2D overlap with BRA_B foot (gap -0.19 m); depth ball/expected 1.02 vs 1.33
+14396,575.84,42,962.2,360.6,NET,24.8,BRA_B,BRA,head,,1.0,-0.011,1.14,,,10.0,
+14405,576.2,42,1164.0,460.8,RIGHT,7.1,ISR_A,ISR,hand,right,0.39,0.186,1.08,,,10.0,"hand: ball held/caught, probably dead ball"
+14466,578.64,42,1752.0,583.2,RIGHT,75.6,ISR_B,ISR,arm,right,0.7,0.042,0.88,ISR_A,arm,1.44,part close to chest
+14505,580.2,42,1215.0,538.9,RIGHT,54.6,ISR_A,ISR,head,,1.0,-0.138,0.89,,,10.0,
+14533,581.32,42,1107.0,540.8,RIGHT,61.4,ISR_B,ISR,head,,0.7,0.066,1.14,ISR_A,hand,2.18,
+14549,581.96,42,228.4,567.8,LEFT,17.3,BRA_A,BRA,head,,0.67,0.025,0.99,BRA_B,hand,1.08,2D overlap with BRA_B hand (gap 0.08 m); depth ball/expected 0.99 vs 1.25
+14619,584.76,43,1245.0,468.0,RIGHT,50.7,BRA_B,BRA,chest,,0.78,0.049,0.99,,,10.0,
+14651,586.04,43,988.5,301.2,NET,44.5,BRA_A,BRA,foot,right,0.27,-0.112,1.07,ISR_A,foot,0.01,2D overlap with ISR_A foot (gap -0.05 m); depth ball/expected 1.07 vs 1.09
+14730,589.2,44,1454.2,483.0,RIGHT,76.4,BRA_B,BRA,chest,,0.45,-0.031,1.05,BRA_A,head,0.4,2D overlap with BRA_A head (gap -0.25 m); depth ball/expected 1.05 vs 1.20
+14760,590.4,44,1123.5,244.5,RIGHT,12.8,BRA_A,BRA,foot,right,0.9,0.022,1.15,,,10.0,
+14765,590.6,44,991.5,384.4,NET,28.0,BRA_A,BRA,foot,right,1.0,-0.057,1.13,,,10.0,
+14777,591.08,44,635.2,687.8,LEFT,67.0,ISR_A,ISR,shin,left,1.0,-0.143,0.92,,,10.0,part close to thigh
+14815,592.6,44,855.7,435.0,LEFT,50.4,ISR_B,ISR,head,,1.0,-0.211,1.01,,,10.0,
+14849,593.96,44,1030.5,431.6,NET,44.5,ISR_A,ISR,foot,right,1.0,0.001,1.06,,,10.0,
+14855,594.2,44,1411.5,831.8,RIGHT,82.8,BRA_B,BRA,foot,left,0.22,0.305,0.94,,,10.0,
+14918,596.72,44,1357.5,436.1,RIGHT,58.4,BRA_B,BRA,chest,,0.34,0.016,1.02,BRA_A,arm,0.23,2D overlap with BRA_A arm (gap -0.12 m); depth ball/expected 1.02 vs 1.16; part close to shoulder
+14954,598.16,44,953.2,334.7,NET,7.8,BRA_A,BRA,foot,right,1.0,-0.001,1.07,,,10.0,
+14959,598.36,44,879.0,481.5,LEFT,56.6,ISR_B,ISR,foot,right,1.0,-0.132,1.02,,,10.0,
+14990,599.6,44,972.7,523.5,NET,32.3,ISR_A,ISR,shin,right,0.89,0.023,1.02,,,10.0,part close to foot
+15004,600.16,44,731.6,337.7,LEFT,37.2,ISR_B,ISR,head,,1.0,-0.011,1.06,,,10.0,part close to chest
+15035,601.4,44,1570.6,377.5,RIGHT,58.8,BRA_A,BRA,foot,right,1.0,-0.162,0.92,,,10.0,part close to shin
+15069,602.76,44,1213.5,441.0,RIGHT,46.3,BRA_B,BRA,chest,,0.67,0.08,0.92,,,10.0,
+15100,604.0,44,1093.5,286.5,RIGHT,51.6,BRA_A,BRA,head,,1.0,-0.027,1.09,,,10.0,
+15114,604.56,44,354.6,580.2,LEFT,79.0,ISR_B,ISR,shin,left,1.0,-0.126,0.95,,,10.0,part close to thigh
+15233,609.32,45,846.0,477.7,LEFT,36.9,ISR_A,ISR,hand,right,1.0,-0.054,1.01,,,10.0,"part close to arm; hand: ball held/caught, probably dead ball"
+15263,610.52,45,1367.1,889.7,RIGHT,105.1,BRA_B,BRA,foot,right,1.0,-0.109,1.05,,,10.0,
+15269,610.76,45,1324.5,670.2,RIGHT,21.7,BRA_B,BRA,head,,0.27,0.077,0.89,BRA_A,foot,0.28,2D overlap with BRA_A foot (gap 0.08 m); depth ball/expected 0.89 vs 1.25
+15289,611.56,45,1171.5,566.3,RIGHT,54.4,BRA_A,BRA,shin,right,1.0,-0.148,0.99,,,10.0,part close to foot
+15327,613.08,45,1024.5,410.3,NET,18.5,ISR_A,ISR,foot,right,1.0,-0.12,1.09,,,10.0,
+15348,613.92,45,1216.5,636.8,RIGHT,11.0,BRA_A,BRA,foot,right,0.52,0.129,1.07,,,10.0,
+15422,616.88,46,1228.5,594.0,RIGHT,74.4,BRA_B,BRA,head,,1.0,-0.174,0.88,,,10.0,
+15454,618.16,46,1173.0,375.8,RIGHT,39.9,BRA_A,BRA,head,,1.0,-0.031,1.09,,,10.0,
