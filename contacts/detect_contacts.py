@@ -188,8 +188,9 @@ for t in peaks:
     for f in range(t - SEARCH, t + SEARCH + 1):
         if f not in pose_by_frame or np.isnan(pos_t[t, 0]):
             continue
-        # ball position in frame f: observed, else the fit from the touch frame
-        p = np.array([bx[f], by[f]]) if 0 <= f < N and obs[f] else pos_t[t] + (vin[t] if f < t else vout[t]) * (f - t)
+        # the touch point is where the ball is at frame t; neighbouring skeletons only absorb pose/timing jitter.
+        # (the ball's own position in frame f would match whoever it flew past just before or after the touch)
+        p = pos_t[t]
         for r in pose_by_frame[f].itertuples(index=False):
             r = r._asdict()
             r = pd.Series(r)
@@ -202,7 +203,7 @@ for t in peaks:
             # second-best part of this player (for reporting how sure the part is)
             others = sorted(x for x in gaps if x[1] != part)
             g2, part2 = (others[0][0], others[0][1]) if others else (np.nan, '')
-            cost_t = abs(f - t) * 0.03
+            cost_t = abs(f - t) * 0.15
             k = r.player
             if k not in best or g + cost_t < best[k]['gap_m'] + best[k]['dt_cost']:
                 best[k] = dict(frame=t, player=k, team=r.team, court_side=r.court_side, contact_pose_frame=f,
