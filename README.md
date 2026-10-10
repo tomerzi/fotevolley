@@ -14,7 +14,7 @@ poses, rallies and points.
 | `data/mappings/` | Frame-number conversions: `frame_mapping.csv`, `frame_mapping_v3.csv` (v2 → v3), `frame_mapping_rallies.csv` (rallies video → v2 frame + rally). `homography_px_to_m.npy`: pixels → court metres. |
 | `data/tracks/` | Earlier tracking outputs: raw/cleaned player tracks, identities, team sides, referee removal, ball tracks, `player_boxes.csv`. |
 | `data/ball_pipeline/` | Outputs of `scripts/ball/` (ball candidates and filled ball boxes). |
-| `data/pose/` | Outputs of `scripts/pose/` (ViTPose BODY_25 keypoints, suspect frames). |
+| `data/pose/` | Outputs of `scripts/pose/` (ViTPose BODY_25 keypoints, suspect frames).<br>`sapiens2/sapiens2_pose_v3_00000-13494.csv`: Sapiens2-1B 308 keypoints (x, y, score) for every reviewed player box, **v3 frames** (`v2_frame` column too); `.mp4` is its check video (mp4v, open in VLC). Made by `scripts/pose/sapiens2_gpu.py`. |
 | `scripts/ball/`, `scripts/pose/` | Detection, filling, pose and render scripts. Run them from anywhere; paths are relative to the repo root. |
 | `docs/` | Notes and plans. |
 | `archive/` | Old versions and check videos, not tracked by git. |
