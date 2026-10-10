@@ -7602,7 +7602,7 @@ frame,time_sec,x1,y1,x2,y2,center_x,center_y,confidence,source,model,shot,missin
 7600,304.0,,,,,,,,missing,,34,unresolved_not_independently_visible
 7601,304.04,,,,,,,,missing,,34,unresolved_not_independently_visible
 7602,304.08,,,,,,,,missing,,34,unresolved_not_independently_visible
-7603,304.12,575.2,51.5,599.2,76.6,587.2,64.05,0.48,detected,bd+exp2,34,
+7603,304.12,,,,,,,,missing,,34,false_detection_removed
 7604,304.16,,,,,,,,missing,,34,no_detection
 7605,304.2,,,,,,,,missing,,34,no_detection
 7606,304.24,,,,,,,,missing,,34,no_detection
@@ -12506,11 +12506,11 @@ frame,time_sec,x1,y1,x2,y2,center_x,center_y,confidence,source,model,shot,missin
 12504,500.16,,,,,,,,missing,,52,trajectory_break
 12505,500.2,,,,,,,,missing,,52,trajectory_break
 12506,500.24,,,,,,,,missing,,52,trajectory_break
-12507,500.28,1041.0,228.8,1062.0,250.9,1051.5,239.85,0.53,detected,bd+exp2,52,
-12508,500.32,1041.0,228.4,1062.0,250.9,1051.5,239.65,0.5,detected,bd+exp2,52,
-12509,500.36,1041.0,229.1,1062.0,250.9,1051.5,240.0,0.45,detected,bd+exp2,52,
-12510,500.4,960.27,156.87,981.73,179.57,971.0,168.22,,interpolated,,52,
-12511,500.44,879.53,84.63,901.47,108.23,890.5,96.43,,interpolated,,52,
+12507,500.28,,,,,,,,missing,,52,false_detection_removed
+12508,500.32,,,,,,,,missing,,52,false_detection_removed
+12509,500.36,,,,,,,,missing,,52,false_detection_removed
+12510,500.4,,,,,,,,missing,,52,false_detection_removed
+12511,500.44,,,,,,,,missing,,52,false_detection_removed
 12512,500.48,798.8,12.4,821.2,36.9,810.0,24.65,0.3,detected,bd+exp2,52,
 12513,500.52,802.5,17.7,831.0,46.1,816.75,31.9,0.55,detected,bd+exp2,52,
 12514,500.56,810.0,35.0,837.0,62.6,823.5,48.8,0.56,detected,bd+exp2,52,
