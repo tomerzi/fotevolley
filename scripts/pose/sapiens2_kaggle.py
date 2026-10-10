@@ -1,15 +1,21 @@
-"""Sapiens2 308-keypoint pose on the first 30 s of video/main_camera_clean_v3.mp4 (dead time removed), using the
+"""Sapiens2 308-keypoint pose on video/main_camera_clean_v3.mp4 (dead time removed, 13495 frames), using the
 reviewed player boxes in v3 frame numbers (data/boxes/player_boxes_v3video.csv) widened by MARGIN on every side.
-Kaggle: Accelerator = GPU T4 x2 (uses both GPUs; one GPU also works), Internet = On. Paste the whole file into one cell and run.
--> /kaggle/working/sapiens2_pose_v3_30s.csv   one row per (frame, player): v3 frame, v2 frame, box, box with margin,
-                                               308 x (x, y, score); rewritten every 250 frames, so a stopped run keeps its rows
--> /kaggle/working/sapiens2_pose_v3_30s.mp4   video with the boxes and skeletons drawn, for checking"""
-import os, subprocess, sys, time, urllib.request
+Kaggle: Accelerator = GPU T4 x2 (uses both GPUs; one GPU also works), Internet = On.
+  !python fotevolley/scripts/pose/sapiens2_kaggle.py                          whole video
+  !S2_START=0 S2_END=6000 python fotevolley/scripts/pose/sapiens2_kaggle.py   frames 0-5999 only (Kaggle stops a session after 12 h)
+Settings by environment variable: S2_MODEL (0.4b | 0.8b | 1b), S2_FLIP (1 | 0), S2_MARGIN, S2_START, S2_END, S2_VIDEO (1 | 0).
+-> /kaggle/working/sapiens2_pose_v3_<first>-<last>.csv   one row per (frame, player): v3 frame, v2 frame, box, box with margin,
+                                                         308 x (x, y, score); rows are added every 250 frames
+-> /kaggle/working/sapiens2_pose_v3_<first>-<last>.mp4   video with the boxes and skeletons drawn, for checking
+A rerun in the same folder skips frames already in a sapiens2_pose_v3_*.csv, so a stopped run continues where it ended."""
+import glob, os, subprocess, sys, time, urllib.request
 
 MODEL = os.environ.get('S2_MODEL', '1b')      # 0.4b | 0.8b | 1b   (5b does not fit a 16 GB GPU)
-SECONDS = 30
-MARGIN = 0.15        # fraction of box width/height added on each side (0.15 -> box 1.3x wider and taller)
-FLIP_TEST = True     # average with the left-right flipped image, as Sapiens2 does by default (2x slower)
+MARGIN = float(os.environ.get('S2_MARGIN', 0.15))   # fraction of box width/height added on each side (0.15 -> 1.3x)
+FLIP_TEST = os.environ.get('S2_FLIP', '1') == '1'   # average with the left-right flipped image (Sapiens2 default, 2x slower)
+START = int(os.environ.get('S2_START', 0))
+END = int(os.environ.get('S2_END', 0))              # 0 = to the end of the video
+VIDEO_OUT = os.environ.get('S2_VIDEO', '1') == '1'
 KPT_THR = 0.3        # only for drawing
 WORK = os.environ.get('S2_WORK', '/kaggle/working')
 LIMIT = int(os.environ.get('S2_LIMIT', 0))    # >0: only this many frames (quick test)
@@ -82,14 +88,23 @@ codec = UDPHeatmap(**codec_cfg)
 names = [meta['keypoint_id2name'][i] for i in range(meta['num_keypoints'])]
 amp = devs[0] != 'cpu'   # fp16 on the T4; falls back to fp32 for a frame if fp16 gives inf/nan
 
-# 3. boxes for the first SECONDS
+# 3. frame range (skipping frames already done by an earlier run in this folder) and its boxes
 cap = cv2.VideoCapture(VIDEO)
 fps, W, H = cap.get(cv2.CAP_PROP_FPS), int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-N = LIMIT or int(round(SECONDS * fps))
+END = min(END or 10**9, int(cap.get(cv2.CAP_PROP_FRAME_COUNT)))
+done = set()
+for old in glob.glob(os.path.join(WORK, 'sapiens2_pose_v3_*.csv')):
+    done |= set(pd.read_csv(old, usecols=['frame']).frame)
+first = next((f for f in range(START, END) if f not in done), END)
+if first > START: print(f'frames {START}-{first - 1} are already in earlier output, starting at {first}', flush=True)
+last = min(END, first + LIMIT) if LIMIT else END
+N = last - first
 boxes = pd.read_csv(os.path.join(REPO, 'data', 'boxes', 'player_boxes_v3video.csv'))
-boxes = boxes[(boxes.frame < N) & boxes[['x1', 'y1', 'x2', 'y2']].notna().all(1)]
+boxes = boxes[(boxes.frame >= first) & (boxes.frame < last) & boxes[['x1', 'y1', 'x2', 'y2']].notna().all(1)]
 by_frame = {f: g for f, g in boxes.groupby('frame')}
-print(f'{N} frames, {len(boxes)} player boxes, margin {MARGIN:.0%} per side, model sapiens2-{MODEL} on {len(devs)} device(s)', flush=True)
+print(f'frames {first}-{last - 1} ({N} frames, {N / fps / 60:.1f} min of video), {len(boxes)} player boxes, margin {MARGIN:.0%} per side,'
+      f' flip test {"on" if FLIP_TEST else "off"}, model sapiens2-{MODEL} on {len(devs)} device(s)', flush=True)
+if N <= 0: sys.exit('nothing to do')
 
 
 def predict(img, bbs, use_amp):
@@ -120,13 +135,22 @@ def predict(img, bbs, use_amp):
     return out
 
 
-OUT_CSV, OUT_MP4 = os.path.join(WORK, 'sapiens2_pose_v3_30s.csv'), os.path.join(WORK, 'sapiens2_pose_v3_30s.mp4')
+OUT = os.path.join(WORK, f'sapiens2_pose_v3_{first:05d}-{last - 1:05d}')
+OUT_CSV, OUT_MP4 = OUT + '.csv', OUT + '.mp4'
 cols = ['frame', 'v2_frame', 'player', 'team', 'x1', 'y1', 'x2', 'y2', 'mx1', 'my1', 'mx2', 'my2'] + [f'{n}_{c}' for n in names for c in 'xys']
-save = lambda: pd.DataFrame(rows, columns=cols).to_csv(OUT_CSV, index=False)
 rows = []
-vw = cv2.VideoWriter(OUT_MP4 + '.tmp.mp4', cv2.VideoWriter_fourcc(*'mp4v'), fps, (W, H))
+
+
+def save():   # append the rows since the last save, so the file never has to be rewritten
+    global rows
+    if rows: pd.DataFrame(rows, columns=cols).to_csv(OUT_CSV, mode='a', header=not os.path.exists(OUT_CSV), index=False)
+    rows = []
+
+
+vw = cv2.VideoWriter(OUT_MP4 + '.tmp.mp4', cv2.VideoWriter_fourcc(*'mp4v'), fps, (W, H)) if VIDEO_OUT else None
+cap.set(cv2.CAP_PROP_POS_FRAMES, first)
 t0 = time.time()
-for f in range(N):
+for f in range(first, last):
     ok, img = cap.read()
     if not ok: break
     g = by_frame.get(f)
@@ -139,6 +163,12 @@ for f in range(N):
         for (_, r), bb, (k, s) in zip(g.iterrows(), bm, res):
             rows.append([f, r.v2_frame, r.player, r.team, r.x1, r.y1, r.x2, r.y2, *bb.round(1), *np.c_[k.round(1), s.round(3)].ravel()])
             kps.append(k); scs.append(s)
+    i = f - first
+    if (i + 1) % 25 == 0 or f + 1 == last:
+        el = time.time() - t0
+        print(f'frame {f + 1}/{last}  {el / 60:.1f} min  ~{el / (i + 1) * (N - i - 1) / 60:.0f} min left', flush=True)
+    if (i + 1) % 250 == 0: save()
+    if vw is None: continue
     vis = img[:, :, ::-1].copy()
     if kps:
         vis = visualize_keypoints(image=vis, keypoints=kps, keypoints_visible=[np.ones_like(s) > 0 for s in scs],
@@ -152,17 +182,15 @@ for f in range(N):
             cv2.putText(vis, r.player, (int(bb[0]), int(bb[1]) - 6), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 255), 2)
     cv2.putText(vis, f'frame {f}', (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
     vw.write(vis)
-    if (f + 1) % 25 == 0 or f + 1 == N:
-        el = time.time() - t0
-        print(f'{f + 1}/{N} frames  {el / 60:.1f} min  ~{el / (f + 1) * (N - f - 1) / 60:.1f} min left', flush=True)
-    if (f + 1) % 250 == 0: save()
+save()
+if vw is None:
+    print('saved', OUT_CSV, flush=True); sys.exit()
 vw.release()
+print('saved', OUT_CSV, '| encoding video ...', flush=True)
 # re-encode to H.264 so the video plays in the browser / Kaggle viewer
 import shutil
 if shutil.which('ffmpeg') and subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', OUT_MP4 + '.tmp.mp4', '-c:v', 'libx264', '-crf', '20', '-pix_fmt', 'yuv420p', OUT_MP4]).returncode == 0:
     os.remove(OUT_MP4 + '.tmp.mp4')
 else:
     os.replace(OUT_MP4 + '.tmp.mp4', OUT_MP4)
-
-save()
-print('saved', OUT_CSV, f'({len(rows)} rows) | video', OUT_MP4, flush=True)
+print('video', OUT_MP4, flush=True)
