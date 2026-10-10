@@ -1,9 +1,9 @@
-"""Contact sheet of ball crops. usage: python ball/sheet.py MODE out.jpg [N]   MODE: newdet | changed | interp"""
+"""Contact sheet of ball crops. usage: python scripts/ball/sheet.py MODE out.jpg [N]   MODE: newdet | changed | interp"""
 import os, sys, cv2, numpy as np, pandas as pd
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 mode, out = sys.argv[1], sys.argv[2]; N = int(sys.argv[3]) if len(sys.argv) > 3 else 30
-new = pd.read_csv(os.path.join(ROOT, 'ball', 'ball_boxes.csv'))
-old = pd.read_csv(os.path.join(ROOT, 'ball_tracks_full.csv')).iloc[:len(new)]
+new = pd.read_csv(os.path.join(ROOT, 'data', 'ball_pipeline', 'ball_boxes.csv'))
+old = pd.read_csv(os.path.join(ROOT, 'data', 'tracks', 'ball_tracks_full.csv')).iloc[:len(new)]
 dist = np.hypot(new.center_x - old.center_x, new.center_y - old.center_y)
 sel = {'newdet': (new.source == 'detected') & (old.source == 'missing'),
        'changed': (new.source == 'detected') & (old.source == 'yolo') & (dist > 20),
@@ -12,7 +12,7 @@ sel = {'newdet': (new.source == 'detected') & (old.source == 'missing'),
        'lost': (new.source == 'missing') & (old.source == 'yolo')}[mode]
 fr = new.frame[sel].values
 fr = fr[np.linspace(0, len(fr) - 1, min(N, len(fr))).astype(int)] if len(fr) else fr
-cap = cv2.VideoCapture(os.path.join(ROOT, 'main_camera_clean_v2.mp4')); tiles = []
+cap = cv2.VideoCapture(os.path.join(ROOT, 'video', 'main_camera_clean_v2.mp4')); tiles = []
 for f in fr:
     cap.set(cv2.CAP_PROP_POS_FRAMES, f); ok, im = cap.read()
     r = new.iloc[f]; o = old.iloc[f]

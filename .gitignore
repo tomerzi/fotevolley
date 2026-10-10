@@ -1,0 +1,5 @@
+# Old / intermediate versions and check renders (kept on disk, not tracked)
+archive/
+# ViTPose weights (2.3 GB, re-create with scripts/pose/convert_wholebody.py)
+models/vitpose_weights/
+__pycache__/

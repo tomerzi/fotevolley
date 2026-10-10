@@ -1,17 +1,17 @@
 """Convert official ViTPose COCO-WholeBody (133 kp) weights (easy_ViTPose mirror) into a HF VitPoseForPoseEstimation.
--> pose/weights/vitpose-<size>-wholebody-hf/   usage: python pose/convert_wholebody.py [l|h|b]"""
+-> models/vitpose_weights/vitpose-<size>-wholebody-hf/   usage: python scripts/pose/convert_wholebody.py [l|h|b]"""
 import os, sys
 import torch
 from huggingface_hub import hf_hub_download
 from transformers import (VitPoseConfig, VitPoseBackboneConfig, VitPoseForPoseEstimation, VitPoseImageProcessor)
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 size = sys.argv[1] if len(sys.argv) > 1 else 'l'
 DIMS = {'b': (768, 12, 12), 'l': (1024, 24, 16), 'h': (1280, 32, 16)}
 hid, layers, heads = DIMS[size]
 
 src = hf_hub_download('JunkyByte/easy_ViTPose', f'torch/wholebody/vitpose-{size}-wholebody.pth',
-                      local_dir=os.path.join(ROOT, 'pose', 'weights'))
+                      local_dir=os.path.join(ROOT, 'models', 'vitpose_weights'))
 sd = torch.load(src, map_location='cpu', weights_only=False)['state_dict']
 
 bc = VitPoseBackboneConfig(hidden_size=hid, num_hidden_layers=layers, num_attention_heads=heads,
@@ -49,7 +49,7 @@ new['head.conv.bias'] = sd[h + 'final_layer.bias']
 missing, unexpected = model.load_state_dict(new, strict=False)
 print('missing:', missing, 'unexpected:', unexpected)
 assert not unexpected and all('layernorm' not in m for m in missing), missing
-out = os.path.join(ROOT, 'pose', 'weights', f'vitpose-{size}-wholebody-hf')
+out = os.path.join(ROOT, 'models', 'vitpose_weights', f'vitpose-{size}-wholebody-hf')
 model.save_pretrained(out)
 VitPoseImageProcessor.from_pretrained('usyd-community/vitpose-plus-large').save_pretrained(out)
 print('saved', out)

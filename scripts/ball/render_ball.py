@@ -1,17 +1,17 @@
 """Draw ball/ball_boxes.csv on the video.
-usage: python ball/render_ball.py START END out.mp4          (frame range)
-       python ball/render_ball.py --changed out.mp4           (only frames whose ball differs from ball_tracks_full.csv)"""
+usage: python scripts/ball/render_ball.py START END out.mp4          (frame range)
+       python scripts/ball/render_ball.py --changed out.mp4           (only frames whose ball differs from ball_tracks_full.csv)"""
 import os, sys
 import cv2
 import numpy as np
 import pandas as pd
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 COL = {'detected': (0, 255, 0), 'interpolated': (0, 200, 255)}
 OLD_COL = (255, 0, 255)
 
-new = pd.read_csv(os.path.join(ROOT, 'ball', 'ball_boxes.csv'))
-old = pd.read_csv(os.path.join(ROOT, 'ball_tracks_full.csv')).iloc[:len(new)]
+new = pd.read_csv(os.path.join(ROOT, 'data', 'ball_pipeline', 'ball_boxes.csv'))
+old = pd.read_csv(os.path.join(ROOT, 'data', 'tracks', 'ball_tracks_full.csv')).iloc[:len(new)]
 if sys.argv[1] == '--changed':
     out_path = sys.argv[2]
     nd = new.source != 'missing'; od = old.source != 'missing'
@@ -21,7 +21,7 @@ else:
     frames = np.arange(int(sys.argv[1]), int(sys.argv[2]))
     out_path = sys.argv[3]
 
-cap = cv2.VideoCapture(os.path.join(ROOT, 'main_camera_clean_v2.mp4'))
+cap = cv2.VideoCapture(os.path.join(ROOT, 'video', 'main_camera_clean_v2.mp4'))
 vw = cv2.VideoWriter(out_path, cv2.VideoWriter_fourcc(*'mp4v'), 25, (1280, 720))
 prev = -2
 for f in frames:

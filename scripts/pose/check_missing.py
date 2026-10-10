@@ -1,25 +1,25 @@
 """Find frames where a player skeleton or the ball is missing although it is probably visible.
--> pose/suspects.csv  (frame, kind, who, detail)   and   pose/suspect_ranges.csv (merged runs)
+-> data/pose/suspects.csv  (frame, kind, who, detail)   and   data/pose/suspect_ranges.csv (merged runs)
 kinds: pose_weak    player box fully inside the frame but < MIN_JOINTS joints with score >= S_MIN
        pose_edge    same, but the box touches the frame border (player partly off-screen: expected)
-       player_none  fewer than 4 players in the frame (from players/player_boxes.csv)
+       player_none  fewer than 4 players in the frame (from data/tracks/player_boxes.csv)
        ball_hidden  ball missing in a short in-shot gap whose detected ends are well inside the frame
-usage: python pose/check_missing.py"""
+usage: python scripts/pose/check_missing.py"""
 import os
 import numpy as np
 import pandas as pd
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 W, H, N = 1920, 1080, 15586
 S_MIN, MIN_JOINTS = 0.3, 12
 EDGE = 80            # px: a ball last seen this close to the border probably left the frame
 MAX_GAP = 75         # longer in-shot gaps are dead time / ball gone, not a missed detection
 
-pose = pd.read_csv(os.path.join(ROOT, 'pose', 'vitpose_body25.csv'))
+pose = pd.read_csv(os.path.join(ROOT, 'data', 'pose', 'vitpose_body25.csv'))
 done = pose.frame.max() + 1
 s = pose.filter(regex='_s$').drop(columns='box_source', errors='ignore')
 pose['n_ok'] = (s.values >= S_MIN).sum(1)
-boxes = pd.read_csv(os.path.join(ROOT, 'players', 'player_boxes.csv'))
+boxes = pd.read_csv(os.path.join(ROOT, 'data', 'tracks', 'player_boxes.csv'))
 pose = pose.merge(boxes[['frame', 'player', 'x1', 'y1', 'x2', 'y2']], on=['frame', 'player'], how='left')
 pose['edge'] = (pose.x1 <= 5) | (pose.y1 <= 5) | (pose.x2 >= W - 5) | (pose.y2 >= H - 5)
 weak = pose[pose.n_ok < MIN_JOINTS]
@@ -29,7 +29,7 @@ cnt = boxes.groupby('frame').player.apply(set).reindex(range(done), fill_value=s
 allp = {'BRA_A', 'BRA_B', 'ISR_A', 'ISR_B'}
 rows += [(f, 'player_none', '+'.join(sorted(allp - ps)), f'{len(ps)} players') for f, ps in cnt.items() if len(ps) < 4]
 
-ball = pd.read_csv(os.path.join(ROOT, 'ball', 'ball_boxes.csv')).iloc[:done]
+ball = pd.read_csv(os.path.join(ROOT, 'data', 'ball_pipeline', 'ball_boxes.csv')).iloc[:done]
 miss = (ball.source == 'missing').values
 x, y, shot = ball.center_x.values, ball.center_y.values, ball.shot.values
 inside = lambda i: EDGE < x[i] < W - EDGE and EDGE < y[i] < H - EDGE
@@ -60,7 +60,7 @@ while i < done:
     i = j
 
 sus = pd.DataFrame(rows, columns=['frame', 'kind', 'who', 'detail']).sort_values(['frame', 'kind'])
-sus.to_csv(os.path.join(ROOT, 'pose', 'suspects.csv'), index=False)
+sus.to_csv(os.path.join(ROOT, 'data', 'pose', 'suspects.csv'), index=False)
 
 rng = []
 for (kind, who), g in sus.groupby(['kind', 'who']):
@@ -68,7 +68,7 @@ for (kind, who), g in sus.groupby(['kind', 'who']):
     for run in np.split(fr, np.where(np.diff(fr) > 1)[0] + 1):
         rng.append((kind, who, run[0], run[-1], len(run)))
 rng = pd.DataFrame(rng, columns=['kind', 'who', 'start', 'end', 'n']).sort_values('start')
-rng.to_csv(os.path.join(ROOT, 'pose', 'suspect_ranges.csv'), index=False)
+rng.to_csv(os.path.join(ROOT, 'data', 'pose', 'suspect_ranges.csv'), index=False)
 print(f'checked frames 0-{done - 1}')
 print(rng.groupby('kind').agg(runs=('n', 'size'), frames=('n', 'sum')))
 print(sus[sus.kind == 'pose_weak'].who.value_counts().to_dict())

@@ -1,15 +1,15 @@
 """Pick one ball per frame from ball/candidates.csv by trajectory DP within each shot, then fill short
-in-shot gaps with a curve fit. Never links or interpolates across scene cuts (players/scene_cuts.csv).
+in-shot gaps with a curve fit. Never links or interpolates across scene cuts (data/mappings/scene_cuts.csv).
 -> ball/ball_boxes.csv (frame,time_sec,x1,y1,x2,y2,center_x,center_y,confidence,source,model,shot,missing_reason)
 source: detected (DP pick) | rescued (skipped candidate on the gap's extrapolated curve) | tracked (template match from a gap end)
         | interpolated (curve fit) | missing
-usage: python ball/fill_ball.py [MAX_FRAME] [--track]"""
+usage: python scripts/ball/fill_ball.py [MAX_FRAME] [--track]"""
 import os, sys
 import cv2
 import numpy as np
 import pandas as pd
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 W, H, FPS = 1920, 1080, 25
 N_FRAMES = 15586
 
@@ -40,11 +40,11 @@ FIT_N = 6              # anchor points each side for the curve fit
 FIT_RES = 10           # px max residual of the fit on anchors
 RESCUE_TOL = (12, 4, 50)   # candidate accepted in a gap if within a+b*k px (max c) of the curve extrapolated k frames
 TRACK_MIN, TRACK_R, TRACK_EDGE, TRACK_MAX = 0.8, 50, 100, 8   # template tracking into gaps (score, search px, anchor margin, max frames)
-VIDEO = os.path.join(ROOT, 'main_camera_clean_v2.mp4')
+VIDEO = os.path.join(ROOT, 'video', 'main_camera_clean_v2.mp4')
 
 
 def load_candidates(max_frame):
-    c = pd.read_csv(os.path.join(ROOT, 'ball', 'candidates.csv'))
+    c = pd.read_csv(os.path.join(ROOT, 'data', 'ball_pipeline', 'candidates.csv'))
     c = c[c.frame < max_frame]
     c['cx'] = (c.x1 + c.x2) / 2
     c['cy'] = (c.y1 + c.y2) / 2
@@ -72,7 +72,7 @@ def load_candidates(max_frame):
 def drop_static(c, shot):
     """remove off-sand low-conf candidates at a location that has detections in most of the surrounding frames."""
     c = c.copy()
-    H = np.load(os.path.join(ROOT, 'players', 'homography_px_to_m.npy'))
+    H = np.load(os.path.join(ROOT, 'data', 'mappings', 'homography_px_to_m.npy'))
     g = cv2.perspectiveTransform(np.c_[c.cx, c.y2].astype(float)[None], H)[0]
     on_sand = (g[:, 0] > SAND_X[0]) & (g[:, 0] < SAND_X[1]) & (g[:, 1] > SAND_Y[0]) & (g[:, 1] < SAND_Y[1])
     c['shot'] = shot[c.frame.values]
@@ -95,7 +95,7 @@ def drop_static(c, shot):
 
 
 def shots_of(n):
-    cuts = pd.read_csv(os.path.join(ROOT, 'players', 'scene_cuts.csv'))
+    cuts = pd.read_csv(os.path.join(ROOT, 'data', 'mappings', 'scene_cuts.csv'))
     cuts = sorted(int(f) for f in cuts[cuts.is_cut].frame)
     shot = np.zeros(n, int)
     for c in cuts:
@@ -355,16 +355,16 @@ def main():
     out['shot'] = shot
     out['missing_reason'] = reason
     out = out.round(2)
-    out.to_csv(os.path.join(ROOT, 'ball', 'ball_boxes.csv'), index=False)
+    out.to_csv(os.path.join(ROOT, 'data', 'ball_pipeline', 'ball_boxes.csv'), index=False)
 
-    old = pd.read_csv(os.path.join(ROOT, 'ball_tracks_full.csv')).iloc[:n]
+    old = pd.read_csv(os.path.join(ROOT, 'data', 'tracks', 'ball_tracks_full.csv')).iloc[:n]
     print('new:', out.source.value_counts().to_dict())
     print('missing reasons:', out[out.source == 'missing'].missing_reason.value_counts().to_dict())
     print('old:', old.source.value_counts().to_dict())
     both = (out.source == 'detected').values & (old.source == 'yolo').values
     d = np.hypot(out.center_x.values[both] - old.center_x.values[both], out.center_y.values[both] - old.center_y.values[both])
     print(f'frames detected in both: {both.sum()}, picked a different ball (>20px): {(d > 20).sum()}')
-    pd.DataFrame({'frame': out.frame[both][d > 20]}).to_csv(os.path.join(ROOT, 'ball', 'changed_picks.csv'), index=False)
+    pd.DataFrame({'frame': out.frame[both][d > 20]}).to_csv(os.path.join(ROOT, 'data', 'ball_pipeline', 'changed_picks.csv'), index=False)
 
 
 if __name__ == '__main__':

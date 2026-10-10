@@ -1,8 +1,8 @@
 """ViTPose-L COCO-WholeBody (HF transformers, converted by pose/convert_wholebody.py) on every identified player box
-in players/player_boxes.csv, reported as the 25 OpenPose BODY_25 joints:
+in data/tracks/player_boxes.csv, reported as the 25 OpenPose BODY_25 joints:
 17 COCO body + 6 foot points from the whole-body head, Neck = mid-shoulders, MidHip = mid-hips (score = min of the pair).
 -> pose/vitpose_body25.csv : frame,player,team,box_source + <joint>_x,<joint>_y,<joint>_s (pixels; resumable)
-usage: python pose/vitpose.py [MODEL] [LIMIT_FRAMES]"""
+usage: python scripts/pose/vitpose.py [MODEL] [LIMIT_FRAMES]"""
 import os, sys, time
 import cv2
 import numpy as np
@@ -10,11 +10,11 @@ import pandas as pd
 import torch
 from transformers import AutoProcessor, VitPoseForPoseEstimation
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-VIDEO = os.path.join(ROOT, 'main_camera_clean_v2.mp4')
-MODEL = (sys.argv[1] if len(sys.argv) > 1 else '') or os.path.join(ROOT, 'pose', 'weights', 'vitpose-l-wholebody-hf')
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+VIDEO = os.path.join(ROOT, 'video', 'main_camera_clean_v2.mp4')
+MODEL = (sys.argv[1] if len(sys.argv) > 1 else '') or os.path.join(ROOT, 'models', 'vitpose_weights', 'vitpose-l-wholebody-hf')
 LIMIT = int(sys.argv[2]) if len(sys.argv) > 2 else None
-OUT = os.path.join(ROOT, 'pose', os.environ.get('POSE_OUT', 'vitpose_body25.csv'))
+OUT = os.path.join(ROOT, 'data', 'pose', os.environ.get('POSE_OUT', 'vitpose_body25.csv'))
 FRAMES_PER_BATCH = 16
 # BODY_25 joint -> COCO-WholeBody index (or a pair to average)
 BODY25 = [('nose', 0), ('neck', (5, 6)), ('r_shoulder', 6), ('r_elbow', 8), ('r_wrist', 10),
@@ -43,7 +43,7 @@ proc = AutoProcessor.from_pretrained(MODEL)
 model = VitPoseForPoseEstimation.from_pretrained(MODEL, torch_dtype=torch.float16).to(dev).eval()
 plus = 'plus' in MODEL   # ViTPose+ is multi-dataset: expert 0 = COCO
 
-boxes = pd.read_csv(os.path.join(ROOT, 'players', 'player_boxes.csv'))
+boxes = pd.read_csv(os.path.join(ROOT, 'data', 'tracks', 'player_boxes.csv'))
 by_frame = {f: g for f, g in boxes.groupby('frame')}
 n = int(cv2.VideoCapture(VIDEO).get(cv2.CAP_PROP_FRAME_COUNT))
 end = min(n, LIMIT) if LIMIT else n

@@ -1,12 +1,12 @@
 """Low-conf ball re-detection on every frame with both ball models -> ball/candidates.csv (resumable).
-usage: python ball/detect_ball.py [LIMIT]"""
+usage: python scripts/ball/detect_ball.py [LIMIT]"""
 import os, sys, csv, time
 import cv2
 from ultralytics import YOLO
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-VIDEO = os.path.join(ROOT, 'main_camera_clean_v2.mp4')
-OUT = os.path.join(ROOT, 'ball', 'candidates.csv')
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+VIDEO = os.path.join(ROOT, 'video', 'main_camera_clean_v2.mp4')
+OUT = os.path.join(ROOT, 'data', 'ball_pipeline', 'candidates.csv')
 MODELS = {'exp2': 'exp-2.pt', 'bd': 'ballDedect.pt'}
 IMGSZ, CONF, BATCH = 1280, 0.05, 16
 limit = int(sys.argv[1]) if len(sys.argv) > 1 else None
@@ -27,7 +27,7 @@ else:
     with open(OUT, 'w') as f:
         f.write('frame,model,x1,y1,x2,y2,conf,cy\n')
 
-models = {k: YOLO(os.path.join(ROOT, 'ball', v)) for k, v in MODELS.items()}
+models = {k: YOLO(os.path.join(ROOT, 'models', v)) for k, v in MODELS.items()}
 cap = cv2.VideoCapture(VIDEO)
 n = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
 end = min(n, limit) if limit else n

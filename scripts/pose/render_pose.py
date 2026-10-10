@@ -1,14 +1,14 @@
 """Draw BODY_25 skeletons (pose/vitpose_body25.csv), player labels and the ball (ball/ball_boxes.csv if present).
 Frames listed in pose/suspects.csv get a red warning line (skeleton weak / player missing / ball missing).
-usage: python pose/render_pose.py START END out.mp4 [MIN_SCORE]
-       python pose/render_pose.py --suspects out.mp4      (only flagged frames, edge cases excluded)"""
+usage: python scripts/pose/render_pose.py START END out.mp4 [MIN_SCORE]
+       python scripts/pose/render_pose.py --suspects out.mp4      (only flagged frames, edge cases excluded)"""
 import os, sys
 import cv2
 import numpy as np
 import pandas as pd
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sp = os.path.join(ROOT, 'pose', 'suspects.csv')
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sp = os.path.join(ROOT, 'data', 'pose', 'suspects.csv')
 sus = pd.read_csv(sp) if os.path.exists(sp) else pd.DataFrame(columns=['frame', 'kind', 'who', 'detail'])
 LABEL = {'pose_weak': 'weak skeleton', 'pose_edge': 'partly off-screen', 'player_none': 'no box',
          'ball_hidden': 'BALL MISSING'}
@@ -29,13 +29,13 @@ EDGES = [(0, 1), (1, 2), (2, 3), (3, 4), (1, 5), (5, 6), (6, 7), (1, 8), (8, 9),
          (22, 23), (11, 24)]
 COL = {'BRA_A': (0, 255, 255), 'BRA_B': (0, 200, 0), 'ISR_A': (255, 160, 0), 'ISR_B': (255, 0, 160)}
 
-pose = pd.read_csv(os.path.join(ROOT, 'pose', 'vitpose_body25.csv'))
+pose = pd.read_csv(os.path.join(ROOT, 'data', 'pose', 'vitpose_body25.csv'))
 fs = set(frame_list)
 pose = {f: g for f, g in pose[pose.frame.isin(fs)].groupby('frame')}
-bp = os.path.join(ROOT, 'ball', 'ball_boxes.csv')
+bp = os.path.join(ROOT, 'data', 'ball_pipeline', 'ball_boxes.csv')
 ball = pd.read_csv(bp).set_index('frame') if os.path.exists(bp) else None
 
-cap = cv2.VideoCapture(os.path.join(ROOT, 'main_camera_clean_v2.mp4'))
+cap = cv2.VideoCapture(os.path.join(ROOT, 'video', 'main_camera_clean_v2.mp4'))
 vw = cv2.VideoWriter(out_path, cv2.VideoWriter_fourcc(*'mp4v'), 25, (1920, 1080))
 prev = -2
 for f in frame_list:
