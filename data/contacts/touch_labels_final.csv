@@ -2,7 +2,7 @@ touch,frame,time_sec,rally,in_play,player,body_part,side,kind
 1,8,0.31,1,True,BRA_A,chest,,player
 2,38,1.52,1,True,BRA_B,foot,left,player
 3,85,3.4,2,True,BRA_A,foot,right,player
-4,98,3.9,2,True,BRA_B,foot,left,player
+4,98,3.9,2,True,BRA_B,foot,right,player
 5,176,7.02,3,False,,,,pre_serve
 6,196,7.82,3,False,,,,pre_serve
 7,214,8.57,3,False,,,,pre_serve
@@ -37,7 +37,7 @@ touch,frame,time_sec,rally,in_play,player,body_part,side,kind
 36,1383,55.33,11,True,BRA_B,chest,,player
 37,1418,56.71,11,True,BRA_A,chest,,player
 38,1452,58.1,11,True,BRA_B,foot,left,player
-39,1468,58.7,11,True,ISR_B,thigh,right,player
+39,1468,58.7,11,True,,,,no_touch
 40,1527,61.08,12,True,BRA_B,foot,left,player
 41,1562,62.49,12,True,BRA_A,foot,right,player
 42,1601,64.04,12,True,BRA_B,head,,player
@@ -58,7 +58,7 @@ touch,frame,time_sec,rally,in_play,player,body_part,side,kind
 57,2113,84.53,15,True,ISR_A,head,,player
 58,2144,85.77,15,True,ISR_B,chest,,player
 59,2176,87.02,15,True,ISR_A,foot,right,player
-60,2189,87.55,15,True,BRA_A,thigh,left,player
+60,2189,87.55,15,True,BRA_A,foot,left,player
 61,2268,90.7,16,True,BRA_A,foot,right,player
 62,2278,91.14,16,True,,,,sand
 63,2288,91.52,16,False,ISR_A,arm,right,player
@@ -85,7 +85,7 @@ touch,frame,time_sec,rally,in_play,player,body_part,side,kind
 84,2970,118.81,20,True,ISR_A,chest,,player
 85,2996,119.86,20,True,ISR_B,head,,player
 86,3011,120.45,20,True,BRA_A,foot,right,player
-87,3049,121.95,20,True,BRA_B,shin,left,player
+87,3049,121.95,20,True,BRA_B,foot,left,player
 88,3091,123.64,20,True,BRA_A,head,,player
 89,3114,124.54,20,True,ISR_B,head,,player
 90,3191,127.63,20,True,ISR_B,foot,right,player
@@ -171,7 +171,7 @@ touch,frame,time_sec,rally,in_play,player,body_part,side,kind
 170,6222,248.88,29,True,ISR_B,foot,right,player
 171,6253,250.12,29,True,BRA_B,chest,,player
 172,6290,251.58,29,True,BRA_A,chest,,player
-173,6320,252.81,29,True,BRA_B,foot,right,player
+173,6320,252.81,29,True,BRA_B,foot,left,player
 174,6336,253.43,29,True,,,,no_touch
 175,6435,257.4,30,True,ISR_A,chest,,player
 176,6460,258.39,30,True,ISR_B,head,,player
@@ -227,12 +227,12 @@ touch,frame,time_sec,rally,in_play,player,body_part,side,kind
 226,8143,325.72,36,True,BRA_A,foot,right,player
 227,8152,326.08,36,True,ISR_A,foot,right,player
 228,8245,329.79,36,True,BRA_A,chest,,player
-229,8276,331.04,36,True,BRA_B,foot,left,player
+229,8276,331.04,36,True,BRA_B,foot,right,player
 230,8310,332.4,37,True,ISR_A,chest,,player
 231,8345,333.81,37,True,ISR_B,head,,player
 232,8368,334.72,37,True,BRA_A,foot,right,player
-233,8494,339.77,38,True,BRA_A,head,,player
-234,8532,341.26,38,True,BRA_B,chest,,player
+233,8494,339.77,38,True,BRA_A,chest,,player
+234,8532,341.26,38,True,BRA_B,shoulder,left,player
 235,8564,342.58,38,True,BRA_A,head,,player
 236,8646,345.84,38,False,,,,no_touch
 237,8666,346.64,38,False,,,,no_touch
@@ -259,7 +259,7 @@ touch,frame,time_sec,rally,in_play,player,body_part,side,kind
 258,9373,374.91,41,True,ISR_B,head,,player
 259,9393,375.72,41,True,BRA_B,foot,right,player
 260,9426,377.04,41,True,BRA_A,foot,right,player
-261,9461,378.43,41,True,BRA_B,foot,right,player
+261,9461,378.43,41,True,BRA_B,foot,left,player
 262,9607,384.28,42,True,ISR_B,chest,,player
 263,9642,385.69,42,True,ISR_A,chest,,player
 264,9678,387.11,42,True,ISR_B,head,,player
@@ -271,7 +271,7 @@ touch,frame,time_sec,rally,in_play,player,body_part,side,kind
 270,9979,399.16,43,True,BRA_A,head,,player
 271,10061,402.45,44,True,ISR_A,shoulder,right,player
 272,10102,404.07,44,True,BRA_B,foot,left,player
-273,10145,405.79,44,True,BRA_A,head,,player
+273,10145,405.79,44,True,BRA_A,shoulder,left,player
 274,10241,409.65,45,True,ISR_A,chest,,player
 275,10274,410.95,45,True,ISR_B,head,,player
 276,10294,411.74,45,True,BRA_B,foot,left,player
