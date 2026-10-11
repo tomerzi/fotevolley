@@ -1,0 +1,4 @@
+frame,player,body_part,limb_side,in_play,note
+2860,ISR_A,foot,right,True,"bicycle kick; Sapiens2 loses the right foot (scores 0.1-0.3), auto picked thigh"
+1619,-,,,True,"BRA_B header at 1601, ball hits the net at 1606 and lands on the sand ~1619, nobody touches it (checked on video by the user)"
+7618,-,,,False,"ball lands on the sand ~7617, nobody touches it (checked on video by the user); point replayed, score unchanged"

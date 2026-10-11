@@ -1,0 +1,520 @@
+frame,time_sec,t_exact,rally,in_play,event_kind,ball_x,ball_y,ball_d,ball_side,crossed_net_before,speed_in,speed_out,velocity_change,hidden_frames,ball_on_sand,player,team,body_part,limb_side,confidence,source,gap_m,depth_ratio,push_cost,part_speed_ms,second_player,second_part,cost_margin,note,event_type
+0,0.0,0.0,1,True,flight_start,519.5,310.1,26.2,LEFT,False,,18.5,18.5,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+8,0.31,7.75,1,True,break,580.1,500.4,26.6,LEFT,False,34.0,40.0,72.3,0,False,BRA_A,BRA,chest,,0.68,auto,-0.178,0.96,0.19,2.1,BRA_B,foot,1.07,"2D overlap with BRA_B foot (gap -0.13 m, depth 1.16 vs 0.96, push 0.98 vs 0.19)",touch
+38,1.52,38.0,1,True,break,918.7,259.8,26.4,LEFT,False,25.1,52.6,43.8,0,False,BRA_B,BRA,foot,left,1.0,auto,-0.033,1.19,0.06,5.9,,,10.0,,touch
+71,2.84,71.0,2,True,flight_start,968.3,364.0,27.0,NET,False,,17.4,17.4,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+85,3.4,85.0,2,True,break,757.1,564.8,25.9,LEFT,False,27.3,18.6,22.6,0,True,BRA_A,BRA,shin,right,0.73,auto,0.062,0.89,0.0,,,,10.0,part close to thigh,touch
+98,3.9,97.5,2,True,break,554.6,542.8,25.1,LEFT,False,15.5,2.3,17.5,0,True,BRA_B,BRA,foot,left,1.0,auto,-0.07,1.04,0.11,1.3,,,10.0,,touch
+108,4.32,108.0,3,False,flight_start,1306.2,518.2,24.8,RIGHT,False,,13.9,13.9,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+176,7.02,175.5,3,False,break,1561.3,508.1,24.8,RIGHT,False,2.8,12.7,10.9,0,True,ISR_A,ISR,foot,right,1.0,auto,-0.1,0.99,0.87,0.0,,,10.0,,touch
+196,7.82,195.5,3,False,break,1696.3,474.3,24.0,RIGHT,False,6.0,7.8,6.1,0,True,ISR_A,ISR,thigh,left,1.0,auto,-0.168,0.91,0.0,1.3,,,10.0,part close to torso,touch
+214,8.57,214.25,3,False,break,1808.8,476.6,27.0,RIGHT,False,4.4,11.3,9.6,0,False,ISR_A,ISR,chest,,1.0,auto,-0.165,0.98,0.36,1.4,,,10.0,part close to torso,touch
+326,13.04,326.0,3,True,flight_start,536.1,190.2,28.2,LEFT,True,,25.5,25.5,8,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+336,13.43,335.75,3,True,break,630.0,507.6,27.8,LEFT,False,42.9,40.3,81.8,0,False,BRA_A,BRA,chest,,1.0,auto,-0.147,1.01,0.21,2.6,,,10.0,,touch
+369,14.77,369.25,3,True,break,900.9,300.4,27.4,LEFT,False,30.6,52.6,42.2,0,False,BRA_B,BRA,foot,left,1.0,auto,-0.037,1.13,0.0,7.8,,,10.0,,touch
+383,15.32,383.0,3,True,break,1612.8,773.8,26.6,RIGHT,True,66.1,26.3,82.3,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+408,16.34,408.5,3,False,break,1715.6,713.4,30.0,RIGHT,False,22.5,53.9,71.3,0,True,ISR_B,ISR,foot,left,1.0,auto,-0.205,0.96,0.0,3.3,,,10.0,,touch
+434,17.36,434.0,4,True,flight_start,263.4,479.2,29.8,LEFT,False,,57.6,57.6,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+459,18.35,458.75,4,True,break,1634.5,578.9,27.8,RIGHT,True,52.7,41.9,85.0,0,True,ISR_B,ISR,shoulder,right,1.0,auto,-0.122,0.86,0.08,1.1,,,10.0,,touch
+495,19.8,495.0,4,True,break,1328.0,484.4,27.0,RIGHT,False,34.6,33.8,66.4,0,False,ISR_A,ISR,chest,,1.0,auto,-0.233,0.94,0.0,1.8,,,10.0,,touch
+528,21.14,528.5,4,True,break,1016.0,440.3,30.8,NET,False,38.9,33.0,19.1,0,False,ISR_B,ISR,head,,1.0,auto,-0.179,1.09,0.0,3.6,,,10.0,,touch
+540,21.58,539.5,4,True,break,776.1,827.5,29.2,LEFT,False,50.7,22.5,50.4,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+559,22.36,559.0,5,True,flight_start,583.0,134.6,26.6,LEFT,False,,21.0,21.0,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+570,22.81,570.25,5,True,break,734.1,412.6,24.4,LEFT,False,36.0,34.0,68.2,0,False,BRA_B,BRA,chest,,1.0,auto,-0.22,0.97,0.0,2.4,,,10.0,,touch
+603,24.13,603.25,5,True,break,918.8,311.6,25.1,LEFT,False,30.4,15.6,38.5,0,False,BRA_A,BRA,head,,1.0,auto,-0.074,1.03,0.22,5.2,BRA_B,head,3.76,,touch
+626,25.05,626.25,5,True,break,1232.2,655.3,27.0,RIGHT,True,37.0,10.5,43.5,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+643,25.71,642.75,5,False,break,1350.3,715.8,25.5,RIGHT,False,11.0,33.5,42.2,8,True,ISR_B,ISR,foot,right,0.86,auto,0.029,0.8,0.73,2.1,,,10.0,,touch
+661,26.44,661.0,6,True,flight_start,1189.2,456.8,27.4,RIGHT,False,,35.9,35.9,0,False,ISR_A,ISR,head,,1.0,auto,-0.195,0.99,0.0,1.6,,,10.0,,touch
+696,27.83,695.75,6,True,break,1196.7,406.8,28.1,RIGHT,False,36.8,35.9,68.6,0,False,ISR_B,ISR,head,,0.65,auto,-0.13,1.0,0.0,3.3,ISR_A,chest,1.02,"2D overlap with ISR_A chest (gap -0.15 m, depth 1.16 vs 1.00, push 0.66 vs 0.00)",touch
+718,28.74,718.5,6,True,break,864.8,361.7,21.8,LEFT,True,19.9,7.7,27.6,0,False,BRA_B,BRA,foot,left,1.0,auto,-0.14,0.94,0.52,4.8,,,10.0,,touch
+739,29.55,738.75,6,True,break,977.6,576.2,25.5,NET,False,29.8,3.5,29.4,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+749,29.96,749.0,6,True,break,1011.9,655.1,25.5,NET,False,16.6,7.4,9.3,4,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+784,31.36,784.0,7,True,flight_start,398.1,339.1,24.6,LEFT,False,,45.0,45.0,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+806,32.23,805.75,7,True,break,1683.4,601.2,27.8,RIGHT,True,73.9,43.3,107.4,0,True,BRA_B,BRA,chest,,1.0,auto,-0.051,0.85,0.03,1.1,,,10.0,part close to torso,touch
+841,33.65,841.25,7,True,break,1252.0,453.8,27.4,RIGHT,False,32.9,37.0,67.5,0,False,BRA_A,BRA,chest,,1.0,auto,-0.266,0.99,0.0,2.6,,,10.0,,touch
+874,34.95,873.75,7,True,break,1034.4,317.2,27.3,RIGHT,False,32.0,27.2,33.7,0,False,BRA_B,BRA,foot,left,1.0,auto,-0.094,1.03,0.09,1.1,ISR_A,foot,7.65,,touch
+887,35.47,886.75,7,True,break,773.6,478.3,22.6,LEFT,True,25.5,28.9,51.8,0,True,ISR_B,ISR,foot,right,1.0,auto,-0.148,0.96,0.0,5.3,,,10.0,,touch
+912,36.48,912.0,8,True,flight_start,591.9,234.6,25.7,LEFT,False,,22.6,22.6,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+921,36.83,920.75,8,True,break,709.4,469.8,25.1,LEFT,False,37.0,38.9,74.0,0,False,ISR_A,ISR,head,,1.0,auto,-0.18,0.95,0.0,0.8,,,10.0,part close to chest,touch
+955,38.19,954.75,8,True,break,840.8,271.7,25.9,LEFT,False,26.7,50.1,60.2,0,False,ISR_B,ISR,head,,1.0,auto,-0.176,1.16,0.27,5.1,,,10.0,,touch
+1024,40.96,1024.0,9,True,flight_start,1555.2,20.6,27.6,RIGHT,False,,13.3,13.3,6,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+1040,41.61,1040.25,9,True,break,1377.2,497.8,27.3,RIGHT,False,42.1,39.0,79.3,0,False,BRA_B,BRA,chest,,1.0,auto,-0.098,0.97,0.04,1.8,BRA_A,hand,4.77,part close to head,touch
+1072,42.88,1072.0,9,True,break,1088.0,287.1,28.2,RIGHT,False,27.6,18.8,24.1,0,False,BRA_A,BRA,foot,right,1.0,auto,-0.099,1.17,0.04,1.9,,,10.0,,touch
+1089,43.55,1088.75,9,True,break,814.1,629.0,27.0,LEFT,True,36.2,15.8,44.1,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+1106,44.24,1106.0,10,True,flight_start,832.8,337.6,26.0,LEFT,False,,37.0,37.0,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+1109,44.37,1109.25,10,True,break,894.3,442.5,26.0,LEFT,False,36.8,37.3,72.3,0,False,ISR_A,ISR,head,,1.0,auto,-0.172,1.0,0.0,1.6,,,10.0,,touch
+1144,45.76,1144.0,10,True,break,878.1,321.6,26.2,LEFT,False,31.7,52.6,66.8,0,False,ISR_B,ISR,head,,1.0,auto,-0.106,1.1,0.02,5.9,,,10.0,,touch
+1157,46.28,1157.0,10,True,break,1461.8,317.9,23.0,RIGHT,True,34.6,37.2,53.2,0,False,BRA_A,BRA,head,,1.0,auto,-0.204,0.94,0.0,2.3,,,10.0,,touch
+1177,47.08,1177.0,10,True,break,1610.5,-59.0,,RIGHT,False,6.7,4.3,6.0,16,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+1198,47.93,1198.25,10,True,break,1635.6,383.4,21.9,RIGHT,False,38.3,33.9,71.0,1,True,BRA_B,BRA,chest,,1.0,auto,-0.168,0.92,0.44,1.2,,,10.0,,touch
+1229,49.16,1229.0,10,True,break,1172.9,214.3,24.0,RIGHT,False,25.4,40.8,37.1,0,False,BRA_A,BRA,head,,1.0,auto,-0.145,1.13,0.02,6.5,,,10.0,,touch
+1247,49.89,1247.25,10,True,break,466.6,378.1,21.4,LEFT,True,40.3,25.9,60.4,0,True,ISR_B,ISR,foot,left,1.0,auto,-0.185,0.95,0.0,,,,10.0,,touch
+1282,51.26,1281.5,10,True,break,687.7,448.9,24.3,LEFT,False,35.7,42.4,76.4,0,True,ISR_A,ISR,chest,,1.0,auto,-0.214,0.95,0.0,2.1,,,10.0,,touch
+1301,52.04,1301.0,10,True,break,845.0,11.9,,LEFT,False,14.0,9.8,16.2,12,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+1319,52.75,1318.75,10,True,break,977.1,221.1,25.7,NET,False,31.9,50.2,51.5,0,False,ISR_B,ISR,head,,1.0,auto,-0.22,1.24,0.0,5.7,,,10.0,,touch
+1334,53.37,1334.25,10,True,break,1642.2,426.7,19.5,RIGHT,False,40.5,25.0,38.4,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+1365,54.6,1365.0,11,True,flight_start,785.8,199.0,25.9,LEFT,False,,52.7,52.7,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+1383,55.33,1383.25,11,True,break,1841.8,626.9,32.2,RIGHT,True,73.1,44.8,112.1,0,False,BRA_B,BRA,chest,,1.0,auto,-0.095,0.95,0.05,1.1,,,10.0,part close to shoulder,touch
+1418,56.71,1417.75,11,True,break,1343.8,475.8,27.1,RIGHT,False,33.2,39.3,69.3,0,False,BRA_A,BRA,chest,,1.0,auto,-0.243,0.95,0.0,2.6,,,10.0,,touch
+1452,58.1,1452.5,11,True,break,1046.9,328.3,29.6,RIGHT,False,34.0,27.2,44.6,0,False,BRA_B,BRA,foot,left,1.0,auto,-0.195,1.13,0.0,1.7,,,10.0,,touch
+1468,58.7,1467.5,11,True,break,770.7,399.3,21.9,LEFT,True,17.1,22.1,32.4,0,True,ISR_B,ISR,thigh,right,0.83,auto,0.036,0.94,0.0,1.1,,,10.0,part close to knee,touch
+1488,59.52,1488.0,11,True,break,618.2,364.1,21.0,LEFT,False,16.1,4.7,13.6,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+1521,60.84,1521.0,12,True,flight_start,1365.4,371.6,25.1,RIGHT,False,,54.0,54.0,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+1527,61.08,1527.0,12,True,break,1656.0,545.0,25.1,RIGHT,False,58.3,41.3,88.7,0,True,BRA_B,BRA,foot,left,1.0,auto,-0.169,0.9,0.0,1.8,,,10.0,,touch
+1562,62.49,1562.25,12,True,break,1535.3,304.1,23.8,RIGHT,False,22.2,29.8,51.1,0,False,BRA_A,BRA,foot,right,1.0,auto,-0.19,1.1,0.0,,,,10.0,,touch
+1580,63.22,1580.5,12,True,break,1403.5,-36.6,,RIGHT,False,14.1,13.4,7.3,13,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+1601,64.04,1601.0,12,True,break,1106.6,433.2,27.2,RIGHT,False,48.5,48.1,67.1,1,False,BRA_B,BRA,head,,1.0,auto,-0.145,0.95,0.22,5.2,,,10.0,,touch
+1606,64.24,1606.0,12,True,break,1005.1,439.4,25.8,NET,False,21.9,19.7,18.7,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+1619,64.76,1619.0,12,True,break,1126.5,661.9,27.0,RIGHT,False,27.0,5.3,21.7,2,True,,,,,1.0,video_review,,,,,,,,"BRA_B header at 1601, ball hits the net at 1606 and lands on the sand ~1619, nobody touches it (checked on video by the user)",no_player (sand/net/tracking)
+1627,65.08,1627.0,13,True,flight_start,527.2,333.6,27.6,LEFT,False,,35.7,35.7,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+1631,65.25,1631.25,13,True,break,561.0,498.8,27.4,LEFT,False,43.2,41.2,83.9,0,False,BRA_A,BRA,chest,,0.87,auto,-0.117,1.0,0.18,2.6,BRA_B,foot,1.65,"2D overlap with BRA_B foot (gap 0.02 m, depth 1.22 vs 1.00, push 0.95 vs 0.18); part close to shoulder",touch
+1668,66.7,1667.5,13,True,break,863.8,328.1,26.1,LEFT,False,32.3,22.4,42.1,0,False,BRA_B,BRA,head,,1.0,auto,-0.178,1.13,0.08,2.4,,,10.0,,touch
+1688,67.51,1687.75,13,True,break,1266.6,546.5,27.0,RIGHT,True,33.7,20.2,48.8,0,True,ISR_A,ISR,foot,right,1.0,auto,-0.197,1.04,0.0,3.3,,,10.0,,touch
+1710,68.42,1710.5,13,True,break,1471.9,577.2,29.2,RIGHT,False,28.5,55.3,83.7,0,True,ISR_B,ISR,head,,1.0,auto,-0.185,0.88,0.0,2.1,,,10.0,,touch
+1748,69.91,1747.75,13,True,break,1083.0,270.3,26.6,RIGHT,False,28.0,35.7,48.7,0,False,ISR_A,ISR,head,,1.0,auto,-0.148,1.16,0.14,3.6,,,10.0,,touch
+1773,70.93,1773.25,13,True,break,233.0,502.6,25.9,LEFT,True,43.1,32.0,74.2,2,False,BRA_A,BRA,chest,,1.0,auto,-0.234,0.95,0.0,2.4,,,10.0,part close to torso,touch
+1804,72.16,1804.0,13,True,break,813.6,450.9,26.3,LEFT,False,34.0,29.3,60.4,0,False,BRA_B,BRA,chest,,1.0,auto,-0.198,0.98,0.03,2.7,,,10.0,,touch
+1832,73.28,1832.0,13,True,break,876.5,384.8,27.8,LEFT,False,28.2,34.1,44.0,2,False,BRA_A,BRA,head,,1.0,auto,-0.047,1.04,0.09,7.6,,,10.0,,touch
+1848,73.94,1848.5,13,True,break,1413.2,575.4,27.4,RIGHT,True,39.0,54.5,77.3,0,True,ISR_B,ISR,foot,right,1.0,auto,-0.095,0.9,0.06,,,,10.0,,touch
+1963,78.52,1963.0,14,True,flight_start,1358.9,260.2,28.0,RIGHT,False,,13.9,13.9,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+1981,79.25,1981.25,14,True,break,1136.0,473.4,27.0,RIGHT,False,30.0,32.2,61.8,0,False,ISR_A,ISR,chest,,1.0,auto,-0.245,0.96,0.0,2.1,,,10.0,,touch
+2011,80.44,2011.0,14,True,break,1203.4,366.8,27.4,RIGHT,False,28.2,19.5,40.5,0,False,ISR_B,ISR,head,,1.0,auto,-0.132,1.03,0.29,3.1,,,10.0,,touch
+2035,81.41,2035.25,14,True,break,685.8,857.0,34.9,LEFT,True,51.1,21.7,61.6,0,True,BRA_A,BRA,foot,right,1.0,auto,-0.097,1.03,0.35,2.0,,,10.0,,touch
+2057,82.28,2057.0,15,True,flight_start,538.1,205.0,26.7,LEFT,False,,15.0,15.0,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+2072,82.89,2072.25,15,True,break,782.8,512.1,25.4,LEFT,False,40.8,38.6,76.9,0,True,BRA_A,BRA,chest,,1.0,auto,-0.214,0.89,0.0,2.9,,,10.0,,touch
+2102,84.1,2102.5,15,True,break,917.3,276.5,26.6,LEFT,False,23.0,55.2,53.1,0,False,BRA_B,BRA,foot,left,1.0,auto,-0.133,1.11,0.47,7.9,,,10.0,,touch
+2113,84.53,2113.25,15,True,break,1442.6,431.3,24.2,RIGHT,True,50.1,27.8,65.0,0,True,ISR_A,ISR,head,,1.0,auto,-0.058,0.95,0.11,2.2,,,10.0,part close to shoulder,touch
+2144,85.77,2144.25,15,True,break,1438.6,478.6,26.8,RIGHT,False,32.4,41.0,72.1,0,False,ISR_B,ISR,chest,,0.2,auto,-0.052,0.96,0.1,2.4,ISR_A,thigh,0.01,"2D overlap with ISR_A thigh (gap -0.21 m, depth 1.11 vs 0.96, push 0.00 vs 0.10); part close to torso",touch
+2176,87.02,2175.5,15,True,break,1053.6,236.3,24.8,RIGHT,False,24.2,45.9,34.6,0,False,ISR_A,ISR,foot,right,1.0,auto,-0.116,1.14,0.59,7.0,,,10.0,,touch
+2189,87.55,2188.75,15,True,break,461.6,569.8,26.2,LEFT,True,57.8,52.7,71.1,2,True,BRA_A,BRA,thigh,left,1.0,auto,-0.195,0.97,0.0,0.3,,,10.0,,touch
+2204,88.17,2204.25,15,True,break,-55.6,333.5,,LEFT,False,28.7,30.9,38.1,35,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+2241,89.65,2241.25,15,True,break,124.0,488.2,25.1,LEFT,False,40.6,8.2,47.4,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+2250,90.0,2250.0,15,True,break,74.3,535.6,25.8,LEFT,False,13.1,8.0,8.5,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+2255,90.2,2255.0,16,True,flight_start,880.0,86.4,29.3,LEFT,False,,7.1,7.1,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+2268,90.7,2267.5,16,True,break,972.2,318.8,27.4,NET,False,30.7,44.5,36.0,0,False,BRA_A,BRA,foot,right,0.96,auto,0.009,1.1,0.18,6.1,,,10.0,,touch
+2278,91.14,2278.5,16,True,break,1356.5,596.7,24.7,RIGHT,False,43.4,26.3,52.2,0,True,ISR_A,ISR,foot,right,0.24,auto,0.288,0.95,0.88,5.6,,,10.0,,touch
+2288,91.52,2288.0,16,False,break,1507.3,495.7,24.7,RIGHT,False,14.1,4.2,18.0,0,True,ISR_A,ISR,thigh,left,0.96,auto,0.008,0.95,1.0,0.8,,,10.0,,touch
+2310,92.4,2310.0,17,True,flight_start,1484.6,188.7,30.2,RIGHT,False,,17.4,17.4,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+2328,93.11,2327.75,17,True,break,1182.7,478.2,27.0,RIGHT,False,33.2,28.0,59.0,0,False,ISR_A,ISR,chest,,1.0,auto,-0.254,0.95,0.0,1.8,,,10.0,,touch
+2354,94.18,2354.5,17,True,break,1053.9,410.5,30.0,RIGHT,False,28.6,47.9,58.8,0,False,ISR_B,ISR,head,,1.0,auto,-0.138,1.09,0.02,5.7,,,10.0,,touch
+2375,95.0,2375.0,17,True,break,217.9,594.5,27.8,LEFT,True,40.1,22.7,62.5,0,True,BRA_B,BRA,foot,right,1.0,auto,-0.131,1.0,0.0,5.2,,,10.0,part close to shin,touch
+2396,95.86,2396.5,17,True,break,645.1,650.4,28.2,LEFT,False,34.9,43.7,70.9,0,True,BRA_A,BRA,foot,right,1.0,auto,-0.034,0.88,0.01,1.1,,,10.0,,touch
+2438,97.52,2438.0,17,True,break,1131.6,644.2,28.5,RIGHT,True,43.8,45.9,88.6,0,True,ISR_B,ISR,foot,right,1.0,auto,-0.195,0.9,0.0,2.4,,,10.0,,touch
+2477,99.09,2477.25,17,True,break,1239.0,465.9,27.4,RIGHT,False,34.1,34.3,68.3,0,False,ISR_A,ISR,chest,,1.0,auto,-0.248,0.99,0.0,2.3,,,10.0,,touch
+2510,100.39,2509.75,17,True,break,1176.3,401.1,27.8,RIGHT,False,34.6,23.2,52.1,0,False,ISR_B,ISR,head,,1.0,auto,-0.151,0.99,0.0,2.8,,,10.0,,touch
+2534,101.34,2533.5,17,True,break,836.9,599.0,27.0,LEFT,True,29.1,15.5,43.7,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+2551,102.04,2551.0,18,True,flight_start,575.1,164.9,26.6,LEFT,False,,18.5,18.5,2,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+2563,102.52,2563.0,18,True,break,710.2,525.2,26.2,LEFT,False,45.2,37.8,81.4,0,True,BRA_A,BRA,chest,,1.0,auto,-0.143,0.91,0.05,2.2,,,10.0,,touch
+2592,103.7,2592.5,18,True,break,884.3,289.0,27.4,LEFT,False,23.5,56.0,49.7,0,False,BRA_B,BRA,foot,left,1.0,auto,-0.092,1.18,0.63,8.3,,,10.0,,touch
+2606,104.24,2606.0,18,True,break,1539.2,575.7,24.0,RIGHT,True,51.1,27.4,57.3,0,True,ISR_B,ISR,head,,0.32,auto,0.229,0.75,0.33,0.2,,,10.0,part close to shoulder,touch
+2628,105.1,2627.5,18,False,break,1836.7,523.7,24.4,RIGHT,False,17.9,20.6,28.2,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+2643,105.72,2643.0,19,True,flight_start,822.7,252.9,24.8,LEFT,False,,43.1,43.1,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+2649,105.95,2648.75,19,True,break,620.2,399.7,23.4,LEFT,False,43.8,19.9,62.6,0,False,ISR_B,ISR,chest,,1.0,auto,-0.135,0.97,0.01,0.9,ISR_A,head,3.54,part close to torso,touch
+2670,106.79,2669.75,19,True,break,869.8,390.4,26.8,LEFT,False,25.6,41.8,51.3,0,False,ISR_A,ISR,head,,1.0,auto,-0.132,0.98,0.2,5.6,,,10.0,,touch
+2694,107.77,2694.25,19,True,break,1496.0,357.3,20.6,RIGHT,True,25.5,38.9,61.5,0,True,BRA_A,BRA,shin,right,1.0,auto,-0.103,0.86,0.0,,,,10.0,,touch
+2718,108.7,2717.5,19,True,break,1351.6,-225.1,,RIGHT,False,19.5,22.3,17.9,27,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+2738,109.54,2738.5,19,True,break,1087.1,245.2,26.8,RIGHT,False,41.5,51.6,51.8,0,False,BRA_B,BRA,foot,left,1.0,auto,-0.057,1.16,0.47,7.9,,,10.0,,touch
+2746,109.86,2746.5,19,True,break,728.4,379.2,24.2,LEFT,True,44.9,44.7,88.5,0,False,ISR_B,ISR,head,,1.0,auto,-0.173,0.98,0.0,2.0,,,10.0,,touch
+2782,111.28,2782.0,19,True,break,1699.9,307.1,23.2,RIGHT,True,31.0,37.1,67.1,2,False,BRA_A,BRA,foot,right,1.0,auto,-0.164,1.08,0.0,5.3,,,10.0,,touch
+2810,112.42,2810.5,19,True,break,1299.1,-257.1,,RIGHT,False,16.6,42.2,40.9,27,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+2832,113.27,2831.75,19,True,break,902.7,459.9,24.4,LEFT,True,34.3,15.5,49.8,0,True,ISR_B,ISR,shin,right,1.0,auto,-0.093,1.02,0.0,1.8,,,10.0,part close to foot,touch
+2848,113.94,2848.5,19,True,break,1032.1,467.2,24.8,NET,False,19.8,6.8,21.7,0,False,BRA_B,BRA,shoulder,left,1.0,auto,-0.061,1.01,0.02,0.6,,,10.0,,touch
+2860,114.39,2859.75,19,True,break,960.5,610.9,24.8,LEFT,False,23.4,53.1,75.5,0,True,ISR_A,ISR,foot,right,1.0,video_review,0.164,0.86,0.27,4.4,,,10.0,"bicycle kick; Sapiens2 loses the right foot (scores 0.1-0.3), auto picked thigh",touch
+2896,115.84,2896.0,19,False,break,921.8,192.4,24.2,LEFT,False,21.2,25.4,42.7,0,False,ISR_B,ISR,head,,1.0,auto,-0.203,1.25,0.0,3.5,,,10.0,,touch
+2955,118.2,2955.0,20,True,flight_start,697.3,245.9,26.8,LEFT,False,,1.8,1.8,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+2970,118.81,2970.25,20,True,break,696.8,486.4,26.6,LEFT,False,29.0,37.8,66.1,0,False,ISR_A,ISR,chest,,1.0,auto,-0.124,0.97,0.09,1.8,,,10.0,,touch
+2996,119.86,2996.5,20,True,break,957.8,236.0,26.3,NET,False,18.6,44.8,38.8,0,False,ISR_B,ISR,head,,1.0,auto,-0.061,1.23,0.57,6.0,,,10.0,,touch
+3011,120.45,3011.25,20,True,break,1599.2,454.8,24.3,RIGHT,False,48.4,27.6,66.1,0,True,BRA_A,BRA,foot,right,1.0,auto,-0.16,0.95,0.0,2.3,,,10.0,,touch
+3049,121.95,3048.75,20,True,break,1522.0,791.6,37.9,RIGHT,False,57.0,71.2,127.7,0,False,BRA_B,BRA,shin,left,1.0,auto,-0.107,1.06,0.0,0.9,,,10.0,,touch
+3068,122.71,3067.75,20,True,break,1427.1,-72.6,,RIGHT,False,11.0,7.8,3.5,18,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+3091,123.64,3091.0,20,True,break,1292.3,232.5,24.6,RIGHT,False,29.3,42.6,58.2,0,False,BRA_A,BRA,head,,1.0,auto,-0.177,1.15,0.76,3.4,,,10.0,,touch
+3114,124.54,3113.5,20,True,break,384.3,302.9,24.2,LEFT,True,41.3,32.7,51.2,0,False,ISR_B,ISR,head,,1.0,auto,-0.133,1.1,0.05,3.7,,,10.0,,touch
+3130,125.21,3130.25,20,True,break,95.0,150.6,25.6,LEFT,False,19.8,34.7,18.8,12,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+3156,126.23,3155.75,20,True,break,1427.2,754.2,,RIGHT,True,144.3,97.5,241.2,51,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+3191,127.63,3190.75,20,True,break,310.0,283.7,19.8,LEFT,True,34.2,37.4,55.6,0,False,ISR_B,ISR,foot,right,1.0,auto,-0.193,1.01,0.0,,,,10.0,,touch
+3223,128.91,3222.75,20,True,break,1627.2,378.5,26.6,RIGHT,True,52.9,34.1,74.2,0,False,BRA_A,BRA,shoulder,right,1.0,auto,-0.165,1.04,0.0,2.4,,,10.0,part close to chest,touch
+3240,129.59,3239.75,20,True,break,1777.5,-4.8,,RIGHT,False,14.5,9.8,10.0,16,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+3264,130.54,3263.5,20,True,break,1869.6,649.0,36.0,RIGHT,False,56.9,44.3,99.0,0,False,BRA_B,BRA,head,,1.0,auto,-0.223,1.05,0.0,1.9,,,10.0,,touch
+3291,131.65,3291.25,20,True,break,1306.1,434.1,27.3,RIGHT,False,29.6,23.4,38.2,0,False,BRA_A,BRA,head,,1.0,auto,-0.168,1.0,0.06,4.0,,,10.0,,touch
+3318,132.71,3317.75,20,True,break,740.3,776.5,27.8,LEFT,True,47.5,46.7,92.4,0,True,ISR_A,ISR,foot,right,1.0,auto,-0.117,0.86,0.03,3.7,,,10.0,,touch
+3342,133.69,3342.25,20,True,break,817.9,398.7,27.0,LEFT,False,11.9,31.0,42.4,0,False,ISR_B,ISR,chest,,1.0,auto,-0.278,1.09,0.0,2.1,,,10.0,,touch
+3376,135.04,3376.0,20,True,break,966.5,423.5,30.0,NET,False,41.1,60.3,62.3,0,False,ISR_A,ISR,head,,0.95,auto,-0.132,1.08,0.12,5.9,ISR_B,hand,2.19,,touch
+3384,135.37,3384.25,20,True,break,1439.8,575.4,31.9,RIGHT,False,62.5,59.7,89.9,0,False,BRA_B,BRA,head,,0.92,auto,-0.229,1.0,0.0,3.8,BRA_A,foot,1.91,"2D overlap with BRA_A foot (gap 0.03 m, depth 1.23 vs 1.00, push 0.96 vs 0.00)",touch
+3410,136.42,3410.5,20,True,break,2030.0,-218.4,,RIGHT,False,18.3,6.2,24.4,64,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+3478,139.11,3477.75,20,True,break,799.1,841.8,32.2,LEFT,True,63.5,23.2,83.2,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+3505,140.2,3505.0,21,True,flight_start,495.8,271.9,24.0,LEFT,False,,21.0,21.0,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+3513,140.53,3513.25,21,True,break,579.6,462.3,22.9,LEFT,False,30.4,37.0,66.8,1,True,ISR_A,ISR,arm,right,1.0,auto,-0.06,0.93,0.0,0.9,,,10.0,part close to thigh,touch
+3552,142.1,3552.5,21,True,break,608.1,274.7,23.6,LEFT,False,29.7,46.5,62.0,0,False,ISR_B,ISR,head,,1.0,auto,-0.13,1.08,0.15,5.8,,,10.0,,touch
+3614,144.56,3614.0,22,True,flight_start,1325.5,155.8,24.3,RIGHT,False,,38.1,38.1,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+3632,145.27,3631.75,22,True,break,701.5,393.8,22.1,LEFT,True,39.6,17.2,51.1,0,True,ISR_B,ISR,chest,,1.0,auto,-0.207,0.98,0.01,1.2,,,10.0,,touch
+3659,146.35,3658.75,22,True,break,653.7,490.8,23.8,LEFT,False,22.6,38.7,61.2,5,True,ISR_A,ISR,torso,,0.99,auto,-0.174,0.92,0.61,0.8,ISR_B,foot,3.3,part close to chest,touch
+3698,147.9,3697.5,22,True,break,671.3,323.2,25.5,LEFT,False,31.9,27.2,48.3,0,False,ISR_B,ISR,head,,1.0,auto,-0.15,1.1,0.14,4.3,,,10.0,,touch
+3710,148.42,3710.5,22,True,break,1006.0,307.5,24.2,NET,False,27.6,8.8,24.6,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+3726,149.04,3726.0,22,True,break,973.3,558.0,24.8,NET,False,24.1,16.3,35.9,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+3736,149.46,3736.5,22,True,break,892.6,556.6,27.0,LEFT,False,13.4,4.4,12.1,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+3751,150.04,3751.0,23,True,flight_start,1411.7,166.1,24.6,RIGHT,False,,40.2,40.2,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+3771,150.83,3770.75,23,True,break,670.9,387.7,22.5,LEFT,True,42.3,21.9,59.9,0,False,ISR_B,ISR,chest,,1.0,auto,-0.186,0.97,0.02,1.4,,,10.0,,touch
+3799,151.95,3798.75,23,True,break,783.7,459.4,26.7,LEFT,False,31.7,37.3,68.3,0,False,ISR_A,ISR,chest,,0.31,auto,-0.187,1.01,0.18,2.0,ISR_B,shin,0.29,"2D overlap with ISR_B shin (gap -0.15 m, depth 1.21 vs 1.01, push 0.00 vs 0.18)",touch
+3832,153.27,3831.75,23,True,break,956.3,309.1,26.2,NET,False,29.0,50.1,61.3,0,False,ISR_B,ISR,head,,1.0,auto,-0.063,1.15,0.25,5.2,,,10.0,,touch
+3855,154.19,3854.75,23,True,break,1752.7,439.3,21.4,RIGHT,False,31.4,21.9,40.3,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+3928,157.12,3928.0,24,True,flight_start,19.6,627.1,27.2,LEFT,False,,64.7,64.7,8,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+3959,158.36,3959.0,24,True,break,1671.6,459.0,24.4,RIGHT,True,43.2,39.3,76.3,0,True,BRA_A,BRA,chest,,1.0,auto,-0.206,0.89,0.0,1.8,,,10.0,,touch
+4000,160.01,4000.25,24,True,break,1209.5,456.6,25.1,RIGHT,False,40.4,36.2,74.7,0,True,BRA_B,BRA,chest,,1.0,auto,-0.09,0.97,0.0,2.1,,,10.0,,touch
+4032,161.26,4031.5,24,True,break,1041.0,268.4,27.0,RIGHT,False,26.9,33.3,14.3,0,False,BRA_A,BRA,foot,right,1.0,auto,-0.127,1.16,0.02,3.5,,,10.0,,touch
+4044,161.77,4044.25,24,True,break,737.7,885.1,29.6,LEFT,True,72.6,19.8,69.8,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+4063,162.52,4063.0,25,True,flight_start,1626.0,194.7,29.4,RIGHT,False,,23.1,23.1,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+4086,163.42,4085.5,25,True,break,1163.8,401.5,24.4,RIGHT,False,34.3,31.2,63.4,0,False,ISR_A,ISR,chest,,1.0,auto,-0.235,0.97,0.0,2.4,,,10.0,,touch
+4117,164.68,4117.0,25,True,break,1196.0,301.3,27.6,RIGHT,False,27.5,25.5,48.3,0,False,ISR_B,ISR,head,,0.23,auto,-0.08,1.13,0.01,4.0,ISR_A,head,0.09,"2D overlap with ISR_A head (gap -0.06 m, depth 1.17 vs 1.13, push 0.14 vs 0.01)",touch
+4138,165.54,4138.5,25,True,break,851.4,358.0,21.4,LEFT,True,24.0,27.8,48.8,0,True,BRA_B,BRA,foot,left,1.0,auto,-0.16,0.98,0.0,3.3,,,10.0,,touch
+4177,167.08,4177.0,25,True,break,690.9,549.8,27.8,LEFT,False,46.5,44.8,91.0,0,False,BRA_A,BRA,chest,,1.0,auto,-0.13,0.93,0.12,1.8,,,10.0,,touch
+4218,168.73,4218.25,25,True,break,1061.7,498.7,25.2,RIGHT,True,34.1,13.0,36.5,0,True,ISR_A,ISR,foot,right,1.0,auto,-0.022,1.02,0.04,,,,10.0,,touch
+4225,168.99,4224.75,25,True,break,966.2,528.9,24.8,LEFT,True,18.5,7.9,14.4,0,True,BRA_B,BRA,head,,1.0,auto,-0.049,0.92,0.56,1.8,,,10.0,,touch
+4308,172.32,4308.0,26,True,flight_start,350.3,271.3,26.6,LEFT,False,,39.4,39.4,1,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+4341,173.63,4340.75,26,True,break,1912.7,555.0,27.7,RIGHT,True,66.2,28.7,87.6,8,True,ISR_B,ISR,head,,1.0,auto,-0.199,0.84,0.0,3.4,,,10.0,,touch
+4378,175.11,4377.75,26,True,break,1522.6,825.3,29.2,RIGHT,False,49.7,51.7,99.5,0,True,ISR_A,ISR,foot,right,1.0,auto,-0.186,0.84,0.0,1.4,,,10.0,,touch
+4414,176.57,4414.25,26,True,break,1261.5,479.5,28.6,RIGHT,False,34.8,61.5,64.3,0,False,ISR_B,ISR,head,,1.0,auto,-0.171,0.95,0.0,6.7,,,10.0,,touch
+4430,177.19,4429.75,26,True,break,301.9,693.4,29.7,LEFT,True,63.2,53.4,99.4,0,True,BRA_A,BRA,chest,,1.0,auto,-0.205,0.91,0.03,2.0,,,10.0,part close to head,touch
+4449,177.97,4449.25,26,True,break,384.8,140.0,,LEFT,False,9.1,7.6,5.2,12,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+4466,178.63,4465.75,26,True,break,507.4,372.1,23.6,LEFT,False,27.8,30.5,56.7,0,False,BRA_B,BRA,chest,,1.0,auto,-0.261,1.01,0.0,3.3,,,10.0,,touch
+4499,179.95,4498.75,26,True,break,857.5,338.6,24.5,LEFT,False,36.3,51.9,68.0,0,False,BRA_A,BRA,head,,1.0,auto,-0.129,0.96,0.01,5.0,,,10.0,,touch
+4528,181.1,4527.5,26,True,break,1765.2,404.3,18.8,RIGHT,True,26.8,22.9,30.2,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+4550,182.01,4550.25,26,False,break,1846.9,396.0,20.2,RIGHT,False,15.1,4.7,13.8,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+4601,184.04,4601.0,27,True,flight_start,466.4,536.1,28.2,LEFT,False,,31.8,31.8,0,False,BRA_A,BRA,arm,left,0.75,auto,-0.004,1.0,0.02,0.9,BRA_B,foot,1.24,"2D overlap with BRA_B foot (gap -0.10 m, depth 1.17 vs 1.00, push 0.80 vs 0.02); part close to shoulder",touch
+4630,185.18,4629.5,27,True,break,640.1,414.7,24.3,LEFT,False,23.4,33.8,55.4,0,False,BRA_B,BRA,chest,,1.0,auto,-0.247,0.96,0.0,2.5,,,10.0,,touch
+4663,186.52,4663.0,27,True,break,918.5,324.5,26.1,LEFT,False,33.5,61.7,62.3,0,False,BRA_A,BRA,head,,1.0,auto,-0.104,1.05,0.2,6.9,,,10.0,part close to hand,touch
+4675,187.01,4675.25,27,True,break,1628.4,412.9,25.9,RIGHT,True,55.4,41.6,78.8,0,False,ISR_A,ISR,head,,1.0,auto,-0.151,0.97,0.0,3.4,,,10.0,,touch
+4696,187.82,4695.5,27,True,break,1611.1,-99.5,,RIGHT,False,9.9,7.8,15.1,17,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+4718,188.72,4718.0,27,True,break,1459.3,442.4,24.3,RIGHT,False,43.3,39.7,79.5,0,True,ISR_B,ISR,chest,,0.65,auto,-0.094,0.94,0.0,2.7,ISR_A,torso,1.01,"2D overlap with ISR_A torso (gap 0.02 m, depth 1.04 vs 0.94, push 0.73 vs 0.00)",touch
+4757,190.28,4757.0,27,True,break,855.8,382.9,22.5,LEFT,True,32.7,31.6,63.5,0,False,BRA_B,BRA,foot,left,1.0,auto,-0.149,0.98,0.22,2.5,,,10.0,,touch
+4797,191.88,4797.0,27,True,break,967.7,458.8,24.4,NET,False,37.5,35.7,73.2,0,False,BRA_A,BRA,foot,right,1.0,auto,-0.126,0.97,0.01,2.9,,,10.0,,touch
+4830,193.2,4830.0,27,True,break,917.8,236.9,24.4,LEFT,False,24.0,50.1,49.3,0,False,BRA_B,BRA,foot,left,1.0,auto,-0.1,1.14,0.01,7.6,,,10.0,,touch
+4844,193.76,4844.0,27,True,break,1577.9,605.2,27.0,RIGHT,True,62.9,33.2,96.1,0,True,ISR_B,ISR,foot,right,1.0,auto,-0.187,0.89,0.0,4.8,ISR_A,foot,3.44,,touch
+4864,194.57,4864.25,27,True,break,967.9,520.8,28.5,NET,False,35.2,7.3,42.4,3,False,BRA_B,BRA,shoulder,left,0.98,auto,0.005,1.06,0.0,0.2,,,10.0,,touch
+4880,195.18,4879.5,27,True,break,1095.8,629.1,28.5,RIGHT,False,21.3,32.7,52.1,0,True,ISR_A,ISR,foot,right,1.0,auto,-0.15,1.02,0.0,5.9,,,10.0,,touch
+4914,196.56,4914.0,27,True,break,1417.2,699.1,37.5,RIGHT,False,45.3,79.5,118.9,1,False,ISR_B,ISR,head,,1.0,auto,-0.15,0.99,0.17,3.5,,,10.0,,touch
+4944,197.78,4944.5,27,True,break,251.8,379.0,25.6,LEFT,True,28.0,31.9,57.8,0,False,BRA_B,BRA,head,,1.0,auto,-0.222,1.05,0.0,2.0,,,10.0,,touch
+4963,198.53,4963.25,27,True,break,424.8,89.6,,LEFT,False,12.3,12.3,5.3,18,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+4980,199.22,4980.5,27,True,break,658.0,457.5,24.5,LEFT,False,39.8,37.1,75.4,0,True,BRA_A,BRA,chest,,1.0,auto,-0.231,0.96,0.0,2.6,,,10.0,,touch
+5016,200.64,5016.0,27,True,break,775.9,309.1,24.0,LEFT,False,29.2,45.5,57.7,0,False,BRA_B,BRA,head,,1.0,auto,-0.185,1.03,0.0,4.5,,,10.0,,touch
+5040,201.58,5039.5,27,True,break,1792.5,507.4,25.3,RIGHT,True,48.0,9.4,52.1,0,True,ISR_A,ISR,foot,left,1.0,auto,-0.183,0.95,0.0,4.2,ISR_B,head,3.75,,touch
+5049,201.96,5049.0,27,True,break,1728.5,616.1,27.0,RIGHT,False,17.0,43.3,59.3,6,True,ISR_B,ISR,torso,,0.61,auto,-0.17,0.9,0.65,0.3,ISR_A,foot,0.93,,touch
+5086,203.42,5085.5,27,True,break,1188.7,402.4,21.4,RIGHT,False,24.6,13.1,34.4,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+5127,205.08,5127.0,27,False,flight_start,1200.2,316.7,31.5,RIGHT,False,,17.6,17.6,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+5147,205.89,5147.25,27,False,break,1105.2,490.7,31.5,RIGHT,False,34.2,75.7,79.5,0,False,ISR_B,ISR,head,,1.0,auto,-0.069,1.02,0.62,5.8,,,10.0,,touch
+5160,206.4,5160.0,27,False,break,315.4,622.7,28.1,LEFT,True,44.8,70.0,86.5,0,True,BRA_B,BRA,foot,left,1.0,auto,-0.182,1.04,0.0,5.0,,,10.0,,touch
+5214,208.54,5213.5,27,False,break,-729.1,-713.2,,LEFT,False,67.1,68.4,45.9,87,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+5264,210.58,5264.5,27,False,break,584.3,394.3,25.9,LEFT,False,42.8,36.1,65.0,0,False,BRA_B,BRA,head,,1.0,auto,-0.182,1.03,0.0,2.3,,,10.0,,touch
+5301,212.03,5300.75,27,False,break,1738.4,630.3,30.7,RIGHT,True,55.4,40.3,94.4,0,True,ISR_B,ISR,chest,,1.0,auto,-0.081,0.9,0.04,0.7,,,10.0,part close to torso,touch
+5334,213.37,5334.25,27,False,break,1278.0,516.0,27.4,RIGHT,False,33.1,36.7,66.9,0,False,ISR_A,ISR,chest,,1.0,auto,-0.256,0.93,0.0,2.0,,,10.0,,touch
+5366,214.62,5365.5,27,False,break,1067.4,388.8,27.0,RIGHT,False,32.4,51.2,65.1,0,False,ISR_B,ISR,head,,1.0,auto,-0.076,1.0,0.03,5.4,,,10.0,,touch
+5379,215.15,5378.75,27,False,break,567.1,327.5,25.5,LEFT,True,32.1,34.8,52.9,0,False,BRA_B,BRA,head,,1.0,auto,-0.208,1.05,0.0,2.3,,,10.0,,touch
+5419,216.75,5418.75,27,False,break,660.1,442.6,22.7,LEFT,False,36.9,35.4,72.2,1,True,BRA_A,BRA,shoulder,right,1.0,auto,-0.16,0.92,0.0,1.3,,,10.0,,touch
+5455,218.2,5455.0,27,False,break,767.2,316.2,25.9,LEFT,False,32.7,48.7,60.1,0,False,BRA_B,BRA,head,,1.0,auto,-0.154,1.1,0.1,5.4,,,10.0,,touch
+5473,218.93,5473.25,27,False,break,1662.4,459.9,27.8,RIGHT,True,53.0,27.9,50.1,0,False,ISR_A,ISR,chest,,1.0,auto,-0.113,1.04,0.23,2.8,,,10.0,part close to head,touch
+5558,222.32,5558.0,28,True,flight_start,1501.1,226.3,31.2,RIGHT,False,,20.9,20.9,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+5571,222.85,5571.25,28,True,break,1263.5,530.1,27.8,RIGHT,False,37.7,34.3,69.9,0,False,ISR_A,ISR,chest,,1.0,auto,-0.25,0.92,0.0,1.6,,,10.0,,touch
+5602,224.06,5601.5,28,True,break,1130.4,411.3,33.8,RIGHT,False,29.9,12.6,34.4,0,False,ISR_B,ISR,head,,1.0,auto,-0.178,1.2,0.23,3.7,,,10.0,,touch
+5610,224.38,5609.5,28,True,break,1008.2,449.4,32.7,NET,False,23.0,13.8,9.3,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+5622,224.89,5622.25,28,True,break,854.5,716.2,32.2,LEFT,False,34.9,50.1,83.9,0,True,BRA_A,BRA,foot,right,1.0,auto,-0.144,1.02,0.23,1.7,,,10.0,part close to shin,touch
+5660,226.39,5659.75,28,True,break,798.5,395.7,26.5,LEFT,False,27.3,32.3,59.6,0,False,BRA_B,BRA,chest,,1.0,auto,-0.278,1.08,0.0,2.5,,,10.0,,touch
+5694,227.77,5694.25,28,True,break,902.6,382.6,27.2,LEFT,False,37.0,24.6,58.4,0,False,BRA_A,BRA,head,,1.0,auto,-0.1,1.0,0.05,2.0,,,10.0,,touch
+5716,228.65,5716.25,28,True,break,1113.5,424.4,23.4,RIGHT,True,19.6,18.7,37.0,0,True,ISR_A,ISR,shin,right,1.0,auto,-0.114,1.03,0.0,4.0,,,10.0,part close to foot,touch
+5744,229.76,5744.0,28,True,break,1218.3,489.2,23.6,RIGHT,False,26.0,38.0,64.0,1,True,ISR_B,ISR,chest,,1.0,auto,-0.151,0.87,0.45,0.4,ISR_A,foot,3.48,part close to torso,touch
+5778,231.13,5778.25,28,True,break,1122.0,272.3,25.9,RIGHT,False,25.4,19.0,37.9,0,False,ISR_A,ISR,head,,1.0,auto,-0.164,1.2,0.0,3.9,,,10.0,,touch
+5800,232.02,5800.5,28,True,break,801.5,456.8,24.0,LEFT,True,27.9,28.6,56.4,0,True,BRA_B,BRA,foot,left,1.0,auto,-0.202,1.03,0.0,3.6,,,10.0,,touch
+5835,233.4,5835.0,28,True,break,1539.6,648.9,37.1,RIGHT,True,57.6,46.7,100.5,0,False,ISR_B,ISR,head,,1.0,auto,-0.149,1.04,0.27,1.7,ISR_A,foot,3.81,,touch
+5870,234.81,5870.25,28,True,break,1454.3,511.1,27.8,RIGHT,False,32.7,38.3,70.1,0,False,ISR_A,ISR,chest,,1.0,auto,-0.21,0.94,0.0,2.6,,,10.0,,touch
+5906,236.26,5906.5,28,True,break,1103.5,460.9,33.8,RIGHT,False,42.7,42.2,68.2,0,False,ISR_B,ISR,head,,1.0,auto,-0.121,1.15,0.05,2.4,,,10.0,,touch
+5934,237.35,5933.75,28,True,break,125.3,703.0,32.8,LEFT,True,44.7,52.8,94.8,0,False,BRA_A,BRA,foot,right,1.0,auto,-0.166,1.07,0.0,4.2,,,10.0,,touch
+5957,238.29,5957.25,28,True,break,370.4,118.7,,LEFT,False,15.2,19.4,9.0,13,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+5972,238.87,5971.75,28,True,break,572.7,409.8,25.5,LEFT,False,30.6,35.6,63.1,0,False,BRA_B,BRA,chest,,1.0,auto,-0.225,1.01,0.0,2.3,,,10.0,,touch
+6005,240.21,6005.25,28,True,break,967.6,285.4,25.8,NET,False,33.8,55.1,37.4,0,False,BRA_A,BRA,foot,left,1.0,auto,-0.054,1.05,0.0,10.9,,,10.0,,touch
+6015,240.6,6015.0,28,True,break,1386.9,553.0,24.7,RIGHT,False,48.5,20.9,60.9,0,True,ISR_A,ISR,foot,left,0.67,auto,0.08,1.02,0.63,4.3,,,10.0,,touch
+6039,241.56,6039.0,28,True,break,1454.1,550.6,24.8,RIGHT,False,20.2,1.9,21.7,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+6053,242.12,6053.0,29,True,flight_start,1242.0,251.2,37.6,RIGHT,False,,15.3,15.3,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+6063,242.51,6062.75,29,True,break,1090.7,412.6,30.0,RIGHT,False,29.0,57.7,48.2,0,False,ISR_A,ISR,foot,right,1.0,auto,-0.166,1.12,0.0,7.9,,,10.0,,touch
+6074,242.97,6074.25,29,True,break,466.5,628.9,29.2,LEFT,True,57.9,43.8,90.4,0,True,BRA_A,BRA,head,,0.24,auto,-0.184,0.9,0.0,2.9,BRA_B,foot,0.11,"2D overlap with BRA_B foot (gap -0.20 m, depth 1.12 vs 0.90, push 0.00 vs 0.00)",touch
+6114,244.56,6114.0,29,True,break,721.3,560.2,28.5,LEFT,False,40.3,40.9,80.4,0,False,BRA_B,BRA,chest,,1.0,auto,-0.242,0.94,0.0,2.5,,,10.0,,touch
+6150,246.0,6150.0,29,True,break,912.7,424.1,27.8,LEFT,False,38.0,15.6,46.4,0,False,BRA_A,BRA,head,,1.0,auto,-0.137,0.97,0.29,4.2,,,10.0,,touch
+6157,246.28,6157.0,29,True,break,1009.1,419.0,27.0,NET,False,15.6,11.4,8.8,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+6173,246.91,6172.75,29,True,break,1155.0,648.0,27.4,RIGHT,False,29.4,32.0,56.7,0,True,ISR_B,ISR,foot,right,1.0,auto,-0.127,0.87,0.0,4.2,,,10.0,,touch
+6186,247.44,6186.0,29,True,break,1314.1,481.1,24.3,RIGHT,False,9.5,32.3,32.7,0,True,ISR_A,ISR,shin,left,1.0,auto,-0.123,1.02,0.0,2.9,,,10.0,,touch
+6222,248.88,6222.0,29,True,break,1504.1,459.8,24.3,RIGHT,False,32.3,48.4,74.8,0,True,ISR_B,ISR,chest,,1.0,auto,-0.146,0.88,0.71,1.8,,,10.0,part close to foot,touch
+6253,250.12,6253.0,29,True,break,435.4,371.6,23.4,LEFT,True,33.8,29.5,58.9,0,False,BRA_B,BRA,chest,,1.0,auto,-0.233,1.03,0.0,2.1,,,10.0,,touch
+6271,250.85,6271.25,29,True,break,543.7,77.9,,LEFT,False,11.0,7.9,6.6,15,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+6290,251.58,6289.5,29,True,break,723.0,448.5,26.6,LEFT,False,39.2,37.1,74.3,0,False,BRA_A,BRA,chest,,1.0,auto,-0.216,1.04,0.0,2.7,,,10.0,,touch
+6320,252.81,6320.25,29,True,break,932.3,228.9,27.0,LEFT,False,23.8,45.3,40.5,0,False,BRA_B,BRA,foot,left,1.0,auto,-0.047,1.24,0.0,4.8,,,10.0,,touch
+6336,253.43,6335.75,29,True,break,1556.2,555.8,24.0,RIGHT,True,49.5,17.8,60.3,0,True,ISR_B,ISR,head,,0.35,auto,0.212,0.77,0.87,1.5,,,10.0,part close to chest,touch
+6352,254.09,6352.25,29,False,break,1598.0,503.5,24.8,RIGHT,False,11.8,3.2,14.6,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+6368,254.72,6368.0,30,True,flight_start,207.9,473.2,35.0,LEFT,False,,55.4,55.4,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+6388,255.51,6387.75,30,True,break,1483.9,432.7,36.8,RIGHT,True,69.9,77.2,7.3,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+6397,255.87,6396.75,30,True,break,1999.0,754.8,36.8,RIGHT,False,58.9,55.3,110.6,7,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+6435,257.4,6435.0,30,True,break,1196.2,544.2,30.0,RIGHT,False,38.7,27.1,64.3,0,False,ISR_A,ISR,chest,,1.0,auto,-0.263,0.99,0.0,1.4,,,10.0,,touch
+6460,258.39,6459.75,30,True,break,1199.2,485.7,33.0,RIGHT,False,24.9,28.8,50.4,0,False,ISR_B,ISR,head,,0.32,auto,-0.108,1.04,0.0,4.0,ISR_A,chest,0.33,"2D overlap with ISR_A chest (gap -0.23 m, depth 1.19 vs 1.04, push 0.00 vs 0.00)",touch
+6484,259.34,6483.5,30,True,break,859.9,604.1,27.0,LEFT,True,26.1,5.6,29.5,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+6517,260.68,6517.0,31,True,flight_start,1350.2,345.2,24.7,RIGHT,False,,39.7,39.7,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+6520,260.8,6520.0,31,True,break,1310.7,447.7,24.7,RIGHT,False,32.4,37.9,67.7,0,True,BRA_B,BRA,head,,1.0,auto,-0.201,0.93,0.0,2.4,,,10.0,part close to chest,touch
+6552,262.08,6552.0,31,True,break,1095.1,251.9,27.0,RIGHT,False,24.5,38.6,42.7,0,False,BRA_A,BRA,head,,1.0,auto,-0.177,1.19,0.21,4.3,,,10.0,,touch
+6572,262.9,6572.5,31,True,break,233.1,633.6,28.3,LEFT,True,60.1,38.7,86.9,0,True,ISR_B,ISR,foot,right,1.0,auto,-0.102,1.0,0.02,2.0,,,10.0,part close to thigh,touch
+6613,264.53,6613.25,31,True,break,282.1,791.6,37.9,LEFT,False,51.7,61.1,111.3,0,False,ISR_A,ISR,foot,right,1.0,auto,-0.222,1.09,0.0,0.3,,,10.0,,touch
+6635,265.41,6635.25,31,True,break,571.3,-172.4,,LEFT,False,35.5,24.9,33.4,23,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+6657,266.28,6657.0,31,True,break,945.1,337.2,30.1,LEFT,False,42.2,55.8,44.3,0,False,ISR_B,ISR,foot,right,1.0,auto,-0.06,1.26,0.11,7.4,,,10.0,,touch
+6668,266.7,6667.5,31,True,break,1467.2,643.0,27.0,RIGHT,True,57.7,48.8,101.0,0,True,BRA_B,BRA,foot,left,1.0,auto,-0.097,0.91,0.27,1.2,BRA_A,foot,4.7,,touch
+6703,268.11,6702.75,31,True,break,1127.6,326.5,23.8,RIGHT,False,22.5,30.3,52.8,0,False,BRA_A,BRA,foot,right,1.0,auto,-0.215,1.08,0.0,4.0,,,10.0,,touch
+6742,269.67,6741.75,31,True,break,1445.6,419.1,28.1,RIGHT,False,45.3,55.0,79.2,0,False,BRA_B,BRA,head,,1.0,auto,-0.149,1.0,0.04,3.7,,,10.0,,touch
+6751,270.04,6751.0,31,True,break,939.3,446.6,27.0,LEFT,True,59.3,14.3,68.7,2,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+6773,270.92,6773.0,32,True,flight_start,579.7,161.1,25.5,LEFT,False,,10.0,10.0,3,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+6790,271.62,6790.5,32,True,break,799.8,441.0,24.8,LEFT,False,32.8,33.4,64.6,0,False,ISR_A,ISR,chest,,1.0,auto,-0.119,1.02,0.0,2.1,,,10.0,part close to torso,touch
+6820,272.81,6820.25,32,True,break,908.8,240.7,25.8,LEFT,False,20.9,35.1,44.3,0,False,ISR_B,ISR,head,,1.0,auto,-0.244,1.19,0.0,4.7,,,10.0,,touch
+6844,273.76,6844.0,32,True,break,2029.3,315.6,26.4,RIGHT,True,63.3,26.9,89.5,35,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+6892,275.67,6891.75,32,True,break,1554.9,327.5,24.8,RIGHT,False,35.1,30.6,62.3,0,False,BRA_A,BRA,chest,,1.0,auto,-0.274,1.04,0.0,3.0,,,10.0,,touch
+6926,277.03,6925.75,32,True,break,1059.0,288.8,27.3,RIGHT,False,36.9,53.5,39.7,0,False,BRA_B,BRA,foot,left,1.0,auto,-0.158,1.07,0.0,6.1,,,10.0,,touch
+6934,277.35,6933.75,32,True,break,720.2,446.4,24.3,LEFT,True,40.5,44.5,83.0,0,False,ISR_B,ISR,thigh,right,1.0,auto,-0.207,1.03,0.0,1.2,,,10.0,,touch
+6998,279.92,6998.0,33,True,flight_start,1174.1,96.4,28.7,RIGHT,False,,58.2,58.2,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+7020,280.79,7019.75,33,True,break,246.4,402.4,24.5,LEFT,True,39.3,29.5,66.8,0,False,ISR_B,ISR,chest,,1.0,auto,-0.253,1.03,0.0,2.4,,,10.0,,touch
+7033,281.33,7033.25,33,True,break,385.7,127.2,24.0,LEFT,False,20.7,19.0,1.8,13,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+7055,282.2,7055.0,33,True,break,778.7,501.1,25.9,LEFT,False,41.2,34.7,73.3,0,True,ISR_A,ISR,chest,,1.0,auto,-0.124,0.97,0.01,1.2,,,10.0,part close to head,touch
+7082,283.27,7081.75,33,True,break,878.2,295.4,24.8,LEFT,False,19.8,15.0,28.3,0,False,ISR_B,ISR,head,,1.0,auto,-0.077,1.07,0.03,5.7,,,10.0,,touch
+7090,283.62,7090.5,33,True,break,1010.3,292.2,24.8,NET,False,15.2,4.9,12.9,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+7108,284.31,7107.75,33,True,break,1093.0,494.4,24.8,RIGHT,False,24.8,25.7,48.7,0,True,BRA_A,BRA,foot,right,1.0,auto,-0.212,1.02,0.0,5.4,,,10.0,,touch
+7142,285.68,7142.0,33,True,break,1621.5,789.7,39.4,RIGHT,False,55.2,69.2,124.1,0,False,BRA_B,BRA,foot,left,1.0,auto,-0.174,1.1,0.0,0.9,,,10.0,part close to thigh,touch
+7164,286.57,7164.25,33,True,break,1386.9,12.1,30.6,RIGHT,False,14.8,14.1,0.7,3,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+7182,287.27,7181.75,33,True,break,1202.9,309.3,25.9,RIGHT,False,32.5,21.4,45.7,0,False,BRA_A,BRA,head,,1.0,auto,-0.188,1.08,0.0,3.4,,,10.0,,touch
+7206,288.22,7205.5,33,True,break,796.7,536.9,24.0,LEFT,True,34.0,32.3,63.1,0,True,ISR_A,ISR,thigh,right,1.0,auto,-0.125,0.9,0.31,2.9,,,10.0,part close to knee,touch
+7231,289.25,7231.25,33,True,break,695.4,339.7,24.3,LEFT,False,16.0,26.9,42.8,0,False,ISR_B,ISR,chest,,1.0,auto,-0.189,1.07,0.23,2.3,,,10.0,,touch
+7262,290.49,7262.25,33,True,break,928.4,345.4,27.3,LEFT,False,32.8,25.7,46.4,0,False,ISR_A,ISR,head,,1.0,auto,-0.123,1.1,0.01,4.2,,,10.0,,touch
+7282,291.27,7281.75,33,True,break,1247.6,426.0,23.7,RIGHT,True,22.5,26.5,46.5,0,True,BRA_A,BRA,foot,right,1.0,auto,-0.163,1.06,0.0,7.1,,,10.0,,touch
+7322,292.89,7322.25,33,True,break,1448.8,915.9,40.5,RIGHT,False,73.1,69.8,142.9,0,True,BRA_B,BRA,foot,left,1.0,auto,-0.198,1.05,0.0,1.9,,,10.0,,touch
+7363,294.52,7363.0,33,True,break,1220.4,363.1,27.3,RIGHT,False,32.7,56.2,66.5,0,False,BRA_A,BRA,head,,1.0,auto,-0.13,1.01,0.0,5.7,,,10.0,,touch
+7382,295.28,7382.0,33,True,break,360.4,498.1,22.5,LEFT,True,38.4,46.4,84.6,0,True,ISR_A,ISR,head,,0.6,auto,0.104,0.84,0.09,1.5,,,10.0,part close to shoulder,touch
+7390,295.62,7390.5,33,True,break,695.3,404.4,21.8,LEFT,False,31.7,31.1,17.1,0,True,ISR_B,ISR,head,,1.0,auto,-0.132,0.82,0.26,0.5,,,10.0,,touch
+7401,296.04,7401.0,34,False,flight_start,377.5,373.7,23.3,LEFT,False,,31.1,31.1,0,False,ISR_B,ISR,hand,left,0.9,auto,0.02,0.96,0.17,41.1,,,10.0,part close to arm,touch
+7416,296.65,7416.25,34,True,break,508.3,83.4,,LEFT,False,12.0,7.4,8.6,13,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+7437,297.49,7437.25,34,True,break,793.1,491.3,25.5,LEFT,False,39.4,36.7,74.7,0,True,ISR_A,ISR,chest,,1.0,auto,-0.144,0.95,0.05,1.8,,,10.0,,touch
+7469,298.75,7468.75,34,True,break,913.3,320.5,25.9,LEFT,False,26.6,16.7,34.7,0,False,ISR_B,ISR,head,,1.0,auto,-0.152,1.12,0.16,3.9,,,10.0,,touch
+7489,299.55,7488.75,34,True,break,1217.1,576.8,26.2,RIGHT,True,31.7,29.9,58.0,0,True,BRA_A,BRA,foot,right,1.0,auto,-0.162,1.0,0.0,4.3,,,10.0,,touch
+7518,300.72,7518.0,34,True,break,1472.7,468.7,27.2,RIGHT,False,25.6,40.7,66.1,0,False,BRA_B,BRA,head,,1.0,auto,-0.206,0.94,0.0,3.0,,,10.0,,touch
+7554,302.15,7553.75,34,True,break,1198.4,278.2,26.5,RIGHT,False,28.0,47.1,55.4,0,False,BRA_A,BRA,head,,1.0,auto,-0.198,1.11,0.0,5.5,,,10.0,,touch
+7572,302.88,7572.0,34,True,break,487.0,332.5,23.0,LEFT,True,34.2,38.9,70.4,0,False,ISR_B,ISR,foot,right,1.0,auto,-0.107,1.0,0.23,20.1,,,10.0,,touch
+7595,303.8,7595.0,34,True,break,948.2,-123.1,,NET,False,22.2,23.1,19.1,20,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+7618,304.7,7617.5,34,False,break,1350.6,397.6,22.0,RIGHT,False,37.7,20.0,53.6,1,True,,,,,1.0,video_review,,0.97,0.39,1.0,,,10.0,"ball lands on the sand ~7617, nobody touches it (checked on video by the user); point replayed, score unchanged",no_player (sand/net/tracking)
+7623,304.93,7623.25,34,False,break,1442.0,320.6,22.2,RIGHT,False,14.1,0.4,13.9,24,False,BRA_A,BRA,arm,right,1.0,auto,-0.046,1.01,0.0,1.5,,,10.0,,touch
+7678,307.11,7677.75,34,False,break,1582.5,347.4,22.1,RIGHT,False,1.8,7.9,7.5,0,False,BRA_A,BRA,torso,,1.0,auto,-0.228,1.0,0.0,1.0,,,10.0,,touch
+7685,307.4,7685.0,34,False,break,1642.6,371.4,22.1,RIGHT,False,15.0,17.4,7.5,0,True,BRA_A,BRA,thigh,left,0.71,auto,0.069,0.97,0.58,1.1,,,10.0,part close to hand,touch
+7713,308.52,7713.0,34,True,flight_start,532.7,252.1,28.3,LEFT,True,,12.0,12.0,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+7735,309.39,7734.75,34,True,break,756.8,502.3,26.2,LEFT,False,33.8,35.1,66.7,0,False,ISR_A,ISR,chest,,0.97,auto,-0.147,0.99,0.05,1.5,ISR_B,thigh,2.44,part close to torso,touch
+7764,310.55,7763.75,34,True,break,963.0,299.1,27.0,NET,False,24.1,28.0,22.1,1,False,ISR_B,ISR,head,,1.0,auto,-0.179,1.12,0.0,2.4,,,10.0,,touch
+7779,311.17,7779.25,34,True,break,1412.9,764.2,28.5,RIGHT,False,64.4,53.5,116.5,0,True,BRA_B,BRA,foot,left,1.0,auto,-0.146,0.87,0.0,1.7,,,10.0,,touch
+7802,312.08,7802.0,35,False,flight_start,1131.3,219.7,28.7,RIGHT,False,,10.5,10.5,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+7815,312.59,7814.75,35,False,break,1020.2,410.7,24.0,NET,False,23.8,35.2,59.0,0,False,BRA_A,BRA,foot,right,1.0,auto,-0.191,1.02,0.0,3.1,,,10.0,,touch
+7860,314.41,7860.25,35,False,break,1228.9,636.8,25.5,RIGHT,False,46.3,20.0,62.3,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+7877,315.08,7877.0,35,False,break,1416.1,609.6,25.9,RIGHT,False,16.0,2.8,15.3,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+7920,316.79,7919.75,35,False,break,1453.5,602.8,25.5,RIGHT,False,1.3,14.6,15.7,0,True,BRA_A,BRA,foot,right,1.0,auto,-0.203,0.95,0.0,1.8,,,10.0,,touch
+7929,317.16,7929.0,35,False,break,1527.0,554.5,24.0,RIGHT,False,6.2,12.4,13.1,0,True,BRA_A,BRA,foot,right,1.0,auto,-0.136,0.9,0.02,1.3,,,10.0,,touch
+7937,317.49,7937.25,35,False,break,1546.7,514.8,24.8,RIGHT,False,2.7,7.0,7.9,0,True,BRA_A,BRA,hand,right,0.91,auto,0.019,0.93,0.05,1.5,,,10.0,part close to arm,touch
+7958,318.32,7958.0,35,True,break,1634.2,508.0,24.4,RIGHT,False,3.0,34.0,32.9,1,True,BRA_A,BRA,thigh,right,1.0,auto,-0.028,0.92,0.02,1.0,,,10.0,,touch
+8018,320.72,8018.0,36,True,flight_start,551.7,335.0,28.9,LEFT,False,,24.9,24.9,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+8026,321.04,8026.0,36,True,break,665.6,565.6,26.9,LEFT,False,40.4,36.7,75.1,0,True,ISR_A,ISR,chest,,1.0,auto,-0.032,0.92,0.03,1.9,ISR_B,foot,5.01,,touch
+8054,322.14,8053.5,36,True,break,804.8,340.5,25.9,LEFT,False,21.8,42.4,48.9,0,False,ISR_B,ISR,head,,1.0,auto,-0.065,1.03,0.53,3.9,,,10.0,,touch
+8072,322.89,8072.25,36,True,break,1321.7,358.5,22.7,RIGHT,True,25.7,26.2,47.0,0,False,BRA_A,BRA,foot,right,1.0,auto,-0.148,0.98,0.29,6.9,,,10.0,,touch
+8109,324.36,8109.0,36,True,break,1260.0,514.9,28.1,RIGHT,False,43.3,42.4,85.3,0,False,BRA_B,BRA,chest,,1.0,auto,-0.157,0.96,0.04,1.8,,,10.0,part close to head,touch
+8143,325.72,8143.0,36,True,break,1040.9,291.1,28.3,RIGHT,False,29.1,50.7,33.7,0,False,BRA_A,BRA,foot,right,1.0,auto,-0.136,1.21,0.0,5.7,,,10.0,,touch
+8152,326.08,8152.0,36,True,break,660.6,678.8,27.8,LEFT,True,71.9,65.8,135.4,0,True,ISR_A,ISR,foot,right,1.0,auto,-0.2,0.92,0.0,2.6,,,10.0,,touch
+8172,326.88,8172.0,36,True,break,1590.8,-59.6,,RIGHT,True,57.6,0.5,57.4,51,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+8223,328.92,8223.0,36,True,break,1796.0,30.8,28.0,RIGHT,False,11.1,19.7,11.1,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+8245,329.79,8244.75,36,True,break,1392.1,406.2,24.8,RIGHT,False,39.2,29.4,65.3,0,False,BRA_A,BRA,chest,,1.0,auto,-0.141,0.99,0.07,1.8,,,10.0,,touch
+8276,331.04,8276.0,36,True,break,1118.5,365.1,31.0,RIGHT,False,33.4,63.2,63.2,0,False,BRA_B,BRA,foot,left,1.0,auto,-0.101,1.18,0.0,7.5,,,10.0,,touch
+8298,331.92,8298.0,37,True,flight_start,550.5,198.8,27.7,LEFT,False,,20.2,20.2,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+8310,332.4,8310.0,37,True,break,713.0,543.3,27.4,LEFT,False,44.8,44.9,88.1,0,True,ISR_A,ISR,chest,,1.0,auto,-0.152,0.95,0.17,1.6,ISR_B,foot,4.71,,touch
+8345,333.81,8345.25,37,True,break,857.2,286.1,24.3,LEFT,False,26.5,43.2,55.2,0,False,ISR_B,ISR,head,,1.0,auto,-0.096,1.06,0.54,4.3,,,10.0,,touch
+8368,334.72,8368.0,37,True,break,1689.3,362.0,21.8,RIGHT,True,36.2,51.3,85.3,0,True,BRA_A,BRA,foot,right,1.0,auto,-0.176,0.94,0.0,,,,10.0,,touch
+8478,339.12,8478.0,38,True,flight_start,1129.4,206.8,26.9,RIGHT,False,,52.1,52.1,8,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+8494,339.77,8494.25,38,True,break,344.4,501.6,25.7,LEFT,True,52.1,39.3,87.0,0,False,BRA_A,BRA,chest,,1.0,auto,-0.137,0.98,0.02,1.2,,,10.0,,touch
+8532,341.26,8531.5,38,True,break,926.5,375.5,24.4,LEFT,False,33.4,31.6,63.8,0,False,BRA_B,BRA,chest,,1.0,auto,-0.232,0.99,0.0,2.8,,,10.0,,touch
+8564,342.58,8564.5,38,True,break,870.0,310.9,25.2,LEFT,False,29.1,24.4,50.4,0,False,BRA_A,BRA,head,,1.0,auto,-0.155,1.06,0.01,2.5,,,10.0,,touch
+8590,343.6,8590.0,38,True,break,1204.9,403.3,20.2,RIGHT,True,22.6,18.3,39.2,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+8608,344.31,8607.75,38,False,break,1233.9,379.6,21.7,RIGHT,False,14.1,3.5,16.1,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+8646,345.84,8646.0,38,False,break,1293.3,308.7,21.4,RIGHT,False,2.1,2.1,2.1,4,False,ISR_A,ISR,thigh,left,1.0,auto,-0.206,1.07,0.0,0.8,,,10.0,,touch
+8666,346.64,8666.0,38,False,break,1313.5,309.6,,RIGHT,False,2.8,9.4,7.9,15,False,ISR_A,ISR,thigh,left,1.0,auto,-0.196,,0.0,2.1,,,10.0,,touch
+8697,347.87,8696.75,38,False,break,1510.8,264.5,,RIGHT,False,2.9,8.0,6.0,16,False,ISR_A,ISR,chest,,1.0,auto,-0.276,,0.0,3.5,,,10.0,part close to torso,touch
+8732,349.28,8732.0,39,True,flight_start,259.2,28.8,26.0,LEFT,False,,12.4,12.4,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+8756,350.22,8755.5,39,True,break,574.5,527.5,27.4,LEFT,False,43.1,36.6,76.6,0,False,BRA_B,BRA,chest,,1.0,auto,-0.246,0.95,0.0,1.8,,,10.0,,touch
+8786,351.44,8786.0,39,True,break,962.8,351.4,28.8,NET,False,30.4,56.7,48.4,0,False,BRA_A,BRA,foot,right,1.0,auto,-0.09,1.14,0.01,7.8,,,10.0,,touch
+8799,351.97,8799.25,39,True,break,1620.2,580.6,25.1,RIGHT,False,48.0,36.6,75.2,0,True,ISR_B,ISR,foot,right,1.0,auto,-0.154,0.84,0.0,3.1,,,10.0,,touch
+8840,353.61,8840.25,39,True,break,1326.2,628.9,27.8,RIGHT,False,44.0,25.7,67.9,0,True,ISR_A,ISR,chest,,1.0,auto,-0.204,0.89,0.0,0.2,,,10.0,,touch
+8864,354.56,8864.0,39,True,break,1150.4,596.1,27.0,RIGHT,False,23.4,45.9,66.4,0,True,ISR_B,ISR,foot,right,1.0,auto,-0.131,0.85,0.14,9.1,,,10.0,,touch
+8898,355.91,8897.75,39,True,break,811.8,388.3,22.9,LEFT,True,23.6,28.2,51.3,0,False,BRA_B,BRA,foot,left,1.0,auto,-0.214,1.02,0.0,2.7,,,10.0,,touch
+8933,357.31,8932.75,39,True,break,835.5,444.2,24.8,LEFT,False,35.6,36.3,71.6,0,False,BRA_A,BRA,chest,,0.67,auto,-0.193,0.96,0.02,1.9,BRA_B,foot,1.05,"2D overlap with BRA_B foot (gap -0.13 m, depth 1.16 vs 0.96, push 0.76 vs 0.02)",touch
+8966,358.63,8965.75,39,True,break,1007.8,302.8,24.8,NET,False,27.4,5.0,29.3,1,False,ISR_A,ISR,foot,right,0.19,auto,0.096,1.13,0.71,1.6,BRA_B,foot,0.31,,touch
+8982,359.28,8982.0,39,True,break,936.2,556.6,27.4,LEFT,False,32.4,45.5,77.3,0,True,BRA_A,BRA,foot,right,0.19,auto,-0.182,1.0,0.0,1.1,BRA_B,torso,-0.04,"2D overlap with BRA_B torso (gap -0.26 m, depth 1.04 vs 1.00, push 0.00 vs 0.00)",touch
+9023,360.91,9022.75,39,True,break,794.1,363.4,24.0,LEFT,False,31.9,25.3,57.2,0,False,BRA_B,BRA,chest,,1.0,auto,-0.26,1.01,0.0,2.5,,,10.0,,touch
+9052,362.08,9052.0,39,True,break,829.2,361.3,27.3,LEFT,False,30.0,52.0,62.3,0,False,BRA_A,BRA,head,,1.0,auto,-0.147,1.03,0.1,5.3,,,10.0,,touch
+9071,362.85,9071.25,39,True,break,1759.0,519.7,25.9,RIGHT,True,46.6,5.9,52.4,0,True,ISR_A,ISR,foot,left,1.0,auto,-0.158,0.98,0.0,1.7,ISR_B,head,3.35,,touch
+9078,363.13,9078.25,39,True,break,1733.3,553.6,25.9,RIGHT,False,14.4,4.6,18.8,5,True,ISR_B,ISR,head,,0.36,auto,-0.186,0.81,0.0,0.9,ISR_A,thigh,0.42,"2D overlap with ISR_A thigh (gap -0.10 m, depth 0.94 vs 0.81, push 0.80 vs 0.00)",touch
+9094,363.77,9094.25,39,True,break,1660.2,548.3,27.0,RIGHT,False,12.4,32.8,32.0,0,True,ISR_A,ISR,foot,left,0.97,auto,-0.21,1.01,0.0,7.5,ISR_B,head,2.37,,touch
+9107,364.27,9106.75,39,True,break,1190.6,732.5,26.6,RIGHT,False,49.0,21.3,43.3,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+9130,365.2,9130.0,40,False,flight_start,1388.4,270.5,28.8,RIGHT,False,,34.7,34.7,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+9138,365.52,9138.0,40,False,break,1259.3,544.4,27.7,RIGHT,False,40.2,37.9,76.6,0,True,ISR_A,ISR,chest,,1.0,auto,-0.246,0.92,0.0,2.2,,,10.0,,touch
+9172,366.89,9172.25,40,False,break,1070.9,472.6,33.8,RIGHT,False,38.1,6.0,44.1,2,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+9182,367.3,9182.5,40,False,break,1016.6,434.9,28.1,NET,False,6.1,3.0,9.1,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+9191,367.64,9191.0,40,False,break,1043.1,420.0,27.7,RIGHT,False,8.0,3.4,7.0,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+9224,368.98,9224.5,40,True,break,1050.8,554.9,,NET,False,1.5,22.8,23.9,24,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+9235,369.41,9235.25,40,False,break,1038.6,634.2,28.5,NET,False,20.6,34.8,21.2,0,False,ISR_B,ISR,hand,right,0.99,auto,0.002,0.92,0.45,2.2,,,10.0,,touch
+9254,370.17,9254.25,40,False,break,547.4,627.5,26.6,LEFT,False,29.8,15.5,25.1,0,True,BRA_A,BRA,hand,right,1.0,auto,-0.0,0.87,0.0,1.0,,,10.0,,touch
+9264,370.56,9264.0,40,True,break,424.9,640.5,19.9,LEFT,False,20.3,9.6,16.6,22,True,BRA_B,BRA,foot,left,0.13,auto,-0.01,0.78,0.62,1.5,BRA_A,torso,-0.25,"2D overlap with BRA_A torso (gap -0.21 m, depth 0.65 vs 0.78, push 0.00 vs 0.62)",touch
+9334,373.36,9334.0,41,True,flight_start,1612.6,512.9,29.3,RIGHT,False,,40.5,40.5,0,False,ISR_A,ISR,chest,,1.0,auto,-0.247,0.97,0.0,2.3,,,10.0,,touch
+9373,374.91,9372.75,41,True,break,1502.3,449.8,32.2,RIGHT,False,42.7,71.7,85.3,0,False,ISR_B,ISR,head,,1.0,auto,-0.156,1.09,0.73,6.3,,,10.0,,touch
+9393,375.72,9393.0,41,True,break,258.8,573.0,28.2,LEFT,True,48.7,29.9,71.4,0,False,BRA_B,BRA,foot,right,0.52,auto,-0.194,1.1,0.0,3.8,BRA_A,head,0.73,"2D overlap with BRA_A head (gap -0.15 m, depth 0.89 vs 1.10, push 0.74 vs 0.00)",touch
+9426,377.04,9426.0,41,True,break,633.8,620.1,26.3,LEFT,False,37.1,39.7,74.1,0,True,BRA_A,BRA,foot,left,1.0,auto,-0.145,0.91,0.0,11.7,,,10.0,,touch
+9461,378.43,9460.75,41,True,break,931.3,421.8,28.0,LEFT,False,36.4,56.1,59.3,0,False,BRA_B,BRA,foot,left,1.0,auto,-0.175,0.98,0.0,26.2,,,10.0,,touch
+9573,382.92,9573.0,42,True,flight_start,24.5,572.6,34.0,LEFT,False,,57.1,57.1,8,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+9607,384.28,9607.0,42,True,break,1806.2,588.2,29.2,RIGHT,True,49.7,43.1,89.9,0,True,ISR_B,ISR,chest,,1.0,auto,-0.131,0.88,0.05,1.3,,,10.0,part close to shoulder,touch
+9642,385.69,9642.25,42,True,break,1213.8,430.6,25.3,RIGHT,False,33.6,36.4,68.4,0,False,ISR_A,ISR,chest,,1.0,auto,-0.258,0.93,0.0,2.8,,,10.0,,touch
+9678,387.11,9677.75,42,True,break,1240.0,373.7,27.9,RIGHT,False,35.5,26.1,57.9,0,False,ISR_B,ISR,head,,1.0,auto,-0.152,1.05,0.0,3.4,ISR_A,shoulder,4.92,,touch
+9692,387.7,9692.5,42,True,break,1008.3,295.4,25.2,NET,False,17.2,4.3,21.5,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+9712,388.48,9712.0,42,True,break,1095.8,476.4,24.8,RIGHT,False,19.3,0.6,19.9,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+9782,391.3,9782.5,42,False,break,1095.6,452.2,23.2,RIGHT,False,0.5,28.1,28.4,0,True,ISR_A,ISR,foot,right,1.0,auto,-0.168,1.04,0.0,3.4,,,10.0,,touch
+9838,393.52,9838.0,43,True,flight_start,1603.4,201.9,29.7,RIGHT,False,,19.3,19.3,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+9856,394.26,9856.5,43,True,break,1228.2,487.9,27.0,RIGHT,False,35.1,38.6,71.3,0,False,ISR_A,ISR,chest,,1.0,auto,-0.237,0.94,0.0,2.5,,,10.0,,touch
+9892,395.7,9892.5,43,True,break,1117.8,396.0,30.0,RIGHT,False,38.5,23.1,46.4,0,False,ISR_B,ISR,head,,0.33,auto,-0.209,1.13,0.0,4.8,ISR_A,shoulder,0.34,"2D overlap with ISR_A shoulder (gap 0.02 m, depth 1.16 vs 1.13, push 0.08 vs 0.00)",touch
+9910,396.39,9909.75,43,True,break,768.6,625.7,26.2,LEFT,True,32.1,43.5,71.5,0,True,BRA_A,BRA,foot,right,1.0,auto,-0.185,0.88,0.0,1.5,,,10.0,,touch
+9946,397.82,9945.5,43,True,break,643.2,351.9,25.8,LEFT,False,24.5,28.8,53.2,0,False,BRA_B,BRA,chest,,1.0,auto,-0.282,1.12,0.0,2.9,,,10.0,,touch
+9979,399.16,9979.0,43,True,break,849.9,373.4,27.3,LEFT,False,38.7,46.8,56.6,0,False,BRA_A,BRA,head,,1.0,auto,-0.198,1.03,0.0,4.8,,,10.0,,touch
+10042,401.68,10042.0,44,True,flight_start,644.3,195.3,29.7,LEFT,False,,4.7,4.7,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+10061,402.45,10061.25,44,True,break,716.7,430.3,25.9,LEFT,False,29.6,36.8,65.4,0,False,ISR_A,ISR,shoulder,right,0.3,auto,-0.077,1.01,0.1,2.7,ISR_B,thigh,0.28,"2D overlap with ISR_B thigh (gap -0.17 m, depth 1.18 vs 1.01, push 0.00 vs 0.10)",touch
+10102,404.07,10101.75,44,True,break,1082.7,510.9,24.4,RIGHT,True,38.1,47.4,85.0,0,True,BRA_B,BRA,foot,left,1.0,auto,-0.191,0.91,0.0,,,,10.0,,touch
+10124,404.98,10124.5,44,True,break,1118.4,-109.8,,RIGHT,False,7.8,1.8,9.4,21,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+10145,405.79,10144.75,44,True,break,1140.4,239.0,24.6,RIGHT,False,32.4,39.3,59.8,0,False,BRA_A,BRA,head,,1.0,auto,-0.185,1.15,0.0,4.6,,,10.0,,touch
+10170,406.8,10170.0,44,True,break,338.2,420.9,19.9,LEFT,True,33.3,21.2,40.3,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+10190,407.58,10189.5,44,False,break,108.2,417.3,22.6,LEFT,False,16.3,11.7,15.1,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+10196,407.82,10195.5,44,False,break,38.8,417.9,22.9,LEFT,False,11.5,8.6,19.8,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+10202,408.08,10202.0,44,False,break,96.2,419.5,22.0,LEFT,False,10.5,1.6,9.2,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+10233,409.32,10233.0,45,True,flight_start,750.8,160.6,26.4,LEFT,False,,17.8,17.8,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+10241,409.65,10241.25,45,True,break,784.3,361.1,24.4,LEFT,False,32.4,31.6,63.8,0,False,ISR_A,ISR,chest,,1.0,auto,-0.193,1.08,0.09,2.1,ISR_B,hand,4.7,,touch
+10274,410.95,10273.75,45,True,break,879.2,244.9,26.0,LEFT,False,26.5,17.3,36.3,0,False,ISR_B,ISR,head,,1.0,auto,-0.165,1.25,0.1,3.4,,,10.0,,touch
+10294,411.74,10293.5,45,True,break,1221.9,473.2,25.1,RIGHT,True,35.3,45.4,78.0,0,True,BRA_B,BRA,foot,left,1.0,auto,-0.144,0.98,0.02,1.8,,,10.0,,touch
+10316,412.65,10316.25,45,True,break,1228.9,-72.5,,RIGHT,False,3.1,7.6,10.5,16,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+10336,413.44,10336.0,45,True,break,1207.4,321.8,25.6,RIGHT,False,32.5,19.4,51.9,0,False,BRA_A,BRA,chest,,1.0,auto,-0.267,1.12,0.0,1.7,,,10.0,,touch
+10362,414.46,10361.5,45,True,break,1148.8,359.9,24.8,RIGHT,False,26.8,44.7,60.0,0,False,BRA_B,BRA,head,,0.98,auto,-0.118,0.98,0.26,4.8,BRA_A,thigh,2.68,,touch
+10382,415.29,10382.25,45,True,break,468.5,317.2,23.6,LEFT,True,29.4,22.0,46.5,0,False,ISR_B,ISR,head,,1.0,auto,-0.227,1.02,0.0,1.5,,,10.0,,touch
+10413,416.53,10413.25,45,True,break,656.9,507.7,27.1,LEFT,False,41.0,48.8,89.0,0,False,ISR_A,ISR,shoulder,right,0.82,auto,-0.152,0.96,0.0,2.7,ISR_B,foot,1.46,"2D overlap with ISR_B foot (gap -0.01 m, depth 1.21 vs 0.96, push 0.93 vs 0.00)",touch
+10436,417.42,10435.5,45,True,break,733.0,-114.9,,LEFT,False,10.2,10.5,15.3,18,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+10455,418.21,10455.25,45,True,break,857.0,348.3,27.0,LEFT,False,39.7,32.0,65.9,0,False,ISR_B,ISR,chest,,1.0,auto,-0.116,1.12,0.19,1.0,,,10.0,,touch
+10482,419.26,10481.5,45,True,break,1221.1,372.8,21.3,RIGHT,True,20.9,9.3,28.2,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+10508,420.32,10508.0,46,True,flight_start,1897.4,436.9,22.7,RIGHT,False,,45.3,45.3,1,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+10545,421.81,10545.25,46,True,break,422.5,355.5,22.5,LEFT,True,43.2,29.8,70.1,0,False,ISR_B,ISR,chest,,1.0,auto,-0.126,0.99,0.03,1.8,,,10.0,part close to torso,touch
+10582,423.28,10582.0,46,True,break,901.2,479.1,26.2,LEFT,False,40.3,16.2,55.5,0,False,ISR_A,ISR,chest,,1.0,auto,-0.129,1.02,0.02,0.8,,,10.0,,touch
+10652,426.08,10652.0,47,True,flight_start,575.2,104.4,24.1,LEFT,False,,25.7,25.7,8,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+10662,426.46,10661.5,47,True,break,664.8,396.8,24.6,LEFT,False,38.4,36.3,73.4,0,False,ISR_A,ISR,chest,,1.0,auto,-0.18,1.02,0.13,1.7,,,10.0,,touch
+10699,427.97,10699.25,47,True,break,893.2,287.2,24.8,LEFT,False,34.4,50.0,59.2,0,False,ISR_B,ISR,head,,1.0,auto,-0.05,1.06,0.02,7.1,,,10.0,,touch
+10712,428.48,10712.0,47,True,break,1475.8,335.4,24.6,RIGHT,True,41.5,38.7,63.4,0,False,BRA_A,BRA,head,,1.0,auto,-0.137,1.01,0.29,2.7,,,10.0,,touch
+10734,429.37,10734.25,47,True,break,1514.3,-131.6,,RIGHT,False,3.8,10.5,13.9,21,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+10755,430.2,10755.0,47,True,break,1447.0,347.1,21.8,RIGHT,False,36.7,28.1,64.0,0,True,BRA_B,BRA,chest,,0.24,auto,-0.167,0.95,0.11,2.6,BRA_A,torso,0.12,"2D overlap with BRA_A torso (gap -0.10 m, depth 1.02 vs 0.95, push 0.50 vs 0.11)",touch
+10786,431.45,10786.25,47,True,break,1166.6,246.7,25.1,RIGHT,False,26.0,33.4,41.6,0,False,BRA_A,BRA,head,,1.0,auto,-0.207,1.14,0.0,5.0,,,10.0,,touch
+10808,432.32,10808.0,47,True,break,325.8,499.4,28.1,LEFT,True,56.4,40.3,87.9,0,False,ISR_A,ISR,head,,1.0,auto,-0.131,0.96,0.11,1.5,,,10.0,,touch
+10826,433.02,10825.5,47,True,break,406.3,81.1,,LEFT,False,14.8,12.3,13.6,15,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+10845,433.79,10844.75,47,True,break,588.5,501.1,27.0,LEFT,False,38.7,39.0,76.2,0,False,ISR_B,ISR,chest,,1.0,auto,-0.259,0.93,0.0,2.0,,,10.0,,touch
+10881,435.24,10881.0,47,True,break,844.8,419.5,27.8,LEFT,False,36.2,52.6,78.5,0,False,ISR_A,ISR,head,,1.0,auto,-0.142,1.07,0.77,4.1,,,10.0,,touch
+10936,437.44,10936.0,48,True,flight_start,609.0,73.7,27.2,LEFT,False,,14.1,14.1,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+10952,438.07,10951.75,48,True,break,808.4,435.6,25.5,LEFT,False,37.4,33.4,69.9,0,False,ISR_A,ISR,chest,,1.0,auto,-0.189,1.01,0.0,1.8,,,10.0,,touch
+10981,439.23,10980.75,48,True,break,867.3,261.9,25.0,LEFT,False,21.4,47.3,54.0,0,False,ISR_B,ISR,head,,1.0,auto,-0.184,1.14,0.0,4.6,,,10.0,,touch
+10994,439.78,10994.5,48,True,break,1471.5,275.2,25.9,RIGHT,True,41.1,24.0,50.0,0,False,BRA_A,BRA,head,,1.0,auto,-0.169,1.11,0.13,2.7,,,10.0,,touch
+11030,441.22,11030.5,48,True,break,1584.9,636.8,28.5,RIGHT,False,48.3,54.0,101.9,0,True,BRA_B,BRA,foot,left,1.0,auto,-0.14,0.91,0.0,1.9,,,10.0,,touch
+11054,442.16,11054.0,48,True,break,1304.2,-46.3,,RIGHT,False,18.8,18.3,0.9,15,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+11072,442.86,11071.5,48,True,break,1096.5,259.8,26.6,RIGHT,False,32.4,52.6,53.1,0,False,BRA_A,BRA,head,,1.0,auto,-0.123,1.14,0.55,6.5,,,10.0,,touch
+11084,443.37,11084.25,48,True,break,559.0,394.6,23.6,LEFT,True,42.3,34.0,65.4,0,False,ISR_B,ISR,thigh,right,1.0,auto,-0.166,1.05,0.0,1.0,,,10.0,,touch
+11107,444.27,11106.75,48,True,break,543.2,84.6,,LEFT,False,6.9,6.5,3.4,22,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+11122,444.9,11122.5,48,True,break,583.0,405.7,24.0,LEFT,False,35.8,34.5,69.4,0,False,ISR_A,ISR,chest,,0.99,auto,-0.13,0.99,0.08,2.9,ISR_B,thigh,3.03,,touch
+11157,446.29,11157.25,48,True,break,889.6,276.3,26.1,LEFT,False,28.9,22.8,40.7,0,False,ISR_B,ISR,chest,,1.0,auto,-0.175,1.26,0.05,1.6,,,10.0,,touch
+11180,447.19,11179.75,48,True,break,1250.9,416.7,22.9,RIGHT,True,25.9,15.3,35.5,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+11190,447.6,11190.0,48,False,break,1300.5,368.7,21.9,RIGHT,False,4.0,14.4,17.5,3,True,BRA_A,BRA,foot,right,1.0,auto,-0.187,1.02,0.0,,,,10.0,,touch
+11211,448.44,11211.0,49,True,flight_start,1260.9,139.3,27.3,RIGHT,False,,20.1,20.1,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+11240,449.59,11239.75,49,True,break,1140.8,480.3,30.0,RIGHT,False,45.7,19.0,55.3,0,False,BRA_B,BRA,head,,1.0,auto,-0.228,1.03,0.0,4.6,,,10.0,,touch
+11263,450.51,11262.75,49,True,break,702.7,910.6,34.5,LEFT,True,45.5,53.6,87.5,1,True,ISR_A,ISR,foot,right,1.0,auto,-0.1,0.98,0.02,5.2,,,10.0,,touch
+11270,450.78,11269.5,49,True,break,1046.1,747.8,39.0,NET,False,62.4,16.2,71.9,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+11284,451.36,11284.0,50,False,flight_start,120.7,454.6,21.3,LEFT,False,,4.9,4.9,0,True,BRA_B,BRA,hand,left,1.0,auto,-0.019,0.94,0.0,1.1,,,10.0,,touch
+11324,452.96,11324.0,50,True,flight_start,1286.2,237.3,27.2,RIGHT,True,,59.7,59.7,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+11334,453.36,11334.0,50,True,break,1784.9,597.7,27.0,RIGHT,False,65.5,44.8,107.0,0,True,ISR_B,ISR,chest,,1.0,auto,-0.097,0.81,0.03,1.5,,,10.0,part close to shoulder,touch
+11369,454.77,11369.25,50,True,break,1187.0,449.6,26.3,RIGHT,False,33.8,36.7,68.2,0,False,ISR_A,ISR,chest,,1.0,auto,-0.256,0.97,0.0,2.0,,,10.0,,touch
+11403,456.12,11403.0,50,True,break,1117.8,313.6,29.7,RIGHT,False,30.9,46.9,57.8,0,False,ISR_B,ISR,head,,1.0,auto,-0.177,1.2,0.15,4.8,,,10.0,,touch
+11420,456.82,11420.5,50,True,break,364.5,495.3,25.9,LEFT,True,43.6,32.6,65.1,0,False,BRA_B,BRA,head,,1.0,auto,-0.104,0.98,0.14,2.9,,,10.0,,touch
+11456,458.26,11456.5,50,True,break,429.8,559.6,27.8,LEFT,False,40.2,47.0,85.2,0,False,BRA_A,BRA,chest,,0.2,auto,-0.141,0.94,0.2,3.2,BRA_B,shin,0.01,"2D overlap with BRA_B shin (gap -0.01 m, depth 1.10 vs 0.94, push 0.10 vs 0.20)",touch
+11494,459.76,11494.0,50,True,break,963.8,338.3,26.6,NET,False,34.0,17.8,35.0,0,False,BRA_B,BRA,head,,1.0,auto,-0.152,1.09,0.24,3.7,,,10.0,,touch
+11515,460.59,11514.75,50,True,break,1395.7,765.1,30.4,RIGHT,False,50.9,52.6,101.1,0,True,ISR_B,ISR,foot,left,1.0,auto,-0.137,0.91,0.0,1.7,,,10.0,,touch
+11535,461.4,11535.0,51,True,flight_start,450.3,273.6,27.4,LEFT,False,,32.8,32.8,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+11541,461.65,11541.25,51,True,break,519.8,496.7,27.0,LEFT,False,42.0,35.8,75.9,0,False,BRA_B,BRA,chest,,1.0,auto,-0.264,0.96,0.0,1.6,,,10.0,,touch
+11576,463.03,11575.75,51,True,break,880.8,419.5,27.8,LEFT,False,36.9,30.3,59.5,0,False,BRA_A,BRA,head,,1.0,auto,-0.15,1.0,0.06,1.7,,,10.0,,touch
+11598,463.91,11597.75,51,True,break,1188.8,405.4,22.9,RIGHT,True,19.0,18.5,35.6,0,True,ISR_A,ISR,foot,right,1.0,auto,-0.202,0.97,0.0,5.0,,,10.0,,touch
+11623,464.93,11623.25,51,True,break,1277.2,472.4,27.4,RIGHT,False,30.2,38.8,68.8,0,False,ISR_B,ISR,head,,0.97,auto,-0.167,0.94,0.0,1.1,ISR_A,foot,2.46,,touch
+11658,466.34,11658.5,51,True,break,934.0,465.3,24.7,LEFT,True,31.0,18.0,46.7,0,True,BRA_B,BRA,foot,left,1.0,auto,-0.186,1.02,0.0,2.1,,,10.0,,touch
+11686,467.42,11685.5,51,True,break,684.9,715.9,33.4,LEFT,False,45.4,66.5,110.5,0,False,BRA_A,BRA,torso,,1.0,auto,-0.128,1.05,1.0,2.2,,,10.0,,touch
+11708,468.33,11708.25,51,True,break,624.6,-181.7,,LEFT,False,12.7,5.5,17.9,22,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+11732,469.26,11731.5,51,True,break,672.2,346.9,27.8,LEFT,False,40.3,39.2,69.0,0,False,BRA_B,BRA,head,,1.0,auto,-0.142,1.09,0.24,2.5,,,10.0,,touch
+11760,470.4,11760.0,51,True,break,1675.0,481.3,29.2,RIGHT,True,46.5,36.1,80.6,3,False,ISR_B,ISR,shoulder,right,0.84,auto,0.036,0.98,0.08,1.9,,,10.0,part close to chest,touch
+11794,471.75,11793.75,51,True,break,1200.5,407.8,25.3,RIGHT,False,31.1,29.0,57.9,0,False,ISR_A,ISR,chest,,1.0,auto,-0.23,1.0,0.0,1.7,,,10.0,,touch
+11824,472.98,11824.5,51,True,break,1028.3,372.2,27.4,NET,False,30.4,3.0,30.2,2,False,ISR_B,ISR,head,,1.0,auto,-0.078,1.08,0.97,1.2,,,10.0,,touch
+11846,473.84,11846.0,51,True,break,938.0,882.6,30.4,LEFT,False,49.6,8.6,53.0,0,True,BRA_A,BRA,foot,right,0.69,auto,0.076,0.91,0.88,3.4,,,10.0,,touch
+11858,474.3,11857.5,51,True,break,845.0,986.5,30.0,LEFT,False,23.9,15.4,14.7,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+11869,474.76,11869.0,52,True,flight_start,568.4,25.3,25.6,LEFT,False,,12.2,12.2,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+11890,475.59,11889.75,52,True,break,855.0,499.0,27.0,LEFT,False,43.1,35.6,77.5,0,False,BRA_B,BRA,chest,,1.0,auto,-0.226,0.96,0.0,1.8,,,10.0,,touch
+11921,476.85,11921.25,52,True,break,963.0,330.5,27.4,NET,False,28.5,22.0,39.2,0,False,BRA_A,BRA,shin,right,0.01,auto,0.265,1.01,0.05,1.4,BRA_B,foot,-0.72,,touch
+11935,477.39,11934.75,52,True,break,1216.6,403.2,24.8,RIGHT,False,22.9,26.9,42.7,0,False,ISR_A,ISR,head,,1.0,auto,-0.212,0.99,0.0,3.3,,,10.0,,touch
+11966,478.64,11966.0,52,True,break,1524.4,531.6,27.8,RIGHT,False,40.7,42.9,83.5,0,True,ISR_B,ISR,head,,1.0,auto,-0.161,0.89,0.33,0.9,,,10.0,,touch
+12001,480.03,12000.75,52,True,break,1188.5,399.8,28.6,RIGHT,False,35.3,30.9,53.2,0,False,ISR_A,ISR,head,,1.0,auto,-0.135,1.1,0.14,3.5,,,10.0,,touch
+12025,481.0,12025.0,52,True,break,603.2,619.4,26.1,LEFT,True,36.9,47.1,78.7,1,True,BRA_A,BRA,arm,right,1.0,auto,-0.04,0.86,0.0,0.8,,,10.0,part close to chest,touch
+12041,481.64,12041.0,52,True,break,526.3,118.7,,LEFT,False,16.7,11.4,7.4,18,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+12065,482.59,12064.75,52,True,break,524.0,413.0,25.5,LEFT,False,34.6,34.3,68.2,0,False,BRA_B,BRA,chest,,1.0,auto,-0.261,1.01,0.0,2.3,,,10.0,,touch
+12100,484.02,12100.5,52,True,break,896.0,372.9,26.8,LEFT,False,38.1,27.6,57.8,0,False,BRA_A,BRA,head,,1.0,auto,-0.115,1.0,0.06,3.4,,,10.0,,touch
+12124,484.95,12123.75,52,True,break,1185.3,424.9,21.8,RIGHT,True,19.9,14.4,29.3,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+12135,485.4,12135.0,52,False,break,1282.5,377.8,21.8,RIGHT,False,9.5,5.6,8.8,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+12159,486.36,12159.0,53,True,flight_start,688.5,256.5,35.5,LEFT,False,,65.2,65.2,1,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+12180,487.22,12180.5,53,True,break,1912.9,616.4,29.6,RIGHT,True,55.3,49.4,100.2,0,True,ISR_B,ISR,chest,,1.0,auto,-0.252,0.87,0.0,1.2,,,10.0,,touch
+12219,488.76,12219.0,53,True,break,1322.1,413.5,24.8,RIGHT,False,33.1,28.8,60.3,0,False,ISR_A,ISR,chest,,1.0,auto,-0.246,0.96,0.0,1.9,,,10.0,,touch
+12250,489.98,12249.5,53,True,break,1227.7,397.9,27.4,RIGHT,False,34.3,29.1,53.7,0,False,ISR_B,ISR,head,,1.0,auto,-0.177,0.97,0.0,4.5,,,10.0,,touch
+12274,490.94,12273.5,53,True,break,688.8,631.1,25.5,LEFT,True,35.2,42.4,73.6,0,True,BRA_A,BRA,foot,right,1.0,auto,-0.116,0.84,0.07,1.5,,,10.0,,touch
+12307,492.28,12307.0,53,True,break,579.8,372.0,23.6,LEFT,False,23.1,29.8,52.7,0,False,BRA_B,BRA,chest,,1.0,auto,-0.248,0.99,0.0,2.7,,,10.0,,touch
+12340,493.61,12340.25,53,True,break,912.4,365.6,26.6,LEFT,False,35.4,8.2,42.2,0,False,BRA_A,BRA,head,,1.0,auto,-0.127,1.03,0.09,1.6,,,10.0,,touch
+12362,494.49,12362.25,53,True,break,1001.2,696.7,26.2,NET,False,38.3,30.2,10.1,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+12378,495.12,12378.0,53,True,break,977.1,927.8,26.2,LEFT,False,0.3,7.4,7.7,7,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+12415,496.6,12415.0,54,True,flight_start,575.3,244.7,34.9,LEFT,False,,15.5,15.5,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+12428,497.14,12428.5,54,True,break,711.9,647.9,33.4,LEFT,False,48.3,48.4,95.1,0,False,BRA_A,BRA,chest,,1.0,auto,-0.141,1.02,0.04,2.8,,,10.0,,touch
+12462,498.5,12462.5,54,True,break,967.5,372.3,30.0,NET,False,30.7,21.2,32.0,0,False,BRA_B,BRA,head,,1.0,auto,-0.223,1.15,0.0,2.5,,,10.0,,touch
+12481,499.25,12481.25,54,True,break,1391.3,792.4,27.4,RIGHT,False,46.5,14.7,52.5,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+12496,499.84,12496.0,55,True,flight_start,796.8,171.8,28.3,LEFT,False,,47.4,47.4,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+12514,500.58,12514.5,55,True,break,1774.5,601.0,28.9,RIGHT,True,67.6,42.2,103.9,0,True,ISR_B,ISR,shoulder,right,1.0,auto,-0.094,0.88,0.23,2.0,,,10.0,part close to chest,touch
+12553,502.11,12552.75,55,True,break,1211.6,547.3,28.2,RIGHT,False,41.5,28.8,68.6,0,True,ISR_A,ISR,chest,,1.0,auto,-0.175,0.91,0.62,1.7,,,10.0,part close to shoulder,touch
+12581,503.25,12581.25,55,True,break,1106.8,551.6,38.2,RIGHT,False,36.0,64.1,79.1,0,False,ISR_B,ISR,head,,0.99,auto,-0.149,1.15,0.0,5.9,ISR_A,hand,2.94,,touch
+12596,503.86,12596.5,55,True,break,252.7,570.0,32.8,LEFT,True,49.0,55.6,25.2,0,False,BRA_A,BRA,head,,1.0,auto,-0.176,1.01,0.0,2.2,,,10.0,,touch
+12652,506.08,12652.0,56,True,flight_start,1457.2,34.4,27.8,RIGHT,False,,23.3,23.3,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+12666,506.66,12666.5,56,True,break,1248.2,486.8,27.0,RIGHT,False,45.9,38.7,81.9,0,False,BRA_B,BRA,chest,,1.0,auto,-0.13,0.99,0.01,2.1,,,10.0,,touch
+12699,507.96,12699.0,56,True,break,992.1,298.8,25.8,NET,False,27.8,15.7,37.3,0,False,BRA_A,BRA,foot,right,0.75,auto,-0.064,1.09,0.9,1.9,ISR_A,foot,1.25,,touch
+12716,508.64,12716.0,56,True,break,1228.2,512.2,25.2,RIGHT,False,25.8,4.2,25.0,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+12778,511.12,12778.0,57,True,flight_start,1452.5,481.4,30.8,RIGHT,False,,38.3,38.3,0,False,BRA_B,BRA,chest,,0.38,auto,-0.098,1.1,0.0,1.7,BRA_A,thigh,0.45,"2D overlap with BRA_A thigh (gap -0.23 m, depth 1.25 vs 1.10, push 0.00 vs 0.00); part close to head",touch
+12811,512.44,12811.0,57,True,break,1069.9,344.5,30.0,RIGHT,False,31.3,30.4,28.3,2,False,BRA_A,BRA,foot,right,1.0,auto,-0.107,1.17,0.23,6.2,,,10.0,,touch
+12825,512.99,12824.75,57,True,break,631.1,703.4,27.4,LEFT,True,49.3,46.1,91.2,0,True,ISR_A,ISR,foot,left,1.0,auto,-0.189,0.92,0.0,,,,10.0,,touch
+12863,514.53,12863.25,57,True,break,858.4,443.4,26.6,LEFT,False,31.5,32.4,63.2,0,False,ISR_B,ISR,chest,,1.0,auto,-0.272,1.0,0.0,2.2,,,10.0,,touch
+12896,515.86,12896.5,57,True,break,996.9,405.3,30.0,NET,False,36.7,90.3,66.8,0,False,ISR_A,ISR,foot,right,1.0,auto,-0.118,1.07,0.61,3.5,,,10.0,,touch
+12903,516.12,12903.0,57,True,break,1414.3,836.1,29.2,RIGHT,False,94.2,41.4,90.4,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+12928,517.12,12928.0,58,True,flight_start,1554.8,28.1,24.1,RIGHT,False,,7.3,7.3,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+12950,518.01,12950.25,58,True,break,1355.7,447.6,27.0,RIGHT,False,39.6,37.7,75.2,0,False,BRA_B,BRA,chest,,0.67,auto,-0.187,1.02,0.0,2.7,BRA_A,thigh,1.05,"2D overlap with BRA_A thigh (gap -0.13 m, depth 1.17 vs 1.02, push 0.49 vs 0.00); part close to head",touch
+12984,519.35,12983.75,58,True,break,996.1,281.2,25.1,NET,False,29.6,27.9,9.6,0,False,BRA_A,BRA,foot,right,1.0,auto,-0.046,1.08,0.0,2.3,,,10.0,,touch
+12991,519.64,12991.0,58,True,break,878.1,483.9,25.1,LEFT,False,38.1,23.0,60.8,0,True,ISR_B,ISR,foot,right,1.0,auto,-0.15,1.01,0.31,3.2,,,10.0,,touch
+13022,520.87,13021.75,58,True,break,975.0,533.8,25.9,NET,False,19.9,35.3,45.1,0,False,ISR_A,ISR,shin,right,1.0,auto,-0.114,1.01,0.0,1.4,,,10.0,,touch
+13036,521.45,13036.25,58,True,break,725.9,339.7,24.0,LEFT,False,14.6,38.5,51.3,0,False,ISR_B,ISR,head,,1.0,auto,-0.174,1.03,0.0,3.1,,,10.0,,touch
+13067,522.67,13066.75,58,True,break,1566.2,378.8,21.5,RIGHT,True,33.6,26.3,58.1,1,True,BRA_A,BRA,arm,left,1.0,auto,-0.038,0.88,0.0,2.2,,,10.0,part close to foot,touch
+13100,524.02,13100.5,58,True,break,1213.9,456.3,24.6,RIGHT,False,36.6,35.2,69.9,0,True,BRA_B,BRA,chest,,1.0,auto,-0.105,0.93,0.0,2.4,,,10.0,,touch
+13132,525.28,13132.0,58,True,break,1091.7,286.7,25.5,RIGHT,False,26.1,53.0,51.4,0,False,BRA_A,BRA,head,,1.0,auto,-0.075,1.1,0.0,6.7,,,10.0,,touch
+13146,525.84,13146.0,58,True,break,355.6,583.7,24.9,LEFT,True,60.8,35.6,83.1,0,True,ISR_B,ISR,knee,left,1.0,auto,-0.18,0.94,0.0,6.2,,,10.0,part close to thigh,touch
+13177,527.08,13177.0,58,True,break,346.8,431.2,21.0,LEFT,False,19.6,12.7,32.3,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+13191,527.65,13191.25,58,False,break,344.7,394.6,19.5,LEFT,False,9.5,2.7,11.4,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+13249,529.96,13249.0,59,True,flight_start,696.6,270.1,26.8,LEFT,False,,6.4,6.4,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+13265,530.61,13265.25,59,True,break,848.5,484.6,27.3,LEFT,False,29.7,22.4,47.3,0,False,ISR_A,ISR,shoulder,right,1.0,auto,-0.064,1.0,0.16,2.5,,,10.0,part close to chest,touch
+13296,531.82,13295.5,59,True,break,1371.7,882.9,38.2,RIGHT,True,53.4,46.3,99.4,0,True,BRA_B,BRA,thigh,right,1.0,auto,-0.201,1.06,0.0,3.7,,,10.0,part close to knee,touch
+13321,532.84,13321.0,59,True,break,1169.9,567.3,27.0,RIGHT,False,16.9,39.5,55.2,0,True,BRA_A,BRA,foot,right,1.0,auto,-0.199,0.99,0.0,3.3,,,10.0,,touch
+13359,534.36,13359.0,59,True,break,1023.2,409.2,28.5,NET,False,39.5,26.2,16.8,0,False,ISR_A,ISR,foot,right,1.0,auto,-0.075,1.06,0.03,1.6,,,10.0,,touch
+13368,534.71,13367.75,59,True,break,1077.5,678.4,27.8,RIGHT,False,35.9,15.5,43.4,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+13402,536.08,13402.0,60,True,flight_start,1461.2,189.5,30.5,RIGHT,False,,16.9,16.9,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+13417,536.68,13417.0,60,True,break,1229.7,599.7,28.1,RIGHT,False,42.6,41.5,83.2,0,True,BRA_B,BRA,chest,,1.0,auto,-0.114,0.89,0.02,1.9,,,10.0,,touch
+13449,537.97,13449.25,60,True,break,1167.5,375.8,29.8,RIGHT,False,26.7,10.6,32.7,0,False,BRA_A,BRA,head,,1.0,auto,-0.189,1.12,0.0,2.9,,,10.0,,touch
+13462,538.5,13462.5,60,True,break,1012.2,482.0,33.7,NET,False,28.1,4.3,29.4,0,False,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
+13483,539.33,13483.25,60,True,break,946.4,918.3,28.5,LEFT,False,44.8,6.5,51.1,0,True,,,,,,auto,,,,,,,,,no_player (sand/net/tracking)
