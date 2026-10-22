@@ -17,7 +17,8 @@ poses, rallies and points.
 | `data/ball_pipeline/` | Outputs of `scripts/ball/` (ball candidates and filled ball boxes). |
 | `data/pose/` | Outputs of `scripts/pose/` (ViTPose BODY_25 keypoints, suspect frames).<br>`sapiens2/sapiens2_pose_v3_00000-13494.csv`: Sapiens2-1B 308 keypoints (x, y, score) for every reviewed player box, **v3 frames** (`v2_frame` column too); `.mp4` is its check video (mp4v, open in VLC). Made by `scripts/pose/sapiens2_gpu.py`. |
 | `scripts/ball/`, `scripts/pose/` | Detection, filling, pose and render scripts. Run them from anywhere; paths are relative to the repo root. |
-| `docs/` | Notes and plans. |
+| `data/analysis/` | Made by `scripts/analysis/` (run order in `docs/ANALYSIS_PLAN.md`). `player_positions_v3.csv`: every player's smoothed court position, velocity and speed per frame, with posture (stand / lying / air), jump flag and the raw ground point. `touch_actions_v3.csv`: serve / reception / set / attack per touch. `team_spacing_v3.csv`: the defending pair's distance at every attack (conceded or returned). `player_speed_rallies_v3.csv`, `touch_speed_v3.csv`: distance and speeds per rally / before each touch. `coverage_*_v3.csv`, `coverage_heatmaps_v3.png`: area covered and time per square. `chest_stance_v3.csv`: distance between the feet at chest touches. Lengths are in court units (court lines = 18 × 9); see `docs/ANALYSIS_PLAN.md` for the open 16 × 8 question. |
+| `docs/` | Notes and plans. `ANALYSIS_PLAN.md`: match facts (event, players, rules) and the plan for ball height, actions, speeds, distances and areas. |
 | `archive/` | Old versions and check videos, not tracked by git. |
 
 ## Frame numbering
