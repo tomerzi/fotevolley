@@ -40,8 +40,18 @@ All work is in v3 frames (`*_v3video.csv`, Sapiens2, contacts); every output kee
 
 ### 1. Ball height and ball position on the court
 1. Full camera calibration: the homography alone does not give it (decomposition is inconsistent: orthogonality
-   gives f^2 < 0). Add vertical references: net top (2.20 m) at both posts and the net tape, post tops (2.55 m).
-   Fit f (and maybe k1), R, t. Check: reprojection < 3 px, standing players' head heights plausible.
+   gives f^2 < 0). Decomposing H in court units gives f, R and the camera position in court units, so one known
+   height in metres then gives the court scale. Vertical references seen in the median background (players
+   removed): the near post top (~ (1017, 627) px; its base is below the image), the striped antenna above the near
+   end of the net (red bands ~37.5 px apart around y 490-617; volleyball antennas are 1.8 m with 10 cm bands - to
+   confirm for this event), the net top at 2.20 m. The camera is ~1 m from the net plane (its ground point is
+   (8.1, 20.6) court units), so the net is seen almost edge-on and its top tape is nearly a vertical line.
+   Fit f, principal point (and maybe k1), R, t. Check: reprojection < 3 px, standing players' head heights.
+   Tried (2026-10-22): vertical vanishing point from 7,560 standing-still players (ankle-mid -> shoulder-mid lines,
+   robust LS) = (1163, 5428) px; solving K algebraically from it + H is ill-conditioned (principal point
+   y = 241, the camera then misses H by ~40 px at (9, 9)). Next: a joint nonlinear fit (court line points, the
+   players' vertical lines, antenna, ball parabolas) with a prior keeping the principal point near the centre.
+   Once calibrated, standing players' heights in metres come out too (the web had none).
 2. 3D ballistic fit per free-flight piece (`scripts/contacts/ballflight.py` pieces): position + velocity, gravity
    9.81 m/s^2, minimising pixel error + ball-size term (0.22 m) + anchors (sand events z ~ 0.11 m; at a touch the
    ball is at the touching body part of that player, whose court position is known from step 0).
