@@ -33,24 +33,26 @@ All work is in v3 frames (`*_v3video.csv`, Sapiens2, contacts); every output kee
 - Ground point by posture: standing -> ankle midpoint (lowered to the sole); the planted ankle only when the other
   foot is higher AND swinging while the planted one stays still (image height alone confuses a raised foot with
   feet apart in depth); lying on the sand -> hips; upside down (bicycle kick) -> no measurement, bridged;
-  sitting / kneeling / no pose -> box bottom. Occluded players (teammate box IoU > 0.4) and boxes cut by the image
-  border count less; very short border boxes give no measurement.
+  sitting / kneeling / no pose -> box bottom. Ankle keypoints outside the player's box or on the teammate's ankle are
+  dropped. Occluded = teammate's box overlapping (IoU > 0.4) or in front of the feet: counts less, and a hidden box
+  bottom gives no measurement. Boxes cut by the image border count less; very short ones give no measurement.
 - Jumps with an upright pose: the point slides away from the camera while the feet are off the sand. Bumps in the
-  distance from the camera's ground point (>= 0.7 units, <= 15 frames wide at half height not counting upside-down
-  frames, more than running could do: 2 pi^2 A / T^2 > 12) are taken out; `airborne` = jump or upside down.
+  distance from the camera's ground point (>= 0.7 units, 1.0 with no own touch near; <= 15 frames wide at half
+  height not counting upside-down frames; more than running could do) are taken out over the whole bump, each row
+  by its own excess; `airborne` = jump or upside down.
 - Constant-velocity Kalman + RTS per player and camera segment; pixel noise through the homography Jacobian.
-  After 4 outliers in a row the filter is reset in place (median of the rejected run, wider position covariance)
-  and one RTS pass covers the whole stretch, so a reset makes no jump in position or speed.
-- Result: speed median 1.4, p99 5.9, p99.9 7.6 court units/s, the same at every depth (raw box bottoms: p99 14).
-- Verification (2026-10-22, 4 independent checks: code review, jumps by eye, top speeds / postures by eye, data
-  integrity) found about 20 problems in the first version. Fixed: restart cuts, gating after a restart, restart
-  index, double use of the first measurement, jump test duration and floor, planted-foot choice, single-ankle
-  noise, sitting players taken as airborne, one-frame camera segment, border boxes, ankle height. Partly handled:
-  occlusion (larger noise, kept out of the jump detector and of resets, not separated), lying vs horizontal
-  bicycle kick (a lying row needs a bump >= 1.5). On the verifiers' labelled cases the jump detector now flags all
-  15 seen jumps and none of the 15 non-jumps; the old top speeds (11-13, at restarts and bicycle-kick take-offs)
-  are gone. Left: small hops (< 0.7 units of bump) are not flagged; ISR_B 611-619 and 3 occluded frames
-  (BRA_B 9257-9271) are flagged without being jumps. A second review of the rewrite is running.
+  After 4 outliers in a row the filter is reset in place from a line fit of them (unless the next measurements are
+  back on the old track: a glitch); the RTS pass joins the two sides of a reset.
+- Result: speed median 1.3, p99 5.8, p99.9 7.3 court units/s, the same at every depth (raw box bottoms: p99 14);
+  largest frame-to-frame step 0.39 units; summed steps = integrated speed (3404 vs 3412 units).
+- Verification (2026-10-22): two rounds of independent checks (code review, jumps / speeds / postures / occlusion by
+  eye in the video, data integrity) found ~20 then 8 problems; all fixed except the limits below. On the
+  verifiers' labelled cases: 13 of 14 seen jumps flagged and 1 of 18 non-jumps (ISR_A 10800-10812, standing on one
+  leg - the position correction is still right there); the bicycle kick BRA_B 4196-4228 now rises smoothly
+  2.8 -> 4.3; no reset makes a position jump.
+- Limits: small hops (< 0.7 units of bump) are not flagged; a jump hidden behind the teammate is not flagged
+  (BRA_B 4820-4838, its upside-down frames are still airborne); sitting down with the legs toward the camera can
+  push the ankles ahead of the body for a few frames (ISR_A 11263, top speed 9.1 vs ~5 from the hips).
 
 ### 1. Ball height and ball position on the court
 1. Full camera calibration: the homography alone does not give it (decomposition is inconsistent: orthogonality

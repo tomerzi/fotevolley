@@ -14,8 +14,8 @@ Smoothing: per player and camera segment (same shot, no dead-time cut in between
 filter + RTS smoother. Measurement noise is given in pixels and taken through the homography, so far-side positions
 (fewer pixels per metre, mostly along y) count less. A measurement far from the prediction (NIS > GATE) is dropped
 as an outlier (pose flicker, feet mixed up). After MAX_REJECT drops in a row the filter is reset in place: from the
-first dropped frame, with the median of the dropped measurements and a widened covariance, and one RTS pass then
-runs over the whole stretch (no cut, so no position or speed jump at the reset). Gaps up to MAX_GAP frames are
+first dropped frame, from a straight-line fit of the dropped measurements with a widened covariance, and one RTS pass
+then runs over the whole stretch, joining the two sides. Gaps up to MAX_GAP frames are
 bridged by the smoother; longer gaps split the track.
 
 Units: the homography maps the court lines to 18 x 9. The EFVL rules of this event (Graz 2022) say 16 x 8 m; until
@@ -40,13 +40,17 @@ W, H_IMG = 1920, 1080
 S_MIN = 0.3          # keypoint score
 ANKLE_LIFT = 0.04    # box heights: the ankle joint sits this far above the sole
 LIFT_FRAC = 0.5      # ankles further apart than this x leg length (image height): one foot may be up ...
-PLANT_DT = 2         # ... and it is, if over +-PLANT_DT frames it moves more than PLANT_RATIO x the lower foot,
-PLANT_RATIO = 2.0    #     which stays within STILL_FRAC box heights (a lunge or two feet apart in depth do not)
-STILL_FRAC = 0.05
+PLANT_DT = 2         # ... and it is, if over +-PLANT_DT frames it moves more than PLANT_SWING box heights and
+PLANT_RATIO = 2.0    #     PLANT_RATIO x the lower foot, which stays within STILL_FRAC box heights (pivoting allowed;
+PLANT_SWING = 0.08   #     a lunge, a stride or two feet apart in depth do not count)
+STILL_FRAC = 0.1
+SHARED_PX = 5        # an ankle this close to a teammate's ankle (or to the other ankle) is not this player's own
+ANKLE_BOX_MARGIN = 0.1   # box heights: an ankle outside the player's own box by more than this is dropped
 UPRIGHT_FRAC = 0.5   # feet at least this x torso length below the hips: standing / running
 LYING_WIDE = 1.2     # box wider than this x its height: lying on the sand
 INVERT_FRAC = 0.3    # both feet more than this x torso length above the hips: upside down (bicycle kick)
 TOUCH_WIN = 8        # frames around a player's own touch, when the player may be jumping
+TOUCH_FAR = 15       # frames: a bump with no own touch this near needs AIR_MIN_FAR
 OCC_IOU = 0.4        # box overlap with the teammate's box above this: the pose may belong to the other player
 EDGE_PX = 3          # box within this of the left/right/bottom image border: cut by the border
 EDGE_SHORT = 0.6     # ... and shorter than this x the player's usual box height: no measurement
@@ -57,9 +61,14 @@ SIGMA_BOX_PX = 8.0
 SIGMA_OCC_PX = 20.0
 SIGMA_EDGE_PX = 12.0
 SIGMA_JUMP_PX = 40.0 # px, image height of the point near a touch (feet may be off the sand)
+SIGMA_NEAR_LYING_PX = 20.0  # box bottom within LYING_NEAR frames of a lying / airborne pose (edge of the body)
+LYING_NEAR = 5
 Q_ACC = 30.0         # units^2/s^3, white-noise acceleration density (how fast a player may change velocity)
 AIR_WIN = 31         # frames: bumps in the distance from the camera shorter than this can be jumps
-AIR_MIN_M = 0.7      # units: smallest bump counted as a jump (stepping between the feet makes ~0.4)
+AIR_MIN_M = 0.7      # units: smallest bump counted as a jump (stepping between the feet makes ~0.4) ...
+AIR_MIN_FAR = 1.0    # ... or this, with no own touch within TOUCH_FAR frames
+AIR_SUPPORT = 0.3    # units: an accepted bump is taken out wherever it stays above this
+BUMP_TRUST = 0.3     # sigma along the camera ray of a corrected measurement = this x its bump
 AIR_K = 3.0          # ... and at least this x the noise of that distance
 AIR_FWHM_MAX = 15    # frames: a jump's bump is at most this wide at half height, upside-down frames not counted
 LYING_BUMP_MIN = 1.5 # units: a lying player's bump counts only above this (horizontal bicycle kick, not a dive)
@@ -68,6 +77,8 @@ GATE = 13.8          # chi2(2 dof) 0.999: farther than this from the prediction 
 MAX_REJECT = 4       # outliers in a row before the filter is reset on them
 RESET_POS = 2.0      # units, extra position sigma at a reset
 RESET_VEL = 0.5      # units/s, extra velocity sigma at a reset (small: most resets come from a hard acceleration)
+SEED_V_MAX = 8.0     # units/s, cap on the velocity a reset starts from
+LOOKAHEAD = 3        # measurements after a rejected run: if 2 of them are back on the old track, it was a glitch
 MAX_GAP = 25         # frames without a measurement that the smoother may bridge (a bicycle kick lasts ~20)
 V0_SIGMA = 3.0       # units/s, velocity uncertainty at a track start
 
@@ -130,29 +141,48 @@ def ground_points(boxes):
     low    feet not below the hips otherwise (sitting, kneeling, crouched): bottom centre of the box
     box    no usable pose: bottom centre of the box
     edge   box cut by the left/right/bottom image border and much shorter than usual, or feet below the image: none
-    Near the player's own touches (+-TOUCH_WIN frames) the image height of the point counts little (sigma_v =
-    SIGMA_JUMP_PX): ordinary jumps lift the feet without the pose looking any different. A box overlapping the
-    teammate's (occluded) or cut by the border counts less, and neither feeds the jump detector or seeds a reset."""
+    hidden box bottom of an occluded player: none
+    Ankle keypoints outside the player's own box, or on a teammate's ankle (within SHARED_PX), are dropped; two
+    ankles on one point count as one. Near the player's own touches (+-TOUCH_WIN frames) the image height of the
+    point counts little (sigma_v = SIGMA_JUMP_PX): ordinary jumps lift the feet without the pose looking any
+    different. Occluded = the teammate's box overlaps (IoU > OCC_IOU) or stands in front of the feet (its bottom
+    lower in the image, the player's box bottom and centre inside it). Occluded and border-cut rows count less, and
+    neither feeds the jump detector nor seeds a reset."""
     kp = [f'{s}_{j}' for s in ('left', 'right') for j in ('ankle', 'hip', 'shoulder')]
     cols = ['frame', 'player'] + [f'{k}_{a}' for k in kp for a in 'xys']
     p = pd.read_csv(os.path.join(ROOT, 'data', 'pose', 'sapiens2', 'sapiens2_pose_v3_00000-13494.csv'), usecols=cols)
     b = boxes.merge(p, on=['frame', 'player'], how='left').sort_values(['player', 'frame']).reset_index(drop=True)
+    mates = {'BRA_A': 'BRA_B', 'BRA_B': 'BRA_A', 'ISR_A': 'ISR_B', 'ISR_B': 'ISR_A'}
+    mc = ['x1', 'y1', 'x2', 'y2'] + [f'{s}_ankle_{a}' for s in ('left', 'right') for a in 'xys']
+    m = b[['frame', 'player'] + mc].assign(player=lambda d: d.player.map(mates))
+    o = b[['frame', 'player']].merge(m, on=['frame', 'player'], how='left')       # same row order as b
     n_rows = len(b)
     bh = (b.y2 - b.y1).values
 
-    def pts(j, drop=0.0):
+    def pts(j, drop=0.0, d=b):
         x, y = [], []
         for s in ('left', 'right'):
-            ok = b[f'{s}_{j}_s'].values >= S_MIN
-            x.append(np.where(ok, b[f'{s}_{j}_x'].values, np.nan))
-            y.append(np.where(ok, b[f'{s}_{j}_y'].values + drop, np.nan))
+            ok = d[f'{s}_{j}_s'].values >= S_MIN
+            x.append(np.where(ok, d[f'{s}_{j}_x'].values, np.nan))
+            y.append(np.where(ok, d[f'{s}_{j}_y'].values + drop, np.nan))
         return np.array(x), np.array(y)
 
     def mid(a):
         n = np.isfinite(a).sum(0)
         return np.where(n > 0, np.nansum(a, 0) / np.maximum(n, 1), np.nan)
 
-    ax, ay = pts('ankle', ANKLE_LIFT * bh)
+    ax, ay = pts('ankle')
+    mx_, my_ = pts('ankle', d=o)
+    mg = ANKLE_BOX_MARGIN * bh
+    outside = (ax < b.x1.values - mg) | (ax > b.x2.values + mg) | (ay < b.y1.values - mg) | (ay > b.y2.values + mg)
+    shared = np.zeros_like(outside)
+    for k in (0, 1):
+        shared |= np.hypot(ax - mx_[k], ay - my_[k]) < SHARED_PX
+    bad = outside | shared
+    ax, ay = np.where(bad, np.nan, ax), np.where(bad, np.nan, ay)
+    same = np.hypot(ax[0] - ax[1], ay[0] - ay[1]) < SHARED_PX       # both ankle keypoints on one foot
+    ax[1], ay[1] = np.where(same, np.nan, ax[1]), np.where(same, np.nan, ay[1])
+    ay = ay + ANKLE_LIFT * bh                                       # ankle joint -> sole
     hx, hy = pts('hip')
     sx, sy = pts('shoulder')
     n_ank = np.isfinite(ax).sum(0)
@@ -170,34 +200,34 @@ def ground_points(boxes):
     low = 1 - high
     r_ = np.arange(n_rows)
     lifted = (n_ank == 2) & (np.abs(ay[0] - ay[1]) > LIFT_FRAC * leg) & (mv[low, r_] < STILL_FRAC) \
-        & (mv[high, r_] > PLANT_RATIO * mv[low, r_])
+        & (mv[high, r_] > np.maximum(PLANT_RATIO * mv[low, r_], PLANT_SWING))
     u = np.where(lifted, ax[low, r_], u)
     v = np.where(lifted, ay[low, r_], v)
     b = b.drop(columns=['_lx', '_ly', '_rx', '_ry'])
 
     t = pd.read_csv(os.path.join(ROOT, 'data', 'contacts', 'touch_labels_final.csv'))
     t = t[t.kind == 'player']
-    near = np.zeros(n_rows, bool)
+    tdist = np.full(n_rows, np.inf)
     for pl, g in t.groupby('player'):
-        m = (b.player == pl).values
-        d = np.abs(b.frame.values[m][:, None] - g.frame.values[None]).min(1)
-        near[np.nonzero(m)[0][d <= TOUCH_WIN]] = True
-    b['near_touch'] = near
+        sel = (b.player == pl).values
+        tdist[sel] = np.abs(b.frame.values[sel][:, None] - g.frame.values[None]).min(1)
+    near = tdist <= TOUCH_WIN
+    b['near_touch'], b['touch_dist'] = near, tdist
 
-    # teammate overlap
-    mate = b[['frame', 'player', 'x1', 'y1', 'x2', 'y2']].copy()
-    mate['player'] = mate.player.map({'BRA_A': 'BRA_B', 'BRA_B': 'BRA_A', 'ISR_A': 'ISR_B', 'ISR_B': 'ISR_A'})
-    o = b[['frame', 'player', 'x1', 'y1', 'x2', 'y2']].merge(mate, on=['frame', 'player'], how='left', suffixes=('', '_m'))
-    iw = np.clip(np.minimum(o.x2, o.x2_m) - np.maximum(o.x1, o.x1_m), 0, None)
-    ih = np.clip(np.minimum(o.y2, o.y2_m) - np.maximum(o.y1, o.y1_m), 0, None)
+    # teammate in the way: overlapping boxes, or the teammate's box in front of this player's feet
+    iw = np.clip(np.minimum(b.x2, o.x2) - np.maximum(b.x1, o.x1), 0, None)
+    ih = np.clip(np.minimum(b.y2, o.y2) - np.maximum(b.y1, o.y1), 0, None)
     inter = (iw * ih).fillna(0).values
-    area = ((o.x2 - o.x1) * (o.y2 - o.y1)).values
-    area_m = ((o.x2_m - o.x1_m) * (o.y2_m - o.y1_m)).fillna(0).values
-    occluded = inter / np.maximum(area + area_m - inter, 1) > OCC_IOU
+    area = ((b.x2 - b.x1) * (b.y2 - b.y1)).values
+    area_m = ((o.x2 - o.x1) * (o.y2 - o.y1)).fillna(0).values
+    cx = ((b.x1 + b.x2) / 2).values
+    front = (o.y2.values > b.y2.values) & (b.y2.values >= o.y1.values) & (cx >= o.x1.values) & (cx <= o.x2.values)
+    occluded = (inter / np.maximum(area + area_m - inter, 1) > OCC_IOU) | front
 
     # image border
-    usual = b.assign(h=bh).groupby('player').h.transform(lambda s: s.rolling(51, center=True, min_periods=1).median())
     cut = (b.x1.values <= EDGE_PX) | (b.x2.values >= W - 1 - EDGE_PX) | (b.y2.values >= H_IMG - 1 - EDGE_PX)
+    usual = b.assign(h=np.where(cut, np.nan, bh)).groupby('player').h.transform(
+        lambda s: s.rolling(51, center=True, min_periods=1).median()).fillna(pd.Series(bh))
     feet_out = (b.y2.values >= H_IMG - 1 - EDGE_PX) & (n_ank == 0)
     edge_drop = cut & ((bh < EDGE_SHORT * usual.values) | feet_out)
 
@@ -210,14 +240,20 @@ def ground_points(boxes):
     air = posed & ~upright & ~wide & (inverted | near)
     low_ = posed & ~upright & ~wide & ~air                         # sitting / kneeling / crouched: box bottom
     upright, lying, air, low_ = (a & ~edge_drop for a in (upright, lying, air, low_))
-    b['posture'] = np.select([edge_drop, upright, lying, air, low_], ['edge', 'stand', 'lying', 'air', 'low'], 'box')
-    b['src'] = np.select([edge_drop, upright & lifted, upright & (n_ank == 2), upright, lying, air],
-                         ['edge', 'planted', 'ankles', 'ankle', 'hips', 'air'], 'box')
-    b['u'] = np.select([edge_drop, upright, lying, air], [np.nan, u, hipx, np.nan], b.feet_x.values)
-    b['v'] = np.select([edge_drop, upright, lying, air], [np.nan, v, hipy, np.nan], b.feet_y.values)
+    hidden = occluded & ~edge_drop & ~upright & ~lying & ~air      # a box bottom behind the teammate is not the feet
+    low_ = low_ & ~hidden
+    b['posture'] = np.select([edge_drop, hidden, upright, lying, air, low_],
+                             ['edge', 'hidden', 'stand', 'lying', 'air', 'low'], 'box')
+    b['src'] = np.select([edge_drop, hidden, upright & lifted, upright & (n_ank == 2), upright, lying, air],
+                         ['edge', 'hidden', 'planted', 'ankles', 'ankle', 'hips', 'air'], 'box')
+    gone = edge_drop | hidden
+    b['u'] = np.select([gone, upright, lying, air], [np.nan, u, hipx, np.nan], b.feet_x.values)
+    b['v'] = np.select([gone, upright, lying, air], [np.nan, v, hipy, np.nan], b.feet_y.values)
     src = b.src.values
-    su = np.select([src == 'ankle', lying, src == 'box'], [SIGMA_ONE_ANKLE_PX, SIGMA_LYING_PX, SIGMA_BOX_PX],
-                   SIGMA_PX)
+    flat = pd.Series(lying | air).groupby(b.player).transform(
+        lambda s: s.rolling(2 * LYING_NEAR + 1, center=True, min_periods=1).max()).values > 0
+    su = np.select([src == 'ankle', lying, (src == 'box') & flat, src == 'box'],
+                   [SIGMA_ONE_ANKLE_PX, SIGMA_LYING_PX, SIGMA_NEAR_LYING_PX, SIGMA_BOX_PX], SIGMA_PX)
     su = np.where(occluded, np.maximum(su, SIGMA_OCC_PX), su)
     su = np.where(cut, np.maximum(su, SIGMA_EDGE_PX), su)
     b['occluded'], b['edge'] = occluded, cut
@@ -241,39 +277,45 @@ def airborne(b):
     """height of the jump bump (units, along the camera ray) of every measurement, 0 when the feet are on the sand.
     A point above the sand projects onto the court further from the camera, so in a jump (or the scissor phase of a
     bicycle kick, where the pose still looks upright) the distance rho from the camera's ground point gets a bump that
-    only goes up and comes back down at landing. Only clean rows are used (not occluded, not cut by the border, not
-    upside down). A morphological opening
-    (rolling min, then rolling max, over AIR_WIN frames; edges padded, gaps interpolated) keeps slower movement and
-    removes shorter bumps. A run of frames more than max(AIR_MIN_M, AIR_K sigma_rho) above the opening is a jump
-    only if its bump is at most AIR_FWHM_MAX frames wide at half height, not counting frames upside down (airborne
-    anyway, e.g. in a bicycle kick), and running there and back would need more than ACC_MAX (about 2 pi^2 A / T^2
-    for a bump of height A lasting T = twice that width); otherwise it is taken as real movement. The jump is taken out of every measurement in the bump's half-height span (occluded and
-    border rows too); of a lying row only if its bump is above LYING_BUMP_MIN."""
-    use = b.clean.values & b.posture.isin(['stand', 'lying', 'low', 'box']).values
-    rho = np.where(use, np.hypot(b.raw_x.values - CAM_GROUND[0], b.raw_y.values - CAM_GROUND[1]), np.nan)
+    only goes up and comes back down at landing. The detector uses clean rows only (not occluded, not cut by the
+    border; standing, lying or crouched, not the flickering box bottom). A morphological opening (rolling min, then
+    rolling max, over AIR_WIN frames; edges padded, gaps interpolated) of the 5-frame median keeps slower movement and
+    removes shorter bumps. A run more than max(AIR_MIN_M, AIR_K sigma_rho) above the opening (AIR_MIN_FAR with no own
+    touch within TOUCH_FAR frames) is a jump only if its bump is at most AIR_FWHM_MAX frames wide at half height, not
+    counting frames upside down (airborne anyway, e.g. in a bicycle kick), and running there and back would need more
+    than ACC_MAX (about 2 pi^2 A / T^2 for a bump of height A lasting T = twice that width); otherwise it is taken as
+    real movement. An accepted bump is taken out of every measurement (occluded and border rows too) wherever it
+    stays above AIR_SUPPORT (median or raw), by that row's own excess over the opening (0..A); of a lying row only
+    above LYING_BUMP_MIN."""
+    use = b.clean.values & b.posture.isin(['stand', 'lying', 'low']).values
+    rho_all = np.hypot(b.raw_x.values - CAM_GROUND[0], b.raw_y.values - CAM_GROUND[1])
+    rho = np.where(use, rho_all, np.nan)
     bump = np.zeros(len(b))
     half = AIR_WIN // 2
+    w = 2 * half + 1
     lying = (b.posture == 'lying').values
-    measured = np.isfinite(b.raw_x.values)
+    measured = np.isfinite(rho_all)
     in_air = (b.posture == 'air').values
+    far = b.touch_dist.values > TOUCH_FAR
     for _, g in b.groupby(['player', 'cam_seg']):
-        i = g.index.values
-        ok = np.isfinite(rho[i])
+        gi = g.index.values
+        ok = np.isfinite(rho[gi])
         if ok.sum() < 3:
             continue
-        rows, frames = i[measured[i]], g.frame.values[measured[i]]   # every measurement, for the correction
-        i, fr = i[ok], g.frame.values[ok]
-        r = pd.Series(rho[i], index=fr).reindex(np.arange(fr[0], fr[-1] + 1))
-        air_f = pd.Series(in_air[g.index.values], index=g.frame.values).reindex(r.index, fill_value=False).values
-        r = r.interpolate()
-        med = r.rolling(5, center=True, min_periods=1).median()
+        i, fr = gi[ok], g.frame.values[ok]
+        idx = np.arange(fr[0], fr[-1] + 1)
+        r = pd.Series(rho[i], index=fr).reindex(idx)
+        air_f = pd.Series(in_air[gi], index=g.frame.values).reindex(idx, fill_value=False).values
+        far_f = pd.Series(far[gi], index=g.frame.values).reindex(idx, fill_value=True).values
+        ri = r.interpolate()
+        med = ri.rolling(5, center=True, min_periods=1).median()
         pad = pd.Series(np.r_[np.full(half, med.iloc[0]), med.values, np.full(half, med.iloc[-1])])
-        w = 2 * half + 1
         base = pad.rolling(w, center=True, min_periods=1).min().rolling(w, center=True, min_periods=1).max()
-        d = np.clip(med.values - base.values[half:len(pad) - half], 0, None)
-        sig = pd.Series(b.sigma_rho.values[i], index=fr).reindex(med.index).interpolate().values
-        cand = d > np.maximum(AIR_MIN_M, AIR_K * sig)
-        keep = np.zeros(len(d), bool)
+        base = base.values[half:len(pad) - half]
+        d = np.clip(med.values - base, 0, None)
+        sig = pd.Series(b.sigma_rho.values[i], index=fr).reindex(idx).interpolate().values
+        cand = d > np.maximum(np.where(far_f, AIR_MIN_FAR, AIR_MIN_M), AIR_K * sig)
+        top = np.zeros(len(d))                      # height of the accepted bump each frame belongs to
         edges = np.flatnonzero(np.diff(np.r_[0, cand.astype(int), 0]))
         for a, e in zip(edges[::2], edges[1::2]):
             pk = a + int(np.argmax(d[a:e]))
@@ -282,30 +324,54 @@ def airborne(b):
             width = (hi - lo + 1) - air_f[lo:hi + 1].sum()   # frames upside down are airborne anyway
             T = 2 * max(width, 1) / FPS                  # a raised-cosine bump lasts twice its width at half height
             if width <= AIR_FWHM_MAX and 2 * np.pi ** 2 * A / T ** 2 > ACC_MAX:
-                keep[lo:hi + 1] = True
-        inside = (frames >= fr[0]) & (frames <= fr[-1])
-        rows, frames = rows[inside], frames[inside]
-        dd = np.where(keep, d, 0)[frames - fr[0]]
-        bump[rows] = np.where(lying[rows] & (dd < LYING_BUMP_MIN), 0, dd)
+                lo, hi = _span(np.maximum(d, ri.values - base), pk, AIR_SUPPORT)   # the median lags at take-off
+                top[lo:hi + 1] = np.maximum(top[lo:hi + 1], A)
+        rows = gi[measured[gi]]
+        f = b.frame.values[rows]
+        inside = (f >= fr[0]) & (f <= fr[-1])
+        rows, f = rows[inside], f[inside]
+        A_row = top[f - fr[0]]
+        ex = np.where(A_row > 0, np.clip(rho_all[rows] - base[f - fr[0]], 0, A_row), 0)
+        bump[rows] = np.where(lying[rows] & (ex < LYING_BUMP_MIN), 0, ex)
     return bump
+
+
+def _back_on_track(z, R, x, P, k, gate):
+    """do at least 2 of the next LOOKAHEAD measurements after frame k fit the old track (state x, P at k, carried
+    forward with no update)?"""
+    hits = seen = 0
+    j = k + 1
+    while j < len(z) and seen < LOOKAHEAD:
+        x, P = F @ x, F @ P @ F.T + Q
+        if np.isfinite(z[j, 0]):
+            y = z[j] - x[:2]
+            seen += 1
+            hits += y @ np.linalg.inv(P[:2, :2] + R[j]) @ y <= gate
+        j += 1
+    return hits >= 2
 
 
 def kalman_rts(z, R, clean, gate=GATE):
     """z: (n, 2) measurements (NaN = none, z[0] given), R: (n, 2, 2), clean: (n,) measurements allowed to seed a
     reset. Returns smoothed states (n, 4), outlier flags and reset flags. On MAX_REJECT outliers in a row the forward
-    pass goes back to the first of them and restarts there from the median of the rejected (clean) measurements with
-    the covariance widened by RESET; the RTS pass then runs over everything."""
+    pass goes back to the first of them and restarts there from a straight-line fit (position and velocity, speed
+    capped at SEED_V_MAX) of the rejected (clean) measurements, with the covariance widened by RESET - unless the
+    measurements right after the run are back on the old track (a glitch: the run stays rejected). The RTS pass runs over everything and uses
+    the prediction covariance without that widening, so it joins the two sides of a reset smoothly."""
     n = len(z)
     xp, Pp = np.zeros((n, 4)), np.zeros((n, 4, 4))
+    Pq = np.zeros((n, 4, 4))
     xf, Pf = np.zeros((n, 4)), np.zeros((n, 4, 4))
     out, reset = np.zeros(n, bool), np.zeros(n, bool)
     xf[0] = xp[0] = np.r_[z[0], 0, 0]
-    Pf[0] = Pp[0] = np.block([[R[0], np.zeros((2, 2))], [np.zeros((2, 2)), np.eye(2) * V0_SIGMA ** 2]])
-    rejected, first, seed_at, seed = 0, 0, -1, None
+    Pf[0] = Pp[0] = Pq[0] = np.block([[R[0], np.zeros((2, 2))], [np.zeros((2, 2)), np.eye(2) * V0_SIGMA ** 2]])
+    rejected, first, seed_at, seed, seed_v = 0, 0, -1, None, None
     k = 1
     while k < n:
         x, P = F @ xf[k - 1], F @ Pf[k - 1] @ F.T + Q
+        Pq[k] = P
         if k == seed_at:
+            x = np.r_[x[:2], seed_v]
             P = P + RESET
         xp[k], Pp[k] = x, P
         if np.isfinite(z[k, 0]):
@@ -317,10 +383,19 @@ def kalman_rts(z, R, clean, gate=GATE):
                 if not rejected:
                     first = k
                 rejected += 1
-                if rejected >= MAX_REJECT:
+                if rejected >= MAX_REJECT and _back_on_track(z, R, x, P, k, gate):
+                    rejected = 0                         # a glitch: the old track goes on after it
+                elif rejected >= MAX_REJECT:
                     idx = [j for j in range(first, k + 1) if out[j]]
-                    use = [j for j in idx if clean[j]] or idx
-                    seed = np.median(z[use], 0)
+                    use = np.array([j for j in idx if clean[j]] or idx)
+                    if len(use) >= 2:
+                        cf = np.polyfit(use - first, z[use], 1)       # rows: slope, value at `first`
+                        seed, seed_v = cf[1], cf[0] * FPS
+                        sp = np.hypot(*seed_v)
+                        if sp > SEED_V_MAX:
+                            seed_v = seed_v * SEED_V_MAX / sp
+                    else:
+                        seed, seed_v = z[use[0]], xf[k - 1][2:]
                     out[first:k + 1] = False
                     reset[first] = True
                     seed_at, k, rejected = first, first, 0
@@ -334,8 +409,8 @@ def kalman_rts(z, R, clean, gate=GATE):
         k += 1
     xs = xf.copy()
     for k in range(n - 2, -1, -1):
-        C = Pf[k] @ F.T @ np.linalg.inv(Pp[k + 1])
-        xs[k] = xf[k] + C @ (xs[k + 1] - xp[k + 1])
+        C = Pf[k] @ F.T @ np.linalg.inv(Pq[k + 1])
+        xs[k] = xf[k] + C @ (xs[k + 1] - F @ xf[k])
     return xs, out, reset
 
 
@@ -393,7 +468,7 @@ def main():
     b.loc[j, 'raw_y'] -= b.bump[j] * up[j, 1]
     Sig = np.zeros((len(b), 2, 2)); Sig[:, 0, 0] = b.sigma_u ** 2; Sig[:, 1, 1] = b.sigma_v ** 2
     R = J @ Sig @ J.transpose(0, 2, 1)
-    R[j] += (b.bump.values[j] ** 2)[:, None, None] * up[j, :, None] * up[j, None, :]   # ... trusting that part less
+    R[j] += ((BUMP_TRUST * b.bump.values[j]) ** 2)[:, None, None] * up[j, :, None] * up[j, None, :]   # ... a bit less
     b['R'] = list(R)
     res = []
     for (pl, seg), g in b[np.isfinite(b.raw_x)].groupby(['player', 'cam_seg']):
