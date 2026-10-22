@@ -30,13 +30,27 @@ All work is in v3 frames (`*_v3video.csv`, Sapiens2, contacts); every output kee
 
 ### 0. Setup + smoothed player positions - done
 `scripts/analysis/player_positions.py` -> `data/analysis/player_positions_v3.csv` (one row per frame and player).
-- Ground point by posture: standing -> ankle midpoint (planted ankle when the other foot is up for a kick); lying on
-  the sand -> hips; feet above the hips (bicycle kick) -> no measurement, bridged; no pose -> box bottom.
+- Ground point by posture: standing -> ankle midpoint (lowered to the sole); the planted ankle only when the other
+  foot is higher AND swinging while the planted one stays still (image height alone confuses a raised foot with
+  feet apart in depth); lying on the sand -> hips; upside down (bicycle kick) -> no measurement, bridged;
+  sitting / kneeling / no pose -> box bottom. Occluded players (teammate box IoU > 0.4) and boxes cut by the image
+  border count less; very short border boxes give no measurement.
 - Jumps with an upright pose: the point slides away from the camera while the feet are off the sand. Bumps in the
-  distance from the camera's ground point that running could not make (2 pi^2 A / T^2 > 12 m/s^2) are taken out.
+  distance from the camera's ground point (>= 0.7 units, <= 15 frames wide at half height not counting upside-down
+  frames, more than running could do: 2 pi^2 A / T^2 > 12) are taken out; `airborne` = jump or upside down.
 - Constant-velocity Kalman + RTS per player and camera segment; pixel noise through the homography Jacobian.
-- Result: speed median 1.3, p99 6.4, p99.9 9.0 court units/s, the same at every depth (raw box-bottom positions
-  gave p99 14, p99.9 33). Checked by eye on two bicycle kicks at the net (4198-4228 BRA_B, 5990-6016 BRA_A).
+  After 4 outliers in a row the filter is reset in place (median of the rejected run, wider position covariance)
+  and one RTS pass covers the whole stretch, so a reset makes no jump in position or speed.
+- Result: speed median 1.4, p99 5.9, p99.9 7.6 court units/s, the same at every depth (raw box bottoms: p99 14).
+- Verification (2026-10-22, 4 independent checks: code review, jumps by eye, top speeds / postures by eye, data
+  integrity) found about 20 problems in the first version. Fixed: restart cuts, gating after a restart, restart
+  index, double use of the first measurement, jump test duration and floor, planted-foot choice, single-ankle
+  noise, sitting players taken as airborne, one-frame camera segment, border boxes, ankle height. Partly handled:
+  occlusion (larger noise, kept out of the jump detector and of resets, not separated), lying vs horizontal
+  bicycle kick (a lying row needs a bump >= 1.5). On the verifiers' labelled cases the jump detector now flags all
+  15 seen jumps and none of the 15 non-jumps; the old top speeds (11-13, at restarts and bicycle-kick take-offs)
+  are gone. Left: small hops (< 0.7 units of bump) are not flagged; ISR_B 611-619 and 3 occluded frames
+  (BRA_B 9257-9271) are flagged without being jumps. A second review of the rewrite is running.
 
 ### 1. Ball height and ball position on the court
 1. Full camera calibration: the homography alone does not give it (decomposition is inconsistent: orthogonality
@@ -66,7 +80,7 @@ All work is in v3 frames (`*_v3video.csv`, Sapiens2, contacts); every output kee
 of each foot (median of t-1..t+1) -> court units; stance, along / towards the net, side-to-side / front-back of the
 hip line (the hip line projected as if on the sand keeps its direction: a homothety about the camera's foot).
 One camera cannot tell a raised foot from one set further back, so each foot gets a status from its motion over
-t-2..t+2: planted / moving (a step) / raised (moving and higher). reliable = no raised foot, no jump (75 in play).
+t-2..t+2: planted / moving (a step) / raised (moving and higher). reliable = no raised foot, no jump (90 in play).
 Feet points checked on a 12-touch sheet.
 
 ### 3. Serve / reception / set / attack - basic version done
@@ -84,7 +98,8 @@ Next: refine with the ball's 3D path from step 1 (set goes up and stays on its s
 `scripts/analysis/team_spacing.py` -> `data/analysis/team_spacing_v3.csv`. At every attack (step 3), the defending
 pair's distance, along / towards the net, squares; conceded = kill or failed_defence, baseline = attacks they
 returned. A second row at the ball landing for conceded points.
-Median distance at the attack: ISR conceded 4.2 vs returned 3.65; BRA conceded 3.35 vs returned 3.1 (court units).
+Median distance at the attack: ISR conceded 3.95 (kill) / 4.1 (failed defence) vs returned 3.6; BRA 3.25 / 3.3
+vs 3.1 (court units).
 
 ### 5. Player speed - done
 `scripts/analysis/player_speed.py` -> `data/analysis/player_speed_rallies_v3.csv` (per rally and player: distance,
