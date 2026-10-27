@@ -1,7 +1,7 @@
 """Full camera calibration (with lens distortion) for the main camera.
 
-Court: 18 x 9 m. World frame: X along the court (left baseline = 0),
-Y toward the camera (far sideline = 0, near sideline = 9), Z down, so a
+Court: 16 x 8 m. World frame: X along the court (left baseline = 0),
+Y toward the camera (far sideline = 0, near sideline = 8), Z down, so a
 height h is Z = -h.
 
 Constraints:
@@ -25,12 +25,12 @@ FAR = [(260, 419), (410, 419), (560, 418), (710, 419), (1010, 418), (1160, 421),
        (1310, 421), (1460, 420), (1610, 422)]                       # Y = 0
 NEAR = [(260, 967), (380, 971), (500, 976), (620, 979), (740, 982), (860, 984),
         (980, 987), (1100, 986), (1220, 986), (1340, 987), (1460, 986),
-        (1580, 984), (1700, 983)]                                   # Y = 9
+        (1580, 984), (1700, 983)]                                   # Y = 8
 LEFT = [(203, 455), (145, 515), (114, 545), (89, 575), (62, 605), (32, 635)]  # X = 0
-RIGHT = [(1825, 450), (1874, 500), (1902, 525)]                     # X = 18
-CORNERS = [((232, 420), (0, 0)), ((1790, 422), (18, 0))]
+RIGHT = [(1825, 450), (1874, 500), (1902, 525)]                     # X = 16
+CORNERS = [((232, 420), (0, 0)), ((1790, 422), (16, 0))]
 
-LINES = [(FAR, 1, 0.0), (NEAR, 1, 9.0), (LEFT, 0, 0.0), (RIGHT, 0, 18.0)]
+LINES = [(FAR, 1, 0.0), (NEAR, 1, 8.0), (LEFT, 0, 0.0), (RIGHT, 0, 16.0)]
 
 
 def unpack(p):
@@ -94,7 +94,7 @@ def resid(p):
 
 def init(f0):
     K = np.array([[f0, 0, W / 2], [0, f0, H_IMG / 2], [0, 0, 1.0]])
-    obj = [(0, 0, 0), (18, 0, 0), (9, 0, 0), (0, 5.38, 0), (4, 9, 0), (13, 9, 0)]
+    obj = [(0, 0, 0), (16, 0, 0), (8, 0, 0), (0, 4.78, 0), (3.6, 8, 0), (11.6, 8, 0)]
     img = [(232, 420), (1790, 422), (1010, 418), (0, 668), (380, 971), (1580, 984)]
     _, rv, t = cv2.solvePnP(np.array(obj, float), np.array(img, float), K, None)
     return np.r_[f0, W / 2, H_IMG / 2, 0, 0, rv.ravel(), t.ravel()]
@@ -119,6 +119,6 @@ if __name__ == '__main__':
     dy = project(p, g)[:, 1] - neck[:, 1]
     print(f'  neck dy median {np.median(dy):.1f}px MAD {np.median(np.abs(dy - np.median(dy))):.1f}px')
     # Check only: net top (2.20 m) where the antenna meets it above the near sideline.
-    u = project(p, [[9.0, 9.0, -2.20]])[0]
+    u = project(p, [[8.0, 8.0, -2.20]])[0]
     print(f'  net top at near antenna: model y={u[1]:.0f}px, image y=622px')
     np.savez('ball_height/camera.npz', K=K, dist=dist, R=R, t=t, C=C)
