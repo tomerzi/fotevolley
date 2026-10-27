@@ -55,6 +55,13 @@ All work is in v3 frames (`*_v3video.csv`, Sapiens2, contacts); every output kee
   push the ankles ahead of the body for a few frames (ISR_A 11263, top speed 9.1 vs ~5 from the hips).
 
 ### 1. Ball height and ball position on the court
+Status (2026-10-27): first version done in v2 frames, `scripts/ball_height/` -> `data/analysis/ball_height_v2.csv`.
+Joint fit of f, k1/k2, R, t to the court lines (taken as 16 x 8 m, as asked by the project owner), the net top at the
+near antenna (1008, 622) px = 2.20 m and standing players' necks (0.82 x stature; ISR 1.86 m given, BRA statures
+fitted: BRA_A 1.84, BRA_B 1.76). Checks: line errors <= 19 cm, net 8 px, free-gravity fits on long flights 9.65 m/s^2.
+Flights: grown frame by frame while one ballistic path reprojects within ~3 px, plus a ball-size prior (0.22 m);
+other frames from the ball size alone. The principal point lands at y ~ 262 px (far from the centre), the same hint
+as before that the lines may be wider than 16 x 8.
 1. Full camera calibration: the homography alone does not give it (decomposition is inconsistent: orthogonality
    gives f^2 < 0). Decomposing H in court units gives f, R and the camera position in court units, so one known
    height in metres then gives the court scale. Vertical references seen in the median background (players
