@@ -7,7 +7,7 @@ height h is Z = -h.
 Constraints:
   * pixels measured on the blue court lines (median frame, see notes below),
   * the two far corners,
-  * upright players: ankles on the sand, neck at NECK_H.
+  * upright players: ankles on the sand, neck at NECK_RATIO * stature.
 The near sideline bows by ~20 px, so radial distortion is fitted too.
 Writes ball_height/camera.npz.
 """
@@ -15,7 +15,11 @@ import numpy as np, pandas as pd, cv2
 from scipy.optimize import least_squares
 
 W, H_IMG = 1920, 1080
-NECK_H = 1.50  # neck (shoulder midpoint) of an upright ~1.80 m adult
+# Player statures (given). BRA_A/BRA_B were matched to names by their measured
+# relative height: BRA_A stands taller in the video.
+STATURE = {'ISR_A': 1.86, 'ISR_B': 1.86,   # Ron Ben Ishay, Maor Haas
+           'BRA_A': 1.74, 'BRA_B': 1.69}   # Franklin, Hiltinho
+NECK_RATIO = 0.82  # neck (shoulder midpoint) height / stature, upright adult
 
 # Blue-line pixels picked on the median of frames 0..720 (peak blueness per column/row).
 FAR = [(260, 419), (410, 419), (560, 418), (710, 419), (1010, 418), (1160, 421),
@@ -69,6 +73,7 @@ ok &= (P.r_ankle_y - P.l_ankle_y).abs() < 8
 S = P[ok]
 feet = np.stack([(S.r_ankle_x + S.l_ankle_x) / 2, (S.r_ankle_y + S.l_ankle_y) / 2 + 6], 1)
 neck = S[['neck_x', 'neck_y']].values
+neck_h = NECK_RATIO * S.player.map(STATURE).values
 print('upright samples', len(S))
 
 PX_PER_M = 60.0  # turns ground-coordinate errors (m) into roughly pixel units
@@ -82,7 +87,7 @@ def resid(p):
     for uv, XY in CORNERS:
         r.append(project(p, [[XY[0], XY[1], 0]])[0] - uv)
     g = to_ground(p, feet)
-    g[:, 2] = -NECK_H
+    g[:, 2] = -neck_h
     r.append(((project(p, g) - neck) / np.sqrt(len(S) / 30)).ravel())
     r.append([(p[1] - W / 2) / 2, (p[2] - H_IMG / 2) / 2, p[4] / 0.02])  # principal point prior
     return np.concatenate([np.ravel(x) for x in r])
@@ -111,7 +116,7 @@ if __name__ == '__main__':
     for (pts, axis, val), name in zip(LINES, ['far', 'near', 'left', 'right']):
         e = to_ground(p, pts)[:, axis] - val
         print(f'  {name} line max err {np.abs(e).max() * 100:.0f} cm')
-    g = to_ground(p, feet); g[:, 2] = -NECK_H
+    g = to_ground(p, feet); g[:, 2] = -neck_h
     dy = project(p, g)[:, 1] - neck[:, 1]
     print(f'  neck dy median {np.median(dy):.1f}px MAD {np.median(np.abs(dy - np.median(dy))):.1f}px')
     # Check only: net top (2.20 m) where the antenna meets it above the near sideline.
