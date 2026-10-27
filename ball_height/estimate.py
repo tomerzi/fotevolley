@@ -14,7 +14,7 @@ from scipy.optimize import least_squares
 sys.path.insert(0, 'ball_height')
 from traj import Camera, simulate, initial_guess, G
 
-BALL_D = 0.215     # effective ball diameter in the boxes (from ball-at-head/foot frames and fitted flights)
+BALL_D = 0.22      # ball diameter (given)
 SIZE_SIGMA = 0.12  # relative noise of a single size-based distance
 PX_SIGMA = 1.5
 MAX_GAP = 5        # missing frames tolerated inside a flight

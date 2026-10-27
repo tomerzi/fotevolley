@@ -114,4 +114,7 @@ if __name__ == '__main__':
     g = to_ground(p, feet); g[:, 2] = -NECK_H
     dy = project(p, g)[:, 1] - neck[:, 1]
     print(f'  neck dy median {np.median(dy):.1f}px MAD {np.median(np.abs(dy - np.median(dy))):.1f}px')
+    # Check only: net top (2.20 m) where the antenna meets it above the near sideline.
+    u = project(p, [[9.0, 9.0, -2.20]])[0]
+    print(f'  net top at near antenna: model y={u[1]:.0f}px, image y=622px')
     np.savez('ball_height/camera.npz', K=K, dist=dist, R=R, t=t, C=C)
