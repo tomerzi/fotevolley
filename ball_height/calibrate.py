@@ -7,7 +7,10 @@ height h is Z = -h.
 Constraints:
   * pixels measured on the blue court lines (median frame, see notes below),
   * the two far corners,
+  * the net: its top edge is 2.20 m where it meets the near antenna,
   * upright players: ankles on the sand, neck at NECK_RATIO * stature.
+    The Israeli players' statures are known; the Brazilian players' are
+    fitted as two extra unknowns and written to ball_height/players.json.
 The near sideline bows by ~20 px, so radial distortion is fitted too.
 Writes ball_height/camera.npz.
 """
@@ -15,9 +18,13 @@ import numpy as np, pandas as pd, cv2
 from scipy.optimize import least_squares
 
 W, H_IMG = 1920, 1080
-# Player statures (given). Only the Israeli players' heights are known, so
-# only their upright poses are used.
+import json
+
+# Known statures (given). BRA_A / BRA_B are solved for.
 STATURE = {'ISR_A': 1.86, 'ISR_B': 1.86}   # Ron Ben Ishay, Maor Haas
+FREE = ['BRA_A', 'BRA_B']
+NET_H = 2.20
+NET_TOP_NEAR = (1008, 622)  # net top at the near antenna (just above the post cap), X = 8, Y = 8
 NECK_RATIO = 0.82  # neck (shoulder midpoint) height / stature, upright adult
 
 # Blue-line pixels picked on the median of frames 0..720 (peak blueness per column/row).
@@ -69,10 +76,17 @@ ok &= ang('r_hip', 'r_knee', 'r_ankle') > 170
 ok &= ang('l_hip', 'l_knee', 'l_ankle') > 170
 ok &= np.abs(np.degrees(np.arctan2(P.neck_x - P.mid_hip_x, P.mid_hip_y - P.neck_y))) < 6
 ok &= (P.r_ankle_y - P.l_ankle_y).abs() < 8
-S = P[ok & P.player.isin(list(STATURE)).values]
+S = P[ok]
 feet = np.stack([(S.r_ankle_x + S.l_ankle_x) / 2, (S.r_ankle_y + S.l_ankle_y) / 2 + 6], 1)
 neck = S[['neck_x', 'neck_y']].values
-neck_h = NECK_RATIO * S.player.map(STATURE).values
+free_idx = np.array([FREE.index(pl) if pl in FREE else -1 for pl in S.player])
+
+
+def neck_heights(p):
+    st = S.player.map(STATURE).values.astype(float)
+    m = free_idx >= 0
+    st[m] = p[11 + free_idx[m]]
+    return NECK_RATIO * st
 print('upright samples', len(S))
 
 PX_PER_M = 60.0  # turns ground-coordinate errors (m) into roughly pixel units
@@ -86,8 +100,9 @@ def resid(p):
     for uv, XY in CORNERS:
         r.append(project(p, [[XY[0], XY[1], 0]])[0] - uv)
     g = to_ground(p, feet)
-    g[:, 2] = -neck_h
+    g[:, 2] = -neck_heights(p)
     r.append(((project(p, g) - neck) / np.sqrt(len(S) / 30)).ravel())
+    r.append((project(p, [[8.0, 8.0, -NET_H]])[0] - NET_TOP_NEAR) * 3)
     r.append([(p[1] - W / 2) / 2, (p[2] - H_IMG / 2) / 2, p[4] / 0.02])  # principal point prior
     return np.concatenate([np.ravel(x) for x in r])
 
@@ -97,7 +112,7 @@ def init(f0):
     obj = [(0, 0, 0), (16, 0, 0), (8, 0, 0), (0, 4.78, 0), (3.6, 8, 0), (11.6, 8, 0)]
     img = [(232, 420), (1790, 422), (1010, 418), (0, 668), (380, 971), (1580, 984)]
     _, rv, t = cv2.solvePnP(np.array(obj, float), np.array(img, float), K, None)
-    return np.r_[f0, W / 2, H_IMG / 2, 0, 0, rv.ravel(), t.ravel()]
+    return np.r_[f0, W / 2, H_IMG / 2, 0, 0, rv.ravel(), t.ravel(), 1.8, 1.8]
 
 
 if __name__ == '__main__':
@@ -115,10 +130,15 @@ if __name__ == '__main__':
     for (pts, axis, val), name in zip(LINES, ['far', 'near', 'left', 'right']):
         e = to_ground(p, pts)[:, axis] - val
         print(f'  {name} line max err {np.abs(e).max() * 100:.0f} cm')
-    g = to_ground(p, feet); g[:, 2] = -neck_h
+    g = to_ground(p, feet); g[:, 2] = -neck_heights(p)
     dy = project(p, g)[:, 1] - neck[:, 1]
-    print(f'  neck dy median {np.median(dy):.1f}px MAD {np.median(np.abs(dy - np.median(dy))):.1f}px')
-    # Check only: net top (2.20 m) where the antenna meets it above the near sideline.
-    u = project(p, [[8.0, 8.0, -2.20]])[0]
-    print(f'  net top at near antenna: model y={u[1]:.0f}px, image y=622px')
+    for pl in sorted(set(S.player)):
+        m = (S.player == pl).values
+        print(f'  {pl}: {m.sum()} poses, neck dy median {np.median(dy[m]):.1f}px')
+    u = project(p, [[8.0, 8.0, -NET_H]])[0]
+    print(f'  net top at near antenna: model y={u[1]:.0f}px, image y={NET_TOP_NEAR[1]}px')
+    players = dict(STATURE, **{pl: round(float(p[11 + i]), 3) for i, pl in enumerate(FREE)})
+    print('  statures:', players)
+    json.dump({pl: {'stature_m': v, 'source': 'given' if pl in STATURE else 'measured'}
+               for pl, v in players.items()}, open('ball_height/players.json', 'w'), indent=1)
     np.savez('ball_height/camera.npz', K=K, dist=dist, R=R, t=t, C=C)
