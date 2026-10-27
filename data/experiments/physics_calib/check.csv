@@ -1,0 +1,5 @@
+part,n,median_h,expected,median_err
+chest,89,0.96,1.2,-0.22
+shoulder,9,1.27,1.37,-0.06
+head,91,1.89,1.54,0.31
+foot,92,0.54,,
