@@ -29,6 +29,9 @@ pts = np.concatenate([np.c_[XY[idx], -hm[idx] * t] for t in ts])
 proj = cam.project(pts).reshape(len(ts), len(idx), 2).transpose(1, 0, 2)
 line[idx] = proj * SCALE
 ball = b[['center_x', 'center_y']].values * SCALE
+# frames inside a flight without a box: draw the ball where the fitted flight puts it
+nobox = np.flatnonzero(has & np.isnan(ball[:, 0]))
+ball[nobox] = line[nobox, -1]
 ok_line = has & np.all(np.isfinite(line.reshape(n, -1)), 1) & \
     (np.abs(line[:, 0, 0] - W / 2) < W) & (np.abs(line[:, 0, 1] - H / 2) < H)
 
@@ -77,7 +80,7 @@ for f in range(n):
     meth = h.method[f]
     v = hm[f] if has[f] else None
     color = COL.get(meth, (160, 160, 160))
-    if v is not None:
+    if v is not None and np.all(np.isfinite(ball[f])):
         u = tuple(np.round(ball[f]).astype(int))
         if ok_line[f]:
             L = line[f].astype(int)
