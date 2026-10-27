@@ -5,3 +5,5 @@ models/vitpose_weights/
 __pycache__/
 # Contact review tiles (re-create with scripts/contacts/make_tiles.py)
 data/contacts/review/
+# Court-scale experiment runs in progress (results kept in scan.csv)
+data/experiments/court_scale/s*/
