@@ -1,7 +1,8 @@
 """Render the per-frame ball height on top of the main video.
 
 Draws the ball, a dashed drop line to the point below it on the sand and
-the height, plus a 0-6 m gauge. Writes 960x540 H.264 in 60 s segments
+the height, plus a 0-6 m gauge, and each player's ground speed under
+their feet (player_speed/player_speed.csv). Writes 960x540 H.264 in 60 s segments
 (each well under 15 MB) to the folder given as the first argument.
 """
 import sys, subprocess, os
@@ -34,6 +35,13 @@ nobox = np.flatnonzero(has & np.isnan(ball[:, 0]))
 ball[nobox] = line[nobox, -1]
 ok_line = has & np.all(np.isfinite(line.reshape(n, -1)), 1) & \
     (np.abs(line[:, 0, 0] - W / 2) < W) & (np.abs(line[:, 0, 1] - H / 2) < H)
+
+# player speed labels under the feet
+pb = pd.read_csv('correct_bbox/player_boxes_v9.csv', usecols=['frame', 'player', 'x1', 'x2', 'y2'])
+ps = pd.read_csv('player_speed/player_speed.csv', usecols=['frame', 'player', 'speed_kmh', 'reliable'])
+pl = pb.merge(ps, on=['frame', 'player'], how='left')
+pl = {f: t[['player', 'x1', 'x2', 'y2', 'speed_kmh', 'reliable']].values for f, t in pl.groupby('frame')}
+PCOL = {'ISR_A': (214, 120, 42), 'ISR_B': (52, 104, 235), 'BRA_A': (122, 175, 27), 'BRA_B': (0, 161, 237)}  # BGR, chart slots 1-4
 
 COL = {'flight_fit': (230, 140, 40), 'size_only': (40, 170, 230)}  # BGR: blue / amber
 FONT = cv2.FONT_HERSHEY_SIMPLEX
@@ -90,6 +98,15 @@ for f in range(n):
         cv2.circle(im, u, 12, color, 2, cv2.LINE_AA)
         text(im, f'{v:.2f} m', (u[0] + 16, u[1] + 6), 0.65)
     gauge(im, v, color)
+    for p, x1, x2, y2, kmh, rel in pl.get(f, []):
+        if not (kmh == kmh):  # NaN
+            continue
+        cx, cy = int((x1 + x2) / 2 * SCALE), int(min(y2 * SCALE + 16, H - 34))
+        s = f'{kmh:.0f} km/h' if rel else '--'
+        (tw, _), _ = cv2.getTextSize(s, FONT, 0.45, 1)
+        cv2.rectangle(im, (cx - tw // 2 - 10, cy - 12), (cx + tw // 2 + 4, cy + 4), (25, 25, 25), -1)
+        cv2.circle(im, (cx - tw // 2 - 4, cy - 4), 3, PCOL.get(p, (200, 200, 200)), -1)
+        cv2.putText(im, s, (cx - tw // 2 + 2, cy), FONT, 0.45, (255, 255, 255), 1, cv2.LINE_AA)
     label = {'flight_fit': 'ballistic fit', 'size_only': 'size estimate'}.get(meth, 'ball not found')
     cv2.rectangle(im, (0, H - 26), (W, H), (25, 25, 25), -1)
     cv2.putText(im, f'{f // 1500}:{f / 25 % 60:04.1f}   frame {f}', (12, H - 8), FONT, 0.5, (200, 200, 200), 1, cv2.LINE_AA)
