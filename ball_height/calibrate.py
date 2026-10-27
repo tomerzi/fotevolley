@@ -15,10 +15,9 @@ import numpy as np, pandas as pd, cv2
 from scipy.optimize import least_squares
 
 W, H_IMG = 1920, 1080
-# Player statures (given). BRA_A/BRA_B were matched to names by their measured
-# relative height: BRA_A stands taller in the video.
-STATURE = {'ISR_A': 1.86, 'ISR_B': 1.86,   # Ron Ben Ishay, Maor Haas
-           'BRA_A': 1.74, 'BRA_B': 1.69}   # Franklin, Hiltinho
+# Player statures (given). Only the Israeli players' heights are known, so
+# only their upright poses are used.
+STATURE = {'ISR_A': 1.86, 'ISR_B': 1.86}   # Ron Ben Ishay, Maor Haas
 NECK_RATIO = 0.82  # neck (shoulder midpoint) height / stature, upright adult
 
 # Blue-line pixels picked on the median of frames 0..720 (peak blueness per column/row).
@@ -70,7 +69,7 @@ ok &= ang('r_hip', 'r_knee', 'r_ankle') > 170
 ok &= ang('l_hip', 'l_knee', 'l_ankle') > 170
 ok &= np.abs(np.degrees(np.arctan2(P.neck_x - P.mid_hip_x, P.mid_hip_y - P.neck_y))) < 6
 ok &= (P.r_ankle_y - P.l_ankle_y).abs() < 8
-S = P[ok]
+S = P[ok & P.player.isin(list(STATURE)).values]
 feet = np.stack([(S.r_ankle_x + S.l_ankle_x) / 2, (S.r_ankle_y + S.l_ankle_y) / 2 + 6], 1)
 neck = S[['neck_x', 'neck_y']].values
 neck_h = NECK_RATIO * S.player.map(STATURE).values
