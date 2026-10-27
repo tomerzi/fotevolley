@@ -4,7 +4,10 @@ One joint least-squares fit of the camera (f, principal point, k1, k2, R, t) and
 Known quantities only:
   * the blue lines: 16 x 8 m (court lines, as given),
   * the net top: 2.20 m along its whole length (the white top tape, seen edge-on as a near-vertical line at
-    x ~ 1011 px, X = 8) and where the near antenna meets it above the near sideline (X = 8, Y = 8),
+    x ~ 1011 px, X = 8),
+  * the near antenna (rules: 1.80 m rod, top 0.80 m above the net in 10 cm red / white stripes, on the sideline):
+    stripe edges seen at y 486 ... 617 px, x ~ 1018 -> (8, 8, 3.00 ... 2.30 m),
+  * (check only) the near post top (rules: 2.55 m, 1 m outside the sideline): cap edge (1017, 628),
   * gravity 9.81 m/s^2 in every flight,
   * ball diameter 0.22 m (box size -> distance),
   * sand landings: the ball centre is 0.11 m above the sand (data/contacts/ball_contacts_v3.csv, ball_on_sand).
@@ -32,7 +35,10 @@ RIGHT = [(1825, 450), (1874, 500), (1902, 525)]
 LINES = [(FAR, 1, 0.0), (NEAR, 1, 8.0), (LEFT, 0, 0.0), (RIGHT, 0, 16.0)]
 CORNERS = [((232, 420), (0.0, 0.0)), ((1790, 422), (16.0, 0.0))]
 NET_TAPE = [(1010, 400), (1011, 450), (1011, 500), (1012, 550), (1012, 600)]  # median frame, X = 8 at 2.20 m
-NET_END = (1016, 620)   # antenna foot on the tape, above the near sideline: (8, 8, 2.20)
+# antenna stripe edges (frame 3000, 8x zoom): heights 3.00, 2.90, ... 2.30 m above the sand
+ANTENNA = [((1018, y), hh) for y, hh in zip([486, 505, 524, 543, 561, 580, 598, 617],
+                                            [3.0, 2.9, 2.8, 2.7, 2.6, 2.5, 2.4, 2.3])]
+POST_TOP = ((1017, 628), (8.0, 9.0, 2.55))
 NET_H = 2.20
 SAND_H = BALL_D / 2
 
@@ -134,7 +140,9 @@ def residuals(x):
         r.append(project(c, np.array([[XY[0], XY[1], 0.0]]))[0] - uv)
     P, _ = on_plane(c, np.array(NET_TAPE, float), -NET_H)
     r.append((P[:, 0] - 8.0) * 60)
-    r.append((project(c, np.array([[8.0, 8.0, -NET_H]]))[0] - NET_END) * 2)
+    for uv, hh in ANTENNA:
+        r.append((project(c, np.array([[8.0, 8.0, -hh]]))[0] - uv) * 1.0)
+    # the post top is reported only: its cap edge in the image is not a sure 2.55 m point
     r.append([(c[1] - W / 2) / PP_SIG, (c[2] - H_IMG / 2) / PP_SIG, c[3] / 0.3, c[4] / 0.3])  # weak priors
     if sand:
         uvs = uv_all[sand]
@@ -171,8 +179,10 @@ for (pts, axis, val), nm in zip(LINES, ['far', 'near', 'left', 'right']):
     P, _ = on_plane(c, np.array(pts, float), 0.0)
     print(f'  {nm} line max err {np.abs(P[:, axis] - val).max() * 100:.0f} cm')
 P, _ = on_plane(c, np.array(NET_TAPE, float), -NET_H)
-print(f'  net tape X err (cm): {np.round((P[:, 0] - 8) * 100).astype(int).tolist()}, net end '
-      f'{np.round(project(c, np.array([[8.0, 8.0, -NET_H]]))[0] - NET_END, 1).tolist()} px')
+print(f'  net tape X err (cm): {np.round((P[:, 0] - 8) * 100).astype(int).tolist()}')
+print('  antenna stripe y err (px):', [round(float(project(c, np.array([[8.0, 8.0, -hh]]))[0, 1] - uv[1]), 1) for uv, hh in ANTENNA])
+print('  post top err (px):', np.round(project(c, np.array([[8.0, 9.0, -2.55]]))[0] - POST_TOP[0], 1).tolist())
+print('  net top above the near sideline (2.20 m) projects to y =', round(float(project(c, np.array([[8.0, 8.0, -2.2]]))[0, 1]), 1))
 _, s = on_plane(c, uv_all[sand], -SAND_H)
 print(f'  sand landings: plane distance / size distance median {np.median(s / (BALL_D * f / size_all[sand])):.3f}')
 fr = []
