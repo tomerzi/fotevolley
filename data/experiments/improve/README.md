@@ -49,3 +49,22 @@ of a landing is often 1 frame away and some events are wrong (6 m up), so the la
 at landing speed (~8 m/s) one frame is ~0.3 m. Hand-checked landings would make them a usable reference.
 
 Best so far: CHEST (with or without the fitted drag): chest touches -0.06 / 0.14 m on held-out marks.
+
+## Sand-landing marks, continuity, box-size fix (2026-10-28 evening)
+
+`data/experiments/sand_marks/marks/`: 49 landings checked by hand: 41 landings (37 at the automatic frame, 4 one
+frame later), 2 not a landing, 6 unclear.
+
+1. Heights at the marked landings (should be 0.11 m): site 0.45 m, CHEST camera 0.23 m.
+2. Pinning landings only inside their own flight barely helps the others (held-out 0.35 -> 0.33 m).
+3. `chain.py`: all flights fitted together, the ball may not jump between consecutive flights (553 links).
+   Jump at the joins 0.74 -> 0.13 m; chest touches vs chest point MAE 0.14 -> 0.11 m. Landings unchanged.
+4. The misses are the far landings (boxes 18-22 px): the detector's boxes are squeezed towards ~25 px, so small
+   (far) balls look too big, too close, too high. `SIZE_FIX` maps box size to ball size with a line fitted on the
+   landings (even half: ball = 1.30 x box - 8.3 px). Held-out landings 0.37 -> 0.18 m (MAE 0.26 -> 0.11 m); chest
+   touches -0.04 / 0.11 m.
+5. `final/` (`run_final.sh`): everything with all marks (ball = 1.198 x box - 5.7 px). Landings 0.13 m (MAE 0.03,
+   in-sample); chest touches -0.07 / 0.13 m vs chest point; ball in flight median 2.55 m, 95th percentile 4.21 m,
+   max 6.29 m; statures BRA_A 1.79, BRA_B 1.69, ISR_A 1.74, ISR_B 1.72 m.
+   Note: at chest touches the ball centre sits at ~0.80 x stature (marked geometry, 1.37 m), not 0.72 x stature:
+   it is in front of the chest and one radius out, so "0.72 x stature" checks read ~0.2 m high.
