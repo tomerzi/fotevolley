@@ -37,6 +37,7 @@ OUT = os.environ['OUT']
 os.makedirs(OUT, exist_ok=True)
 MARK_USE = os.environ.get('MARK_USE', 'all')
 DRAG, OCCL, CHEST = (os.environ.get(k, '0') == '1' for k in ('DRAG', 'OCCL', 'CHEST'))
+SAND_MARKS = os.environ.get('SAND_MARKS', 'none')  # even|odd|all: hand-marked landings as z = 0.11 m in their flights
 print('DRAG', DRAG, 'OCCL', OCCL, 'CHEST', CHEST)
 W, H_IMG, FPS, G, BALL_D = 1920, 1080, 25.0, 9.81, 0.22
 PX, SIZE_SIG, PP_SIG = 1.5, 0.12, 60.0
@@ -167,6 +168,21 @@ for fn in glob.glob('data/experiments/chest_marks/marks/marks/*.json'):
                 mark_anchor.append((len(flights) - 1, fr, gpx, torso))
                 break
 print(f'{len(mark_anchor)} marked touches used as anchors')
+sand_anchor = []  # (flight k, frame)
+if SAND_MARKS != 'none':
+    fid = h0.flight_id.values
+    for fn in glob.glob('data/experiments/sand_marks/marks/landings/*.json'):
+        m = json.load(open(fn))
+        if m.get('landing') is not True or (SAND_MARKS != 'all' and (int(m['frame']) % 2 == 0) != (SAND_MARKS == 'even')):
+            continue
+        fr = int(m['frame'])
+        cand = [f for f in range(fr, fr - 5, -1) if 0 <= f < len(fid) and fid[f] >= 0]  # the flight arriving at the sand
+        if cand:
+            idx = h0.frame.values[h0.flight_id.values == fid[cand[0]]]
+            idx = idx[good[idx]]
+            if len(idx) >= 6:
+                flights.append(idx); sand_anchor.append((len(flights) - 1, fr))
+    print(f'{len(sand_anchor)} marked sand landings used as anchors')
 print(f'{len(flights)} flights ({sum(map(len, flights))} detections), {len(sand)} sand landings')
 
 c0 = np.load('data/analysis/camera_v2.npz')
@@ -253,6 +269,10 @@ def residuals(x):
         else:
             g, _ = on_plane(c, gpx[None, :], 0.0)
         r.append((P[:2] - g[0, :2]) / 0.15)
+    for k, fr in sand_anchor:
+        p = x[NC + 6 * k: NC + 6 * k + 6]
+        P = fpos(p, kd, [T_all[fr] - T_all[flights[k][0]]])[0]
+        r.append([(-P[2] - SAND_H) / 0.05])
     for k, idx in enumerate(flights):
         p = x[NC + 6 * k: NC + 6 * k + 6]
         t = T_all[idx] - T_all[idx[0]]
@@ -269,9 +289,12 @@ r0 = residuals(x0)
 n_head = len(r0) - sum(3 * len(f) for f in flights)
 S = lil_matrix((len(r0), len(x0)), dtype=int)
 S[:, :NC] = 1
-mrow = n_head - 2 * len(mark_anchor)
+mrow = n_head - 2 * len(mark_anchor) - len(sand_anchor)
 for j, (k, fr, gpx, torso) in enumerate(mark_anchor):
     S[mrow + 2 * j: mrow + 2 * j + 2, NC + 6 * k: NC + 6 * k + 6] = 1
+srow = mrow + 2 * len(mark_anchor)
+for j, (k, fr) in enumerate(sand_anchor):
+    S[srow + j, NC + 6 * k: NC + 6 * k + 6] = 1
 row = n_head
 for k, idx in enumerate(flights):
     S[row: row + 3 * len(idx), NC + 6 * k: NC + 6 * k + 6] = 1
@@ -303,4 +326,4 @@ for k, idx in enumerate(flights):
 print(f'  flight reprojection median {np.median(np.concatenate(fr)):.2f} px')
 K = np.array([[f, 0, cx], [0, f, cy], [0, 0, 1.0]])
 np.savez(f'{OUT}/camera.npz', K=K, dist=np.array([k1, k2, 0, 0, 0]), R=R, t=t, C=C, k_drag=kd)
-json.dump(dict(drag=DRAG, occl=OCCL, chest=CHEST, k_drag=kd, marks=MARK_USE), open(f'{OUT}/settings.json', 'w'))
+json.dump(dict(drag=DRAG, occl=OCCL, chest=CHEST, k_drag=kd, marks=MARK_USE, sand_marks=SAND_MARKS), open(f'{OUT}/settings.json', 'w'))

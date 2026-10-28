@@ -1,0 +1,130 @@
+"""EXPERIMENT (improve): fit all ball flights together with continuity.
+
+The ball cannot jump: where one flight ends and the next starts (a touch, a bounce, within MAX_GAP frames) both
+must be at the same point (sigma CONT_SIG). Every flight keeps its own ballistic path (gravity 9.81, no drag) and
+its pixel and ball-size terms. Optionally the hand-marked sand landings pin z = 0.11 m (SAND_USE=even|odd|all|none)
+and OCCL=1 drops the size term where the ball overlaps a player or is near a touch.
+Starts from the flights of OUT/nodrag.csv (estimate_drag.py output with the same camera).
+Writes OUT/chain.csv. usage: python scripts/experiments/improve/chain.py CAMERA OUT_DIR
+"""
+import os, sys, json, glob
+import numpy as np, pandas as pd
+from scipy.optimize import least_squares
+from scipy.sparse import lil_matrix
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(HERE)))
+os.chdir(ROOT)
+sys.path.insert(0, 'scripts/ball_height')
+from traj import Camera
+
+cam_path, out = sys.argv[1], sys.argv[2]
+SAND_USE = os.environ.get('SAND_USE', 'none')
+OCCL = os.environ.get('OCCL') == '1'
+CONT_SIG = float(os.environ.get('CONT_SIG', 0.15))
+MAX_GAP = 2
+G, FPS, BALL_D, PX, SIZE_SIG = 9.81, 25.0, 0.22, 1.5, 0.12
+gvec = np.array([0, 0, G])
+cam = Camera(cam_path)
+fpx = cam.K[0, 0]
+h0 = pd.read_csv(f'{out}/nodrag.csv')
+b = pd.read_csv('data/boxes/ball_boxes_corrected3.csv')
+good = b.source.isin(['detected', 'rescued', 'manual']).values
+uv = b[['center_x', 'center_y']].values
+size = np.sqrt((b.x2 - b.x1) * (b.y2 - b.y1)).values
+# SIZE_FIX=even|odd|all: the detector's boxes are squeezed towards ~25 px; map box size -> ball size with a line
+# fitted on the hand-marked sand landings of that parity, where the ball's distance is known (ray at z = 0.11 m)
+SIZE_FIX = os.environ.get('SIZE_FIX', 'none')
+if SIZE_FIX != 'none':
+    pairs = []
+    for fn in glob.glob('data/experiments/sand_marks/marks/landings/*.json'):
+        m = json.load(open(fn))
+        if m.get('landing') is not True:
+            continue
+        f_ = int(m['frame'])
+        if np.isnan(size[f_]) or (SIZE_FIX != 'all' and (f_ % 2 == 0) != (SIZE_FIX == 'even')):
+            continue
+        d_ = cam.ray(uv[[f_]])[0]; s_ = (-0.11 - cam.C[2]) / d_[2]
+        pairs.append((size[f_], cam.K[0, 0] * BALL_D / s_))
+    pairs = np.array(pairs)
+    a_, b_ = np.polyfit(pairs[:, 0], pairs[:, 1], 1)
+    print(f'size fix from {len(pairs)} landings: ball px = {b_:.2f} + {a_:.3f} x box px')
+    size = b_ + a_ * size
+size_ok = np.ones(len(b))
+if OCCL:
+    pbx = pd.read_csv('data/boxes/player_boxes_v9.csv', usecols=['frame', 'x1', 'y1', 'x2', 'y2'])
+    m_ = pbx.merge(b[['frame', 'x1', 'y1', 'x2', 'y2']], on='frame', suffixes=('', '_b'))
+    size_ok[m_.frame[(m_.x1 < m_.x2_b) & (m_.x2 > m_.x1_b) & (m_.y1 < m_.y2_b) & (m_.y2 > m_.y1_b)].unique()] = 0
+
+# flights: frames, detections, start params from the no-drag positions
+FL = []
+X3 = np.c_[h0.court_x_m, h0.court_y_m, -h0.height_m].astype(float)
+for fid, g in h0[h0.flight_id >= 0].groupby('flight_id'):
+    fr = g.frame.values
+    obs = fr[good[fr]]
+    if len(obs) < 3:
+        continue
+    t = (fr - fr[0]) / FPS
+    A = np.c_[np.ones_like(t), t]
+    p = [np.linalg.lstsq(A, X3[fr, k] - (0.5 * G * t ** 2 if k == 2 else 0), rcond=None)[0] for k in range(3)]
+    FL.append(dict(f0=int(fr[0]), f1=int(fr[-1]), obs=obs, x0=np.r_[[q[0] for q in p], [q[1] for q in p]]))
+FL.sort(key=lambda d: d['f0'])
+links = [(i, i + 1) for i in range(len(FL) - 1) if 0 <= FL[i + 1]['f0'] - FL[i]['f1'] <= MAX_GAP]
+sand = []
+for fn in glob.glob('data/experiments/sand_marks/marks/landings/*.json'):
+    m = json.load(open(fn))
+    if SAND_USE != 'none' and m.get('landing') is True and (SAND_USE == 'all' or (m['frame'] % 2 == 0) == (SAND_USE == 'even')):
+        f = int(m['frame'])
+        for i, d in enumerate(FL):
+            if d['f0'] - 2 <= f <= d['f1'] + 2:
+                sand.append((i, f))
+print(f'{len(FL)} flights, {len(links)} continuity links, {len(sand)} sand pins')
+
+
+def pos(p, f0, frames):
+    t = (np.asarray(frames, float) - f0) / FPS
+    return p[:3] + np.outer(t, p[3:]) + 0.5 * np.outer(t ** 2, gvec)
+
+
+def residuals(x):
+    r = []
+    for i, d in enumerate(FL):
+        p = x[6 * i: 6 * i + 6]
+        P = pos(p, d['f0'], d['obs'])
+        r.append(((cam.project(P) - uv[d['obs']]) / PX).ravel())
+        dsz = BALL_D * fpx / size[d['obs']]
+        r.append((np.linalg.norm(P - cam.C, axis=1) - dsz) / (SIZE_SIG * dsz) * size_ok[d['obs']])
+    for i, j in links:
+        tb = FL[j]['f0'] if FL[j]['f0'] > FL[i]['f1'] else FL[i]['f1']
+        r.append((pos(x[6 * i: 6 * i + 6], FL[i]['f0'], [tb])[0] - pos(x[6 * j: 6 * j + 6], FL[j]['f0'], [tb])[0]) / CONT_SIG)
+    for i, f in sand:
+        r.append([(-pos(x[6 * i: 6 * i + 6], FL[i]['f0'], [f])[0][2] - BALL_D / 2) / 0.05])
+    return np.concatenate([np.ravel(a) for a in r])
+
+
+x0 = np.concatenate([d['x0'] for d in FL])
+r0 = residuals(x0)
+S = lil_matrix((len(r0), len(x0)), dtype=int)
+row = 0
+for i, d in enumerate(FL):
+    n = 3 * len(d['obs']); S[row: row + n, 6 * i: 6 * i + 6] = 1; row += n
+for i, j in links:
+    S[row: row + 3, 6 * i: 6 * i + 6] = 1; S[row: row + 3, 6 * j: 6 * j + 6] = 1; row += 3
+for i, f in sand:
+    S[row, 6 * i: 6 * i + 6] = 1; row += 1
+sol = least_squares(residuals, x0, jac_sparsity=S, loss='soft_l1', f_scale=2.0, x_scale='jac', max_nfev=80, verbose=0)
+x = sol.x
+h = h0.copy()
+gaps = []
+for i, d in enumerate(FL):
+    fr = np.arange(d['f0'], d['f1'] + 1)
+    P = pos(x[6 * i: 6 * i + 6], d['f0'], fr)
+    h.loc[fr, 'court_x_m'] = P[:, 0].round(3); h.loc[fr, 'court_y_m'] = P[:, 1].round(3)
+    h.loc[fr, 'height_m'] = np.clip(-P[:, 2], 0, None).round(3)
+for i, j in links:
+    tb = FL[j]['f0'] if FL[j]['f0'] > FL[i]['f1'] else FL[i]['f1']
+    gaps.append(np.linalg.norm(pos(x[6 * i: 6 * i + 6], FL[i]['f0'], [tb])[0] - pos(x[6 * j: 6 * j + 6], FL[j]['f0'], [tb])[0]))
+g0 = [np.linalg.norm(pos(x0[6 * i: 6 * i + 6], FL[i]['f0'], [FL[j]['f0']])[0] - pos(x0[6 * j: 6 * j + 6], FL[j]['f0'], [FL[j]['f0']])[0]) for i, j in links]
+h.to_csv(f'{out}/chain.csv', index=False)
+pix = np.concatenate([np.linalg.norm(cam.project(pos(x[6 * i: 6 * i + 6], d['f0'], d['obs'])) - uv[d['obs']], axis=1) for i, d in enumerate(FL)])
+print(f'jump between consecutive flights: median {np.median(g0):.2f} -> {np.median(gaps):.2f} m; reprojection median {np.median(pix):.2f} px')

@@ -117,6 +117,12 @@ for r in tl.itertuples():
         anc = (None, SAND_H, SAND_SIG, None)
     events[fr] = anc
 bc = pd.read_csv('data/contacts/ball_contacts_v3.csv', usecols=['frame', 'event_type', 'ball_on_sand'])
+if os.environ.get('SAND_MARKS') == '1':  # hand-marked landing frames replace the automatic sand events
+    for fn in glob.glob('data/experiments/sand_marks/marks/landings/*.json'):
+        m = json.load(open(fn))
+        if m.get('landing') is True and (SAND_USE == 'all' or (int(m['frame']) % 2 == 0) == (SAND_USE == 'even')):
+            events[int(m['frame'])] = (None, SAND_H, SAND_SIG, None)
+    bc = bc[bc.event_type == 'touch']
 for r in bc.itertuples():
     fr = int(fm.get(int(r.frame), -1))
     if fr < 0 or fr in events:
