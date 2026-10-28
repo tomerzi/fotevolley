@@ -5,6 +5,10 @@ must be at the same point (sigma CONT_SIG). Every flight keeps its own ballistic
 the whole match fitted with the flights, prior 0.02 +- 0.02 1/m, all flights integrated together, RK4) and
 its pixel and ball-size terms. Optionally the hand-marked sand landings pin z = 0.11 m (SAND_USE=even|odd|all|none)
 and OCCL=1 drops the size term where the ball overlaps a player or is near a touch.
+NET=even|odd|all: the ball must pass over the net: where a flight crosses the net plane (X = 8) its centre must be
+at least 2.20 + 0.11 m up (one-sided penalty, crossings picked by parity of their frame); plus the two labelled
+net touches at X = 8, 2.0 +- 0.25 m. CHEST_MARKS=even|odd|all with POSE=vitpose|sapiens: at a hand-marked chest
+touch the ball is horizontally at the chest point (between hip and neck midpoints, pose at the marked frame).
 Starts from the flights of OUT/nodrag.csv (estimate_drag.py output with the same camera).
 Writes OUT/chain.csv. usage: python scripts/experiments/improve/chain.py CAMERA OUT_DIR
 """
@@ -81,7 +85,69 @@ for fn in glob.glob('data/experiments/sand_marks/marks/landings/*.json'):
         for i, d in enumerate(FL):
             if d['f0'] - 2 <= f <= d['f1'] + 2:
                 sand.append((i, f))
-print(f'{len(FL)} flights, {len(links)} continuity links, {len(sand)} sand pins')
+NET = os.environ.get('NET', 'none')
+CHEST_MARKS = os.environ.get('CHEST_MARKS', 'none')
+POSE = os.environ.get('POSE', 'vitpose')
+par = lambda f, use: use == 'all' or (f % 2 == 0) == (use == 'even')
+cross = []  # (flight i, frame) where the start solution crosses X = 8 inside the flight
+net_touch = []
+if NET != 'none':
+    fm_ = pd.read_csv('data/mappings/frame_mapping_v3.csv'); fm_ = fm_[~fm_.deleted].set_index('v3_frame').v2_frame
+    tl_ = pd.read_csv('data/contacts/touch_labels_final.csv')
+    nt_frames = [int(fm_[f]) for f in tl_[tl_.kind == 'net'].frame if f in fm_.index]
+    for i, d in enumerate(FL):
+        fr = np.arange(d['f0'], d['f1'] + 1)
+        xs = pos(d['x0'], d['f0'], fr)[:, 0] - 8.0
+        for k_ in np.flatnonzero(np.sign(xs[:-1]) != np.sign(xs[1:])):
+            f = int(fr[k_] if abs(xs[k_]) < abs(xs[k_ + 1]) else fr[k_ + 1])
+            if par(f, NET) and all(abs(f - g) > 6 for g in nt_frames):
+                cross.append((i, f))
+        for g in nt_frames:
+            if d['f0'] - 2 <= g <= d['f1'] + 2 and NET == 'all':
+                net_touch.append((i, g))
+chest = []  # (flight i, frame, neck px, hip px, stature)
+if CHEST_MARKS != 'none':
+    STAT = {k_: v['stature_m'] for k_, v in json.load(open('data/experiments/physics_calib/player_statures.json')).items()}
+    marks = [json.load(open(fn)) for fn in glob.glob('data/experiments/chest_marks/marks/marks/*.json')]
+    marks = [m for m in marks if m.get('chest') and m.get('feet') == 'both' and par(int(m['touch']), CHEST_MARKS)]
+    if POSE == 'sapiens':
+        cols = ['v2_frame', 'player'] + [f'{a}_{c}' for a in ('left_shoulder', 'right_shoulder', 'left_hip', 'right_hip') for c in 'xys']
+        sp = pd.read_csv('data/pose/sapiens2/sapiens2_pose_v3_00000-13494.csv', usecols=cols).drop_duplicates(['v2_frame', 'player']).set_index(['v2_frame', 'player'])
+    else:
+        vp = pd.read_csv('data/pose/vitpose_body25.csv', usecols=['frame', 'player', 'neck_x', 'neck_y', 'neck_s', 'mid_hip_x', 'mid_hip_y', 'mid_hip_s']).drop_duplicates(['frame', 'player']).set_index(['frame', 'player'])
+    for m in marks:
+        f = int(m['frame'])
+        try:
+            if POSE == 'sapiens':
+                k_ = sp.loc[(f, m['player'])]
+                if min(k_.left_shoulder_s, k_.right_shoulder_s, k_.left_hip_s, k_.right_hip_s) < 0.3:
+                    continue
+                nk = np.array([(k_.left_shoulder_x + k_.right_shoulder_x) / 2, (k_.left_shoulder_y + k_.right_shoulder_y) / 2])
+                hp = np.array([(k_.left_hip_x + k_.right_hip_x) / 2, (k_.left_hip_y + k_.right_hip_y) / 2])
+            else:
+                k_ = vp.loc[(f, m['player'])]
+                if min(k_.neck_s, k_.mid_hip_s) < 0.4:
+                    continue
+                nk, hp = np.array([k_.neck_x, k_.neck_y]), np.array([k_.mid_hip_x, k_.mid_hip_y])
+        except KeyError:
+            continue
+        for i, d in enumerate(FL):
+            if d['f0'] - 2 <= f <= d['f1'] + 2:
+                chest.append((i, f, nk, hp, STAT[m['player']])); break
+
+
+def at_height(px, z):
+    d_ = cam.ray(np.array([px]))[0]
+    return cam.C + ((-z - cam.C[2]) / d_[2]) * d_
+
+
+CHEST_XY = []
+for i, f, nk, hp, st in chest:
+    A_, B_ = at_height(nk, 0.82 * st), at_height(hp, 0.53 * st)
+    CHEST_XY.append((B_ + (0.72 - 0.53) / (0.82 - 0.53) * (A_ - B_))[:2])
+print(f'{len(FL)} flights, {len(links)} continuity links, {len(sand)} sand pins, {len(cross)} net crossings, '
+      f'{len(net_touch)} net touches, {len(chest)} chest points ({POSE})')
+
 
 
 def pos(p, f0, frames, k=0.0):
@@ -143,6 +209,13 @@ def residuals(x):
         r.append((P_at(x, i, [tb], T, k)[0] - P_at(x, j, [tb], T, k)[0]) / CONT_SIG)
     for i, f in sand:
         r.append([(-P_at(x, i, [f], T, k)[0][2] - BALL_D / 2) / 0.05])
+    for i, f in cross:
+        r.append([max(0.0, 2.20 + BALL_D / 2 + P_at(x, i, [f], T, k)[0][2]) / 0.05])
+    for i, f in net_touch:
+        P = P_at(x, i, [f], T, k)[0]
+        r.append([(P[0] - 8.0) / 0.2, (-P[2] - 2.0) / 0.25])
+    for (i, f, nk, hp, st), xy in zip(chest, CHEST_XY):
+        r.append((P_at(x, i, [f], T, k)[0][:2] - xy) / 0.15)
     return np.concatenate([np.ravel(a) for a in r])
 
 
@@ -159,6 +232,12 @@ for i, j in links:
     S[row: row + 3, 6 * i: 6 * i + 6] = 1; S[row: row + 3, 6 * j: 6 * j + 6] = 1; row += 3
 for i, f in sand:
     S[row, 6 * i: 6 * i + 6] = 1; row += 1
+for i, f in cross:
+    S[row, 6 * i: 6 * i + 6] = 1; row += 1
+for i, f in net_touch:
+    S[row: row + 2, 6 * i: 6 * i + 6] = 1; row += 2
+for c_ in chest:
+    S[row: row + 2, 6 * c_[0]: 6 * c_[0] + 6] = 1; row += 2
 if DRAG:  # solve without drag first (k fixed at 0), then free k from that solution
     DRAG = False
     S0 = lil_matrix(S[1:, :NP])
