@@ -55,6 +55,12 @@ All work is in v3 frames (`*_v3video.csv`, Sapiens2, contacts); every output kee
   push the ankles ahead of the body for a few frames (ISR_A 11263, top speed 9.1 vs ~5 from the hips).
 
 ### 1. Ball height and ball position on the court
+Status (2026-10-28): current version in `data/analysis/ball_height_v2.csv` (v2 frames), from
+`data/experiments/improve/final` - camera from the 16 x 8 lines, net top and antenna stripes only; flights fitted
+jointly (continuity, air drag k = 0.0135 1/m), anchored on 94 hand-marked chest touches (pose chest point) and 41
+hand-marked sand landings; box sizes corrected (ball = 1.198 x box - 5.7 px). Held-out checks: chest touches and
+sand landings both ~0.12 m typical error. Statures from the video: BRA_A 1.79, BRA_B 1.69, ISR_A 1.74, ISR_B 1.72 m.
+The experiments leading here are in data/experiments/*/README.md.
 Status (2026-10-27): first version done in v2 frames, `scripts/ball_height/` -> `data/analysis/ball_height_v2.csv`.
 Joint fit of f, k1/k2, R, t to the court lines (taken as 16 x 8 m, as asked by the project owner), the net top at the
 near antenna (1008, 622) px = 2.20 m and standing players' necks (0.82 x stature; ISR 1.86 m given, BRA statures
