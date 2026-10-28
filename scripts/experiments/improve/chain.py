@@ -1,7 +1,8 @@
 """EXPERIMENT (improve): fit all ball flights together with continuity.
 
 The ball cannot jump: where one flight ends and the next starts (a touch, a bounce, within MAX_GAP frames) both
-must be at the same point (sigma CONT_SIG). Every flight keeps its own ballistic path (gravity 9.81, no drag) and
+must be at the same point (sigma CONT_SIG). Every flight keeps its own ballistic path (gravity 9.81; with DRAG=1 also air drag dv/dt = g - k|v|v, one k for
+the whole match fitted with the flights, prior 0.02 +- 0.02 1/m, all flights integrated together, RK4) and
 its pixel and ball-size terms. Optionally the hand-marked sand landings pin z = 0.11 m (SAND_USE=even|odd|all|none)
 and OCCL=1 drops the size term where the ball overlaps a player or is near a touch.
 Starts from the flights of OUT/nodrag.csv (estimate_drag.py output with the same camera).
@@ -22,6 +23,8 @@ cam_path, out = sys.argv[1], sys.argv[2]
 SAND_USE = os.environ.get('SAND_USE', 'none')
 OCCL = os.environ.get('OCCL') == '1'
 CONT_SIG = float(os.environ.get('CONT_SIG', 0.15))
+DRAG = os.environ.get('DRAG') == '1'
+K0, SUB = 0.02, 8
 MAX_GAP = 2
 G, FPS, BALL_D, PX, SIZE_SIG = 9.81, 25.0, 0.22, 1.5, 0.12
 gvec = np.array([0, 0, G])
@@ -81,50 +84,105 @@ for fn in glob.glob('data/experiments/sand_marks/marks/landings/*.json'):
 print(f'{len(FL)} flights, {len(links)} continuity links, {len(sand)} sand pins')
 
 
-def pos(p, f0, frames):
+def pos(p, f0, frames, k=0.0):
     t = (np.asarray(frames, float) - f0) / FPS
-    return p[:3] + np.outer(t, p[3:]) + 0.5 * np.outer(t ** 2, gvec)
+    if k == 0.0:
+        return p[:3] + np.outer(t, p[3:]) + 0.5 * np.outer(t ** 2, gvec)
+    return traj_all(p[None, :], np.array([max(1, int(np.max(np.asarray(frames) - f0)) + 1)]), k)[0][(np.asarray(frames) - f0).astype(int)]
+
+
+def traj_all(P6, lens, k):
+    """positions of many flights at whole frames 0..len-1 from their start, integrated together (RK4)."""
+    n, L = len(P6), int(lens.max())
+    P, V = P6[:, :3].copy(), P6[:, 3:].copy()
+    out_ = np.empty((n, L, 3)); out_[:, 0] = P
+    h = 1.0 / FPS / SUB
+    def acc(v):
+        return gvec - k * np.linalg.norm(v, axis=1, keepdims=True) * v
+    for i in range(1, L):
+        for _ in range(SUB):
+            a1 = acc(V); a2 = acc(V + 0.5 * h * a1); a3 = acc(V + 0.5 * h * a2); a4 = acc(V + h * a3)
+            P = P + h * (V + h / 6 * (a1 + a2 + a3))
+            V = V + h / 6 * (a1 + 2 * a2 + 2 * a3 + a4)
+        out_[:, i] = P
+    return out_
+
+
+LENS = np.array([d['f1'] - d['f0'] + 3 for d in FL])  # +2 frames: continuity / sand points just past the end
+NP = 6 * len(FL)
+
+
+def all_pos(x):
+    k = x[NP] if DRAG else 0.0
+    if not DRAG:
+        return None, 0.0
+    return traj_all(x[:NP].reshape(-1, 6), LENS, k), k
+
+
+def P_at(x, i, frames, T, k):
+    if T is None:
+        return pos(x[6 * i: 6 * i + 6], FL[i]['f0'], frames)
+    rel = np.asarray(frames) - FL[i]['f0']
+    if rel.min() < 0:  # a point before the start: integrate backwards is not needed in practice; extrapolate
+        return pos(x[6 * i: 6 * i + 6], FL[i]['f0'], frames)
+    return T[i][rel]
 
 
 def residuals(x):
     r = []
+    T, k = all_pos(x)
+    if DRAG:
+        r.append([(k - K0) / 0.02])
     for i, d in enumerate(FL):
-        p = x[6 * i: 6 * i + 6]
-        P = pos(p, d['f0'], d['obs'])
+        P = P_at(x, i, d['obs'], T, k)
         r.append(((cam.project(P) - uv[d['obs']]) / PX).ravel())
         dsz = BALL_D * fpx / size[d['obs']]
         r.append((np.linalg.norm(P - cam.C, axis=1) - dsz) / (SIZE_SIG * dsz) * size_ok[d['obs']])
     for i, j in links:
         tb = FL[j]['f0'] if FL[j]['f0'] > FL[i]['f1'] else FL[i]['f1']
-        r.append((pos(x[6 * i: 6 * i + 6], FL[i]['f0'], [tb])[0] - pos(x[6 * j: 6 * j + 6], FL[j]['f0'], [tb])[0]) / CONT_SIG)
+        r.append((P_at(x, i, [tb], T, k)[0] - P_at(x, j, [tb], T, k)[0]) / CONT_SIG)
     for i, f in sand:
-        r.append([(-pos(x[6 * i: 6 * i + 6], FL[i]['f0'], [f])[0][2] - BALL_D / 2) / 0.05])
+        r.append([(-P_at(x, i, [f], T, k)[0][2] - BALL_D / 2) / 0.05])
     return np.concatenate([np.ravel(a) for a in r])
 
 
-x0 = np.concatenate([d['x0'] for d in FL])
+x0 = np.concatenate([d['x0'] for d in FL] + ([[K0]] if DRAG else []))
 r0 = residuals(x0)
 S = lil_matrix((len(r0), len(x0)), dtype=int)
 row = 0
+if DRAG:
+    S[:, NP] = 1  # the drag constant touches every residual
+    S[0, NP] = 1; row = 1
 for i, d in enumerate(FL):
     n = 3 * len(d['obs']); S[row: row + n, 6 * i: 6 * i + 6] = 1; row += n
 for i, j in links:
     S[row: row + 3, 6 * i: 6 * i + 6] = 1; S[row: row + 3, 6 * j: 6 * j + 6] = 1; row += 3
 for i, f in sand:
     S[row, 6 * i: 6 * i + 6] = 1; row += 1
-sol = least_squares(residuals, x0, jac_sparsity=S, loss='soft_l1', f_scale=2.0, x_scale='jac', max_nfev=80, verbose=0)
+if DRAG:  # solve without drag first (k fixed at 0), then free k from that solution
+    DRAG = False
+    S0 = lil_matrix(S[1:, :NP])
+    sol0 = least_squares(residuals, x0[:NP], jac_sparsity=S0, loss='soft_l1', f_scale=2.0, x_scale='jac', max_nfev=80)
+    DRAG = True
+    x0 = np.r_[sol0.x, 0.0]
+    print('no-drag start found, cost', round(sol0.cost, 1))
+sol = least_squares(residuals, x0, jac_sparsity=S, loss='soft_l1', f_scale=2.0, x_scale='jac', max_nfev=int(os.environ.get('MAX_NFEV', 80)), verbose=0)
+print('status', sol.status, 'nfev', sol.nfev, 'cost', round(sol.cost, 1))
 x = sol.x
+T, k = all_pos(x)
+print(f'drag k = {k:.4f} 1/m')
 h = h0.copy()
 gaps = []
 for i, d in enumerate(FL):
     fr = np.arange(d['f0'], d['f1'] + 1)
-    P = pos(x[6 * i: 6 * i + 6], d['f0'], fr)
+    P = P_at(x, i, fr, T, k)
     h.loc[fr, 'court_x_m'] = P[:, 0].round(3); h.loc[fr, 'court_y_m'] = P[:, 1].round(3)
     h.loc[fr, 'height_m'] = np.clip(-P[:, 2], 0, None).round(3)
 for i, j in links:
     tb = FL[j]['f0'] if FL[j]['f0'] > FL[i]['f1'] else FL[i]['f1']
-    gaps.append(np.linalg.norm(pos(x[6 * i: 6 * i + 6], FL[i]['f0'], [tb])[0] - pos(x[6 * j: 6 * j + 6], FL[j]['f0'], [tb])[0]))
+    gaps.append(np.linalg.norm(P_at(x, i, [tb], T, k)[0] - P_at(x, j, [tb], T, k)[0]))
 g0 = [np.linalg.norm(pos(x0[6 * i: 6 * i + 6], FL[i]['f0'], [FL[j]['f0']])[0] - pos(x0[6 * j: 6 * j + 6], FL[j]['f0'], [FL[j]['f0']])[0]) for i, j in links]
 h.to_csv(f'{out}/chain.csv', index=False)
-pix = np.concatenate([np.linalg.norm(cam.project(pos(x[6 * i: 6 * i + 6], d['f0'], d['obs'])) - uv[d['obs']], axis=1) for i, d in enumerate(FL)])
+pix = np.concatenate([np.linalg.norm(cam.project(P_at(x, i, d['obs'], T, k)) - uv[d['obs']], axis=1) for i, d in enumerate(FL)])
+json.dump(dict(drag=DRAG, k_drag=float(k), sand=SAND_USE, size_fix=SIZE_FIX), open(f'{out}/chain_settings.json', 'w'))
 print(f'jump between consecutive flights: median {np.median(g0):.2f} -> {np.median(gaps):.2f} m; reprojection median {np.median(pix):.2f} px')
