@@ -11,3 +11,6 @@ data/experiments/chest_marks/run_*/
 data/experiments/chest_marks/score_physics/
 data/experiments/chest_marks/score_even/
 data/experiments/chest_marks/calib_even/
+# improve experiment runs (summary kept in data/experiments/improve/README.md)
+data/experiments/improve/*/
+data/experiments/improve/*.log
