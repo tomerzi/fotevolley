@@ -68,3 +68,23 @@ frame later), 2 not a landing, 6 unclear.
    max 6.29 m; statures BRA_A 1.79, BRA_B 1.69, ISR_A 1.74, ISR_B 1.72 m.
    Note: at chest touches the ball centre sits at ~0.80 x stature (marked geometry, 1.37 m), not 0.72 x stature:
    it is in front of the chest and one radius out, so "0.72 x stature" checks read ~0.2 m high.
+
+## Net constraints and Sapiens2 chest points (2026-10-28 night)
+
+`chain.py` options NET (ball centre >= 2.31 m where a flight crosses X = 8, plus the labelled net touches) and
+CHEST_MARKS with POSE=vitpose|sapiens (ball horizontally at the chest point at the hand-marked touches).
+`score_net.py`: share of net crossings below the net top. All runs: CHEST camera, sand and size fix from the even
+landings; scored on the odd half unless noted.
+
+| variant | net crossings below the top (odd) | sand landings odd | chest touches odd vs chest point |
+|---|---|---|---|
+| none of these | 16 % (by 0.39 m) | 0.18 m / MAE 0.11 | -0.04 / 0.11 m |
+| chest points, ViTPose (even marks) | 16 % (0.39 m) | 0.18 / 0.11 | -0.04 / 0.11 |
+| chest points, Sapiens2 (even marks) | 16 % (0.39 m) | 0.18 / 0.11 | -0.04 / 0.11 |
+| net on the even crossings + Sapiens2 | 18 % (0.55 m) | 0.18 / 0.11 | -0.04 / 0.11 |
+| net on ALL crossings + Sapiens2 | 11 % of all, by 0.06 m | 0.25 / 0.14 | -0.04 / 0.11 |
+
+Reading: chest points and net constraints act only on the flights they touch; they do not carry over to other
+flights, so the held-out scores do not move. Sapiens2 gives the same result as ViTPose. Applied to every crossing
+(a physical rule, not a marked sample) the net constraint removes almost all the impossible "under the net" heights
+(deficit 0.39 -> 0.06 m), at a small cost on the held-out landings (MAE 0.11 -> 0.14 m).
