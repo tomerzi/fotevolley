@@ -41,6 +41,8 @@ OUTD = os.environ['OUT']
 os.makedirs(OUTD, exist_ok=True)
 cam = Camera(os.environ['CAM'])
 MARK_USE = os.environ.get('MARK_USE', 'all')
+ANCHORS = os.environ.get('ANCHORS', 'all')  # 'sand': only sand landings (no body-part anchors)
+SAND_USE = os.environ.get('SAND_USE', 'all')  # even|odd|all: sand landings by frame parity (hold-out)
 f = cam.K[0, 0]
 b = pd.read_csv('data/boxes/ball_boxes_corrected3.csv')
 good = b.source.isin(['detected', 'rescued', 'manual']).values
@@ -106,7 +108,7 @@ for r in tl.itertuples():
     if fr < 0 or int(r.touch) in MARKS:  # marked chest touches: handled above (anchor) or left free (test)
         continue
     anc = None
-    if r.kind == 'player' and isinstance(r.body_part, str) and r.body_part in PART and r.body_part != HOLDOUT:
+    if ANCHORS == 'all' and r.kind == 'player' and isinstance(r.body_part, str) and r.body_part in PART and r.body_part != HOLDOUT:
         xy = player_xy(fr, r.player)
         ratio, sh, sxy = PART[r.body_part]
         if xy is not None:
@@ -119,7 +121,8 @@ for r in bc.itertuples():
     fr = int(fm.get(int(r.frame), -1))
     if fr < 0 or fr in events:
         continue
-    events[fr] = (None, SAND_H, SAND_SIG, None) if (r.event_type != 'touch' and r.ball_on_sand) else None
+    sand_ok = SAND_USE == 'all' or (fr % 2 == 0) == (SAND_USE == 'even')
+    events[fr] = (None, SAND_H, SAND_SIG, None) if (r.event_type != 'touch' and r.ball_on_sand is True and sand_ok) else None
 ev_frames = np.array(sorted(events))
 print(f'{len(ev_frames)} ball events, {sum(v is not None for v in events.values())} with an anchor')
 

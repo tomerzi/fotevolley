@@ -23,3 +23,29 @@ Reading:
 - OCCL helps a little on its own.
 - DRAG as implemented is broken, not disproved: the fitted k is plausible, but the per-frame estimator then fits
   far fewer flights (8,781 vs 11,210 frames), so most touches fall back to the size estimate. To fix before judging.
+
+## Drag, fixed (same day)
+
+`estimate_drag.py` keeps the no-drag flights and refits each one with drag from its no-drag solution (RK4, 8 steps
+per frame), so both versions cover the same 825 flights. With k = 0 it reproduces the CHEST result exactly.
+Scored on the odd marks, CHEST camera, against the chest point (median / MAE):
+
+| drag k (1/m) | vs chest point | ball-player distance |
+|---|---|---|
+| 0 | -0.07 / 0.14 m | 0.46 m |
+| 0.01 | -0.08 / 0.15 m | 0.46 m |
+| 0.02 | -0.08 / 0.16 m | 0.41 m |
+| 0.03 | -0.10 / 0.19 m | 0.46 m |
+| 0.013, fitted with the camera (DRAG + CHEST) | -0.06 / 0.14 m | 0.51 m |
+
+Drag is physically plausible (k ~ 0.013-0.022) but does not change the chest touches: those flights are short.
+
+## Sand landings as a check
+
+Heights at the 37 sand landings of data/contacts/ball_contacts_v3.csv (should be 0.11 m): 0.38 m (no drag),
+0.45-0.49 m with drag. Anchoring half of them (`ANCHORS=sand SAND_USE=even` in chest_marks/estimate_marked.py)
+brings those to 0.12 m but the held-out half only from 0.45 to 0.39 m. The lowest fitted height within +-3 frames
+of a landing is often 1 frame away and some events are wrong (6 m up), so the landing labels themselves are noisy:
+at landing speed (~8 m/s) one frame is ~0.3 m. Hand-checked landings would make them a usable reference.
+
+Best so far: CHEST (with or without the fitted drag): chest touches -0.06 / 0.14 m on held-out marks.
