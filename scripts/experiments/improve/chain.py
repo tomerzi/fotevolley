@@ -97,7 +97,7 @@ if NET != 'none':
     nt_frames = [int(fm_[f]) for f in tl_[tl_.kind == 'net'].frame if f in fm_.index]
     for i, d in enumerate(FL):
         fr = np.arange(d['f0'], d['f1'] + 1)
-        xs = pos(d['x0'], d['f0'], fr)[:, 0] - 8.0
+        xs = d['x0'][0] + d['x0'][3] * (fr - d['f0']) / FPS - 8.0  # X is not affected by gravity
         for k_ in np.flatnonzero(np.sign(xs[:-1]) != np.sign(xs[1:])):
             f = int(fr[k_] if abs(xs[k_]) < abs(xs[k_ + 1]) else fr[k_ + 1])
             if par(f, NET) and all(abs(f - g) > 6 for g in nt_frames):
