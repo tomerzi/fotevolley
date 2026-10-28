@@ -1,0 +1,18 @@
+{
+ "BRA_A": {
+  "stature_m": 1.764,
+  "source": "measured"
+ },
+ "BRA_B": {
+  "stature_m": 1.662,
+  "source": "measured"
+ },
+ "ISR_A": {
+  "stature_m": 1.724,
+  "source": "measured"
+ },
+ "ISR_B": {
+  "stature_m": 1.685,
+  "source": "measured"
+ }
+}

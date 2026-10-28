@@ -7,3 +7,7 @@ __pycache__/
 data/contacts/review/
 # Court-scale experiment runs in progress (results kept in scan.csv)
 data/experiments/court_scale/s*/
+data/experiments/chest_marks/run_*/
+data/experiments/chest_marks/score_physics/
+data/experiments/chest_marks/score_even/
+data/experiments/chest_marks/calib_even/
