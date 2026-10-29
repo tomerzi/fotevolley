@@ -70,7 +70,7 @@ summary{cursor:pointer;padding:10px 14px;font-weight:500}
     <div class="progress"><span id="ptext">0 / 0</span><span class="pbar" id="pbar"></span></div>
   </header>
   <div class="howto" id="howto">
-    <div><b>מה עושים:</b> בכל תמונה יש כתם כהה עגול על החול — <b>הצל של הכדור</b> (לא הכדור עצמו, ולא הצל של שחקן). הקטע מתנגן בלולאה כדי שיהיה קל לראות את הכתם זז. <b>לוחצים על מרכז הצל</b> בפריים שמסומן 0 (או בכל פריים אחר), ואז "שמירה". אם אין צל שרואים — "אין צל".</div>
+    <div><b>מה עושים:</b> בכל תמונה יש כתם כהה עגול על החול — <b>הצל של הכדור</b> (לא הכדור עצמו, ולא הצל של שחקן). הקטע מתנגן בלולאה כדי שיהיה קל לראות את הכתם זז. <b>לוחצים על מרכז הצל</b> בפריים שמסומן 0 (או בכל פריים אחר) — הלחיצה <b>שומרת מיד</b> ועוברת לפריים הבא. טעיתם? "חזרה לקודמת" ולוחצים שוב. אם אין צל שרואים — "אין צל".</div>
     <div>מקשים: <kbd>←</kbd> <kbd>→</kbd> פריים · <kbd>רווח</kbd> ניגון/עצירה · <kbd>Enter</kbd> שמירה · <kbd>N</kbd> אין צל · <kbd>S</kbd> לא ברור · <kbd>Backspace</kbd> חזרה</div>
   </div>
 
@@ -79,7 +79,7 @@ summary{cursor:pointer;padding:10px 14px;font-weight:500}
     <div class="viewer">
       <div class="stage" id="stage"><canvas id="cv" width="720" height="720" aria-label="הפריים הנוכחי — לחיצה מסמנת את מרכז הצל"></canvas><span class="badge" id="badge" dir="ltr">0</span></div>
       <div class="side">
-        <button type="button" class="answer yes" id="yes" disabled>שמירה <kbd>Enter</kbd></button>
+        <button type="button" class="answer yes" id="yes">שמירה <kbd>Enter</kbd></button>
         <button type="button" class="answer" id="no">אין צל שרואים <kbd>N</kbd></button>
         <button type="button" class="answer" id="skip">לא ברור / דלג <kbd>S</kbd></button>
         <button type="button" class="small wide" id="back">חזרה לקודמת</button>
@@ -129,7 +129,6 @@ function open(i) {
   const l = L[cur], m = marks[l.id];
   frame = m && m.offset !== undefined ? m.offset + HALF : HALF;
   pick = m && m.shadow === true ? { k: m.offset + HALF, x: m.cx, y: m.cy } : null;
-  $('#yes').disabled = !pick;
   playing = !m; syncPlay();
   $('#title').textContent = `צל ${cur + 1} מתוך ${L.length}`;
   $('#meta').textContent = `${fmt(l.id)} · פריים ${l.id} · הכדור בגובה כ-${l.h.toFixed(1)} מ'`;
@@ -179,8 +178,8 @@ $('#auto').addEventListener('click', () => { showAuto = !showAuto; $('#auto').se
 $('#cv').addEventListener('click', e => {
   const r = e.currentTarget.getBoundingClientRect();
   pick = { k: frame, x: (e.clientX - r.left) / r.width * CROP, y: (e.clientY - r.top) / r.height * CROP };
-  stop(); $('#yes').disabled = false; draw();
-  $('#status').textContent = `נבחר מקום בפריים ${frame - HALF > 0 ? '+' : ''}${frame - HALF}. לחצו "שמירה" (או Enter), או לחצו שוב כדי לתקן.`;
+  stop(); draw();
+  answer(true);
 });
 
 async function answer(kind) {
@@ -196,10 +195,10 @@ async function answer(kind) {
     const next = L.findIndex((x, i) => i > cur && !marks[x.id]);
     const any = L.findIndex(x => !marks[x.id]);
     if (next < 0 && any < 0) { renderProgress(); $('#status').textContent = 'כל הצללים סומנו. תודה!'; return; }
-    open(next >= 0 ? next : any);
-    $('#status').textContent = 'נשמר.';
+    $('#status').textContent = kind === true ? 'נשמר ✓ — עובר לפריים הבא…' : 'נשמר ✓';
+    setTimeout(() => { if (L[cur] === l) { open(next >= 0 ? next : any); $('#status').textContent = 'הקודם נשמר ✓'; } }, kind === true ? 700 : 150);
   } catch (err) {
-    $('#status').textContent = err?.code === 'permission_denied' ? 'אין לך הרשאה לשמור בדף הזה.' : 'השמירה נכשלה. נסו שוב בעוד רגע.';
+    $('#status').textContent = err?.code === 'permission_denied' ? 'אין לך הרשאה לשמור בדף הזה.' : `השמירה נכשלה (${err?.code || err?.message || err}). נסו שוב בעוד רגע.`;
   }
 }
 $('#yes').addEventListener('click', () => answer(true));

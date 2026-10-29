@@ -1,15 +1,25 @@
 {
- "source": "data/experiments/improve/final (scripts/experiments/improve/run_final.sh + chain.py DRAG=1 SAND_USE=all SIZE_FIX=all)",
+ "source": "data/experiments/shadow (scripts/experiments/shadow/run_final.sh: chain.py with the ball's shadow (pass 2), NET=all, CHEST_MARKS=all, SAND_USE=all, SIZE_FIX=all, no drag)",
  "court": "blue lines 16 x 8 m",
  "net_top_m": 2.2,
  "antenna_stripes": "8 edges, 2.30-3.00 m",
  "ball_d_m": 0.22,
  "gravity": 9.81,
- "k_drag": 0.0135,
+ "k_drag": 0.0,
  "size_fix": "ball px = 1.198 x box px - 5.69 (41 hand-marked landings)",
  "marks": "94 hand-marked chest touches (ball at the pose chest point), 41 hand-marked sand landings (z = 0.11 m)",
  "checks": {
-  "held_out_chest_vs_chest_point_mae_m": 0.12,
-  "held_out_landings_mae_m": 0.12
- }
+  "held_out_chest_marked_height_mae_m": 0.12,
+  "held_out_ball_player_distance_m": 0.25,
+  "held_out_landings_mae_m": 0.08,
+  "net_crossings_below_top_pct": 12,
+  "net_crossings_short_by_m": 0.1
+ },
+ "shadow": {
+  "sun_azimuth_deg": -112.5,
+  "sun_elevation_deg": 43.8,
+  "shadows_used": 4359,
+  "sigma_px": 3
+ },
+ "net_rule": "ball centre >= 2.31 m at every net crossing"
 }
