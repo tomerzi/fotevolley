@@ -16,7 +16,7 @@ a spin (Magnus lift / sidespin) term, constant over the flight.
 SHADOW=<shadows csv>: the ball's shadow on the sand (scripts/experiments/shadow/) is a second view: the ground point
 P_xy + height * sun_xy / tan(elevation) must project onto the detected shadow (sigma SHADOW_SIG px, default 3).
 The sun comes from SUN=<sun.json>. SIZE_SRC=circle: ball size from the circle fit (data/experiments/ball_size/
-circle.csv) instead of the detector box, where available.
+circle.csv) instead of the detector box, where available; SIZE_SRC=silhouette: from the background-subtracted silhouette (silhouette.csv, clean frames).
 Starts from the flights of OUT/nodrag.csv (estimate_drag.py output with the same camera).
 Writes OUT/chain.csv. usage: python scripts/experiments/improve/chain.py CAMERA OUT_DIR
 """
@@ -57,6 +57,10 @@ if os.environ.get('SIZE_SRC') == 'circle':
     cc_ = cc_[(cc_.diam_px > 0.5 * cc_.box_px) & (cc_.diam_px < 1.6 * cc_.box_px)]
     size[cc_.frame.values] = cc_.diam_px.values
     print(f'ball size from the circle fit in {len(cc_)} frames')
+if os.environ.get('SIZE_SRC') == 'silhouette':
+    sl_ = pd.read_csv('data/experiments/ball_size/silhouette.csv'); sl_ = sl_[sl_.ok]
+    size[sl_.frame.values] = sl_.diam_px.values
+    print(f'ball size from the silhouette in {len(sl_)} frames')
 # SIZE_FIX=even|odd|all: the detector's boxes are squeezed towards ~25 px; map box size -> ball size with a line
 # fitted on the hand-marked sand landings of that parity, where the ball's distance is known (ray at z = 0.11 m)
 SIZE_FIX = os.environ.get('SIZE_FIX', 'none')
