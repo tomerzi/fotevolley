@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/home/user/fotevolley/scripts/experiments/improve/chain.py", line 62, in <module>
+    size[sl_.frame.values] = sl_.diam_px.values
+    ~~~~^^^^^^^^^^^^^^^^^^
+ValueError: assignment destination is read-only

@@ -19,3 +19,18 @@ jump between consecutive flights: median 0.74 -> 0.14 m; reprojection median 1.5
 sand landings (odd) n=21: height median 0.25 m (0.11 expected), MAE 0.14 m
 n=40 (odd): fit - marked height median +0.13 m, MAE 0.18 m (vs chest point: -0.04 / 0.11); ball-player distance 0.43 m; marked height 1.40 m; ball in flight median 2.58 / p95 4.24 m
 net crossings (odd) n=67: height median 2.68 m, below the net top 15% (by 0.07 m median)
+== shadow_net
+825 flights, 553 continuity links, 33 sand pins, 130 net crossings, 3 net touches, 0 chest points (vitpose), 4262 shadows
+status 0 nfev 80 cost 28548.1
+jump between consecutive flights: median 0.74 -> 0.16 m; reprojection median 1.80 px
+sand landings (odd) n=21: height median 0.07 m (0.11 expected), MAE 0.07 m
+n=40 (odd): fit - marked height median +0.07 m, MAE 0.13 m (vs chest point: -0.12 / 0.13); ball-player distance 0.28 m; marked height 1.40 m; ball in flight median 2.52 / p95 4.22 m
+net crossings (odd) n=65: height median 2.70 m, below the net top 14% (by 0.16 m median)
+silhouette failed
+    size[sl_.frame.values] = sl_.diam_px.values
+    ~~~~^^^^^^^^^^^^^^^^^^
+ValueError: assignment destination is read-only
+shadow_silhouette failed
+    size[sl_.frame.values] = sl_.diam_px.values
+    ~~~~^^^^^^^^^^^^^^^^^^
+ValueError: assignment destination is read-only
