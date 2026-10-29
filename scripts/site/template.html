@@ -50,6 +50,7 @@ button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);
 .legend i{display:inline-block;width:22px;height:0;border-top:3px solid var(--accent);vertical-align:middle;margin-inline-end:6px}
 .legend i.est{border-top:3px dotted var(--est)}
 .legend i.net{border-top:2px dashed var(--net)}
+.legend i.band{border-top:0;height:12px;background:var(--accent-soft);vertical-align:-2px}
 .legend i.dead{border-top:0;height:12px;background:var(--dead);vertical-align:-2px}
 .canvas-wrap{position:relative;direction:ltr}
 canvas{display:block;width:100%}
@@ -156,7 +157,8 @@ td .bar{display:inline-block;height:8px;background:var(--accent);border-radius:0
         <button id="all" type="button" aria-pressed="false">כל המשחק</button>
       </div>
       <div class="legend">
-        <span><i></i>מסלול בליסטי מותאם</span>
+        <span><i></i>מסלול בליסטי מותאם (או לפי השחקן / הצל)</span>
+        <span><i class="band"></i>טווח אי-ודאות (±1σ): כ-8 ס"מ במעוף עם צללים, כ-25 ס"מ בלי, כ-40 ס"מ לפי גודל בלבד</span>
         <span><i class="est"></i>הערכה לפי גודל הכדור בלבד</span>
         <span><i class="net"></i>רשת 2.20 מ'</span>
         <span><i class="dead"></i>זמן מת בין נקודות (לא נספר)</span>
@@ -247,7 +249,7 @@ td .bar{display:inline-block;height:8px;background:var(--accent);border-radius:0
 
 <script>
 const D = __DATA__;
-const FPS = D.summary.fps, H = D.h, M = D.m, N = H.length, DEAD = D.dead || [];
+const FPS = D.summary.fps, H = D.h, M = D.m, N = H.length, DEAD = D.dead || [], SG = D.sg && D.sg.some(v => v !== null) ? D.sg : [];
 const isDead = f => DEAD.some(([d0, d1]) => f >= d0 && f <= d1);
 const $ = s => document.querySelector(s);
 const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
@@ -335,10 +337,19 @@ function draw() {
   // net
   g.strokeStyle = css('--net'); g.setLineDash([6, 5]); g.lineWidth = 1.5;
   g.beginPath(); g.moveTo(PAD.l, y(220)); g.lineTo(w - PAD.r, y(220)); g.stroke(); g.setLineDash([]);
+  // uncertainty band (+-1 sigma per frame)
+  if (SG.length) {
+    g.fillStyle = css('--accent-soft');
+    const st2 = Math.max(1, Math.ceil((b - a) / (w * 1.5)));
+    let run = [];
+    const flush = () => { if (run.length > 1) { g.beginPath(); run.forEach(([X, lo], i) => i ? g.lineTo(X, lo) : g.moveTo(X, lo)); for (let i = run.length - 1; i >= 0; i--) g.lineTo(run[i][0], run[i][2]); g.closePath(); g.fill(); } run = []; };
+    for (let f = a; f <= b; f += st2) { const c = H[f], s = SG[f]; if (c === null || s === null || isDead(f)) { flush(); continue; } run.push([x(f), y(Math.max(0, c - s)), y(c + s)]); }
+    flush();
+  }
   // data
   const lw = (b - a) > 3000 ? 1 : 2;
   series(g, x, y, a, b, ['s', 'e'], css('--est'), [2, 3], lw);
-  series(g, x, y, a, b, ['f'], css('--accent'), [], lw);
+  series(g, x, y, a, b, ['f', 't', 'w'], css('--accent'), [], lw);
   // rally max marker
   if (b - a < 3000) {
     const p = P[rallyIdx];
@@ -355,9 +366,10 @@ function draw() {
     const X = x(hoverF);
     g.strokeStyle = css('--ink-2'); g.lineWidth = 1; g.beginPath(); g.moveTo(X, PAD.t); g.lineTo(X, h - PAD.b); g.stroke();
     const c = H[hoverF], m = M[hoverF];
-    if (c !== null) { g.fillStyle = m === 'f' ? css('--accent') : css('--est'); g.beginPath(); g.arc(X, y(c), 4.5, 0, 7); g.fill(); }
-    const label = { f: 'מסלול מותאם', s: 'לפי גודל', e: 'קצה התמונה', '-': 'הכדור לא זוהה' }[m];
-    tip.innerHTML = `${fmtT(hoverF)} · פריים ${hoverF}<br>${c === null ? '—' : fmtH(c) + ' מ\''} · ${label}${isDead(hoverF) ? '<br>זמן מת: לא נספר' : ''}`;
+    if (c !== null) { g.fillStyle = 'ftw'.includes(m) ? css('--accent') : css('--est'); g.beginPath(); g.arc(X, y(c), 4.5, 0, 7); g.fill(); }
+    const label = { f: 'מסלול מותאם', s: 'לפי גודל', e: 'קצה התמונה', '-': 'הכדור לא זוהה', t: 'לפי השחקן בנגיעה', w: 'לפי הצל' }[m];
+    const sgv = SG.length ? SG[hoverF] : null;
+    tip.innerHTML = `${fmtT(hoverF)} · פריים ${hoverF}<br>${c === null ? '—' : fmtH(c) + ' מ\''}${sgv !== null && c !== null ? ` ± ${sgv} ס"מ` : ''} · ${label}${isDead(hoverF) ? '<br>זמן מת: לא נספר' : ''}`;
     tip.hidden = false;
     const tw = tip.offsetWidth;
     tip.style.left = Math.min(w - tw - 4, Math.max(4, X + 12)) + 'px';

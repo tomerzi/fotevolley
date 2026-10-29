@@ -1,0 +1,12 @@
+588 size-only frames with a shadow, 133 triangulated (residual < 3 px)
+185 size-only frames at a touch placed at the player's depth
+             count  median
+method                    
+flight_fit   11190    0.08
+missing          0     NaN
+shadow_tri     133    0.15
+size_only     1646    0.40
+touch_depth    185    0.10
+sand landings (all) n=36: height median 0.10 m (0.11 expected), MAE 0.03 m
+n=85 (all): fit - marked height median +0.09 m, MAE 0.12 m (vs chest point: -0.09 / 0.11); ball-player distance 0.27 m; marked height 1.37 m; ball in flight median 2.51 / p95 4.20 m
+net crossings (all) n=131: height median 2.67 m, below the net top 10% (by 0.12 m median)

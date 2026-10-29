@@ -7,14 +7,15 @@ TPL=os.path.join(os.path.dirname(os.path.abspath(__file__)),'template.html')
 if not os.path.exists(TPL): TPL=OUT+'/template.html'
 for f in glob.glob(OUT+'/frames/*'): os.remove(f)
 cam=Camera()
-h=pd.read_csv('data/analysis/ball_height_v2.csv');b=pd.read_csv('data/boxes/ball_boxes_corrected3.csv')
+h=pd.read_csv(os.environ.get('BALL_CSV','data/analysis/ball_height_v2.csv'));b=pd.read_csv('data/boxes/ball_boxes_corrected3.csv')
 ev=pd.read_csv('data/points/point_events_corrected.csv')
 X=h[['court_x_m','court_y_m']].fillna(0).values
 g=cam.project(np.c_[X,np.zeros(len(X))])
 edge=(b.center_x.values<120)|(b.center_x.values>1800)|(g[:,0]<0)|(g[:,0]>1920)|(g[:,1]<0)|(g[:,1]>1080)|(X[:,0]<-4)|(X[:,0]>22)|(X[:,1]<-3)|(X[:,1]>13)
 h['edge']=edge&(h.method!='missing')
 hc=[None if np.isnan(v) else int(round(v*100)) for v in h.height_m]
-meth=''.join('e' if e else {'flight_fit':'f','size_only':'s','missing':'-'}[m] for m,e in zip(h.method,h.edge))
+meth=''.join('e' if e else {'flight_fit':'f','size_only':'s','missing':'-','touch_depth':'t','shadow_tri':'w'}[m] for m,e in zip(h.method,h.edge))
+sg=[None if ('height_sigma_m' not in h or np.isnan(v)) else int(round(v*100)) for v in (h.height_sigma_m if 'height_sigma_m' in h else h.height_m*np.nan)]
 # dead time: anything outside the 60 rallies (data/points/rallies_v2.csv) is shown but not counted
 ral=pd.read_csv('data/points/rallies_v2.csv')
 inplay=np.zeros(len(h),bool)
@@ -105,6 +106,6 @@ cd=pd.read_csv('data/analysis/conceded_partner_distance.csv')
 SRC={'hand-marked moment':'hand','own error (last touch)':'error','hand-marked landing':'landing','ball track landing':'track','rally end (fallback)':'end'}
 conceded=[dict(n=int(r.rally),set=int(r.set),loser=r.loser,score=r.score,frame=int(r.point_frame),d=None if np.isnan(r.distance_m) else float(r.distance_m),
     src=SRC[r.source],unc=bool(r.uncertain)) for r in cd.itertuples()]
-d=json.dumps(dict(conceded=conceded,h=hc,m=meth,points=pts,summary=summary,shots=shots,players=players,speed=speed,sstats=sstats,touches=touches,cov=cov,dead=dead),separators=(',',':'))
+d=json.dumps(dict(conceded=conceded,h=hc,m=meth,sg=sg,points=pts,summary=summary,shots=shots,players=players,speed=speed,sstats=sstats,touches=touches,cov=cov,dead=dead),separators=(',',':'))
 t=open(TPL).read().replace('__NSEG__',str(len(glob.glob(OUT+'/video/part*.mp4'))));open(OUT+'/index.html','w').write(t.replace('__DATA__',d))
 print(summary);print([s['src'] for s in shots])

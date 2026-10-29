@@ -50,3 +50,28 @@ Marks in `data/experiments/shadow_marks/marks/shadows/`: 89 shadows, 8 no shadow
 - Added to the fit (`run_hand.sh`, they replace the automatic shadow at the same frame): held-out landings 0.10 / MAE
   0.09 m, chest touches +0.06 / 0.13 m, ball-player 0.25 m, net 11 % (0.13 m) - the same as without them (89 marks
   next to ~4,300 automatic shadows). Promoted (`chain_final_hand.csv` -> `data/analysis/ball_height_v2.csv`).
+
+## Options A1-A5 (2026-10-29 night) — preview only, not on the site yet
+Held-out (sand/size fix from the even half, scored on the odd half):
+
+| variant | landings median / MAE | chest touches median / MAE | ball-player | below the net |
+|---|---|---|---|---|
+| site now (pass 2 + hand shadows) | 0.10 / 0.09 | +0.06 / 0.13 | 0.25 m | 11 % (0.13 m) |
+| A3+A4: pass-3 shadows (window 25 px, threshold 0.86) + hand | **0.09 / 0.06** | +0.07 / 0.12 | 0.27 m | 11 % (0.11 m) |
+| A1: + camera and sun refined (free) | 0.05 / 0.08 | +0.00 / 0.11 | 0.26 m | 15 % (0.10 m) |
+| A1: + camera refined with a small prior, + sun | 0.06 / 0.07 | +0.01 / 0.11 | 0.24 m | 15 % (0.10 m) |
+| sun refined only | 0.10 / 0.09 | +0.06 / 0.12 | 0.27 m | 12 % (0.12 m) |
+
+A1 is not used: the camera moves far (focal +105 px, principal point +69 px, 2.5 deg) and fits the court
+landmarks worse (rms 2.64 -> 4.15 px); chest touches improve but landings and net crossings get worse, so the two
+references disagree by ~6 cm; this needs outside data (venue measurements or a second camera) to settle.
+A2 (frames outside fitted flights, `triangulate.py`): ball shadow alone fails at touches (merges with the player's
+shadow); at a labelled touch (+-2 frames) the ball is put at the touching player's depth (185 frames): chest touches
+outside flights MAE 0.28 -> 0.02 m (vs the hand-marked geometry, which uses the same player position - consistency,
+not an independent test); 133 other frames from single-frame shadow triangulation (residual < 3 px; one landing check:
+0.39 -> 0.09 m, true 0.11).
+A5 (`uncertainty.py`): per-frame sigma by how the frame was measured, from the held-out errors: flights with >= 3
+shadows 0.08 m (landings MAE 0.056, rms 0.073), flights with fewer shadows 0.25 m (chest MAE 0.25), touch depth 0.10,
+shadow triangulation 0.15, size only 0.40 m (chest MAE 0.28). 67 % of flight frames are in flights with >= 3 shadows.
+Final candidate (all marks): `final_p3/ball_height.csv` (`run_final_p3.sh`): landings 0.10 m (MAE 0.03 in-sample),
+chest MAE 0.12, net 10 %.
