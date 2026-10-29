@@ -1,0 +1,232 @@
+<title>סימון צל הכדור</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans+Hebrew:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one task at a time — big slow-motion viewer, a scrubber, three large answers; the list folds away. Sand neutrals, court-blue accent */
+:root{
+  --bg:#f6f4ef; --surface:#ffffff; --ink:#1b2430; --ink-2:#4a5463; --muted:#7d8591; --line:#e3dfd6;
+  --accent:#1f5fbf; --accent-soft:#1f5fbf1f; --done:#1d7a4a; --no:#b4561f; --skip:#8a6d1f; --mark:#ff3b6b;
+  --display:"Barlow Condensed","Arial Narrow",sans-serif; --body:"IBM Plex Sans Hebrew","Segoe UI",Arial,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12161c; --surface:#1a2029; --ink:#e9ecf0; --ink-2:#b4bcc7; --muted:#8a93a0; --line:#2a323d;
+  --accent:#6aa3ff; --accent-soft:#6aa3ff26; --done:#4cc38a; --no:#ee8a55; --skip:#d9b45a; --mark:#ff6b8e; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161c; --surface:#1a2029; --ink:#e9ecf0; --ink-2:#b4bcc7; --muted:#8a93a0; --line:#2a323d;
+  --accent:#6aa3ff; --accent-soft:#6aa3ff26; --done:#4cc38a; --no:#ee8a55; --skip:#d9b45a; --mark:#ff6b8e; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5}
+.wrap{max-width:980px;margin:0 auto;padding-block:16px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:14px}
+header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 20px}
+h1{font-family:var(--display);font-size:2rem;margin:0;line-height:1}
+.progress{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:.9rem;color:var(--ink-2)}
+.pbar{width:200px;height:10px;background:var(--line);border-radius:5px;overflow:hidden;display:flex}
+.pbar i{display:block;height:100%}
+.howto{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 14px;display:grid;gap:4px;font-size:.92rem}
+.howto b{font-weight:700}
+kbd{font-family:var(--mono);font-size:.78rem;border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:0 5px;background:var(--bg)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px;display:grid;gap:12px}
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 16px}
+.top h2{font-family:var(--display);font-size:1.6rem;margin:0}
+.top .meta{font-family:var(--mono);font-size:.8rem;color:var(--muted)}
+.viewer{display:grid;grid-template-columns:minmax(0,min(560px,62vh)) 210px;justify-content:center;gap:14px;align-items:start}
+.stage{position:relative;aspect-ratio:1/1;max-width:100%;background:#000;border-radius:6px;overflow:hidden}
+.stage canvas{width:100%;height:100%;display:block;cursor:crosshair}
+.badge{position:absolute;inset-block-start:10px;inset-inline-start:10px;background:#000b;color:#fff;font-family:var(--mono);font-size:.85rem;padding:3px 8px;border-radius:4px}
+.side{display:grid;gap:10px}
+.answer{font:inherit;font-size:1.05rem;font-weight:700;border:2px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:14px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px;text-align:start}
+.answer:hover{border-color:var(--accent)}
+.answer.yes{background:var(--done);border-color:var(--done);color:var(--surface)}
+.answer:disabled{opacity:.45;cursor:not-allowed}
+.answer kbd{color:var(--ink)}
+.small{font:inherit;font-size:.9rem;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:6px;padding:7px 10px;cursor:pointer}
+.small:hover{border-color:var(--accent)}
+.small[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.status{font-size:.88rem;color:var(--ink-2);min-height:1.4em}
+.scrub{display:grid;gap:8px}
+.scrub input[type=range]{width:100%;accent-color:var(--accent);direction:ltr}
+.strip{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;direction:ltr;max-width:560px}
+.strip button{all:unset;cursor:pointer;aspect-ratio:1/1;background-size:700% 100%;border:3px solid transparent;border-radius:4px;position:relative}
+.strip button[aria-pressed="true"]{border-color:var(--accent)}
+.strip button.chosen{border-color:var(--done)}
+.strip button:focus-visible{outline:2px solid var(--accent)}
+.strip span{position:absolute;inset:auto 0 0 0;font-family:var(--mono);font-size:.6rem;background:#000a;color:#fff;text-align:center}
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+details{background:var(--surface);border:1px solid var(--line);border-radius:8px}
+summary{cursor:pointer;padding:10px 14px;font-weight:500}
+.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:6px;padding:0 14px 14px}
+.list button{font:inherit;font-family:var(--mono);font-size:.78rem;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:4px;padding:5px;cursor:pointer;display:flex;justify-content:space-between;gap:4px}
+.list button[aria-current="true"]{outline:2px solid var(--accent)}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--line);align-self:center}
+.dot.yes{background:var(--done)} .dot.no{background:var(--no)} .dot.skip{background:var(--skip)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (max-width:720px){.viewer{grid-template-columns:1fr}.strip{grid-template-columns:repeat(7,1fr)}.side{grid-template-columns:1fr 1fr}.side .status,.side .wide{grid-column:1/-1}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+
+<div class="wrap" dir="rtl">
+  <header>
+    <h1>סימון צל הכדור</h1>
+    <div class="progress"><span id="ptext">0 / 0</span><span class="pbar" id="pbar"></span></div>
+  </header>
+  <div class="howto" id="howto">
+    <div><b>מה עושים:</b> בכל תמונה יש כתם כהה עגול על החול — <b>הצל של הכדור</b> (לא הכדור עצמו, ולא הצל של שחקן). הקטע מתנגן בלולאה כדי שיהיה קל לראות את הכתם זז. <b>לוחצים על מרכז הצל</b> בפריים שמסומן 0 (או בכל פריים אחר), ואז "שמירה". אם אין צל שרואים — "אין צל".</div>
+    <div>מקשים: <kbd>←</kbd> <kbd>→</kbd> פריים · <kbd>רווח</kbd> ניגון/עצירה · <kbd>Enter</kbd> שמירה · <kbd>N</kbd> אין צל · <kbd>S</kbd> לא ברור · <kbd>Backspace</kbd> חזרה</div>
+  </div>
+
+  <section class="card" aria-label="הצל הנוכחי">
+    <div class="top"><h2 id="title">—</h2><span class="meta" id="meta"></span></div>
+    <div class="viewer">
+      <div class="stage" id="stage"><canvas id="cv" width="720" height="720" aria-label="הפריים הנוכחי — לחיצה מסמנת את מרכז הצל"></canvas><span class="badge" id="badge" dir="ltr">0</span></div>
+      <div class="side">
+        <button type="button" class="answer yes" id="yes" disabled>שמירה <kbd>Enter</kbd></button>
+        <button type="button" class="answer" id="no">אין צל שרואים <kbd>N</kbd></button>
+        <button type="button" class="answer" id="skip">לא ברור / דלג <kbd>S</kbd></button>
+        <button type="button" class="small wide" id="back">חזרה לקודמת</button>
+        <div class="status wide" id="status" role="status"></div>
+      </div>
+    </div>
+    <div class="scrub">
+      <input type="range" id="range" min="0" max="6" step="1" value="3" aria-label="בחירת פריים">
+      <div class="strip" id="strip"></div>
+      <div class="controls">
+        <button type="button" class="small" id="play" aria-pressed="true">עצירה</button>
+        <button type="button" class="small" id="speed" aria-pressed="false">מהירות: איטי</button>
+        <button type="button" class="small" id="auto" aria-pressed="false">הצגת המקום הצפוי</button>
+      </div>
+    </div>
+  </section>
+
+  <details>
+    <summary>כל הפריימים (<span id="lcount"></span>)</summary>
+    <div class="list" id="list"></div>
+  </details>
+</div>
+
+<script>
+const T = __DATA__;
+const $ = s => document.querySelector(s);
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const CROP = T.crop, HALF = T.half, NF = 2 * HALF + 1, L = T.items;
+const fmt = f => { const s = f / 25; return `${Math.floor(s / 60)}:${(s % 60).toFixed(1).padStart(4, '0')}`; };
+let marks = {}, cur = 0, frame = HALF, playing = true, slow = true, showAuto = false, db = null, me = null, history = [], pick = null;
+const img = new Image();
+
+function state(m) { return !m ? '' : m.shadow === true ? 'yes' : m.shadow === false ? 'no' : 'skip'; }
+function renderProgress() {
+  const n = L.length, c = { yes: 0, no: 0, skip: 0 };
+  L.forEach(l => { const s = state(marks[l.id]); if (s) c[s]++; });
+  const done = c.yes + c.no + c.skip;
+  $('#ptext').textContent = `${done} / ${n} סומנו`;
+  $('#pbar').innerHTML = ['yes', 'no', 'skip'].map(k => `<i style="width:${c[k] / n * 100}%;background:var(--${k === 'yes' ? 'done' : k})"></i>`).join('');
+  $('#lcount').textContent = `${done} מתוך ${n}`;
+  $('#list').innerHTML = L.map((l, i) => `<button type="button" data-i="${i}" aria-current="${i === cur}">${fmt(l.id)}<span class="dot ${state(marks[l.id])}"></span></button>`).join('');
+}
+$('#list').addEventListener('click', e => { const b = e.target.closest('button'); if (b) open(+b.dataset.i); });
+
+function open(i) {
+  cur = (i + L.length) % L.length;
+  const l = L[cur], m = marks[l.id];
+  frame = m && m.offset !== undefined ? m.offset + HALF : HALF;
+  pick = m && m.shadow === true ? { k: m.offset + HALF, x: m.cx, y: m.cy } : null;
+  $('#yes').disabled = !pick;
+  playing = !m; syncPlay();
+  $('#title').textContent = `צל ${cur + 1} מתוך ${L.length}`;
+  $('#meta').textContent = `${fmt(l.id)} · פריים ${l.id} · הכדור בגובה כ-${l.h.toFixed(1)} מ'`;
+  $('#status').textContent = m ? (m.shadow === true ? 'סומן. אפשר ללחוץ שוב כדי לשנות.' : m.shadow === false ? 'סומן: אין צל.' : 'סומן כלא ברור.') : '';
+  img.onload = () => { renderStrip(); draw(); };
+  img.src = `strips/s${l.id}.jpg`;
+  renderProgress();
+}
+function renderStrip() {
+  const l = L[cur], m = marks[l.id];
+  $('#strip').innerHTML = Array.from({ length: NF }, (_, k) => `<button type="button" data-k="${k}" aria-pressed="${k === frame}" class="${m && m.shadow === true && m.offset === k - HALF ? 'chosen' : ''}" aria-label="פריים ${k - HALF}" style="background-image:url(strips/s${l.id}.jpg);background-position:${k / (NF - 1) * 100}% 0"><span>${k - HALF > 0 ? '+' : ''}${k - HALF}</span></button>`).join('');
+}
+$('#strip').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { setFrame(+b.dataset.k); stop(); } });
+$('#strip').addEventListener('dblclick', e => { const b = e.target.closest('button'); if (b) { setFrame(+b.dataset.k); answer(true); } });
+$('#range').addEventListener('input', e => { setFrame(+e.target.value); stop(); });
+function setFrame(k) {
+  frame = Math.max(0, Math.min(NF - 1, k));
+  $('#range').value = frame;
+  document.querySelectorAll('#strip button').forEach((b, i) => b.setAttribute('aria-pressed', i === frame));
+  draw();
+}
+function draw() {
+  const cv = $('#cv'), g = cv.getContext('2d'), W = cv.width, s = W / CROP;
+  g.clearRect(0, 0, W, W);
+  if (img.complete && img.naturalWidth) g.drawImage(img, frame * CROP, 0, CROP, CROP, 0, 0, W, W);
+  const auto = L[cur].pred;
+  if (showAuto && frame === HALF) { g.setLineDash([7, 6]); g.strokeStyle = css('--accent'); g.lineWidth = 2; g.beginPath(); g.arc(auto[0] * s, auto[1] * s, 40, 0, 7); g.stroke(); g.setLineDash([]); }
+  if (pick && pick.k === frame) {
+    g.strokeStyle = css('--mark'); g.lineWidth = 3; g.beginPath(); g.arc(pick.x * s, pick.y * s, 14, 0, 7); g.stroke();
+    g.beginPath(); g.moveTo(pick.x * s - 22, pick.y * s); g.lineTo(pick.x * s - 8, pick.y * s); g.moveTo(pick.x * s + 8, pick.y * s); g.lineTo(pick.x * s + 22, pick.y * s);
+    g.moveTo(pick.x * s, pick.y * s - 22); g.lineTo(pick.x * s, pick.y * s - 8); g.moveTo(pick.x * s, pick.y * s + 8); g.lineTo(pick.x * s, pick.y * s + 22); g.stroke();
+  }
+  $('#badge').textContent = `${frame - HALF > 0 ? '+' : ''}${frame - HALF}`;
+}
+
+let timer = null;
+function syncPlay() {
+  clearInterval(timer);
+  $('#play').textContent = playing ? 'עצירה' : 'ניגון';
+  $('#play').setAttribute('aria-pressed', playing);
+  if (playing && !matchMedia('(prefers-reduced-motion: reduce)').matches) timer = setInterval(() => setFrame((frame + 1) % NF), slow ? 280 : 120);
+}
+function stop() { if (playing) { playing = false; syncPlay(); } }
+$('#play').addEventListener('click', () => { playing = !playing; syncPlay(); });
+$('#speed').addEventListener('click', () => { slow = !slow; $('#speed').textContent = `מהירות: ${slow ? 'איטי' : 'רגיל'}`; $('#speed').setAttribute('aria-pressed', !slow); syncPlay(); });
+$('#auto').addEventListener('click', () => { showAuto = !showAuto; $('#auto').setAttribute('aria-pressed', showAuto); draw(); });
+$('#cv').addEventListener('click', e => {
+  const r = e.currentTarget.getBoundingClientRect();
+  pick = { k: frame, x: (e.clientX - r.left) / r.width * CROP, y: (e.clientY - r.top) / r.height * CROP };
+  stop(); $('#yes').disabled = false; draw();
+  $('#status').textContent = `נבחר מקום בפריים ${frame - HALF > 0 ? '+' : ''}${frame - HALF}. לחצו "שמירה" (או Enter), או לחצו שוב כדי לתקן.`;
+});
+
+async function answer(kind) {
+  if (!db) { $('#status').textContent = 'השמירה לא זמינה בתצוגה הזו. פתחו את הדף מחובר לחשבון ב-claude.ai.'; return; }
+  const l = L[cur];
+  if (kind === true && !pick) { $('#status').textContent = 'קודם לוחצים על הצל בתמונה.'; return; }
+  const doc = { shadow: kind, center_frame: l.id, kind: l.kind, by: me, at: new Date().toISOString() };
+  if (kind === true) { doc.offset = pick.k - HALF; doc.frame = l.id + pick.k - HALF; doc.cx = +pick.x.toFixed(1); doc.cy = +pick.y.toFixed(1); doc.u = +(l.x0 + pick.x).toFixed(1); doc.v = +(l.y0 + pick.y).toFixed(1); }
+  $('#status').textContent = 'שומר…';
+  try {
+    await db.collection('shadows').doc(String(l.id)).set(doc);
+    marks[l.id] = doc; history.push(cur);
+    const next = L.findIndex((x, i) => i > cur && !marks[x.id]);
+    const any = L.findIndex(x => !marks[x.id]);
+    if (next < 0 && any < 0) { renderProgress(); $('#status').textContent = 'כל הצללים סומנו. תודה!'; return; }
+    open(next >= 0 ? next : any);
+    $('#status').textContent = 'נשמר.';
+  } catch (err) {
+    $('#status').textContent = err?.code === 'permission_denied' ? 'אין לך הרשאה לשמור בדף הזה.' : 'השמירה נכשלה. נסו שוב בעוד רגע.';
+  }
+}
+$('#yes').addEventListener('click', () => answer(true));
+$('#no').addEventListener('click', () => answer(false));
+$('#skip').addEventListener('click', () => answer(null));
+$('#back').addEventListener('click', () => { if (history.length) open(history.pop()); else open(cur - 1); });
+addEventListener('keydown', e => {
+  if (e.target.closest('input[type=text],textarea')) return;
+  if (e.key === 'ArrowLeft') { setFrame(frame - 1); stop(); e.preventDefault(); }
+  else if (e.key === 'ArrowRight') { setFrame(frame + 1); stop(); e.preventDefault(); }
+  else if (e.key === ' ') { playing = !playing; syncPlay(); e.preventDefault(); }
+  else if (e.key === 'Enter') { if (pick) answer(true); e.preventDefault(); }
+  else if (e.key === 'n' || e.key === 'N' || e.key === 'מ') answer(false);
+  else if (e.key === 's' || e.key === 'S' || e.key === 'ד') answer(null);
+  else if (e.key === 'Backspace') { $('#back').click(); e.preventDefault(); }
+});
+
+renderProgress(); open(0);
+(async () => {
+  db = await window.claude?.use?.('db') ?? null;
+  const user = await window.claude?.use?.('user') ?? null;
+  me = user ? await user.id().catch(() => null) : null;
+  if (!db) { $('#status').textContent = 'השמירה לא זמינה בתצוגה הזו. פתחו את הדף מחובר לחשבון ב-claude.ai.'; return; }
+  let first = true;
+  db.collection('shadows').onSnapshot(snap => {
+    marks = {}; snap.docs.forEach(d => { marks[d.id] = d.data(); });
+    if (first) { first = false; const i = L.findIndex(x => !marks[x.id]); open(i >= 0 ? i : 0); } else renderProgress();
+  }, () => { $('#status').textContent = 'החיבור לשמירה נותק. רעננו את הדף.'; });
+})();
+</script>
