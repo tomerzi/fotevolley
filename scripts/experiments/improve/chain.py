@@ -295,6 +295,8 @@ def residuals(x):
         r.append([(x[IG] - G) / G_SIG])
     if CAM_FIT:
         r.append(LM.residuals(x[IC:IC + 11]))
+        if os.environ.get('CAM_PRIOR') == '1':  # small refinement only: focal/pp +-10 px, k +-0.02, rotation +-0.2 deg, t +-5 cm
+            r.append((x[IC:IC + 11] - C0) / np.r_[10, 10, 10, 0.02, 0.02, [np.radians(0.2)] * 3, [0.05] * 3])
     return np.concatenate([np.ravel(a) for a in r])
 
 
