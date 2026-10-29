@@ -49,7 +49,7 @@ pl = pb.merge(ps, on=['frame', 'player'], how='left')
 pl = {f: t[['player', 'x1', 'x2', 'y2', 'speed_kmh', 'reliable']].values for f, t in pl.groupby('frame')}
 PCOL = {'ISR_A': (214, 120, 42), 'ISR_B': (52, 104, 235), 'BRA_A': (122, 175, 27), 'BRA_B': (0, 161, 237)}  # BGR, chart slots 1-4
 
-COL = {'flight_fit': (230, 140, 40), 'size_only': (40, 170, 230)}  # BGR: blue / amber
+COL = {'flight_fit': (230, 140, 40), 'touch_depth': (230, 140, 40), 'shadow_tri': (230, 140, 40), 'size_only': (40, 170, 230)}  # BGR: blue (fitted / player depth / shadow) / amber (size only)
 FONT = cv2.FONT_HERSHEY_SIMPLEX
 GX, GY0, GY1, GMAX = W - 46, 80, H - 62, 6.0
 
