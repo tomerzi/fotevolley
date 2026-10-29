@@ -1,61 +1,61 @@
-rally,set,loser,score,last_touch,last_touch_team,point_frame,time_sec,source,distance_m,uncertain
-1,1,ISR,0-1,38,BRA,54,2.16,end of ball track,3.06,False
-2,1,BRA,1-1,135,BRA,136,5.44,ball track,3.11,False
-3,1,ISR,1-2,480,ISR,519,20.76,end of ball track,2.21,False
-4,1,BRA,2-2,600,ISR,612,24.48,hand mark,2.24,False
-5,1,ISR,2-3,752,ISR,755,30.2,ball track,2.68,False
-6,1,BRA,3-3,827,BRA,850,34.0,ball track,4.33,False
-7,1,ISR,3-4,996,ISR,1017,40.68,ball track,3.14,False
-8,1,BRA,4-4,1100,ISR,1177,47.08,end of ball track,2.46,False
-9,1,ISR,4-5,1217,BRA,1234,49.36,hand mark,3.36,False
-10,1,BRA,5-5,1509,ISR,1524,60.96,hand mark,3.07,True
-11,1,BRA,6-5,1642,BRA,1678,67.12,hand mark,2.95,False
-12,1,BRA,7-5,1944,BRA,1963,78.52,ball track,7.54,False
-13,1,ISR,7-6,2206,ISR,2217,88.68,end of ball track,3.5,True
-14,1,BRA,8-6,2393,BRA,2406,96.24,end of ball track,4.05,False
-15,1,BRA,9-6,2560,BRA,2621,104.84,hand mark,3.76,False
-16,1,ISR,9-7,2659,ISR,2666,106.64,ball track,2.63,False
-17,1,BRA,10-7,2901,ISR,2925,117.0,hand mark,3.31,False
-18,1,ISR,10-8,2998,BRA,3012,120.48,hand mark,2.16,False
-19,1,ISR,10-9,3302,ISR,3323,132.92,end of ball track,7.24,False
-20,1,ISR,10-10,3790,BRA,3884,155.36,hand mark,3.92,False
-21,1,ISR,10-11,4020,ISR,4096,163.84,end of ball track,3.34,False
-22,1,ISR,10-12,4166,ISR,4205,168.2,hand mark,3.08,False
-23,1,BRA,11-12,4300,ISR,4323,172.92,hand mark,4.43,False
-24,1,ISR,11-13,4500,BRA,4512,180.48,hand mark,3.72,True
-25,1,ISR,11-14,4931,ISR,4938,197.52,hand mark,2.94,False
-26,1,BRA,12-14,5212,BRA,5241,209.64,hand mark,4.57,False
-27,1,ISR,12-15,6186,ISR,6194,247.76,end of ball track,2.03,True
-28,1,ISR,12-16,6718,BRA,6752,270.08,hand mark,2.59,False
-29,1,ISR,12-17,7033,BRA,7065,282.6,hand mark,2.88,False
-30,1,BRA,13-17,7173,ISR,7197,287.88,hand mark,3.03,False
-31,1,ISR,13-18,7962,BRA,7978,319.12,ball track,2.59,False
-32,2,ISR,0-1,8206,ISR,8217,328.68,end of ball track,2.37,False
-33,2,ISR,0-2,8681,ISR,8700,348.0,ball track,3.73,True
-34,2,ISR,0-3,9112,BRA,9145,365.8,end of ball track,3.11,False
-35,2,ISR,0-4,9262,BRA,9263,370.52,ball track,0.96,True
-36,2,ISR,0-5,9638,BRA,9654,386.16,end of ball track,3.35,False
-37,2,BRA,1-5,9756,BRA,9765,390.6,end of ball track,3.57,True
-38,2,BRA,2-5,9967,BRA,9993,399.72,hand mark,1.62,True
-39,2,ISR,2-6,10634,ISR,10647,425.88,hand mark,2.67,False
-40,2,ISR,2-7,10727,ISR,10876,435.04,ball track,4.96,False
-41,2,ISR,2-8,11084,BRA,11098,443.92,end of ball track,3.79,False
-42,2,ISR,2-9,11405,ISR,11413,456.52,ball track,6.56,False
-43,2,ISR,2-10,11712,BRA,11789,471.56,end of ball track,2.31,True
-44,2,ISR,2-11,11878,BRA,11903,476.12,hand mark,3.88,False
-45,2,ISR,2-12,12188,ISR,12215,488.6,hand mark,3.37,False
-46,2,ISR,2-13,12385,ISR,12413,496.52,end of ball track,1.4,False
-47,2,ISR,2-14,12705,ISR,12733,509.32,end of ball track,2.8,False
-48,2,BRA,3-14,13056,BRA,13069,522.76,ball track,5.46,False
-49,2,BRA,4-14,13129,ISR,13149,525.96,end of ball track,4.5,False
-50,2,BRA,5-14,13381,ISR,13410,536.4,end of ball track,,True
-51,2,BRA,6-14,13736,ISR,13756,550.24,ball track,3.83,False
-52,2,ISR,6-15,14034,BRA,14058,562.32,hand mark,4.22,False
-53,2,BRA,7-15,14274,BRA,14319,572.76,ball track,4.17,False
-54,2,ISR,7-16,14396,BRA,14416,576.64,hand mark,2.79,False
-55,2,BRA,8-16,14548,BRA,14554,582.16,end of ball track,3.1,True
-56,2,BRA,9-16,14651,BRA,14668,586.72,hand mark,1.41,False
-57,2,BRA,10-16,14848,ISR,14855,594.2,hand mark,2.57,False
-58,2,ISR,10-17,15114,ISR,15145,605.8,hand mark,5.65,False
-59,2,BRA,11-17,15327,ISR,15336,613.44,hand mark,1.64,False
-60,2,ISR,11-18,15454,BRA,15486,619.44,ball track,3.45,False
+rally,set,loser,score,point_frame,time_sec,source,distance_m,uncertain,reason
+1,1,ISR,0-1,65,2.6,rally end (fallback),2.77,True,no clear landing (near the net or hidden)
+2,1,BRA,1-1,135,5.4,own error (last touch),3.07,True,last touch at sand level (maybe after the point)
+3,1,ISR,1-2,480,19.2,own error (last touch),3.31,False,
+4,1,BRA,2-2,612,24.48,hand-marked landing,2.24,False,
+5,1,ISR,2-3,752,30.08,own error (last touch),2.84,False,
+6,1,BRA,3-3,827,33.08,own error (last touch),4.0,False,
+7,1,ISR,3-4,996,39.84,own error (last touch),3.59,False,
+8,1,BRA,4-4,1162,46.48,rally end (fallback),4.79,True,no clear landing (near the net or hidden)
+9,1,ISR,4-5,1234,49.36,hand-marked landing,3.36,False,
+10,1,BRA,5-5,1524,60.96,hand-marked landing,3.07,True,a player hidden from the camera
+11,1,BRA,6-5,1642,65.68,own error (last touch),2.29,False,
+12,1,BRA,7-5,1944,77.76,own error (last touch),6.17,True,unusual distance 6.17 m
+13,1,ISR,7-6,2206,88.24,own error (last touch),3.79,False,
+14,1,BRA,8-6,2393,95.72,own error (last touch),4.55,False,
+15,1,BRA,9-6,2560,102.4,own error (last touch),2.47,False,
+16,1,ISR,9-7,2659,106.36,own error (last touch),2.5,False,
+17,1,BRA,10-7,2925,117.0,hand-marked landing,3.31,False,
+18,1,ISR,10-8,3012,120.48,hand-marked landing,2.16,False,
+19,1,ISR,10-9,3302,132.08,own error (last touch),6.36,True,unusual distance 6.36 m
+20,1,ISR,10-10,3905,156.2,rally end (fallback),4.28,True,no clear landing (near the net or hidden)
+21,1,ISR,10-11,4020,160.8,own error (last touch),3.3,False,
+22,1,ISR,10-12,4166,166.64,own error (last touch),2.06,False,
+23,1,BRA,11-12,4323,172.92,hand-marked landing,4.43,False,
+24,1,ISR,11-13,4512,180.48,hand-marked landing,3.72,False,
+25,1,ISR,11-14,4931,197.24,own error (last touch),2.88,False,
+26,1,BRA,12-14,5212,208.48,own error (last touch),3.95,False,
+27,1,ISR,12-15,6186,247.44,own error (last touch),2.51,False,
+28,1,ISR,12-16,6752,270.08,hand-marked landing,2.59,False,
+29,1,ISR,12-17,7065,282.6,hand-marked landing,2.88,False,
+30,1,BRA,13-17,7197,287.88,hand-marked landing,3.03,False,
+31,1,ISR,13-18,7985,319.4,rally end (fallback),2.78,True,no clear landing (near the net or hidden)
+32,2,ISR,0-1,8206,328.24,own error (last touch),2.21,False,
+33,2,ISR,0-2,8681,347.24,own error (last touch),3.43,False,
+34,2,ISR,0-3,9130,365.2,rally end (fallback),3.46,True,no clear landing (near the net or hidden)
+35,2,ISR,0-4,9263,370.52,ball track landing,0.96,True,last touch at sand level (maybe after the point); a player hidden from the camera; unusual distance 0.96 m
+36,2,ISR,0-5,9655,386.2,rally end (fallback),3.34,True,no clear landing (near the net or hidden)
+37,2,BRA,1-5,9756,390.24,own error (last touch),3.41,False,
+38,2,BRA,2-5,9967,398.68,own error (last touch),2.6,False,
+39,2,ISR,2-6,10634,425.36,own error (last touch),2.22,False,
+40,2,ISR,2-7,10727,429.08,own error (last touch),2.43,False,
+41,2,ISR,2-8,11159,446.36,rally end (fallback),3.67,True,no clear landing (near the net or hidden)
+42,2,ISR,2-9,11405,456.2,own error (last touch),6.31,True,last touch 4.2 s after the previous one; unusual distance 6.31 m
+43,2,ISR,2-10,11774,470.96,rally end (fallback),2.39,True,no clear landing (near the net or hidden); a player hidden from the camera
+44,2,ISR,2-11,11903,476.12,hand-marked landing,3.88,False,
+45,2,ISR,2-12,12188,487.52,own error (last touch),3.57,False,
+46,2,ISR,2-13,12385,495.4,own error (last touch),3.5,False,
+47,2,ISR,2-14,12705,508.2,own error (last touch),2.07,False,
+48,2,BRA,3-14,13056,522.24,own error (last touch),5.09,False,
+49,2,BRA,4-14,13149,525.96,rally end (fallback),4.5,True,last touch at sand level (maybe after the point); no clear landing (near the net or hidden)
+50,2,BRA,5-14,13395,535.8,rally end (fallback),4.22,True,no clear landing (near the net or hidden)
+51,2,BRA,6-14,13775,551.0,rally end (fallback),3.82,True,no clear landing (near the net or hidden)
+52,2,ISR,6-15,14058,562.32,hand-marked landing,4.22,False,
+53,2,BRA,7-15,14274,570.96,own error (last touch),3.39,False,
+54,2,ISR,7-16,14416,576.64,hand-marked landing,2.79,False,
+55,2,BRA,8-16,14548,581.92,own error (last touch),3.23,True,a player hidden from the camera
+56,2,BRA,9-16,14651,586.04,own error (last touch),2.38,False,
+57,2,BRA,10-16,14855,594.2,hand-marked landing,2.57,False,
+58,2,ISR,10-17,15114,604.56,own error (last touch),4.24,False,
+59,2,BRA,11-17,15336,613.44,hand-marked landing,1.64,False,
+60,2,ISR,11-18,15495,619.8,rally end (fallback),3.77,True,no clear landing (near the net or hidden)

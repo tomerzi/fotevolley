@@ -60,6 +60,7 @@ summary{cursor:pointer;padding:10px 14px;font-weight:500}
     <div class="progress"><span id="ptext">0 / 0</span><span class="pbar" id="pbar"></span></div>
   </header>
   <div class="howto">
+    <div>רק הנקודות שהזיהוי האוטומטי לא בטוח לגביהן (19 מתוך 60).</div>
     <div><b>מה עושים:</b> צפו בקטע, ועצרו בפריים שבו הקבוצה <b>ספגה את הנקודה</b>: הכדור נוגע בחול בצד שלה, או הרגע שבו היא עצמה טעתה (נגיעה אחרונה שהוציאה את הכדור / הכניסה לרשת). לחצו "זה הרגע" — והדף עובר לנקודה הבאה.</div>
     <div>מקשים: <kbd>←</kbd> <kbd>→</kbd> פריים · <kbd>רווח</kbd> ניגון/עצירה · <kbd>Enter</kbd> זה הרגע · <kbd>S</kbd> לא ברור · <kbd>Backspace</kbd> חזרה</div>
   </div>
@@ -124,9 +125,9 @@ async function clipURL(p) {
 async function open(i) {
   cur = (i + P.length) % P.length;
   const p = P[cur], m = marks[id(p)], token = ++loadToken;
-  $('#title').textContent = `נקודה ${p.rally} מתוך ${P.length}`;
+  $('#title').textContent = `נקודה ${p.rally} · ${cur + 1} מתוך ${P.length}`;
   $('#meta').textContent = `מערכה ${p.set} · ספגה: ${p.loser === 'ISR' ? 'ישראל' : 'ברזיל'} · תוצאה אחרי הנקודה ${p.score} (ISR-BRA) · ${fmt(p.start)}`;
-  $('#refText').textContent = `הזיהוי האוטומטי: פריים ${p.auto}`;
+  $('#refText').textContent = `הזיהוי האוטומטי: פריים ${p.auto}${p.reason ? ` · למה לא בטוח: ${p.reason}` : ''}`;
   $('#status').textContent = m ? (m.kind === 'moment' ? `סומן: פריים ${m.frame}. אפשר לשנות.` : 'סומן כלא ברור.') : '';
   $('#range').max = nFrames(p) - 1;
   $('#loading').hidden = false;
