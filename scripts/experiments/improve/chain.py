@@ -9,6 +9,10 @@ NET=even|odd|all: the ball must pass over the net: where a flight crosses the ne
 at least 2.20 + 0.11 m up (one-sided penalty, crossings picked by parity of their frame); plus the two labelled
 net touches at X = 8, 2.0 +- 0.25 m. CHEST_MARKS=even|odd|all with POSE=vitpose|sapiens: at a hand-marked chest
 touch the ball is horizontally at the chest point (between hip and neck midpoints, pose at the marked frame).
+G_FIT=1: one gravity value for the whole match is fitted instead of 9.81 (prior 9.81 +- G_SIG, default 10 = free);
+the ball3d benchmark (CVPRW 2026) found this the best monocular model, because it can absorb depth/scale errors.
+ACC=1: every flight gets its own constant extra acceleration (3 values, prior 0 +- ACC_SIG m/s^2, default 1.5):
+a spin (Magnus lift / sidespin) term, constant over the flight.
 Starts from the flights of OUT/nodrag.csv (estimate_drag.py output with the same camera).
 Writes OUT/chain.csv. usage: python scripts/experiments/improve/chain.py CAMERA OUT_DIR
 """
@@ -28,6 +32,11 @@ SAND_USE = os.environ.get('SAND_USE', 'none')
 OCCL = os.environ.get('OCCL') == '1'
 CONT_SIG = float(os.environ.get('CONT_SIG', 0.15))
 DRAG = os.environ.get('DRAG') == '1'
+G_FIT = os.environ.get('G_FIT') == '1'
+G_SIG = float(os.environ.get('G_SIG', 10.0))
+ACC = os.environ.get('ACC') == '1'
+ACC_SIG = float(os.environ.get('ACC_SIG', 1.5))
+PER = 9 if ACC else 6
 K0, SUB = 0.02, 8
 MAX_GAP = 2
 G, FPS, BALL_D, PX, SIZE_SIG = 9.81, 25.0, 0.22, 1.5, 0.12
@@ -74,7 +83,7 @@ for fid, g in h0[h0.flight_id >= 0].groupby('flight_id'):
     t = (fr - fr[0]) / FPS
     A = np.c_[np.ones_like(t), t]
     p = [np.linalg.lstsq(A, X3[fr, k] - (0.5 * G * t ** 2 if k == 2 else 0), rcond=None)[0] for k in range(3)]
-    FL.append(dict(f0=int(fr[0]), f1=int(fr[-1]), obs=obs, x0=np.r_[[q[0] for q in p], [q[1] for q in p]]))
+    FL.append(dict(f0=int(fr[0]), f1=int(fr[-1]), obs=obs, x0=np.r_[[q[0] for q in p], [q[1] for q in p], [0.0] * (PER - 6)]))
 FL.sort(key=lambda d: d['f0'])
 links = [(i, i + 1) for i in range(len(FL) - 1) if 0 <= FL[i + 1]['f0'] - FL[i]['f1'] <= MAX_GAP]
 sand = []
@@ -150,21 +159,30 @@ print(f'{len(FL)} flights, {len(links)} continuity links, {len(sand)} sand pins,
 
 
 
+GCUR = [G]  # current gravity (G_FIT changes it inside the fit)
+
+
+def accel(p):
+    a = np.array([0.0, 0.0, GCUR[0]])
+    return a + p[6:9] if ACC else a
+
+
 def pos(p, f0, frames, k=0.0):
     t = (np.asarray(frames, float) - f0) / FPS
     if k == 0.0:
-        return p[:3] + np.outer(t, p[3:]) + 0.5 * np.outer(t ** 2, gvec)
+        return p[:3] + np.outer(t, p[3:6]) + 0.5 * np.outer(t ** 2, accel(p))
     return traj_all(p[None, :], np.array([max(1, int(np.max(np.asarray(frames) - f0)) + 1)]), k)[0][(np.asarray(frames) - f0).astype(int)]
 
 
 def traj_all(P6, lens, k):
     """positions of many flights at whole frames 0..len-1 from their start, integrated together (RK4)."""
     n, L = len(P6), int(lens.max())
-    P, V = P6[:, :3].copy(), P6[:, 3:].copy()
+    P, V = P6[:, :3].copy(), P6[:, 3:6].copy()
+    A0 = np.array([0.0, 0.0, GCUR[0]]) + (P6[:, 6:9] if ACC else 0.0)
     out_ = np.empty((n, L, 3)); out_[:, 0] = P
     h = 1.0 / FPS / SUB
     def acc(v):
-        return gvec - k * np.linalg.norm(v, axis=1, keepdims=True) * v
+        return A0 - k * np.linalg.norm(v, axis=1, keepdims=True) * v
     for i in range(1, L):
         for _ in range(SUB):
             a1 = acc(V); a2 = acc(V + 0.5 * h * a1); a3 = acc(V + 0.5 * h * a2); a4 = acc(V + h * a3)
@@ -175,27 +193,30 @@ def traj_all(P6, lens, k):
 
 
 LENS = np.array([d['f1'] - d['f0'] + 3 for d in FL])  # +2 frames: continuity / sand points just past the end
-NP = 6 * len(FL)
+NP = PER * len(FL)
+IG = NP + (1 if DRAG else 0)  # index of the gravity parameter (G_FIT)
 
 
 def all_pos(x):
     k = x[NP] if DRAG else 0.0
     if not DRAG:
         return None, 0.0
-    return traj_all(x[:NP].reshape(-1, 6), LENS, k), k
+    return traj_all(x[:NP].reshape(-1, PER), LENS, k), k
 
 
 def P_at(x, i, frames, T, k):
     if T is None:
-        return pos(x[6 * i: 6 * i + 6], FL[i]['f0'], frames)
+        return pos(x[PER * i: PER * i + PER], FL[i]['f0'], frames)
     rel = np.asarray(frames) - FL[i]['f0']
     if rel.min() < 0:  # a point before the start: integrate backwards is not needed in practice; extrapolate
-        return pos(x[6 * i: 6 * i + 6], FL[i]['f0'], frames)
+        return pos(x[PER * i: PER * i + PER], FL[i]['f0'], frames)
     return T[i][rel]
 
 
 def residuals(x):
     r = []
+    if G_FIT:
+        GCUR[0] = x[IG]
     T, k = all_pos(x)
     if DRAG:
         r.append([(k - K0) / 0.02])
@@ -216,10 +237,14 @@ def residuals(x):
         r.append([(P[0] - 8.0) / 0.2, (-P[2] - 2.0) / 0.25])
     for (i, f, nk, hp, st), xy in zip(chest, CHEST_XY):
         r.append((P_at(x, i, [f], T, k)[0][:2] - xy) / 0.15)
+    if ACC:
+        r.append(x[:NP].reshape(-1, PER)[:, 6:9].ravel() / ACC_SIG)
+    if G_FIT:
+        r.append([(x[IG] - G) / G_SIG])
     return np.concatenate([np.ravel(a) for a in r])
 
 
-x0 = np.concatenate([d['x0'] for d in FL] + ([[K0]] if DRAG else []))
+x0 = np.concatenate([d['x0'] for d in FL] + ([[K0]] if DRAG else []) + ([[G]] if G_FIT else []))
 r0 = residuals(x0)
 S = lil_matrix((len(r0), len(x0)), dtype=int)
 row = 0
@@ -227,17 +252,26 @@ if DRAG:
     S[:, NP] = 1  # the drag constant touches every residual
     S[0, NP] = 1; row = 1
 for i, d in enumerate(FL):
-    n = 3 * len(d['obs']); S[row: row + n, 6 * i: 6 * i + 6] = 1; row += n
+    n = 3 * len(d['obs']); S[row: row + n, PER * i: PER * i + PER] = 1; row += n
 for i, j in links:
-    S[row: row + 3, 6 * i: 6 * i + 6] = 1; S[row: row + 3, 6 * j: 6 * j + 6] = 1; row += 3
+    S[row: row + 3, PER * i: PER * i + PER] = 1; S[row: row + 3, PER * j: PER * j + PER] = 1; row += 3
 for i, f in sand:
-    S[row, 6 * i: 6 * i + 6] = 1; row += 1
+    S[row, PER * i: PER * i + PER] = 1; row += 1
 for i, f in cross:
-    S[row, 6 * i: 6 * i + 6] = 1; row += 1
+    S[row, PER * i: PER * i + PER] = 1; row += 1
 for i, f in net_touch:
-    S[row: row + 2, 6 * i: 6 * i + 6] = 1; row += 2
+    S[row: row + 2, PER * i: PER * i + PER] = 1; row += 2
 for c_ in chest:
-    S[row: row + 2, 6 * c_[0]: 6 * c_[0] + 6] = 1; row += 2
+    S[row: row + 2, PER * c_[0]: PER * c_[0] + PER] = 1; row += 2
+if ACC:
+    for i in range(len(FL)):
+        for q in range(3):
+            S[row, PER * i + 6 + q] = 1; row += 1
+if G_FIT:
+    S[:, IG] = 1  # gravity touches every residual
+    row += 1
+if DRAG and G_FIT:
+    raise SystemExit('DRAG and G_FIT together are not supported')
 if DRAG:  # solve without drag first (k fixed at 0), then free k from that solution
     DRAG = False
     S0 = lil_matrix(S[1:, :NP])
@@ -249,7 +283,10 @@ sol = least_squares(residuals, x0, jac_sparsity=S, loss='soft_l1', f_scale=2.0, 
 print('status', sol.status, 'nfev', sol.nfev, 'cost', round(sol.cost, 1))
 x = sol.x
 T, k = all_pos(x)
-print(f'drag k = {k:.4f} 1/m')
+print(f'drag k = {k:.4f} 1/m' + (f'; fitted gravity {x[IG]:.3f} m/s^2' if G_FIT else ''))
+if ACC:
+    A_ = x[:NP].reshape(-1, PER)[:, 6:9]
+    print('extra acceleration per flight (m/s^2): median |a| %.2f, p90 %.2f; median vertical %+.2f' % (np.median(np.linalg.norm(A_, axis=1)), np.percentile(np.linalg.norm(A_, axis=1), 90), np.median(-A_[:, 2])))
 h = h0.copy()
 gaps = []
 for i, d in enumerate(FL):
@@ -260,8 +297,8 @@ for i, d in enumerate(FL):
 for i, j in links:
     tb = FL[j]['f0'] if FL[j]['f0'] > FL[i]['f1'] else FL[i]['f1']
     gaps.append(np.linalg.norm(P_at(x, i, [tb], T, k)[0] - P_at(x, j, [tb], T, k)[0]))
-g0 = [np.linalg.norm(pos(x0[6 * i: 6 * i + 6], FL[i]['f0'], [FL[j]['f0']])[0] - pos(x0[6 * j: 6 * j + 6], FL[j]['f0'], [FL[j]['f0']])[0]) for i, j in links]
+g0 = [np.linalg.norm(pos(x0[PER * i: PER * i + PER], FL[i]['f0'], [FL[j]['f0']])[0] - pos(x0[PER * j: PER * j + PER], FL[j]['f0'], [FL[j]['f0']])[0]) for i, j in links]
 h.to_csv(f'{out}/chain.csv', index=False)
 pix = np.concatenate([np.linalg.norm(cam.project(P_at(x, i, d['obs'], T, k)) - uv[d['obs']], axis=1) for i, d in enumerate(FL)])
-json.dump(dict(drag=DRAG, k_drag=float(k), sand=SAND_USE, size_fix=SIZE_FIX), open(f'{out}/chain_settings.json', 'w'))
+json.dump(dict(drag=DRAG, k_drag=float(k), sand=SAND_USE, size_fix=SIZE_FIX, g=float(x[IG]) if G_FIT else G, acc=ACC, acc_sig=ACC_SIG if ACC else None), open(f'{out}/chain_settings.json', 'w'))
 print(f'jump between consecutive flights: median {np.median(g0):.2f} -> {np.median(gaps):.2f} m; reprojection median {np.median(pix):.2f} px')
