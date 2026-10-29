@@ -34,3 +34,10 @@ shadow_silhouette failed
     size[sl_.frame.values] = sl_.diam_px.values
     ~~~~^^^^^^^^^^^^^^^^^^
 ValueError: assignment destination is read-only
+== silhouette
+825 flights, 553 continuity links, 33 sand pins, 0 net crossings, 0 net touches, 0 chest points (vitpose), 0 shadows
+status 0 nfev 80 cost 12394.2
+jump between consecutive flights: median 0.74 -> 0.13 m; reprojection median 1.58 px
+sand landings (odd) n=21: height median 0.36 m (0.11 expected), MAE 0.25 m
+n=40 (odd): fit - marked height median +0.15 m, MAE 0.18 m (vs chest point: +0.00 / 0.10); ball-player distance 0.45 m; marked height 1.40 m; ball in flight median 2.62 / p95 4.26 m
+net crossings (odd) n=67: height median 2.77 m, below the net top 13% (by 0.39 m median)

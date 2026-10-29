@@ -51,7 +51,7 @@ h0 = pd.read_csv(f'{out}/nodrag.csv')
 b = pd.read_csv('data/boxes/ball_boxes_corrected3.csv')
 good = b.source.isin(['detected', 'rescued', 'manual']).values
 uv = b[['center_x', 'center_y']].values
-size = np.sqrt((b.x2 - b.x1) * (b.y2 - b.y1)).values
+size = np.sqrt((b.x2 - b.x1) * (b.y2 - b.y1)).to_numpy().copy()
 if os.environ.get('SIZE_SRC') == 'circle':
     cc_ = pd.read_csv('data/experiments/ball_size/circle.csv')
     cc_ = cc_[(cc_.diam_px > 0.5 * cc_.box_px) & (cc_.diam_px < 1.6 * cc_.box_px)]

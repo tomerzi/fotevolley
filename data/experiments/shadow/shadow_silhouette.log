@@ -1,5 +1,3 @@
-Traceback (most recent call last):
-  File "/home/user/fotevolley/scripts/experiments/improve/chain.py", line 62, in <module>
-    size[sl_.frame.values] = sl_.diam_px.values
-    ~~~~^^^^^^^^^^^^^^^^^^
-ValueError: assignment destination is read-only
+ball size from the silhouette in 9032 frames
+size fix from 18 landings: ball px = 5.33 + 0.827 x box px
+825 flights, 553 continuity links, 33 sand pins, 0 net crossings, 0 net touches, 0 chest points (vitpose), 4262 shadows
