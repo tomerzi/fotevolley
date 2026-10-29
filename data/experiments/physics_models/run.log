@@ -19,3 +19,11 @@ jump between consecutive flights: median 0.84 -> 0.14 m; reprojection median 1.5
 sand landings (odd) n=21: height median 0.00 m (0.11 expected), MAE 0.11 m
 n=40 (odd): fit - marked height median -0.13 m, MAE 0.15 m (vs chest point: -0.28 / 0.32); ball-player distance 0.34 m; marked height 1.40 m; ball in flight median 2.42 / p95 4.15 m
 net crossings (odd) n=68: height median 2.58 m, below the net top 19% (by 0.47 m median)
+== spin
+status 0 nfev 80 cost 12120.0
+drag k = 0.0000 1/m
+extra acceleration per flight (m/s^2): median |a| 1.42, p90 2.63; median vertical -0.16
+jump between consecutive flights: median 0.74 -> 0.11 m; reprojection median 1.38 px
+sand landings (odd) n=21: height median 0.06 m (0.11 expected), MAE 0.11 m
+n=40 (odd): fit - marked height median -0.12 m, MAE 0.16 m (vs chest point: -0.26 / 0.29); ball-player distance 0.40 m; marked height 1.40 m; ball in flight median 2.35 / p95 4.14 m
+net crossings (odd) n=64: height median 2.46 m, below the net top 27% (by 0.18 m median)
