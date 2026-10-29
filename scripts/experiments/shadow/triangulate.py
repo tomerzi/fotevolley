@@ -51,3 +51,30 @@ h2.loc[ok.frame, 'method'] = 'shadow_tri'
 name = os.path.splitext(os.path.basename(csv))[0]
 h2.reset_index().to_csv(f'{out}/{name}_tri.csv', index=False)
 print(f'{len(t)} size-only frames with a shadow, {len(ok)} triangulated (residual < 3 px)')
+
+# --- frames at a labelled touch (+-2 frames) outside fitted flights: the ball is at the touching player's body,
+# so its depth on the camera ray is the player's (closest point of the ray to the player's vertical line, 0.15 m in
+# front of it towards the camera). Overrides the size-only estimate there (method 'touch_depth').
+fm = pd.read_csv('data/mappings/frame_mapping_v3.csv'); fm = fm[~fm.deleted].set_index('v3_frame').v2_frame
+tl = pd.read_csv('data/contacts/touch_labels_final.csv'); tl = tl[tl.kind == 'player'].copy()
+tl['v2'] = tl.frame.map(fm); tl = tl.dropna(subset=['v2'])
+pos = pd.read_csv('data/analysis/player_positions_v3.csv', usecols=['v2_frame', 'player', 'x', 'y']).drop_duplicates(['v2_frame', 'player']).set_index(['v2_frame', 'player'])
+n_t = 0
+for r in tl.itertuples():
+    for f in range(int(r.v2) - 2, int(r.v2) + 3):
+        if f not in h2.index or h2.method[f] != 'size_only' or f not in b.index or np.isnan(b.center_x[f]):
+            continue
+        try:
+            px, py = pos.loc[(f, r.player)].values.ravel()[:2]
+        except KeyError:
+            continue
+        px, py = px * 16 / 18, py * 8 / 9
+        d = cam.ray(np.array([[b.center_x[f], b.center_y[f]]]))[0]
+        dxy = d[:2]; t_ = np.dot(np.array([px, py]) - cam.C[:2], dxy) / np.dot(dxy, dxy) - 0.15 / np.linalg.norm(dxy)
+        P = cam.C + t_ * d
+        if -P[2] < 0 or -P[2] > 4:
+            continue
+        h2.loc[f, ['court_x_m', 'court_y_m', 'height_m', 'method']] = [round(P[0], 3), round(P[1], 3), round(-P[2], 3), 'touch_depth']
+        n_t += 1
+h2.reset_index().to_csv(f'{out}/{name}_tri.csv', index=False)
+print(f'{n_t} size-only frames at a touch placed at the player\'s depth')
