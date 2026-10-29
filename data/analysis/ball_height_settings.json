@@ -1,5 +1,5 @@
 {
- "source": "data/experiments/shadow (scripts/experiments/shadow/run_final.sh: chain.py with the ball's shadow (pass 2), NET=all, CHEST_MARKS=all, SAND_USE=all, SIZE_FIX=all, no drag)",
+ "source": "data/experiments/shadow (scripts/experiments/shadow/run_hand.sh final: chain.py with the ball's shadow (pass 2 + 89 hand-marked shadows), NET=all, CHEST_MARKS=all, SAND_USE=all, SIZE_FIX=all, no drag)",
  "court": "blue lines 16 x 8 m",
  "net_top_m": 2.2,
  "antenna_stripes": "8 edges, 2.30-3.00 m",
@@ -12,14 +12,17 @@
   "held_out_chest_marked_height_mae_m": 0.12,
   "held_out_ball_player_distance_m": 0.25,
   "held_out_landings_mae_m": 0.08,
-  "net_crossings_below_top_pct": 12,
-  "net_crossings_short_by_m": 0.1
+  "net_crossings_below_top_pct": 10,
+  "net_crossings_short_by_m": 0.1,
+  "hand_shadows_predicted_without_them_median_m": 0.12
  },
  "shadow": {
   "sun_azimuth_deg": -112.5,
   "sun_elevation_deg": 43.8,
-  "shadows_used": 4359,
-  "sigma_px": 3
+  "shadows_used": 4394,
+  "sigma_px": 3,
+  "hand_marked_shadows": 89,
+  "detector_vs_hand_median_px": 2.1
  },
  "net_rule": "ball centre >= 2.31 m at every net crossing"
 }

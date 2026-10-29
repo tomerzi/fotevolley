@@ -40,3 +40,13 @@ touched it (should be ~0.2-0.3 m: the ball is in front of the chest).
 Best: shadow (pass 2) + net rule. Landings now land at the right height (0.10 vs 0.11 m), the ball sits at the
 player at chest touches (0.43 -> 0.25 m), heights at chest touches improve (MAE 0.18 -> 0.12 m), and the remaining
 "under the net" crossings are only 0.11 m short. `chain_p2_shadow_net.csv`.
+
+## Hand-marked shadows (2026-10-29 evening)
+Page: `scripts/experiments/shadow_marks/` (3-second clips around the 100 frames the detector was unsure about).
+Marks in `data/experiments/shadow_marks/marks/shadows/`: 89 shadows, 8 no shadow, 3 unclear.
+- Where the detector had also fired at the hand-marked frame (71), it is 2.1 px from the hand mark (median; 75 % within
+  3 px): the detector is accurate; the misses came from frames it did not fire on or filtered out.
+- The final solution WITHOUT these marks predicts the hand-marked shadows within 7.6 px / 0.12 m on the sand (median).
+- Added to the fit (`run_hand.sh`, they replace the automatic shadow at the same frame): held-out landings 0.10 / MAE
+  0.09 m, chest touches +0.06 / 0.13 m, ball-player 0.25 m, net 11 % (0.13 m) - the same as without them (89 marks
+  next to ~4,300 automatic shadows). Promoted (`chain_final_hand.csv` -> `data/analysis/ball_height_v2.csv`).
