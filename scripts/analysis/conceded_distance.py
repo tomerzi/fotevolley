@@ -74,6 +74,8 @@ for q in r.itertuples():
                 why.append('no clear landing (near the net or hidden)')
     if q.rally in hand and hand[q.rally].get('kind') == 'moment':
         f, src, why = int(hand[q.rally]['frame']), 'hand-marked moment', []
+    elif q.rally in hand:
+        why.append('marked unclear by hand')
     if f is None:
         f, src = q.end_frame, 'rally end (fallback)'
     d, hidden = partner_distance(f, lose)
