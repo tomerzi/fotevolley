@@ -13,6 +13,10 @@ G_FIT=1: one gravity value for the whole match is fitted instead of 9.81 (prior 
 the ball3d benchmark (CVPRW 2026) found this the best monocular model, because it can absorb depth/scale errors.
 ACC=1: every flight gets its own constant extra acceleration (3 values, prior 0 +- ACC_SIG m/s^2, default 1.5):
 a spin (Magnus lift / sidespin) term, constant over the flight.
+SHADOW=<shadows csv>: the ball's shadow on the sand (scripts/experiments/shadow/) is a second view: the ground point
+P_xy + height * sun_xy / tan(elevation) must project onto the detected shadow (sigma SHADOW_SIG px, default 3).
+The sun comes from SUN=<sun.json>. SIZE_SRC=circle: ball size from the circle fit (data/experiments/ball_size/
+circle.csv) instead of the detector box, where available.
 Starts from the flights of OUT/nodrag.csv (estimate_drag.py output with the same camera).
 Writes OUT/chain.csv. usage: python scripts/experiments/improve/chain.py CAMERA OUT_DIR
 """
@@ -48,6 +52,11 @@ b = pd.read_csv('data/boxes/ball_boxes_corrected3.csv')
 good = b.source.isin(['detected', 'rescued', 'manual']).values
 uv = b[['center_x', 'center_y']].values
 size = np.sqrt((b.x2 - b.x1) * (b.y2 - b.y1)).values
+if os.environ.get('SIZE_SRC') == 'circle':
+    cc_ = pd.read_csv('data/experiments/ball_size/circle.csv')
+    cc_ = cc_[(cc_.diam_px > 0.5 * cc_.box_px) & (cc_.diam_px < 1.6 * cc_.box_px)]
+    size[cc_.frame.values] = cc_.diam_px.values
+    print(f'ball size from the circle fit in {len(cc_)} frames')
 # SIZE_FIX=even|odd|all: the detector's boxes are squeezed towards ~25 px; map box size -> ball size with a line
 # fitted on the hand-marked sand landings of that parity, where the ball's distance is known (ray at z = 0.11 m)
 SIZE_FIX = os.environ.get('SIZE_FIX', 'none')
@@ -94,6 +103,25 @@ for fn in glob.glob('data/experiments/sand_marks/marks/landings/*.json'):
         for i, d in enumerate(FL):
             if d['f0'] - 2 <= f <= d['f1'] + 2:
                 sand.append((i, f))
+SHADOW = os.environ.get('SHADOW')
+SHADOW_SIG = float(os.environ.get('SHADOW_SIG', 3.0))
+shadows = []  # (flight i, frame, u, v)
+if SHADOW:
+    SUNP = json.load(open(os.environ['SUN']))
+    sd_ = pd.read_csv(SHADOW)
+    if 'err_px' in sd_:
+        sd_ = sd_[sd_.err_px < float(os.environ.get('SHADOW_MAXERR', 25))]
+    for r_ in sd_.itertuples():
+        for i, d in enumerate(FL):
+            if d['f0'] <= r_.frame <= d['f1']:
+                shadows.append((i, int(r_.frame), r_.u, r_.v)); break
+
+
+def sun_xy(f):
+    a = np.radians(SUNP['az'] + SUNP['drift_deg_per_1000'] * f / 1000.0)
+    return np.array([np.cos(a), np.sin(a)]) / np.tan(np.radians(SUNP['elev']))
+
+
 NET = os.environ.get('NET', 'none')
 CHEST_MARKS = os.environ.get('CHEST_MARKS', 'none')
 POSE = os.environ.get('POSE', 'vitpose')
@@ -155,7 +183,7 @@ for i, f, nk, hp, st in chest:
     A_, B_ = at_height(nk, 0.82 * st), at_height(hp, 0.53 * st)
     CHEST_XY.append((B_ + (0.72 - 0.53) / (0.82 - 0.53) * (A_ - B_))[:2])
 print(f'{len(FL)} flights, {len(links)} continuity links, {len(sand)} sand pins, {len(cross)} net crossings, '
-      f'{len(net_touch)} net touches, {len(chest)} chest points ({POSE})')
+      f'{len(net_touch)} net touches, {len(chest)} chest points ({POSE}), {len(shadows)} shadows')
 
 
 
@@ -237,6 +265,10 @@ def residuals(x):
         r.append([(P[0] - 8.0) / 0.2, (-P[2] - 2.0) / 0.25])
     for (i, f, nk, hp, st), xy in zip(chest, CHEST_XY):
         r.append((P_at(x, i, [f], T, k)[0][:2] - xy) / 0.15)
+    for i, f, u_, v_ in shadows:
+        P = P_at(x, i, [f], T, k)[0]
+        G_ = np.r_[P[:2] + (-P[2]) * sun_xy(f), 0.0]
+        r.append((cam.project(G_[None, :])[0] - [u_, v_]) / SHADOW_SIG)
     if ACC:
         r.append(x[:NP].reshape(-1, PER)[:, 6:9].ravel() / ACC_SIG)
     if G_FIT:
@@ -263,6 +295,8 @@ for i, f in net_touch:
     S[row: row + 2, PER * i: PER * i + PER] = 1; row += 2
 for c_ in chest:
     S[row: row + 2, PER * c_[0]: PER * c_[0] + PER] = 1; row += 2
+for i, f, u_, v_ in shadows:
+    S[row: row + 2, PER * i: PER * i + PER] = 1; row += 2
 if ACC:
     for i in range(len(FL)):
         for q in range(3):
