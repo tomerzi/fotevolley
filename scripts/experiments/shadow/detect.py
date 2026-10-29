@@ -5,6 +5,8 @@ shadow is darker than it. For a ball at height h the shadow lies h / tan(elevati
 direction from the point under the ball. With the current ball position (HEIGHT_CSV) and a sun guess, the shadow's
 pixel position is predicted and the darkest compact blob of about the ball's size is searched in a window around it.
 Writes OUT/shadows.csv (frame, u, v, darkness, area, expected area, distance to the prediction).
+Env: WIN (search half-window in flight frames, default 45 px), THR (darkness ratio, default 0.80),
+ALL_METHODS=1 also searches frames outside fitted flights (ball held / rolling / size-only), window WIN_OTHER (60).
 usage: python scripts/experiments/shadow/detect.py HEIGHT_CSV OUT_DIR AZ_DEG ELEV_DEG [AZ_DRIFT_DEG_PER_1000_FRAMES]
 """
 import os, sys
@@ -23,8 +25,11 @@ cam = Camera()
 h = pd.read_csv(csv)
 pb = pd.read_csv('data/boxes/player_boxes_v9.csv', usecols=['frame', 'x1', 'y1', 'x2', 'y2'])
 pbf = {f: g[['x1', 'y1', 'x2', 'y2']].values for f, g in pb.groupby('frame')}
-cand = h[(h.method == 'flight_fit') & (h.height_m >= 0.35)].set_index('frame')
-WIN, OFFS = 45, (-60, -40, -20, 20, 40, 60)
+ALL = os.environ.get('ALL_METHODS') == '1'
+cand = h[(h.method.isin(['flight_fit', 'size_only']) if ALL else (h.method == 'flight_fit')) & (h.height_m >= 0.35)].set_index('frame')
+WIN_F, WIN_O = int(os.environ.get('WIN', 45)), int(os.environ.get('WIN_OTHER', 60))
+THR = float(os.environ.get('THR', 0.80))
+OFFS = (-60, -40, -20, 20, 40, 60)
 
 
 def sun(f):
@@ -49,6 +54,7 @@ for f in range(N):
     if t not in need:
         continue
     r = cand.loc[t]
+    WIN = WIN_F if r.method == 'flight_fit' else WIN_O
     G = np.array([r.court_x_m, r.court_y_m]) + r.height_m * sun(t)
     uv = cam.project(np.array([[G[0], G[1], 0.0]]))[0]
     if not (WIN < uv[0] < 1920 - WIN and WIN < uv[1] < 1080 - WIN):
@@ -57,7 +63,7 @@ for f in range(N):
     sl = (slice(y0, y0 + 2 * WIN), slice(x0, x0 + 2 * WIN))
     bg = np.median(np.stack([buf[t + o][sl] for o in OFFS if t + o in buf]), axis=0)
     ratio = cv2.GaussianBlur(buf[t][sl], (0, 0), 1.0) / np.maximum(cv2.GaussianBlur(bg, (0, 0), 1.0), 1)
-    mask = (ratio < 0.80).astype(np.uint8)
+    mask = (ratio < THR).astype(np.uint8)
     # ignore player bodies: inside player boxes the change is the player, not a shadow
     for x1, y1, x2, y2 in pbf.get(t, []):
         a, b_, c, d = int(x1) - x0, int(y1) - y0, int(x2) - x0, int(y2) - y0
@@ -86,7 +92,7 @@ for f in range(N):
     if best:
         rows.append(dict(frame=t, u=round(best[1], 2), v=round(best[2], 2), dark=round(best[3], 3), area=int(best[4]),
                          exp_area=round(exp_area, 1), dpred=round(best[5], 1), pred_u=round(uv[0], 1), pred_v=round(uv[1], 1),
-                         ball_h=r.height_m))
+                         ball_h=r.height_m, method=r.method))
     if t % 2000 < 1:
         print(t, len(rows), flush=True)
 d = pd.DataFrame(rows)

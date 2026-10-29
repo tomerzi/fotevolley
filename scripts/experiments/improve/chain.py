@@ -17,6 +17,9 @@ SHADOW=<shadows csv>: the ball's shadow on the sand (scripts/experiments/shadow/
 P_xy + height * sun_xy / tan(elevation) must project onto the detected shadow (sigma SHADOW_SIG px, default 3).
 The sun comes from SUN=<sun.json>. SIZE_SRC=circle: ball size from the circle fit (data/experiments/ball_size/
 circle.csv) instead of the detector box, where available; SIZE_SRC=silhouette: from the background-subtracted silhouette (silhouette.csv, clean frames).
+CAM_FIT=1: the camera (focal, principal point, k1, k2, rotation, position) is refined together with the flights,
+keeping the calibration's own landmark terms (court lines, net tape, antenna stripes); SUN_FIT=1: the sun direction
+(azimuth, elevation, drift) is refined too. Writes OUT/camera_fit.npz and OUT/sun_fit.json.
 Starts from the flights of OUT/nodrag.csv (estimate_drag.py output with the same camera).
 Writes OUT/chain.csv. usage: python scripts/experiments/improve/chain.py CAMERA OUT_DIR
 """
@@ -41,6 +44,10 @@ G_SIG = float(os.environ.get('G_SIG', 10.0))
 ACC = os.environ.get('ACC') == '1'
 ACC_SIG = float(os.environ.get('ACC_SIG', 1.5))
 PER = 9 if ACC else 6
+CAM_FIT = os.environ.get('CAM_FIT') == '1'
+SUN_FIT = os.environ.get('SUN_FIT') == '1'
+sys.path.insert(0, HERE)
+import landmarks as LM
 K0, SUB = 0.02, 8
 MAX_GAP = 2
 G, FPS, BALL_D, PX, SIZE_SIG = 9.81, 25.0, 0.22, 1.5, 0.12
@@ -227,6 +234,10 @@ def traj_all(P6, lens, k):
 LENS = np.array([d['f1'] - d['f0'] + 3 for d in FL])  # +2 frames: continuity / sand points just past the end
 NP = PER * len(FL)
 IG = NP + (1 if DRAG else 0)  # index of the gravity parameter (G_FIT)
+IC = IG + (1 if G_FIT else 0)  # camera block (CAM_FIT, 11 values)
+IS = IC + (11 if CAM_FIT else 0)  # sun block (SUN_FIT: azimuth, elevation, drift)
+C0 = LM.from_camera(cam)
+CUR = dict(proj=cam.project, C=cam.C, f=fpx)
 
 
 def all_pos(x):
@@ -249,14 +260,19 @@ def residuals(x):
     r = []
     if G_FIT:
         GCUR[0] = x[IG]
+    if CAM_FIT:
+        c_ = x[IC:IC + 11]
+        CUR.update(proj=lambda X, c_=c_: LM.project(c_, X), C=LM.center(c_), f=c_[0])
+    if SUN_FIT:
+        SUNP.update(az=x[IS], elev=x[IS + 1], drift_deg_per_1000=x[IS + 2])
     T, k = all_pos(x)
     if DRAG:
         r.append([(k - K0) / 0.02])
     for i, d in enumerate(FL):
         P = P_at(x, i, d['obs'], T, k)
-        r.append(((cam.project(P) - uv[d['obs']]) / PX).ravel())
-        dsz = BALL_D * fpx / size[d['obs']]
-        r.append((np.linalg.norm(P - cam.C, axis=1) - dsz) / (SIZE_SIG * dsz) * size_ok[d['obs']])
+        r.append(((CUR['proj'](P) - uv[d['obs']]) / PX).ravel())
+        dsz = BALL_D * CUR['f'] / size[d['obs']]
+        r.append((np.linalg.norm(P - CUR['C'], axis=1) - dsz) / (SIZE_SIG * dsz) * size_ok[d['obs']])
     for i, j in links:
         tb = FL[j]['f0'] if FL[j]['f0'] > FL[i]['f1'] else FL[i]['f1']
         r.append((P_at(x, i, [tb], T, k)[0] - P_at(x, j, [tb], T, k)[0]) / CONT_SIG)
@@ -272,15 +288,18 @@ def residuals(x):
     for i, f, u_, v_ in shadows:
         P = P_at(x, i, [f], T, k)[0]
         G_ = np.r_[P[:2] + (-P[2]) * sun_xy(f), 0.0]
-        r.append((cam.project(G_[None, :])[0] - [u_, v_]) / SHADOW_SIG)
+        r.append((CUR['proj'](G_[None, :])[0] - [u_, v_]) / SHADOW_SIG)
     if ACC:
         r.append(x[:NP].reshape(-1, PER)[:, 6:9].ravel() / ACC_SIG)
     if G_FIT:
         r.append([(x[IG] - G) / G_SIG])
+    if CAM_FIT:
+        r.append(LM.residuals(x[IC:IC + 11]))
     return np.concatenate([np.ravel(a) for a in r])
 
 
-x0 = np.concatenate([d['x0'] for d in FL] + ([[K0]] if DRAG else []) + ([[G]] if G_FIT else []))
+x0 = np.concatenate([d['x0'] for d in FL] + ([[K0]] if DRAG else []) + ([[G]] if G_FIT else []) + ([C0] if CAM_FIT else [])
+                    + ([[SUNP['az'], SUNP['elev'], SUNP['drift_deg_per_1000']]] if SUN_FIT else []))
 r0 = residuals(x0)
 S = lil_matrix((len(r0), len(x0)), dtype=int)
 row = 0
@@ -308,6 +327,10 @@ if ACC:
 if G_FIT:
     S[:, IG] = 1  # gravity touches every residual
     row += 1
+if CAM_FIT:
+    S[:, IC:IC + 11] = 1  # the camera touches every image residual (and its own landmark terms)
+if SUN_FIT:
+    S[:, IS:IS + 3] = 1
 if DRAG and G_FIT:
     raise SystemExit('DRAG and G_FIT together are not supported')
 if DRAG:  # solve without drag first (k fixed at 0), then free k from that solution
@@ -336,7 +359,43 @@ for i, j in links:
     tb = FL[j]['f0'] if FL[j]['f0'] > FL[i]['f1'] else FL[i]['f1']
     gaps.append(np.linalg.norm(P_at(x, i, [tb], T, k)[0] - P_at(x, j, [tb], T, k)[0]))
 g0 = [np.linalg.norm(pos(x0[PER * i: PER * i + PER], FL[i]['f0'], [FL[j]['f0']])[0] - pos(x0[PER * j: PER * j + PER], FL[j]['f0'], [FL[j]['f0']])[0]) for i, j in links]
+# per-frame height uncertainty (UNC=1): each flight's 6 start values get a covariance from the Gauss-Newton
+# Hessian of the cost at the solution (its own block of the Jacobian, couplings ignored); frames outside fitted
+# flights get the ball-size error (SIZE_SIG of the distance) along the viewing ray. Unscaled: calibrate the scale
+# on held-out marks (scripts/experiments/shadow/unc_check.py).
+if os.environ.get('UNC') == '1':
+    Jc = sol.jac.tocsc()
+    sig = np.full(len(h), np.nan)
+    for i, d in enumerate(FL):
+        B = Jc[:, PER * i: PER * i + 6]
+        rows_ = np.unique(B.nonzero()[0])
+        Bd = B[rows_].toarray()
+        try:
+            Cov = np.linalg.inv(Bd.T @ Bd + 1e-9 * np.eye(6))
+        except np.linalg.LinAlgError:
+            continue
+        fr = np.arange(d['f0'], d['f1'] + 1); t = (fr - d['f0']) / FPS
+        gz = np.zeros((len(fr), 6)); gz[:, 2] = -1; gz[:, 5] = -t
+        sig[fr] = np.sqrt(np.einsum('ij,jk,ik->i', gz, Cov, gz))
+    other = np.isnan(sig) & h.height_m.notna().values & b.center_x.notna().values
+    idx = np.flatnonzero(other)
+    if len(idx):
+        dv = cam.ray(uv[idx]); dist = np.linalg.norm(np.c_[h.court_x_m.values[idx], h.court_y_m.values[idx], -h.height_m.values[idx]] - cam.C, axis=1)
+        sig[idx] = SIZE_SIG * dist * np.abs(dv[:, 2])
+    h['height_sigma_raw'] = np.round(sig, 4)
+    print('height sigma (raw): flights median %.3f m, others median %.3f m' % (np.nanmedian(sig[~other]), np.nanmedian(sig[other]) if other.any() else np.nan))
 h.to_csv(f'{out}/chain.csv', index=False)
-pix = np.concatenate([np.linalg.norm(cam.project(P_at(x, i, d['obs'], T, k)) - uv[d['obs']], axis=1) for i, d in enumerate(FL)])
+residuals(x)  # leaves CUR / SUNP at the solution
+if CAM_FIT:
+    c_ = x[IC:IC + 11]; f_, cx_, cy_, k1_, k2_, R_, t_ = LM.parts(c_)
+    np.savez(f'{out}/camera_fit.npz', K=np.array([[f_, 0, cx_], [0, f_, cy_], [0, 0, 1.0]]), dist=np.array([k1_, k2_, 0, 0, 0]),
+             R=R_, t=t_, C=LM.center(c_), k_drag=np.array(float(k)))
+    print('camera change: focal %+.1f px, principal point %+.1f/%+.1f px, k1 %+.3f, k2 %+.3f, rotation %.3f deg, position %.3f m; landmark rms %.2f (start %.2f)' % (
+        c_[0] - C0[0], c_[1] - C0[1], c_[2] - C0[2], c_[3] - C0[3], c_[4] - C0[4], np.degrees(np.linalg.norm(c_[5:8] - C0[5:8])),
+        np.linalg.norm(LM.center(c_) - LM.center(C0)), np.sqrt(np.mean(LM.residuals(c_) ** 2)), np.sqrt(np.mean(LM.residuals(C0) ** 2))))
+if SUN_FIT:
+    json.dump({k_: float(v_) for k_, v_ in SUNP.items()}, open(f'{out}/sun_fit.json', 'w'), indent=1)
+    print('sun: azimuth %.2f, elevation %.2f, drift %+.3f' % (SUNP['az'], SUNP['elev'], SUNP['drift_deg_per_1000']))
+pix = np.concatenate([np.linalg.norm(CUR['proj'](P_at(x, i, d['obs'], T, k)) - uv[d['obs']], axis=1) for i, d in enumerate(FL)])
 json.dump(dict(drag=DRAG, k_drag=float(k), sand=SAND_USE, size_fix=SIZE_FIX, g=float(x[IG]) if G_FIT else G, acc=ACC, acc_sig=ACC_SIG if ACC else None), open(f'{out}/chain_settings.json', 'w'))
 print(f'jump between consecutive flights: median {np.median(g0):.2f} -> {np.median(gaps):.2f} m; reprojection median {np.median(pix):.2f} px')
