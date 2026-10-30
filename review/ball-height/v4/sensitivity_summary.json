@@ -1,0 +1,21 @@
+{
+  "review_start_frame": 6340,
+  "review_end_frame": 6639,
+  "frames": 300,
+  "ground_camera_models": 25,
+  "frames_with_at_least_5_fits": 142,
+  "net_compatible_models_within_6px": 0,
+  "ground_holdout_rms_range_px": [
+    0.5675609510983346,
+    1.9262151787182389
+  ],
+  "net_training_residual_range_px": [
+    23.213787068120116,
+    45.08937470776146
+  ],
+  "median_sensitivity_range_width_m": 0.37666400233743713,
+  "max_sensitivity_range_width_m": 0.7360552674792005,
+  "metric_height_accuracy_validated": false,
+  "central_model_id_for_illustration": 12,
+  "interpretation": "No accepted net-validated camera. Heights are conditional diagnostics, not a corrected measured-height release."
+}
