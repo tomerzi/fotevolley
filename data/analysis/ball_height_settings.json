@@ -1,0 +1,39 @@
+{
+ "source": "data/experiments/shadow/final_p3 (scripts/experiments/shadow/run_final_p3.sh: chain.py with pass-3 + hand-marked shadows, NET=all, CHEST_MARKS=all, SAND_USE=all, SIZE_FIX=all, no drag; then triangulate.py (touch depth / shadow triangulation outside flights) and uncertainty.py)",
+ "court": "blue lines 16 x 8 m",
+ "net_top_m": 2.2,
+ "antenna_stripes": "8 edges, 2.30-3.00 m",
+ "ball_d_m": 0.22,
+ "gravity": 9.81,
+ "k_drag": 0.0,
+ "size_fix": "ball px = 1.198 x box px - 5.69 (41 hand-marked landings)",
+ "marks": "94 hand-marked chest touches (ball at the pose chest point), 41 hand-marked sand landings (z = 0.11 m)",
+ "checks": {
+  "held_out_landings_mae_m": 0.06,
+  "held_out_chest_marked_height_mae_m": 0.12,
+  "held_out_ball_player_distance_m": 0.27,
+  "net_crossings_below_top_pct": 11,
+  "hand_shadows_predicted_without_them_median_m": 0.12
+ },
+ "shadow": {
+  "sun_azimuth_deg": -112.4,
+  "sun_elevation_deg": 43.9,
+  "shadows_used": 5269,
+  "sigma_px": 3,
+  "hand_marked_shadows": 89,
+  "detector_vs_hand_median_px": 2.1,
+  "detection_pass": 3
+ },
+ "net_rule": "ball centre >= 2.31 m at every net crossing",
+ "outside_flights": {
+  "touch_depth_frames": 185,
+  "shadow_triangulated_frames": 133
+ },
+ "uncertainty_sigma_m": {
+  "flight_with_shadows": 0.08,
+  "flight_few_shadows": 0.25,
+  "touch_depth": 0.1,
+  "shadow_tri": 0.15,
+  "size_only": 0.4
+ }
+}
