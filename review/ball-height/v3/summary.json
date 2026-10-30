@@ -1,0 +1,81 @@
+{
+  "frames": 15586,
+  "fps": 25,
+  "height_definition": "ball center above assumed sand plane, metres",
+  "status_counts": {
+    "experimental_ballistic_estimate": 5350,
+    "unresolved_geometry_or_contact": 4828,
+    "contact_aware_ballistic_estimate": 2894,
+    "missing_ball_observation": 2514
+  },
+  "calibration": "approximate; court near corners and net post base extrapolated; not independently validated",
+  "net_m": 2.2,
+  "court_m": [
+    16,
+    8
+  ],
+  "assumed_ball_diameter_m": 0.22,
+  "focal_parameter": 1744.1546010596223,
+  "P": [
+    [
+      91.0195795384646,
+      -50.40715469174751,
+      -27.03747982528161,
+      235.0
+    ],
+    [
+      -1.3291130920491299,
+      18.859096275571964,
+      -99.13283877981264,
+      420.0
+    ],
+    [
+      -0.003445765620969502,
+      -0.04988516181518741,
+      -0.02569069102356294,
+      1.0
+    ]
+  ],
+  "court_image_points": [
+    [
+      235.0,
+      420.0
+    ],
+    [
+      1790.0,
+      422.0
+    ],
+    [
+      2360.0,
+      1007.0
+    ],
+    [
+      -280.0,
+      950.0
+    ]
+  ],
+  "height_quantiles_m": {
+    "0.0": 0.20420860267386232,
+    "0.05": 1.532050356380608,
+    "0.5": 3.2735494141119954,
+    "0.95": 4.451642291119673,
+    "1.0": 6.01742444717446
+  },
+  "input": "correct_bbox/ball_boxes_corrected3.csv",
+  "player_heights_used": false,
+  "version": 3,
+  "contact_audit": {
+    "accepted_boundary": 310,
+    "low_contact_score": 48,
+    "pose_region_disagrees": 17,
+    "corrected_ball_disagrees": 17,
+    "weak_contact_pose": 13
+  },
+  "contact_model_frames": 2894,
+  "review_known": 280,
+  "review_unknown": 20,
+  "review_contact_model_frames": 116,
+  "pose_use": "2D contact-region compatibility gate, not metric skeletal reconstruction",
+  "bone_lengths_used": false,
+  "independent_metric_height_validation": false
+}

@@ -1,0 +1,7 @@
+{
+  "accepted_flight_fits": 161,
+  "all_fits_bounded_by_selected_contacts": true,
+  "no_selected_contact_in_flight_interior": true,
+  "no_fits_cross_shots_or_removed_time": true,
+  "metric_ground_truth_validation": false
+}
