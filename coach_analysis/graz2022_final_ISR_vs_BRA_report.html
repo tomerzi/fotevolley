@@ -11,14 +11,14 @@ svg{width:100%;height:auto}.note{color:#666;font-size:13px;margin:4px 0}
 .warn{background:#fff8e1;border-right:4px solid #e0a800;padding:10px 14px;border-radius:6px}
 ul li{margin:4px 0}code{background:#eee;padding:1px 4px;border-radius:4px;direction:ltr;display:inline-block}
 @media (prefers-color-scheme:dark){body{background:#161616;color:#ddd}.k,table,figure{background:#1f1f1f;border-color:#333}th{background:#2a2a2a}td,th{border-color:#333}.warn{background:#2b2512}code{background:#333}}
-</style></head><body>
+.grids{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}.gridbox{background:#fff;border:1px solid #e3e3e3;border-radius:10px;padding:8px}.g td{font-weight:600}@media (prefers-color-scheme:dark){.gridbox{background:#1f1f1f;border-color:#333}}</style></head><body>
 <h1>ניתוח משחק: ישראל נגד ברזיל</h1><p class="sub"><b>גמר הגברים, EFVL World Challenge, גראץ 2022</b> · ישראל: רון בן ישי ומאור האס · ברזיל: הילטיניו ופרנקלין</p>
 <p class="sub">סיכום כל המידע שבריפו <code>tomerzi/fotevolley</code> · משחק זוגות על חול, 2 על 2 · וידאו מצלמה ראשית (25 פריימים לשנייה, כ-10:23 דקות לאחר עריכה)</p>
 <div class="kpis">
 <div class="k"><span>תוצאה</span><b>ברזיל 2–0</b><span>18–13, 18–11</span></div>
 <div class="k"><span>סה״כ נקודות</span><b>36 – 24</b><span>ברזיל – ישראל (60 נקודות)</span></div>
 <div class="k"><span>הרצף הארוך ביותר</span><b>9 נקודות</b><span>ברזיל, מערכה 2 (2–5 עד 2–14)</span></div>
-<div class="k"><span>מרחק ריצה לשחקן</span><b>כ-1 ק״מ</b><span>987–1,055 מ׳ (הערכה)</span></div>
+<div class="k"><span>מרחק ריצה לשחקן</span><b>כ-900 מ׳</b><span>879–940 מ׳, מגרש 16×8 (הערכה)</span></div>
 </div>
 
 <h2>1. מהלך המשחק</h2>
@@ -69,24 +69,42 @@ ul li{margin:4px 0}code{background:#eee;padding:1px 4px;border-radius:4px;direct
 <p class="note">במערכה 2 ברזיל לקחה 12 נקודות מצד ימין, כולל רוב הרצף של 9. כדאי לבדוק בווידאו אם רוח או שמש השפיעו. המדגם קטן, אז זה לא מוכח.</p>
 
 <h2>4. תנועה ומיקום שחקנים (מעקב וידאו)</h2>
-<p>המיקומים הומרו מפיקסלים בתמונה למטרים על המגרש (מגרש 16×8, הרשת ב-x=8). השחקנים הישראלים זוהו: מאור האס לבש את גופייה 1 עם הסרט הלבן, ורון בן ישי את גופייה 2. אצל ברזיל, פרנקלין (בלונדיני) שיחק עם החולצה הצהובה עם השרוולים הארוכים, והילטיניו עם החולצה בלי השרוולים.</p>
-<table><tr><th>שחקן</th><th>מערכה</th><th>מרחק (מ׳)</th><th>מ׳ לדקה</th><th>מרחק חציוני מהרשת (מ׳)</th><th>% זמן קרוב לרשת (&lt;2.5 מ׳)</th><th>% זמן בעומק (&gt;5.5 מ׳)</th></tr>
-<tr><td>פרנקלין (BRA_A)</td><td>1</td><td>525</td><td>100</td><td>3.7</td><td>26%</td><td>26%</td></tr>
-<tr><td>פרנקלין (BRA_A)</td><td>2</td><td>499</td><td>104</td><td>3.7</td><td>26%</td><td>16%</td></tr>
-<tr><td>הילטיניו (BRA_B)</td><td>1</td><td>544</td><td>102</td><td>3.8</td><td>29%</td><td>20%</td></tr>
-<tr><td>הילטיניו (BRA_B)</td><td>2</td><td>443</td><td>91</td><td>4.2</td><td>20%</td><td>21%</td></tr>
-<tr><td>מאור האס (ISR_A)</td><td>1</td><td>517</td><td>102</td><td>4.1</td><td>22%</td><td>26%</td></tr>
-<tr><td>מאור האס (ISR_A)</td><td>2</td><td>482</td><td>98</td><td>3.5</td><td>29%</td><td>19%</td></tr>
-<tr><td>רון בן ישי (ISR_B)</td><td>1</td><td>556</td><td>107</td><td>3.9</td><td>24%</td><td>17%</td></tr>
-<tr><td>רון בן ישי (ISR_B)</td><td>2</td><td>500</td><td>101</td><td>3.8</td><td>32%</td><td>22%</td></tr></table>
+<p>כל המיקומים מחושבים על <b>מגרש 16×8 מטר</b>, כמו בכללי EFVL. הרשת נמצאת ב-x=8, וכל חצי מגרש הוא 8×8. השחקנים: <b>ישראל:</b> מאור האס (גופייה 1, סרט לבן) ורון בן ישי (גופייה 2). <b>ברזיל:</b> פרנקלין (בלונדיני, שרוולים ארוכים) והילטיניו.</p>
+<table><tr><th>שחקן</th><th>מערכה</th><th>מרחק (מ׳)</th><th>מ׳ לדקה</th><th>מרחק חציוני מהרשת (מ׳)</th><th>% זמן בשליש הקרוב לרשת (&lt;2.67 מ׳)</th><th>% זמן בשליש האחורי (&gt;5.33 מ׳)</th></tr><tr><td>פרנקלין</td><td>1</td><td>468</td><td>89</td><td>3.6</td><td>25%</td><td>12%</td></tr><tr><td>פרנקלין</td><td>2</td><td>444</td><td>92</td><td>3.3</td><td>37%</td><td>7%</td></tr><tr><td>הילטיניו</td><td>1</td><td>485</td><td>91</td><td>3.7</td><td>33%</td><td>8%</td></tr><tr><td>הילטיניו</td><td>2</td><td>394</td><td>81</td><td>3.8</td><td>26%</td><td>7%</td></tr><tr><td>מאור האס</td><td>1</td><td>461</td><td>91</td><td>3.5</td><td>33%</td><td>8%</td></tr><tr><td>מאור האס</td><td>2</td><td>429</td><td>87</td><td>3.5</td><td>37%</td><td>8%</td></tr><tr><td>רון בן ישי</td><td>1</td><td>495</td><td>96</td><td>3.2</td><td>38%</td><td>12%</td></tr><tr><td>רון בן ישי</td><td>2</td><td>445</td><td>90</td><td>3.4</td><td>35%</td><td>12%</td></tr></table>
 <ul>
-<li><b>עומס פיזי דומה:</b> כל ארבעת השחקנים רצו כ-1 ק״מ (בווידאו הערוך) ונעו כ-100 מ׳ לדקה. לרון בן ישי הנפח הגבוה ביותר (1,055 מ׳).</li>
-<li><b>אין חלוקת תפקידים קבועה:</b> בשתי הקבוצות כל שחקן קרוב יותר לרשת בערך במחצית מהזמן (ברזיל 54/46, ישראל 45/55). גם חלוקת הצדדים שמאל-ימין כמעט שווה. המשמעות היא שהשחקנים מחליפים עמדות. אין בלוקר קבוע או שחקן הגנה קבוע.</li>
-<li><b>מרווח בין בני הזוג:</b> המרחק החציוני בין השחקנים בישראל הוא 3.5 מ׳, ובברזיל 3.2 מ׳. ייתכן שהזוג הברזילאי מכסה את המגרש בצורה צפופה יותר.</li>
-<li>אצל מאור האס ניכר שינוי במערכה 2: הזמן קרוב לרשת עלה מ-22% ל-29%.</li>
+<li><b>עומס פיזי:</b> כל שחקן רץ 880–940 מטר במשחק הערוך, כ-90 מטר לדקה. לרון בן ישי הנפח הגבוה ביותר (940 מ׳). להילטיניו הנמוך ביותר (879 מ׳), עם ירידה במערכה 2 (81 מ׳ לדקה).</li>
+<li><b>מרווח בין בני הזוג:</b> המרחק החציוני בין השחקנים בישראל הוא 3.1 מ׳, ובברזיל 2.8 מ׳. הזוג הברזילאי שומר על מבנה צפוף יותר.</li>
+<li>כל השחקנים מבלים רק 7–12% מהזמן בשליש האחורי של המגרש. רוב המשחק מתנהל באמצע ובשליש הקדמי.</li>
 </ul>
 
-<h2>5. מה יש בריפו (פירוט טכני)</h2>
+<h2>5. 9 הריבועים: איפה כל שחקן נמצא</h2>
+<p>כל חצי מגרש מחולק ל-3×3 ריבועים, כל ריבוע בגודל 2.67×2.67 מ׳. בטבלאות הצדדים מוצגים <b>מנקודת המבט של השחקן, כשהוא מסתכל אל הרשת</b>. כך אפשר להשוות בין המערכות, למרות שהקבוצות החליפו צדדים. כל תא מראה את אחוז הזמן שהשחקן בילה בו. בריפו (ענף <code>claude/match-analysis</code>, קובץ <code>player_squares_v3.csv</code>) הריבועים ממוספרים L1–L9 ו-R1–R9.</p>
+<div class="grids"><div class="gridbox"><b>פרנקלין</b><table class="g" dir="ltr"><tr><th></th><th>שמאל</th><th>מרכז</th><th>ימין</th></tr><tr><th>ליד הרשת</th><td style="background:rgba(212,160,23,0.02)">1%</td><td style="background:rgba(212,160,23,0.47)">21%</td><td style="background:rgba(212,160,23,0.22)">10%</td></tr><tr><th>אמצע</th><td style="background:rgba(212,160,23,0.00)">0%</td><td style="background:rgba(212,160,23,0.58)">26%</td><td style="background:rgba(212,160,23,0.73)">33%</td></tr><tr><th>עומק</th><td style="background:rgba(212,160,23,0.00)">0%</td><td style="background:rgba(212,160,23,0.07)">3%</td><td style="background:rgba(212,160,23,0.13)">6%</td></tr></table></div><div class="gridbox"><b>הילטיניו</b><table class="g" dir="ltr"><tr><th></th><th>שמאל</th><th>מרכז</th><th>ימין</th></tr><tr><th>ליד הרשת</th><td style="background:rgba(212,160,23,0.24)">11%</td><td style="background:rgba(212,160,23,0.40)">18%</td><td style="background:rgba(212,160,23,0.02)">1%</td></tr><tr><th>אמצע</th><td style="background:rgba(212,160,23,0.42)">19%</td><td style="background:rgba(212,160,23,0.98)">44%</td><td style="background:rgba(212,160,23,0.02)">1%</td></tr><tr><th>עומק</th><td style="background:rgba(212,160,23,0.04)">2%</td><td style="background:rgba(212,160,23,0.11)">5%</td><td style="background:rgba(212,160,23,0.00)">0%</td></tr></table></div><div class="gridbox"><b>מאור האס</b><table class="g" dir="ltr"><tr><th></th><th>שמאל</th><th>מרכז</th><th>ימין</th></tr><tr><th>ליד הרשת</th><td style="background:rgba(212,160,23,0.07)">3%</td><td style="background:rgba(212,160,23,0.51)">23%</td><td style="background:rgba(212,160,23,0.22)">10%</td></tr><tr><th>אמצע</th><td style="background:rgba(212,160,23,0.04)">2%</td><td style="background:rgba(212,160,23,0.89)">40%</td><td style="background:rgba(212,160,23,0.33)">15%</td></tr><tr><th>עומק</th><td style="background:rgba(212,160,23,0.00)">0%</td><td style="background:rgba(212,160,23,0.13)">6%</td><td style="background:rgba(212,160,23,0.04)">2%</td></tr></table></div><div class="gridbox"><b>רון בן ישי</b><table class="g" dir="ltr"><tr><th></th><th>שמאל</th><th>מרכז</th><th>ימין</th></tr><tr><th>ליד הרשת</th><td style="background:rgba(212,160,23,0.44)">20%</td><td style="background:rgba(212,160,23,0.38)">17%</td><td style="background:rgba(212,160,23,0.00)">0%</td></tr><tr><th>אמצע</th><td style="background:rgba(212,160,23,0.82)">37%</td><td style="background:rgba(212,160,23,0.33)">15%</td><td style="background:rgba(212,160,23,0.00)">0%</td></tr><tr><th>עומק</th><td style="background:rgba(212,160,23,0.13)">6%</td><td style="background:rgba(212,160,23,0.09)">4%</td><td style="background:rgba(212,160,23,0.02)">1%</td></tr></table></div></div>
+<ul>
+<li><b>חלוקה ברורה של צדדים:</b> בשתי הקבוצות יש חלוקה קבועה של צד שמאל וצד ימין. <b>פרנקלין</b> משחק במרכז ובימין: 49% מהזמן בשליש הימני, ורק 1% בשליש השמאלי. <b>הילטיניו</b> משחק במרכז ובשמאל, עם 2% בלבד בשליש הימני. <b>רון בן ישי</b> מחזיק את השמאל (63%, ו-1% בלבד בימין). <b>מאור האס</b> משחק במרכז ובימין (5% בלבד בשמאל).</li><li>הזוגות בנויים באותה צורה: פרנקלין ומאור משחקים בצד ימין, הילטיניו ורון בצד שמאל.</li>
+<li>אצל הילטיניו ומאור יש ריכוז גבוה בריבוע המרכזי (44% ו-40%).</li>
+</ul>
+
+<h2>6. נגיעות בכדור ונגיעות חזה</h2>
+<p>337 נגיעות של שחקנים סומנו ידנית, כל אחת עם השחקן והאיבר שנגע בכדור. כל נגיעה גם סווגה לפי פעולה: קבלה, הגבהה או התקפה. מקור: ענף <code>claude/match-analysis</code>, הקבצים <code>touch_labels_final.csv</code> ו-<code>touch_actions_v3.csv</code>.</p>
+<table><tr><th>שחקן</th><th>סה״כ נגיעות</th><th>חזה</th><th>רגל</th><th>ראש</th><th>כתף/אחר</th></tr>
+<tr><td>פרנקלין</td><td>91</td><td>20</td><td>41</td><td>29</td><td>1</td></tr>
+<tr><td>הילטיניו</td><td>78</td><td>27</td><td>33</td><td>16</td><td>2</td></tr>
+<tr><td>מאור האס</td><td>77</td><td><b>32</b></td><td>26</td><td>12</td><td>7</td></tr>
+<tr><td>רון בן ישי</td><td>91</td><td>20</td><td>20</td><td><b>44</b></td><td>7</td></tr></table>
+<table><tr><th>שחקן</th><th>קבלות</th><th>מתוכן בחזה</th><th>הגבהות</th><th>מתוכן בחזה</th><th>התקפות</th><th>התקפות שהכריעו נקודה</th><th>טעויות התקפה</th></tr>
+<tr><td>פרנקלין</td><td>35</td><td>12</td><td>13</td><td>7</td><td>38</td><td>9</td><td>4</td></tr>
+<tr><td>הילטיניו</td><td>26</td><td>13</td><td>22</td><td>14</td><td>26</td><td>10</td><td>4</td></tr>
+<tr><td>מאור האס</td><td>33</td><td>17</td><td>22</td><td>12</td><td>17</td><td>3</td><td>3</td></tr>
+<tr><td>רון בן ישי</td><td>29</td><td>11</td><td>10</td><td>6</td><td>45</td><td>9</td><td>4</td></tr></table>
+<ul>
+<li><b>99 נגיעות חזה</b> במשחק, בעיקר בקבלה (53) ובהגבהה (39). בהתקפה כמעט אין נגיעות חזה (3).</li>
+<li><b>בישראל רון בן ישי הוא המסיים העיקרי:</b> 45 התקפות, רובן בראש (44 נגיעות ראש). מאור האס עושה בעיקר קבלה והגבהה, והכי הרבה נגיעות חזה במשחק (32). אבל מתוך 17 ההתקפות שלו רק 3 הכריעו נקודה.</li>
+<li><b>בברזיל חלוקת העבודה מאוזנת יותר.</b> שני השחקנים תוקפים (38 ו-26) וביחד הכריעו 19 נקודות בהתקפה, לעומת 12 של ישראל. להילטיניו 10 נקודות מ-26 התקפות, היחס הטוב ביותר במשחק.</li>
+<li><b>רוחב העמידה בנגיעות חזה</b> (המרחק בין הרגליים, אחרי המרה ל-16×8): מאור כ-0.71 מ׳, רון כ-0.65 מ׳, הילטיניו כ-0.59 מ׳, פרנקלין כ-0.48 מ׳.</li>
+<li><b>בקבלת הגשה</b> מאור האס קיבל 19 הגשות, יותר מכל שחקן אחר. כנראה שברזיל כיוונה אליו את ההגשות.</li>
+</ul>
+<h2>7. מה יש בריפו (פירוט טכני)</h2>
 <table><tr><th>קובץ</th><th>תוכן</th></tr>
 <tr><td><code>point_events_FINAL_VERIFIED.csv</code></td><td>60 נקודות, כל אחת עם זמן, קבוצה, צד וניקוד. הנתונים אומתו מול לוח התוצאות. 2 עדכונים "כפולים" (2 נקודות לישראל בעדכון אחד), ו-5 נקודות שתוקנו.</td></tr>
 <tr><td><code>correct_bbox/player_boxes_v9.csv</code></td><td>הגרסה הסופית: מלבן לכל שחקן בכל פריים (60,544 שורות), עם מיקום על המגרש במטרים. כ-280 שורות נבדקו או תוקנו ידנית.</td></tr>
@@ -95,7 +113,7 @@ ul li{margin:4px 0}code{background:#eee;padding:1px 4px;border-radius:4px;direct
 <tr><td><code>team_side_ranges_full_video.csv</code> / <code>team_sides_full_video.csv</code></td><td>באיזה צד כל קבוצה בכל פריים (10 קטעים). ישראל = כחול, ברזיל = צהוב.</td></tr>
 <tr><td><code>player_identities.csv</code>, <code>player_tracks_*.csv</code>, <code>referee_detections_removed.csv</code></td><td>שלבי ביניים במעקב: זיהוי YOLO גולמי, הסרת השופט (5,709 זיהויים) ושיוך זהויות.</td></tr>
 <tr><td><code>frame_mapping.csv</code></td><td>הסרטון המקורי היה 16,311 פריימים. 725 פריימים (כ-29 שניות) נמחקו.</td></tr>
-<tr><td><code>homography_px_to_m.npy</code></td><td>מטריצת המרה מפיקסלים למטרים על המגרש.</td></tr>
+<tr><td><code>homography_px_to_m.npy</code></td><td>מטריצת המרה מפיקסלים למטרים על המגרש. ההמרה מותאמת למגרש 18×9, ולכן בדוח הזה כל המיקומים הוקטנו פי 8/9, כדי להתאים למגרש 16×8.</td></tr><tr><td>ענף <code>claude/match-analysis</code></td><td>הניתוח המתקדם: 9 הריבועים, 337 נגיעות עם איבר ופעולה, רוחב עמידה בנגיעות חזה, גובה הכדור ומהירויות.</td></tr>
 <tr><td><code>ballDedect.pt</code>, <code>exp-2.pt</code></td><td>מודלי YOLO לזיהוי הכדור (שמורים ב-Git LFS).</td></tr>
 <tr><td><code>ball/*.py</code>, <code>pose/*.py</code></td><td>סקריפטים: זיהוי כדור, השלמת חורים, הרצת פוזה, רינדור וידאו ובדיקות.</td></tr>
 <tr><td><code>*.mp4</code></td><td>הסרטון הראשי וסרטוני בדיקה עם שכבות (שמורים ב-LFS).</td></tr></table>
