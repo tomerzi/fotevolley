@@ -1,0 +1,6 @@
+== hand_shadow_net
+825 flights, 553 continuity links, 33 sand pins, 130 net crossings, 3 net touches, 0 chest points (vitpose), 4400 shadows
+status 0 nfev 80 cost 25976.9
+sand landings (odd) n=21: height median 0.10 m (0.11 expected), MAE 0.09 m
+n=40 (odd): fit - marked height median +0.06 m, MAE 0.13 m (vs chest point: -0.10 / 0.15); ball-player distance 0.25 m; marked height 1.40 m; ball in flight median 2.52 / p95 4.21 m
+net crossings (odd) n=65: height median 2.69 m, below the net top 11% (by 0.13 m median)

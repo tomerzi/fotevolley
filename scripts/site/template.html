@@ -1,0 +1,625 @@
+<title>מד גובה הכדור</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700&family=IBM+Plex+Sans+Hebrew:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column; chart band full width of the column; court-line blue as the single accent on sun-bleached sand neutrals */
+:root{
+  --dead:#7d859126; --sand:#efe6d2; --p1:#2a78d6; --p2:#eb6834; --p3:#1baf7a; --p4:#eda100;
+  --bg:#f6f4ef; --surface:#ffffff; --ink:#1b2430; --ink-2:#4a5463; --muted:#7d8591;
+  --line:#e3dfd6; --accent:#1f5fbf; --accent-soft:#1f5fbf22; --est:#b07a1f; --net:#c2410c;
+  --display:"Barlow Condensed","Arial Narrow",sans-serif;
+  --body:"IBM Plex Sans Hebrew","Segoe UI",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --dead:#8a93a02e;
+  --sand:#2a2a22;
+  --p1:#3987e5; --p2:#d95926; --p3:#199e70; --p4:#c98500;
+  --bg:#12161c; --surface:#1a2029; --ink:#e9ecf0; --ink-2:#b4bcc7; --muted:#8a93a0;
+  --line:#2a323d; --accent:#6aa3ff; --accent-soft:#6aa3ff26; --est:#e0aa4c; --net:#fb8a5a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --dead:#8a93a02e;
+  --sand:#2a2a22;
+  --p1:#3987e5; --p2:#d95926; --p3:#199e70; --p4:#c98500;
+  --bg:#12161c; --surface:#1a2029; --ink:#e9ecf0; --ink-2:#b4bcc7; --muted:#8a93a0;
+  --line:#2a323d; --accent:#6aa3ff; --accent-soft:#6aa3ff26; --est:#e0aa4c; --net:#fb8a5a; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6}
+.wrap{max-width:1040px;margin:0 auto;padding-block:32px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:40px}
+h1,h2{font-family:var(--display);font-weight:700;line-height:1.05;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.4rem,6vw,3.6rem);letter-spacing:.01em}
+h2{font-size:1.75rem}
+p{margin:0;max-width:65ch}
+.lede{color:var(--ink-2);font-size:1.05rem}
+.eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+header{display:grid;gap:12px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.stat{background:var(--surface);padding:16px 18px;display:grid;gap:2px}
+.stat b{font-family:var(--display);font-size:2.4rem;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.stat b small{font-size:1.1rem;color:var(--muted);font-weight:500;margin-inline-start:3px}
+.stat span{color:var(--ink-2);font-size:.9rem}
+section{display:grid;gap:16px}
+.chartbox{background:var(--surface);border:1px solid var(--line);padding:16px;display:grid;gap:12px}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+select,button{font:inherit;font-size:.95rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);padding:6px 10px;border-radius:4px}
+button{cursor:pointer}
+button:hover{border-color:var(--accent)}
+button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.legend{display:flex;flex-wrap:wrap;gap:16px;color:var(--ink-2);font-size:.88rem}
+.legend i{display:inline-block;width:22px;height:0;border-top:3px solid var(--accent);vertical-align:middle;margin-inline-end:6px}
+.legend i.est{border-top:3px dotted var(--est)}
+.legend i.net{border-top:2px dashed var(--net)}
+.legend i.band{border-top:0;height:12px;background:var(--accent-soft);vertical-align:-2px}
+.legend i.dead{border-top:0;height:12px;background:var(--dead);vertical-align:-2px}
+.canvas-wrap{position:relative;direction:ltr}
+canvas{display:block;width:100%}
+#main{height:340px}
+#overview{height:64px;cursor:pointer}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font-family:var(--mono);font-size:.8rem;padding:6px 8px;border-radius:4px;white-space:nowrap;direction:rtl}
+.hint{color:var(--muted);font-size:.85rem}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+figure{margin:0;display:grid;gap:6px;min-width:0}
+figure img{width:100%;aspect-ratio:16/9;object-fit:cover;border:1px solid var(--line);cursor:pointer}
+figcaption{font-size:.88rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
+figcaption b{font-family:var(--display);font-size:1.25rem;color:var(--ink)}
+.tablebox{overflow-x:auto;border:1px solid var(--line);background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:.92rem}
+th,td{padding:8px 12px;text-align:start;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-weight:500;color:var(--muted);font-size:.8rem;letter-spacing:.04em;position:sticky;top:0;background:var(--surface)}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:var(--accent-soft)}
+td .bar{display:inline-block;height:8px;background:var(--accent);border-radius:0 2px 2px 0;vertical-align:middle;margin-inline-start:8px}
+.cgrid-note{color:var(--muted);font-size:.85rem}
+#conc{height:300px;cursor:pointer}
+.legend i.isr,.legend i.bra{border-top:0;width:11px;height:11px;border-radius:50%;vertical-align:-1px}
+.legend i.isr{background:var(--p1)} .legend i.bra{background:var(--p3)}
+.legend i.unc{border-top:0;width:11px;height:11px;border-radius:50%;border:2px solid var(--muted);background:transparent;vertical-align:-2px}
+#ctbody tr{cursor:pointer}
+#ctbody tr:hover{background:var(--accent-soft)}
+.pill{font-family:var(--mono);font-size:.75rem;padding:1px 6px;border:1px solid var(--line);border-radius:3px}
+.method{display:grid;gap:12px;color:var(--ink-2)}
+.method ol{margin:0;padding-inline-start:20px;display:grid;gap:6px;max-width:70ch}
+.mono{font-family:var(--mono);font-size:.9em}
+.player{display:grid;grid-template-columns:minmax(0,1fr) 180px;gap:16px;align-items:start}
+.player video{width:100%;aspect-ratio:16/9;background:#000;display:block;max-width:100%}
+.readout{display:grid;gap:10px;align-content:start}
+.readout .big{font-family:var(--display);font-size:3.4rem;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.readout .big small{font-size:1.2rem;color:var(--muted);margin-inline-start:4px}
+.readout .meta{font-family:var(--mono);font-size:.82rem;color:var(--ink-2);display:grid;gap:2px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{font-family:var(--mono);font-size:.8rem;padding:3px 8px}
+.speeds{display:grid;gap:4px;font-family:var(--mono);font-size:.85rem;font-variant-numeric:tabular-nums}
+.speeds div{display:flex;gap:8px;align-items:center;justify-content:space-between}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-inline-end:6px;vertical-align:middle}
+.toggles{display:flex;flex-wrap:wrap;gap:8px}
+.toggles button{display:inline-flex;align-items:center;gap:6px}
+.toggles button[aria-pressed="false"]{opacity:.45}
+#speed{height:300px}
+.vbox{position:relative;min-width:0}
+.vstat{position:absolute;inset:auto 0 48px 0;margin:0 auto;width:max-content;max-width:90%;background:var(--ink);color:var(--bg);padding:6px 12px;border-radius:4px;font-size:.9rem;text-align:center}
+.touches{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.touches figure img{aspect-ratio:1/1}
+.touches .d{font-family:var(--display);font-size:1.5rem;color:var(--ink);line-height:1}
+.touches .air{color:var(--est)}
+.covgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.cov{display:grid;gap:8px;background:var(--surface);border:1px solid var(--line);padding:12px;min-width:0}
+.court{position:relative;direction:ltr;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);aspect-ratio:1/1;max-width:100%;border:2px solid var(--ink-2);border-top:6px solid var(--ink);background:var(--sand)}
+.zone{display:grid;place-items:center;border:1px solid var(--line);font-family:var(--display);font-weight:700;font-size:1.5rem;font-variant-numeric:tabular-nums;color:var(--ink)}
+.zone.dark{color:var(--surface)}
+.zone small{display:block;font-family:var(--body);font-weight:400;font-size:.7rem;opacity:.85;text-align:center}
+.court .netlabel{position:absolute;top:-1.6rem;inset-inline:0;text-align:center;font-size:.78rem;color:var(--muted);direction:rtl}
+.court .mean{position:absolute;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;border:3px solid var(--surface);box-shadow:0 0 0 1px var(--ink)}
+.sides{display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted);direction:ltr}
+.covcard-top{padding-top:1.4rem}
+.scale{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--ink-2);flex-wrap:wrap}
+.scale .bar{width:160px;height:10px;border:1px solid var(--line);background:linear-gradient(to left,var(--sand),var(--accent))}
+.cov h3{margin:0;font-family:var(--display);font-size:1.3rem}
+.cov dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font-size:.88rem;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.cov dd{margin:0;text-align:end;color:var(--ink)}
+@media (max-width:640px){.player{grid-template-columns:1fr}.readout{grid-template-columns:auto 1fr;align-items:center}}
+@media (max-width:640px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}#main{height:260px}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+
+<div class="wrap" dir="rtl">
+  <header>
+    <div class="eyebrow">פוטוולי · ISR מול BRA · מצלמה ראשית · 25 פריימים לשנייה</div>
+    <h1>מד גובה הכדור</h1>
+    <p class="lede">גובה מרכז הכדור מעל החול (החול = 0 מ') בכל פריים במשחק. הגובה חושב בתלת־ממד ממצלמה אחת מכוילת, לפי מסלול מעוף בליסטי בין נגיעה לנגיעה.</p>
+  </header>
+
+  <div class="stats" id="stats"></div>
+
+  <section>
+    <h2>המדידה על הווידאו</h2>
+    <p class="hint">כל פריים במשחק עם הגובה שחושב: עיגול סביב הכדור, קו מקווקו עד הנקודה שמתחתיו על החול, ומד בצד ימין. הגרף למטה זז יחד עם הווידאו, ולחיצה על הגרף קופצת לרגע הזה בסרטון.</p>
+    <div class="player">
+      <div class="vbox"><video id="vid" controls playsinline preload="auto" muted></video><div class="vstat" id="vstat" hidden></div></div>
+      <div class="readout" aria-live="off">
+        <div class="big" id="liveH">–<small>מ'</small></div>
+        <div class="meta"><span id="liveT">0:00.0</span><span id="liveM"></span></div>
+        <div class="eyebrow">מהירות עכשיו, קמ"ש</div>
+        <div class="speeds" id="liveS"></div>
+      </div>
+    </div>
+    <div class="seg" id="segs" aria-label="דקה בסרטון"></div>
+  </section>
+
+  <section>
+    <h2>הגובה לאורך הזמן</h2>
+    <div class="chartbox">
+      <div class="controls">
+        <label for="rally">נקודה:</label>
+        <select id="rally"></select>
+        <button id="prev" type="button">הקודמת</button>
+        <button id="next" type="button">הבאה</button>
+        <button id="all" type="button" aria-pressed="false">כל המשחק</button>
+      </div>
+      <div class="legend">
+        <span><i></i>מסלול בליסטי מותאם (או לפי השחקן / הצל)</span>
+        <span><i class="band"></i>טווח אי-ודאות (±1σ): כ-8 ס"מ במעוף עם צללים, כ-25 ס"מ בלי, כ-40 ס"מ לפי גודל בלבד</span>
+        <span><i class="est"></i>הערכה לפי גודל הכדור בלבד</span>
+        <span><i class="net"></i>רשת 2.20 מ'</span>
+        <span><i class="dead"></i>זמן מת בין נקודות (לא נספר)</span>
+      </div>
+      <div class="canvas-wrap"><canvas id="main" aria-label="גרף גובה הכדור לפי זמן"></canvas><div class="tip" id="tip" hidden></div></div>
+      <div class="canvas-wrap"><canvas id="overview" aria-label="מבט על כל המשחק, לחיצה בוחרת נקודה"></canvas></div>
+      <div class="hint">רחפו מעל הגרף כדי לראות גובה בפריים מסוים, ולחצו כדי לקפוץ לשם בווידאו. הרקע האפור מסמן זמן מת בין נקודות (אחרי שהנקודה נגמרה ועד שהבאה מתחילה): הגבהים שם מוצגים אבל לא נכנסים לסיכומים ולטבלה. לחיצה על הפס התחתון קופצת לנקודה באותו זמן.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>פריימים לדוגמה</h2>
+    <p class="hint">הקו הלבן יורד מהכדור לנקודה שמתחתיו על החול. לחיצה על תמונה מציגה את הרגע בגרף.</p>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <section>
+    <h2>הגובה המרבי בכל נקודה</h2>
+    <div class="tablebox"><table>
+      <thead><tr><th>נקודה</th><th>זמן</th><th>זכתה</th><th>תוצאה (ISR-BRA)</th><th>ממוצע</th><th>מרבי</th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>מהירות השחקנים</h2>
+    <p class="hint">מהירות הריצה של כל שחקן על החול בקמ"ש, לאורך אותה נקודה שנבחרה בגרף הגובה. גם הגרף הזה זז עם הווידאו. המיקומים מגיעים מהניתוח המעודכן של מיקומי השחקנים, אחרי סינון קפיצות ובעיטות אופניים, ומומרים למטרים לפי מגרש של 16×8. פריימים שבהם השחקן באוויר או מוסתר לא מוצגים.</p>
+    <div class="chartbox">
+      <div class="toggles" id="ptoggles"></div>
+      <div class="canvas-wrap"><canvas id="speed" aria-label="גרף מהירות השחקנים לפי זמן"></canvas><div class="tip" id="tip2" hidden></div></div>
+    </div>
+    <div class="tablebox"><table>
+      <thead><tr><th>שחקן</th><th>מהירות שיא (חצי שנייה)</th><th>מהירות חציונית</th><th>זמן מעל 12.8 קמ"ש</th><th>מרחק בנקודות</th></tr></thead>
+      <tbody id="sstats"></tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>המרחק בין הרגליים בפגיעה בחזה</h2>
+    <p class="hint"><span id="tcount"></span> הפגיעות בחזה סומנו בפרויקט לפי סימון הפגיעות. בכל פגיעה המרחק נמדד על החול בין שתי כפות הרגליים (עקב ואצבעות), בממוצע על פני שלושה פריימים, ומומר למטרים לפי מגרש של 16×8. כשרגל מורמת או שהשחקן באוויר, המרחק מסומן בכתום, כי מצלמה אחת לא מבדילה בין רגל מורמת לרגל שמונחת רחוק יותר. לחיצה על תמונה קופצת לרגע בווידאו.</p>
+    <div class="stats" id="tstats"></div>
+    <div class="touches" id="touchgrid"></div>
+  </section>
+
+  <section>
+    <h2>המרחק בין השחקנים ברגע ספיגת נקודה</h2>
+    <p class="hint">לכל נקודה: המרחק על החול בין שני השחקנים של הקבוצה שספגה, ברגע שהנקודה הלכה. כשהקבוצה טעתה בעצמה (הכדור יצא או נכנס לרשת) זה רגע הנגיעה האחרונה שלה; כשהיריבה סיימה את הנקודה, זה הרגע שהכדור נגע בחול. 23 רגעים סומנו ביד, 12 לפי נחיתות שסומנו ביד, והשאר לפי הנגיעה האחרונה המסומנת. עיגול ריק = רגע לא ודאי. המיקום של כל שחקן מדויק בערך ב-10–15 ס"מ. לחיצה על נקודה בגרף או בטבלה קופצת לרגע בווידאו.</p>
+    <div class="stats" id="cstats"></div>
+    <div class="chartbox">
+      <div class="legend"><span><i class="isr"></i>ישראל ספגה</span><span><i class="bra"></i>ברזיל ספגה</span><span><i class="unc"></i>רגע לא ודאי</span></div>
+      <div class="canvas-wrap"><canvas id="conc" aria-label="המרחק בין השחקנים בכל נקודה שנספגה"></canvas><div class="tip" id="tip3" hidden></div></div>
+    </div>
+    <div class="tablebox" style="max-height:420px"><table>
+      <thead><tr><th>נקודה</th><th>תוצאה (ISR-BRA)</th><th>ספגה</th><th>זמן</th><th>מרחק</th><th>מקור הרגע</th></tr></thead>
+      <tbody id="ctbody"></tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>איזה חלק מהמגרש כל שחקן מכסה</h2>
+    <p class="hint">הזמן שכל שחקן מבלה בכל חלק של חצי המגרש שלו, בכל 60 הנקודות. חצי המגרש מחולק ל-9 אזורים של כ-2.7×2.7 מ', ובכל אזור כתוב איזה אחוז מהזמן השחקן היה בו. המפה מוצגת מנקודת המבט של הקבוצה: הרשת למעלה, וצד שמאל הוא צד שמאל של הקבוצה כשהיא מול הרשת. ככה החלפות הצדדים לא משנות.</p>
+    <div class="scale"><span>0%</span><span class="bar"></span><span id="covmax"></span><span>מהזמן באזור</span></div>
+    <div class="covgrid" id="covgrid"></div>
+  </section>
+
+  <section>
+    <h2>השחקנים</h2>
+    <p class="hint">הגובה של כל ארבעת השחקנים נמדד מהווידאו, מתוך התנוחות שבהן הם עומדים זקוף, אחרי שהמצלמה כוילה בלי להשתמש בגובה שלהם. הדיוק הוא בערך ±5 ס"מ. השיוך של השמות לקודים (A/B) מבוסס על מספרי החולצות וסדר השמות בלוח התוצאות, ועוד לא אומת.</p>
+    <div class="tablebox"><table>
+      <thead><tr><th>שחקן</th><th>נבחרת</th><th>גובה</th><th>מקור</th></tr></thead>
+      <tbody id="players"></tbody>
+    </table></div>
+  </section>
+
+  <section class="method">
+    <h2>איך זה חושב</h2>
+    <ol>
+      <li>המצלמה כוילה מנתונים קבועים בלבד: הקווים הכחולים (16×8 מ'), עיוות העדשה, הקצה העליון של הרשת (2.20 מ' לכל אורכה), ו-8 הפסים של האנטנה הקרובה (פסים של 10 ס"מ, 2.30–3.00 מ'). גובה השחקנים לא שימש בכיול. הוא נמדד מהווידאו בסוף.</li>
+      <li>כל מעוף של הכדור הוא מסלול תלת־ממדי תחת כבידה של 9.81 מ'/ש². בדקנו גם התנגדות אוויר, כבידה מותאמת וסיבוב של הכדור (כמו במחקר ball3d), ואף אחד מהם לא שיפר את הדיוק, ולכן הם לא בשימוש. כל המעופים מחושבים יחד, והכדור לא "קופץ" בין סוף מעוף אחד לתחילת הבא. חציון השגיאה מול התמונה: <span class="mono" id="reproj"></span> פיקסלים.</li>
+      <li><b>הצל של הכדור על החול</b> משמש כמבט שני: כיוון השמש חושב מתוך הצללים עצמם (גובה 43.8° מעל האופק), בכ-5,900 פריימים הצל נמצא אוטומטית (בשלושה סבבים, כל סבב סביב התוצאה הקודמת), ועוד 89 צללים סומנו ביד בפריימים הקשים. הזיהוי האוטומטי נמצא בחציון 2 פיקסלים מהסימון היד, והחישוב בלי הסימונים פוגע בצללים שסומנו ביד בטעות חציונית של 12 ס"מ על החול.</li>
+      <li>מחוץ למעופים רציפים: ברגע נגיעה הכדור נמצא בגוף השחקן, ולכן המרחק שלו מהמצלמה נלקח ממיקום השחקן (185 פריימים); בעוד 133 פריימים — מהצל. בשאר הפריימים כאלה המרחק מוערך לפי גודל הכדור בלבד, והוא הכי פחות מדויק.</li>
+      <li>לכל פריים יש <b>טווח אי-ודאות</b> (הרצועה הכחולה בגרף), לפי איך הוא נמדד, כפי שנמדד בבדיקות: כ-8 ס"מ במעוף עם צללים, כ-25 ס"מ במעוף בלי צללים, כ-10 ס"מ בנגיעה, כ-40 ס"מ לפי גודל בלבד. הנקודה שמתחת לכדור, יחד עם הגובה חלקי tan(גובה השמש) בכיוון השמש, חייבת ליפול על הצל. זה קובע את המרחק של הכדור מהמצלמה, שהוא החלק הכי חלש במצלמה אחת.</li>
+      <li>במעבר מעל הרשת מרכז הכדור חייב להיות לפחות 2.31 מ' (2.20 + רדיוס).</li>
+      <li>נקודות אמת שסומנו ביד: 94 פגיעות בחזה, שבהן הכדור נמצא בנקודת החזה של השחקן לפי השלד, ו-41 נחיתות בחול, שבהן מרכז הכדור בגובה 11 ס"מ.</li>
+      <li>קוטר הכדור 22 ס"מ. הזיהוי האוטומטי "מכווץ" את גודל הכדור לכ-25 פיקסלים, ולכן גודל המלבן תוקן לפי הנחיתות בחול, שבהן המרחק ידוע. כשאין מעוף רציף, למשל כשהכדור בידיים או מתגלגל, המרחק מוערך לפי הגודל המתוקן.</li>
+    </ol>
+    <p>דיוק, בבדיקה על נקודות אמת שלא שימשו בחישוב: בפגיעות בחזה הטעות הטיפוסית כ-12 ס"מ (והכדור יושב כ-25 ס"מ מהשחקן, במקום 43 ס"מ בלי הצל), ובנחיתות בחול כ-6 ס"מ. בהערכה לפי גודל בלבד הדיוק נמוך יותר. פריימים בקצה התמונה סומנו כפחות אמינים ולא נכללו בסיכומים. הגובה הוא של מרכז הכדור, ולכן כדור שמונח על החול יציג כ-0.11 מ'.</p>
+  </section>
+</div>
+
+<script>
+const D = __DATA__;
+const FPS = D.summary.fps, H = D.h, M = D.m, N = H.length, DEAD = D.dead || [], SG = D.sg && D.sg.some(v => v !== null) ? D.sg : [];
+const isDead = f => DEAD.some(([d0, d1]) => f >= d0 && f <= d1);
+const $ = s => document.querySelector(s);
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const fmtT = f => { const s = f / FPS; return `${Math.floor(s / 60)}:${(s % 60).toFixed(1).padStart(4, '0')}`; };
+const fmtH = c => (c / 100).toFixed(2);
+
+// summary tiles
+const S = D.summary;
+const cover = Math.round(100 * (S.fit + S.size) / S.frames);
+$('#stats').innerHTML = [
+  [S.median.toFixed(2), 'מ\'', 'גובה חציוני בזמן משחק'],
+  [S.p95.toFixed(1), 'מ\'', '5% מהזמן הכדור מעל הגובה הזה'],
+  [S.max.toFixed(2), 'מ\'', 'הגובה המרבי בזמן משחק'],
+  [cover, '%', 'מהפריימים עם גובה'],
+].map(([v, u, l]) => `<div class="stat"><b>${v}<small>${u}</small></b><span>${l}</span></div>`).join('');
+$('#reproj').textContent = S.reproj.toFixed(1);
+
+
+// rally selector
+const P = D.points;
+$('#rally').innerHTML = P.map((p, i) => `<option value="${i}">נקודה ${p.n} · ${fmtT(p.start)} · עד ${p.max.toFixed(1)} מ'</option>`).join('');
+let view = { a: P[0].start, b: P[0].end }, rallyIdx = 0, hoverF = null;
+
+function setRally(i) {
+  rallyIdx = Math.max(0, Math.min(P.length - 1, i));
+  $('#rally').value = rallyIdx;
+  view = { a: Math.max(0, P[rallyIdx].start - 10), b: Math.min(N - 1, P[rallyIdx].end + 10) };
+  $('#all').setAttribute('aria-pressed', 'false');
+  draw();
+}
+$('#rally').onchange = e => setRally(+e.target.value);
+$('#prev').onclick = () => setRally(rallyIdx - 1);
+$('#next').onclick = () => setRally(rallyIdx + 1);
+$('#all').onclick = () => { view = { a: 0, b: N - 1 }; $('#all').setAttribute('aria-pressed', 'true'); draw(); };
+function focusFrame(f) {
+  const i = P.findIndex(p => f > p.start - 10 && f <= p.end + 10);
+  if (i >= 0) setRally(i); else { view = { a: Math.max(0, f - 100), b: Math.min(N - 1, f + 100) }; draw(); }
+  hoverF = f; draw();
+  $('#main').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' });
+}
+
+// canvas helpers
+function setup(cv) {
+  const r = cv.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+  cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr);
+  const g = cv.getContext('2d'); g.setTransform(dpr, 0, 0, dpr, 0, 0);
+  return { g, w: r.width, h: r.height };
+}
+const YMAX = 7;
+const PAD = { l: 40, r: 12, t: 12, b: 26 };
+
+function series(g, x, y, a, b, want, color, dash, width) {
+  g.strokeStyle = color; g.lineWidth = width; g.setLineDash(dash); g.lineJoin = 'round'; g.beginPath();
+  let pen = false;
+  for (let f = a; f <= b; f++) {
+    const ok = H[f] !== null && want.includes(M[f]);
+    if (!ok) { pen = false; continue; }
+    const X = x(f), Y = y(H[f]);
+    if (pen) g.lineTo(X, Y); else g.moveTo(X, Y);
+    pen = true;
+  }
+  g.stroke(); g.setLineDash([]);
+}
+
+function draw() {
+  const { g, w, h } = setup($('#main'));
+  const { a, b } = view;
+  const x = f => PAD.l + (f - a) / Math.max(1, b - a) * (w - PAD.l - PAD.r);
+  const y = c => PAD.t + (1 - c / 100 / YMAX) * (h - PAD.t - PAD.b);
+  g.clearRect(0, 0, w, h);
+  g.font = '12px "IBM Plex Mono", monospace'; g.fillStyle = css('--muted'); g.strokeStyle = css('--line'); g.lineWidth = 1;
+  g.textAlign = 'right'; g.textBaseline = 'middle';
+  for (let m = 0; m <= YMAX; m++) {
+    const Y = y(m * 100); g.beginPath(); g.moveTo(PAD.l, Y); g.lineTo(w - PAD.r, Y); g.stroke();
+    g.fillText(m + ' m', PAD.l - 6, Y);
+  }
+  // time ticks
+  const span = (b - a) / FPS, steps = [1, 2, 5, 10, 30, 60, 120];
+  const st = steps.find(s => span / s <= 8) || 120;
+  g.textAlign = 'center'; g.textBaseline = 'top';
+  for (let s = Math.ceil(a / FPS / st) * st; s <= b / FPS; s += st) { const X = x(s * FPS); if (X > PAD.l + 20 && X < w - PAD.r - 24) g.fillText(fmtT(s * FPS), X, h - PAD.b + 6); }
+  // dead time (not counted): shaded
+  g.fillStyle = css('--dead');
+  for (const [d0, d1] of DEAD) { if (d1 < a || d0 > b) continue; const X0 = x(Math.max(a, d0)), X1 = x(Math.min(b, d1 + 1)); g.fillRect(X0, PAD.t, Math.max(1, X1 - X0), h - PAD.t - PAD.b); }
+  // net
+  g.strokeStyle = css('--net'); g.setLineDash([6, 5]); g.lineWidth = 1.5;
+  g.beginPath(); g.moveTo(PAD.l, y(220)); g.lineTo(w - PAD.r, y(220)); g.stroke(); g.setLineDash([]);
+  // uncertainty band (+-1 sigma per frame)
+  if (SG.length) {
+    g.fillStyle = css('--accent-soft');
+    const st2 = Math.max(1, Math.ceil((b - a) / (w * 1.5)));
+    let run = [];
+    const flush = () => { if (run.length > 1) { g.beginPath(); run.forEach(([X, lo], i) => i ? g.lineTo(X, lo) : g.moveTo(X, lo)); for (let i = run.length - 1; i >= 0; i--) g.lineTo(run[i][0], run[i][2]); g.closePath(); g.fill(); } run = []; };
+    for (let f = a; f <= b; f += st2) { const c = H[f], s = SG[f]; if (c === null || s === null || isDead(f)) { flush(); continue; } run.push([x(f), y(Math.max(0, c - s)), y(c + s)]); }
+    flush();
+  }
+  // data
+  const lw = (b - a) > 3000 ? 1 : 2;
+  series(g, x, y, a, b, ['s', 'e'], css('--est'), [2, 3], lw);
+  series(g, x, y, a, b, ['f', 't', 'w'], css('--accent'), [], lw);
+  // rally max marker
+  if (b - a < 3000) {
+    const p = P[rallyIdx];
+    if (p.maxf >= a && p.maxf <= b) {
+      g.fillStyle = css('--accent'); g.strokeStyle = css('--surface'); g.lineWidth = 2;
+      g.beginPath(); g.arc(x(p.maxf), y(H[p.maxf]), 5, 0, 7); g.fill(); g.stroke();
+      g.fillStyle = css('--ink'); g.font = '600 13px "IBM Plex Mono", monospace'; g.textBaseline = 'bottom';
+      g.fillText(p.max.toFixed(2) + ' m', Math.min(w - 40, Math.max(PAD.l + 30, x(p.maxf))), y(H[p.maxf]) - 8);
+    }
+  }
+  // hover
+  const tip = $('#tip');
+  if (hoverF !== null && hoverF >= a && hoverF <= b) {
+    const X = x(hoverF);
+    g.strokeStyle = css('--ink-2'); g.lineWidth = 1; g.beginPath(); g.moveTo(X, PAD.t); g.lineTo(X, h - PAD.b); g.stroke();
+    const c = H[hoverF], m = M[hoverF];
+    if (c !== null) { g.fillStyle = 'ftw'.includes(m) ? css('--accent') : css('--est'); g.beginPath(); g.arc(X, y(c), 4.5, 0, 7); g.fill(); }
+    const label = { f: 'מסלול מותאם', s: 'לפי גודל', e: 'קצה התמונה', '-': 'הכדור לא זוהה', t: 'לפי השחקן בנגיעה', w: 'לפי הצל' }[m];
+    const sgv = SG.length ? SG[hoverF] : null;
+    tip.innerHTML = `${fmtT(hoverF)} · פריים ${hoverF}<br>${c === null ? '—' : fmtH(c) + ' מ\''}${sgv !== null && c !== null ? ` ± ${sgv} ס"מ` : ''} · ${label}${isDead(hoverF) ? '<br>זמן מת: לא נספר' : ''}`;
+    tip.hidden = false;
+    const tw = tip.offsetWidth;
+    tip.style.left = Math.min(w - tw - 4, Math.max(4, X + 12)) + 'px';
+    tip.style.top = (c === null ? PAD.t : Math.max(4, y(c) - 52)) + 'px';
+  } else tip.hidden = true;
+  drawOverview();
+  if (typeof drawSpeed === 'function' && window.SP_READY) drawSpeed();
+}
+
+function drawOverview() {
+  const { g, w, h } = setup($('#overview'));
+  g.clearRect(0, 0, w, h);
+  const x = f => PAD.l + f / (N - 1) * (w - PAD.l - PAD.r);
+  const bins = Math.floor(w - PAD.l - PAD.r);
+  g.fillStyle = css('--accent');
+  for (let i = 0; i < bins; i++) {
+    const f0 = Math.floor(i / bins * N), f1 = Math.floor((i + 1) / bins * N);
+    let mx = 0; for (let f = f0; f < f1; f++) if (H[f] !== null && M[f] === 'f' && H[f] > mx) mx = H[f];
+    const bh = mx / 100 / YMAX * (h - 8);
+    g.globalAlpha = .55; g.fillRect(PAD.l + i, h - 4 - bh, 1, bh);
+  }
+  g.globalAlpha = 1;
+  g.fillStyle = css('--dead');
+  for (const [d0, d1] of DEAD) g.fillRect(x(d0), 0, Math.max(1, x(d1 + 1) - x(d0)), h);
+  g.strokeStyle = css('--ink'); g.lineWidth = 1.5;
+  const X0 = x(view.a), X1 = x(view.b);
+  g.strokeRect(X0, 1, Math.max(2, X1 - X0), h - 2);
+}
+
+const mainCv = $('#main');
+mainCv.addEventListener('pointermove', e => {
+  const r = mainCv.getBoundingClientRect(), { a, b } = view;
+  const t = (e.clientX - r.left - PAD.l) / (r.width - PAD.l - PAD.r);
+  hoverF = Math.round(a + Math.max(0, Math.min(1, t)) * (b - a)); draw();
+});
+mainCv.addEventListener('pointerleave', () => { hoverF = null; draw(); });
+$('#overview').addEventListener('click', e => {
+  const r = e.currentTarget.getBoundingClientRect();
+  const f = Math.round((e.clientX - r.left - PAD.l) / (r.width - PAD.l - PAD.r) * (N - 1));
+  const i = P.findIndex(p => f <= p.end);
+  if (i >= 0) setRally(i);
+});
+
+// gallery
+$('#gallery').innerHTML = D.shots.map(s => `<figure><img src="${s.src}" alt="פריים ${s.frame}, הכדור בגובה ${s.h.toFixed(2)} מטר" loading="lazy" data-f="${s.frame}"><figcaption><b>${s.h.toFixed(2)} מ'</b> · ${fmtT(s.frame)} · פריים ${s.frame}</figcaption></figure>`).join('');
+$('#gallery').addEventListener('click', e => { const f = e.target.dataset?.f; if (f) { focusFrame(+f); seekFrame(+f, false); } });
+
+// table
+const topMax = Math.max(...P.map(p => p.max));
+$('#tbody').innerHTML = P.map((p, i) => `<tr data-i="${i}"><td>${p.n}</td><td>${fmtT(p.start)}</td><td><span class="pill">${p.winner}</span></td><td>${p.score}</td><td>${p.mean.toFixed(2)} מ'</td><td>${p.max.toFixed(2)} מ'<span class="bar" style="width:${Math.round(p.max / topMax * 80)}px"></span></td></tr>`).join('');
+$('#tbody').addEventListener('click', e => { const tr = e.target.closest('tr'); if (tr) { setRally(+tr.dataset.i); $('#main').scrollIntoView({ block: 'center' }); } });
+
+
+const NAMES = { ISR_A: 'רון בן ישי', ISR_B: 'מאור האס', BRA_A: 'הילטיניו', BRA_B: 'פרנקלין' };
+$('#players').innerHTML = Object.entries(D.players).map(([k, v]) => `<tr><td>${NAMES[k] || k} <span class="pill">${k}</span></td><td>${k.startsWith('ISR') ? 'ישראל' : 'ברזיל'}</td><td>${v.stature_m.toFixed(2)} מ'</td><td>${v.source === 'given' ? 'נתון' : 'נמדד בווידאו'}</td></tr>`).join('');
+
+// player speeds
+const PL = ['ISR_A', 'ISR_B', 'BRA_A', 'BRA_B'], PCOL = ['--p1', '--p2', '--p3', '--p4'];
+const SP = D.speed, shown = { ISR_A: true, ISR_B: true, BRA_A: true, BRA_B: true };
+const label = k => `${k.startsWith('ISR') ? 'ישראל' : 'ברזיל'} ${k.slice(-1)}`;
+$('#ptoggles').innerHTML = PL.map((k, i) => `<button type="button" aria-pressed="true" data-k="${k}"><span class="dot" style="background:var(${PCOL[i]})"></span>${label(k)} <span class="pill">${k}</span></button>`).join('');
+$('#ptoggles').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; const k = b.dataset.k; shown[k] = !shown[k]; b.setAttribute('aria-pressed', String(shown[k])); draw(); });
+$('#sstats').innerHTML = PL.map((k, i) => { const s = D.sstats[k]; return `<tr><td><span class="dot" style="background:var(${PCOL[i]})"></span>${label(k)} <span class="pill">${k}</span></td><td>${s.top.toFixed(1)} קמ"ש</td><td>${s.median.toFixed(1)} קמ"ש</td><td>${s.fast.toFixed(1)} שנ'</td><td>${s.dist.toLocaleString('he-IL')} מ'</td></tr>`; }).join('');
+const SMAX = 30;
+function drawSpeed() {
+  const { g, w, h } = setup($('#speed'));
+  const { a, b } = view;
+  const x = f => PAD.l + (f - a) / Math.max(1, b - a) * (w - PAD.l - PAD.r);
+  const y = v => PAD.t + (1 - v / 10 / SMAX) * (h - PAD.t - PAD.b);
+  g.clearRect(0, 0, w, h);
+  g.font = '12px "IBM Plex Mono", monospace'; g.fillStyle = css('--muted'); g.strokeStyle = css('--line'); g.lineWidth = 1;
+  g.textAlign = 'right'; g.textBaseline = 'middle';
+  for (let v = 0; v <= SMAX; v += 5) { const Y = y(v * 10); g.beginPath(); g.moveTo(PAD.l, Y); g.lineTo(w - PAD.r, Y); g.stroke(); g.fillText(v + '', PAD.l - 6, Y); }
+  g.save(); g.textAlign = 'left'; g.fillText('km/h', PAD.l + 4, PAD.t + 6); g.restore();
+  const span = (b - a) / FPS, steps = [1, 2, 5, 10, 30, 60, 120], st = steps.find(s => span / s <= 8) || 120;
+  g.textAlign = 'center'; g.textBaseline = 'top';
+  for (let s = Math.ceil(a / FPS / st) * st; s <= b / FPS; s += st) { const X = x(s * FPS); if (X > PAD.l + 20 && X < w - PAD.r - 24) g.fillText(fmtT(s * FPS), X, h - PAD.b + 6); }
+  const big = (b - a) > 3000, step = big ? Math.ceil((b - a) / (w * 1.5)) : 1;
+  PL.forEach((k, i) => {
+    if (!shown[k]) return;
+    const S = SP[k]; g.strokeStyle = css(PCOL[i]); g.lineWidth = big ? 1 : 2; g.lineJoin = 'round'; g.beginPath();
+    let pen = false;
+    for (let f = a; f <= b; f += step) { const v = S[f]; if (v === null) { pen = false; continue; } const X = x(f), Y = y(v); if (pen) g.lineTo(X, Y); else g.moveTo(X, Y); pen = true; }
+    g.stroke();
+  });
+  const tip = $('#tip2');
+  if (hoverF !== null && hoverF >= a && hoverF <= b) {
+    const X = x(hoverF);
+    g.strokeStyle = css('--ink-2'); g.lineWidth = 1; g.beginPath(); g.moveTo(X, PAD.t); g.lineTo(X, h - PAD.b); g.stroke();
+    PL.forEach((k, i) => { const v = SP[k][hoverF]; if (shown[k] && v !== null) { g.fillStyle = css(PCOL[i]); g.strokeStyle = css('--surface'); g.lineWidth = 2; g.beginPath(); g.arc(X, y(v), 4.5, 0, 7); g.fill(); g.stroke(); } });
+    tip.innerHTML = `${fmtT(hoverF)} · פריים ${hoverF}<br>` + PL.filter(k => shown[k]).map(k => `${label(k)}: ${SP[k][hoverF] === null ? '—' : (SP[k][hoverF] / 10).toFixed(1)}`).join('<br>');
+    tip.hidden = false; const tw = tip.offsetWidth;
+    tip.style.left = Math.min(w - tw - 4, Math.max(4, X + 12)) + 'px'; tip.style.top = PAD.t + 'px';
+  } else tip.hidden = true;
+}
+function liveSpeeds(f) {
+  $('#liveS').innerHTML = PL.map((k, i) => `<div><span><span class="dot" style="background:var(${PCOL[i]})"></span>${label(k)}</span><span>${SP[k][f] === null ? '—' : (SP[k][f] / 10).toFixed(1)}</span></div>`).join('');
+}
+const spCv = $('#speed');
+spCv.addEventListener('pointermove', e => { const r = spCv.getBoundingClientRect(), { a, b } = view; const t = (e.clientX - r.left - PAD.l) / (r.width - PAD.l - PAD.r); hoverF = Math.round(a + Math.max(0, Math.min(1, t)) * (b - a)); following = false; draw(); });
+spCv.addEventListener('pointerleave', () => { hoverF = null; following = true; draw(); });
+spCv.addEventListener('click', () => { if (hoverF !== null) { seekFrame(hoverF, false); vid.scrollIntoView({ block: 'center', behavior: 'smooth' }); } });
+
+// chest touches
+const TT = D.touches;
+$('#tcount').textContent = TT.length;
+const both = TT.filter(x => x.dist !== null && x.reliable).map(x => x.dist).sort((a, b) => a - b);
+const med = a => a.length ? (a.length % 2 ? a[(a.length - 1) / 2] : (a[a.length / 2 - 1] + a[a.length / 2]) / 2) : null;
+$('#tstats').innerHTML = [
+  [TT.length, '', 'פגיעות בחזה שסומנו'],
+  [both.length, '', 'מהן אמינות (שתי הרגליים על החול)'],
+  [both.length ? med(both).toFixed(2) : '–', 'מ\'', 'מרחק חציוני בין הרגליים'],
+  [both.length ? `<bdi dir="ltr">${both[0].toFixed(2)}–${both[both.length - 1].toFixed(2)}</bdi>` : '–', 'מ\'', 'טווח המרחקים'],
+].map(([v, u, l]) => `<div class="stat"><b>${v}<small>${u}</small></b><span>${l}</span></div>`).join('');
+$('#touchgrid').innerHTML = TT.map(x => `<figure><img src="${x.src}" alt="פגיעה בחזה, ${label(x.player)}, פריים ${x.frame}" loading="lazy" data-f="${x.frame}"><figcaption><span class="d ${x.reliable ? '' : 'air'}">${x.dist === null ? '–' : x.dist.toFixed(2) + ' מ\''}</span><br>${label(x.player)} · ${fmtT(x.frame)}${x.air ? '<br>רגל מורמת / באוויר' : ''}${x.inplay ? '' : '<br>לא במהלך משחק'}</figcaption></figure>`).join('');
+$('#touchgrid').addEventListener('click', e => { const f = e.target.dataset?.f; if (f) { focusFrame(+f); seekFrame(+f, false); vid.scrollIntoView({ block: 'center' }); } });
+
+// partner distance when a point was lost
+const CC = D.conceded, CSRC = { hand: 'סימון ידני', error: 'טעות – נגיעה אחרונה', landing: 'נחיתה מסומנת', track: 'נחיתה מחושבת', end: 'סוף הנקודה' };
+const team = l => l === 'ISR' ? 'ישראל' : 'ברזיל', tcol = l => l === 'ISR' ? '--p1' : '--p3';
+const cmed = l => med(CC.filter(c => c.loser === l && c.d !== null).map(c => c.d).sort((a, b) => a - b));
+const ccount = l => CC.filter(c => c.loser === l).length;
+$('#cstats').innerHTML = [
+  [cmed('ISR').toFixed(2), 'מ\'', `ישראל: מרחק חציוני (${ccount('ISR')} נקודות)`],
+  [cmed('BRA').toFixed(2), 'מ\'', `ברזיל: מרחק חציוני (${ccount('BRA')} נקודות)`],
+  [CC.filter(c => c.src === 'hand').length, '', 'רגעים שסומנו ביד'],
+  [CC.filter(c => c.unc).length, '', 'רגעים לא ודאיים'],
+].map(([v, u, l]) => `<div class="stat"><b>${v}<small>${u}</small></b><span>${l}</span></div>`).join('');
+$('#ctbody').innerHTML = CC.map(c => `<tr data-f="${c.frame}"><td>${c.n}</td><td>${c.score}</td><td><span class="dot" style="background:var(${tcol(c.loser)})"></span>${team(c.loser)}</td><td>${fmtT(c.frame)}</td><td>${c.d === null ? '–' : c.d.toFixed(2) + ' מ\''}${c.unc ? ' <span class="pill">לא ודאי</span>' : ''}</td><td>${CSRC[c.src]}</td></tr>`).join('');
+$('#ctbody').addEventListener('click', e => { const tr = e.target.closest('tr'); if (tr) { focusFrame(+tr.dataset.f); seekFrame(+tr.dataset.f, false); vid.scrollIntoView({ block: 'center' }); } });
+let cHover = null;
+const CMAX = 8;
+function drawConc() {
+  const { g, w, h } = setup($('#conc'));
+  const x = n => PAD.l + (n - 0.5) / CC.length * (w - PAD.l - PAD.r);
+  const y = v => PAD.t + (1 - v / CMAX) * (h - PAD.t - PAD.b);
+  g.clearRect(0, 0, w, h);
+  g.font = '12px "IBM Plex Mono", monospace'; g.fillStyle = css('--muted'); g.strokeStyle = css('--line'); g.lineWidth = 1;
+  g.textAlign = 'right'; g.textBaseline = 'middle';
+  for (let v = 0; v <= CMAX; v += 2) { const Y = y(v); g.beginPath(); g.moveTo(PAD.l, Y); g.lineTo(w - PAD.r, Y); g.stroke(); g.fillText(v + '', PAD.l - 6, Y); }
+  g.save(); g.textAlign = 'left'; g.fillText('m', PAD.l + 4, PAD.t + 6); g.restore();
+  g.textAlign = 'center'; g.textBaseline = 'top';
+  CC.forEach((c, i) => { if (c.n === 1 || c.n % 10 === 0) g.fillText(c.n + '', x(i + 1), h - PAD.b + 6); });
+  const s2 = CC.findIndex(c => c.set === 2);
+  if (s2 > 0) { const X = (x(s2) + x(s2 + 1)) / 2; g.strokeStyle = css('--ink-2'); g.setLineDash([4, 4]); g.beginPath(); g.moveTo(X, PAD.t); g.lineTo(X, h - PAD.b); g.stroke(); g.setLineDash([]); g.fillStyle = css('--ink-2'); g.textAlign = 'left'; g.textBaseline = 'top'; g.fillText('מערכה 2', X + 4, PAD.t + 2); }
+  ['ISR', 'BRA'].forEach(l => { const m = cmed(l), Y = y(m); g.strokeStyle = css(tcol(l)); g.globalAlpha = .55; g.setLineDash([2, 4]); g.beginPath(); g.moveTo(PAD.l, Y); g.lineTo(w - PAD.r, Y); g.stroke(); g.setLineDash([]); g.globalAlpha = 1; });
+  CC.forEach((c, i) => {
+    if (c.d === null) return;
+    const X = x(i + 1), Y = y(Math.min(c.d, CMAX)), col = css(tcol(c.loser)), r = cHover === i ? 7 : 5;
+    g.beginPath(); g.arc(X, Y, r, 0, 7);
+    if (c.unc) { g.strokeStyle = col; g.lineWidth = 2; g.stroke(); } else { g.fillStyle = col; g.fill(); g.strokeStyle = css('--surface'); g.lineWidth = 1.5; g.stroke(); }
+  });
+  const tip = $('#tip3');
+  if (cHover !== null) {
+    const c = CC[cHover], X = x(cHover + 1);
+    tip.innerHTML = `נקודה ${c.n} · ${team(c.loser)} ספגה · ${c.score}<br>${c.d === null ? '–' : c.d.toFixed(2) + ' מ\''} · ${fmtT(c.frame)}<br>${CSRC[c.src]}${c.unc ? ' · לא ודאי' : ''}`;
+    tip.hidden = false; const tw = tip.offsetWidth;
+    tip.style.left = Math.min(w - tw - 4, Math.max(4, X + 12)) + 'px'; tip.style.top = PAD.t + 'px';
+  } else tip.hidden = true;
+}
+const cCv = $('#conc');
+cCv.addEventListener('pointermove', e => { const r = cCv.getBoundingClientRect(); const t = (e.clientX - r.left - PAD.l) / (r.width - PAD.l - PAD.r); const i = Math.floor(t * CC.length); cHover = i >= 0 && i < CC.length ? i : null; drawConc(); });
+cCv.addEventListener('pointerleave', () => { cHover = null; drawConc(); });
+cCv.addEventListener('click', () => { if (cHover !== null) { const f = CC[cHover].frame; focusFrame(f); seekFrame(f, false); vid.scrollIntoView({ block: 'center' }); } });
+drawConc(); addEventListener('resize', drawConc);
+matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', drawConc);
+
+// coverage heat maps
+const COV = D.cov;
+const zmax = Math.max(...PL.flatMap(k => COV[k].zones.flat()));
+$('#covmax').textContent = Math.round(zmax) + '%';
+const ROWS = ['ליד הרשת', 'אמצע', 'מאחור'], COLS = ['שמאל', 'מרכז', 'ימין'];
+$('#covgrid').innerHTML = PL.map((k, i) => {
+  const c = COV[k];
+  let best = [0, 0]; c.zones.forEach((r, a) => r.forEach((v, b) => { if (v > c.zones[best[0]][best[1]]) best = [a, b]; }));
+  const cells = c.zones.map((r, a) => r.map((v, b) => {
+    const pct = Math.round(v / zmax * 100);
+    return `<div class="zone ${pct > 55 ? 'dark' : ''}" style="background:color-mix(in srgb, var(--accent) ${pct}%, var(--sand))" title="${ROWS[a]}, ${COLS[b]}: ${v}%">${Math.round(v)}%</div>`;
+  }).join('')).join('');
+  return `<div class="cov"><h3><span class="dot" style="background:var(${PCOL[i]})"></span>${NAMES[k]} <span class="pill">${k}</span></h3>
+    <div class="covcard-top"><div class="court" role="img" aria-label="${NAMES[k]}: רוב הזמן ב${ROWS[best[0]]}, ${COLS[best[1]]}">${cells}
+      <span class="netlabel">רשת</span>
+</div>
+      <div class="sides"><span>שמאל</span><span>ימין</span></div></div>
+    <dl><dt>הכי הרבה זמן</dt><dd>${ROWS[best[0]]}, ${COLS[best[1]]}</dd><dt>שטח ב-90% מהזמן</dt><dd>${c.a90} מ"ר</dd><dt>שטח ב-50% מהזמן</dt><dd>${c.a50} מ"ר</dd><dt>מחוץ לקווים</dt><dd>${c.out}%</dd></dl></div>`;
+}).join('');
+function drawCov() {}
+window.SP_READY = true; drawCov(); addEventListener('resize', drawCov); liveSpeeds(0); draw();
+addEventListener('resize', draw);
+matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', draw);
+new MutationObserver(draw).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+document.fonts?.ready.then(draw);
+setRally(P.reduce((bi, p, i) => p.max > P[bi].max ? i : bi, 0));
+// video: 60 s segments played back to back
+const SEG = 60, NSEG = __NSEG__, vid = $('#vid');
+let seg = -1, pendingSeek = null, following = true;
+const methodLabel = { f: 'מסלול מותאם', s: 'לפי גודל', e: 'קצה התמונה', '-': 'הכדור לא זוהה' };
+// Segments are fetched and played from blob URLs: some browsers will not stream
+// the published files directly (no byte-range support), but play a blob fine.
+const segUrl = i => `video/part${String(i).padStart(2, '0')}.mp4`;
+const blobs = new Map();
+function getSeg(i) {
+  if (!blobs.has(i)) {
+    blobs.set(i, fetch(segUrl(i)).then(r => { if (!r.ok) throw new Error(r.status); return r.blob(); })
+      .then(b => URL.createObjectURL(new Blob([b], { type: 'video/mp4' })))
+      .catch(() => { blobs.delete(i); return segUrl(i); }));
+  }
+  for (const k of [...blobs.keys()]) if (Math.abs(k - i) > 1) { blobs.get(k).then(u => u.startsWith('blob:') && URL.revokeObjectURL(u)); blobs.delete(k); }
+  return blobs.get(i);
+}
+const vstat = $('#vstat');
+function loadSeg(i, t = 0, play = false) {
+  i = Math.max(0, Math.min(NSEG - 1, i));
+  document.querySelectorAll('#segs button').forEach((b, k) => b.setAttribute('aria-pressed', k === i ? 'true' : 'false'));
+  if (i === seg) { vid.currentTime = t; if (play) vid.play().catch(() => {}); return; }
+  seg = i; pendingSeek = { t, play };
+  vstat.textContent = 'טוען את הווידאו…'; vstat.hidden = false;
+  getSeg(i).then(u => { if (seg !== i) return; vid.src = u; if (i + 1 < NSEG) getSeg(i + 1); });
+}
+vid.addEventListener('canplay', () => { vstat.hidden = true; });
+vid.addEventListener('error', () => { vstat.textContent = 'הדפדפן לא הצליח לנגן את הווידאו. נסו לרענן את הדף או לפתוח אותו בדפדפן אחר.'; vstat.hidden = false; });
+vid.addEventListener('loadedmetadata', () => { if (pendingSeek) { vid.currentTime = pendingSeek.t; if (pendingSeek.play) vid.play().catch(() => {}); pendingSeek = null; } });
+vid.addEventListener('ended', () => { if (seg < NSEG - 1) loadSeg(seg + 1, 0, true); });
+function seekFrame(f, play) { const t = f / FPS; loadSeg(Math.floor(t / SEG), t - Math.floor(t / SEG) * SEG, play); }
+$('#segs').innerHTML = Array.from({ length: NSEG }, (_, i) => `<button type="button" data-s="${i}">${i}:00</button>`).join('');
+$('#segs').addEventListener('click', e => { const s = e.target.dataset?.s; if (s !== undefined) loadSeg(+s, 0, true); });
+let lastF = -1;
+function syncFromVideo() {
+  if (seg < 0) return;
+  const f = Math.min(N - 1, Math.round((seg * SEG + vid.currentTime) * FPS));
+  if (f === lastF) return;
+  lastF = f;
+  const c = H[f];
+  $('#liveH').innerHTML = (c === null ? '–' : fmtH(c)) + '<small>מ\'</small>';
+  $('#liveT').textContent = `${fmtT(f)} · פריים ${f}`;
+  $('#liveM').textContent = methodLabel[M[f]];
+  liveSpeeds(f);
+  if (following) {
+    if (f < view.a || f > view.b) { const i = P.findIndex(p => f > p.start - 10 && f <= p.end + 10); if (i >= 0) setRally(i); }
+    hoverF = f; draw();
+  }
+}
+(function tick() { if (!vid.paused) syncFromVideo(); requestAnimationFrame(tick); })();
+vid.addEventListener('seeked', syncFromVideo);
+vid.addEventListener('timeupdate', () => { if (vid.paused) syncFromVideo(); });
+mainCv.addEventListener('pointerenter', () => { following = false; });
+mainCv.addEventListener('pointerleave', () => { following = true; });
+mainCv.addEventListener('click', () => { if (hoverF !== null) { seekFrame(hoverF, false); vid.scrollIntoView({ block: 'center', behavior: 'smooth' }); } });
+loadSeg(Math.floor(P[rallyIdx].start / FPS / SEG), (P[rallyIdx].start / FPS) % SEG);
+
+</script>

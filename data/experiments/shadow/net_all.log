@@ -1,0 +1,5 @@
+size fix from 18 landings: ball px = -8.28 + 1.301 x box px
+825 flights, 553 continuity links, 33 sand pins, 130 net crossings, 3 net touches, 0 chest points (vitpose), 0 shadows
+status 0 nfev 80 cost 15475.6
+drag k = 0.0000 1/m
+jump between consecutive flights: median 0.74 -> 0.14 m; reprojection median 1.59 px
