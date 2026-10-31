@@ -1,5 +1,5 @@
 {
- "source": "owner's marks, review page database (collection marks), read 2026-10-31; problem points updated 2026-10-31 (second pass)",
+ "source": "owner's marks, review page database (collection marks), read 2026-10-31; problem points updated 2026-10-31 (second pass); points 6,10,31,49-52 updated (third pass)",
  "marks": [
   {
    "point": 1,
@@ -78,7 +78,7 @@
   },
   {
    "point": 6,
-   "category": "unreviewed",
+   "category": "ok",
    "last_touch": "Hiltinho",
    "out_edge": null,
    "spot": null,
@@ -120,7 +120,7 @@
   },
   {
    "point": 10,
-   "category": "unreviewed",
+   "category": "ok",
    "last_touch": "Maor_Haas",
    "out_edge": null,
    "spot": null,
@@ -331,7 +331,7 @@
    "last_touch": "Hiltinho",
    "out_edge": null,
    "spot": null,
-   "note": "",
+   "note": "הנקודה הייתה לישראל ואז היה 17-14 ואת הנקודה 18-14 היא לא צולמה כי ישר מההגשה של ישראל הכדור יצא החוצה",
    "winner_owner": "ISR"
   },
   {
@@ -527,16 +527,16 @@
    "out_edge": null,
    "spot": null,
    "note": "",
-   "winner_owner": null
+   "winner_owner": "ISR"
   },
   {
    "point": 51,
    "category": "ok",
-   "last_touch": "Ron_Ben_Ishay",
+   "last_touch": "Maor_Haas",
    "out_edge": null,
    "spot": null,
    "note": "",
-   "winner_owner": null
+   "winner_owner": "BRA"
   },
   {
    "point": 52,
@@ -545,7 +545,7 @@
    "out_edge": null,
    "spot": null,
    "note": "",
-   "winner_owner": null
+   "winner_owner": "BRA"
   },
   {
    "point": 53,
