@@ -1,0 +1,575 @@
+{
+ "source": "owner's marks, review page database (collection marks), read 2026-10-31",
+ "marks": [
+  {
+   "point": 1,
+   "category": "out",
+   "last_touch": "Hiltinho",
+   "out_edge": "right_base",
+   "spot": {
+    "court_x": 14.41,
+    "court_y": 5.17,
+    "frame": 56,
+    "px": 1913,
+    "py": 715
+   },
+   "note": ""
+  },
+  {
+   "point": 2,
+   "category": "ok",
+   "last_touch": "Franklin",
+   "out_edge": null,
+   "spot": {
+    "court_x": 5.09,
+    "court_y": 3.3,
+    "frame": 127,
+    "px": 673,
+    "py": 578
+   },
+   "note": ""
+  },
+  {
+   "point": 3,
+   "category": "relabel",
+   "last_touch": "Hiltinho",
+   "out_edge": null,
+   "spot": {
+    "court_x": 12,
+    "court_y": 5.91,
+    "frame": 455,
+    "px": 1615,
+    "py": 774
+   },
+   "note": ""
+  },
+  {
+   "point": 4,
+   "category": "relabel",
+   "last_touch": "Maor_Haas",
+   "out_edge": null,
+   "spot": {
+    "court_x": 6.02,
+    "court_y": 6.67,
+    "frame": 613,
+    "px": 741,
+    "py": 834
+   },
+   "note": ""
+  },
+  {
+   "point": 5,
+   "category": "relabel",
+   "last_touch": "Franklin",
+   "out_edge": null,
+   "spot": {
+    "court_x": 9.69,
+    "court_y": 4.33,
+    "frame": 736,
+    "px": 1237,
+    "py": 648
+   },
+   "note": ""
+  },
+  {
+   "point": 6,
+   "category": "unreviewed",
+   "last_touch": "Hiltinho",
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 7,
+   "category": "unreviewed",
+   "last_touch": "Maor_Haas",
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 8,
+   "category": "relabel",
+   "last_touch": "Maor_Haas",
+   "out_edge": null,
+   "spot": {
+    "court_x": 16.15,
+    "court_y": 1.15,
+    "frame": 1126,
+    "px": 1863,
+    "py": 472
+   },
+   "note": ""
+  },
+  {
+   "point": 9,
+   "category": "unreviewed",
+   "last_touch": "Franklin",
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 10,
+   "category": "unreviewed",
+   "last_touch": "Maor_Haas",
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 11,
+   "category": "relabel",
+   "last_touch": "Hiltinho",
+   "out_edge": null,
+   "spot": {
+    "court_x": 5.63,
+    "court_y": -0.55,
+    "frame": 1658,
+    "px": 773,
+    "py": 398
+   },
+   "note": ""
+  },
+  {
+   "point": 12,
+   "category": "net_fall",
+   "last_touch": "Hiltinho",
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 13,
+   "category": "out",
+   "last_touch": "Ron_Ben_Ishay",
+   "out_edge": "near_side",
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 14,
+   "category": "out",
+   "last_touch": "Franklin",
+   "out_edge": "near_side",
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 15,
+   "category": "out",
+   "last_touch": "Franklin",
+   "out_edge": "left_base",
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 16,
+   "category": "relabel",
+   "last_touch": "Franklin",
+   "out_edge": null,
+   "spot": {
+    "court_x": 11.07,
+    "court_y": 3.22,
+    "frame": 2651,
+    "px": 1377,
+    "py": 578
+   },
+   "note": ""
+  },
+  {
+   "point": 17,
+   "category": "ok",
+   "last_touch": "Maor_Haas",
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 18,
+   "category": "ok",
+   "last_touch": "Hiltinho",
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 19,
+   "category": "unclear",
+   "last_touch": null,
+   "out_edge": null,
+   "spot": null,
+   "note": "יש חיתוך מוזר של הסרטון ולא מובן מה קרה"
+  },
+  {
+   "point": 20,
+   "category": "ok",
+   "last_touch": "Hiltinho",
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 21,
+   "category": "out",
+   "last_touch": "Maor_Haas",
+   "out_edge": "right_base",
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 22,
+   "category": "net_fall",
+   "last_touch": "Maor_Haas",
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 23,
+   "category": "ok",
+   "last_touch": "Maor_Haas",
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 24,
+   "category": "relabel",
+   "last_touch": "Franklin",
+   "out_edge": null,
+   "spot": {
+    "court_x": 6.08,
+    "court_y": 7.1,
+    "frame": 4512,
+    "px": 743,
+    "py": 877
+   },
+   "note": ""
+  },
+  {
+   "point": 25,
+   "category": "under_net",
+   "last_touch": "Ron_Ben_Ishay",
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 26,
+   "category": "not_shown",
+   "last_touch": null,
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 27,
+   "category": "out",
+   "last_touch": "Ron_Ben_Ishay",
+   "out_edge": "right_base",
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 28,
+   "category": "ok",
+   "last_touch": "Ron_Ben_Ishay",
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 29,
+   "category": "ok",
+   "last_touch": "Hiltinho",
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 30,
+   "category": "ok",
+   "last_touch": "Maor_Haas",
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 31,
+   "category": "net_fall",
+   "last_touch": "Hiltinho",
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 32,
+   "category": "out",
+   "last_touch": "Maor_Haas",
+   "out_edge": "right_base",
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 33,
+   "category": "out",
+   "last_touch": "Ron_Ben_Ishay",
+   "out_edge": "far_side",
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 34,
+   "category": "net_fault",
+   "last_touch": null,
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 35,
+   "category": "not_shown",
+   "last_touch": null,
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 36,
+   "category": "relabel",
+   "last_touch": "Hiltinho",
+   "out_edge": null,
+   "spot": {
+    "court_x": 0.68,
+    "court_y": 5.14,
+    "frame": 9658,
+    "px": 63,
+    "py": 695
+   },
+   "note": ""
+  },
+  {
+   "point": 37,
+   "category": "out",
+   "last_touch": "Franklin",
+   "out_edge": "far_side",
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 38,
+   "category": "out",
+   "last_touch": "Franklin",
+   "out_edge": "far_side",
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 39,
+   "category": "ok",
+   "last_touch": "Ron_Ben_Ishay",
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 40,
+   "category": "not_shown",
+   "last_touch": null,
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 41,
+   "category": "relabel",
+   "last_touch": "Hiltinho",
+   "out_edge": null,
+   "spot": {
+    "court_x": 14.17,
+    "court_y": 5.66,
+    "frame": 11102,
+    "px": 1917,
+    "py": 755
+   },
+   "note": ""
+  },
+  {
+   "point": 42,
+   "category": "not_shown",
+   "last_touch": null,
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 43,
+   "category": "relabel",
+   "last_touch": "Franklin",
+   "out_edge": null,
+   "spot": {
+    "court_x": 13.75,
+    "court_y": 6.38,
+    "frame": 11734,
+    "px": 1913,
+    "py": 820
+   },
+   "note": ""
+  },
+  {
+   "point": 44,
+   "category": "unreviewed",
+   "last_touch": "Franklin",
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 45,
+   "category": "out",
+   "last_touch": "Maor_Haas",
+   "out_edge": "far_side",
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 46,
+   "category": "out",
+   "last_touch": "Ron_Ben_Ishay",
+   "out_edge": "near_side",
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 47,
+   "category": "out",
+   "last_touch": "Ron_Ben_Ishay",
+   "out_edge": "right_base",
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 48,
+   "category": "relabel",
+   "last_touch": "Maor_Haas",
+   "out_edge": null,
+   "spot": {
+    "court_x": 10.64,
+    "court_y": -0.05,
+    "frame": 13046,
+    "px": 1253,
+    "py": 419
+   },
+   "note": ""
+  },
+  {
+   "point": 49,
+   "category": "net_fall",
+   "last_touch": "Ron_Ben_Ishay",
+   "out_edge": null,
+   "spot": null,
+   "note": "ברזיל זכתה בנקודה"
+  },
+  {
+   "point": 50,
+   "category": "net_fault",
+   "last_touch": null,
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 51,
+   "category": "ok",
+   "last_touch": "Ron_Ben_Ishay",
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 52,
+   "category": "ok",
+   "last_touch": "Franklin",
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 53,
+   "category": "ok",
+   "last_touch": "Franklin",
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 54,
+   "category": "ok",
+   "last_touch": "Hiltinho",
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 55,
+   "category": "out",
+   "last_touch": "Franklin",
+   "out_edge": "left_base",
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 56,
+   "category": "relabel",
+   "last_touch": "Ron_Ben_Ishay",
+   "out_edge": null,
+   "spot": {
+    "court_x": 10.02,
+    "court_y": 2.2,
+    "frame": 14668,
+    "px": 1231,
+    "py": 520
+   },
+   "note": ""
+  },
+  {
+   "point": 57,
+   "category": "ok",
+   "last_touch": "Ron_Ben_Ishay",
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 58,
+   "category": "ok",
+   "last_touch": "Maor_Haas",
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 59,
+   "category": "ok",
+   "last_touch": "Ron_Ben_Ishay",
+   "out_edge": null,
+   "spot": null,
+   "note": ""
+  },
+  {
+   "point": 60,
+   "category": "relabel",
+   "last_touch": "Franklin",
+   "out_edge": null,
+   "spot": {
+    "court_x": 7.37,
+    "court_y": 7.44,
+    "frame": 15489,
+    "px": 947,
+    "py": 917
+   },
+   "note": ""
+  }
+ ]
+}
