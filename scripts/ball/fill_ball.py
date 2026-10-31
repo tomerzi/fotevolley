@@ -19,7 +19,7 @@ BLACKLIST = [(522, 250, 22)]
 # off the sand (crowd, chairs, graphics) a candidate below conf C whose 8 px neighbourhood has detections in
 # >= MIN of the +-WIN frames is background (bags on chairs, shirts/balls in the crowd). On the sand a still
 # ball is a real ball at rest, so it is kept. Sand = ground point within these court-metre bounds (fixed camera).
-SAND_X, SAND_Y = (-5.0, 23.0), (-2.3, 12.0)
+SAND_X, SAND_Y = (-4.44, 20.44), (-2.04, 10.67)   # m, 16 x 8 court (was 18 x 9 units)
 STATIC_PX = 8
 STATIC_TIERS = [(0.6, 50, 25)]     # (C, WIN, MIN)
 BD_ONLY_PENALTY = 0.25

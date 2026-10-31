@@ -10,7 +10,7 @@ net (|dy|) and towards the net (|dx|), each player's 3x3 square. outcome = the a
 For conceded points a second row is added at the landing: the first in-play "no player" ball event after the rally's
 last touch (ball_contacts_v3.csv), else the rally's end frame.
 
-Lengths are court units (court lines = 18 x 9); x 8/9 for metres if the court is 16 x 8 (docs/ANALYSIS_PLAN.md).
+Lengths are metres on the 16 x 8 m court (net at x = 8).
 
 inputs : data/analysis/player_positions_v3.csv, data/analysis/touch_actions_v3.csv, data/points/rallies_v3video.csv,
          data/contacts/ball_contacts_v3.csv
@@ -24,7 +24,7 @@ import pandas as pd
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(ROOT, 'data', 'analysis')
 NEAR = 5             # frames: use the nearest position within this many frames when the exact frame has none
-TEAMS = {'BRA': ('BRA_A', 'BRA_B'), 'ISR': ('ISR_A', 'ISR_B')}
+TEAMS = {'BRA': ('Franklin', 'Hiltinho'), 'ISR': ('Maor_Haas', 'Ron_Ben_Ishay')}
 OTHER = {'BRA': 'ISR', 'ISR': 'BRA'}
 
 

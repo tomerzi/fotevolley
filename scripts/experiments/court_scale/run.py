@@ -71,6 +71,6 @@ for sc in scales:
                      head_h=round(float(m[m.body_part == 'head'].height_m.median()), 2),
                      net_err_px=int(net.group(1)) - 622 if net else None,
                      isr_neck_px=round(float(np.mean(necks)), 1), camera_h=cam_h, pp_y=int(pp[1]),
-                     bra_a=st['BRA_A']['stature_m'], bra_b=st['BRA_B']['stature_m']))
+                     bra_a=st['Franklin']['stature_m'], bra_b=st['Hiltinho']['stature_m']))
     print(rows[-1], flush=True)
 pd.DataFrame(rows).to_csv(f'{BASE}/scan.csv', index=False)

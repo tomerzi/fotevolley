@@ -21,7 +21,7 @@ from traj import Camera
 cam = Camera(cam_path)
 h = pd.read_csv(f'{out}/ball_height_v2.csv').set_index('frame')
 pos = pd.read_csv('data/analysis/player_positions_v3.csv', usecols=['v2_frame', 'player', 'x', 'y']).drop_duplicates(['v2_frame', 'player']).set_index(['v2_frame', 'player'])
-Hi = np.linalg.inv(np.load('data/mappings/homography_px_to_m.npy'))
+Hi = np.linalg.inv(np.load('data/mappings/homography_px_to_court_units_18x9.npy'))
 rows = []
 for fn in glob.glob('data/experiments/chest_marks/marks/marks/*.json'):
     m = json.load(open(fn))

@@ -4,8 +4,8 @@ State: fixes from review/fix/ are applied to player_boxes.csv and pose/vitpose_b
 CPU is too slow (Faster R-CNN 5.5 s/frame -> 24 h full video; ViTPose ~1 s/box -> 17 h). Run on the T4.
 
 ## 1. Leftover ranges (looked at by eye on CPU)
-- 1755-1780: two BRA cross; 1765-1772 one hides the other -> one box is OK. Check BRA_A/BRA_B names stay right after 1773.
-- 12572-12586: only one BRA on screen (diving) -> one box OK. Decide its name (BRA_A or BRA_B) from 12566-12571 / 12587-12592 by shirt/position.
+- 1755-1780: two BRA cross; 1765-1772 one hides the other -> one box is OK. Check Franklin/Hiltinho names stay right after 1773.
+- 12572-12586: only one BRA on screen (diving) -> one box OK. Decide its name (Franklin or Hiltinho) from 12566-12571 / 12587-12592 by shirt/position.
 - Ball 747-754: in shadow at a player's feet, both models miss it -> try `python ball/fill_ball.py --track` or label by hand.
 
 ## 2. Full-video verification (GPU)

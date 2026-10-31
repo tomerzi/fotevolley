@@ -6,7 +6,7 @@ above SPRINT speed, number of jump frames.
 Per touch (touch_labels_final.csv, kind == player): the toucher's mean speed over the APPROACH frames before it and
 their speed at the touch frame.
 
-Lengths are court units (court lines = 18 x 9); x 8/9 for metres if the court is 16 x 8 (docs/ANALYSIS_PLAN.md).
+Lengths are metres on the 16 x 8 m court (net at x = 8).
 
 inputs : data/analysis/player_positions_v3.csv, data/points/rallies_v3video.csv, data/contacts/touch_labels_final.csv
 outputs: data/analysis/player_speed_rallies_v3.csv, data/analysis/touch_speed_v3.csv
@@ -15,12 +15,13 @@ import os
 
 import numpy as np
 import pandas as pd
+TEAM_OF = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Maor_Haas': 'ISR', 'Ron_Ben_Ishay': 'ISR'}   # player -> team
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(ROOT, 'data', 'analysis')
 FPS = 25
 TOP_WIN = 12         # frames (~0.5 s) averaged for the top speed
-SPRINT = 4.0         # units/s counted as sprinting
+SPRINT = 3.56        # m/s counted as sprinting (was 4 court units/s)
 APPROACH = 12        # frames before a touch for the approach speed
 
 
@@ -36,7 +37,7 @@ def main():
     for r in rallies.itertuples():
         seg = pos[pos.frame.between(r.start_frame, r.end_frame)]
         for pl, g in seg.groupby('player'):
-            rows.append(dict(rally=r.rally, set=r.set, player=pl, team=pl[:3], winner=r.winner,
+            rows.append(dict(rally=r.rally, set=r.set, player=pl, team=TEAM_OF[pl], winner=r.winner,
                              frames=len(g), rally_frames=r.end_frame - r.start_frame + 1,
                              distance=g.step.sum(), mean_speed=g.speed.mean(), top_speed=g.top.max(),
                              sprint_sec=(g.speed > SPRINT).sum() / FPS, jump_frames=int(g.jump.sum())))

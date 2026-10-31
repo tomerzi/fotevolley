@@ -53,7 +53,7 @@ for fr in sorted(cands):
     im=cv2.resize(im,(1280,720));fn=f'frames/f{fr}.jpg';cv2.imwrite(OUT+'/'+fn,im,[cv2.IMWRITE_JPEG_QUALITY,78])
     shots.append(dict(frame=int(fr),t=round(fr/25,2),h=round(float(hh),2),src=fn))
 players=json.load(open('data/analysis/player_statures.json'))
-U=8/9  # court units (lines mapped to 18 x 9) -> m on a 16 x 8 court
+U=1  # data are already metres on the 16 x 8 court (scripts/court/convert_to_16x8.py)
 pos=pd.read_csv('data/analysis/player_positions_v3.csv',usecols=['v2_frame','frame','player','x','y','speed','airborne','posture'])
 speed={};sstats={}
 rs=pd.read_csv('data/analysis/player_speed_rallies_v3.csv')
@@ -73,8 +73,8 @@ allr=[]
 for r in ral.itertuples():
     seg=pos[pos.frame.between(r.start_frame,r.end_frame)]
     for pl,g in seg.groupby('player'):
-        left=(g.x<9).mean()>0.5
-        allr.append(pd.DataFrame(dict(player=pl,xr=(9-g.x if left else g.x-9)*U,yr=(g.y if left else 9-g.y)*U)))
+        left=(g.x<8).mean()>0.5
+        allr.append(pd.DataFrame(dict(player=pl,xr=(8-g.x if left else g.x-8)*U,yr=(g.y if left else 8-g.y)*U)))
 allr=pd.concat(allr)
 for pl,g in allr.groupby('player'):
     H2,_,_=np.histogram2d(g.xr.clip(0,7.99),g.yr.clip(0,7.99),bins=16,range=[[0,8],[0,8]])

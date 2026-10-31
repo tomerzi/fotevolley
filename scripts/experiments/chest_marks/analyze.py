@@ -26,7 +26,7 @@ print(len(marks), 'marked chest touches')
 fm = pd.read_csv('data/mappings/frame_mapping_v3.csv')
 v2_to_v3 = fm[~fm.deleted].set_index('v2_frame').v3_frame
 pos = pd.read_csv('data/analysis/player_positions_v3.csv', usecols=['frame', 'player', 'x', 'y']).set_index(['frame', 'player'])
-Hi = np.linalg.inv(np.load('data/mappings/homography_px_to_m.npy'))
+Hi = np.linalg.inv(np.load('data/mappings/homography_px_to_court_units_18x9.npy'))
 rows = []
 for name, (cp, sp) in CAMS.items():
     if not os.path.exists(cp):

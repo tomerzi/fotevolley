@@ -3,8 +3,8 @@
 Ground point per frame, by posture (Sapiens2 keypoints, see ground_points): standing -> ankle midpoint, or the planted
 ankle when the other foot is up and swinging for a kick; lying on the sand -> hip midpoint; upside down (bicycle kick)
 -> no measurement; sitting / kneeling or no usable pose -> bottom centre of the reviewed box. Occluded players and
-boxes cut by the image border count less or not at all. Pixels -> court units with the homography.
-Court: x along the length (0-18, net at 9), y across (0 = far sideline, 9 = near sideline, camera beyond).
+boxes cut by the image border count less or not at all. Pixels -> court metres with the homography.
+Court: 16 x 8 m. x along the length (0-16, net at 8), y across (0 = far sideline, 8 = near sideline, camera beyond).
 
 Jumps that keep an upright pose (see airborne): a point above the sand projects further from the camera, so the
 distance from the camera's ground point gets a short bump; bumps that running could not make are taken out of the
@@ -18,19 +18,21 @@ first dropped frame, from a straight-line fit of the dropped measurements with a
 then runs over the whole stretch, joining the two sides. Gaps up to MAX_GAP frames are
 bridged by the smoother; longer gaps split the track.
 
-Units: the homography maps the court lines to 18 x 9. The EFVL rules of this event (Graz 2022) say 16 x 8 m; until
-that is settled (docs/ANALYSIS_PLAN.md) lengths and speeds are in these court units (x 8/9 for metres if 16 x 8).
+Units: metres on the 16 x 8 m court (EFVL rules, Graz 2022). The homography used to map the lines to 18 x 9 court
+units; it and every output were converted by scripts/court/convert_to_16x8.py, and the constants below were scaled
+by 8/9 (Q_ACC by 64/81) so a re-run gives the same result in metres.
 
 inputs : data/boxes/player_boxes_v3video.csv, data/pose/sapiens2/sapiens2_pose_v3_00000-13494.csv,
          data/boxes/ball_boxes_v3video.csv (camera shot of each frame), data/mappings/homography_px_to_m.npy,
          data/contacts/touch_labels_final.csv
 output : data/analysis/player_positions_v3.csv  one row per (frame, player) from the first to the last frame of each
-         track: posture, raw ground point, jump correction, smoothed x/y, vx/vy/speed (units/s), side, 3x3 square
+         track: posture, raw ground point, jump correction, smoothed x/y, vx/vy/speed (m/s), side, 3x3 square
 usage: python scripts/analysis/player_positions.py"""
 import os
 
 import numpy as np
 import pandas as pd
+TEAM_OF = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Maor_Haas': 'ISR', 'Ron_Ben_Ishay': 'ISR'}   # player -> team
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(ROOT, 'data', 'analysis')
@@ -63,24 +65,24 @@ SIGMA_EDGE_PX = 12.0
 SIGMA_JUMP_PX = 40.0 # px, image height of the point near a touch (feet may be off the sand)
 SIGMA_NEAR_LYING_PX = 20.0  # box bottom within LYING_NEAR frames of a lying / airborne pose (edge of the body)
 LYING_NEAR = 5
-Q_ACC = 30.0         # units^2/s^3, white-noise acceleration density (how fast a player may change velocity)
+Q_ACC = 23.7         # m^2/s^3, white-noise acceleration density (how fast a player may change velocity)
 AIR_WIN = 31         # frames: bumps in the distance from the camera shorter than this can be jumps
-AIR_MIN_M = 0.7      # units: smallest bump counted as a jump (stepping between the feet makes ~0.4) ...
-AIR_MIN_FAR = 1.0    # ... or this, with no own touch within TOUCH_FAR frames
-AIR_SUPPORT = 0.3    # units: an accepted bump is taken out wherever it stays above this
+AIR_MIN_M = 0.62     # m: smallest bump counted as a jump (stepping between the feet makes ~0.36) ...
+AIR_MIN_FAR = 0.89   # ... or this, with no own touch within TOUCH_FAR frames
+AIR_SUPPORT = 0.27   # m: an accepted bump is taken out wherever it stays above this
 BUMP_TRUST = 0.3     # sigma along the camera ray of a corrected measurement = this x its bump
 AIR_K = 3.0          # ... and at least this x the noise of that distance
 AIR_FWHM_MAX = 15    # frames: a jump's bump is at most this wide at half height, upside-down frames not counted
-LYING_BUMP_MIN = 1.5 # units: a lying player's bump counts only above this (horizontal bicycle kick, not a dive)
-ACC_MAX = 12.0       # units/s^2: a bump that real running could not make (there and back) is a jump
+LYING_BUMP_MIN = 1.33 # m: a lying player's bump counts only above this (horizontal bicycle kick, not a dive)
+ACC_MAX = 10.67      # m/s^2: a bump that real running could not make (there and back) is a jump
 GATE = 13.8          # chi2(2 dof) 0.999: farther than this from the prediction = outlier
 MAX_REJECT = 4       # outliers in a row before the filter is reset on them
-RESET_POS = 2.0      # units, extra position sigma at a reset
-RESET_VEL = 0.5      # units/s, extra velocity sigma at a reset (small: most resets come from a hard acceleration)
-SEED_V_MAX = 8.0     # units/s, cap on the velocity a reset starts from
+RESET_POS = 1.78     # m, extra position sigma at a reset
+RESET_VEL = 0.44     # m/s, extra velocity sigma at a reset (small: most resets come from a hard acceleration)
+SEED_V_MAX = 7.11    # m/s, cap on the velocity a reset starts from
 LOOKAHEAD = 3        # measurements after a rejected run: if 2 of them are back on the old track, it was a glitch
 MAX_GAP = 25         # frames without a measurement that the smoother may bridge (a bicycle kick lasts ~20)
-V0_SIGMA = 3.0       # units/s, velocity uncertainty at a track start
+V0_SIGMA = 2.67      # m/s, velocity uncertainty at a track start
 
 H = np.load(os.path.join(ROOT, 'data', 'mappings', 'homography_px_to_m.npy'))
 F = np.array([[1, 0, DT, 0], [0, 1, 0, DT], [0, 0, 1, 0], [0, 0, 0, 1]], float)
@@ -92,7 +94,7 @@ CAM_GROUND = H[:2, 1] / H[2, 1]     # court point where all image verticals meet
 
 
 def to_court(u, v):
-    """pixels -> court units, plus the 2x2 Jacobian d(x, y)/d(u, v) of each point."""
+    """pixels -> court metres, plus the 2x2 Jacobian d(x, y)/d(u, v) of each point."""
     w = H[2, 0] * u + H[2, 1] * v + H[2, 2]
     X = (H[0, 0] * u + H[0, 1] * v + H[0, 2]) / w
     Y = (H[1, 0] * u + H[1, 1] * v + H[1, 2]) / w
@@ -106,11 +108,11 @@ def to_court(u, v):
 
 def square(x, y):
     """3x3 square per half, as in scripts/court/court_squares.py (L1-L9 / R1-R9 from the far sideline)."""
-    if not (0 <= x <= 18 and 0 <= y <= 9):
+    if not (0 <= x <= 16 and 0 <= y <= 8):
         return 'out'
-    s = 'L' if x < 9 else 'R'
-    c = min(int((x - (0 if s == 'L' else 9)) // 3), 2)
-    r = min(int(y // 3), 2)
+    s = 'L' if x < 8 else 'R'
+    c = min(int((x - (0 if s == 'L' else 8)) // (8 / 3)), 2)
+    r = min(int(y // (8 / 3)), 2)
     return f'{s}{r * 3 + c + 1}'
 
 
@@ -150,9 +152,9 @@ def ground_points(boxes):
     neither feeds the jump detector nor seeds a reset."""
     kp = [f'{s}_{j}' for s in ('left', 'right') for j in ('ankle', 'hip', 'shoulder')]
     cols = ['frame', 'player'] + [f'{k}_{a}' for k in kp for a in 'xys']
-    p = pd.read_csv(os.path.join(ROOT, 'data', 'pose', 'sapiens2', 'sapiens2_pose_v3_00000-13494.csv'), usecols=cols)
+    p = pd.read_csv(os.path.join(ROOT, 'data', 'pose', 'sapiens2', 'sapiens2_pose_v3_00000-13494.csv'), usecols=cols).replace({'player': {'BRA_A': 'Franklin', 'BRA_B': 'Hiltinho', 'ISR_A': 'Maor_Haas', 'ISR_B': 'Ron_Ben_Ishay'}})  # the LFS pose file still uses the old codes
     b = boxes.merge(p, on=['frame', 'player'], how='left').sort_values(['player', 'frame']).reset_index(drop=True)
-    mates = {'BRA_A': 'BRA_B', 'BRA_B': 'BRA_A', 'ISR_A': 'ISR_B', 'ISR_B': 'ISR_A'}
+    mates = {'Franklin': 'Hiltinho', 'Hiltinho': 'Franklin', 'Maor_Haas': 'Ron_Ben_Ishay', 'Ron_Ben_Ishay': 'Maor_Haas'}
     mc = ['x1', 'y1', 'x2', 'y2'] + [f'{s}_ankle_{a}' for s in ('left', 'right') for a in 'xys']
     m = b[['frame', 'player'] + mc].assign(player=lambda d: d.player.map(mates))
     o = b[['frame', 'player']].merge(m, on=['frame', 'player'], how='left')       # same row order as b
@@ -484,9 +486,9 @@ def main():
     s['airborne'] = s.jump | (s.posture == 'air')
     s = s.merge(ball[['frame', 'v2_frame']], on='frame')
     s['time_sec'] = (s.frame / FPS).round(2)
-    s['team'] = s.player.str[:3]
+    s['team'] = s.player.map(TEAM_OF)
     s['speed'] = np.hypot(s.vx, s.vy)
-    s['side'] = np.where(s.x < 9, 'LEFT', 'RIGHT')
+    s['side'] = np.where(s.x < 8, 'LEFT', 'RIGHT')
     s['square'] = [square(a, c) for a, c in zip(s.x, s.y)]
     cols = ['frame', 'v2_frame', 'time_sec', 'player', 'team', 'track', 'posture', 'src', 'near_touch', 'occluded',
             'edge', 'u', 'v', 'raw_x', 'raw_y', 'jump', 'bump', 'airborne', 'outlier', 'reset',

@@ -1,7 +1,7 @@
 """Distance between the feet at every chest touch (v3 video).
 
 For each chest touch in data/contacts/touch_labels_final.csv: each foot's ground point = mean of heel, big toe and
-small toe (Sapiens2, score >= S_MIN; ankle if none), median over frames t-1..t+1, pixels -> court units with the
+small toe (Sapiens2, score >= S_MIN; ankle if none), median over frames t-1..t+1, pixels -> court metres with the
 homography. Reported: stance (distance between the feet), its parts along the net (y) and towards the net (x), and
 its parts across / along the body (hip line on the court: side-to-side vs one foot in front of the other).
 Each foot gets a status from frames t-PLANT_DT..t+PLANT_DT: 'planted' (moves less than PLANT_MOVE box heights),
@@ -9,7 +9,7 @@ Each foot gets a status from frames t-PLANT_DT..t+PLANT_DT: 'planted' (moves les
 slide). One camera cannot tell a raised foot from a foot set further back, hence the motion test. 'jump' copies
 data/analysis/player_positions_v3.csv at the touch frame. reliable = no raised foot and no jump.
 
-Lengths are court units (court lines = 18 x 9); x 8/9 for metres if the court is 16 x 8 (docs/ANALYSIS_PLAN.md).
+Lengths are metres on the 16 x 8 m court (net at x = 8).
 
 inputs : data/contacts/touch_labels_final.csv, data/pose/sapiens2/sapiens2_pose_v3_00000-13494.csv,
          data/analysis/player_positions_v3.csv, data/mappings/homography_px_to_m.npy
@@ -53,7 +53,7 @@ def main():
     frames = set(f for x in t.frame for f in range(x - PLANT_DT, x + PLANT_DT + 1))
     pose = pd.concat(c[c.frame.isin(frames)] for c in pd.read_csv(
         os.path.join(ROOT, 'data', 'pose', 'sapiens2', 'sapiens2_pose_v3_00000-13494.csv'), usecols=cols,
-        chunksize=100000)).set_index(['frame', 'player'])
+        chunksize=100000)).replace({'player': {'BRA_A': 'Franklin', 'BRA_B': 'Hiltinho', 'ISR_A': 'Maor_Haas', 'ISR_B': 'Ron_Ben_Ishay'}}).set_index(['frame', 'player'])  # the LFS pose file still uses the old codes
     pos = pd.read_csv(os.path.join(OUT, 'player_positions_v3.csv'), usecols=['frame', 'player', 'jump', 'posture'])
     pos = pos.set_index(['frame', 'player'])
     rows = []

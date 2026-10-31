@@ -43,11 +43,11 @@ ok_line = has & np.all(np.isfinite(line.reshape(n, -1)), 1) & \
 pb = pd.read_csv('data/boxes/player_boxes_v9.csv', usecols=['frame', 'player', 'x1', 'x2', 'y2'])
 ps = pd.read_csv('data/analysis/player_positions_v3.csv', usecols=['v2_frame', 'player', 'speed', 'airborne', 'posture'])
 ps = ps.rename(columns={'v2_frame': 'frame'})
-ps['speed_kmh'] = ps.speed * 8 / 9 * 3.6           # court units (18 x 9 lines) -> m for a 16 x 8 court
+ps['speed_kmh'] = ps.speed * 3.6                   # m/s (16 x 8 court) -> km/h
 ps['reliable'] = ~ps.airborne & ~ps.posture.isin(['hidden', 'none'])
 pl = pb.merge(ps, on=['frame', 'player'], how='left')
 pl = {f: t[['player', 'x1', 'x2', 'y2', 'speed_kmh', 'reliable']].values for f, t in pl.groupby('frame')}
-PCOL = {'ISR_A': (214, 120, 42), 'ISR_B': (52, 104, 235), 'BRA_A': (122, 175, 27), 'BRA_B': (0, 161, 237)}  # BGR, chart slots 1-4
+PCOL = {'Maor_Haas': (214, 120, 42), 'Ron_Ben_Ishay': (52, 104, 235), 'Franklin': (122, 175, 27), 'Hiltinho': (0, 161, 237)}  # BGR, chart slots 1-4
 
 COL = {'flight_fit': (230, 140, 40), 'touch_depth': (230, 140, 40), 'shadow_tri': (230, 140, 40), 'size_only': (40, 170, 230)}  # BGR: blue (fitted / player depth / shadow) / amber (size only)
 FONT = cv2.FONT_HERSHEY_SIMPLEX

@@ -65,7 +65,7 @@ frame later), 2 not a landing, 6 unclear.
    touches -0.04 / 0.11 m.
 5. `final/` (`run_final.sh`): everything with all marks (ball = 1.198 x box - 5.7 px). Landings 0.13 m (MAE 0.03,
    in-sample); chest touches -0.07 / 0.13 m vs chest point; ball in flight median 2.55 m, 95th percentile 4.21 m,
-   max 6.29 m; statures BRA_A 1.79, BRA_B 1.69, ISR_A 1.74, ISR_B 1.72 m.
+   max 6.29 m; statures Franklin 1.79, Hiltinho 1.69, Maor_Haas 1.74, Ron_Ben_Ishay 1.72 m.
    Note: at chest touches the ball centre sits at ~0.80 x stature (marked geometry, 1.37 m), not 0.72 x stature:
    it is in front of the chest and one radius out, so "0.72 x stature" checks read ~0.2 m high.
 

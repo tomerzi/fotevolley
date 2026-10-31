@@ -10,12 +10,14 @@ Points where the moment or the players' positions are doubtful get `uncertain=Tr
 """
 import glob, json, os
 import numpy as np, pandas as pd
+TEAM_OF = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Maor_Haas': 'ISR', 'Ron_Ben_Ishay': 'ISR'}   # player -> team
+PAIR = {'BRA': ('Franklin', 'Hiltinho'), 'ISR': ('Maor_Haas', 'Ron_Ben_Ishay')}
 
 h = pd.read_csv('data/analysis/ball_height_v2.csv').set_index('frame')
 r = pd.read_csv('data/points/rallies_v2.csv')
 fm = pd.read_csv('data/mappings/frame_mapping_v3.csv'); fm = fm[~fm.deleted].set_index('v3_frame').v2_frame
 tl = pd.read_csv('data/contacts/touch_labels_final.csv'); tl = tl[tl.kind == 'player'].copy()
-tl['v2'] = tl.frame.map(fm); tl = tl.dropna(subset=['v2']).sort_values('v2'); tl['team'] = tl.player.str[:3]
+tl['v2'] = tl.frame.map(fm); tl = tl.dropna(subset=['v2']).sort_values('v2'); tl['team'] = tl.player.map(TEAM_OF)
 marks = sorted(m['frame'] for m in (json.load(open(f)) for f in glob.glob('data/experiments/sand_marks/marks/landings/*.json'))
                if m.get('landing') is True)
 hand = {}
@@ -23,7 +25,7 @@ for f in glob.glob('data/experiments/point_marks/marks/moments/*.json'):
     m = json.load(open(f))
     hand[int(m['rally'])] = m
 p = pd.read_csv('data/analysis/player_positions_v3.csv', usecols=['v2_frame', 'player', 'x', 'y', 'occluded', 'airborne'])
-p['X'] = p.x * 16 / 18; p['Y'] = p.y * 8 / 9
+p['X'] = p.x; p['Y'] = p.y      # player_positions_v3.csv is in metres (16 x 8 court)
 P = p.drop_duplicates(['v2_frame', 'player']).set_index(['v2_frame', 'player'])
 
 
@@ -42,7 +44,7 @@ def landing(t0, t1):
 def partner_distance(f, team):
     for off in (0, -1, 1, -2, 2):  # nearest frame with both players tracked
         try:
-            a, b = P.loc[(f + off, team + '_A')], P.loc[(f + off, team + '_B')]
+            a, b = P.loc[(f + off, PAIR[team][0])], P.loc[(f + off, PAIR[team][1])]
         except KeyError:
             continue
         hidden = bool(a.occluded or b.occluded)  # airborne is normal at a touch; its position is interpolated

@@ -6,22 +6,22 @@ Found by `pose/check_missing.py` -> `pose/suspect_ranges.csv` and checked by eye
 
 | frames | player | problem | box source now |
 |---|---|---|---|
-| 305–375 | BRA_B | visible (standing next to BRA_A) but no box | none (only 10 boxes in 300–380) |
-| 5311 | BRA_B, ISR_B | BRA_B visible mid-court, ISR_B partly visible at right edge; no boxes | none |
-| 6734 | BRA_A | box on empty sand near the net | `redetect` |
-| 8251–8289 | BRA_A | box on empty sand (player actually off-screen) | `interpolated` |
-| 9651 | BRA_B | box on empty sand near the net | `interpolated` |
+| 305–375 | Hiltinho | visible (standing next to Franklin) but no box | none (only 10 boxes in 300–380) |
+| 5311 | Hiltinho, Ron_Ben_Ishay | Hiltinho visible mid-court, Ron_Ben_Ishay partly visible at right edge; no boxes | none |
+| 6734 | Franklin | box on empty sand near the net | `redetect` |
+| 8251–8289 | Franklin | box on empty sand (player actually off-screen) | `interpolated` |
+| 9651 | Hiltinho | box on empty sand near the net | `interpolated` |
 
 ## Likely causes (verify first)
-- **Missing BRA_B 305–375.** `players/redetect.csv` has ~5 detections per frame there, so the detector sees BRA_B. `fill_gaps.py` does not assign them, probably because:
-  - the seed overlaps BRA_A too much (`SEED_MAX_IOU = 0.2`), or
-  - the OSNet re-id (`reid.name`) gives the crop to BRA_A.
+- **Missing Hiltinho 305–375.** `players/redetect.csv` has ~5 detections per frame there, so the detector sees Hiltinho. `fill_gaps.py` does not assign them, probably because:
+  - the seed overlaps Franklin too much (`SEED_MAX_IOU = 0.2`), or
+  - the OSNet re-id (`reid.name`) gives the crop to Franklin.
 
   Check which condition rejects them.
 - **Phantom `interpolated` boxes.** Interpolation bridges a gap where the player actually left the frame, or the end box is wrong. Interpolated boxes need to be validated.
 
 ## Steps
-1. **Debug the missing BRA_B.** In `players/fill_gaps.py`, print why the seed candidates for BRA_B in frames 305–375 and 5311 are rejected. Relax the right rule only for the case where the other team member is already boxed and the candidate is the remaining unassigned same-team person. Don't relax it globally.
+1. **Debug the missing Hiltinho.** In `players/fill_gaps.py`, print why the seed candidates for Hiltinho in frames 305–375 and 5311 are rejected. Relax the right rule only for the case where the other team member is already boxed and the candidate is the remaining unassigned same-team person. Don't relax it globally.
 2. **Validate interpolated and redetect boxes.** Keep an `interpolated` or single-frame `redetect` box only if `players/redetect.csv` has a person detection overlapping it (IoU ≥ 0.3) in that frame, or the gap is short (≤ 5 frames). Drop it otherwise. This should remove 6734, 8251–8289 and 9651. Count how many boxes this drops overall and spot-check a sample, so real occluded players aren't lost.
 3. **Re-run the box pipeline.** Run `python players/fill_gaps.py`, then compare the new `players/player_boxes.csv` against the old one: count of added and removed boxes per player.
 4. **Re-run pose only on frames whose boxes changed.** Add a frame-list option to `pose/vitpose.py`, e.g. env `POSE_FRAMES=file.csv`, writing to a temp CSV. Then replace those (frame, player) rows in `pose/vitpose_body25.csv` and drop rows for removed boxes. The full re-run takes ~70 min on the T4, so avoid it.

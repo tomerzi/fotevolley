@@ -11,20 +11,21 @@ All work is in v3 frames (`*_v3video.csv`, Sapiens2, contacts); every output kee
   Israel 2-0 (footvolleyeurope.com/news/28/6/2022/brazil-still-on-top).
 - Players (scoreboard): ISR **R.B. Ishay** (Ron Ben Yishai, רון בן ישי) and **M. Haas** (Maor Haas, מאור האס);
   BRA **Hiltinho** (Hilton Joaquim de Melo Junior) and **Franklin** (Franklin Henrique Freitas dos Santos).
-  ISR_B and BRA_B wear shirt number 2 (seen in 4954, 117, 7374, 13456). If number 1 is the first name on the
-  scoreboard (usual convention), ISR_A = Ben Yishai, ISR_B = Haas, BRA_A = Hiltinho (yellow long sleeves, cap),
-  BRA_B = Franklin. To be confirmed by someone who knows the players.
+  Player labels (confirmed by the project owner, 2026-10-31; the old codes were BRA_A/BRA_B/ISR_A/ISR_B and were
+  renamed everywhere): **Franklin** (old BRA_A: blond, green bib #1 over long yellow sleeves), **Hiltinho** (old BRA_B:
+  sleeveless yellow, bib #2), **Maor_Haas** (old ISR_A: blue bib #1, white armband), **Ron_Ben_Ishay** (old ISR_B:
+  blue bib #2).
 - Score: the EFVL report says 18:14, 18:11. The on-screen scoreboard shows ISR 13 - BRA 17 at the end of set 1
   (the last point is never shown) and our files follow the scoreboard (18:13, 18:11).
 - Player heights: no published height found for any of the four (web search in English, Hebrew, Portuguese;
   pages could not be opened from the cloud environment, network policy). oGol/Sofascore heights for "Hiltinho"
   (169-172 cm) belong to a namesake footballer.
 - Rules: men's net **2.20 m** (FIFV, CBFv, EFVL agree), posts 2.55 m, ball 68-70 cm circumference (~0.22 m).
-- Court size: **open**. FIFV/CBFv say 18 x 9 m, EFVL (this event's league) says 16 x 8 m. The homography maps the
-  court lines to 18 x 9, so if the court is 16 x 8 every length/speed/area is 12.5% too big (x 8/9).
-  Ball-on-sand check (9 frames runs, ball 0.22 m): detector box width gives 0.246 court units (fits 16 x 8),
-  colour segmentation 0.20-0.22 (fits 18 x 9) - the ball is ~20 px with blurred edges and an attached shadow, so
-  inconclusive. To settle in step 1: gravity in the ballistic fits and the net height.
+- Court size: **16 x 8 m (settled, confirmed by the project owner 2026-10-31)**. The homography used to map the court
+  lines to 18 x 9 court units; `scripts/court/convert_to_16x8.py` converted it and every player position, length,
+  speed (x 8/9) and area (x 64/81) to metres on the 16 x 8 court, net at x = 8. The old homography is kept as
+  `data/mappings/homography_px_to_court_units_18x9.npy` for the experiments in `scripts/experiments/`, which were
+  built on it. Notes below that mention "court units" or 18 x 9 describe the work as it was done before the conversion.
 
 ## Steps
 
@@ -47,24 +48,24 @@ All work is in v3 frames (`*_v3video.csv`, Sapiens2, contacts); every output kee
   largest frame-to-frame step 0.39 units; summed steps = integrated speed (3404 vs 3412 units).
 - Verification (2026-10-22): two rounds of independent checks (code review, jumps / speeds / postures / occlusion by
   eye in the video, data integrity) found ~20 then 8 problems; all fixed except the limits below. On the
-  verifiers' labelled cases: 13 of 14 seen jumps flagged and 1 of 18 non-jumps (ISR_A 10800-10812, standing on one
-  leg - the position correction is still right there); the bicycle kick BRA_B 4196-4228 now rises smoothly
+  verifiers' labelled cases: 13 of 14 seen jumps flagged and 1 of 18 non-jumps (Maor_Haas 10800-10812, standing on one
+  leg - the position correction is still right there); the bicycle kick Hiltinho 4196-4228 now rises smoothly
   2.8 -> 4.3; no reset makes a position jump.
 - Limits: small hops (< 0.7 units of bump) are not flagged; a jump hidden behind the teammate is not flagged
-  (BRA_B 4820-4838, its upside-down frames are still airborne); sitting down with the legs toward the camera can
-  push the ankles ahead of the body for a few frames (ISR_A 11263, top speed 9.1 vs ~5 from the hips).
+  (Hiltinho 4820-4838, its upside-down frames are still airborne); sitting down with the legs toward the camera can
+  push the ankles ahead of the body for a few frames (Maor_Haas 11263, top speed 9.1 vs ~5 from the hips).
 
 ### 1. Ball height and ball position on the court
 Status (2026-10-28): current version in `data/analysis/ball_height_v2.csv` (v2 frames), from
 `data/experiments/improve/final` - camera from the 16 x 8 lines, net top and antenna stripes only; flights fitted
 jointly (continuity, air drag k = 0.0135 1/m), anchored on 94 hand-marked chest touches (pose chest point) and 41
 hand-marked sand landings; box sizes corrected (ball = 1.198 x box - 5.7 px). Held-out checks: chest touches and
-sand landings both ~0.12 m typical error. Statures from the video: BRA_A 1.79, BRA_B 1.69, ISR_A 1.74, ISR_B 1.72 m.
+sand landings both ~0.12 m typical error. Statures from the video: Franklin 1.79, Hiltinho 1.69, Maor_Haas 1.74, Ron_Ben_Ishay 1.72 m.
 The experiments leading here are in data/experiments/*/README.md.
 Status (2026-10-27): first version done in v2 frames, `scripts/ball_height/` -> `data/analysis/ball_height_v2.csv`.
 Joint fit of f, k1/k2, R, t to the court lines (taken as 16 x 8 m, as asked by the project owner), the net top at the
 near antenna (1008, 622) px = 2.20 m and standing players' necks (0.82 x stature; ISR 1.86 m given, BRA statures
-fitted: BRA_A 1.84, BRA_B 1.76). Checks: line errors <= 19 cm, net 8 px, free-gravity fits on long flights 9.65 m/s^2.
+fitted: Franklin 1.84, Hiltinho 1.76). Checks: line errors <= 19 cm, net 8 px, free-gravity fits on long flights 9.65 m/s^2.
 Flights: grown frame by frame while one ballistic path reprojects within ~3 px, plus a ball-size prior (0.22 m);
 other frames from the ball size alone. The principal point lands at y ~ 262 px (far from the centre), the same hint
 as before that the lines may be wider than 16 x 8.
@@ -125,7 +126,7 @@ over the 0.5 s before each touch).
 `scripts/analysis/coverage.py [HEATMAP.png]` -> `coverage_rallies_v3.csv` (per rally: hull, squares),
 `coverage_match_v3.csv` (hull, 50% / 90% areas, squares), `coverage_heatmaps_v3.png`. Match-level numbers are in the
 team's view (distance from the net, left / right facing the net), since the teams switch sides: each player then has
-one clear zone - BRA_A and ISR_A play the right side, BRA_B and ISR_B the left; 90% areas 32-36 units^2.
+one clear zone - Franklin and Maor_Haas play the right side, Hiltinho and Ron_Ben_Ishay the left; 90% areas 25-28 m^2 (16 x 8 court).
 Next: at each opponent attack, the part of the half closer to each defender (Voronoi).
 
 ## Order

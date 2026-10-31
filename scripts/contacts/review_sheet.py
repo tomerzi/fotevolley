@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-COL = {'BRA_A': (0, 220, 255), 'BRA_B': (0, 140, 0), 'ISR_A': (255, 120, 0), 'ISR_B': (255, 0, 200)}
+COL = {'Franklin': (0, 220, 255), 'Hiltinho': (0, 140, 0), 'Maor_Haas': (255, 120, 0), 'Ron_Ben_Ishay': (255, 0, 200)}
 BONES = [('left_shoulder', 'right_shoulder'), ('left_shoulder', 'left_elbow'), ('left_elbow', 'left_wrist'),
          ('right_shoulder', 'right_elbow'), ('right_elbow', 'right_wrist'), ('left_shoulder', 'left_hip'),
          ('right_shoulder', 'right_hip'), ('left_hip', 'right_hip'), ('left_hip', 'left_knee'),
@@ -34,7 +34,7 @@ def main():
     if a.filter:
         ev = ev.query(a.filter)
     pose = pd.read_csv(os.path.join(ROOT, 'data', 'pose', 'sapiens2', 'sapiens2_pose_v3_00000-13494.csv'),
-                       usecols=['frame', 'player'] + [f'{j}_{c}' for j in JS for c in 'xys'])
+                       usecols=['frame', 'player'] + [f'{j}_{c}' for j in JS for c in 'xys']).replace({'player': {'BRA_A': 'Franklin', 'BRA_B': 'Hiltinho', 'ISR_A': 'Maor_Haas', 'ISR_B': 'Ron_Ben_Ishay'}})  # the LFS pose file still uses the old codes
     need = set()
     for f in ev.frame:
         need |= {f - 4, f, f + 4}

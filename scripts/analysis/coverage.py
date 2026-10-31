@@ -1,17 +1,17 @@
 """Area each player covers (v3 video), from data/analysis/player_positions_v3.csv.
 
-Per player and rally (rallies_v3video.csv start..end): convex hull of the smoothed positions (area, units^2), the
+Per player and rally (rallies_v3video.csv start..end): convex hull of the smoothed positions (area, m^2), the
 largest distance from the player's mean position, and the share of time in each 3x3 square of the half - by the
 court squares L1-R9 (scripts/court/court_squares.py) and as the team sees them (share_<lane>_<col>: lanes left /
 mid / right for a player facing the net, columns net / mid / base from the net back; same for both halves).
 Per player over all rallies in the team's view, so that the side switches do not matter: xr = distance from the
-net into the own half, yr = across the court from the team's left sideline (0) to its right (9) when facing the net
+net into the own half, yr = across the court from the team's left sideline (0) to its right (8) when facing the net
 (the half is the one holding most of the player's positions in that rally; seen from the camera, the left-half
 team's right is the near sideline, the right-half team's right is the far one). Convex hull, and the areas of the
 smallest regions holding 50% / 90% of the time (positions binned on a CELL grid and smoothed with a BW Gaussian),
 plus the share of time per square.
 
-Lengths are court units (court lines = 18 x 9); x 8/9 for metres, x 64/81 for areas, if the court is 16 x 8.
+Lengths are metres on the 16 x 8 m court (net at x = 8), areas m^2.
 
 inputs : data/analysis/player_positions_v3.csv, data/points/rallies_v3video.csv
 outputs: data/analysis/coverage_rallies_v3.csv, data/analysis/coverage_match_v3.csv
@@ -23,12 +23,13 @@ import numpy as np
 import pandas as pd
 from scipy.ndimage import gaussian_filter
 from scipy.spatial import ConvexHull, QhullError
+TEAM_OF = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Maor_Haas': 'ISR', 'Ron_Ben_Ishay': 'ISR'}   # player -> team
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(ROOT, 'data', 'analysis')
-CELL = 0.1           # units, density grid
-BW = 0.5             # units, Gaussian smoothing of the density
-EXTENT = (-4, 13, -5, 14)   # xr0, xr1, yr0, yr1 of the density grid in team-view coordinates (players run outside too)
+CELL = 0.1           # m, density grid
+BW = 0.44            # m, Gaussian smoothing of the density
+EXTENT = (-3.6, 11.6, -4.4, 12.4)   # xr0, xr1, yr0, yr1 of the density grid in team-view coordinates (players run outside too)
 SQUARES = [f'{s}{i}' for s in 'LR' for i in range(1, 10)]
 LANES, COLS = ('left', 'mid', 'right'), ('net', 'mid', 'base')
 
@@ -41,7 +42,7 @@ def hull_area(xy):
 
 
 def density(xy):
-    """share of time per unit^2 on the CELL grid over EXTENT (rows = x, columns = y)."""
+    """share of time per m^2 on the CELL grid over EXTENT (rows = x, columns = y)."""
     x0, x1, y0, y1 = EXTENT
     h, _, _ = np.histogram2d(xy[:, 0], xy[:, 1], bins=[np.arange(x0, x1 + CELL, CELL), np.arange(y0, y1 + CELL, CELL)])
     return gaussian_filter(h, BW / CELL) / len(xy) / CELL ** 2
@@ -82,9 +83,9 @@ def main():
         seg = pos[pos.frame.between(r.start_frame, r.end_frame)]
         for pl, g in seg.groupby('player'):
             xy = g[['x', 'y']].values
-            left = (g.x < 9).mean() > 0.5
-            allr.append(g.assign(xr=9 - g.x if left else g.x - 9, yr=g.y if left else 9 - g.y))
-            rows.append(dict(rally=r.rally, set=r.set, player=pl, team=pl[:3], winner=r.winner, frames=len(g),
+            left = (g.x < 8).mean() > 0.5
+            allr.append(g.assign(xr=8 - g.x if left else g.x - 8, yr=g.y if left else 8 - g.y))
+            rows.append(dict(rally=r.rally, set=r.set, player=pl, team=TEAM_OF[pl], winner=r.winner, frames=len(g),
                              hull_area=hull_area(xy), max_from_mean=float(np.hypot(*(xy - xy.mean(0)).T).max()),
                              **square_shares(g.square)))
     pd.DataFrame(rows).round(4).to_csv(os.path.join(OUT, 'coverage_rallies_v3.csv'), index=False)
@@ -93,7 +94,7 @@ def main():
     for pl, g in allr.groupby('player'):
         xy = g[['xr', 'yr']].values
         a50, a90 = density_areas(xy)
-        match.append(dict(player=pl, team=pl[:3], frames=len(g), hull_area=hull_area(xy), area50=a50, area90=a90,
+        match.append(dict(player=pl, team=TEAM_OF[pl], frames=len(g), hull_area=hull_area(xy), area50=a50, area90=a90,
                           **square_shares(g.square)))
     m = pd.DataFrame(match)
     m.round(4).to_csv(os.path.join(OUT, 'coverage_match_v3.csv'), index=False)
@@ -122,23 +123,23 @@ def heatmaps(allr, m, path):
     for ax, (pl, d) in zip(axes, sorted(dens.items())):
         im = ax.imshow(d, origin='upper', extent=(y0, y1, x1, x0), cmap=cmap, vmin=0, vmax=vmax,
                        interpolation='bilinear')
-        for k in (3, 6):
-            ax.plot([k, k], [0, 9], color=GRID, lw=0.8)
-            ax.plot([0, 9], [k, k], color=GRID, lw=0.8)
-        ax.plot([0, 9, 9, 0], [0, 0, 9, 9], color=MUTED, lw=1.2)
-        ax.plot([-0.6, 9.6], [0, 0], color=INK, lw=2.5)
-        ax.text(9.6, -0.15, 'net', color=INK, fontsize=9, ha='right', va='bottom')
+        for k in (8 / 3, 16 / 3):
+            ax.plot([k, k], [0, 8], color=GRID, lw=0.8)
+            ax.plot([0, 8], [k, k], color=GRID, lw=0.8)
+        ax.plot([0, 8, 8, 0], [0, 0, 8, 8], color=MUTED, lw=1.2)
+        ax.plot([-0.6, 8.6], [0, 0], color=INK, lw=2.5)
+        ax.text(8.6, -0.15, 'net', color=INK, fontsize=9, ha='right', va='bottom')
         r = m.set_index('player').loc[pl]
-        ax.set_title(f'{pl}   90% area {r.area90:.0f} u\u00b2', color=INK, fontsize=11, loc='left')
+        ax.set_title(f'{pl}   90% area {r.area90:.0f} m\u00b2', color=INK, fontsize=11, loc='left')
         ax.set_xlim(-1.5, 10.5); ax.set_ylim(10.5, -1.5)
-        ax.set_xticks([0, 3, 6, 9]); ax.set_yticks([0, 3, 6, 9])
+        ax.set_xticks([0, 2, 4, 6, 8]); ax.set_yticks([0, 2, 4, 6, 8])
         ax.tick_params(colors=MUTED, labelsize=8, length=0)
         for sp in ax.spines.values():
             sp.set_visible(False)
-        ax.set_xlabel("team's left \u2192 right, facing the net (court units)", color=MUTED, fontsize=8)
-    axes[0].set_ylabel('distance from the net (court units)', color=MUTED, fontsize=8)
+        ax.set_xlabel("team's left \u2192 right, facing the net (m)", color=MUTED, fontsize=8)
+    axes[0].set_ylabel('distance from the net (m)', color=MUTED, fontsize=8)
     cb = fig.colorbar(im, ax=axes, shrink=0.8, pad=0.01)
-    cb.set_label('share of rally time per unit\u00b2', color=MUTED, fontsize=8)
+    cb.set_label('share of rally time per m\u00b2', color=MUTED, fontsize=8)
     cb.ax.tick_params(colors=MUTED, labelsize=8, length=0)
     cb.outline.set_visible(False)
     fig.suptitle("Where each player spends rally time (own half in the team's view, all 60 rallies)", color=INK,

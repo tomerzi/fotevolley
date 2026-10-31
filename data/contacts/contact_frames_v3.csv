@@ -7,7 +7,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5,5,0.2,,,,,False,
 6,6,0.24,,,,,False,
 7,7,0.28,,,,,False,
-8,8,0.32,BRA_A,BRA,chest,,True,0.68
+8,8,0.32,Franklin,BRA,chest,,True,0.68
 9,9,0.36,,,,,False,
 10,10,0.4,,,,,False,
 11,11,0.44,,,,,False,
@@ -37,7 +37,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 35,35,1.4,,,,,False,
 36,36,1.44,,,,,False,
 37,37,1.48,,,,,False,
-38,38,1.52,BRA_B,BRA,foot,left,True,1.0
+38,38,1.52,Hiltinho,BRA,foot,left,True,1.0
 39,39,1.56,,,,,False,
 40,40,1.6,,,,,False,
 41,41,1.64,,,,,False,
@@ -84,7 +84,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 82,119,3.28,,,,,False,
 83,120,3.32,,,,,False,
 84,121,3.36,,,,,False,
-85,122,3.4,BRA_A,BRA,shin,right,True,0.73
+85,122,3.4,Franklin,BRA,shin,right,True,0.73
 86,123,3.44,,,,,False,
 87,124,3.48,,,,,False,
 88,125,3.52,,,,,False,
@@ -97,7 +97,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 95,132,3.8,,,,,False,
 96,133,3.84,,,,,False,
 97,134,3.88,,,,,False,
-98,135,3.92,BRA_B,BRA,foot,left,True,1.0
+98,135,3.92,Hiltinho,BRA,foot,left,True,1.0
 99,136,3.96,,,,,False,
 100,137,4.0,,,,,False,
 101,138,4.04,,,,,False,
@@ -175,7 +175,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 173,245,6.92,,,,,False,
 174,246,6.96,,,,,False,
 175,247,7.0,,,,,False,
-176,248,7.04,ISR_A,ISR,foot,right,False,1.0
+176,248,7.04,Maor_Haas,ISR,foot,right,False,1.0
 177,249,7.08,,,,,False,
 178,250,7.12,,,,,False,
 179,251,7.16,,,,,False,
@@ -195,7 +195,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 193,265,7.72,,,,,False,
 194,266,7.76,,,,,False,
 195,267,7.8,,,,,False,
-196,268,7.84,ISR_A,ISR,thigh,left,False,1.0
+196,268,7.84,Maor_Haas,ISR,thigh,left,False,1.0
 197,269,7.88,,,,,False,
 198,270,7.92,,,,,False,
 199,271,7.96,,,,,False,
@@ -213,7 +213,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 211,283,8.44,,,,,False,
 212,284,8.48,,,,,False,
 213,285,8.52,,,,,False,
-214,286,8.56,ISR_A,ISR,chest,,False,1.0
+214,286,8.56,Maor_Haas,ISR,chest,,False,1.0
 215,287,8.6,,,,,False,
 216,288,8.64,,,,,False,
 217,289,8.68,,,,,False,
@@ -335,7 +335,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 333,405,13.32,,,,,False,
 334,406,13.36,,,,,False,
 335,407,13.4,,,,,False,
-336,408,13.44,BRA_A,BRA,chest,,True,1.0
+336,408,13.44,Franklin,BRA,chest,,True,1.0
 337,409,13.48,,,,,False,
 338,410,13.52,,,,,False,
 339,411,13.56,,,,,False,
@@ -368,7 +368,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 366,438,14.64,,,,,False,
 367,439,14.68,,,,,False,
 368,440,14.72,,,,,False,
-369,441,14.76,BRA_B,BRA,foot,left,True,1.0
+369,441,14.76,Hiltinho,BRA,foot,left,True,1.0
 370,442,14.8,,,,,False,
 371,443,14.84,,,,,False,
 372,444,14.88,,,,,False,
@@ -407,7 +407,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 405,477,16.2,,,,,False,
 406,478,16.24,,,,,False,
 407,479,16.28,,,,,False,
-408,480,16.32,ISR_B,ISR,foot,left,False,1.0
+408,480,16.32,Ron_Ben_Ishay,ISR,foot,left,False,1.0
 409,481,16.36,,,,,False,
 410,482,16.4,,,,,False,
 411,483,16.44,,,,,False,
@@ -458,7 +458,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 456,528,18.24,,,,,False,
 457,529,18.28,,,,,False,
 458,530,18.32,,,,,False,
-459,531,18.36,ISR_B,ISR,shoulder,right,True,1.0
+459,531,18.36,Ron_Ben_Ishay,ISR,shoulder,right,True,1.0
 460,532,18.4,,,,,False,
 461,533,18.44,,,,,False,
 462,534,18.48,,,,,False,
@@ -494,7 +494,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 492,564,19.68,,,,,False,
 493,565,19.72,,,,,False,
 494,566,19.76,,,,,False,
-495,567,19.8,ISR_A,ISR,chest,,True,1.0
+495,567,19.8,Maor_Haas,ISR,chest,,True,1.0
 496,568,19.84,,,,,False,
 497,569,19.88,,,,,False,
 498,570,19.92,,,,,False,
@@ -527,7 +527,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 525,597,21.0,,,,,False,
 526,598,21.04,,,,,False,
 527,599,21.08,,,,,False,
-528,600,21.12,ISR_B,ISR,head,,True,1.0
+528,600,21.12,Ron_Ben_Ishay,ISR,head,,True,1.0
 529,601,21.16,,,,,False,
 530,602,21.2,,,,,False,
 531,603,21.24,,,,,False,
@@ -569,7 +569,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 567,676,22.68,,,,,False,
 568,677,22.72,,,,,False,
 569,678,22.76,,,,,False,
-570,679,22.8,BRA_B,BRA,chest,,True,1.0
+570,679,22.8,Hiltinho,BRA,chest,,True,1.0
 571,680,22.84,,,,,False,
 572,681,22.88,,,,,False,
 573,682,22.92,,,,,False,
@@ -602,7 +602,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 600,709,24.0,,,,,False,
 601,710,24.04,,,,,False,
 602,711,24.08,,,,,False,
-603,712,24.12,BRA_A,BRA,head,,True,1.0
+603,712,24.12,Franklin,BRA,head,,True,1.0
 604,713,24.16,,,,,False,
 605,714,24.2,,,,,False,
 606,715,24.24,,,,,False,
@@ -642,7 +642,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 640,749,25.6,,,,,False,
 641,750,25.64,,,,,False,
 642,751,25.68,,,,,False,
-643,752,25.72,ISR_B,ISR,foot,right,False,0.86
+643,752,25.72,Ron_Ben_Ishay,ISR,foot,right,False,0.86
 644,753,25.76,,,,,False,
 645,754,25.8,,,,,False,
 646,755,25.84,,,,,False,
@@ -660,7 +660,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 658,767,26.32,,,,,False,
 659,768,26.36,,,,,False,
 660,769,26.4,,,,,False,
-661,770,26.44,ISR_A,ISR,head,,True,1.0
+661,770,26.44,Maor_Haas,ISR,head,,True,1.0
 662,771,26.48,,,,,False,
 663,772,26.52,,,,,False,
 664,773,26.56,,,,,False,
@@ -695,7 +695,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 693,802,27.72,,,,,False,
 694,803,27.76,,,,,False,
 695,804,27.8,,,,,False,
-696,805,27.84,ISR_B,ISR,head,,True,0.65
+696,805,27.84,Ron_Ben_Ishay,ISR,head,,True,0.65
 697,806,27.88,,,,,False,
 698,807,27.92,,,,,False,
 699,808,27.96,,,,,False,
@@ -717,7 +717,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 715,824,28.6,,,,,False,
 716,825,28.64,,,,,False,
 717,826,28.68,,,,,False,
-718,827,28.72,BRA_B,BRA,foot,left,True,1.0
+718,827,28.72,Hiltinho,BRA,foot,left,True,1.0
 719,828,28.76,,,,,False,
 720,829,28.8,,,,,False,
 721,830,28.84,,,,,False,
@@ -805,7 +805,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 803,912,32.12,,,,,False,
 804,913,32.16,,,,,False,
 805,914,32.2,,,,,False,
-806,915,32.24,BRA_B,BRA,chest,,True,1.0
+806,915,32.24,Hiltinho,BRA,chest,,True,1.0
 807,916,32.28,,,,,False,
 808,917,32.32,,,,,False,
 809,918,32.36,,,,,False,
@@ -840,7 +840,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 838,947,33.52,,,,,False,
 839,948,33.56,,,,,False,
 840,949,33.6,,,,,False,
-841,950,33.64,BRA_A,BRA,chest,,True,1.0
+841,950,33.64,Franklin,BRA,chest,,True,1.0
 842,951,33.68,,,,,False,
 843,952,33.72,,,,,False,
 844,953,33.76,,,,,False,
@@ -873,7 +873,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 871,980,34.84,,,,,False,
 872,981,34.88,,,,,False,
 873,982,34.92,,,,,False,
-874,983,34.96,BRA_B,BRA,foot,left,True,1.0
+874,983,34.96,Hiltinho,BRA,foot,left,True,1.0
 875,984,35.0,,,,,False,
 876,985,35.04,,,,,False,
 877,986,35.08,,,,,False,
@@ -886,7 +886,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 884,993,35.36,,,,,False,
 885,994,35.4,,,,,False,
 886,995,35.44,,,,,False,
-887,996,35.48,ISR_B,ISR,foot,right,True,1.0
+887,996,35.48,Ron_Ben_Ishay,ISR,foot,right,True,1.0
 888,997,35.52,,,,,False,
 889,998,35.56,,,,,False,
 890,999,35.6,,,,,False,
@@ -920,7 +920,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 918,1063,36.72,,,,,False,
 919,1064,36.76,,,,,False,
 920,1065,36.8,,,,,False,
-921,1066,36.84,ISR_A,ISR,head,,True,1.0
+921,1066,36.84,Maor_Haas,ISR,head,,True,1.0
 922,1067,36.88,,,,,False,
 923,1068,36.92,,,,,False,
 924,1069,36.96,,,,,False,
@@ -954,7 +954,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 952,1097,38.08,,,,,False,
 953,1098,38.12,,,,,False,
 954,1099,38.16,,,,,False,
-955,1100,38.2,ISR_B,ISR,head,,True,1.0
+955,1100,38.2,Ron_Ben_Ishay,ISR,head,,True,1.0
 956,1101,38.24,,,,,False,
 957,1102,38.28,,,,,False,
 958,1103,38.32,,,,,False,
@@ -1039,7 +1039,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1037,1182,41.48,,,,,False,
 1038,1183,41.52,,,,,False,
 1039,1184,41.56,,,,,False,
-1040,1185,41.6,BRA_B,BRA,chest,,True,1.0
+1040,1185,41.6,Hiltinho,BRA,chest,,True,1.0
 1041,1186,41.64,,,,,False,
 1042,1187,41.68,,,,,False,
 1043,1188,41.72,,,,,False,
@@ -1071,7 +1071,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1069,1214,42.76,,,,,False,
 1070,1215,42.8,,,,,False,
 1071,1216,42.84,,,,,False,
-1072,1217,42.88,BRA_A,BRA,foot,right,True,1.0
+1072,1217,42.88,Franklin,BRA,foot,right,True,1.0
 1073,1218,42.92,,,,,False,
 1074,1219,42.96,,,,,False,
 1075,1220,43.0,,,,,False,
@@ -1108,7 +1108,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1106,1296,44.24,,,,,False,
 1107,1297,44.28,,,,,False,
 1108,1298,44.32,,,,,False,
-1109,1299,44.36,ISR_A,ISR,head,,True,1.0
+1109,1299,44.36,Maor_Haas,ISR,head,,True,1.0
 1110,1300,44.4,,,,,False,
 1111,1301,44.44,,,,,False,
 1112,1302,44.48,,,,,False,
@@ -1143,7 +1143,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1141,1331,45.64,,,,,False,
 1142,1332,45.68,,,,,False,
 1143,1333,45.72,,,,,False,
-1144,1334,45.76,ISR_B,ISR,head,,True,1.0
+1144,1334,45.76,Ron_Ben_Ishay,ISR,head,,True,1.0
 1145,1335,45.8,,,,,False,
 1146,1336,45.84,,,,,False,
 1147,1337,45.88,,,,,False,
@@ -1156,7 +1156,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1154,1344,46.16,,,,,False,
 1155,1345,46.2,,,,,False,
 1156,1346,46.24,,,,,False,
-1157,1347,46.28,BRA_A,BRA,head,,True,1.0
+1157,1347,46.28,Franklin,BRA,head,,True,1.0
 1158,1348,46.32,,,,,False,
 1159,1349,46.36,,,,,False,
 1160,1350,46.4,,,,,False,
@@ -1197,7 +1197,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1195,1385,47.8,,,,,False,
 1196,1386,47.84,,,,,False,
 1197,1387,47.88,,,,,False,
-1198,1388,47.92,BRA_B,BRA,chest,,True,1.0
+1198,1388,47.92,Hiltinho,BRA,chest,,True,1.0
 1199,1389,47.96,,,,,False,
 1200,1390,48.0,,,,,False,
 1201,1391,48.04,,,,,False,
@@ -1228,7 +1228,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1226,1416,49.04,,,,,False,
 1227,1417,49.08,,,,,False,
 1228,1418,49.12,,,,,False,
-1229,1419,49.16,BRA_A,BRA,head,,True,1.0
+1229,1419,49.16,Franklin,BRA,head,,True,1.0
 1230,1420,49.2,,,,,False,
 1231,1421,49.24,,,,,False,
 1232,1422,49.28,,,,,False,
@@ -1246,7 +1246,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1244,1434,49.76,,,,,False,
 1245,1435,49.8,,,,,False,
 1246,1436,49.84,,,,,False,
-1247,1437,49.88,ISR_B,ISR,foot,left,True,1.0
+1247,1437,49.88,Ron_Ben_Ishay,ISR,foot,left,True,1.0
 1248,1438,49.92,,,,,False,
 1249,1439,49.96,,,,,False,
 1250,1440,50.0,,,,,False,
@@ -1281,7 +1281,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1279,1469,51.16,,,,,False,
 1280,1470,51.2,,,,,False,
 1281,1471,51.24,,,,,False,
-1282,1472,51.28,ISR_A,ISR,chest,,True,1.0
+1282,1472,51.28,Maor_Haas,ISR,chest,,True,1.0
 1283,1473,51.32,,,,,False,
 1284,1474,51.36,,,,,False,
 1285,1475,51.4,,,,,False,
@@ -1318,7 +1318,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1316,1506,52.64,,,,,False,
 1317,1507,52.68,,,,,False,
 1318,1508,52.72,,,,,False,
-1319,1509,52.76,ISR_B,ISR,head,,True,1.0
+1319,1509,52.76,Ron_Ben_Ishay,ISR,head,,True,1.0
 1320,1510,52.8,,,,,False,
 1321,1511,52.84,,,,,False,
 1322,1512,52.88,,,,,False,
@@ -1382,7 +1382,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1380,1570,55.2,,,,,False,
 1381,1571,55.24,,,,,False,
 1382,1572,55.28,,,,,False,
-1383,1573,55.32,BRA_B,BRA,chest,,True,1.0
+1383,1573,55.32,Hiltinho,BRA,chest,,True,1.0
 1384,1574,55.36,,,,,False,
 1385,1575,55.4,,,,,False,
 1386,1576,55.44,,,,,False,
@@ -1417,7 +1417,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1415,1605,56.6,,,,,False,
 1416,1606,56.64,,,,,False,
 1417,1607,56.68,,,,,False,
-1418,1608,56.72,BRA_A,BRA,chest,,True,1.0
+1418,1608,56.72,Franklin,BRA,chest,,True,1.0
 1419,1609,56.76,,,,,False,
 1420,1610,56.8,,,,,False,
 1421,1611,56.84,,,,,False,
@@ -1451,7 +1451,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1449,1639,57.96,,,,,False,
 1450,1640,58.0,,,,,False,
 1451,1641,58.04,,,,,False,
-1452,1642,58.08,BRA_B,BRA,foot,left,True,1.0
+1452,1642,58.08,Hiltinho,BRA,foot,left,True,1.0
 1453,1643,58.12,,,,,False,
 1454,1644,58.16,,,,,False,
 1455,1645,58.2,,,,,False,
@@ -1467,7 +1467,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1465,1655,58.6,,,,,False,
 1466,1656,58.64,,,,,False,
 1467,1657,58.68,,,,,False,
-1468,1658,58.72,ISR_B,ISR,thigh,right,True,0.83
+1468,1658,58.72,Ron_Ben_Ishay,ISR,thigh,right,True,0.83
 1469,1659,58.76,,,,,False,
 1470,1660,58.8,,,,,False,
 1471,1661,58.84,,,,,False,
@@ -1526,7 +1526,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1524,1867,60.96,,,,,False,
 1525,1868,61.0,,,,,False,
 1526,1869,61.04,,,,,False,
-1527,1870,61.08,BRA_B,BRA,foot,left,True,1.0
+1527,1870,61.08,Hiltinho,BRA,foot,left,True,1.0
 1528,1871,61.12,,,,,False,
 1529,1872,61.16,,,,,False,
 1530,1873,61.2,,,,,False,
@@ -1561,7 +1561,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1559,1902,62.36,,,,,False,
 1560,1903,62.4,,,,,False,
 1561,1904,62.44,,,,,False,
-1562,1905,62.48,BRA_A,BRA,foot,right,True,1.0
+1562,1905,62.48,Franklin,BRA,foot,right,True,1.0
 1563,1906,62.52,,,,,False,
 1564,1907,62.56,,,,,False,
 1565,1908,62.6,,,,,False,
@@ -1600,7 +1600,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1598,1941,63.92,,,,,False,
 1599,1942,63.96,,,,,False,
 1600,1943,64.0,,,,,False,
-1601,1944,64.04,BRA_B,BRA,head,,True,1.0
+1601,1944,64.04,Hiltinho,BRA,head,,True,1.0
 1602,1945,64.08,,,,,False,
 1603,1946,64.12,,,,,False,
 1604,1947,64.16,,,,,False,
@@ -1630,7 +1630,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1628,1986,65.12,,,,,False,
 1629,1987,65.16,,,,,False,
 1630,1988,65.2,,,,,False,
-1631,1989,65.24,BRA_A,BRA,chest,,True,0.87
+1631,1989,65.24,Franklin,BRA,chest,,True,0.87
 1632,1990,65.28,,,,,False,
 1633,1991,65.32,,,,,False,
 1634,1992,65.36,,,,,False,
@@ -1667,7 +1667,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1665,2023,66.6,,,,,False,
 1666,2024,66.64,,,,,False,
 1667,2025,66.68,,,,,False,
-1668,2026,66.72,BRA_B,BRA,head,,True,1.0
+1668,2026,66.72,Hiltinho,BRA,head,,True,1.0
 1669,2027,66.76,,,,,False,
 1670,2028,66.8,,,,,False,
 1671,2029,66.84,,,,,False,
@@ -1687,7 +1687,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1685,2043,67.4,,,,,False,
 1686,2044,67.44,,,,,False,
 1687,2045,67.48,,,,,False,
-1688,2046,67.52,ISR_A,ISR,foot,right,True,1.0
+1688,2046,67.52,Maor_Haas,ISR,foot,right,True,1.0
 1689,2047,67.56,,,,,False,
 1690,2048,67.6,,,,,False,
 1691,2049,67.64,,,,,False,
@@ -1709,7 +1709,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1707,2065,68.28,,,,,False,
 1708,2066,68.32,,,,,False,
 1709,2067,68.36,,,,,False,
-1710,2068,68.4,ISR_B,ISR,head,,True,1.0
+1710,2068,68.4,Ron_Ben_Ishay,ISR,head,,True,1.0
 1711,2069,68.44,,,,,False,
 1712,2070,68.48,,,,,False,
 1713,2071,68.52,,,,,False,
@@ -1747,7 +1747,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1745,2103,69.8,,,,,False,
 1746,2104,69.84,,,,,False,
 1747,2105,69.88,,,,,False,
-1748,2106,69.92,ISR_A,ISR,head,,True,1.0
+1748,2106,69.92,Maor_Haas,ISR,head,,True,1.0
 1749,2107,69.96,,,,,False,
 1750,2108,70.0,,,,,False,
 1751,2109,70.04,,,,,False,
@@ -1772,7 +1772,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1770,2128,70.8,,,,,False,
 1771,2129,70.84,,,,,False,
 1772,2130,70.88,,,,,False,
-1773,2131,70.92,BRA_A,BRA,chest,,True,1.0
+1773,2131,70.92,Franklin,BRA,chest,,True,1.0
 1774,2132,70.96,,,,,False,
 1775,2133,71.0,,,,,False,
 1776,2134,71.04,,,,,False,
@@ -1803,7 +1803,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1801,2159,72.04,,,,,False,
 1802,2160,72.08,,,,,False,
 1803,2161,72.12,,,,,False,
-1804,2162,72.16,BRA_B,BRA,chest,,True,1.0
+1804,2162,72.16,Hiltinho,BRA,chest,,True,1.0
 1805,2163,72.2,,,,,False,
 1806,2164,72.24,,,,,False,
 1807,2165,72.28,,,,,False,
@@ -1831,7 +1831,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1829,2187,73.16,,,,,False,
 1830,2188,73.2,,,,,False,
 1831,2189,73.24,,,,,False,
-1832,2190,73.28,BRA_A,BRA,head,,True,1.0
+1832,2190,73.28,Franklin,BRA,head,,True,1.0
 1833,2191,73.32,,,,,False,
 1834,2192,73.36,,,,,False,
 1835,2193,73.4,,,,,False,
@@ -1847,7 +1847,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1845,2203,73.8,,,,,False,
 1846,2204,73.84,,,,,False,
 1847,2205,73.88,,,,,False,
-1848,2206,73.92,ISR_B,ISR,foot,right,True,1.0
+1848,2206,73.92,Ron_Ben_Ishay,ISR,foot,right,True,1.0
 1849,2207,73.96,,,,,False,
 1850,2208,74.0,,,,,False,
 1851,2209,74.04,,,,,False,
@@ -1980,7 +1980,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 1978,2336,79.12,,,,,False,
 1979,2337,79.16,,,,,False,
 1980,2338,79.2,,,,,False,
-1981,2339,79.24,ISR_A,ISR,chest,,True,1.0
+1981,2339,79.24,Maor_Haas,ISR,chest,,True,1.0
 1982,2340,79.28,,,,,False,
 1983,2341,79.32,,,,,False,
 1984,2342,79.36,,,,,False,
@@ -2010,7 +2010,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2008,2366,80.32,,,,,False,
 2009,2367,80.36,,,,,False,
 2010,2368,80.4,,,,,False,
-2011,2369,80.44,ISR_B,ISR,head,,True,1.0
+2011,2369,80.44,Ron_Ben_Ishay,ISR,head,,True,1.0
 2012,2370,80.48,,,,,False,
 2013,2371,80.52,,,,,False,
 2014,2372,80.56,,,,,False,
@@ -2034,7 +2034,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2032,2390,81.28,,,,,False,
 2033,2391,81.32,,,,,False,
 2034,2392,81.36,,,,,False,
-2035,2393,81.4,BRA_A,BRA,foot,right,True,1.0
+2035,2393,81.4,Franklin,BRA,foot,right,True,1.0
 2036,2394,81.44,,,,,False,
 2037,2395,81.48,,,,,False,
 2038,2396,81.52,,,,,False,
@@ -2071,7 +2071,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2069,2440,82.76,,,,,False,
 2070,2441,82.8,,,,,False,
 2071,2442,82.84,,,,,False,
-2072,2443,82.88,BRA_A,BRA,chest,,True,1.0
+2072,2443,82.88,Franklin,BRA,chest,,True,1.0
 2073,2444,82.92,,,,,False,
 2074,2445,82.96,,,,,False,
 2075,2446,83.0,,,,,False,
@@ -2101,7 +2101,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2099,2470,83.96,,,,,False,
 2100,2471,84.0,,,,,False,
 2101,2472,84.04,,,,,False,
-2102,2473,84.08,BRA_B,BRA,foot,left,True,1.0
+2102,2473,84.08,Hiltinho,BRA,foot,left,True,1.0
 2103,2474,84.12,,,,,False,
 2104,2475,84.16,,,,,False,
 2105,2476,84.2,,,,,False,
@@ -2112,7 +2112,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2110,2481,84.4,,,,,False,
 2111,2482,84.44,,,,,False,
 2112,2483,84.48,,,,,False,
-2113,2484,84.52,ISR_A,ISR,head,,True,1.0
+2113,2484,84.52,Maor_Haas,ISR,head,,True,1.0
 2114,2485,84.56,,,,,False,
 2115,2486,84.6,,,,,False,
 2116,2487,84.64,,,,,False,
@@ -2143,7 +2143,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2141,2512,85.64,,,,,False,
 2142,2513,85.68,,,,,False,
 2143,2514,85.72,,,,,False,
-2144,2515,85.76,ISR_B,ISR,chest,,True,0.2
+2144,2515,85.76,Ron_Ben_Ishay,ISR,chest,,True,0.2
 2145,2516,85.8,,,,,False,
 2146,2517,85.84,,,,,False,
 2147,2518,85.88,,,,,False,
@@ -2175,7 +2175,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2173,2544,86.92,,,,,False,
 2174,2545,86.96,,,,,False,
 2175,2546,87.0,,,,,False,
-2176,2547,87.04,ISR_A,ISR,foot,right,True,1.0
+2176,2547,87.04,Maor_Haas,ISR,foot,right,True,1.0
 2177,2548,87.08,,,,,False,
 2178,2549,87.12,,,,,False,
 2179,2550,87.16,,,,,False,
@@ -2188,7 +2188,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2186,2557,87.44,,,,,False,
 2187,2558,87.48,,,,,False,
 2188,2559,87.52,,,,,False,
-2189,2560,87.56,BRA_A,BRA,thigh,left,True,1.0
+2189,2560,87.56,Franklin,BRA,thigh,left,True,1.0
 2190,2561,87.6,,,,,False,
 2191,2562,87.64,,,,,False,
 2192,2563,87.68,,,,,False,
@@ -2267,7 +2267,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2265,2636,90.6,,,,,False,
 2266,2637,90.64,,,,,False,
 2267,2638,90.68,,,,,False,
-2268,2639,90.72,BRA_A,BRA,foot,right,True,0.96
+2268,2639,90.72,Franklin,BRA,foot,right,True,0.96
 2269,2640,90.76,,,,,False,
 2270,2641,90.8,,,,,False,
 2271,2642,90.84,,,,,False,
@@ -2277,7 +2277,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2275,2646,91.0,,,,,False,
 2276,2647,91.04,,,,,False,
 2277,2648,91.08,,,,,False,
-2278,2649,91.12,ISR_A,ISR,foot,right,True,0.24
+2278,2649,91.12,Maor_Haas,ISR,foot,right,True,0.24
 2279,2650,91.16,,,,,False,
 2280,2651,91.2,,,,,False,
 2281,2652,91.24,,,,,False,
@@ -2287,7 +2287,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2285,2656,91.4,,,,,False,
 2286,2657,91.44,,,,,False,
 2287,2658,91.48,,,,,False,
-2288,2659,91.52,ISR_A,ISR,thigh,left,False,0.96
+2288,2659,91.52,Maor_Haas,ISR,thigh,left,False,0.96
 2289,2660,91.56,,,,,False,
 2290,2661,91.6,,,,,False,
 2291,2662,91.64,,,,,False,
@@ -2327,7 +2327,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2325,2716,93.0,,,,,False,
 2326,2717,93.04,,,,,False,
 2327,2718,93.08,,,,,False,
-2328,2719,93.12,ISR_A,ISR,chest,,True,1.0
+2328,2719,93.12,Maor_Haas,ISR,chest,,True,1.0
 2329,2720,93.16,,,,,False,
 2330,2721,93.2,,,,,False,
 2331,2722,93.24,,,,,False,
@@ -2353,7 +2353,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2351,2742,94.04,,,,,False,
 2352,2743,94.08,,,,,False,
 2353,2744,94.12,,,,,False,
-2354,2745,94.16,ISR_B,ISR,head,,True,1.0
+2354,2745,94.16,Ron_Ben_Ishay,ISR,head,,True,1.0
 2355,2746,94.2,,,,,False,
 2356,2747,94.24,,,,,False,
 2357,2748,94.28,,,,,False,
@@ -2374,7 +2374,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2372,2763,94.88,,,,,False,
 2373,2764,94.92,,,,,False,
 2374,2765,94.96,,,,,False,
-2375,2766,95.0,BRA_B,BRA,foot,right,True,1.0
+2375,2766,95.0,Hiltinho,BRA,foot,right,True,1.0
 2376,2767,95.04,,,,,False,
 2377,2768,95.08,,,,,False,
 2378,2769,95.12,,,,,False,
@@ -2395,7 +2395,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2393,2784,95.72,,,,,False,
 2394,2785,95.76,,,,,False,
 2395,2786,95.8,,,,,False,
-2396,2787,95.84,BRA_A,BRA,foot,right,True,1.0
+2396,2787,95.84,Franklin,BRA,foot,right,True,1.0
 2397,2788,95.88,,,,,False,
 2398,2789,95.92,,,,,False,
 2399,2790,95.96,,,,,False,
@@ -2437,7 +2437,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2435,2826,97.4,,,,,False,
 2436,2827,97.44,,,,,False,
 2437,2828,97.48,,,,,False,
-2438,2829,97.52,ISR_B,ISR,foot,right,True,1.0
+2438,2829,97.52,Ron_Ben_Ishay,ISR,foot,right,True,1.0
 2439,2830,97.56,,,,,False,
 2440,2831,97.6,,,,,False,
 2441,2832,97.64,,,,,False,
@@ -2476,7 +2476,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2474,2865,98.96,,,,,False,
 2475,2866,99.0,,,,,False,
 2476,2867,99.04,,,,,False,
-2477,2868,99.08,ISR_A,ISR,chest,,True,1.0
+2477,2868,99.08,Maor_Haas,ISR,chest,,True,1.0
 2478,2869,99.12,,,,,False,
 2479,2870,99.16,,,,,False,
 2480,2871,99.2,,,,,False,
@@ -2509,7 +2509,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2507,2898,100.28,,,,,False,
 2508,2899,100.32,,,,,False,
 2509,2900,100.36,,,,,False,
-2510,2901,100.4,ISR_B,ISR,head,,True,1.0
+2510,2901,100.4,Ron_Ben_Ishay,ISR,head,,True,1.0
 2511,2902,100.44,,,,,False,
 2512,2903,100.48,,,,,False,
 2513,2904,100.52,,,,,False,
@@ -2562,7 +2562,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2560,2966,102.4,,,,,False,
 2561,2967,102.44,,,,,False,
 2562,2968,102.48,,,,,False,
-2563,2969,102.52,BRA_A,BRA,chest,,True,1.0
+2563,2969,102.52,Franklin,BRA,chest,,True,1.0
 2564,2970,102.56,,,,,False,
 2565,2971,102.6,,,,,False,
 2566,2972,102.64,,,,,False,
@@ -2591,7 +2591,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2589,2995,103.56,,,,,False,
 2590,2996,103.6,,,,,False,
 2591,2997,103.64,,,,,False,
-2592,2998,103.68,BRA_B,BRA,foot,left,True,1.0
+2592,2998,103.68,Hiltinho,BRA,foot,left,True,1.0
 2593,2999,103.72,,,,,False,
 2594,3000,103.76,,,,,False,
 2595,3001,103.8,,,,,False,
@@ -2605,7 +2605,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2603,3009,104.12,,,,,False,
 2604,3010,104.16,,,,,False,
 2605,3011,104.2,,,,,False,
-2606,3012,104.24,ISR_B,ISR,head,,True,0.32
+2606,3012,104.24,Ron_Ben_Ishay,ISR,head,,True,0.32
 2607,3013,104.28,,,,,False,
 2608,3014,104.32,,,,,False,
 2609,3015,104.36,,,,,False,
@@ -2648,7 +2648,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2646,3052,105.84,,,,,False,
 2647,3053,105.88,,,,,False,
 2648,3054,105.92,,,,,False,
-2649,3055,105.96,ISR_B,ISR,chest,,True,1.0
+2649,3055,105.96,Ron_Ben_Ishay,ISR,chest,,True,1.0
 2650,3056,106.0,,,,,False,
 2651,3057,106.04,,,,,False,
 2652,3058,106.08,,,,,False,
@@ -2669,7 +2669,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2667,3073,106.68,,,,,False,
 2668,3074,106.72,,,,,False,
 2669,3075,106.76,,,,,False,
-2670,3076,106.8,ISR_A,ISR,head,,True,1.0
+2670,3076,106.8,Maor_Haas,ISR,head,,True,1.0
 2671,3077,106.84,,,,,False,
 2672,3078,106.88,,,,,False,
 2673,3079,106.92,,,,,False,
@@ -2693,7 +2693,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2691,3097,107.64,,,,,False,
 2692,3098,107.68,,,,,False,
 2693,3099,107.72,,,,,False,
-2694,3100,107.76,BRA_A,BRA,shin,right,True,1.0
+2694,3100,107.76,Franklin,BRA,shin,right,True,1.0
 2695,3101,107.8,,,,,False,
 2696,3102,107.84,,,,,False,
 2697,3103,107.88,,,,,False,
@@ -2737,7 +2737,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2735,3141,109.4,,,,,False,
 2736,3142,109.44,,,,,False,
 2737,3143,109.48,,,,,False,
-2738,3144,109.52,BRA_B,BRA,foot,left,True,1.0
+2738,3144,109.52,Hiltinho,BRA,foot,left,True,1.0
 2739,3145,109.56,,,,,False,
 2740,3146,109.6,,,,,False,
 2741,3147,109.64,,,,,False,
@@ -2745,7 +2745,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2743,3149,109.72,,,,,False,
 2744,3150,109.76,,,,,False,
 2745,3151,109.8,,,,,False,
-2746,3152,109.84,ISR_B,ISR,head,,True,1.0
+2746,3152,109.84,Ron_Ben_Ishay,ISR,head,,True,1.0
 2747,3153,109.88,,,,,False,
 2748,3154,109.92,,,,,False,
 2749,3155,109.96,,,,,False,
@@ -2781,7 +2781,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2779,3185,111.16,,,,,False,
 2780,3186,111.2,,,,,False,
 2781,3187,111.24,,,,,False,
-2782,3188,111.28,BRA_A,BRA,foot,right,True,1.0
+2782,3188,111.28,Franklin,BRA,foot,right,True,1.0
 2783,3189,111.32,,,,,False,
 2784,3190,111.36,,,,,False,
 2785,3191,111.4,,,,,False,
@@ -2831,7 +2831,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2829,3235,113.16,,,,,False,
 2830,3236,113.2,,,,,False,
 2831,3237,113.24,,,,,False,
-2832,3238,113.28,ISR_B,ISR,shin,right,True,1.0
+2832,3238,113.28,Ron_Ben_Ishay,ISR,shin,right,True,1.0
 2833,3239,113.32,,,,,False,
 2834,3240,113.36,,,,,False,
 2835,3241,113.4,,,,,False,
@@ -2847,7 +2847,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2845,3251,113.8,,,,,False,
 2846,3252,113.84,,,,,False,
 2847,3253,113.88,,,,,False,
-2848,3254,113.92,BRA_B,BRA,shoulder,left,True,1.0
+2848,3254,113.92,Hiltinho,BRA,shoulder,left,True,1.0
 2849,3255,113.96,,,,,False,
 2850,3256,114.0,,,,,False,
 2851,3257,114.04,,,,,False,
@@ -2859,7 +2859,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2857,3263,114.28,,,,,False,
 2858,3264,114.32,,,,,False,
 2859,3265,114.36,,,,,False,
-2860,3266,114.4,ISR_A,ISR,foot,right,True,1.0
+2860,3266,114.4,Maor_Haas,ISR,foot,right,True,1.0
 2861,3267,114.44,,,,,False,
 2862,3268,114.48,,,,,False,
 2863,3269,114.52,,,,,False,
@@ -2895,7 +2895,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2893,3299,115.72,,,,,False,
 2894,3300,115.76,,,,,False,
 2895,3301,115.8,,,,,False,
-2896,3302,115.84,ISR_B,ISR,head,,False,1.0
+2896,3302,115.84,Ron_Ben_Ishay,ISR,head,,False,1.0
 2897,3303,115.88,,,,,False,
 2898,3304,115.92,,,,,False,
 2899,3305,115.96,,,,,False,
@@ -2969,7 +2969,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2967,3373,118.68,,,,,False,
 2968,3374,118.72,,,,,False,
 2969,3375,118.76,,,,,False,
-2970,3376,118.8,ISR_A,ISR,chest,,True,1.0
+2970,3376,118.8,Maor_Haas,ISR,chest,,True,1.0
 2971,3377,118.84,,,,,False,
 2972,3378,118.88,,,,,False,
 2973,3379,118.92,,,,,False,
@@ -2995,7 +2995,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 2993,3399,119.72,,,,,False,
 2994,3400,119.76,,,,,False,
 2995,3401,119.8,,,,,False,
-2996,3402,119.84,ISR_B,ISR,head,,True,1.0
+2996,3402,119.84,Ron_Ben_Ishay,ISR,head,,True,1.0
 2997,3403,119.88,,,,,False,
 2998,3404,119.92,,,,,False,
 2999,3405,119.96,,,,,False,
@@ -3010,7 +3010,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 3008,3414,120.32,,,,,False,
 3009,3415,120.36,,,,,False,
 3010,3416,120.4,,,,,False,
-3011,3417,120.44,BRA_A,BRA,foot,right,True,1.0
+3011,3417,120.44,Franklin,BRA,foot,right,True,1.0
 3012,3418,120.48,,,,,False,
 3013,3419,120.52,,,,,False,
 3014,3420,120.56,,,,,False,
@@ -3048,7 +3048,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 3046,3452,121.84,,,,,False,
 3047,3453,121.88,,,,,False,
 3048,3454,121.92,,,,,False,
-3049,3455,121.96,BRA_B,BRA,shin,left,True,1.0
+3049,3455,121.96,Hiltinho,BRA,shin,left,True,1.0
 3050,3456,122.0,,,,,False,
 3051,3457,122.04,,,,,False,
 3052,3458,122.08,,,,,False,
@@ -3090,7 +3090,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 3088,3494,123.52,,,,,False,
 3089,3495,123.56,,,,,False,
 3090,3496,123.6,,,,,False,
-3091,3497,123.64,BRA_A,BRA,head,,True,1.0
+3091,3497,123.64,Franklin,BRA,head,,True,1.0
 3092,3498,123.68,,,,,False,
 3093,3499,123.72,,,,,False,
 3094,3500,123.76,,,,,False,
@@ -3113,7 +3113,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 3111,3517,124.44,,,,,False,
 3112,3518,124.48,,,,,False,
 3113,3519,124.52,,,,,False,
-3114,3520,124.56,ISR_B,ISR,head,,True,1.0
+3114,3520,124.56,Ron_Ben_Ishay,ISR,head,,True,1.0
 3115,3521,124.6,,,,,False,
 3116,3522,124.64,,,,,False,
 3117,3523,124.68,,,,,False,
@@ -3190,7 +3190,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 3188,3594,127.52,,,,,False,
 3189,3595,127.56,,,,,False,
 3190,3596,127.6,,,,,False,
-3191,3597,127.64,ISR_B,ISR,foot,right,True,1.0
+3191,3597,127.64,Ron_Ben_Ishay,ISR,foot,right,True,1.0
 3192,3598,127.68,,,,,False,
 3193,3599,127.72,,,,,False,
 3194,3600,127.76,,,,,False,
@@ -3222,7 +3222,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 3220,3626,128.8,,,,,False,
 3221,3627,128.84,,,,,False,
 3222,3628,128.88,,,,,False,
-3223,3629,128.92,BRA_A,BRA,shoulder,right,True,1.0
+3223,3629,128.92,Franklin,BRA,shoulder,right,True,1.0
 3224,3630,128.96,,,,,False,
 3225,3631,129.0,,,,,False,
 3226,3632,129.04,,,,,False,
@@ -3263,7 +3263,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 3261,3667,130.44,,,,,False,
 3262,3668,130.48,,,,,False,
 3263,3669,130.52,,,,,False,
-3264,3670,130.56,BRA_B,BRA,head,,True,1.0
+3264,3670,130.56,Hiltinho,BRA,head,,True,1.0
 3265,3671,130.6,,,,,False,
 3266,3672,130.64,,,,,False,
 3267,3673,130.68,,,,,False,
@@ -3290,7 +3290,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 3288,3694,131.52,,,,,False,
 3289,3695,131.56,,,,,False,
 3290,3696,131.6,,,,,False,
-3291,3697,131.64,BRA_A,BRA,head,,True,1.0
+3291,3697,131.64,Franklin,BRA,head,,True,1.0
 3292,3698,131.68,,,,,False,
 3293,3699,131.72,,,,,False,
 3294,3700,131.76,,,,,False,
@@ -3317,7 +3317,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 3315,3721,132.6,,,,,False,
 3316,3722,132.64,,,,,False,
 3317,3723,132.68,,,,,False,
-3318,3724,132.72,ISR_A,ISR,foot,right,True,1.0
+3318,3724,132.72,Maor_Haas,ISR,foot,right,True,1.0
 3319,3725,132.76,,,,,False,
 3320,3726,132.8,,,,,False,
 3321,3727,132.84,,,,,False,
@@ -3341,7 +3341,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 3339,3745,133.56,,,,,False,
 3340,3746,133.6,,,,,False,
 3341,3747,133.64,,,,,False,
-3342,3748,133.68,ISR_B,ISR,chest,,True,1.0
+3342,3748,133.68,Ron_Ben_Ishay,ISR,chest,,True,1.0
 3343,3749,133.72,,,,,False,
 3344,3750,133.76,,,,,False,
 3345,3751,133.8,,,,,False,
@@ -3375,7 +3375,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 3373,3779,134.92,,,,,False,
 3374,3780,134.96,,,,,False,
 3375,3781,135.0,,,,,False,
-3376,3782,135.04,ISR_A,ISR,head,,True,0.95
+3376,3782,135.04,Maor_Haas,ISR,head,,True,0.95
 3377,3783,135.08,,,,,False,
 3378,3784,135.12,,,,,False,
 3379,3785,135.16,,,,,False,
@@ -3383,7 +3383,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 3381,3787,135.24,,,,,False,
 3382,3788,135.28,,,,,False,
 3383,3789,135.32,,,,,False,
-3384,3790,135.36,BRA_B,BRA,head,,True,0.92
+3384,3790,135.36,Hiltinho,BRA,head,,True,0.92
 3385,3791,135.4,,,,,False,
 3386,3792,135.44,,,,,False,
 3387,3793,135.48,,,,,False,
@@ -3512,7 +3512,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 3510,3978,140.4,,,,,False,
 3511,3979,140.44,,,,,False,
 3512,3980,140.48,,,,,False,
-3513,3981,140.52,ISR_A,ISR,arm,right,True,1.0
+3513,3981,140.52,Maor_Haas,ISR,arm,right,True,1.0
 3514,3982,140.56,,,,,False,
 3515,3983,140.6,,,,,False,
 3516,3984,140.64,,,,,False,
@@ -3551,7 +3551,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 3549,4017,141.96,,,,,False,
 3550,4018,142.0,,,,,False,
 3551,4019,142.04,,,,,False,
-3552,4020,142.08,ISR_B,ISR,head,,True,1.0
+3552,4020,142.08,Ron_Ben_Ishay,ISR,head,,True,1.0
 3553,4021,142.12,,,,,False,
 3554,4022,142.16,,,,,False,
 3555,4023,142.2,,,,,False,
@@ -3631,7 +3631,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 3629,4097,145.16,,,,,False,
 3630,4098,145.2,,,,,False,
 3631,4099,145.24,,,,,False,
-3632,4100,145.28,ISR_B,ISR,chest,,True,1.0
+3632,4100,145.28,Ron_Ben_Ishay,ISR,chest,,True,1.0
 3633,4101,145.32,,,,,False,
 3634,4102,145.36,,,,,False,
 3635,4103,145.4,,,,,False,
@@ -3658,7 +3658,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 3656,4124,146.24,,,,,False,
 3657,4125,146.28,,,,,False,
 3658,4126,146.32,,,,,False,
-3659,4127,146.36,ISR_A,ISR,torso,,True,0.99
+3659,4127,146.36,Maor_Haas,ISR,torso,,True,0.99
 3660,4128,146.4,,,,,False,
 3661,4129,146.44,,,,,False,
 3662,4130,146.48,,,,,False,
@@ -3697,7 +3697,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 3695,4163,147.8,,,,,False,
 3696,4164,147.84,,,,,False,
 3697,4165,147.88,,,,,False,
-3698,4166,147.92,ISR_B,ISR,head,,True,1.0
+3698,4166,147.92,Ron_Ben_Ishay,ISR,head,,True,1.0
 3699,4167,147.96,,,,,False,
 3700,4168,148.0,,,,,False,
 3701,4169,148.04,,,,,False,
@@ -3770,7 +3770,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 3768,4236,150.72,,,,,False,
 3769,4237,150.76,,,,,False,
 3770,4238,150.8,,,,,False,
-3771,4239,150.84,ISR_B,ISR,chest,,True,1.0
+3771,4239,150.84,Ron_Ben_Ishay,ISR,chest,,True,1.0
 3772,4240,150.88,,,,,False,
 3773,4241,150.92,,,,,False,
 3774,4242,150.96,,,,,False,
@@ -3798,7 +3798,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 3796,4264,151.84,,,,,False,
 3797,4265,151.88,,,,,False,
 3798,4266,151.92,,,,,False,
-3799,4267,151.96,ISR_A,ISR,chest,,True,0.31
+3799,4267,151.96,Maor_Haas,ISR,chest,,True,0.31
 3800,4268,152.0,,,,,False,
 3801,4269,152.04,,,,,False,
 3802,4270,152.08,,,,,False,
@@ -3831,7 +3831,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 3829,4297,153.16,,,,,False,
 3830,4298,153.2,,,,,False,
 3831,4299,153.24,,,,,False,
-3832,4300,153.28,ISR_B,ISR,head,,True,1.0
+3832,4300,153.28,Ron_Ben_Ishay,ISR,head,,True,1.0
 3833,4301,153.32,,,,,False,
 3834,4302,153.36,,,,,False,
 3835,4303,153.4,,,,,False,
@@ -3958,7 +3958,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 3956,4424,158.24,,,,,False,
 3957,4425,158.28,,,,,False,
 3958,4426,158.32,,,,,False,
-3959,4427,158.36,BRA_A,BRA,chest,,True,1.0
+3959,4427,158.36,Franklin,BRA,chest,,True,1.0
 3960,4428,158.4,,,,,False,
 3961,4429,158.44,,,,,False,
 3962,4430,158.48,,,,,False,
@@ -3999,7 +3999,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 3997,4465,159.88,,,,,False,
 3998,4466,159.92,,,,,False,
 3999,4467,159.96,,,,,False,
-4000,4468,160.0,BRA_B,BRA,chest,,True,1.0
+4000,4468,160.0,Hiltinho,BRA,chest,,True,1.0
 4001,4469,160.04,,,,,False,
 4002,4470,160.08,,,,,False,
 4003,4471,160.12,,,,,False,
@@ -4031,7 +4031,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4029,4497,161.16,,,,,False,
 4030,4498,161.2,,,,,False,
 4031,4499,161.24,,,,,False,
-4032,4500,161.28,BRA_A,BRA,foot,right,True,1.0
+4032,4500,161.28,Franklin,BRA,foot,right,True,1.0
 4033,4501,161.32,,,,,False,
 4034,4502,161.36,,,,,False,
 4035,4503,161.4,,,,,False,
@@ -4085,7 +4085,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4083,4796,163.32,,,,,False,
 4084,4797,163.36,,,,,False,
 4085,4798,163.4,,,,,False,
-4086,4799,163.44,ISR_A,ISR,chest,,True,1.0
+4086,4799,163.44,Maor_Haas,ISR,chest,,True,1.0
 4087,4800,163.48,,,,,False,
 4088,4801,163.52,,,,,False,
 4089,4802,163.56,,,,,False,
@@ -4116,7 +4116,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4114,4827,164.56,,,,,False,
 4115,4828,164.6,,,,,False,
 4116,4829,164.64,,,,,False,
-4117,4830,164.68,ISR_B,ISR,head,,True,0.23
+4117,4830,164.68,Ron_Ben_Ishay,ISR,head,,True,0.23
 4118,4831,164.72,,,,,False,
 4119,4832,164.76,,,,,False,
 4120,4833,164.8,,,,,False,
@@ -4137,7 +4137,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4135,4848,165.4,,,,,False,
 4136,4849,165.44,,,,,False,
 4137,4850,165.48,,,,,False,
-4138,4851,165.52,BRA_B,BRA,foot,left,True,1.0
+4138,4851,165.52,Hiltinho,BRA,foot,left,True,1.0
 4139,4852,165.56,,,,,False,
 4140,4853,165.6,,,,,False,
 4141,4854,165.64,,,,,False,
@@ -4176,7 +4176,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4174,4887,166.96,,,,,False,
 4175,4888,167.0,,,,,False,
 4176,4889,167.04,,,,,False,
-4177,4890,167.08,BRA_A,BRA,chest,,True,1.0
+4177,4890,167.08,Franklin,BRA,chest,,True,1.0
 4178,4891,167.12,,,,,False,
 4179,4892,167.16,,,,,False,
 4180,4893,167.2,,,,,False,
@@ -4217,14 +4217,14 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4215,4928,168.6,,,,,False,
 4216,4929,168.64,,,,,False,
 4217,4930,168.68,,,,,False,
-4218,4931,168.72,ISR_A,ISR,foot,right,True,1.0
+4218,4931,168.72,Maor_Haas,ISR,foot,right,True,1.0
 4219,4932,168.76,,,,,False,
 4220,4933,168.8,,,,,False,
 4221,4934,168.84,,,,,False,
 4222,4935,168.88,,,,,False,
 4223,4936,168.92,,,,,False,
 4224,4937,168.96,,,,,False,
-4225,4938,169.0,BRA_B,BRA,head,,True,1.0
+4225,4938,169.0,Hiltinho,BRA,head,,True,1.0
 4226,4939,169.04,,,,,False,
 4227,4940,169.08,,,,,False,
 4228,4941,169.12,,,,,False,
@@ -4340,7 +4340,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4338,5051,173.52,,,,,False,
 4339,5052,173.56,,,,,False,
 4340,5053,173.6,,,,,False,
-4341,5054,173.64,ISR_B,ISR,head,,True,1.0
+4341,5054,173.64,Ron_Ben_Ishay,ISR,head,,True,1.0
 4342,5055,173.68,,,,,False,
 4343,5056,173.72,,,,,False,
 4344,5057,173.76,,,,,False,
@@ -4377,7 +4377,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4375,5088,175.0,,,,,False,
 4376,5089,175.04,,,,,False,
 4377,5090,175.08,,,,,False,
-4378,5091,175.12,ISR_A,ISR,foot,right,True,1.0
+4378,5091,175.12,Maor_Haas,ISR,foot,right,True,1.0
 4379,5092,175.16,,,,,False,
 4380,5093,175.2,,,,,False,
 4381,5094,175.24,,,,,False,
@@ -4413,7 +4413,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4411,5124,176.44,,,,,False,
 4412,5125,176.48,,,,,False,
 4413,5126,176.52,,,,,False,
-4414,5127,176.56,ISR_B,ISR,head,,True,1.0
+4414,5127,176.56,Ron_Ben_Ishay,ISR,head,,True,1.0
 4415,5128,176.6,,,,,False,
 4416,5129,176.64,,,,,False,
 4417,5130,176.68,,,,,False,
@@ -4429,7 +4429,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4427,5140,177.08,,,,,False,
 4428,5141,177.12,,,,,False,
 4429,5142,177.16,,,,,False,
-4430,5143,177.2,BRA_A,BRA,chest,,True,1.0
+4430,5143,177.2,Franklin,BRA,chest,,True,1.0
 4431,5144,177.24,,,,,False,
 4432,5145,177.28,,,,,False,
 4433,5146,177.32,,,,,False,
@@ -4465,7 +4465,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4463,5176,178.52,,,,,False,
 4464,5177,178.56,,,,,False,
 4465,5178,178.6,,,,,False,
-4466,5179,178.64,BRA_B,BRA,chest,,True,1.0
+4466,5179,178.64,Hiltinho,BRA,chest,,True,1.0
 4467,5180,178.68,,,,,False,
 4468,5181,178.72,,,,,False,
 4469,5182,178.76,,,,,False,
@@ -4498,7 +4498,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4496,5209,179.84,,,,,False,
 4497,5210,179.88,,,,,False,
 4498,5211,179.92,,,,,False,
-4499,5212,179.96,BRA_A,BRA,head,,True,1.0
+4499,5212,179.96,Franklin,BRA,head,,True,1.0
 4500,5213,180.0,,,,,False,
 4501,5214,180.04,,,,,False,
 4502,5215,180.08,,,,,False,
@@ -4600,7 +4600,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4598,5311,183.92,,,,,False,
 4599,5312,183.96,,,,,False,
 4600,5313,184.0,,,,,False,
-4601,5314,184.04,BRA_A,BRA,arm,left,True,0.75
+4601,5314,184.04,Franklin,BRA,arm,left,True,0.75
 4602,5315,184.08,,,,,False,
 4603,5316,184.12,,,,,False,
 4604,5317,184.16,,,,,False,
@@ -4629,7 +4629,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4627,5340,185.08,,,,,False,
 4628,5341,185.12,,,,,False,
 4629,5342,185.16,,,,,False,
-4630,5343,185.2,BRA_B,BRA,chest,,True,1.0
+4630,5343,185.2,Hiltinho,BRA,chest,,True,1.0
 4631,5344,185.24,,,,,False,
 4632,5345,185.28,,,,,False,
 4633,5346,185.32,,,,,False,
@@ -4662,7 +4662,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4660,5373,186.4,,,,,False,
 4661,5374,186.44,,,,,False,
 4662,5375,186.48,,,,,False,
-4663,5376,186.52,BRA_A,BRA,head,,True,1.0
+4663,5376,186.52,Franklin,BRA,head,,True,1.0
 4664,5377,186.56,,,,,False,
 4665,5378,186.6,,,,,False,
 4666,5379,186.64,,,,,False,
@@ -4674,7 +4674,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4672,5385,186.88,,,,,False,
 4673,5386,186.92,,,,,False,
 4674,5387,186.96,,,,,False,
-4675,5388,187.0,ISR_A,ISR,head,,True,1.0
+4675,5388,187.0,Maor_Haas,ISR,head,,True,1.0
 4676,5389,187.04,,,,,False,
 4677,5390,187.08,,,,,False,
 4678,5391,187.12,,,,,False,
@@ -4717,7 +4717,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4715,5428,188.6,,,,,False,
 4716,5429,188.64,,,,,False,
 4717,5430,188.68,,,,,False,
-4718,5431,188.72,ISR_B,ISR,chest,,True,0.65
+4718,5431,188.72,Ron_Ben_Ishay,ISR,chest,,True,0.65
 4719,5432,188.76,,,,,False,
 4720,5433,188.8,,,,,False,
 4721,5434,188.84,,,,,False,
@@ -4756,7 +4756,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4754,5467,190.16,,,,,False,
 4755,5468,190.2,,,,,False,
 4756,5469,190.24,,,,,False,
-4757,5470,190.28,BRA_B,BRA,foot,left,True,1.0
+4757,5470,190.28,Hiltinho,BRA,foot,left,True,1.0
 4758,5471,190.32,,,,,False,
 4759,5472,190.36,,,,,False,
 4760,5473,190.4,,,,,False,
@@ -4796,7 +4796,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4794,5507,191.76,,,,,False,
 4795,5508,191.8,,,,,False,
 4796,5509,191.84,,,,,False,
-4797,5510,191.88,BRA_A,BRA,foot,right,True,1.0
+4797,5510,191.88,Franklin,BRA,foot,right,True,1.0
 4798,5511,191.92,,,,,False,
 4799,5512,191.96,,,,,False,
 4800,5513,192.0,,,,,False,
@@ -4829,7 +4829,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4827,5540,193.08,,,,,False,
 4828,5541,193.12,,,,,False,
 4829,5542,193.16,,,,,False,
-4830,5543,193.2,BRA_B,BRA,foot,left,True,1.0
+4830,5543,193.2,Hiltinho,BRA,foot,left,True,1.0
 4831,5544,193.24,,,,,False,
 4832,5545,193.28,,,,,False,
 4833,5546,193.32,,,,,False,
@@ -4843,7 +4843,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4841,5554,193.64,,,,,False,
 4842,5555,193.68,,,,,False,
 4843,5556,193.72,,,,,False,
-4844,5557,193.76,ISR_B,ISR,foot,right,True,1.0
+4844,5557,193.76,Ron_Ben_Ishay,ISR,foot,right,True,1.0
 4845,5558,193.8,,,,,False,
 4846,5559,193.84,,,,,False,
 4847,5560,193.88,,,,,False,
@@ -4863,7 +4863,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4861,5574,194.44,,,,,False,
 4862,5575,194.48,,,,,False,
 4863,5576,194.52,,,,,False,
-4864,5577,194.56,BRA_B,BRA,shoulder,left,True,0.98
+4864,5577,194.56,Hiltinho,BRA,shoulder,left,True,0.98
 4865,5578,194.6,,,,,False,
 4866,5579,194.64,,,,,False,
 4867,5580,194.68,,,,,False,
@@ -4879,7 +4879,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4877,5590,195.08,,,,,False,
 4878,5591,195.12,,,,,False,
 4879,5592,195.16,,,,,False,
-4880,5593,195.2,ISR_A,ISR,foot,right,True,1.0
+4880,5593,195.2,Maor_Haas,ISR,foot,right,True,1.0
 4881,5594,195.24,,,,,False,
 4882,5595,195.28,,,,,False,
 4883,5596,195.32,,,,,False,
@@ -4913,7 +4913,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4911,5624,196.44,,,,,False,
 4912,5625,196.48,,,,,False,
 4913,5626,196.52,,,,,False,
-4914,5627,196.56,ISR_B,ISR,head,,True,1.0
+4914,5627,196.56,Ron_Ben_Ishay,ISR,head,,True,1.0
 4915,5628,196.6,,,,,False,
 4916,5629,196.64,,,,,False,
 4917,5630,196.68,,,,,False,
@@ -4943,7 +4943,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4941,5654,197.64,,,,,False,
 4942,5655,197.68,,,,,False,
 4943,5656,197.72,,,,,False,
-4944,5657,197.76,BRA_B,BRA,head,,True,1.0
+4944,5657,197.76,Hiltinho,BRA,head,,True,1.0
 4945,5658,197.8,,,,,False,
 4946,5659,197.84,,,,,False,
 4947,5660,197.88,,,,,False,
@@ -4979,7 +4979,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 4977,5690,199.08,,,,,False,
 4978,5691,199.12,,,,,False,
 4979,5692,199.16,,,,,False,
-4980,5693,199.2,BRA_A,BRA,chest,,True,1.0
+4980,5693,199.2,Franklin,BRA,chest,,True,1.0
 4981,5694,199.24,,,,,False,
 4982,5695,199.28,,,,,False,
 4983,5696,199.32,,,,,False,
@@ -5015,7 +5015,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5013,5726,200.52,,,,,False,
 5014,5727,200.56,,,,,False,
 5015,5728,200.6,,,,,False,
-5016,5729,200.64,BRA_B,BRA,head,,True,1.0
+5016,5729,200.64,Hiltinho,BRA,head,,True,1.0
 5017,5730,200.68,,,,,False,
 5018,5731,200.72,,,,,False,
 5019,5732,200.76,,,,,False,
@@ -5039,7 +5039,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5037,5750,201.48,,,,,False,
 5038,5751,201.52,,,,,False,
 5039,5752,201.56,,,,,False,
-5040,5753,201.6,ISR_A,ISR,foot,left,True,1.0
+5040,5753,201.6,Maor_Haas,ISR,foot,left,True,1.0
 5041,5754,201.64,,,,,False,
 5042,5755,201.68,,,,,False,
 5043,5756,201.72,,,,,False,
@@ -5048,7 +5048,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5046,5759,201.84,,,,,False,
 5047,5760,201.88,,,,,False,
 5048,5761,201.92,,,,,False,
-5049,5762,201.96,ISR_B,ISR,torso,,True,0.61
+5049,5762,201.96,Ron_Ben_Ishay,ISR,torso,,True,0.61
 5050,5763,202.0,,,,,False,
 5051,5764,202.04,,,,,False,
 5052,5765,202.08,,,,,False,
@@ -5146,7 +5146,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5144,5857,205.76,,,,,False,
 5145,5858,205.8,,,,,False,
 5146,5859,205.84,,,,,False,
-5147,5860,205.88,ISR_B,ISR,head,,False,1.0
+5147,5860,205.88,Ron_Ben_Ishay,ISR,head,,False,1.0
 5148,5861,205.92,,,,,False,
 5149,5862,205.96,,,,,False,
 5150,5863,206.0,,,,,False,
@@ -5159,7 +5159,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5157,5870,206.28,,,,,False,
 5158,5871,206.32,,,,,False,
 5159,5872,206.36,,,,,False,
-5160,5873,206.4,BRA_B,BRA,foot,left,False,1.0
+5160,5873,206.4,Hiltinho,BRA,foot,left,False,1.0
 5161,5874,206.44,,,,,False,
 5162,5875,206.48,,,,,False,
 5163,5876,206.52,,,,,False,
@@ -5263,7 +5263,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5261,5974,210.44,,,,,False,
 5262,5975,210.48,,,,,False,
 5263,5976,210.52,,,,,False,
-5264,5977,210.56,BRA_B,BRA,head,,False,1.0
+5264,5977,210.56,Hiltinho,BRA,head,,False,1.0
 5265,5978,210.6,,,,,False,
 5266,5979,210.64,,,,,False,
 5267,5980,210.68,,,,,False,
@@ -5300,7 +5300,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5298,6011,211.92,,,,,False,
 5299,6012,211.96,,,,,False,
 5300,6013,212.0,,,,,False,
-5301,6014,212.04,ISR_B,ISR,chest,,False,1.0
+5301,6014,212.04,Ron_Ben_Ishay,ISR,chest,,False,1.0
 5302,6015,212.08,,,,,False,
 5303,6016,212.12,,,,,False,
 5304,6017,212.16,,,,,False,
@@ -5333,7 +5333,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5331,6044,213.24,,,,,False,
 5332,6045,213.28,,,,,False,
 5333,6046,213.32,,,,,False,
-5334,6047,213.36,ISR_A,ISR,chest,,False,1.0
+5334,6047,213.36,Maor_Haas,ISR,chest,,False,1.0
 5335,6048,213.4,,,,,False,
 5336,6049,213.44,,,,,False,
 5337,6050,213.48,,,,,False,
@@ -5365,7 +5365,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5363,6076,214.52,,,,,False,
 5364,6077,214.56,,,,,False,
 5365,6078,214.6,,,,,False,
-5366,6079,214.64,ISR_B,ISR,head,,False,1.0
+5366,6079,214.64,Ron_Ben_Ishay,ISR,head,,False,1.0
 5367,6080,214.68,,,,,False,
 5368,6081,214.72,,,,,False,
 5369,6082,214.76,,,,,False,
@@ -5378,7 +5378,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5376,6089,215.04,,,,,False,
 5377,6090,215.08,,,,,False,
 5378,6091,215.12,,,,,False,
-5379,6092,215.16,BRA_B,BRA,head,,False,1.0
+5379,6092,215.16,Hiltinho,BRA,head,,False,1.0
 5380,6093,215.2,,,,,False,
 5381,6094,215.24,,,,,False,
 5382,6095,215.28,,,,,False,
@@ -5418,7 +5418,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5416,6129,216.64,,,,,False,
 5417,6130,216.68,,,,,False,
 5418,6131,216.72,,,,,False,
-5419,6132,216.76,BRA_A,BRA,shoulder,right,False,1.0
+5419,6132,216.76,Franklin,BRA,shoulder,right,False,1.0
 5420,6133,216.8,,,,,False,
 5421,6134,216.84,,,,,False,
 5422,6135,216.88,,,,,False,
@@ -5454,7 +5454,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5452,6165,218.08,,,,,False,
 5453,6166,218.12,,,,,False,
 5454,6167,218.16,,,,,False,
-5455,6168,218.2,BRA_B,BRA,head,,False,1.0
+5455,6168,218.2,Hiltinho,BRA,head,,False,1.0
 5456,6169,218.24,,,,,False,
 5457,6170,218.28,,,,,False,
 5458,6171,218.32,,,,,False,
@@ -5472,7 +5472,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5470,6183,218.8,,,,,False,
 5471,6184,218.84,,,,,False,
 5472,6185,218.88,,,,,False,
-5473,6186,218.92,ISR_A,ISR,chest,,False,1.0
+5473,6186,218.92,Maor_Haas,ISR,chest,,False,1.0
 5474,6187,218.96,,,,,False,
 5475,6188,219.0,,,,,False,
 5476,6189,219.04,,,,,False,
@@ -5570,7 +5570,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5568,6281,222.72,,,,,False,
 5569,6282,222.76,,,,,False,
 5570,6283,222.8,,,,,False,
-5571,6284,222.84,ISR_A,ISR,chest,,True,1.0
+5571,6284,222.84,Maor_Haas,ISR,chest,,True,1.0
 5572,6285,222.88,,,,,False,
 5573,6286,222.92,,,,,False,
 5574,6287,222.96,,,,,False,
@@ -5601,7 +5601,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5599,6312,223.96,,,,,False,
 5600,6313,224.0,,,,,False,
 5601,6314,224.04,,,,,False,
-5602,6315,224.08,ISR_B,ISR,head,,True,1.0
+5602,6315,224.08,Ron_Ben_Ishay,ISR,head,,True,1.0
 5603,6316,224.12,,,,,False,
 5604,6317,224.16,,,,,False,
 5605,6318,224.2,,,,,False,
@@ -5621,7 +5621,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5619,6332,224.76,,,,,False,
 5620,6333,224.8,,,,,False,
 5621,6334,224.84,,,,,False,
-5622,6335,224.88,BRA_A,BRA,foot,right,True,1.0
+5622,6335,224.88,Franklin,BRA,foot,right,True,1.0
 5623,6336,224.92,,,,,False,
 5624,6337,224.96,,,,,False,
 5625,6338,225.0,,,,,False,
@@ -5659,7 +5659,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5657,6370,226.28,,,,,False,
 5658,6371,226.32,,,,,False,
 5659,6372,226.36,,,,,False,
-5660,6373,226.4,BRA_B,BRA,chest,,True,1.0
+5660,6373,226.4,Hiltinho,BRA,chest,,True,1.0
 5661,6374,226.44,,,,,False,
 5662,6375,226.48,,,,,False,
 5663,6376,226.52,,,,,False,
@@ -5693,7 +5693,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5691,6404,227.64,,,,,False,
 5692,6405,227.68,,,,,False,
 5693,6406,227.72,,,,,False,
-5694,6407,227.76,BRA_A,BRA,head,,True,1.0
+5694,6407,227.76,Franklin,BRA,head,,True,1.0
 5695,6408,227.8,,,,,False,
 5696,6409,227.84,,,,,False,
 5697,6410,227.88,,,,,False,
@@ -5715,7 +5715,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5713,6426,228.52,,,,,False,
 5714,6427,228.56,,,,,False,
 5715,6428,228.6,,,,,False,
-5716,6429,228.64,ISR_A,ISR,shin,right,True,1.0
+5716,6429,228.64,Maor_Haas,ISR,shin,right,True,1.0
 5717,6430,228.68,,,,,False,
 5718,6431,228.72,,,,,False,
 5719,6432,228.76,,,,,False,
@@ -5743,7 +5743,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5741,6454,229.64,,,,,False,
 5742,6455,229.68,,,,,False,
 5743,6456,229.72,,,,,False,
-5744,6457,229.76,ISR_B,ISR,chest,,True,1.0
+5744,6457,229.76,Ron_Ben_Ishay,ISR,chest,,True,1.0
 5745,6458,229.8,,,,,False,
 5746,6459,229.84,,,,,False,
 5747,6460,229.88,,,,,False,
@@ -5777,7 +5777,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5775,6488,231.0,,,,,False,
 5776,6489,231.04,,,,,False,
 5777,6490,231.08,,,,,False,
-5778,6491,231.12,ISR_A,ISR,head,,True,1.0
+5778,6491,231.12,Maor_Haas,ISR,head,,True,1.0
 5779,6492,231.16,,,,,False,
 5780,6493,231.2,,,,,False,
 5781,6494,231.24,,,,,False,
@@ -5799,7 +5799,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5797,6510,231.88,,,,,False,
 5798,6511,231.92,,,,,False,
 5799,6512,231.96,,,,,False,
-5800,6513,232.0,BRA_B,BRA,foot,left,True,1.0
+5800,6513,232.0,Hiltinho,BRA,foot,left,True,1.0
 5801,6514,232.04,,,,,False,
 5802,6515,232.08,,,,,False,
 5803,6516,232.12,,,,,False,
@@ -5834,7 +5834,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5832,6545,233.28,,,,,False,
 5833,6546,233.32,,,,,False,
 5834,6547,233.36,,,,,False,
-5835,6548,233.4,ISR_B,ISR,head,,True,1.0
+5835,6548,233.4,Ron_Ben_Ishay,ISR,head,,True,1.0
 5836,6549,233.44,,,,,False,
 5837,6550,233.48,,,,,False,
 5838,6551,233.52,,,,,False,
@@ -5869,7 +5869,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5867,6580,234.68,,,,,False,
 5868,6581,234.72,,,,,False,
 5869,6582,234.76,,,,,False,
-5870,6583,234.8,ISR_A,ISR,chest,,True,1.0
+5870,6583,234.8,Maor_Haas,ISR,chest,,True,1.0
 5871,6584,234.84,,,,,False,
 5872,6585,234.88,,,,,False,
 5873,6586,234.92,,,,,False,
@@ -5905,7 +5905,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5903,6616,236.12,,,,,False,
 5904,6617,236.16,,,,,False,
 5905,6618,236.2,,,,,False,
-5906,6619,236.24,ISR_B,ISR,head,,True,1.0
+5906,6619,236.24,Ron_Ben_Ishay,ISR,head,,True,1.0
 5907,6620,236.28,,,,,False,
 5908,6621,236.32,,,,,False,
 5909,6622,236.36,,,,,False,
@@ -5933,7 +5933,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5931,6644,237.24,,,,,False,
 5932,6645,237.28,,,,,False,
 5933,6646,237.32,,,,,False,
-5934,6647,237.36,BRA_A,BRA,foot,right,True,1.0
+5934,6647,237.36,Franklin,BRA,foot,right,True,1.0
 5935,6648,237.4,,,,,False,
 5936,6649,237.44,,,,,False,
 5937,6650,237.48,,,,,False,
@@ -5971,7 +5971,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 5969,6682,238.76,,,,,False,
 5970,6683,238.8,,,,,False,
 5971,6684,238.84,,,,,False,
-5972,6685,238.88,BRA_B,BRA,chest,,True,1.0
+5972,6685,238.88,Hiltinho,BRA,chest,,True,1.0
 5973,6686,238.92,,,,,False,
 5974,6687,238.96,,,,,False,
 5975,6688,239.0,,,,,False,
@@ -6004,7 +6004,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6002,6715,240.08,,,,,False,
 6003,6716,240.12,,,,,False,
 6004,6717,240.16,,,,,False,
-6005,6718,240.2,BRA_A,BRA,foot,left,True,1.0
+6005,6718,240.2,Franklin,BRA,foot,left,True,1.0
 6006,6719,240.24,,,,,False,
 6007,6720,240.28,,,,,False,
 6008,6721,240.32,,,,,False,
@@ -6014,7 +6014,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6012,6725,240.48,,,,,False,
 6013,6726,240.52,,,,,False,
 6014,6727,240.56,,,,,False,
-6015,6728,240.6,ISR_A,ISR,foot,left,True,0.67
+6015,6728,240.6,Maor_Haas,ISR,foot,left,True,0.67
 6016,6729,240.64,,,,,False,
 6017,6730,240.68,,,,,False,
 6018,6731,240.72,,,,,False,
@@ -6062,7 +6062,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6060,6773,242.4,,,,,False,
 6061,6774,242.44,,,,,False,
 6062,6775,242.48,,,,,False,
-6063,6776,242.52,ISR_A,ISR,foot,right,True,1.0
+6063,6776,242.52,Maor_Haas,ISR,foot,right,True,1.0
 6064,6777,242.56,,,,,False,
 6065,6778,242.6,,,,,False,
 6066,6779,242.64,,,,,False,
@@ -6073,7 +6073,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6071,6784,242.84,,,,,False,
 6072,6785,242.88,,,,,False,
 6073,6786,242.92,,,,,False,
-6074,6787,242.96,BRA_A,BRA,head,,True,0.24
+6074,6787,242.96,Franklin,BRA,head,,True,0.24
 6075,6788,243.0,,,,,False,
 6076,6789,243.04,,,,,False,
 6077,6790,243.08,,,,,False,
@@ -6113,7 +6113,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6111,6824,244.44,,,,,False,
 6112,6825,244.48,,,,,False,
 6113,6826,244.52,,,,,False,
-6114,6827,244.56,BRA_B,BRA,chest,,True,1.0
+6114,6827,244.56,Hiltinho,BRA,chest,,True,1.0
 6115,6828,244.6,,,,,False,
 6116,6829,244.64,,,,,False,
 6117,6830,244.68,,,,,False,
@@ -6149,7 +6149,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6147,6860,245.88,,,,,False,
 6148,6861,245.92,,,,,False,
 6149,6862,245.96,,,,,False,
-6150,6863,246.0,BRA_A,BRA,head,,True,1.0
+6150,6863,246.0,Franklin,BRA,head,,True,1.0
 6151,6864,246.04,,,,,False,
 6152,6865,246.08,,,,,False,
 6153,6866,246.12,,,,,False,
@@ -6172,7 +6172,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6170,6883,246.8,,,,,False,
 6171,6884,246.84,,,,,False,
 6172,6885,246.88,,,,,False,
-6173,6886,246.92,ISR_B,ISR,foot,right,True,1.0
+6173,6886,246.92,Ron_Ben_Ishay,ISR,foot,right,True,1.0
 6174,6887,246.96,,,,,False,
 6175,6888,247.0,,,,,False,
 6176,6889,247.04,,,,,False,
@@ -6185,7 +6185,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6183,6896,247.32,,,,,False,
 6184,6897,247.36,,,,,False,
 6185,6898,247.4,,,,,False,
-6186,6899,247.44,ISR_A,ISR,shin,left,True,1.0
+6186,6899,247.44,Maor_Haas,ISR,shin,left,True,1.0
 6187,6900,247.48,,,,,False,
 6188,6901,247.52,,,,,False,
 6189,6902,247.56,,,,,False,
@@ -6221,7 +6221,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6219,6932,248.76,,,,,False,
 6220,6933,248.8,,,,,False,
 6221,6934,248.84,,,,,False,
-6222,6935,248.88,ISR_B,ISR,chest,,True,1.0
+6222,6935,248.88,Ron_Ben_Ishay,ISR,chest,,True,1.0
 6223,6936,248.92,,,,,False,
 6224,6937,248.96,,,,,False,
 6225,6938,249.0,,,,,False,
@@ -6252,7 +6252,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6250,6963,250.0,,,,,False,
 6251,6964,250.04,,,,,False,
 6252,6965,250.08,,,,,False,
-6253,6966,250.12,BRA_B,BRA,chest,,True,1.0
+6253,6966,250.12,Hiltinho,BRA,chest,,True,1.0
 6254,6967,250.16,,,,,False,
 6255,6968,250.2,,,,,False,
 6256,6969,250.24,,,,,False,
@@ -6289,7 +6289,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6287,7000,251.48,,,,,False,
 6288,7001,251.52,,,,,False,
 6289,7002,251.56,,,,,False,
-6290,7003,251.6,BRA_A,BRA,chest,,True,1.0
+6290,7003,251.6,Franklin,BRA,chest,,True,1.0
 6291,7004,251.64,,,,,False,
 6292,7005,251.68,,,,,False,
 6293,7006,251.72,,,,,False,
@@ -6319,7 +6319,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6317,7030,252.68,,,,,False,
 6318,7031,252.72,,,,,False,
 6319,7032,252.76,,,,,False,
-6320,7033,252.8,BRA_B,BRA,foot,left,True,1.0
+6320,7033,252.8,Hiltinho,BRA,foot,left,True,1.0
 6321,7034,252.84,,,,,False,
 6322,7035,252.88,,,,,False,
 6323,7036,252.92,,,,,False,
@@ -6335,7 +6335,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6333,7046,253.32,,,,,False,
 6334,7047,253.36,,,,,False,
 6335,7048,253.4,,,,,False,
-6336,7049,253.44,ISR_B,ISR,head,,True,0.35
+6336,7049,253.44,Ron_Ben_Ishay,ISR,head,,True,0.35
 6337,7050,253.48,,,,,False,
 6338,7051,253.52,,,,,False,
 6339,7052,253.56,,,,,False,
@@ -6434,7 +6434,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6432,7145,257.28,,,,,False,
 6433,7146,257.32,,,,,False,
 6434,7147,257.36,,,,,False,
-6435,7148,257.4,ISR_A,ISR,chest,,True,1.0
+6435,7148,257.4,Maor_Haas,ISR,chest,,True,1.0
 6436,7149,257.44,,,,,False,
 6437,7150,257.48,,,,,False,
 6438,7151,257.52,,,,,False,
@@ -6459,7 +6459,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6457,7170,258.28,,,,,False,
 6458,7171,258.32,,,,,False,
 6459,7172,258.36,,,,,False,
-6460,7173,258.4,ISR_B,ISR,head,,True,0.32
+6460,7173,258.4,Ron_Ben_Ishay,ISR,head,,True,0.32
 6461,7174,258.44,,,,,False,
 6462,7175,258.48,,,,,False,
 6463,7176,258.52,,,,,False,
@@ -6519,7 +6519,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6517,7737,260.68,,,,,False,
 6518,7738,260.72,,,,,False,
 6519,7739,260.76,,,,,False,
-6520,7740,260.8,BRA_B,BRA,head,,True,1.0
+6520,7740,260.8,Hiltinho,BRA,head,,True,1.0
 6521,7741,260.84,,,,,False,
 6522,7742,260.88,,,,,False,
 6523,7743,260.92,,,,,False,
@@ -6551,7 +6551,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6549,7769,261.96,,,,,False,
 6550,7770,262.0,,,,,False,
 6551,7771,262.04,,,,,False,
-6552,7772,262.08,BRA_A,BRA,head,,True,1.0
+6552,7772,262.08,Franklin,BRA,head,,True,1.0
 6553,7773,262.12,,,,,False,
 6554,7774,262.16,,,,,False,
 6555,7775,262.2,,,,,False,
@@ -6571,7 +6571,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6569,7789,262.76,,,,,False,
 6570,7790,262.8,,,,,False,
 6571,7791,262.84,,,,,False,
-6572,7792,262.88,ISR_B,ISR,foot,right,True,1.0
+6572,7792,262.88,Ron_Ben_Ishay,ISR,foot,right,True,1.0
 6573,7793,262.92,,,,,False,
 6574,7794,262.96,,,,,False,
 6575,7795,263.0,,,,,False,
@@ -6612,7 +6612,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6610,7830,264.4,,,,,False,
 6611,7831,264.44,,,,,False,
 6612,7832,264.48,,,,,False,
-6613,7833,264.52,ISR_A,ISR,foot,right,True,1.0
+6613,7833,264.52,Maor_Haas,ISR,foot,right,True,1.0
 6614,7834,264.56,,,,,False,
 6615,7835,264.6,,,,,False,
 6616,7836,264.64,,,,,False,
@@ -6656,7 +6656,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6654,7874,266.16,,,,,False,
 6655,7875,266.2,,,,,False,
 6656,7876,266.24,,,,,False,
-6657,7877,266.28,ISR_B,ISR,foot,right,True,1.0
+6657,7877,266.28,Ron_Ben_Ishay,ISR,foot,right,True,1.0
 6658,7878,266.32,,,,,False,
 6659,7879,266.36,,,,,False,
 6660,7880,266.4,,,,,False,
@@ -6667,7 +6667,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6665,7885,266.6,,,,,False,
 6666,7886,266.64,,,,,False,
 6667,7887,266.68,,,,,False,
-6668,7888,266.72,BRA_B,BRA,foot,left,True,1.0
+6668,7888,266.72,Hiltinho,BRA,foot,left,True,1.0
 6669,7889,266.76,,,,,False,
 6670,7890,266.8,,,,,False,
 6671,7891,266.84,,,,,False,
@@ -6702,7 +6702,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6700,7920,268.0,,,,,False,
 6701,7921,268.04,,,,,False,
 6702,7922,268.08,,,,,False,
-6703,7923,268.12,BRA_A,BRA,foot,right,True,1.0
+6703,7923,268.12,Franklin,BRA,foot,right,True,1.0
 6704,7924,268.16,,,,,False,
 6705,7925,268.2,,,,,False,
 6706,7926,268.24,,,,,False,
@@ -6741,7 +6741,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6739,7959,269.56,,,,,False,
 6740,7960,269.6,,,,,False,
 6741,7961,269.64,,,,,False,
-6742,7962,269.68,BRA_B,BRA,head,,True,1.0
+6742,7962,269.68,Hiltinho,BRA,head,,True,1.0
 6743,7963,269.72,,,,,False,
 6744,7964,269.76,,,,,False,
 6745,7965,269.8,,,,,False,
@@ -6789,7 +6789,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6787,8059,271.48,,,,,False,
 6788,8060,271.52,,,,,False,
 6789,8061,271.56,,,,,False,
-6790,8062,271.6,ISR_A,ISR,chest,,True,1.0
+6790,8062,271.6,Maor_Haas,ISR,chest,,True,1.0
 6791,8063,271.64,,,,,False,
 6792,8064,271.68,,,,,False,
 6793,8065,271.72,,,,,False,
@@ -6819,7 +6819,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6817,8089,272.68,,,,,False,
 6818,8090,272.72,,,,,False,
 6819,8091,272.76,,,,,False,
-6820,8092,272.8,ISR_B,ISR,head,,True,1.0
+6820,8092,272.8,Ron_Ben_Ishay,ISR,head,,True,1.0
 6821,8093,272.84,,,,,False,
 6822,8094,272.88,,,,,False,
 6823,8095,272.92,,,,,False,
@@ -6891,7 +6891,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6889,8161,275.56,,,,,False,
 6890,8162,275.6,,,,,False,
 6891,8163,275.64,,,,,False,
-6892,8164,275.68,BRA_A,BRA,chest,,True,1.0
+6892,8164,275.68,Franklin,BRA,chest,,True,1.0
 6893,8165,275.72,,,,,False,
 6894,8166,275.76,,,,,False,
 6895,8167,275.8,,,,,False,
@@ -6925,7 +6925,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6923,8195,276.92,,,,,False,
 6924,8196,276.96,,,,,False,
 6925,8197,277.0,,,,,False,
-6926,8198,277.04,BRA_B,BRA,foot,left,True,1.0
+6926,8198,277.04,Hiltinho,BRA,foot,left,True,1.0
 6927,8199,277.08,,,,,False,
 6928,8200,277.12,,,,,False,
 6929,8201,277.16,,,,,False,
@@ -6933,7 +6933,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 6931,8203,277.24,,,,,False,
 6932,8204,277.28,,,,,False,
 6933,8205,277.32,,,,,False,
-6934,8206,277.36,ISR_B,ISR,thigh,right,True,1.0
+6934,8206,277.36,Ron_Ben_Ishay,ISR,thigh,right,True,1.0
 6935,8207,277.4,,,,,False,
 6936,8208,277.44,,,,,False,
 6937,8209,277.48,,,,,False,
@@ -7019,7 +7019,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7017,8316,280.68,,,,,False,
 7018,8317,280.72,,,,,False,
 7019,8318,280.76,,,,,False,
-7020,8319,280.8,ISR_B,ISR,chest,,True,1.0
+7020,8319,280.8,Ron_Ben_Ishay,ISR,chest,,True,1.0
 7021,8320,280.84,,,,,False,
 7022,8321,280.88,,,,,False,
 7023,8322,280.92,,,,,False,
@@ -7054,7 +7054,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7052,8351,282.08,,,,,False,
 7053,8352,282.12,,,,,False,
 7054,8353,282.16,,,,,False,
-7055,8354,282.2,ISR_A,ISR,chest,,True,1.0
+7055,8354,282.2,Maor_Haas,ISR,chest,,True,1.0
 7056,8355,282.24,,,,,False,
 7057,8356,282.28,,,,,False,
 7058,8357,282.32,,,,,False,
@@ -7081,7 +7081,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7079,8378,283.16,,,,,False,
 7080,8379,283.2,,,,,False,
 7081,8380,283.24,,,,,False,
-7082,8381,283.28,ISR_B,ISR,head,,True,1.0
+7082,8381,283.28,Ron_Ben_Ishay,ISR,head,,True,1.0
 7083,8382,283.32,,,,,False,
 7084,8383,283.36,,,,,False,
 7085,8384,283.4,,,,,False,
@@ -7107,7 +7107,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7105,8404,284.2,,,,,False,
 7106,8405,284.24,,,,,False,
 7107,8406,284.28,,,,,False,
-7108,8407,284.32,BRA_A,BRA,foot,right,True,1.0
+7108,8407,284.32,Franklin,BRA,foot,right,True,1.0
 7109,8408,284.36,,,,,False,
 7110,8409,284.4,,,,,False,
 7111,8410,284.44,,,,,False,
@@ -7141,7 +7141,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7139,8438,285.56,,,,,False,
 7140,8439,285.6,,,,,False,
 7141,8440,285.64,,,,,False,
-7142,8441,285.68,BRA_B,BRA,foot,left,True,1.0
+7142,8441,285.68,Hiltinho,BRA,foot,left,True,1.0
 7143,8442,285.72,,,,,False,
 7144,8443,285.76,,,,,False,
 7145,8444,285.8,,,,,False,
@@ -7181,7 +7181,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7179,8478,287.16,,,,,False,
 7180,8479,287.2,,,,,False,
 7181,8480,287.24,,,,,False,
-7182,8481,287.28,BRA_A,BRA,head,,True,1.0
+7182,8481,287.28,Franklin,BRA,head,,True,1.0
 7183,8482,287.32,,,,,False,
 7184,8483,287.36,,,,,False,
 7185,8484,287.4,,,,,False,
@@ -7205,7 +7205,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7203,8502,288.12,,,,,False,
 7204,8503,288.16,,,,,False,
 7205,8504,288.2,,,,,False,
-7206,8505,288.24,ISR_A,ISR,thigh,right,True,1.0
+7206,8505,288.24,Maor_Haas,ISR,thigh,right,True,1.0
 7207,8506,288.28,,,,,False,
 7208,8507,288.32,,,,,False,
 7209,8508,288.36,,,,,False,
@@ -7230,7 +7230,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7228,8527,289.12,,,,,False,
 7229,8528,289.16,,,,,False,
 7230,8529,289.2,,,,,False,
-7231,8530,289.24,ISR_B,ISR,chest,,True,1.0
+7231,8530,289.24,Ron_Ben_Ishay,ISR,chest,,True,1.0
 7232,8531,289.28,,,,,False,
 7233,8532,289.32,,,,,False,
 7234,8533,289.36,,,,,False,
@@ -7261,7 +7261,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7259,8558,290.36,,,,,False,
 7260,8559,290.4,,,,,False,
 7261,8560,290.44,,,,,False,
-7262,8561,290.48,ISR_A,ISR,head,,True,1.0
+7262,8561,290.48,Maor_Haas,ISR,head,,True,1.0
 7263,8562,290.52,,,,,False,
 7264,8563,290.56,,,,,False,
 7265,8564,290.6,,,,,False,
@@ -7281,7 +7281,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7279,8578,291.16,,,,,False,
 7280,8579,291.2,,,,,False,
 7281,8580,291.24,,,,,False,
-7282,8581,291.28,BRA_A,BRA,foot,right,True,1.0
+7282,8581,291.28,Franklin,BRA,foot,right,True,1.0
 7283,8582,291.32,,,,,False,
 7284,8583,291.36,,,,,False,
 7285,8584,291.4,,,,,False,
@@ -7321,7 +7321,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7319,8618,292.76,,,,,False,
 7320,8619,292.8,,,,,False,
 7321,8620,292.84,,,,,False,
-7322,8621,292.88,BRA_B,BRA,foot,left,True,1.0
+7322,8621,292.88,Hiltinho,BRA,foot,left,True,1.0
 7323,8622,292.92,,,,,False,
 7324,8623,292.96,,,,,False,
 7325,8624,293.0,,,,,False,
@@ -7362,7 +7362,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7360,8659,294.4,,,,,False,
 7361,8660,294.44,,,,,False,
 7362,8661,294.48,,,,,False,
-7363,8662,294.52,BRA_A,BRA,head,,True,1.0
+7363,8662,294.52,Franklin,BRA,head,,True,1.0
 7364,8663,294.56,,,,,False,
 7365,8664,294.6,,,,,False,
 7366,8665,294.64,,,,,False,
@@ -7381,7 +7381,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7379,8678,295.16,,,,,False,
 7380,8679,295.2,,,,,False,
 7381,8680,295.24,,,,,False,
-7382,8681,295.28,ISR_A,ISR,head,,True,0.6
+7382,8681,295.28,Maor_Haas,ISR,head,,True,0.6
 7383,8682,295.32,,,,,False,
 7384,8683,295.36,,,,,False,
 7385,8684,295.4,,,,,False,
@@ -7389,7 +7389,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7387,8686,295.48,,,,,False,
 7388,8687,295.52,,,,,False,
 7389,8688,295.56,,,,,False,
-7390,8689,295.6,ISR_B,ISR,head,,True,1.0
+7390,8689,295.6,Ron_Ben_Ishay,ISR,head,,True,1.0
 7391,8690,295.64,,,,,False,
 7392,8691,295.68,,,,,False,
 7393,8692,295.72,,,,,False,
@@ -7400,7 +7400,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7398,8697,295.92,,,,,False,
 7399,8698,295.96,,,,,False,
 7400,8699,296.0,,,,,False,
-7401,8734,296.04,ISR_B,ISR,hand,left,False,0.9
+7401,8734,296.04,Ron_Ben_Ishay,ISR,hand,left,False,0.9
 7402,8735,296.08,,,,,False,
 7403,8736,296.12,,,,,False,
 7404,8737,296.16,,,,,False,
@@ -7436,7 +7436,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7434,8767,297.36,,,,,False,
 7435,8768,297.4,,,,,False,
 7436,8769,297.44,,,,,False,
-7437,8770,297.48,ISR_A,ISR,chest,,True,1.0
+7437,8770,297.48,Maor_Haas,ISR,chest,,True,1.0
 7438,8771,297.52,,,,,False,
 7439,8772,297.56,,,,,False,
 7440,8773,297.6,,,,,False,
@@ -7468,7 +7468,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7466,8799,298.64,,,,,False,
 7467,8800,298.68,,,,,False,
 7468,8801,298.72,,,,,False,
-7469,8802,298.76,ISR_B,ISR,head,,True,1.0
+7469,8802,298.76,Ron_Ben_Ishay,ISR,head,,True,1.0
 7470,8803,298.8,,,,,False,
 7471,8804,298.84,,,,,False,
 7472,8805,298.88,,,,,False,
@@ -7488,7 +7488,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7486,8819,299.44,,,,,False,
 7487,8820,299.48,,,,,False,
 7488,8821,299.52,,,,,False,
-7489,8822,299.56,BRA_A,BRA,foot,right,True,1.0
+7489,8822,299.56,Franklin,BRA,foot,right,True,1.0
 7490,8823,299.6,,,,,False,
 7491,8824,299.64,,,,,False,
 7492,8825,299.68,,,,,False,
@@ -7517,7 +7517,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7515,8848,300.6,,,,,False,
 7516,8849,300.64,,,,,False,
 7517,8850,300.68,,,,,False,
-7518,8851,300.72,BRA_B,BRA,head,,True,1.0
+7518,8851,300.72,Hiltinho,BRA,head,,True,1.0
 7519,8852,300.76,,,,,False,
 7520,8853,300.8,,,,,False,
 7521,8854,300.84,,,,,False,
@@ -7553,7 +7553,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7551,8884,302.04,,,,,False,
 7552,8885,302.08,,,,,False,
 7553,8886,302.12,,,,,False,
-7554,8887,302.16,BRA_A,BRA,head,,True,1.0
+7554,8887,302.16,Franklin,BRA,head,,True,1.0
 7555,8888,302.2,,,,,False,
 7556,8889,302.24,,,,,False,
 7557,8890,302.28,,,,,False,
@@ -7571,7 +7571,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7569,8902,302.76,,,,,False,
 7570,8903,302.8,,,,,False,
 7571,8904,302.84,,,,,False,
-7572,8905,302.88,ISR_B,ISR,foot,right,True,1.0
+7572,8905,302.88,Ron_Ben_Ishay,ISR,foot,right,True,1.0
 7573,8906,302.92,,,,,False,
 7574,8907,302.96,,,,,False,
 7575,8908,303.0,,,,,False,
@@ -7622,7 +7622,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7620,8953,304.8,,,,,False,
 7621,8954,304.84,,,,,False,
 7622,8955,304.88,,,,,False,
-7623,8956,304.92,BRA_A,BRA,arm,right,False,1.0
+7623,8956,304.92,Franklin,BRA,arm,right,False,1.0
 7624,8957,304.96,,,,,False,
 7625,8958,305.0,,,,,False,
 7626,8959,305.04,,,,,False,
@@ -7677,14 +7677,14 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7675,9008,307.0,,,,,False,
 7676,9009,307.04,,,,,False,
 7677,9010,307.08,,,,,False,
-7678,9011,307.12,BRA_A,BRA,torso,,False,1.0
+7678,9011,307.12,Franklin,BRA,torso,,False,1.0
 7679,9012,307.16,,,,,False,
 7680,9013,307.2,,,,,False,
 7681,9014,307.24,,,,,False,
 7682,9015,307.28,,,,,False,
 7683,9016,307.32,,,,,False,
 7684,9017,307.36,,,,,False,
-7685,9018,307.4,BRA_A,BRA,thigh,left,False,0.71
+7685,9018,307.4,Franklin,BRA,thigh,left,False,0.71
 7686,9019,307.44,,,,,False,
 7687,9020,307.48,,,,,False,
 7688,9021,307.52,,,,,False,
@@ -7734,7 +7734,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7732,9065,309.28,,,,,False,
 7733,9066,309.32,,,,,False,
 7734,9067,309.36,,,,,False,
-7735,9068,309.4,ISR_A,ISR,chest,,True,0.97
+7735,9068,309.4,Maor_Haas,ISR,chest,,True,0.97
 7736,9069,309.44,,,,,False,
 7737,9070,309.48,,,,,False,
 7738,9071,309.52,,,,,False,
@@ -7763,7 +7763,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7761,9094,310.44,,,,,False,
 7762,9095,310.48,,,,,False,
 7763,9096,310.52,,,,,False,
-7764,9097,310.56,ISR_B,ISR,head,,True,1.0
+7764,9097,310.56,Ron_Ben_Ishay,ISR,head,,True,1.0
 7765,9098,310.6,,,,,False,
 7766,9099,310.64,,,,,False,
 7767,9100,310.68,,,,,False,
@@ -7778,7 +7778,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7776,9109,311.04,,,,,False,
 7777,9110,311.08,,,,,False,
 7778,9111,311.12,,,,,False,
-7779,9112,311.16,BRA_B,BRA,foot,left,True,1.0
+7779,9112,311.16,Hiltinho,BRA,foot,left,True,1.0
 7780,9113,311.2,,,,,False,
 7781,9114,311.24,,,,,False,
 7782,9115,311.28,,,,,False,
@@ -7814,7 +7814,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7812,9145,312.48,,,,,False,
 7813,9146,312.52,,,,,False,
 7814,9147,312.56,,,,,False,
-7815,9148,312.6,BRA_A,BRA,foot,right,False,1.0
+7815,9148,312.6,Franklin,BRA,foot,right,False,1.0
 7816,9149,312.64,,,,,False,
 7817,9150,312.68,,,,,False,
 7818,9151,312.72,,,,,False,
@@ -7919,7 +7919,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7917,9250,316.68,,,,,False,
 7918,9251,316.72,,,,,False,
 7919,9252,316.76,,,,,False,
-7920,9253,316.8,BRA_A,BRA,foot,right,False,1.0
+7920,9253,316.8,Franklin,BRA,foot,right,False,1.0
 7921,9254,316.84,,,,,False,
 7922,9255,316.88,,,,,False,
 7923,9256,316.92,,,,,False,
@@ -7928,7 +7928,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7926,9259,317.04,,,,,False,
 7927,9260,317.08,,,,,False,
 7928,9261,317.12,,,,,False,
-7929,9262,317.16,BRA_A,BRA,foot,right,False,1.0
+7929,9262,317.16,Franklin,BRA,foot,right,False,1.0
 7930,9263,317.2,,,,,False,
 7931,9264,317.24,,,,,False,
 7932,9265,317.28,,,,,False,
@@ -7936,7 +7936,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7934,9267,317.36,,,,,False,
 7935,9268,317.4,,,,,False,
 7936,9269,317.44,,,,,False,
-7937,9270,317.48,BRA_A,BRA,hand,right,False,0.91
+7937,9270,317.48,Franklin,BRA,hand,right,False,0.91
 7938,9271,317.52,,,,,False,
 7939,9272,317.56,,,,,False,
 7940,9273,317.6,,,,,False,
@@ -7957,7 +7957,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 7955,9288,318.2,,,,,False,
 7956,9289,318.24,,,,,False,
 7957,9290,318.28,,,,,False,
-7958,9291,318.32,BRA_A,BRA,thigh,right,True,1.0
+7958,9291,318.32,Franklin,BRA,thigh,right,True,1.0
 7959,9292,318.36,,,,,False,
 7960,9293,318.4,,,,,False,
 7961,9294,318.44,,,,,False,
@@ -8025,7 +8025,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8023,9385,320.92,,,,,False,
 8024,9386,320.96,,,,,False,
 8025,9387,321.0,,,,,False,
-8026,9388,321.04,ISR_A,ISR,chest,,True,1.0
+8026,9388,321.04,Maor_Haas,ISR,chest,,True,1.0
 8027,9389,321.08,,,,,False,
 8028,9390,321.12,,,,,False,
 8029,9391,321.16,,,,,False,
@@ -8053,7 +8053,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8051,9413,322.04,,,,,False,
 8052,9414,322.08,,,,,False,
 8053,9415,322.12,,,,,False,
-8054,9416,322.16,ISR_B,ISR,head,,True,1.0
+8054,9416,322.16,Ron_Ben_Ishay,ISR,head,,True,1.0
 8055,9417,322.2,,,,,False,
 8056,9418,322.24,,,,,False,
 8057,9419,322.28,,,,,False,
@@ -8071,7 +8071,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8069,9431,322.76,,,,,False,
 8070,9432,322.8,,,,,False,
 8071,9433,322.84,,,,,False,
-8072,9434,322.88,BRA_A,BRA,foot,right,True,1.0
+8072,9434,322.88,Franklin,BRA,foot,right,True,1.0
 8073,9435,322.92,,,,,False,
 8074,9436,322.96,,,,,False,
 8075,9437,323.0,,,,,False,
@@ -8108,7 +8108,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8106,9468,324.24,,,,,False,
 8107,9469,324.28,,,,,False,
 8108,9470,324.32,,,,,False,
-8109,9471,324.36,BRA_B,BRA,chest,,True,1.0
+8109,9471,324.36,Hiltinho,BRA,chest,,True,1.0
 8110,9472,324.4,,,,,False,
 8111,9473,324.44,,,,,False,
 8112,9474,324.48,,,,,False,
@@ -8142,7 +8142,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8140,9502,325.6,,,,,False,
 8141,9503,325.64,,,,,False,
 8142,9504,325.68,,,,,False,
-8143,9505,325.72,BRA_A,BRA,foot,right,True,1.0
+8143,9505,325.72,Franklin,BRA,foot,right,True,1.0
 8144,9506,325.76,,,,,False,
 8145,9507,325.8,,,,,False,
 8146,9508,325.84,,,,,False,
@@ -8151,7 +8151,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8149,9511,325.96,,,,,False,
 8150,9512,326.0,,,,,False,
 8151,9513,326.04,,,,,False,
-8152,9514,326.08,ISR_A,ISR,foot,right,True,1.0
+8152,9514,326.08,Maor_Haas,ISR,foot,right,True,1.0
 8153,9515,326.12,,,,,False,
 8154,9516,326.16,,,,,False,
 8155,9517,326.2,,,,,False,
@@ -8244,7 +8244,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8242,9604,329.68,,,,,False,
 8243,9605,329.72,,,,,False,
 8244,9606,329.76,,,,,False,
-8245,9607,329.8,BRA_A,BRA,chest,,True,1.0
+8245,9607,329.8,Franklin,BRA,chest,,True,1.0
 8246,9608,329.84,,,,,False,
 8247,9609,329.88,,,,,False,
 8248,9610,329.92,,,,,False,
@@ -8275,7 +8275,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8273,9635,330.92,,,,,False,
 8274,9636,330.96,,,,,False,
 8275,9637,331.0,,,,,False,
-8276,9638,331.04,BRA_B,BRA,foot,left,True,1.0
+8276,9638,331.04,Hiltinho,BRA,foot,left,True,1.0
 8277,9639,331.08,,,,,False,
 8278,9640,331.12,,,,,False,
 8279,9641,331.16,,,,,False,
@@ -8309,7 +8309,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8307,9695,332.28,,,,,False,
 8308,9696,332.32,,,,,False,
 8309,9697,332.36,,,,,False,
-8310,9698,332.4,ISR_A,ISR,chest,,True,1.0
+8310,9698,332.4,Maor_Haas,ISR,chest,,True,1.0
 8311,9699,332.44,,,,,False,
 8312,9700,332.48,,,,,False,
 8313,9701,332.52,,,,,False,
@@ -8344,7 +8344,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8342,9730,333.68,,,,,False,
 8343,9731,333.72,,,,,False,
 8344,9732,333.76,,,,,False,
-8345,9733,333.8,ISR_B,ISR,head,,True,1.0
+8345,9733,333.8,Ron_Ben_Ishay,ISR,head,,True,1.0
 8346,9734,333.84,,,,,False,
 8347,9735,333.88,,,,,False,
 8348,9736,333.92,,,,,False,
@@ -8367,7 +8367,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8365,9753,334.6,,,,,False,
 8366,9754,334.64,,,,,False,
 8367,9755,334.68,,,,,False,
-8368,9756,334.72,BRA_A,BRA,foot,right,True,1.0
+8368,9756,334.72,Franklin,BRA,foot,right,True,1.0
 8369,9757,334.76,,,,,False,
 8370,9758,334.8,,,,,False,
 8371,9759,334.84,,,,,False,
@@ -8493,7 +8493,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8491,9894,339.64,,,,,False,
 8492,9895,339.68,,,,,False,
 8493,9896,339.72,,,,,False,
-8494,9897,339.76,BRA_A,BRA,chest,,True,1.0
+8494,9897,339.76,Franklin,BRA,chest,,True,1.0
 8495,9898,339.8,,,,,False,
 8496,9899,339.84,,,,,False,
 8497,9900,339.88,,,,,False,
@@ -8531,7 +8531,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8529,9932,341.16,,,,,False,
 8530,9933,341.2,,,,,False,
 8531,9934,341.24,,,,,False,
-8532,9935,341.28,BRA_B,BRA,chest,,True,1.0
+8532,9935,341.28,Hiltinho,BRA,chest,,True,1.0
 8533,9936,341.32,,,,,False,
 8534,9937,341.36,,,,,False,
 8535,9938,341.4,,,,,False,
@@ -8563,7 +8563,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8561,9964,342.44,,,,,False,
 8562,9965,342.48,,,,,False,
 8563,9966,342.52,,,,,False,
-8564,9967,342.56,BRA_A,BRA,head,,True,1.0
+8564,9967,342.56,Franklin,BRA,head,,True,1.0
 8565,9968,342.6,,,,,False,
 8566,9969,342.64,,,,,False,
 8567,9970,342.68,,,,,False,
@@ -8645,7 +8645,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8643,10046,345.72,,,,,False,
 8644,10047,345.76,,,,,False,
 8645,10048,345.8,,,,,False,
-8646,10049,345.84,ISR_A,ISR,thigh,left,False,1.0
+8646,10049,345.84,Maor_Haas,ISR,thigh,left,False,1.0
 8647,10050,345.88,,,,,False,
 8648,10051,345.92,,,,,False,
 8649,10052,345.96,,,,,False,
@@ -8665,7 +8665,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8663,10066,346.52,,,,,False,
 8664,10067,346.56,,,,,False,
 8665,10068,346.6,,,,,False,
-8666,10069,346.64,ISR_A,ISR,thigh,left,False,1.0
+8666,10069,346.64,Maor_Haas,ISR,thigh,left,False,1.0
 8667,10070,346.68,,,,,False,
 8668,10071,346.72,,,,,False,
 8669,10072,346.76,,,,,False,
@@ -8696,7 +8696,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8694,10097,347.76,,,,,False,
 8695,10098,347.8,,,,,False,
 8696,10099,347.84,,,,,False,
-8697,10100,347.88,ISR_A,ISR,chest,,False,1.0
+8697,10100,347.88,Maor_Haas,ISR,chest,,False,1.0
 8698,10101,347.92,,,,,False,
 8699,10102,347.96,,,,,False,
 8700,10103,348.0,,,,,False,
@@ -8755,7 +8755,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8753,10293,350.12,,,,,False,
 8754,10294,350.16,,,,,False,
 8755,10295,350.2,,,,,False,
-8756,10296,350.24,BRA_B,BRA,chest,,True,1.0
+8756,10296,350.24,Hiltinho,BRA,chest,,True,1.0
 8757,10297,350.28,,,,,False,
 8758,10298,350.32,,,,,False,
 8759,10299,350.36,,,,,False,
@@ -8785,7 +8785,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8783,10323,351.32,,,,,False,
 8784,10324,351.36,,,,,False,
 8785,10325,351.4,,,,,False,
-8786,10326,351.44,BRA_A,BRA,foot,right,True,1.0
+8786,10326,351.44,Franklin,BRA,foot,right,True,1.0
 8787,10327,351.48,,,,,False,
 8788,10328,351.52,,,,,False,
 8789,10329,351.56,,,,,False,
@@ -8798,7 +8798,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8796,10336,351.84,,,,,False,
 8797,10337,351.88,,,,,False,
 8798,10338,351.92,,,,,False,
-8799,10339,351.96,ISR_B,ISR,foot,right,True,1.0
+8799,10339,351.96,Ron_Ben_Ishay,ISR,foot,right,True,1.0
 8800,10340,352.0,,,,,False,
 8801,10341,352.04,,,,,False,
 8802,10342,352.08,,,,,False,
@@ -8839,7 +8839,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8837,10377,353.48,,,,,False,
 8838,10378,353.52,,,,,False,
 8839,10379,353.56,,,,,False,
-8840,10380,353.6,ISR_A,ISR,chest,,True,1.0
+8840,10380,353.6,Maor_Haas,ISR,chest,,True,1.0
 8841,10381,353.64,,,,,False,
 8842,10382,353.68,,,,,False,
 8843,10383,353.72,,,,,False,
@@ -8863,7 +8863,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8861,10401,354.44,,,,,False,
 8862,10402,354.48,,,,,False,
 8863,10403,354.52,,,,,False,
-8864,10404,354.56,ISR_B,ISR,foot,right,True,1.0
+8864,10404,354.56,Ron_Ben_Ishay,ISR,foot,right,True,1.0
 8865,10405,354.6,,,,,False,
 8866,10406,354.64,,,,,False,
 8867,10407,354.68,,,,,False,
@@ -8897,7 +8897,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8895,10435,355.8,,,,,False,
 8896,10436,355.84,,,,,False,
 8897,10437,355.88,,,,,False,
-8898,10438,355.92,BRA_B,BRA,foot,left,True,1.0
+8898,10438,355.92,Hiltinho,BRA,foot,left,True,1.0
 8899,10439,355.96,,,,,False,
 8900,10440,356.0,,,,,False,
 8901,10441,356.04,,,,,False,
@@ -8932,7 +8932,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8930,10470,357.2,,,,,False,
 8931,10471,357.24,,,,,False,
 8932,10472,357.28,,,,,False,
-8933,10473,357.32,BRA_A,BRA,chest,,True,0.67
+8933,10473,357.32,Franklin,BRA,chest,,True,0.67
 8934,10474,357.36,,,,,False,
 8935,10475,357.4,,,,,False,
 8936,10476,357.44,,,,,False,
@@ -8965,7 +8965,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8963,10503,358.52,,,,,False,
 8964,10504,358.56,,,,,False,
 8965,10505,358.6,,,,,False,
-8966,10506,358.64,ISR_A,ISR,foot,right,True,0.19
+8966,10506,358.64,Maor_Haas,ISR,foot,right,True,0.19
 8967,10507,358.68,,,,,False,
 8968,10508,358.72,,,,,False,
 8969,10509,358.76,,,,,False,
@@ -8981,7 +8981,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 8979,10519,359.16,,,,,False,
 8980,10520,359.2,,,,,False,
 8981,10521,359.24,,,,,False,
-8982,10522,359.28,BRA_A,BRA,foot,right,True,0.19
+8982,10522,359.28,Franklin,BRA,foot,right,True,0.19
 8983,10523,359.32,,,,,False,
 8984,10524,359.36,,,,,False,
 8985,10525,359.4,,,,,False,
@@ -9022,7 +9022,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 9020,10560,360.8,,,,,False,
 9021,10561,360.84,,,,,False,
 9022,10562,360.88,,,,,False,
-9023,10563,360.92,BRA_B,BRA,chest,,True,1.0
+9023,10563,360.92,Hiltinho,BRA,chest,,True,1.0
 9024,10564,360.96,,,,,False,
 9025,10565,361.0,,,,,False,
 9026,10566,361.04,,,,,False,
@@ -9051,7 +9051,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 9049,10589,361.96,,,,,False,
 9050,10590,362.0,,,,,False,
 9051,10591,362.04,,,,,False,
-9052,10592,362.08,BRA_A,BRA,head,,True,1.0
+9052,10592,362.08,Franklin,BRA,head,,True,1.0
 9053,10593,362.12,,,,,False,
 9054,10594,362.16,,,,,False,
 9055,10595,362.2,,,,,False,
@@ -9070,14 +9070,14 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 9068,10608,362.72,,,,,False,
 9069,10609,362.76,,,,,False,
 9070,10610,362.8,,,,,False,
-9071,10611,362.84,ISR_A,ISR,foot,left,True,1.0
+9071,10611,362.84,Maor_Haas,ISR,foot,left,True,1.0
 9072,10612,362.88,,,,,False,
 9073,10613,362.92,,,,,False,
 9074,10614,362.96,,,,,False,
 9075,10615,363.0,,,,,False,
 9076,10616,363.04,,,,,False,
 9077,10617,363.08,,,,,False,
-9078,10618,363.12,ISR_B,ISR,head,,True,0.36
+9078,10618,363.12,Ron_Ben_Ishay,ISR,head,,True,0.36
 9079,10619,363.16,,,,,False,
 9080,10620,363.2,,,,,False,
 9081,10621,363.24,,,,,False,
@@ -9093,7 +9093,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 9091,10631,363.64,,,,,False,
 9092,10632,363.68,,,,,False,
 9093,10633,363.72,,,,,False,
-9094,10634,363.76,ISR_A,ISR,foot,left,True,0.97
+9094,10634,363.76,Maor_Haas,ISR,foot,left,True,0.97
 9095,10635,363.8,,,,,False,
 9096,10636,363.84,,,,,False,
 9097,10637,363.88,,,,,False,
@@ -9137,7 +9137,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 9135,10724,365.4,,,,,False,
 9136,10725,365.44,,,,,False,
 9137,10726,365.48,,,,,False,
-9138,10727,365.52,ISR_A,ISR,chest,,False,1.0
+9138,10727,365.52,Maor_Haas,ISR,chest,,False,1.0
 9139,10728,365.56,,,,,False,
 9140,10729,365.6,,,,,False,
 9141,10730,365.64,,,,,False,
@@ -9234,7 +9234,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 9232,10821,369.28,,,,,False,
 9233,10822,369.32,,,,,False,
 9234,10823,369.36,,,,,False,
-9235,10824,369.4,ISR_B,ISR,hand,right,False,0.99
+9235,10824,369.4,Ron_Ben_Ishay,ISR,hand,right,False,0.99
 9236,10825,369.44,,,,,False,
 9237,10826,369.48,,,,,False,
 9238,10827,369.52,,,,,False,
@@ -9253,7 +9253,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 9251,10840,370.04,,,,,False,
 9252,10841,370.08,,,,,False,
 9253,10842,370.12,,,,,False,
-9254,10843,370.16,BRA_A,BRA,hand,right,False,1.0
+9254,10843,370.16,Franklin,BRA,hand,right,False,1.0
 9255,10844,370.2,,,,,False,
 9256,10845,370.24,,,,,False,
 9257,10846,370.28,,,,,False,
@@ -9263,7 +9263,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 9261,10850,370.44,,,,,False,
 9262,10851,370.48,,,,,False,
 9263,10852,370.52,,,,,False,
-9264,10853,370.56,BRA_B,BRA,foot,left,True,0.13
+9264,10853,370.56,Hiltinho,BRA,foot,left,True,0.13
 9265,10854,370.6,,,,,False,
 9266,10855,370.64,,,,,False,
 9267,10856,370.68,,,,,False,
@@ -9333,7 +9333,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 9331,10954,373.24,,,,,False,
 9332,10955,373.28,,,,,False,
 9333,10956,373.32,,,,,False,
-9334,10957,373.36,ISR_A,ISR,chest,,True,1.0
+9334,10957,373.36,Maor_Haas,ISR,chest,,True,1.0
 9335,10958,373.4,,,,,False,
 9336,10959,373.44,,,,,False,
 9337,10960,373.48,,,,,False,
@@ -9372,7 +9372,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 9370,10993,374.8,,,,,False,
 9371,10994,374.84,,,,,False,
 9372,10995,374.88,,,,,False,
-9373,10996,374.92,ISR_B,ISR,head,,True,1.0
+9373,10996,374.92,Ron_Ben_Ishay,ISR,head,,True,1.0
 9374,10997,374.96,,,,,False,
 9375,10998,375.0,,,,,False,
 9376,10999,375.04,,,,,False,
@@ -9392,7 +9392,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 9390,11013,375.6,,,,,False,
 9391,11014,375.64,,,,,False,
 9392,11015,375.68,,,,,False,
-9393,11016,375.72,BRA_B,BRA,foot,right,True,0.52
+9393,11016,375.72,Hiltinho,BRA,foot,right,True,0.52
 9394,11017,375.76,,,,,False,
 9395,11018,375.8,,,,,False,
 9396,11019,375.84,,,,,False,
@@ -9425,7 +9425,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 9423,11046,376.92,,,,,False,
 9424,11047,376.96,,,,,False,
 9425,11048,377.0,,,,,False,
-9426,11049,377.04,BRA_A,BRA,foot,left,True,1.0
+9426,11049,377.04,Franklin,BRA,foot,left,True,1.0
 9427,11050,377.08,,,,,False,
 9428,11051,377.12,,,,,False,
 9429,11052,377.16,,,,,False,
@@ -9460,7 +9460,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 9458,11081,378.32,,,,,False,
 9459,11082,378.36,,,,,False,
 9460,11083,378.4,,,,,False,
-9461,11084,378.44,BRA_B,BRA,foot,left,True,1.0
+9461,11084,378.44,Hiltinho,BRA,foot,left,True,1.0
 9462,11085,378.48,,,,,False,
 9463,11086,378.52,,,,,False,
 9464,11087,378.56,,,,,False,
@@ -9606,7 +9606,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 9604,11227,384.16,,,,,False,
 9605,11228,384.2,,,,,False,
 9606,11229,384.24,,,,,False,
-9607,11230,384.28,ISR_B,ISR,chest,,True,1.0
+9607,11230,384.28,Ron_Ben_Ishay,ISR,chest,,True,1.0
 9608,11231,384.32,,,,,False,
 9609,11232,384.36,,,,,False,
 9610,11233,384.4,,,,,False,
@@ -9641,7 +9641,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 9639,11262,385.56,,,,,False,
 9640,11263,385.6,,,,,False,
 9641,11264,385.64,,,,,False,
-9642,11265,385.68,ISR_A,ISR,chest,,True,1.0
+9642,11265,385.68,Maor_Haas,ISR,chest,,True,1.0
 9643,11266,385.72,,,,,False,
 9644,11267,385.76,,,,,False,
 9645,11268,385.8,,,,,False,
@@ -9677,7 +9677,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 9675,11298,387.0,,,,,False,
 9676,11299,387.04,,,,,False,
 9677,11300,387.08,,,,,False,
-9678,11301,387.12,ISR_B,ISR,head,,True,1.0
+9678,11301,387.12,Ron_Ben_Ishay,ISR,head,,True,1.0
 9679,11302,387.16,,,,,False,
 9680,11303,387.2,,,,,False,
 9681,11304,387.24,,,,,False,
@@ -9781,7 +9781,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 9779,11402,391.16,,,,,False,
 9780,11403,391.2,,,,,False,
 9781,11404,391.24,,,,,False,
-9782,11405,391.28,ISR_A,ISR,foot,right,False,1.0
+9782,11405,391.28,Maor_Haas,ISR,foot,right,False,1.0
 9783,11406,391.32,,,,,False,
 9784,11407,391.36,,,,,False,
 9785,11408,391.4,,,,,False,
@@ -9855,7 +9855,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 9853,11586,394.12,,,,,False,
 9854,11587,394.16,,,,,False,
 9855,11588,394.2,,,,,False,
-9856,11589,394.24,ISR_A,ISR,chest,,True,1.0
+9856,11589,394.24,Maor_Haas,ISR,chest,,True,1.0
 9857,11590,394.28,,,,,False,
 9858,11591,394.32,,,,,False,
 9859,11592,394.36,,,,,False,
@@ -9891,7 +9891,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 9889,11622,395.56,,,,,False,
 9890,11623,395.6,,,,,False,
 9891,11624,395.64,,,,,False,
-9892,11625,395.68,ISR_B,ISR,head,,True,0.33
+9892,11625,395.68,Ron_Ben_Ishay,ISR,head,,True,0.33
 9893,11626,395.72,,,,,False,
 9894,11627,395.76,,,,,False,
 9895,11628,395.8,,,,,False,
@@ -9909,7 +9909,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 9907,11640,396.28,,,,,False,
 9908,11641,396.32,,,,,False,
 9909,11642,396.36,,,,,False,
-9910,11643,396.4,BRA_A,BRA,foot,right,True,1.0
+9910,11643,396.4,Franklin,BRA,foot,right,True,1.0
 9911,11644,396.44,,,,,False,
 9912,11645,396.48,,,,,False,
 9913,11646,396.52,,,,,False,
@@ -9945,7 +9945,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 9943,11676,397.72,,,,,False,
 9944,11677,397.76,,,,,False,
 9945,11678,397.8,,,,,False,
-9946,11679,397.84,BRA_B,BRA,chest,,True,1.0
+9946,11679,397.84,Hiltinho,BRA,chest,,True,1.0
 9947,11680,397.88,,,,,False,
 9948,11681,397.92,,,,,False,
 9949,11682,397.96,,,,,False,
@@ -9978,7 +9978,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 9976,11709,399.04,,,,,False,
 9977,11710,399.08,,,,,False,
 9978,11711,399.12,,,,,False,
-9979,11712,399.16,BRA_A,BRA,head,,True,1.0
+9979,11712,399.16,Franklin,BRA,head,,True,1.0
 9980,11713,399.2,,,,,False,
 9981,11714,399.24,,,,,False,
 9982,11715,399.28,,,,,False,
@@ -10060,7 +10060,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 10058,11791,402.32,,,,,False,
 10059,11792,402.36,,,,,False,
 10060,11793,402.4,,,,,False,
-10061,11794,402.44,ISR_A,ISR,shoulder,right,True,0.3
+10061,11794,402.44,Maor_Haas,ISR,shoulder,right,True,0.3
 10062,11795,402.48,,,,,False,
 10063,11796,402.52,,,,,False,
 10064,11797,402.56,,,,,False,
@@ -10101,7 +10101,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 10099,11832,403.96,,,,,False,
 10100,11833,404.0,,,,,False,
 10101,11834,404.04,,,,,False,
-10102,11835,404.08,BRA_B,BRA,foot,left,True,1.0
+10102,11835,404.08,Hiltinho,BRA,foot,left,True,1.0
 10103,11836,404.12,,,,,False,
 10104,11837,404.16,,,,,False,
 10105,11838,404.2,,,,,False,
@@ -10144,7 +10144,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 10142,11875,405.68,,,,,False,
 10143,11876,405.72,,,,,False,
 10144,11877,405.76,,,,,False,
-10145,11878,405.8,BRA_A,BRA,head,,True,1.0
+10145,11878,405.8,Franklin,BRA,head,,True,1.0
 10146,11879,405.84,,,,,False,
 10147,11880,405.88,,,,,False,
 10148,11881,405.92,,,,,False,
@@ -10240,7 +10240,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 10238,11971,409.52,,,,,False,
 10239,11972,409.56,,,,,False,
 10240,11973,409.6,,,,,False,
-10241,11974,409.64,ISR_A,ISR,chest,,True,1.0
+10241,11974,409.64,Maor_Haas,ISR,chest,,True,1.0
 10242,11975,409.68,,,,,False,
 10243,11976,409.72,,,,,False,
 10244,11977,409.76,,,,,False,
@@ -10273,7 +10273,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 10271,12004,410.84,,,,,False,
 10272,12005,410.88,,,,,False,
 10273,12006,410.92,,,,,False,
-10274,12007,410.96,ISR_B,ISR,head,,True,1.0
+10274,12007,410.96,Ron_Ben_Ishay,ISR,head,,True,1.0
 10275,12008,411.0,,,,,False,
 10276,12009,411.04,,,,,False,
 10277,12010,411.08,,,,,False,
@@ -10293,7 +10293,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 10291,12024,411.64,,,,,False,
 10292,12025,411.68,,,,,False,
 10293,12026,411.72,,,,,False,
-10294,12027,411.76,BRA_B,BRA,foot,left,True,1.0
+10294,12027,411.76,Hiltinho,BRA,foot,left,True,1.0
 10295,12028,411.8,,,,,False,
 10296,12029,411.84,,,,,False,
 10297,12030,411.88,,,,,False,
@@ -10335,7 +10335,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 10333,12066,413.32,,,,,False,
 10334,12067,413.36,,,,,False,
 10335,12068,413.4,,,,,False,
-10336,12069,413.44,BRA_A,BRA,chest,,True,1.0
+10336,12069,413.44,Franklin,BRA,chest,,True,1.0
 10337,12070,413.48,,,,,False,
 10338,12071,413.52,,,,,False,
 10339,12072,413.56,,,,,False,
@@ -10361,7 +10361,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 10359,12092,414.36,,,,,False,
 10360,12093,414.4,,,,,False,
 10361,12094,414.44,,,,,False,
-10362,12095,414.48,BRA_B,BRA,head,,True,0.98
+10362,12095,414.48,Hiltinho,BRA,head,,True,0.98
 10363,12096,414.52,,,,,False,
 10364,12097,414.56,,,,,False,
 10365,12098,414.6,,,,,False,
@@ -10381,7 +10381,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 10379,12112,415.16,,,,,False,
 10380,12113,415.2,,,,,False,
 10381,12114,415.24,,,,,False,
-10382,12115,415.28,ISR_B,ISR,head,,True,1.0
+10382,12115,415.28,Ron_Ben_Ishay,ISR,head,,True,1.0
 10383,12116,415.32,,,,,False,
 10384,12117,415.36,,,,,False,
 10385,12118,415.4,,,,,False,
@@ -10412,7 +10412,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 10410,12143,416.4,,,,,False,
 10411,12144,416.44,,,,,False,
 10412,12145,416.48,,,,,False,
-10413,12146,416.52,ISR_A,ISR,shoulder,right,True,0.82
+10413,12146,416.52,Maor_Haas,ISR,shoulder,right,True,0.82
 10414,12147,416.56,,,,,False,
 10415,12148,416.6,,,,,False,
 10416,12149,416.64,,,,,False,
@@ -10454,7 +10454,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 10452,12185,418.08,,,,,False,
 10453,12186,418.12,,,,,False,
 10454,12187,418.16,,,,,False,
-10455,12188,418.2,ISR_B,ISR,chest,,True,1.0
+10455,12188,418.2,Ron_Ben_Ishay,ISR,chest,,True,1.0
 10456,12189,418.24,,,,,False,
 10457,12190,418.28,,,,,False,
 10458,12191,418.32,,,,,False,
@@ -10544,7 +10544,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 10542,12345,421.68,,,,,False,
 10543,12346,421.72,,,,,False,
 10544,12347,421.76,,,,,False,
-10545,12348,421.8,ISR_B,ISR,chest,,True,1.0
+10545,12348,421.8,Ron_Ben_Ishay,ISR,chest,,True,1.0
 10546,12349,421.84,,,,,False,
 10547,12350,421.88,,,,,False,
 10548,12351,421.92,,,,,False,
@@ -10581,7 +10581,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 10579,12382,423.16,,,,,False,
 10580,12383,423.2,,,,,False,
 10581,12384,423.24,,,,,False,
-10582,12385,423.28,ISR_A,ISR,chest,,True,1.0
+10582,12385,423.28,Maor_Haas,ISR,chest,,True,1.0
 10583,12386,423.32,,,,,False,
 10584,12387,423.36,,,,,False,
 10585,12388,423.4,,,,,False,
@@ -10661,7 +10661,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 10659,12483,426.36,,,,,False,
 10660,12484,426.4,,,,,False,
 10661,12485,426.44,,,,,False,
-10662,12486,426.48,ISR_A,ISR,chest,,True,1.0
+10662,12486,426.48,Maor_Haas,ISR,chest,,True,1.0
 10663,12487,426.52,,,,,False,
 10664,12488,426.56,,,,,False,
 10665,12489,426.6,,,,,False,
@@ -10698,7 +10698,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 10696,12520,427.84,,,,,False,
 10697,12521,427.88,,,,,False,
 10698,12522,427.92,,,,,False,
-10699,12523,427.96,ISR_B,ISR,head,,True,1.0
+10699,12523,427.96,Ron_Ben_Ishay,ISR,head,,True,1.0
 10700,12524,428.0,,,,,False,
 10701,12525,428.04,,,,,False,
 10702,12526,428.08,,,,,False,
@@ -10711,7 +10711,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 10709,12533,428.36,,,,,False,
 10710,12534,428.4,,,,,False,
 10711,12535,428.44,,,,,False,
-10712,12536,428.48,BRA_A,BRA,head,,True,1.0
+10712,12536,428.48,Franklin,BRA,head,,True,1.0
 10713,12537,428.52,,,,,False,
 10714,12538,428.56,,,,,False,
 10715,12539,428.6,,,,,False,
@@ -10754,7 +10754,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 10752,12576,430.08,,,,,False,
 10753,12577,430.12,,,,,False,
 10754,12578,430.16,,,,,False,
-10755,12579,430.2,BRA_B,BRA,chest,,True,0.24
+10755,12579,430.2,Hiltinho,BRA,chest,,True,0.24
 10756,12580,430.24,,,,,False,
 10757,12581,430.28,,,,,False,
 10758,12582,430.32,,,,,False,
@@ -10785,7 +10785,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 10783,12607,431.32,,,,,False,
 10784,12608,431.36,,,,,False,
 10785,12609,431.4,,,,,False,
-10786,12610,431.44,BRA_A,BRA,head,,True,1.0
+10786,12610,431.44,Franklin,BRA,head,,True,1.0
 10787,12611,431.48,,,,,False,
 10788,12612,431.52,,,,,False,
 10789,12613,431.56,,,,,False,
@@ -10807,7 +10807,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 10805,12629,432.2,,,,,False,
 10806,12630,432.24,,,,,False,
 10807,12631,432.28,,,,,False,
-10808,12632,432.32,ISR_A,ISR,head,,True,1.0
+10808,12632,432.32,Maor_Haas,ISR,head,,True,1.0
 10809,12633,432.36,,,,,False,
 10810,12634,432.4,,,,,False,
 10811,12635,432.44,,,,,False,
@@ -10844,7 +10844,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 10842,12666,433.68,,,,,False,
 10843,12667,433.72,,,,,False,
 10844,12668,433.76,,,,,False,
-10845,12669,433.8,ISR_B,ISR,chest,,True,1.0
+10845,12669,433.8,Ron_Ben_Ishay,ISR,chest,,True,1.0
 10846,12670,433.84,,,,,False,
 10847,12671,433.88,,,,,False,
 10848,12672,433.92,,,,,False,
@@ -10880,7 +10880,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 10878,12702,435.12,,,,,False,
 10879,12703,435.16,,,,,False,
 10880,12704,435.2,,,,,False,
-10881,12705,435.24,ISR_A,ISR,head,,True,1.0
+10881,12705,435.24,Maor_Haas,ISR,head,,True,1.0
 10882,12706,435.28,,,,,False,
 10883,12707,435.32,,,,,False,
 10884,12708,435.36,,,,,False,
@@ -10951,7 +10951,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 10949,12815,437.96,,,,,False,
 10950,12816,438.0,,,,,False,
 10951,12817,438.04,,,,,False,
-10952,12818,438.08,ISR_A,ISR,chest,,True,1.0
+10952,12818,438.08,Maor_Haas,ISR,chest,,True,1.0
 10953,12819,438.12,,,,,False,
 10954,12820,438.16,,,,,False,
 10955,12821,438.2,,,,,False,
@@ -10980,7 +10980,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 10978,12844,439.12,,,,,False,
 10979,12845,439.16,,,,,False,
 10980,12846,439.2,,,,,False,
-10981,12847,439.24,ISR_B,ISR,head,,True,1.0
+10981,12847,439.24,Ron_Ben_Ishay,ISR,head,,True,1.0
 10982,12848,439.28,,,,,False,
 10983,12849,439.32,,,,,False,
 10984,12850,439.36,,,,,False,
@@ -10993,7 +10993,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 10991,12857,439.64,,,,,False,
 10992,12858,439.68,,,,,False,
 10993,12859,439.72,,,,,False,
-10994,12860,439.76,BRA_A,BRA,head,,True,1.0
+10994,12860,439.76,Franklin,BRA,head,,True,1.0
 10995,12861,439.8,,,,,False,
 10996,12862,439.84,,,,,False,
 10997,12863,439.88,,,,,False,
@@ -11029,7 +11029,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11027,12893,441.08,,,,,False,
 11028,12894,441.12,,,,,False,
 11029,12895,441.16,,,,,False,
-11030,12896,441.2,BRA_B,BRA,foot,left,True,1.0
+11030,12896,441.2,Hiltinho,BRA,foot,left,True,1.0
 11031,12897,441.24,,,,,False,
 11032,12898,441.28,,,,,False,
 11033,12899,441.32,,,,,False,
@@ -11071,7 +11071,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11069,12935,442.76,,,,,False,
 11070,12936,442.8,,,,,False,
 11071,12937,442.84,,,,,False,
-11072,12938,442.88,BRA_A,BRA,head,,True,1.0
+11072,12938,442.88,Franklin,BRA,head,,True,1.0
 11073,12939,442.92,,,,,False,
 11074,12940,442.96,,,,,False,
 11075,12941,443.0,,,,,False,
@@ -11083,7 +11083,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11081,12947,443.24,,,,,False,
 11082,12948,443.28,,,,,False,
 11083,12949,443.32,,,,,False,
-11084,12950,443.36,ISR_B,ISR,thigh,right,True,1.0
+11084,12950,443.36,Ron_Ben_Ishay,ISR,thigh,right,True,1.0
 11085,12951,443.4,,,,,False,
 11086,12952,443.44,,,,,False,
 11087,12953,443.48,,,,,False,
@@ -11121,7 +11121,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11119,12985,444.76,,,,,False,
 11120,12986,444.8,,,,,False,
 11121,12987,444.84,,,,,False,
-11122,12988,444.88,ISR_A,ISR,chest,,True,0.99
+11122,12988,444.88,Maor_Haas,ISR,chest,,True,0.99
 11123,12989,444.92,,,,,False,
 11124,12990,444.96,,,,,False,
 11125,12991,445.0,,,,,False,
@@ -11156,7 +11156,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11154,13020,446.16,,,,,False,
 11155,13021,446.2,,,,,False,
 11156,13022,446.24,,,,,False,
-11157,13023,446.28,ISR_B,ISR,chest,,True,1.0
+11157,13023,446.28,Ron_Ben_Ishay,ISR,chest,,True,1.0
 11158,13024,446.32,,,,,False,
 11159,13025,446.36,,,,,False,
 11160,13026,446.4,,,,,False,
@@ -11189,7 +11189,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11187,13053,447.48,,,,,False,
 11188,13054,447.52,,,,,False,
 11189,13055,447.56,,,,,False,
-11190,13056,447.6,BRA_A,BRA,foot,right,False,1.0
+11190,13056,447.6,Franklin,BRA,foot,right,False,1.0
 11191,13057,447.64,,,,,False,
 11192,13058,447.68,,,,,False,
 11193,13059,447.72,,,,,False,
@@ -11239,7 +11239,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11237,13103,449.48,,,,,False,
 11238,13104,449.52,,,,,False,
 11239,13105,449.56,,,,,False,
-11240,13106,449.6,BRA_B,BRA,head,,True,1.0
+11240,13106,449.6,Hiltinho,BRA,head,,True,1.0
 11241,13107,449.64,,,,,False,
 11242,13108,449.68,,,,,False,
 11243,13109,449.72,,,,,False,
@@ -11262,7 +11262,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11260,13126,450.4,,,,,False,
 11261,13127,450.44,,,,,False,
 11262,13128,450.48,,,,,False,
-11263,13129,450.52,ISR_A,ISR,foot,right,True,1.0
+11263,13129,450.52,Maor_Haas,ISR,foot,right,True,1.0
 11264,13130,450.56,,,,,False,
 11265,13131,450.6,,,,,False,
 11266,13132,450.64,,,,,False,
@@ -11283,7 +11283,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11281,13147,451.24,,,,,False,
 11282,13148,451.28,,,,,False,
 11283,13149,451.32,,,,,False,
-11284,13150,451.36,BRA_B,BRA,hand,left,False,1.0
+11284,13150,451.36,Hiltinho,BRA,hand,left,False,1.0
 11285,13151,451.4,,,,,False,
 11286,13152,451.44,,,,,False,
 11287,13153,451.48,,,,,False,
@@ -11333,7 +11333,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11331,13197,453.24,,,,,False,
 11332,13198,453.28,,,,,False,
 11333,13199,453.32,,,,,False,
-11334,13200,453.36,ISR_B,ISR,chest,,True,1.0
+11334,13200,453.36,Ron_Ben_Ishay,ISR,chest,,True,1.0
 11335,13201,453.4,,,,,False,
 11336,13202,453.44,,,,,False,
 11337,13203,453.48,,,,,False,
@@ -11368,7 +11368,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11366,13232,454.64,,,,,False,
 11367,13233,454.68,,,,,False,
 11368,13234,454.72,,,,,False,
-11369,13235,454.76,ISR_A,ISR,chest,,True,1.0
+11369,13235,454.76,Maor_Haas,ISR,chest,,True,1.0
 11370,13236,454.8,,,,,False,
 11371,13237,454.84,,,,,False,
 11372,13238,454.88,,,,,False,
@@ -11402,7 +11402,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11400,13266,456.0,,,,,False,
 11401,13267,456.04,,,,,False,
 11402,13268,456.08,,,,,False,
-11403,13269,456.12,ISR_B,ISR,head,,True,1.0
+11403,13269,456.12,Ron_Ben_Ishay,ISR,head,,True,1.0
 11404,13270,456.16,,,,,False,
 11405,13271,456.2,,,,,False,
 11406,13272,456.24,,,,,False,
@@ -11419,7 +11419,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11417,13283,456.68,,,,,False,
 11418,13284,456.72,,,,,False,
 11419,13285,456.76,,,,,False,
-11420,13286,456.8,BRA_B,BRA,head,,True,1.0
+11420,13286,456.8,Hiltinho,BRA,head,,True,1.0
 11421,13287,456.84,,,,,False,
 11422,13288,456.88,,,,,False,
 11423,13289,456.92,,,,,False,
@@ -11455,7 +11455,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11453,13319,458.12,,,,,False,
 11454,13320,458.16,,,,,False,
 11455,13321,458.2,,,,,False,
-11456,13322,458.24,BRA_A,BRA,chest,,True,0.2
+11456,13322,458.24,Franklin,BRA,chest,,True,0.2
 11457,13323,458.28,,,,,False,
 11458,13324,458.32,,,,,False,
 11459,13325,458.36,,,,,False,
@@ -11493,7 +11493,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11491,13357,459.64,,,,,False,
 11492,13358,459.68,,,,,False,
 11493,13359,459.72,,,,,False,
-11494,13360,459.76,BRA_B,BRA,head,,True,1.0
+11494,13360,459.76,Hiltinho,BRA,head,,True,1.0
 11495,13361,459.8,,,,,False,
 11496,13362,459.84,,,,,False,
 11497,13363,459.88,,,,,False,
@@ -11514,7 +11514,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11512,13378,460.48,,,,,False,
 11513,13379,460.52,,,,,False,
 11514,13380,460.56,,,,,False,
-11515,13381,460.6,ISR_B,ISR,foot,left,True,1.0
+11515,13381,460.6,Ron_Ben_Ishay,ISR,foot,left,True,1.0
 11516,13382,460.64,,,,,False,
 11517,13383,460.68,,,,,False,
 11518,13384,460.72,,,,,False,
@@ -11540,7 +11540,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11538,13450,461.52,,,,,False,
 11539,13451,461.56,,,,,False,
 11540,13452,461.6,,,,,False,
-11541,13453,461.64,BRA_B,BRA,chest,,True,1.0
+11541,13453,461.64,Hiltinho,BRA,chest,,True,1.0
 11542,13454,461.68,,,,,False,
 11543,13455,461.72,,,,,False,
 11544,13456,461.76,,,,,False,
@@ -11575,7 +11575,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11573,13485,462.92,,,,,False,
 11574,13486,462.96,,,,,False,
 11575,13487,463.0,,,,,False,
-11576,13488,463.04,BRA_A,BRA,head,,True,1.0
+11576,13488,463.04,Franklin,BRA,head,,True,1.0
 11577,13489,463.08,,,,,False,
 11578,13490,463.12,,,,,False,
 11579,13491,463.16,,,,,False,
@@ -11597,7 +11597,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11595,13507,463.8,,,,,False,
 11596,13508,463.84,,,,,False,
 11597,13509,463.88,,,,,False,
-11598,13510,463.92,ISR_A,ISR,foot,right,True,1.0
+11598,13510,463.92,Maor_Haas,ISR,foot,right,True,1.0
 11599,13511,463.96,,,,,False,
 11600,13512,464.0,,,,,False,
 11601,13513,464.04,,,,,False,
@@ -11622,7 +11622,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11620,13532,464.8,,,,,False,
 11621,13533,464.84,,,,,False,
 11622,13534,464.88,,,,,False,
-11623,13535,464.92,ISR_B,ISR,head,,True,0.97
+11623,13535,464.92,Ron_Ben_Ishay,ISR,head,,True,0.97
 11624,13536,464.96,,,,,False,
 11625,13537,465.0,,,,,False,
 11626,13538,465.04,,,,,False,
@@ -11657,7 +11657,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11655,13567,466.2,,,,,False,
 11656,13568,466.24,,,,,False,
 11657,13569,466.28,,,,,False,
-11658,13570,466.32,BRA_B,BRA,foot,left,True,1.0
+11658,13570,466.32,Hiltinho,BRA,foot,left,True,1.0
 11659,13571,466.36,,,,,False,
 11660,13572,466.4,,,,,False,
 11661,13573,466.44,,,,,False,
@@ -11685,7 +11685,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11683,13595,467.32,,,,,False,
 11684,13596,467.36,,,,,False,
 11685,13597,467.4,,,,,False,
-11686,13598,467.44,BRA_A,BRA,torso,,True,1.0
+11686,13598,467.44,Franklin,BRA,torso,,True,1.0
 11687,13599,467.48,,,,,False,
 11688,13600,467.52,,,,,False,
 11689,13601,467.56,,,,,False,
@@ -11731,7 +11731,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11729,13641,469.16,,,,,False,
 11730,13642,469.2,,,,,False,
 11731,13643,469.24,,,,,False,
-11732,13644,469.28,BRA_B,BRA,head,,True,1.0
+11732,13644,469.28,Hiltinho,BRA,head,,True,1.0
 11733,13645,469.32,,,,,False,
 11734,13646,469.36,,,,,False,
 11735,13647,469.4,,,,,False,
@@ -11759,7 +11759,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11757,13669,470.28,,,,,False,
 11758,13670,470.32,,,,,False,
 11759,13671,470.36,,,,,False,
-11760,13672,470.4,ISR_B,ISR,shoulder,right,True,0.84
+11760,13672,470.4,Ron_Ben_Ishay,ISR,shoulder,right,True,0.84
 11761,13673,470.44,,,,,False,
 11762,13674,470.48,,,,,False,
 11763,13675,470.52,,,,,False,
@@ -11793,7 +11793,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11791,13703,471.64,,,,,False,
 11792,13704,471.68,,,,,False,
 11793,13705,471.72,,,,,False,
-11794,13706,471.76,ISR_A,ISR,chest,,True,1.0
+11794,13706,471.76,Maor_Haas,ISR,chest,,True,1.0
 11795,13707,471.8,,,,,False,
 11796,13708,471.84,,,,,False,
 11797,13709,471.88,,,,,False,
@@ -11823,7 +11823,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11821,13733,472.84,,,,,False,
 11822,13734,472.88,,,,,False,
 11823,13735,472.92,,,,,False,
-11824,13736,472.96,ISR_B,ISR,head,,True,1.0
+11824,13736,472.96,Ron_Ben_Ishay,ISR,head,,True,1.0
 11825,13737,473.0,,,,,False,
 11826,13738,473.04,,,,,False,
 11827,13739,473.08,,,,,False,
@@ -11845,7 +11845,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11843,13755,473.72,,,,,False,
 11844,13756,473.76,,,,,False,
 11845,13757,473.8,,,,,False,
-11846,13758,473.84,BRA_A,BRA,foot,right,True,0.69
+11846,13758,473.84,Franklin,BRA,foot,right,True,0.69
 11847,13759,473.88,,,,,False,
 11848,13760,473.92,,,,,False,
 11849,13761,473.96,,,,,False,
@@ -11889,7 +11889,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11887,13821,475.48,,,,,False,
 11888,13822,475.52,,,,,False,
 11889,13823,475.56,,,,,False,
-11890,13824,475.6,BRA_B,BRA,chest,,True,1.0
+11890,13824,475.6,Hiltinho,BRA,chest,,True,1.0
 11891,13825,475.64,,,,,False,
 11892,13826,475.68,,,,,False,
 11893,13827,475.72,,,,,False,
@@ -11920,7 +11920,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11918,13852,476.72,,,,,False,
 11919,13853,476.76,,,,,False,
 11920,13854,476.8,,,,,False,
-11921,13855,476.84,BRA_A,BRA,shin,right,True,0.01
+11921,13855,476.84,Franklin,BRA,shin,right,True,0.01
 11922,13856,476.88,,,,,False,
 11923,13857,476.92,,,,,False,
 11924,13858,476.96,,,,,False,
@@ -11934,7 +11934,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11932,13866,477.28,,,,,False,
 11933,13867,477.32,,,,,False,
 11934,13868,477.36,,,,,False,
-11935,13869,477.4,ISR_A,ISR,head,,True,1.0
+11935,13869,477.4,Maor_Haas,ISR,head,,True,1.0
 11936,13870,477.44,,,,,False,
 11937,13871,477.48,,,,,False,
 11938,13872,477.52,,,,,False,
@@ -11965,7 +11965,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11963,13897,478.52,,,,,False,
 11964,13898,478.56,,,,,False,
 11965,13899,478.6,,,,,False,
-11966,13900,478.64,ISR_B,ISR,head,,True,1.0
+11966,13900,478.64,Ron_Ben_Ishay,ISR,head,,True,1.0
 11967,13901,478.68,,,,,False,
 11968,13902,478.72,,,,,False,
 11969,13903,478.76,,,,,False,
@@ -12000,7 +12000,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 11998,13932,479.92,,,,,False,
 11999,13933,479.96,,,,,False,
 12000,13934,480.0,,,,,False,
-12001,13935,480.04,ISR_A,ISR,head,,True,1.0
+12001,13935,480.04,Maor_Haas,ISR,head,,True,1.0
 12002,13936,480.08,,,,,False,
 12003,13937,480.12,,,,,False,
 12004,13938,480.16,,,,,False,
@@ -12024,7 +12024,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 12022,13956,480.88,,,,,False,
 12023,13957,480.92,,,,,False,
 12024,13958,480.96,,,,,False,
-12025,13959,481.0,BRA_A,BRA,arm,right,True,1.0
+12025,13959,481.0,Franklin,BRA,arm,right,True,1.0
 12026,13960,481.04,,,,,False,
 12027,13961,481.08,,,,,False,
 12028,13962,481.12,,,,,False,
@@ -12064,7 +12064,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 12062,13996,482.48,,,,,False,
 12063,13997,482.52,,,,,False,
 12064,13998,482.56,,,,,False,
-12065,13999,482.6,BRA_B,BRA,chest,,True,1.0
+12065,13999,482.6,Hiltinho,BRA,chest,,True,1.0
 12066,14000,482.64,,,,,False,
 12067,14001,482.68,,,,,False,
 12068,14002,482.72,,,,,False,
@@ -12099,7 +12099,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 12097,14031,483.88,,,,,False,
 12098,14032,483.92,,,,,False,
 12099,14033,483.96,,,,,False,
-12100,14034,484.0,BRA_A,BRA,head,,True,1.0
+12100,14034,484.0,Franklin,BRA,head,,True,1.0
 12101,14035,484.04,,,,,False,
 12102,14036,484.08,,,,,False,
 12103,14037,484.12,,,,,False,
@@ -12179,7 +12179,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 12177,14111,487.08,,,,,False,
 12178,14112,487.12,,,,,False,
 12179,14113,487.16,,,,,False,
-12180,14114,487.2,ISR_B,ISR,chest,,True,1.0
+12180,14114,487.2,Ron_Ben_Ishay,ISR,chest,,True,1.0
 12181,14115,487.24,,,,,False,
 12182,14116,487.28,,,,,False,
 12183,14117,487.32,,,,,False,
@@ -12218,7 +12218,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 12216,14150,488.64,,,,,False,
 12217,14151,488.68,,,,,False,
 12218,14152,488.72,,,,,False,
-12219,14153,488.76,ISR_A,ISR,chest,,True,1.0
+12219,14153,488.76,Maor_Haas,ISR,chest,,True,1.0
 12220,14154,488.8,,,,,False,
 12221,14155,488.84,,,,,False,
 12222,14156,488.88,,,,,False,
@@ -12249,7 +12249,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 12247,14181,489.88,,,,,False,
 12248,14182,489.92,,,,,False,
 12249,14183,489.96,,,,,False,
-12250,14184,490.0,ISR_B,ISR,head,,True,1.0
+12250,14184,490.0,Ron_Ben_Ishay,ISR,head,,True,1.0
 12251,14185,490.04,,,,,False,
 12252,14186,490.08,,,,,False,
 12253,14187,490.12,,,,,False,
@@ -12273,7 +12273,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 12271,14205,490.84,,,,,False,
 12272,14206,490.88,,,,,False,
 12273,14207,490.92,,,,,False,
-12274,14208,490.96,BRA_A,BRA,foot,right,True,1.0
+12274,14208,490.96,Franklin,BRA,foot,right,True,1.0
 12275,14209,491.0,,,,,False,
 12276,14210,491.04,,,,,False,
 12277,14211,491.08,,,,,False,
@@ -12306,7 +12306,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 12304,14238,492.16,,,,,False,
 12305,14239,492.2,,,,,False,
 12306,14240,492.24,,,,,False,
-12307,14241,492.28,BRA_B,BRA,chest,,True,1.0
+12307,14241,492.28,Hiltinho,BRA,chest,,True,1.0
 12308,14242,492.32,,,,,False,
 12309,14243,492.36,,,,,False,
 12310,14244,492.4,,,,,False,
@@ -12339,7 +12339,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 12337,14271,493.48,,,,,False,
 12338,14272,493.52,,,,,False,
 12339,14273,493.56,,,,,False,
-12340,14274,493.6,BRA_A,BRA,head,,True,1.0
+12340,14274,493.6,Franklin,BRA,head,,True,1.0
 12341,14275,493.64,,,,,False,
 12342,14276,493.68,,,,,False,
 12343,14277,493.72,,,,,False,
@@ -12427,7 +12427,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 12425,14359,497.0,,,,,False,
 12426,14360,497.04,,,,,False,
 12427,14361,497.08,,,,,False,
-12428,14362,497.12,BRA_A,BRA,chest,,True,1.0
+12428,14362,497.12,Franklin,BRA,chest,,True,1.0
 12429,14363,497.16,,,,,False,
 12430,14364,497.2,,,,,False,
 12431,14365,497.24,,,,,False,
@@ -12461,7 +12461,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 12459,14393,498.36,,,,,False,
 12460,14394,498.4,,,,,False,
 12461,14395,498.44,,,,,False,
-12462,14396,498.48,BRA_B,BRA,head,,True,1.0
+12462,14396,498.48,Hiltinho,BRA,head,,True,1.0
 12463,14397,498.52,,,,,False,
 12464,14398,498.56,,,,,False,
 12465,14399,498.6,,,,,False,
@@ -12513,7 +12513,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 12511,14463,500.44,,,,,False,
 12512,14464,500.48,,,,,False,
 12513,14465,500.52,,,,,False,
-12514,14466,500.56,ISR_B,ISR,shoulder,right,True,1.0
+12514,14466,500.56,Ron_Ben_Ishay,ISR,shoulder,right,True,1.0
 12515,14467,500.6,,,,,False,
 12516,14468,500.64,,,,,False,
 12517,14469,500.68,,,,,False,
@@ -12552,7 +12552,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 12550,14502,502.0,,,,,False,
 12551,14503,502.04,,,,,False,
 12552,14504,502.08,,,,,False,
-12553,14505,502.12,ISR_A,ISR,chest,,True,1.0
+12553,14505,502.12,Maor_Haas,ISR,chest,,True,1.0
 12554,14506,502.16,,,,,False,
 12555,14507,502.2,,,,,False,
 12556,14508,502.24,,,,,False,
@@ -12580,7 +12580,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 12578,14530,503.12,,,,,False,
 12579,14531,503.16,,,,,False,
 12580,14532,503.2,,,,,False,
-12581,14533,503.24,ISR_B,ISR,head,,True,0.99
+12581,14533,503.24,Ron_Ben_Ishay,ISR,head,,True,0.99
 12582,14534,503.28,,,,,False,
 12583,14535,503.32,,,,,False,
 12584,14536,503.36,,,,,False,
@@ -12595,7 +12595,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 12593,14545,503.72,,,,,False,
 12594,14546,503.76,,,,,False,
 12595,14547,503.8,,,,,False,
-12596,14548,503.84,BRA_A,BRA,head,,True,1.0
+12596,14548,503.84,Franklin,BRA,head,,True,1.0
 12597,14549,503.88,,,,,False,
 12598,14550,503.92,,,,,False,
 12599,14551,503.96,,,,,False,
@@ -12665,7 +12665,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 12663,14615,506.52,,,,,False,
 12664,14616,506.56,,,,,False,
 12665,14617,506.6,,,,,False,
-12666,14618,506.64,BRA_B,BRA,chest,,True,1.0
+12666,14618,506.64,Hiltinho,BRA,chest,,True,1.0
 12667,14619,506.68,,,,,False,
 12668,14620,506.72,,,,,False,
 12669,14621,506.76,,,,,False,
@@ -12698,7 +12698,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 12696,14648,507.84,,,,,False,
 12697,14649,507.88,,,,,False,
 12698,14650,507.92,,,,,False,
-12699,14651,507.96,BRA_A,BRA,foot,right,True,0.75
+12699,14651,507.96,Franklin,BRA,foot,right,True,0.75
 12700,14652,508.0,,,,,False,
 12701,14653,508.04,,,,,False,
 12702,14654,508.08,,,,,False,
@@ -12777,7 +12777,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 12775,14727,511.0,,,,,False,
 12776,14728,511.04,,,,,False,
 12777,14729,511.08,,,,,False,
-12778,14730,511.12,BRA_B,BRA,chest,,True,0.38
+12778,14730,511.12,Hiltinho,BRA,chest,,True,0.38
 12779,14731,511.16,,,,,False,
 12780,14732,511.2,,,,,False,
 12781,14733,511.24,,,,,False,
@@ -12810,7 +12810,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 12808,14760,512.32,,,,,False,
 12809,14761,512.36,,,,,False,
 12810,14762,512.4,,,,,False,
-12811,14763,512.44,BRA_A,BRA,foot,right,True,1.0
+12811,14763,512.44,Franklin,BRA,foot,right,True,1.0
 12812,14764,512.48,,,,,False,
 12813,14765,512.52,,,,,False,
 12814,14766,512.56,,,,,False,
@@ -12824,7 +12824,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 12822,14774,512.88,,,,,False,
 12823,14775,512.92,,,,,False,
 12824,14776,512.96,,,,,False,
-12825,14777,513.0,ISR_A,ISR,foot,left,True,1.0
+12825,14777,513.0,Maor_Haas,ISR,foot,left,True,1.0
 12826,14778,513.04,,,,,False,
 12827,14779,513.08,,,,,False,
 12828,14780,513.12,,,,,False,
@@ -12862,7 +12862,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 12860,14812,514.4,,,,,False,
 12861,14813,514.44,,,,,False,
 12862,14814,514.48,,,,,False,
-12863,14815,514.52,ISR_B,ISR,chest,,True,1.0
+12863,14815,514.52,Ron_Ben_Ishay,ISR,chest,,True,1.0
 12864,14816,514.56,,,,,False,
 12865,14817,514.6,,,,,False,
 12866,14818,514.64,,,,,False,
@@ -12895,7 +12895,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 12893,14845,515.72,,,,,False,
 12894,14846,515.76,,,,,False,
 12895,14847,515.8,,,,,False,
-12896,14848,515.84,ISR_A,ISR,foot,right,True,1.0
+12896,14848,515.84,Maor_Haas,ISR,foot,right,True,1.0
 12897,14849,515.88,,,,,False,
 12898,14850,515.92,,,,,False,
 12899,14851,515.96,,,,,False,
@@ -12949,7 +12949,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 12947,14915,517.88,,,,,False,
 12948,14916,517.92,,,,,False,
 12949,14917,517.96,,,,,False,
-12950,14918,518.0,BRA_B,BRA,chest,,True,0.67
+12950,14918,518.0,Hiltinho,BRA,chest,,True,0.67
 12951,14919,518.04,,,,,False,
 12952,14920,518.08,,,,,False,
 12953,14921,518.12,,,,,False,
@@ -12983,14 +12983,14 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 12981,14949,519.24,,,,,False,
 12982,14950,519.28,,,,,False,
 12983,14951,519.32,,,,,False,
-12984,14952,519.36,BRA_A,BRA,foot,right,True,1.0
+12984,14952,519.36,Franklin,BRA,foot,right,True,1.0
 12985,14953,519.4,,,,,False,
 12986,14954,519.44,,,,,False,
 12987,14955,519.48,,,,,False,
 12988,14956,519.52,,,,,False,
 12989,14957,519.56,,,,,False,
 12990,14958,519.6,,,,,False,
-12991,14959,519.64,ISR_B,ISR,foot,right,True,1.0
+12991,14959,519.64,Ron_Ben_Ishay,ISR,foot,right,True,1.0
 12992,14960,519.68,,,,,False,
 12993,14961,519.72,,,,,False,
 12994,14962,519.76,,,,,False,
@@ -13021,7 +13021,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 13019,14987,520.76,,,,,False,
 13020,14988,520.8,,,,,False,
 13021,14989,520.84,,,,,False,
-13022,14990,520.88,ISR_A,ISR,shin,right,True,1.0
+13022,14990,520.88,Maor_Haas,ISR,shin,right,True,1.0
 13023,14991,520.92,,,,,False,
 13024,14992,520.96,,,,,False,
 13025,14993,521.0,,,,,False,
@@ -13035,7 +13035,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 13033,15001,521.32,,,,,False,
 13034,15002,521.36,,,,,False,
 13035,15003,521.4,,,,,False,
-13036,15004,521.44,ISR_B,ISR,head,,True,1.0
+13036,15004,521.44,Ron_Ben_Ishay,ISR,head,,True,1.0
 13037,15005,521.48,,,,,False,
 13038,15006,521.52,,,,,False,
 13039,15007,521.56,,,,,False,
@@ -13066,7 +13066,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 13064,15032,522.56,,,,,False,
 13065,15033,522.6,,,,,False,
 13066,15034,522.64,,,,,False,
-13067,15035,522.68,BRA_A,BRA,arm,left,True,1.0
+13067,15035,522.68,Franklin,BRA,arm,left,True,1.0
 13068,15036,522.72,,,,,False,
 13069,15037,522.76,,,,,False,
 13070,15038,522.8,,,,,False,
@@ -13099,7 +13099,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 13097,15065,523.88,,,,,False,
 13098,15066,523.92,,,,,False,
 13099,15067,523.96,,,,,False,
-13100,15068,524.0,BRA_B,BRA,chest,,True,1.0
+13100,15068,524.0,Hiltinho,BRA,chest,,True,1.0
 13101,15069,524.04,,,,,False,
 13102,15070,524.08,,,,,False,
 13103,15071,524.12,,,,,False,
@@ -13131,7 +13131,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 13129,15097,525.16,,,,,False,
 13130,15098,525.2,,,,,False,
 13131,15099,525.24,,,,,False,
-13132,15100,525.28,BRA_A,BRA,head,,True,1.0
+13132,15100,525.28,Franklin,BRA,head,,True,1.0
 13133,15101,525.32,,,,,False,
 13134,15102,525.36,,,,,False,
 13135,15103,525.4,,,,,False,
@@ -13145,7 +13145,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 13143,15111,525.72,,,,,False,
 13144,15112,525.76,,,,,False,
 13145,15113,525.8,,,,,False,
-13146,15114,525.84,ISR_B,ISR,knee,left,True,1.0
+13146,15114,525.84,Ron_Ben_Ishay,ISR,knee,left,True,1.0
 13147,15115,525.88,,,,,False,
 13148,15116,525.92,,,,,False,
 13149,15117,525.96,,,,,False,
@@ -13264,7 +13264,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 13262,15230,530.48,,,,,False,
 13263,15231,530.52,,,,,False,
 13264,15232,530.56,,,,,False,
-13265,15233,530.6,ISR_A,ISR,shoulder,right,True,1.0
+13265,15233,530.6,Maor_Haas,ISR,shoulder,right,True,1.0
 13266,15234,530.64,,,,,False,
 13267,15235,530.68,,,,,False,
 13268,15236,530.72,,,,,False,
@@ -13295,7 +13295,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 13293,15261,531.72,,,,,False,
 13294,15262,531.76,,,,,False,
 13295,15263,531.8,,,,,False,
-13296,15264,531.84,BRA_B,BRA,thigh,right,True,1.0
+13296,15264,531.84,Hiltinho,BRA,thigh,right,True,1.0
 13297,15265,531.88,,,,,False,
 13298,15266,531.92,,,,,False,
 13299,15267,531.96,,,,,False,
@@ -13320,7 +13320,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 13318,15286,532.72,,,,,False,
 13319,15287,532.76,,,,,False,
 13320,15288,532.8,,,,,False,
-13321,15289,532.84,BRA_A,BRA,foot,right,True,1.0
+13321,15289,532.84,Franklin,BRA,foot,right,True,1.0
 13322,15290,532.88,,,,,False,
 13323,15291,532.92,,,,,False,
 13324,15292,532.96,,,,,False,
@@ -13358,7 +13358,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 13356,15324,534.24,,,,,False,
 13357,15325,534.28,,,,,False,
 13358,15326,534.32,,,,,False,
-13359,15327,534.36,ISR_A,ISR,foot,right,True,1.0
+13359,15327,534.36,Maor_Haas,ISR,foot,right,True,1.0
 13360,15328,534.4,,,,,False,
 13361,15329,534.44,,,,,False,
 13362,15330,534.48,,,,,False,
@@ -13416,7 +13416,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 13414,15419,536.56,,,,,False,
 13415,15420,536.6,,,,,False,
 13416,15421,536.64,,,,,False,
-13417,15422,536.68,BRA_B,BRA,chest,,True,1.0
+13417,15422,536.68,Hiltinho,BRA,chest,,True,1.0
 13418,15423,536.72,,,,,False,
 13419,15424,536.76,,,,,False,
 13420,15425,536.8,,,,,False,
@@ -13448,7 +13448,7 @@ frame,v2_frame,time_sec,player,team,body_part,limb_side,in_play,confidence
 13446,15451,537.84,,,,,False,
 13447,15452,537.88,,,,,False,
 13448,15453,537.92,,,,,False,
-13449,15454,537.96,BRA_A,BRA,head,,True,1.0
+13449,15454,537.96,Franklin,BRA,head,,True,1.0
 13450,15455,538.0,,,,,False,
 13451,15456,538.04,,,,,False,
 13452,15457,538.08,,,,,False,

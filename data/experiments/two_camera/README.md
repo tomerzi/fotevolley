@@ -4,18 +4,18 @@ Status: experiment only. Nothing in `data/analysis/` or the site was changed.
 
 ## Inputs
 - `youtube_main_1800.webp` — YouTube broadcast at 18:00, main camera. Same moment as v2 frame **9638**
-  (rally 36, set 2, BRA 4–0, bicycle kick by BRA_B at the net).
+  (rally 36, set 2, BRA 4–0, bicycle kick by Hiltinho at the net).
 - `replay_cam2.png` — broadcast replay of the same kick from a second camera behind the ISR baseline
   (554×313 screenshot). The ball is at the kicker's foot = kick contact (v2 frame 9638–9639).
 - `cam2_points.json` — pixel readings: both blue sidelines (sub-pixel ridge points), net top tape upper edge,
-  BRA_A (standing) feet/head with his main-camera ground point and measured stature 1.791 m, ball centre.
+  Franklin (standing) feet/head with his main-camera ground point and measured stature 1.791 m, ball centre.
 
 ## Method (`scripts/experiments/two_camera/calib_cam2.py`)
 1. Calibrate the replay camera (pinhole, principal point at the image centre, 7 unknowns) from
-   sidelines Y=0 / Y=8, net top Z=-2.2 at X=8, and BRA_A. Fit rms 0.85 (normalized).
+   sidelines Y=0 / Y=8, net top Z=-2.2 at X=8, and Franklin. Fit rms 0.85 (normalized).
    Camera: X ≈ 0.0 (on the baseline line, ±1 m), Y ≈ 7.3, height ≈ 2.85 m, f ≈ 690 px.
 2. Triangulate: point on the main-camera ray of the ball box that best projects onto the ball in the replay.
-3. Monte Carlo (300 runs): pixel noise, BRA_A ground position ±0.15 m, ball size.
+3. Monte Carlo (300 runs): pixel noise, Franklin ground position ±0.15 m, ball size.
 
 ## Result
 | frame | site (main camera only) X / Y / height | two cameras X / Y / height (MC ±) |
@@ -43,7 +43,7 @@ Synchronized (frame chosen where the ball reprojects best in the replay):
 | replay_cam2.png | 36 / 9638 | bicycle-kick contact | +0.01 … +0.17 m |
 | img5.webp | 18 / 2998–2999 | bicycle-kick contact | −0.10 … +0.06 m |
 | img4.webp | 34 / 8802 | header at the net (frame match by player layout, medium confidence) | +0.07 … +0.09 m |
-| img6.webp | 18 / 3007 | ball passing ISR_A after the kick | −0.13 … −0.02 m |
+| img6.webp | 18 / 3007 | ball passing Maor_Haas after the kick | −0.13 … −0.02 m |
 
 Ranges = results for replay-camera positions between 0.7 m in front of and 8 m behind the ISR baseline:
 along the camera's viewing axis, its distance trades off against zoom and cannot be determined from

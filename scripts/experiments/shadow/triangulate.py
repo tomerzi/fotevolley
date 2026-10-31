@@ -68,7 +68,7 @@ for r in tl.itertuples():
             px, py = pos.loc[(f, r.player)].values.ravel()[:2]
         except KeyError:
             continue
-        px, py = px * 16 / 18, py * 8 / 9
+        px, py = px, py   # already metres (16 x 8)
         d = cam.ray(np.array([[b.center_x[f], b.center_y[f]]]))[0]
         dxy = d[:2]; t_ = np.dot(np.array([px, py]) - cam.C[:2], dxy) / np.dot(dxy, dxy) - 0.15 / np.linalg.norm(dxy)
         P = cam.C + t_ * d

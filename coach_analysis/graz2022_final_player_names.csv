@@ -1,5 +1,5 @@
-player,team,name,name_he,bib_number,visual_cue,source
-ISR_A,ISR,Maor Haas,מאור האס,1,blue bib #1 with white armband,confirmed by user
-ISR_B,ISR,Ron Ben Ishay,רון בן ישי,2,blue bib #2,confirmed by user
-BRA_A,BRA,Franklin,פרנקלין,1,blond; green bib over long-sleeved yellow shirt,confirmed by user
-BRA_B,BRA,Hiltinho,הילטיניו,,green bib over sleeveless yellow shirt,confirmed by user
+player,old_label,team,name,name_he,bib_number,visual_cue,source
+Maor_Haas,ISR_A,ISR,Maor Haas,מאור האס,1,blue bib #1 with white armband,confirmed by project owner
+Ron_Ben_Ishay,ISR_B,ISR,Ron Ben Ishay,רון בן ישי,2,blue bib #2,confirmed by project owner
+Franklin,BRA_A,BRA,Franklin,פרנקלין,1,blond; green bib over long-sleeved yellow shirt,confirmed by project owner
+Hiltinho,BRA_B,BRA,Hiltinho,הילטיניו,2,green bib over sleeveless yellow shirt,confirmed by project owner
