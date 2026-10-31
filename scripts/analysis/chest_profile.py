@@ -6,15 +6,16 @@ One row per chest touch (the 99 hand-marked ones) joining what the other analyse
   - ball: height at contact (m) and as a share of the player's stature, ball speed coming in (m/s, 3D, over the
     frames before the touch in the same fitted flight) and its descent angle (deg below horizontal)
   - place: distance from the net (m), distance from the nearest sideline (m), court square
-  - use: action (reception / set / attack / dead = after the rally ended), for receptions and sets whether the
-    own team touched the ball again,
-    whether the team won the rally
+  - use: action (reception / set / attack / dead = after the rally ended), the point (data/points/rallies_on_court.csv,
+    on-court winner), lost_ball = the chest touch was the last touch of a point its team lost,
+    whether the team won the point
 Then a per-player summary (medians and shares) over the in-play touches.
 
 Lengths are metres on the 16 x 8 m court (net at x = 8).
 
 inputs : data/analysis/touch_actions_v3.csv, chest_stance_v3.csv, touch_speed_v3.csv, ball_height_v2.csv,
-         player_positions_v3.csv, player_statures.json, point_landings.csv,
+         player_positions_v3.csv, player_statures.json, data/points/rallies_on_court.csv,
+         data/contacts/touch_labels_final.csv, data/mappings/frame_mapping_v3.csv,
          data/experiments/chest_marks/marks/marks/*.json (v2 frame of each touch)
 outputs: data/analysis/chest_profile.csv, data/analysis/chest_profile_by_player.csv
 usage: python scripts/analysis/chest_profile.py"""
@@ -41,7 +42,20 @@ def main():
     pos = pd.read_csv(os.path.join(A, 'player_positions_v3.csv'),
                       usecols=['frame', 'player', 'x', 'y', 'square', 'posture'])
     stat = {k: v['stature_m'] for k, v in json.load(open(os.path.join(A, 'player_statures.json'))).items()}
-    winners = pd.read_csv(os.path.join(A, 'point_landings.csv')).set_index('rally').winner
+    # points in v2 frames with the on-court winner (owner); touches mapped v3 -> v2
+    pts = pd.read_csv(os.path.join(ROOT, 'data', 'points', 'rallies_on_court.csv'))
+    fm = pd.read_csv(os.path.join(ROOT, 'data', 'mappings', 'frame_mapping_v3.csv'))
+    fm = fm[~fm.deleted].set_index('v3_frame').v2_frame
+    tl = pd.read_csv(os.path.join(ROOT, 'data', 'contacts', 'touch_labels_final.csv'))
+    tl = tl[(tl.kind == 'player') & tl.in_play].copy()
+    tl['v2'] = tl.frame.map(fm)
+    point_of, last_touch_of = {}, {}
+    for q in pts.itertuples():
+        t = tl[(tl.v2 >= q.start_frame) & (tl.v2 <= q.end_frame)]
+        for tid in t.touch:
+            point_of[int(tid)] = (q.rally, q.on_court_winner)
+        if len(t):
+            last_touch_of[q.rally] = int(t.loc[t.v2.idxmax()].touch)
     marks = {int(m['touch']): m for m in
              (json.load(open(f)) for f in glob.glob(os.path.join(ROOT, 'data', 'experiments', 'chest_marks',
                                                                  'marks', 'marks', '*.json')))}
@@ -55,10 +69,11 @@ def main():
     for r in d.itertuples():
         m = marks.get(r.touch, {})
         f2 = m.get('v2_frame')
-        h = v_in = angle = np.nan
+        h = v_in = angle = b_sigma = np.nan
+        b_method = None
         if f2 is not None and f2 in ball.index:
             b = ball.loc[f2]
-            h = b.height_m
+            h, b_sigma, b_method = b.height_m, b.height_sigma_m, b.method
             # the flight that brings the ball in: the one of the last fitted frame before the touch
             prev = [f2 - k for k in range(IN_FRAMES + 3, 0, -1)
                     if f2 - k in ball.index and ball.loc[f2 - k].method == 'flight_fit']
@@ -70,14 +85,17 @@ def main():
                 dz = p1.height_m - p0.height_m
                 v_in = np.sqrt(dxy ** 2 + dz ** 2) / dt
                 angle = np.degrees(np.arctan2(-dz, dxy))
-        last = r.touch_in_possession == r.possession_len
+        point, winner = point_of.get(r.touch, (np.nan, None))
+        # the ball was lost straight from this chest touch: last touch of the point and the team lost it
+        lost = bool(r.in_play and pd.notna(point) and last_touch_of.get(point) == r.touch and winner != r.team)
         rows.append(dict(
-            touch=r.touch, frame=r.frame, time_sec=r.time_sec, set=r.set, rally=r.rally, team=r.team,
+            touch=r.touch, frame=r.frame, v2_frame=f2, time_sec=r.time_sec, set=r.set, point=point, team=r.team,
             player=r.player, stature_m=stat.get(r.player),
             action=r.action, subtype=r.subtype,
-            kept_ball=(not last) if r.action in ('reception', 'set') else np.nan,
-            rally_won=(winners.get(r.rally) == r.team) if r.rally in winners.index else np.nan,
+            lost_ball=lost if r.in_play else np.nan,
+            point_won=(winner == r.team) if winner else np.nan,
             ball_height_m=round(h, 2) if pd.notna(h) else np.nan,
+            ball_height_sigma_m=b_sigma, ball_height_method=b_method,
             ball_height_share=round(h / stat[r.player], 2) if pd.notna(h) and r.player in stat else np.nan,
             ball_speed_in=round(v_in, 1) if pd.notna(v_in) else np.nan,
             ball_descent_deg=round(angle, 0) if pd.notna(angle) else np.nan,
@@ -101,9 +119,10 @@ def main():
         'receptions': g.action.apply(lambda a: (a == 'reception').sum()),
         'sets': g.action.apply(lambda a: (a == 'set').sum()),
         'attacks': g.action.apply(lambda a: (a == 'attack').sum()),
-        'kept_ball_pct': g.kept_ball.apply(lambda k: round(100 * k.dropna().astype(float).mean())),
-        'rally_won_pct': g.rally_won.apply(lambda k: round(100 * k.dropna().astype(float).mean())),
+        'lost_ball': g.lost_ball.apply(lambda k: int(k.dropna().astype(bool).sum())),
+        'point_won_pct': g.point_won.apply(lambda k: round(100 * k.dropna().astype(float).mean())),
         'ball_height_m': g.ball_height_m.median(),
+        'ball_height_sigma_m': g.ball_height_sigma_m.median(),
         'ball_height_share': g.ball_height_share.median(),
         'ball_speed_in': g.ball_speed_in.median(),
         'ball_descent_deg': g.ball_descent_deg.median(),
