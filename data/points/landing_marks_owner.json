@@ -1,19 +1,20 @@
 {
- "source": "owner's marks, review page database (collection marks), read 2026-10-31",
+ "source": "owner's marks, review page database (collection marks), read 2026-10-31; problem points updated 2026-10-31 (second pass)",
  "marks": [
   {
    "point": 1,
-   "category": "out",
+   "category": "relabel",
    "last_touch": "Hiltinho",
    "out_edge": "right_base",
    "spot": {
-    "court_x": 14.41,
-    "court_y": 5.17,
-    "frame": 56,
-    "px": 1913,
-    "py": 715
+    "court_x": 14.26,
+    "court_y": 5.11,
+    "frame": 55,
+    "px": 1887,
+    "py": 710
    },
-   "note": ""
+   "note": "",
+   "winner_owner": "BRA"
   },
   {
    "point": 2,
@@ -27,7 +28,8 @@
     "px": 673,
     "py": 578
    },
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 3,
@@ -41,7 +43,8 @@
     "px": 1615,
     "py": 774
    },
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 4,
@@ -55,7 +58,8 @@
     "px": 741,
     "py": 834
    },
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 5,
@@ -69,7 +73,8 @@
     "px": 1237,
     "py": 648
    },
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 6,
@@ -77,15 +82,17 @@
    "last_touch": "Hiltinho",
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": "ISR"
   },
   {
    "point": 7,
-   "category": "unreviewed",
+   "category": "out",
    "last_touch": "Maor_Haas",
-   "out_edge": null,
+   "out_edge": "far_side",
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": "BRA"
   },
   {
    "point": 8,
@@ -93,21 +100,23 @@
    "last_touch": "Maor_Haas",
    "out_edge": null,
    "spot": {
-    "court_x": 16.15,
-    "court_y": 1.15,
-    "frame": 1126,
-    "px": 1863,
-    "py": 472
+    "court_x": 15.95,
+    "court_y": 0.96,
+    "frame": 1125,
+    "px": 1831,
+    "py": 463
    },
-   "note": ""
+   "note": "",
+   "winner_owner": "ISR"
   },
   {
    "point": 9,
-   "category": "unreviewed",
+   "category": "ok",
    "last_touch": "Franklin",
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": "BRA"
   },
   {
    "point": 10,
@@ -115,7 +124,8 @@
    "last_touch": "Maor_Haas",
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 11,
@@ -129,7 +139,8 @@
     "px": 773,
     "py": 398
    },
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 12,
@@ -137,7 +148,8 @@
    "last_touch": "Hiltinho",
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 13,
@@ -145,7 +157,8 @@
    "last_touch": "Ron_Ben_Ishay",
    "out_edge": "near_side",
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 14,
@@ -153,7 +166,8 @@
    "last_touch": "Franklin",
    "out_edge": "near_side",
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 15,
@@ -161,7 +175,8 @@
    "last_touch": "Franklin",
    "out_edge": "left_base",
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 16,
@@ -175,7 +190,8 @@
     "px": 1377,
     "py": 578
    },
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 17,
@@ -183,7 +199,8 @@
    "last_touch": "Maor_Haas",
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 18,
@@ -191,15 +208,17 @@
    "last_touch": "Hiltinho",
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 19,
-   "category": "unclear",
+   "category": "net_fault",
    "last_touch": null,
    "out_edge": null,
    "spot": null,
-   "note": "יש חיתוך מוזר של הסרטון ולא מובן מה קרה"
+   "note": "",
+   "winner_owner": "BRA"
   },
   {
    "point": 20,
@@ -207,7 +226,8 @@
    "last_touch": "Hiltinho",
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 21,
@@ -215,7 +235,8 @@
    "last_touch": "Maor_Haas",
    "out_edge": "right_base",
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 22,
@@ -223,7 +244,8 @@
    "last_touch": "Maor_Haas",
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 23,
@@ -231,7 +253,8 @@
    "last_touch": "Maor_Haas",
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 24,
@@ -245,7 +268,8 @@
     "px": 743,
     "py": 877
    },
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 25,
@@ -253,7 +277,8 @@
    "last_touch": "Ron_Ben_Ishay",
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 26,
@@ -261,7 +286,8 @@
    "last_touch": null,
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 27,
@@ -269,7 +295,8 @@
    "last_touch": "Ron_Ben_Ishay",
    "out_edge": "right_base",
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 28,
@@ -277,7 +304,8 @@
    "last_touch": "Ron_Ben_Ishay",
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 29,
@@ -285,7 +313,8 @@
    "last_touch": "Hiltinho",
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 30,
@@ -293,7 +322,8 @@
    "last_touch": "Maor_Haas",
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 31,
@@ -301,7 +331,8 @@
    "last_touch": "Hiltinho",
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": "ISR"
   },
   {
    "point": 32,
@@ -309,7 +340,8 @@
    "last_touch": "Maor_Haas",
    "out_edge": "right_base",
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 33,
@@ -317,7 +349,8 @@
    "last_touch": "Ron_Ben_Ishay",
    "out_edge": "far_side",
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 34,
@@ -325,7 +358,8 @@
    "last_touch": null,
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 35,
@@ -333,7 +367,8 @@
    "last_touch": null,
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 36,
@@ -347,7 +382,8 @@
     "px": 63,
     "py": 695
    },
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 37,
@@ -355,7 +391,8 @@
    "last_touch": "Franklin",
    "out_edge": "far_side",
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 38,
@@ -363,7 +400,8 @@
    "last_touch": "Franklin",
    "out_edge": "far_side",
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 39,
@@ -371,7 +409,8 @@
    "last_touch": "Ron_Ben_Ishay",
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 40,
@@ -379,7 +418,8 @@
    "last_touch": null,
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 41,
@@ -393,7 +433,8 @@
     "px": 1917,
     "py": 755
    },
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 42,
@@ -401,7 +442,8 @@
    "last_touch": null,
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 43,
@@ -415,15 +457,17 @@
     "px": 1913,
     "py": 820
    },
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 44,
-   "category": "unreviewed",
+   "category": "ok",
    "last_touch": "Franklin",
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 45,
@@ -431,7 +475,8 @@
    "last_touch": "Maor_Haas",
    "out_edge": "far_side",
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 46,
@@ -439,7 +484,8 @@
    "last_touch": "Ron_Ben_Ishay",
    "out_edge": "near_side",
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 47,
@@ -447,7 +493,8 @@
    "last_touch": "Ron_Ben_Ishay",
    "out_edge": "right_base",
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 48,
@@ -455,13 +502,14 @@
    "last_touch": "Maor_Haas",
    "out_edge": null,
    "spot": {
-    "court_x": 10.64,
+    "court_x": 10.62,
     "court_y": -0.05,
     "frame": 13046,
-    "px": 1253,
+    "px": 1251,
     "py": 419
    },
-   "note": ""
+   "note": "",
+   "winner_owner": "ISR"
   },
   {
    "point": 49,
@@ -469,7 +517,8 @@
    "last_touch": "Ron_Ben_Ishay",
    "out_edge": null,
    "spot": null,
-   "note": "ברזיל זכתה בנקודה"
+   "note": "",
+   "winner_owner": "BRA"
   },
   {
    "point": 50,
@@ -477,7 +526,8 @@
    "last_touch": null,
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 51,
@@ -485,7 +535,8 @@
    "last_touch": "Ron_Ben_Ishay",
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 52,
@@ -493,15 +544,23 @@
    "last_touch": "Franklin",
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 53,
-   "category": "ok",
+   "category": "relabel",
    "last_touch": "Franklin",
    "out_edge": null,
-   "spot": null,
-   "note": ""
+   "spot": {
+    "court_x": 7.6,
+    "court_y": 7.6,
+    "frame": 14309,
+    "px": 985,
+    "py": 935
+   },
+   "note": "",
+   "winner_owner": "ISR"
   },
   {
    "point": 54,
@@ -509,7 +568,8 @@
    "last_touch": "Hiltinho",
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 55,
@@ -517,7 +577,8 @@
    "last_touch": "Franklin",
    "out_edge": "left_base",
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 56,
@@ -531,7 +592,8 @@
     "px": 1231,
     "py": 520
    },
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 57,
@@ -539,7 +601,8 @@
    "last_touch": "Ron_Ben_Ishay",
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 58,
@@ -547,7 +610,8 @@
    "last_touch": "Maor_Haas",
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 59,
@@ -555,7 +619,8 @@
    "last_touch": "Ron_Ben_Ishay",
    "out_edge": null,
    "spot": null,
-   "note": ""
+   "note": "",
+   "winner_owner": null
   },
   {
    "point": 60,
@@ -569,7 +634,8 @@
     "px": 947,
     "py": 917
    },
-   "note": ""
+   "note": "",
+   "winner_owner": null
   }
  ]
 }
