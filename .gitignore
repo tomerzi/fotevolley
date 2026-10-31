@@ -19,3 +19,4 @@ data/experiments/sand_marks/calib_*/
 
 # overlay video segments of the built site (Git LFS uploads are refused here; re-create with scripts/ball_height/render_video.py)
 site/built/video/
+coach_analysis/review/clips/
