@@ -6,13 +6,17 @@ net), lateral gap (difference across the court), who is closer to the net, and a
   'both_net'   both within NET_ZONE of the net
   'front_back' depth gap larger than the lateral gap (one up, one back)
   'side_side'  lateral gap larger (next to each other)
-Point moments come from data/analysis/conceded_partner_distance.csv (point_frame), as in point_positions.py.
+Point moments come from data/analysis/conceded_partner_distance.csv (point_frame); only reliable points, with the
+on-court winner, as in point_positions.py (verified_point_moments).
 
 outputs: data/analysis/formation_frames.csv  (rally, set, v2_frame, team, ...)
          data/analysis/formation_points.csv  (one row per point and team, won / lost)
 usage  : python scripts/analysis/formation.py"""
 import os
+import sys
 import numpy as np, pandas as pd
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from point_positions import verified_point_moments
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PAIR = {'BRA': ('Franklin', 'Hiltinho'), 'ISR': ('Maor_Haas', 'Ron_Ben_Ishay')}
@@ -45,7 +49,7 @@ def main():
     fr['rally'] = rid.reindex(fr.v2_frame).values.astype(int); fr['set'] = rset.reindex(fr.v2_frame).values.astype(int)
     fr.to_csv('data/analysis/formation_frames.csv', index=False)
 
-    pts = pd.read_csv('data/analysis/conceded_partner_distance.csv')
+    pts = verified_point_moments(pd.read_csv('data/analysis/conceded_partner_distance.csv'))
     allf = pd.concat([frames(pos, t, pos.v2_frame >= 0) for t in PAIR]).set_index(['team', 'v2_frame'])
     rows = []
     for p in pts.itertuples():

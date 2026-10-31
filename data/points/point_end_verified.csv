@@ -47,9 +47,9 @@ point,set,winner,recorded_winner,loser,owner_category,last_touch,out_edge,frame,
 46,2,BRA,BRA,ISR,out,Ron_Ben_Ishay,near_side,,,,,,,,out,True,,,
 47,2,BRA,BRA,ISR,out,Ron_Ben_Ishay,right_base,,,,,,,,out,True,,,
 48,2,ISR,ISR,BRA,relabel,Maor_Haas,,13046.0,10.62,-0.05,R1,right,net,BRA,landed_in,True,,"line ball: marked 0.05 m outside the line, within LINE_M, counted as in",
-49,2,BRA,ISR,ISR,net_fall,Ron_Ben_Ishay,,,,,,,,,net,True,owner says BRA won; the score files say ISR,,
+49,2,BRA,ISR,ISR,net_fall,Ron_Ben_Ishay,,,,,,,,,net,True,owner says BRA won; the score files say ISR,,"יותר אמין התיוג שלי מאשר הלוח נקודות,כאן היה נקודה לברזיל"
 50,2,ISR,ISR,BRA,net_fault,,,,,,,,,,fault,True,,,
-51,2,BRA,ISR,ISR,ok,Maor_Haas,,13757.0,7.49,6.96,L9,right,net,BRA,landed_in,False,landed on the BRA half but ISR lost the point; owner says BRA won; the score files say ISR,,
+51,2,ISR,ISR,BRA,ok,Maor_Haas,,13757.0,7.49,6.96,L9,right,net,BRA,landed_in,True,,,"הנקודה היא לישראל ,היה טעות בלוח תוצאות"
 52,2,BRA,BRA,ISR,ok,Franklin,,14058.0,9.71,0.23,R1,right,net,ISR,landed_in,True,,,
 53,2,ISR,ISR,BRA,relabel,Franklin,,14309.0,7.6,7.6,L9,right,net,BRA,landed_in,True,,,
 54,2,BRA,BRA,ISR,ok,Hiltinho,,14415.0,10.46,6.21,R7,left,net,ISR,landed_in,True,,,

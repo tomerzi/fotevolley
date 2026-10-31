@@ -9,6 +9,22 @@ renamed copy could not be uploaded from the cloud session); map them with `coach
 Footvolley match analysis (Israel vs Brazil, main camera): ball and player boxes,
 poses, rallies and points.
 
+## Verified points (owner review, 2026-10-31)
+
+- `data/points/landing_marks_owner.json`: the project owner's review of all 60 points, made on the review page
+  (`coach_analysis/review/landing_marking_tool.html`, clips from `coach_analysis/review/make_landing_clips.py`):
+  what happened, the real landing spot or the line an out ball crossed, last touch, and who won on court.
+- `data/points/point_end_verified.csv` (`scripts/analysis/point_end_verified.py`): how each point ended
+  (landed in / out, out over a line, net, fault, excluded) with consistency checks; 56 of 60 verified, the 4 points
+  the video does not show are excluded.
+- `data/points/rallies_on_court.csv`: winner of each point **on court** (owner) next to the scoreboard winner, and the
+  running score. The on-screen scoreboard was wrong at point 49 (it took a point from Brazil and gave Israel one),
+  so in the video Brazil reaches 18 in set 2 at point 58 and play goes on to 10-19; set 1's last point (Brazil's 18th,
+  an Israeli serve out) was not filmed: on court the match is 18-14, 18-9.
+- `point_positions*.csv` and `formation_points.csv` now use only reliable point moments and the on-court winner.
+- `data/analysis/point_landings.csv` is the earlier automatic landing guess, kept for reference; use
+  `point_end_verified.csv` instead.
+
 ## Layout
 
 | Folder | What's in it |

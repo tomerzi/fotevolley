@@ -1,5 +1,6 @@
 """Where every player stood when each of the 60 points ended, on the 3x3 squares of each half (16 x 8 m court).
 
+Points: only reliable ones, with the on-court winner (verified_point_moments).
 Point moment = point_frame of data/analysis/conceded_partner_distance.csv (v2 frames: hand-marked moment, ball on
 the sand, or the rally end as a fallback). Position = smoothed position from data/analysis/player_positions_v3.csv
 at that v2 frame (nearest frame within NEAR frames when the exact one has none). Squares: the court labels L1-L9 /
@@ -35,8 +36,19 @@ def cell(x, y):
     return sq, lane, depth
 
 
+def verified_point_moments(pts):
+    """keep only reliable point moments and use the on-court winner (data/points/rallies_on_court.csv): drop points
+    the video does not show or the owner could not judge (data/points/point_end_verified.csv, end_type 'excluded')
+    and points whose end moment is marked uncertain."""
+    oc = pd.read_csv(os.path.join(ROOT, 'data', 'points', 'rallies_on_court.csv')).set_index('rally').on_court_winner
+    ver = pd.read_csv(os.path.join(ROOT, 'data', 'points', 'point_end_verified.csv')).set_index('point').end_type
+    pts = pts[~pts.uncertain.astype(bool) & (pts.rally.map(ver) != 'excluded')].copy()
+    pts['loser'] = pts.rally.map(oc).map({'BRA': 'ISR', 'ISR': 'BRA'})
+    return pts
+
+
 def main():
-    pts = pd.read_csv(os.path.join(OUT, 'conceded_partner_distance.csv'))
+    pts = verified_point_moments(pd.read_csv(os.path.join(OUT, 'conceded_partner_distance.csv')))
     pos = pd.read_csv(os.path.join(OUT, 'player_positions_v3.csv'), usecols=['v2_frame', 'player', 'x', 'y'])
     pos = pos.dropna(subset=['x', 'y'])
     rows = []
