@@ -1,0 +1,241 @@
+rally,set,score,point_frame,time_sec,moment,player,team,result,x,y,square,lane,depth
+1,1,0-1,65,2.6,rally end (fallback),Franklin,BRA,won,4.21,4.77,L5,mid,mid
+1,1,0-1,65,2.6,rally end (fallback),Hiltinho,BRA,won,7.33,3.75,L6,mid,net
+1,1,0-1,65,2.6,rally end (fallback),Maor_Haas,ISR,lost,13.63,4.43,R6,mid,base
+1,1,0-1,65,2.6,rally end (fallback),Ron_Ben_Ishay,ISR,lost,10.91,4.96,R5,mid,mid
+2,1,1-1,128,5.12,hand-marked moment,Franklin,BRA,lost,5.87,4.41,L6,mid,net
+2,1,1-1,128,5.12,hand-marked moment,Hiltinho,BRA,lost,3.67,2.57,L2,left,mid
+2,1,1-1,128,5.12,hand-marked moment,Maor_Haas,ISR,won,10.44,3.43,R4,mid,net
+2,1,1-1,128,5.12,hand-marked moment,Ron_Ben_Ishay,ISR,won,9.18,5.46,R7,left,net
+3,1,1-2,455,18.2,hand-marked moment,Franklin,BRA,won,4.77,5.43,L8,right,mid
+3,1,1-2,455,18.2,hand-marked moment,Hiltinho,BRA,won,7.24,4.8,L6,mid,net
+3,1,1-2,455,18.2,hand-marked moment,Maor_Haas,ISR,lost,10.7,2.85,R5,mid,mid
+3,1,1-2,455,18.2,hand-marked moment,Ron_Ben_Ishay,ISR,lost,13.12,4.5,R5,mid,mid
+4,1,2-2,613,24.52,hand-marked moment,Franklin,BRA,lost,5.09,6.85,L8,right,mid
+4,1,2-2,613,24.52,hand-marked moment,Hiltinho,BRA,lost,6.71,5.26,L6,mid,net
+4,1,2-2,613,24.52,hand-marked moment,Maor_Haas,ISR,won,11.2,3.47,R5,mid,mid
+4,1,2-2,613,24.52,hand-marked moment,Ron_Ben_Ishay,ISR,won,7.99,5.29,L6,mid,net
+5,1,2-3,735,29.4,hand-marked moment,Franklin,BRA,won,7.08,2.98,L6,mid,net
+5,1,2-3,735,29.4,hand-marked moment,Hiltinho,BRA,won,6.33,1.71,L3,left,net
+5,1,2-3,735,29.4,hand-marked moment,Maor_Haas,ISR,lost,10.46,3.06,R4,mid,net
+5,1,2-3,735,29.4,hand-marked moment,Ron_Ben_Ishay,ISR,lost,10.89,5.66,R8,left,mid
+6,1,3-3,848,33.92,hand-marked moment,Franklin,BRA,lost,4.23,4.1,L5,mid,mid
+6,1,3-3,848,33.92,hand-marked moment,Hiltinho,BRA,lost,5.9,0.11,L3,left,net
+6,1,3-3,848,33.92,hand-marked moment,Maor_Haas,ISR,won,10.98,2.4,R2,right,mid
+6,1,3-3,848,33.92,hand-marked moment,Ron_Ben_Ishay,ISR,won,10.44,6.3,R7,left,net
+7,1,3-4,1013,40.52,hand-marked moment,Franklin,BRA,won,10.74,3.26,R5,mid,mid
+7,1,3-4,1013,40.52,hand-marked moment,Hiltinho,BRA,won,9.0,3.3,R4,mid,net
+7,1,3-4,1013,40.52,hand-marked moment,Maor_Haas,ISR,lost,7.32,4.3,L6,mid,net
+7,1,3-4,1013,40.52,hand-marked moment,Ron_Ben_Ishay,ISR,lost,5.28,1.79,L2,left,mid
+8,1,4-4,1126,45.04,hand-marked moment,Franklin,BRA,lost,13.55,1.47,R3,right,base
+8,1,4-4,1126,45.04,hand-marked moment,Hiltinho,BRA,lost,10.53,4.06,R4,mid,net
+8,1,4-4,1126,45.04,hand-marked moment,Maor_Haas,ISR,won,5.04,4.88,L5,mid,mid
+8,1,4-4,1126,45.04,hand-marked moment,Ron_Ben_Ishay,ISR,won,6.12,2.53,L3,left,net
+9,1,4-5,1234,49.36,hand-marked moment,Franklin,BRA,won,8.56,4.79,R4,mid,net
+9,1,4-5,1234,49.36,hand-marked moment,Hiltinho,BRA,won,10.75,5.37,R8,left,mid
+9,1,4-5,1234,49.36,hand-marked moment,Maor_Haas,ISR,lost,3.81,5.39,L8,right,mid
+9,1,4-5,1234,49.36,hand-marked moment,Ron_Ben_Ishay,ISR,lost,4.13,2.04,L2,left,mid
+10,1,5-5,1524,60.96,hand-marked moment,Franklin,BRA,lost,12.91,0.8,R2,right,mid
+10,1,5-5,1524,60.96,hand-marked moment,Hiltinho,BRA,lost,12.14,3.77,R5,mid,mid
+10,1,5-5,1524,60.96,hand-marked moment,Maor_Haas,ISR,won,4.04,3.98,L5,mid,mid
+10,1,5-5,1524,60.96,hand-marked moment,Ron_Ben_Ishay,ISR,won,7.9,1.27,L3,left,net
+11,1,6-5,1657,66.28,hand-marked moment,Franklin,BRA,lost,11.2,3.39,R5,mid,mid
+11,1,6-5,1657,66.28,hand-marked moment,Hiltinho,BRA,lost,8.24,3.85,R4,mid,net
+11,1,6-5,1657,66.28,hand-marked moment,Maor_Haas,ISR,won,4.83,4.47,L5,mid,mid
+11,1,6-5,1657,66.28,hand-marked moment,Ron_Ben_Ishay,ISR,won,5.73,1.74,L3,left,net
+12,1,7-5,1947,77.88,hand-marked moment,Franklin,BRA,lost,13.58,0.72,R3,right,base
+12,1,7-5,1947,77.88,hand-marked moment,Hiltinho,BRA,lost,8.57,5.23,R4,mid,net
+12,1,7-5,1947,77.88,hand-marked moment,Maor_Haas,ISR,won,3.24,5.74,L8,right,mid
+12,1,7-5,1947,77.88,hand-marked moment,Ron_Ben_Ishay,ISR,won,3.64,1.97,L2,left,mid
+13,1,7-6,2206,88.24,own error (last touch),Franklin,BRA,won,6.99,5.05,L6,mid,net
+13,1,7-6,2206,88.24,own error (last touch),Hiltinho,BRA,won,7.55,2.58,L3,left,net
+13,1,7-6,2206,88.24,own error (last touch),Maor_Haas,ISR,lost,13.08,3.51,R5,mid,mid
+13,1,7-6,2206,88.24,own error (last touch),Ron_Ben_Ishay,ISR,lost,9.88,5.52,R7,left,net
+14,1,8-6,2410,96.4,hand-marked moment,Franklin,BRA,lost,4.76,7.22,L8,right,mid
+14,1,8-6,2410,96.4,hand-marked moment,Hiltinho,BRA,lost,5.89,3.36,L6,mid,net
+14,1,8-6,2410,96.4,hand-marked moment,Maor_Haas,ISR,won,10.5,2.49,R1,right,net
+14,1,8-6,2410,96.4,hand-marked moment,Ron_Ben_Ishay,ISR,won,10.12,4.38,R4,mid,net
+15,1,9-6,2560,102.4,hand-marked moment,Franklin,BRA,lost,3.84,4.56,L5,mid,mid
+15,1,9-6,2560,102.4,hand-marked moment,Hiltinho,BRA,lost,4.72,2.25,L2,left,mid
+15,1,9-6,2560,102.4,hand-marked moment,Maor_Haas,ISR,won,8.34,2.48,R1,right,net
+15,1,9-6,2560,102.4,hand-marked moment,Ron_Ben_Ishay,ISR,won,11.98,4.42,R5,mid,mid
+16,1,9-7,2659,106.36,own error (last touch),Franklin,BRA,won,7.24,4.51,L6,mid,net
+16,1,9-7,2659,106.36,own error (last touch),Hiltinho,BRA,won,4.98,2.85,L5,mid,mid
+16,1,9-7,2659,106.36,own error (last touch),Maor_Haas,ISR,lost,11.78,3.09,R5,mid,mid
+16,1,9-7,2659,106.36,own error (last touch),Ron_Ben_Ishay,ISR,lost,9.55,4.22,R4,mid,net
+17,1,10-7,2925,117.0,hand-marked landing,Franklin,BRA,lost,5.24,5.12,L5,mid,mid
+17,1,10-7,2925,117.0,hand-marked landing,Hiltinho,BRA,lost,4.17,1.99,L2,left,mid
+17,1,10-7,2925,117.0,hand-marked landing,Maor_Haas,ISR,won,10.94,2.95,R5,mid,mid
+17,1,10-7,2925,117.0,hand-marked landing,Ron_Ben_Ishay,ISR,won,10.09,4.84,R4,mid,net
+18,1,10-8,3012,120.48,hand-marked landing,Franklin,BRA,won,5.85,5.68,L9,right,net
+18,1,10-8,3012,120.48,hand-marked landing,Hiltinho,BRA,won,6.98,3.93,L6,mid,net
+18,1,10-8,3012,120.48,hand-marked landing,Maor_Haas,ISR,lost,10.57,4.08,R4,mid,net
+18,1,10-8,3012,120.48,hand-marked landing,Ron_Ben_Ishay,ISR,lost,11.63,5.96,R8,left,mid
+19,1,10-9,3252,130.08,hand-marked moment,Franklin,BRA,won,12.79,1.28,R2,right,mid
+19,1,10-9,3252,130.08,hand-marked moment,Hiltinho,BRA,won,8.31,2.65,R1,right,net
+19,1,10-9,3252,130.08,hand-marked moment,Maor_Haas,ISR,lost,4.26,4.68,L5,mid,mid
+19,1,10-9,3252,130.08,hand-marked moment,Ron_Ben_Ishay,ISR,lost,6.33,2.09,L3,left,net
+20,1,10-10,3884,155.36,hand-marked moment,Franklin,BRA,won,14.99,2.97,R6,mid,base
+20,1,10-10,3884,155.36,hand-marked moment,Hiltinho,BRA,won,8.33,5.96,R7,left,net
+20,1,10-10,3884,155.36,hand-marked moment,Maor_Haas,ISR,lost,4.38,6.23,L8,right,mid
+20,1,10-10,3884,155.36,hand-marked moment,Ron_Ben_Ishay,ISR,lost,4.24,2.31,L2,left,mid
+21,1,10-11,4020,160.8,own error (last touch),Franklin,BRA,won,12.22,2.07,R2,right,mid
+21,1,10-11,4020,160.8,own error (last touch),Hiltinho,BRA,won,12.16,5.34,R8,left,mid
+21,1,10-11,4020,160.8,own error (last touch),Maor_Haas,ISR,lost,4.12,4.46,L5,mid,mid
+21,1,10-11,4020,160.8,own error (last touch),Ron_Ben_Ishay,ISR,lost,4.1,1.16,L2,left,mid
+22,1,10-12,4166,166.64,own error (last touch),Franklin,BRA,won,12.12,2.4,R2,right,mid
+22,1,10-12,4166,166.64,own error (last touch),Hiltinho,BRA,won,12.09,5.69,R8,left,mid
+22,1,10-12,4166,166.64,own error (last touch),Maor_Haas,ISR,lost,4.3,4.94,L5,mid,mid
+22,1,10-12,4166,166.64,own error (last touch),Ron_Ben_Ishay,ISR,lost,4.79,2.94,L5,mid,mid
+23,1,11-12,4323,172.92,hand-marked landing,Franklin,BRA,lost,13.66,1.78,R3,right,base
+23,1,11-12,4323,172.92,hand-marked landing,Hiltinho,BRA,lost,9.84,4.02,R4,mid,net
+23,1,11-12,4323,172.92,hand-marked landing,Maor_Haas,ISR,won,4.78,4.78,L5,mid,mid
+23,1,11-12,4323,172.92,hand-marked landing,Ron_Ben_Ishay,ISR,won,7.11,3.76,L6,mid,net
+24,1,11-13,4512,180.48,hand-marked landing,Franklin,BRA,won,8.77,3.4,R4,mid,net
+24,1,11-13,4512,180.48,hand-marked landing,Hiltinho,BRA,won,10.07,4.82,R4,mid,net
+24,1,11-13,4512,180.48,hand-marked landing,Maor_Haas,ISR,lost,7.31,3.98,L6,mid,net
+24,1,11-13,4512,180.48,hand-marked landing,Ron_Ben_Ishay,ISR,lost,3.65,3.29,L5,mid,mid
+25,1,11-14,4931,197.24,own error (last touch),Franklin,BRA,won,5.44,6.32,L9,right,net
+25,1,11-14,4931,197.24,own error (last touch),Hiltinho,BRA,won,7.12,3.61,L6,mid,net
+25,1,11-14,4931,197.24,own error (last touch),Maor_Haas,ISR,lost,9.22,2.51,R1,right,net
+25,1,11-14,4931,197.24,own error (last touch),Ron_Ben_Ishay,ISR,lost,10.0,5.29,R4,mid,net
+26,1,12-14,5212,208.48,own error (last touch),Franklin,BRA,lost,6.49,3.54,L6,mid,net
+26,1,12-14,5212,208.48,own error (last touch),Hiltinho,BRA,lost,3.64,0.81,L2,left,mid
+26,1,12-14,5212,208.48,own error (last touch),Maor_Haas,ISR,won,12.5,2.48,R2,right,mid
+26,1,12-14,5212,208.48,own error (last touch),Ron_Ben_Ishay,ISR,won,11.38,6.16,R8,left,mid
+27,1,12-15,6186,247.44,own error (last touch),Franklin,BRA,won,4.85,4.69,L5,mid,mid
+27,1,12-15,6186,247.44,own error (last touch),Hiltinho,BRA,won,6.22,3.35,L6,mid,net
+27,1,12-15,6186,247.44,own error (last touch),Maor_Haas,ISR,lost,12.71,3.39,R5,mid,mid
+27,1,12-15,6186,247.44,own error (last touch),Ron_Ben_Ishay,ISR,lost,12.83,5.89,R8,left,mid
+28,1,12-16,6752,270.08,hand-marked landing,Franklin,BRA,won,7.81,2.79,L6,mid,net
+28,1,12-16,6752,270.08,hand-marked landing,Hiltinho,BRA,won,3.48,2.51,L2,left,mid
+28,1,12-16,6752,270.08,hand-marked landing,Maor_Haas,ISR,lost,11.33,1.85,R2,right,mid
+28,1,12-16,6752,270.08,hand-marked landing,Ron_Ben_Ishay,ISR,lost,9.85,3.98,R4,mid,net
+29,1,12-17,7065,282.6,hand-marked landing,Franklin,BRA,won,5.2,4.07,L5,mid,mid
+29,1,12-17,7065,282.6,hand-marked landing,Hiltinho,BRA,won,6.97,2.53,L3,left,net
+29,1,12-17,7065,282.6,hand-marked landing,Maor_Haas,ISR,lost,11.19,2.78,R5,mid,mid
+29,1,12-17,7065,282.6,hand-marked landing,Ron_Ben_Ishay,ISR,lost,11.22,5.66,R8,left,mid
+30,1,13-17,7197,287.88,hand-marked landing,Franklin,BRA,lost,4.16,6.01,L8,right,mid
+30,1,13-17,7197,287.88,hand-marked landing,Hiltinho,BRA,lost,4.42,2.99,L5,mid,mid
+30,1,13-17,7197,287.88,hand-marked landing,Maor_Haas,ISR,won,10.16,3.62,R4,mid,net
+30,1,13-17,7197,287.88,hand-marked landing,Ron_Ben_Ishay,ISR,won,8.6,6.46,R7,left,net
+31,1,13-18,7970,318.8,hand-marked moment,Franklin,BRA,won,10.35,-0.79,out,,
+31,1,13-18,7970,318.8,hand-marked moment,Hiltinho,BRA,won,11.14,4.89,R5,mid,mid
+31,1,13-18,7970,318.8,hand-marked moment,Maor_Haas,ISR,lost,3.53,5.21,L5,mid,mid
+31,1,13-18,7970,318.8,hand-marked moment,Ron_Ben_Ishay,ISR,lost,3.6,2.57,L2,left,mid
+32,2,0-1,8206,328.24,own error (last touch),Franklin,BRA,won,12.42,-0.08,out,,
+32,2,0-1,8206,328.24,own error (last touch),Hiltinho,BRA,won,8.56,3.39,R4,mid,net
+32,2,0-1,8206,328.24,own error (last touch),Maor_Haas,ISR,lost,4.09,4.1,L5,mid,mid
+32,2,0-1,8206,328.24,own error (last touch),Ron_Ben_Ishay,ISR,lost,5.26,2.22,L2,left,mid
+33,2,0-2,8681,347.24,own error (last touch),Franklin,BRA,won,9.84,4.5,R4,mid,net
+33,2,0-2,8681,347.24,own error (last touch),Hiltinho,BRA,won,11.51,7.72,R8,left,mid
+33,2,0-2,8681,347.24,own error (last touch),Maor_Haas,ISR,lost,2.58,4.34,L4,mid,base
+33,2,0-2,8681,347.24,own error (last touch),Ron_Ben_Ishay,ISR,lost,5.89,3.44,L6,mid,net
+34,2,0-3,9130,365.2,rally end (fallback),Franklin,BRA,won,10.74,2.31,R2,right,mid
+34,2,0-3,9130,365.2,rally end (fallback),Hiltinho,BRA,won,10.58,6.6,R7,left,net
+34,2,0-3,9130,365.2,rally end (fallback),Maor_Haas,ISR,lost,4.05,4.69,L5,mid,mid
+34,2,0-3,9130,365.2,rally end (fallback),Ron_Ben_Ishay,ISR,lost,6.96,2.82,L6,mid,net
+35,2,0-4,9263,370.52,ball track landing,Franklin,BRA,won,11.75,3.52,R5,mid,mid
+35,2,0-4,9263,370.52,ball track landing,Hiltinho,BRA,won,,,unseen,,
+35,2,0-4,9263,370.52,ball track landing,Maor_Haas,ISR,lost,1.75,3.73,L4,mid,base
+35,2,0-4,9263,370.52,ball track landing,Ron_Ben_Ishay,ISR,lost,1.07,3.05,L4,mid,base
+36,2,0-5,9658,386.32,hand-marked moment,Franklin,BRA,won,11.28,2.11,R2,right,mid
+36,2,0-5,9658,386.32,hand-marked moment,Hiltinho,BRA,won,7.68,5.25,L6,mid,net
+36,2,0-5,9658,386.32,hand-marked moment,Maor_Haas,ISR,lost,4.67,5.12,L5,mid,mid
+36,2,0-5,9658,386.32,hand-marked moment,Ron_Ben_Ishay,ISR,lost,1.73,3.54,L4,mid,base
+37,2,1-5,9756,390.24,own error (last touch),Franklin,BRA,lost,14.13,0.93,R3,right,base
+37,2,1-5,9756,390.24,own error (last touch),Hiltinho,BRA,lost,13.36,4.25,R6,mid,base
+37,2,1-5,9756,390.24,own error (last touch),Maor_Haas,ISR,won,5.63,6.39,L9,right,net
+37,2,1-5,9756,390.24,own error (last touch),Ron_Ben_Ishay,ISR,won,6.11,1.3,L3,left,net
+38,2,2-5,9967,398.68,own error (last touch),Franklin,BRA,lost,6.63,2.98,L6,mid,net
+38,2,2-5,9967,398.68,own error (last touch),Hiltinho,BRA,lost,7.96,0.74,L3,left,net
+38,2,2-5,9967,398.68,own error (last touch),Maor_Haas,ISR,won,10.88,2.54,R2,right,mid
+38,2,2-5,9967,398.68,own error (last touch),Ron_Ben_Ishay,ISR,won,11.58,5.76,R8,left,mid
+39,2,2-6,10634,425.36,own error (last touch),Franklin,BRA,won,5.11,4.82,L5,mid,mid
+39,2,2-6,10634,425.36,own error (last touch),Hiltinho,BRA,won,4.46,1.86,L2,left,mid
+39,2,2-6,10634,425.36,own error (last touch),Maor_Haas,ISR,lost,12.96,3.4,R5,mid,mid
+39,2,2-6,10634,425.36,own error (last touch),Ron_Ben_Ishay,ISR,lost,12.5,5.57,R8,left,mid
+40,2,2-7,10727,429.08,own error (last touch),Franklin,BRA,won,3.94,5.65,L8,right,mid
+40,2,2-7,10727,429.08,own error (last touch),Hiltinho,BRA,won,3.73,3.39,L5,mid,mid
+40,2,2-7,10727,429.08,own error (last touch),Maor_Haas,ISR,lost,9.63,5.29,R4,mid,net
+40,2,2-7,10727,429.08,own error (last touch),Ron_Ben_Ishay,ISR,lost,11.9,6.17,R8,left,mid
+41,2,2-8,11159,446.36,rally end (fallback),Franklin,BRA,won,2.94,5.16,L5,mid,mid
+41,2,2-8,11159,446.36,rally end (fallback),Hiltinho,BRA,won,6.95,6.76,L9,right,net
+41,2,2-8,11159,446.36,rally end (fallback),Maor_Haas,ISR,lost,12.81,3.33,R5,mid,mid
+41,2,2-8,11159,446.36,rally end (fallback),Ron_Ben_Ishay,ISR,lost,11.76,6.85,R8,left,mid
+42,2,2-9,11316,452.64,hand-marked moment,Franklin,BRA,won,4.16,5.4,L8,right,mid
+42,2,2-9,11316,452.64,hand-marked moment,Hiltinho,BRA,won,3.76,2.07,L2,left,mid
+42,2,2-9,11316,452.64,hand-marked moment,Maor_Haas,ISR,lost,9.64,1.97,R1,right,net
+42,2,2-9,11316,452.64,hand-marked moment,Ron_Ben_Ishay,ISR,lost,9.87,4.35,R4,mid,net
+43,2,2-10,11734,469.36,hand-marked moment,Franklin,BRA,won,6.58,4.14,L6,mid,net
+43,2,2-10,11734,469.36,hand-marked moment,Hiltinho,BRA,won,4.69,1.62,L2,left,mid
+43,2,2-10,11734,469.36,hand-marked moment,Maor_Haas,ISR,lost,13.04,3.53,R5,mid,mid
+43,2,2-10,11734,469.36,hand-marked moment,Ron_Ben_Ishay,ISR,lost,11.12,6.24,R8,left,mid
+44,2,2-11,11903,476.12,hand-marked landing,Franklin,BRA,won,10.57,0.56,R1,right,net
+44,2,2-11,11903,476.12,hand-marked landing,Hiltinho,BRA,won,10.01,3.96,R4,mid,net
+44,2,2-11,11903,476.12,hand-marked landing,Maor_Haas,ISR,lost,3.34,4.94,L5,mid,mid
+44,2,2-11,11903,476.12,hand-marked landing,Ron_Ben_Ishay,ISR,lost,3.65,1.07,L2,left,mid
+45,2,2-12,12188,487.52,own error (last touch),Franklin,BRA,won,11.64,2.6,R2,right,mid
+45,2,2-12,12188,487.52,own error (last touch),Hiltinho,BRA,won,12.24,5.59,R8,left,mid
+45,2,2-12,12188,487.52,own error (last touch),Maor_Haas,ISR,lost,4.63,6.71,L8,right,mid
+45,2,2-12,12188,487.52,own error (last touch),Ron_Ben_Ishay,ISR,lost,6.61,3.75,L6,mid,net
+46,2,2-13,12385,495.4,own error (last touch),Franklin,BRA,won,11.82,2.49,R2,right,mid
+46,2,2-13,12385,495.4,own error (last touch),Hiltinho,BRA,won,12.21,4.91,R5,mid,mid
+46,2,2-13,12385,495.4,own error (last touch),Maor_Haas,ISR,lost,7.1,3.32,L6,mid,net
+46,2,2-13,12385,495.4,own error (last touch),Ron_Ben_Ishay,ISR,lost,3.97,1.76,L2,left,mid
+47,2,2-14,12705,508.2,own error (last touch),Franklin,BRA,won,12.18,2.12,R2,right,mid
+47,2,2-14,12705,508.2,own error (last touch),Hiltinho,BRA,won,11.9,5.67,R8,left,mid
+47,2,2-14,12705,508.2,own error (last touch),Maor_Haas,ISR,lost,6.62,3.71,L6,mid,net
+47,2,2-14,12705,508.2,own error (last touch),Ron_Ben_Ishay,ISR,lost,4.56,3.64,L5,mid,mid
+48,2,3-14,13056,522.24,own error (last touch),Franklin,BRA,lost,11.43,-0.08,out,,
+48,2,3-14,13056,522.24,own error (last touch),Hiltinho,BRA,lost,11.45,5.01,R5,mid,mid
+48,2,3-14,13056,522.24,own error (last touch),Maor_Haas,ISR,won,3.58,4.0,L5,mid,mid
+48,2,3-14,13056,522.24,own error (last touch),Ron_Ben_Ishay,ISR,won,6.83,3.03,L6,mid,net
+49,2,4-14,13138,525.52,hand-marked moment,Franklin,BRA,lost,11.02,2.06,R2,right,mid
+49,2,4-14,13138,525.52,hand-marked moment,Hiltinho,BRA,lost,9.28,6.68,R7,left,net
+49,2,4-14,13138,525.52,hand-marked moment,Maor_Haas,ISR,won,5.98,7.82,L9,right,net
+49,2,4-14,13138,525.52,hand-marked moment,Ron_Ben_Ishay,ISR,won,5.94,2.7,L6,mid,net
+50,2,5-14,13365,534.6,hand-marked moment,Franklin,BRA,lost,4.05,5.63,L8,right,mid
+50,2,5-14,13365,534.6,hand-marked moment,Hiltinho,BRA,lost,7.88,3.5,L6,mid,net
+50,2,5-14,13365,534.6,hand-marked moment,Maor_Haas,ISR,won,12.17,2.55,R2,right,mid
+50,2,5-14,13365,534.6,hand-marked moment,Ron_Ben_Ishay,ISR,won,12.58,5.84,R8,left,mid
+51,2,6-14,13757,550.28,hand-marked moment,Franklin,BRA,lost,6.38,6.79,L9,right,net
+51,2,6-14,13757,550.28,hand-marked moment,Hiltinho,BRA,lost,4.61,3.34,L5,mid,mid
+51,2,6-14,13757,550.28,hand-marked moment,Maor_Haas,ISR,won,11.24,2.01,R2,right,mid
+51,2,6-14,13757,550.28,hand-marked moment,Ron_Ben_Ishay,ISR,won,8.41,2.88,R4,mid,net
+52,2,6-15,14058,562.32,hand-marked landing,Franklin,BRA,won,7.15,4.15,L6,mid,net
+52,2,6-15,14058,562.32,hand-marked landing,Hiltinho,BRA,won,3.23,3.04,L5,mid,mid
+52,2,6-15,14058,562.32,hand-marked landing,Maor_Haas,ISR,lost,13.72,1.94,R3,right,base
+52,2,6-15,14058,562.32,hand-marked landing,Ron_Ben_Ishay,ISR,lost,10.45,4.61,R4,mid,net
+53,2,7-15,14274,570.96,own error (last touch),Franklin,BRA,lost,7.13,3.61,L6,mid,net
+53,2,7-15,14274,570.96,own error (last touch),Hiltinho,BRA,lost,4.32,1.71,L2,left,mid
+53,2,7-15,14274,570.96,own error (last touch),Maor_Haas,ISR,won,12.93,2.4,R2,right,mid
+53,2,7-15,14274,570.96,own error (last touch),Ron_Ben_Ishay,ISR,won,11.04,6.25,R8,left,mid
+54,2,7-16,14416,576.64,hand-marked landing,Franklin,BRA,won,6.37,7.49,L9,right,net
+54,2,7-16,14416,576.64,hand-marked landing,Hiltinho,BRA,won,7.21,4.36,L6,mid,net
+54,2,7-16,14416,576.64,hand-marked landing,Maor_Haas,ISR,lost,10.4,3.18,R4,mid,net
+54,2,7-16,14416,576.64,hand-marked landing,Ron_Ben_Ishay,ISR,lost,13.16,3.6,R5,mid,mid
+55,2,8-16,14548,581.92,own error (last touch),Franklin,BRA,lost,3.58,6.76,L8,right,mid
+55,2,8-16,14548,581.92,own error (last touch),Hiltinho,BRA,lost,2.93,3.6,L5,mid,mid
+55,2,8-16,14548,581.92,own error (last touch),Maor_Haas,ISR,won,9.68,4.35,R4,mid,net
+55,2,8-16,14548,581.92,own error (last touch),Ron_Ben_Ishay,ISR,won,8.16,7.38,R7,left,net
+56,2,9-16,14651,586.04,own error (last touch),Franklin,BRA,lost,8.28,3.04,R4,mid,net
+56,2,9-16,14651,586.04,own error (last touch),Hiltinho,BRA,lost,9.92,4.77,R4,mid,net
+56,2,9-16,14651,586.04,own error (last touch),Maor_Haas,ISR,won,7.08,4.05,L6,mid,net
+56,2,9-16,14651,586.04,own error (last touch),Ron_Ben_Ishay,ISR,won,4.38,1.9,L2,left,mid
+57,2,10-16,14855,594.2,hand-marked landing,Franklin,BRA,lost,11.01,3.08,R5,mid,mid
+57,2,10-16,14855,594.2,hand-marked landing,Hiltinho,BRA,lost,10.95,5.65,R8,left,mid
+57,2,10-16,14855,594.2,hand-marked landing,Maor_Haas,ISR,won,7.26,5.38,L9,right,net
+57,2,10-16,14855,594.2,hand-marked landing,Ron_Ben_Ishay,ISR,won,5.96,2.82,L6,mid,net
+58,2,10-17,15114,604.56,own error (last touch),Franklin,BRA,won,8.33,3.22,R4,mid,net
+58,2,10-17,15114,604.56,own error (last touch),Hiltinho,BRA,won,9.16,4.43,R4,mid,net
+58,2,10-17,15114,604.56,own error (last touch),Maor_Haas,ISR,lost,5.96,1.69,L3,left,net
+58,2,10-17,15114,604.56,own error (last touch),Ron_Ben_Ishay,ISR,lost,2.62,4.29,L4,mid,base
+59,2,11-17,15336,613.44,hand-marked landing,Franklin,BRA,lost,9.51,3.78,R4,mid,net
+59,2,11-17,15336,613.44,hand-marked landing,Hiltinho,BRA,lost,9.8,5.39,R7,left,net
+59,2,11-17,15336,613.44,hand-marked landing,Maor_Haas,ISR,won,7.15,5.91,L9,right,net
+59,2,11-17,15336,613.44,hand-marked landing,Ron_Ben_Ishay,ISR,won,5.92,1.61,L3,left,net
+60,2,11-18,15488,619.52,hand-marked moment,Franklin,BRA,won,9.53,3.7,R4,mid,net
+60,2,11-18,15488,619.52,hand-marked moment,Hiltinho,BRA,won,8.65,6.48,R7,left,net
+60,2,11-18,15488,619.52,hand-marked moment,Maor_Haas,ISR,lost,5.97,2.37,L3,left,net
+60,2,11-18,15488,619.52,hand-marked moment,Ron_Ben_Ishay,ISR,lost,2.55,3.39,L4,mid,base
