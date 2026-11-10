@@ -20,6 +20,9 @@ circle.csv) instead of the detector box, where available; SIZE_SRC=silhouette: f
 CAM_FIT=1: the camera (focal, principal point, k1, k2, rotation, position) is refined together with the flights,
 keeping the calibration's own landmark terms (court lines, net tape, antenna stripes); SUN_FIT=1: the sun direction
 (azimuth, elevation, drift) is refined too. Writes OUT/camera_fit.npz and OUT/sun_fit.json.
+TOUCH_ANCHOR=even|odd|all (parity of the touch id): at every labelled player touch (data/contacts/touch_labels_final.csv)
+inside or at the end of a flight, the ball is horizontally at the touching player's position (sigma TOUCH_SIG m, default
+0.30): it pins the distance from the camera at the flight's ends, also in flights without shadows.
 Starts from the flights of OUT/nodrag.csv (estimate_drag.py output with the same camera).
 Writes OUT/chain.csv. usage: python scripts/experiments/improve/chain.py CAMERA OUT_DIR
 """
@@ -153,6 +156,24 @@ if NET != 'none':
         for g in nt_frames:
             if d['f0'] - 2 <= g <= d['f1'] + 2 and NET == 'all':
                 net_touch.append((i, g))
+touch_anchor = []  # (flight i, frame, player X, player Y)
+TOUCH_ANCHOR = os.environ.get('TOUCH_ANCHOR', 'none')
+TOUCH_SIG = float(os.environ.get('TOUCH_SIG', 0.30))
+if TOUCH_ANCHOR != 'none':
+    fm_t = pd.read_csv('data/mappings/frame_mapping_v3.csv'); fm_t = fm_t[~fm_t.deleted].set_index('v3_frame').v2_frame
+    tl_t = pd.read_csv('data/contacts/touch_labels_final.csv'); tl_t = tl_t[tl_t.kind == 'player']
+    pos_t = pd.read_csv('data/analysis/player_positions_v3.csv', usecols=['v2_frame', 'player', 'x', 'y']).drop_duplicates(['v2_frame', 'player']).set_index(['v2_frame', 'player'])
+    for r_ in tl_t.itertuples():
+        if r_.frame not in fm_t.index or not par(int(r_.touch), TOUCH_ANCHOR):
+            continue
+        f = int(fm_t[r_.frame])
+        try:
+            px_, py_ = pos_t.loc[(f, r_.player)].values.ravel()[:2]
+        except KeyError:
+            continue
+        for i, d in enumerate(FL):
+            if d['f0'] - 2 <= f <= d['f1'] + 2:
+                touch_anchor.append((i, f, px_ * 16 / 18, py_ * 8 / 9))
 chest = []  # (flight i, frame, neck px, hip px, stature)
 if CHEST_MARKS != 'none':
     STAT = {k_: v['stature_m'] for k_, v in json.load(open('data/experiments/physics_calib/player_statures.json')).items()}
@@ -194,7 +215,7 @@ for i, f, nk, hp, st in chest:
     A_, B_ = at_height(nk, 0.82 * st), at_height(hp, 0.53 * st)
     CHEST_XY.append((B_ + (0.72 - 0.53) / (0.82 - 0.53) * (A_ - B_))[:2])
 print(f'{len(FL)} flights, {len(links)} continuity links, {len(sand)} sand pins, {len(cross)} net crossings, '
-      f'{len(net_touch)} net touches, {len(chest)} chest points ({POSE}), {len(shadows)} shadows')
+      f'{len(net_touch)} net touches, {len(chest)} chest points ({POSE}), {len(shadows)} shadows, {len(touch_anchor)} touch anchors')
 
 
 
@@ -285,6 +306,8 @@ def residuals(x):
         r.append([(P[0] - 8.0) / 0.2, (-P[2] - 2.0) / 0.25])
     for (i, f, nk, hp, st), xy in zip(chest, CHEST_XY):
         r.append((P_at(x, i, [f], T, k)[0][:2] - xy) / 0.15)
+    for i, f, ax, ay in touch_anchor:
+        r.append((P_at(x, i, [f], T, k)[0][:2] - [ax, ay]) / TOUCH_SIG)
     for i, f, u_, v_ in shadows:
         P = P_at(x, i, [f], T, k)[0]
         G_ = np.r_[P[:2] + (-P[2]) * sun_xy(f), 0.0]
@@ -320,6 +343,8 @@ for i, f in net_touch:
     S[row: row + 2, PER * i: PER * i + PER] = 1; row += 2
 for c_ in chest:
     S[row: row + 2, PER * c_[0]: PER * c_[0] + PER] = 1; row += 2
+for i, f, ax, ay in touch_anchor:
+    S[row: row + 2, PER * i: PER * i + PER] = 1; row += 2
 for i, f, u_, v_ in shadows:
     S[row: row + 2, PER * i: PER * i + PER] = 1; row += 2
 if ACC:
