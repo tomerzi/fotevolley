@@ -92,3 +92,20 @@ timestamps, 38 near-duplicate frames of 13,104 in play), yet with the shadows fi
 10.09 m/s^2 (+2.8 %): the reconstructed world is ~2.8 % too large (camera scale), which also explains the chest-touch
 bias. Correcting it (fitted g, equivalently shrinking the world by 2.8 %) improves chest touches (bias +0.07 -> +0.03,
 MAE in flights with shadows 0.115 -> 0.083) without hurting landings or the net. Not applied yet.
+
+## Moving sun (2026-11-10), gravity fixed at 9.81
+The match was in Graz around 25-26 June 2022 (EFVL news of 28 June). With the fitted sun elevation (~44 deg) the sun
+moves ~10 deg per hour there, so it moved during the match; the model held the elevation fixed. `SUN_ELEV_DRIFT=1`
+lets the elevation change linearly too (`run_p3.sh p3_sunmove`). Fitted: azimuth drift +0.38 deg and elevation
+-0.30 deg per 1000 frames (over the match +5.9 deg / -4.6 deg): the elevation FALLS, i.e. afternoon, with the same
+ratio as the astronomical sun in Graz (-0.78 vs -0.71). Matching the elevations to the astronomical sun gives
+start ~16:02 and end ~16:30 local time (28 min, the length of the broadcast) - an independent confirmation.
+
+| held-out | landings median / MAE | chest median / MAE | chest MAE with / few shadows | landings MAE with / few | below net |
+|---|---|---|---|---|---|
+| baseline (sun fixed) | 0.09 / 0.06 | +0.07 / 0.12 | 0.115 / 0.252 | 0.056 / 0.078 | 11 % (0.11 m) |
+| **moving sun, g = 9.81** | **0.09 / 0.05** | **+0.03 / 0.11** | **0.085 / 0.193** | **0.040 / 0.079** | 11 % (0.13 m) |
+| moving sun, g fitted (diagnostic) | 0.06 / 0.08 | -0.02 / 0.09 | 0.093 / 0.192 | 0.077 / 0.073 | 12 % (0.14 m) |
+
+The moving sun gives the same gain as the fitted gravity did, with real gravity. The fitted gravity still comes out
+10.1 with the moving sun, so a small scale question remains open (camera), but fixing g at 9.81 is now best overall.
