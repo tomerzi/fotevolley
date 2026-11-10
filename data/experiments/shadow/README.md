@@ -75,3 +75,20 @@ shadows 0.08 m (landings MAE 0.056, rms 0.073), flights with fewer shadows 0.25 
 shadow triangulation 0.15, size only 0.40 m (chest MAE 0.28). 67 % of flight frames are in flights with >= 3 shadows.
 Final candidate (all marks): `final_p3/ball_height.csv` (`run_final_p3.sh`): landings 0.10 m (MAE 0.03 in-sample),
 chest MAE 0.12, net 10 %.
+
+## Ideas 1-2 (2026-11-10)
+Held-out, pass-3 + hand shadows, net rule (baseline `run_p3`). Split by shadow coverage of the flight
+(`score_by_shadow.py`):
+
+| variant | landings median / MAE | chest median / MAE | chest MAE, flights with / few shadows | landings MAE, with / few | below net |
+|---|---|---|---|---|---|
+| baseline | 0.09 / 0.06 | +0.07 / 0.12 | 0.115 / 0.252 | 0.056 / 0.078 | 11 % (0.11 m) |
+| idea 1: touch anchors (even touches, sigma 0.30 m) | 0.11 / 0.09 | +0.07 / 0.13 | 0.111 / 0.301 | 0.089 / 0.090 | 12 % (0.16 m) |
+| idea 2: gravity fitted (G_FIT) | 0.08 / 0.06 | **+0.03 / 0.11** | **0.083 / 0.197** | 0.057 / 0.084 | 11 % (0.15 m) |
+
+Idea 1 does not help: the touching player's tracked position is not close enough to the ball (feet and heads are
+0.3-0.5 m from the body axis, positions +-0.15 m). Idea 2: the video's time base is clean (25.000 fps, uniform
+timestamps, 38 near-duplicate frames of 13,104 in play), yet with the shadows fixing the depth the fitted gravity is
+10.09 m/s^2 (+2.8 %): the reconstructed world is ~2.8 % too large (camera scale), which also explains the chest-touch
+bias. Correcting it (fitted g, equivalently shrinking the world by 2.8 %) improves chest touches (bias +0.07 -> +0.03,
+MAE in flights with shadows 0.115 -> 0.083) without hurting landings or the net. Not applied yet.
