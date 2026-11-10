@@ -109,3 +109,13 @@ start ~16:02 and end ~16:30 local time (28 min, the length of the broadcast) - a
 
 The moving sun gives the same gain as the fitted gravity did, with real gravity. The fitted gravity still comes out
 10.1 with the moving sun, so a small scale question remains open (camera), but fixing g at 9.81 is now best overall.
+
+## Shadow pass 4 + track search (2026-11-10) — plateau
+- Pass 4 (moving sun, window 25 px, threshold 0.86): 6,084 shadows in flights, 82 % within 8 px of the prediction.
+- `track_shadows.py` (flights with < 3 shadows: the flight's depth scale s = 0.80..1.20 is searched by the darkness under
+  the predicted shadow path over the whole flight): 173 of 234 flights with a clear path, 611 shadows (3.4 px from the
+  hand marks where they overlap).
+- Held-out with 6,134 shadows (auto 5,573 + track 472 + hand 89), moving sun, g = 9.81 (`run_p4_sunmove`):
+  landings 0.08 / MAE 0.06, chest +0.03 / 0.11, net 11 % — the same as `run_p3_sunmove` within the noise of the
+  checks (chest with shadows MAE 0.101 vs 0.085; landings with shadows rms 0.072 vs 0.101). More shadows no longer
+  change the answer: with this camera and these marks the heights have converged; the site keeps the moving-sun version.
