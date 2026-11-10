@@ -131,9 +131,14 @@ if SHADOW:
                 shadows.append((i, int(r_.frame), r_.u, r_.v)); break
 
 
+SUN_ELEV_DRIFT = os.environ.get('SUN_ELEV_DRIFT') == '1'  # with SUN_FIT: the sun's elevation may change linearly too
+NSUN = 4 if SUN_ELEV_DRIFT else 3
+
+
 def sun_xy(f):
     a = np.radians(SUNP['az'] + SUNP['drift_deg_per_1000'] * f / 1000.0)
-    return np.array([np.cos(a), np.sin(a)]) / np.tan(np.radians(SUNP['elev']))
+    el = SUNP['elev'] + SUNP.get('elev_drift_deg_per_1000', 0.0) * f / 1000.0
+    return np.array([np.cos(a), np.sin(a)]) / np.tan(np.radians(el))
 
 
 NET = os.environ.get('NET', 'none')
@@ -286,6 +291,8 @@ def residuals(x):
         CUR.update(proj=lambda X, c_=c_: LM.project(c_, X), C=LM.center(c_), f=c_[0])
     if SUN_FIT:
         SUNP.update(az=x[IS], elev=x[IS + 1], drift_deg_per_1000=x[IS + 2])
+        if SUN_ELEV_DRIFT:
+            SUNP['elev_drift_deg_per_1000'] = x[IS + 3]
     T, k = all_pos(x)
     if DRAG:
         r.append([(k - K0) / 0.02])
@@ -324,7 +331,7 @@ def residuals(x):
 
 
 x0 = np.concatenate([d['x0'] for d in FL] + ([[K0]] if DRAG else []) + ([[G]] if G_FIT else []) + ([C0] if CAM_FIT else [])
-                    + ([[SUNP['az'], SUNP['elev'], SUNP['drift_deg_per_1000']]] if SUN_FIT else []))
+                    + ([[SUNP['az'], SUNP['elev'], SUNP['drift_deg_per_1000']] + ([0.0] if SUN_ELEV_DRIFT else [])] if SUN_FIT else []))
 r0 = residuals(x0)
 S = lil_matrix((len(r0), len(x0)), dtype=int)
 row = 0
@@ -357,7 +364,7 @@ if G_FIT:
 if CAM_FIT:
     S[:, IC:IC + 11] = 1  # the camera touches every image residual (and its own landmark terms)
 if SUN_FIT:
-    S[:, IS:IS + 3] = 1
+    S[:, IS:IS + NSUN] = 1
 if DRAG and G_FIT:
     raise SystemExit('DRAG and G_FIT together are not supported')
 if DRAG:  # solve without drag first (k fixed at 0), then free k from that solution
@@ -422,7 +429,7 @@ if CAM_FIT:
         np.linalg.norm(LM.center(c_) - LM.center(C0)), np.sqrt(np.mean(LM.residuals(c_) ** 2)), np.sqrt(np.mean(LM.residuals(C0) ** 2))))
 if SUN_FIT:
     json.dump({k_: float(v_) for k_, v_ in SUNP.items()}, open(f'{out}/sun_fit.json', 'w'), indent=1)
-    print('sun: azimuth %.2f, elevation %.2f, drift %+.3f' % (SUNP['az'], SUNP['elev'], SUNP['drift_deg_per_1000']))
+    print('sun: azimuth %.2f, elevation %.2f, drift %+.3f, elevation drift %+.3f deg / 1000 frames' % (SUNP['az'], SUNP['elev'], SUNP['drift_deg_per_1000'], SUNP.get('elev_drift_deg_per_1000', 0.0)))
 pix = np.concatenate([np.linalg.norm(CUR['proj'](P_at(x, i, d['obs'], T, k)) - uv[d['obs']], axis=1) for i, d in enumerate(FL)])
 json.dump(dict(drag=DRAG, k_drag=float(k), sand=SAND_USE, size_fix=SIZE_FIX, g=float(x[IG]) if G_FIT else G, acc=ACC, acc_sig=ACC_SIG if ACC else None), open(f'{out}/chain_settings.json', 'w'))
 print(f'jump between consecutive flights: median {np.median(g0):.2f} -> {np.median(gaps):.2f} m; reprojection median {np.median(pix):.2f} px')
