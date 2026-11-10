@@ -7,7 +7,7 @@ pixel position is predicted and the darkest compact blob of about the ball's siz
 Writes OUT/shadows.csv (frame, u, v, darkness, area, expected area, distance to the prediction).
 Env: WIN (search half-window in flight frames, default 45 px), THR (darkness ratio, default 0.80),
 ALL_METHODS=1 also searches frames outside fitted flights (ball held / rolling / size-only), window WIN_OTHER (60).
-usage: python scripts/experiments/shadow/detect.py HEIGHT_CSV OUT_DIR AZ_DEG ELEV_DEG [AZ_DRIFT_DEG_PER_1000_FRAMES]
+usage: python scripts/experiments/shadow/detect.py HEIGHT_CSV OUT_DIR AZ_DEG ELEV_DEG [AZ_DRIFT_DEG_PER_1000_FRAMES [ELEV_DRIFT_DEG_PER_1000_FRAMES]]
 """
 import os, sys
 import numpy as np, pandas as pd, cv2
@@ -20,6 +20,7 @@ from traj import Camera
 csv, out = sys.argv[1], sys.argv[2]
 AZ, EL = float(sys.argv[3]), float(sys.argv[4])
 DRIFT = float(sys.argv[5]) if len(sys.argv) > 5 else 0.0
+EL_DRIFT = float(sys.argv[6]) if len(sys.argv) > 6 else 0.0  # elevation change, deg per 1000 frames (moving sun)
 os.makedirs(out, exist_ok=True)
 cam = Camera()
 h = pd.read_csv(csv)
@@ -34,7 +35,7 @@ OFFS = (-60, -40, -20, 20, 40, 60)
 
 def sun(f):
     a = np.radians(AZ + DRIFT * f / 1000.0)
-    return np.array([np.cos(a), np.sin(a)]) / np.tan(np.radians(EL))
+    return np.array([np.cos(a), np.sin(a)]) / np.tan(np.radians(EL + EL_DRIFT * f / 1000.0))
 
 
 cap = cv2.VideoCapture('video/main_camera_clean_v2.mp4')
