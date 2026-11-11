@@ -1,0 +1,7 @@
+== p4_sunmove
+status 0 nfev 150 cost 26710.3
+height sigma (raw): flights median 0.014 m, others median 0.612 m
+sun: azimuth -115.68, elevation 47.33, drift +0.422, elevation drift -0.339 deg / 1000 frames
+sand landings (odd) n=21: height median 0.08 m (0.11 expected), MAE 0.06 m
+n=40 (odd): fit - marked height median +0.03 m, MAE 0.11 m (vs chest point: -0.10 / 0.14); ball-player distance 0.27 m; marked height 1.40 m; ball in flight median 2.51 / p95 4.20 m
+net crossings (odd) n=64: height median 2.63 m, below the net top 11% (by 0.13 m median)

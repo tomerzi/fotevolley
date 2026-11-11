@@ -1,0 +1,213 @@
+<title>סימון רגע הנקודה</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans+Hebrew:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one point at a time — the clip large, frame stepping under it, two big answers; the list folds away. Sand neutrals, court-blue accent */
+:root{
+  --bg:#f6f4ef; --surface:#ffffff; --ink:#1b2430; --ink-2:#4a5463; --muted:#7d8591; --line:#e3dfd6;
+  --accent:#1f5fbf; --done:#1d7a4a; --skip:#8a6d1f;
+  --display:"Barlow Condensed","Arial Narrow",sans-serif; --body:"IBM Plex Sans Hebrew","Segoe UI",Arial,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12161c; --surface:#1a2029; --ink:#e9ecf0; --ink-2:#b4bcc7; --muted:#8a93a0; --line:#2a323d;
+  --accent:#6aa3ff; --done:#4cc38a; --skip:#d9b45a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161c; --surface:#1a2029; --ink:#e9ecf0; --ink-2:#b4bcc7; --muted:#8a93a0; --line:#2a323d;
+  --accent:#6aa3ff; --done:#4cc38a; --skip:#d9b45a; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5}
+.wrap{max-width:980px;margin:0 auto;padding-block:16px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:14px}
+header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 20px}
+h1{font-family:var(--display);font-size:2rem;margin:0;line-height:1}
+.progress{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:.9rem;color:var(--ink-2)}
+.pbar{width:200px;height:10px;background:var(--line);border-radius:5px;overflow:hidden;display:flex}
+.pbar i{display:block;height:100%}
+.howto{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:10px 14px;display:grid;gap:4px;font-size:.92rem}
+kbd{font-family:var(--mono);font-size:.78rem;border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:0 5px;background:var(--bg)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px;display:grid;gap:12px}
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 16px}
+.top h2{font-family:var(--display);font-size:1.6rem;margin:0}
+.top .meta{font-family:var(--mono);font-size:.82rem;color:var(--muted)}
+.stage{position:relative;background:#000;border-radius:6px;overflow:hidden;aspect-ratio:16/9}
+.stage video{width:100%;height:100%;display:block}
+.badge{position:absolute;inset-block-start:10px;inset-inline-start:10px;background:#000b;color:#fff;font-family:var(--mono);font-size:.9rem;padding:3px 8px;border-radius:4px}
+.loading{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:.95rem;background:#000a}
+.loading[hidden]{display:none}
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;direction:ltr;justify-content:center}
+.controls input[type=range]{flex:1 1 260px;accent-color:var(--accent)}
+.small{font:inherit;font-size:.92rem;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:6px;padding:8px 12px;cursor:pointer;min-width:44px}
+.small:hover{border-color:var(--accent)}
+.answers{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px}
+.answer{font:inherit;font-size:1.05rem;font-weight:700;border:2px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:14px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px;text-align:start}
+.answer:hover{border-color:var(--accent)}
+.answer.yes{background:var(--done);border-color:var(--done);color:var(--surface)}
+.answer kbd{color:var(--ink)}
+.status{font-size:.9rem;color:var(--ink-2);min-height:1.4em}
+.ref{font-size:.88rem;color:var(--ink-2);display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+details{background:var(--surface);border:1px solid var(--line);border-radius:8px}
+summary{cursor:pointer;padding:10px 14px;font-weight:500}
+.list{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:6px;padding:0 14px 14px}
+.list button{font:inherit;font-family:var(--mono);font-size:.78rem;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:4px;padding:5px 7px;cursor:pointer;display:flex;justify-content:space-between;gap:4px}
+.list button[aria-current="true"]{outline:2px solid var(--accent)}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--line);align-self:center}
+.dot.yes{background:var(--done)} .dot.skip{background:var(--skip)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (max-width:640px){.answers{grid-template-columns:1fr 1fr}.answers .yes{grid-column:1/-1}}
+</style>
+
+<div class="wrap" dir="rtl">
+  <header>
+    <h1>סימון רגע הנקודה</h1>
+    <div class="progress"><span id="ptext">0 / 0</span><span class="pbar" id="pbar"></span></div>
+  </header>
+  <div class="howto">
+    <div>רק הנקודות שהזיהוי האוטומטי לא בטוח לגביהן (19 מתוך 60).</div>
+    <div><b>מה עושים:</b> צפו בקטע, ועצרו בפריים שבו הקבוצה <b>ספגה את הנקודה</b>: הכדור נוגע בחול בצד שלה, או הרגע שבו היא עצמה טעתה (נגיעה אחרונה שהוציאה את הכדור / הכניסה לרשת). לחצו "זה הרגע" — והדף עובר לנקודה הבאה.</div>
+    <div>מקשים: <kbd>←</kbd> <kbd>→</kbd> פריים · <kbd>רווח</kbd> ניגון/עצירה · <kbd>Enter</kbd> זה הרגע · <kbd>S</kbd> לא ברור · <kbd>Backspace</kbd> חזרה</div>
+  </div>
+
+  <section class="card" aria-label="הנקודה הנוכחית">
+    <div class="top"><h2 id="title">—</h2><span class="meta" id="meta"></span></div>
+    <div class="stage"><video id="vid" playsinline muted preload="auto" aria-label="קטע הנקודה"></video><span class="badge" id="badge" dir="ltr">—</span><div class="loading" id="loading">טוען…</div></div>
+    <div class="controls">
+      <button type="button" class="small" id="m5" aria-label="5 פריימים אחורה">−5</button>
+      <button type="button" class="small" id="m1" aria-label="פריים אחורה">−1</button>
+      <button type="button" class="small" id="play">▶</button>
+      <button type="button" class="small" id="p1" aria-label="פריים קדימה">+1</button>
+      <button type="button" class="small" id="p5" aria-label="5 פריימים קדימה">+5</button>
+      <input type="range" id="range" min="0" max="1" step="1" value="0" aria-label="בחירת פריים">
+      <button type="button" class="small" id="speed">מהירות ½</button>
+    </div>
+    <div class="ref"><span id="refText"></span><button type="button" class="small" id="jump">קפיצה לרגע האוטומטי</button></div>
+    <div class="answers">
+      <button type="button" class="answer yes" id="yes">זה הרגע <kbd>Enter</kbd></button>
+      <button type="button" class="answer" id="skip">לא ברור <kbd>S</kbd></button>
+      <button type="button" class="answer" id="back">חזרה</button>
+    </div>
+    <div class="status" id="status" role="status"></div>
+  </section>
+
+  <details>
+    <summary>כל הנקודות (<span id="lcount"></span>)</summary>
+    <div class="list" id="list"></div>
+  </details>
+</div>
+
+<script>
+const T = __DATA__;
+const $ = s => document.querySelector(s);
+const FPS = T.fps, P = T.points;
+const vid = $('#vid');
+let marks = {}, cur = 0, db = null, me = null, history = [], rate = 0.5, blobs = {}, loadToken = 0;
+const id = p => String(p.rally);
+const state = m => !m ? '' : m.kind === 'moment' ? 'yes' : 'skip';
+const nFrames = p => p.end - p.start + 1;
+const curFrame = () => Math.min(nFrames(P[cur]) - 1, Math.max(0, Math.floor(vid.currentTime * FPS + 1e-3)));
+const fmt = f => { const s = f / FPS; return `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`; };
+
+function renderProgress() {
+  const c = { yes: 0, skip: 0 };
+  P.forEach(p => { const s = state(marks[id(p)]); if (s) c[s]++; });
+  const done = c.yes + c.skip, n = P.length;
+  $('#ptext').textContent = `${done} / ${n} סומנו`;
+  $('#pbar').innerHTML = `<i style="width:${c.yes / n * 100}%;background:var(--done)"></i><i style="width:${c.skip / n * 100}%;background:var(--skip)"></i>`;
+  $('#lcount').textContent = `${done} מתוך ${n}`;
+  $('#list').innerHTML = P.map((p, i) => `<button type="button" data-i="${i}" aria-current="${i === cur}">נק' ${p.rally}<span class="dot ${state(marks[id(p)])}"></span></button>`).join('');
+}
+$('#list').addEventListener('click', e => { const b = e.target.closest('button'); if (b) open(+b.dataset.i); });
+
+async function clipURL(p) {
+  const name = `clips/p${String(p.rally).padStart(2, '0')}.mp4`;
+  if (blobs[name]) return blobs[name];
+  try { const r = await fetch(name); if (!r.ok) throw 0; blobs[name] = URL.createObjectURL(await r.blob()); }
+  catch (e) { blobs[name] = name; }
+  return blobs[name];
+}
+async function open(i) {
+  cur = (i + P.length) % P.length;
+  const p = P[cur], m = marks[id(p)], token = ++loadToken;
+  $('#title').textContent = `נקודה ${p.rally} · ${cur + 1} מתוך ${P.length}`;
+  $('#meta').textContent = `מערכה ${p.set} · ספגה: ${p.loser === 'ISR' ? 'ישראל' : 'ברזיל'} · תוצאה אחרי הנקודה ${p.score} (ISR-BRA) · ${fmt(p.start)}`;
+  $('#refText').textContent = `הזיהוי האוטומטי: פריים ${p.auto}${p.reason ? ` · למה לא בטוח: ${p.reason}` : ''}`;
+  $('#status').textContent = m ? (m.kind === 'moment' ? `סומן: פריים ${m.frame}. אפשר לשנות.` : 'סומן כלא ברור.') : '';
+  $('#range').max = nFrames(p) - 1;
+  $('#loading').hidden = false;
+  renderProgress();
+  const url = await clipURL(p);
+  if (token !== loadToken) return;
+  vid.src = url; vid.playbackRate = rate;
+  vid.onloadeddata = () => {
+    $('#loading').hidden = true;
+    if (m && m.kind === 'moment') seek(m.frame - p.start); else { seek(0); vid.play().catch(() => {}); }
+  };
+  const nx = P[cur + 1]; if (nx) clipURL(nx);
+}
+function seek(k) {
+  const p = P[cur]; k = Math.max(0, Math.min(nFrames(p) - 1, k));
+  vid.currentTime = (k + 0.5) / FPS;
+}
+function stop() { vid.pause(); }
+function updateUI() {
+  const p = P[cur], k = curFrame();
+  $('#badge').textContent = `פריים ${p.start + k}`;
+  $('#range').value = k;
+  $('#play').textContent = vid.paused ? '▶' : '❚❚';
+}
+vid.addEventListener('timeupdate', updateUI);
+vid.addEventListener('seeked', updateUI);
+vid.addEventListener('play', updateUI); vid.addEventListener('pause', updateUI);
+(function tick() { if (!vid.paused) updateUI(); requestAnimationFrame(tick); })();
+const step = d => { stop(); seek(curFrame() + d); };
+$('#m1').onclick = () => step(-1); $('#p1').onclick = () => step(1);
+$('#m5').onclick = () => step(-5); $('#p5').onclick = () => step(5);
+$('#play').onclick = () => vid.paused ? vid.play().catch(() => {}) : stop();
+vid.addEventListener('click', () => vid.paused ? vid.play().catch(() => {}) : stop());
+$('#range').addEventListener('input', e => { stop(); seek(+e.target.value); });
+$('#speed').onclick = () => { rate = rate === 0.5 ? 0.25 : rate === 0.25 ? 1 : 0.5; vid.playbackRate = rate; $('#speed').textContent = `מהירות ${rate === 1 ? '1' : rate === 0.5 ? '½' : '¼'}`; };
+$('#jump').onclick = () => { stop(); seek(P[cur].auto - P[cur].start); };
+
+async function answer(kind) {
+  if (!db) { $('#status').textContent = 'השמירה לא זמינה בתצוגה הזו. פתחו את הדף מחובר לחשבון ב-claude.ai.'; return; }
+  const p = P[cur];
+  stop();
+  const doc = { kind, rally: p.rally, by: me, at: new Date().toISOString() };
+  if (kind === 'moment') doc.frame = p.start + curFrame();
+  $('#status').textContent = 'שומר…';
+  try {
+    await db.collection('moments').doc(id(p)).set(doc);
+    marks[id(p)] = doc; history.push(cur);
+    const next = P.findIndex((x, i) => i > cur && !marks[id(x)]);
+    const any = P.findIndex(x => !marks[id(x)]);
+    if (next < 0 && any < 0) { renderProgress(); $('#status').textContent = 'כל הנקודות סומנו. תודה!'; return; }
+    open(next >= 0 ? next : any);
+    $('#status').textContent = kind === 'moment' ? `נשמר פריים ${doc.frame}.` : 'נשמר.';
+  } catch (err) {
+    $('#status').textContent = err?.code === 'permission_denied' ? 'אין לך הרשאה לשמור בדף הזה.' : 'השמירה נכשלה. נסו שוב בעוד רגע.';
+  }
+}
+$('#yes').onclick = () => answer('moment');
+$('#skip').onclick = () => answer('unclear');
+$('#back').onclick = () => { if (history.length) open(history.pop()); else open(cur - 1); };
+addEventListener('keydown', e => {
+  if (e.target.closest('input[type=text],textarea')) return;
+  if (e.key === 'ArrowLeft') { step(-1); e.preventDefault(); }
+  else if (e.key === 'ArrowRight') { step(1); e.preventDefault(); }
+  else if (e.key === ' ') { $('#play').click(); e.preventDefault(); }
+  else if (e.key === 'Enter') { answer('moment'); e.preventDefault(); }
+  else if (e.key === 's' || e.key === 'S' || e.key === 'ד') answer('unclear');
+  else if (e.key === 'Backspace') { $('#back').click(); e.preventDefault(); }
+});
+
+renderProgress(); open(0);
+(async () => {
+  db = await window.claude?.use?.('db') ?? null;
+  const user = await window.claude?.use?.('user') ?? null;
+  me = user ? await user.id().catch(() => null) : null;
+  if (!db) { $('#status').textContent = 'השמירה לא זמינה בתצוגה הזו. פתחו את הדף מחובר לחשבון ב-claude.ai.'; return; }
+  let first = true;
+  db.collection('moments').onSnapshot(snap => {
+    marks = {}; snap.docs.forEach(d => { marks[d.id] = d.data(); });
+    if (first) { first = false; const i = P.findIndex(x => !marks[id(x)]); if (i > 0) open(i); else renderProgress(); } else renderProgress();
+  }, () => { $('#status').textContent = 'החיבור לשמירה נותק. רעננו את הדף.'; });
+})();
+</script>

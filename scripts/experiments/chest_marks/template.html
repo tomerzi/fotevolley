@@ -1,0 +1,203 @@
+<title>סימון פגיעות בחזה</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans+Hebrew:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: work tool — touch list on the side, one large frame with a frame stepper and the marking steps; court-line blue accent on sand neutrals */
+:root{
+  --bg:#f6f4ef; --surface:#ffffff; --ink:#1b2430; --ink-2:#4a5463; --muted:#7d8591; --line:#e3dfd6;
+  --accent:#1f5fbf; --accent-soft:#1f5fbf1f; --done:#1d7a4a; --skip:#b07a1f; --mark:#ff3b6b;
+  --display:"Barlow Condensed","Arial Narrow",sans-serif; --body:"IBM Plex Sans Hebrew","Segoe UI",Arial,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12161c; --surface:#1a2029; --ink:#e9ecf0; --ink-2:#b4bcc7; --muted:#8a93a0; --line:#2a323d;
+  --accent:#6aa3ff; --accent-soft:#6aa3ff26; --done:#4cc38a; --skip:#e0aa4c; --mark:#ff6b8e; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161c; --surface:#1a2029; --ink:#e9ecf0; --ink-2:#b4bcc7; --muted:#8a93a0; --line:#2a323d;
+  --accent:#6aa3ff; --accent-soft:#6aa3ff26; --done:#4cc38a; --skip:#e0aa4c; --mark:#ff6b8e; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:16px}
+header{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px}
+h1{font-family:var(--display);font-size:2.2rem;margin:0;line-height:1}
+.progress{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:.9rem;color:var(--ink-2)}
+.pbar{width:180px;height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+.pbar i{display:block;height:100%;background:var(--done);width:0}
+.banner{background:var(--accent-soft);border:1px solid var(--line);padding:8px 12px;border-radius:4px;font-size:.9rem}
+.layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:16px;align-items:start}
+.list{background:var(--surface);border:1px solid var(--line);max-height:78vh;overflow:auto;min-width:0}
+.list button{all:unset;box-sizing:border-box;display:flex;justify-content:space-between;align-items:center;width:100%;padding:7px 12px;border-bottom:1px solid var(--line);cursor:pointer;font-size:.88rem;font-variant-numeric:tabular-nums}
+.list button[aria-current="true"]{background:var(--accent-soft);font-weight:700}
+.list button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.chip{font-family:var(--mono);font-size:.72rem;padding:1px 6px;border-radius:3px;border:1px solid var(--line);color:var(--muted)}
+.chip.done{color:var(--done);border-color:var(--done)}
+.chip.no{color:var(--skip);border-color:var(--skip)}
+.work{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:16px;align-items:start}
+.stage{position:relative;background:#000;aspect-ratio:1/1;max-width:100%;cursor:crosshair}
+.stage canvas{width:100%;height:100%;display:block}
+.frames{display:grid;grid-template-columns:repeat(9,1fr);gap:4px;margin-top:8px}
+.frames button{all:unset;cursor:pointer;aspect-ratio:1/1;background-size:900% 100%;border:2px solid transparent;position:relative}
+.frames button[aria-pressed="true"]{border-color:var(--accent)}
+.frames button:focus-visible{outline:2px solid var(--accent)}
+.frames span{position:absolute;inset:auto 0 0 0;font-family:var(--mono);font-size:.62rem;background:#000a;color:#fff;text-align:center}
+.panel{display:grid;gap:14px;background:var(--surface);border:1px solid var(--line);padding:14px;min-width:0}
+.panel h2{font-family:var(--display);font-size:1.5rem;margin:0;line-height:1.1}
+.step{display:grid;gap:6px}
+.step b{font-size:.85rem}
+.step p{margin:0;color:var(--ink-2);font-size:.85rem}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+button.btn{font:inherit;font-size:.9rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);padding:6px 10px;border-radius:4px;cursor:pointer}
+button.btn:hover{border-color:var(--accent)}
+button.btn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--surface);font-weight:700}
+button.btn:disabled{opacity:.45;cursor:not-allowed}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.status{font-size:.85rem;color:var(--ink-2);min-height:1.3em}
+.meta{font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.legend{font-size:.8rem;color:var(--muted);display:grid;gap:2px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:-2px;margin-inline-end:6px}
+@media (max-width:900px){.layout{grid-template-columns:1fr}.list{max-height:180px}.work{grid-template-columns:1fr}}
+</style>
+
+<div class="wrap" dir="rtl">
+  <header>
+    <h1>סימון פגיעות בחזה</h1>
+    <div class="progress"><span id="ptext">0 / 0</span><span class="pbar"><i id="pbar"></i></span></div>
+  </header>
+  <div class="banner" id="banner">בכל פגיעה צריך רק שני דברים: לבחור את הפריים שבו הכדור נוגע בחזה, ולסמן את מצב הרגליים. את מיקום הכדור אני לוקח מהזיהוי האוטומטי (העיגול הכחול המקווקו). מקשי החיצים מחליפים פריים.</div>
+  <div class="layout">
+    <nav class="list" id="list" aria-label="פגיעות בחזה"></nav>
+    <div class="work">
+      <div>
+        <div class="stage" id="stage"><canvas id="cv" width="640" height="640" aria-label="הפריים הנבחר, לחיצה מסמנת את מרכז הכדור"></canvas></div>
+        <div class="frames" id="frames" dir="ltr"></div>
+      </div>
+      <div class="panel">
+        <div><h2 id="title">—</h2><div class="meta" id="meta"></div></div>
+        <div class="step"><b>1. פריים הפגיעה</b><p>בחרו את הפריים שבו הכדור נוגע בחזה (בשורת הפריימים או בחיצים).</p><div class="meta" id="framepick">לא נבחר</div></div>
+        <div class="step"><b>2. העיגול הכחול על הכדור? (לא חובה)</b><p>אם העיגול המקווקו לא על הכדור, או שאין עיגול, לחצו בערך על הכדור בתמונה. לא צריך דיוק.</p><div class="meta" id="ballpick"></div></div>
+        <div class="step"><b>3. הרגליים ברגע הפגיעה</b>
+          <div class="seg" id="feet">
+            <button type="button" class="btn" data-v="both" aria-pressed="false">שתיהן על החול</button>
+            <button type="button" class="btn" data-v="one" aria-pressed="false">אחת באוויר</button>
+            <button type="button" class="btn" data-v="air" aria-pressed="false">קופץ</button>
+          </div></div>
+        <div class="seg">
+          <button type="button" class="btn primary" id="save" disabled>שמירה והבא</button>
+          <button type="button" class="btn" id="notchest">זו לא פגיעה בחזה</button>
+        </div>
+        <div class="status" id="status" role="status"></div>
+        <div class="legend"><span><i style="border:2px dashed var(--accent)"></i>הכדור לפי הזיהוי האוטומטי</span><span><i style="border:3px solid var(--mark)"></i>הסימון שלכם</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const T = __DATA__;
+const $ = s => document.querySelector(s);
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const CROP = T.crop, HALF = T.half, NF = 2 * HALF + 1, TT = T.touches;
+const fmt = f => { const s = f / 25; return `${Math.floor(s / 60)}:${(s % 60).toFixed(1).padStart(4, '0')}`; };
+const team = p => p.startsWith('ISR') ? 'ישראל' : 'ברזיל';
+let marks = {};            // id -> saved doc
+let cur = 0, frame = HALF, ball = null, feet = null, db = null, me = null;
+const img = new Image();
+
+function renderList() {
+  $('#list').innerHTML = TT.map((t, i) => {
+    const m = marks[t.id];
+    const chip = !m ? '<span class="chip">פתוח</span>' : m.chest === false ? '<span class="chip no">לא חזה</span>' : '<span class="chip done">סומן</span>';
+    return `<button type="button" data-i="${i}" aria-current="${i === cur}">${fmt(t.v2)} · ${team(t.player)} ${t.player.slice(-1)} ${chip}</button>`;
+  }).join('');
+  const n = Object.keys(marks).length;
+  $('#ptext').textContent = `${n} / ${TT.length} סומנו`;
+  $('#pbar').style.width = (n / TT.length * 100) + '%';
+}
+$('#list').addEventListener('click', e => { const b = e.target.closest('button'); if (b) open(+b.dataset.i); });
+
+function open(i) {
+  cur = (i + TT.length) % TT.length;
+  const t = TT[cur], m = marks[t.id];
+  frame = m && m.offset !== undefined ? m.offset + HALF : HALF;
+  ball = m && m.ball_x !== undefined ? [m.ball_x - t.x0, m.ball_y - t.y0] : null;
+  feet = m ? m.feet || null : null;
+  $('#title').textContent = `${team(t.player)} ${t.player.slice(-1)} · ${fmt(t.v2)}`;
+  $('#meta').textContent = `פגיעה ${t.id} · פריים ${t.v2} · נקודה ${t.rally}${t.inplay ? '' : ' · לא במהלך משחק'}`;
+  $('#status').textContent = m ? (m.chest === false ? 'סומנה כלא פגיעה בחזה.' : 'כבר סומנה. אפשר לתקן ולשמור שוב.') : '';
+  img.onload = () => { renderFrames(); draw(); };
+  img.src = `strips/t${t.id}.jpg`;
+  renderList(); syncControls();
+  document.querySelector(`#list button[data-i="${cur}"]`)?.scrollIntoView({ block: 'nearest' });
+}
+function renderFrames() {
+  const t = TT[cur];
+  $('#frames').innerHTML = Array.from({ length: NF }, (_, k) => `<button type="button" data-k="${k}" aria-pressed="${k === frame}" aria-label="פריים ${t.v2 + k - HALF}" style="background-image:url(strips/t${t.id}.jpg);background-position:${k / (NF - 1) * 100}% 0"><span>${k - HALF > 0 ? '+' : ''}${k - HALF}</span></button>`).join('');
+}
+$('#frames').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { frame = +b.dataset.k; ball = null; afterFrame(); } });
+function afterFrame() { document.querySelectorAll('#frames button').forEach((b, k) => b.setAttribute('aria-pressed', k === frame)); draw(); syncControls(); }
+
+function draw() {
+  const cv = $('#cv'), g = cv.getContext('2d'), W = cv.width, s = W / CROP;
+  g.clearRect(0, 0, W, W);
+  if (img.complete && img.naturalWidth) g.drawImage(img, frame * CROP, 0, CROP, CROP, 0, 0, W, W);
+  const auto = TT[cur].balls[frame];
+  if (auto) { g.setLineDash([6, 5]); g.strokeStyle = css('--accent'); g.lineWidth = 2; g.beginPath(); g.arc(auto[0] * s, auto[1] * s, 16, 0, 7); g.stroke(); g.setLineDash([]); }
+  if (ball) {
+    g.strokeStyle = css('--mark'); g.lineWidth = 3; g.beginPath(); g.arc(ball[0] * s, ball[1] * s, 13, 0, 7); g.stroke();
+    g.beginPath(); g.moveTo(ball[0] * s - 5, ball[1] * s); g.lineTo(ball[0] * s + 5, ball[1] * s); g.moveTo(ball[0] * s, ball[1] * s - 5); g.lineTo(ball[0] * s, ball[1] * s + 5); g.stroke();
+  }
+}
+$('#stage').addEventListener('click', e => {
+  const r = $('#cv').getBoundingClientRect();
+  ball = [(e.clientX - r.left) / r.width * CROP, (e.clientY - r.top) / r.height * CROP];
+  draw(); syncControls();
+});
+$('#feet').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; feet = b.dataset.v; syncControls(); });
+function syncControls() {
+  const t = TT[cur];
+  $('#framepick').textContent = `פריים ${t.v2 + frame - HALF} (${frame - HALF > 0 ? '+' : ''}${frame - HALF} מהפגיעה המסומנת)`;
+  const auto = t.balls[frame];
+  $('#ballpick').textContent = ball ? 'סימנתם את הכדור ידנית' : auto ? 'משתמשים בזיהוי האוטומטי' : 'אין זיהוי אוטומטי בפריים הזה: לחצו בערך על הכדור';
+  document.querySelectorAll('#feet button').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === feet));
+  $('#save').disabled = !((ball || t.balls[frame]) && feet && db);
+  $('#notchest').disabled = !db;
+}
+addEventListener('keydown', e => {
+  if (e.target.closest('input,textarea')) return;
+  if (e.key === 'ArrowLeft') { frame = Math.max(0, frame - 1); ball = null; afterFrame(); e.preventDefault(); }
+  if (e.key === 'ArrowRight') { frame = Math.min(NF - 1, frame + 1); ball = null; afterFrame(); e.preventDefault(); }
+  if (e.key === 'Enter' && !$('#save').disabled) save();
+});
+
+async function write(doc) {
+  const t = TT[cur];
+  $('#status').textContent = 'שומר…';
+  try {
+    await db.collection('marks').doc(String(t.id)).set({ ...doc, touch: t.id, v2_frame: t.v2, player: t.player, by: me, at: new Date().toISOString() });
+    $('#status').textContent = 'נשמר.';
+    const next = TT.findIndex((x, i) => i > cur && !marks[x.id]);
+    open(next >= 0 ? next : cur + 1);
+  } catch (err) {
+    $('#status').textContent = err?.code === 'permission_denied' ? 'אין לך הרשאה לשמור בדף הזה. בקשו מהבעלים הרשאת עריכה.' : 'השמירה נכשלה. נסו שוב בעוד רגע.';
+  }
+}
+function save() {
+  const t = TT[cur], b = ball || t.balls[frame];
+  write({ chest: true, offset: frame - HALF, frame: t.v2 + frame - HALF, ball_x: Math.round((b[0] + t.x0) * 10) / 10, ball_y: Math.round((b[1] + t.y0) * 10) / 10, ball_source: ball ? 'hand' : 'auto', feet });
+}
+$('#save').addEventListener('click', save);
+$('#notchest').addEventListener('click', () => write({ chest: false }));
+
+renderList(); open(0);
+(async () => {
+  db = await window.claude?.use?.('db') ?? null;
+  const user = await window.claude?.use?.('user') ?? null;
+  me = user ? await user.id().catch(() => null) : null;
+  if (!db) { $('#banner').textContent = 'השמירה לא זמינה בתצוגה הזו. פתחו את הדף מחובר לחשבון ב-claude.ai כדי לשמור סימונים.'; syncControls(); return; }
+  db.collection('marks').onSnapshot(snap => {
+    marks = {}; snap.docs.forEach(d => { marks[d.id] = d.data(); });
+    renderList();
+  }, () => { $('#status').textContent = 'החיבור לשמירה נותק. רעננו את הדף.'; });
+  syncControls();
+})();
+</script>

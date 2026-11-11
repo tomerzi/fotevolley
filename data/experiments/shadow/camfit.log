@@ -1,0 +1,11 @@
+== camfit
+grep: data/experiments/shadow/camfit.log: input file is also the output
+sand landings (odd) n=21: height median 0.05 m (0.11 expected), MAE 0.08 m
+n=40 (odd): fit - marked height median +0.00 m, MAE 0.11 m (vs chest point: -0.19 / 0.20); ball-player distance 0.26 m; marked height 1.38 m; ball in flight median 2.42 / p95 4.10 m
+net crossings (odd) n=65: height median 2.59 m, below the net top 15% (by 0.10 m median)
+== camfit_sun
+status 0 nfev 80 cost 25688.4
+sun: azimuth -112.46, elevation 44.16, drift +0.085
+sand landings (odd) n=21: height median 0.10 m (0.11 expected), MAE 0.09 m
+n=40 (odd): fit - marked height median +0.06 m, MAE 0.12 m (vs chest point: -0.10 / 0.15); ball-player distance 0.27 m; marked height 1.40 m; ball in flight median 2.52 / p95 4.21 m
+net crossings (odd) n=65: height median 2.69 m, below the net top 12% (by 0.12 m median)
