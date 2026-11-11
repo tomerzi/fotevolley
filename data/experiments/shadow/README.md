@@ -119,3 +119,11 @@ The moving sun gives the same gain as the fitted gravity did, with real gravity.
   landings 0.08 / MAE 0.06, chest +0.03 / 0.11, net 11 % — the same as `run_p3_sunmove` within the noise of the
   checks (chest with shadows MAE 0.101 vs 0.085; landings with shadows rms 0.072 vs 0.101). More shadows no longer
   change the answer: with this camera and these marks the heights have converged; the site keeps the moving-sun version.
+
+## Focal length only (2026-11-11)
+`CAM_ONLY_FOCAL=1` (everything else of the camera pinned), moving sun, g = 9.81, held-out: focal +55.6 px (+3.6 %), but
+the court-line fit breaks (landmark rms 2.64 -> 9.91 px). Chest touches improve (with shadows MAE 0.060), landings move
+down (0.05 m, bias -6 cm). The ball data keep asking for a ~3 % larger scale than the blue lines allow (the same
+tension as the free gravity 10.09 and the free camera): either the blue lines are not exactly 16 x 8 m (the data point
+to ~15.6 x 7.8 m) or the camera model is missing something. Not applied: deciding needs one outside measurement
+(the real size of the blue lines, or the camera's position/height).
