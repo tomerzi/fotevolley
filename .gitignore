@@ -17,6 +17,5 @@ data/experiments/improve/*.log
 data/experiments/sand_marks/anchor_*/
 data/experiments/sand_marks/calib_*/
 
-# overlay video segments of the built site (Git LFS uploads are refused here; re-create with scripts/ball_height/render_video.py)
-site/built/video/
+# landing review clips (re-create with coach_analysis/review/make_landing_clips.py)
 coach_analysis/review/clips/

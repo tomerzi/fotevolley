@@ -75,3 +75,47 @@ shadows 0.08 m (landings MAE 0.056, rms 0.073), flights with fewer shadows 0.25 
 shadow triangulation 0.15, size only 0.40 m (chest MAE 0.28). 67 % of flight frames are in flights with >= 3 shadows.
 Final candidate (all marks): `final_p3/ball_height.csv` (`run_final_p3.sh`): landings 0.10 m (MAE 0.03 in-sample),
 chest MAE 0.12, net 10 %.
+
+## Ideas 1-2 (2026-11-10)
+Held-out, pass-3 + hand shadows, net rule (baseline `run_p3`). Split by shadow coverage of the flight
+(`score_by_shadow.py`):
+
+| variant | landings median / MAE | chest median / MAE | chest MAE, flights with / few shadows | landings MAE, with / few | below net |
+|---|---|---|---|---|---|
+| baseline | 0.09 / 0.06 | +0.07 / 0.12 | 0.115 / 0.252 | 0.056 / 0.078 | 11 % (0.11 m) |
+| idea 1: touch anchors (even touches, sigma 0.30 m) | 0.11 / 0.09 | +0.07 / 0.13 | 0.111 / 0.301 | 0.089 / 0.090 | 12 % (0.16 m) |
+| idea 2: gravity fitted (G_FIT) | 0.08 / 0.06 | **+0.03 / 0.11** | **0.083 / 0.197** | 0.057 / 0.084 | 11 % (0.15 m) |
+
+Idea 1 does not help: the touching player's tracked position is not close enough to the ball (feet and heads are
+0.3-0.5 m from the body axis, positions +-0.15 m). Idea 2: the video's time base is clean (25.000 fps, uniform
+timestamps, 38 near-duplicate frames of 13,104 in play), yet with the shadows fixing the depth the fitted gravity is
+10.09 m/s^2 (+2.8 %): the reconstructed world is ~2.8 % too large (camera scale), which also explains the chest-touch
+bias. Correcting it (fitted g, equivalently shrinking the world by 2.8 %) improves chest touches (bias +0.07 -> +0.03,
+MAE in flights with shadows 0.115 -> 0.083) without hurting landings or the net. Not applied yet.
+
+## Moving sun (2026-11-10), gravity fixed at 9.81
+The match was in Graz around 25-26 June 2022 (EFVL news of 28 June). With the fitted sun elevation (~44 deg) the sun
+moves ~10 deg per hour there, so it moved during the match; the model held the elevation fixed. `SUN_ELEV_DRIFT=1`
+lets the elevation change linearly too (`run_p3.sh p3_sunmove`). Fitted: azimuth drift +0.38 deg and elevation
+-0.30 deg per 1000 frames (over the match +5.9 deg / -4.6 deg): the elevation FALLS, i.e. afternoon, with the same
+ratio as the astronomical sun in Graz (-0.78 vs -0.71). Matching the elevations to the astronomical sun gives
+start ~16:02 and end ~16:30 local time (28 min, the length of the broadcast) - an independent confirmation.
+
+| held-out | landings median / MAE | chest median / MAE | chest MAE with / few shadows | landings MAE with / few | below net |
+|---|---|---|---|---|---|
+| baseline (sun fixed) | 0.09 / 0.06 | +0.07 / 0.12 | 0.115 / 0.252 | 0.056 / 0.078 | 11 % (0.11 m) |
+| **moving sun, g = 9.81** | **0.09 / 0.05** | **+0.03 / 0.11** | **0.085 / 0.193** | **0.040 / 0.079** | 11 % (0.13 m) |
+| moving sun, g fitted (diagnostic) | 0.06 / 0.08 | -0.02 / 0.09 | 0.093 / 0.192 | 0.077 / 0.073 | 12 % (0.14 m) |
+
+The moving sun gives the same gain as the fitted gravity did, with real gravity. The fitted gravity still comes out
+10.1 with the moving sun, so a small scale question remains open (camera), but fixing g at 9.81 is now best overall.
+
+## Shadow pass 4 + track search (2026-11-10) — plateau
+- Pass 4 (moving sun, window 25 px, threshold 0.86): 6,084 shadows in flights, 82 % within 8 px of the prediction.
+- `track_shadows.py` (flights with < 3 shadows: the flight's depth scale s = 0.80..1.20 is searched by the darkness under
+  the predicted shadow path over the whole flight): 173 of 234 flights with a clear path, 611 shadows (3.4 px from the
+  hand marks where they overlap).
+- Held-out with 6,134 shadows (auto 5,573 + track 472 + hand 89), moving sun, g = 9.81 (`run_p4_sunmove`):
+  landings 0.08 / MAE 0.06, chest +0.03 / 0.11, net 11 % — the same as `run_p3_sunmove` within the noise of the
+  checks (chest with shadows MAE 0.101 vs 0.085; landings with shadows rms 0.072 vs 0.101). More shadows no longer
+  change the answer: with this camera and these marks the heights have converged; the site keeps the moving-sun version.

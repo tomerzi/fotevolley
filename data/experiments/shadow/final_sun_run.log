@@ -1,0 +1,14 @@
+status 0 nfev 200 cost 23658.2
+sun: azimuth -115.39, elevation 46.83, drift +0.388, elevation drift -0.303 deg / 1000 frames
+588 size-only frames with a shadow, 171 triangulated (residual < 3 px)
+178 size-only frames at a touch placed at the player's depth
+             count  median
+method                    
+flight_fit   11190    0.08
+missing          0     NaN
+shadow_tri     171    0.15
+size_only     1615    0.40
+touch_depth    178    0.10
+sand landings (all) n=36: height median 0.08 m (0.11 expected), MAE 0.03 m
+n=85 (all): fit - marked height median +0.05 m, MAE 0.11 m (vs chest point: -0.10 / 0.13); ball-player distance 0.26 m; marked height 1.37 m; ball in flight median 2.50 / p95 4.19 m
+net crossings (all) n=130: height median 2.62 m, below the net top 9% (by 0.19 m median)

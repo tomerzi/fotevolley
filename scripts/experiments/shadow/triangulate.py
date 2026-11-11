@@ -28,7 +28,7 @@ for r in sd.itertuples():
         continue
     d = cam.ray(np.array([[b.center_x[f], b.center_y[f]]]))[0]
     a = np.radians(sun['az'] + sun['drift_deg_per_1000'] * f / 1000.0)
-    s = np.array([np.cos(a), np.sin(a)]) / np.tan(np.radians(sun['elev']))
+    s = np.array([np.cos(a), np.sin(a)]) / np.tan(np.radians(sun['elev'] + sun.get('elev_drift_deg_per_1000', 0.0) * f / 1000.0))
 
     def err(t):
         P = cam.C + t * d
