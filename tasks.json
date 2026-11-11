@@ -1,0 +1,338 @@
+{
+  "schema_version": 1,
+  "release_version": "2026.11.11",
+  "campaign_id": "height-quest-9a6a600c09af0937",
+  "video_sha256": "eca95dfbd14075d3accd54f2e9c2de65e1355e86237b1fdcd38c4fa3d330a9b9",
+  "coordinate_system": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 25,
+    "units": "native_video_pixels"
+  },
+  "tasks": [
+    {
+      "id": "mission-1",
+      "target_frame": 53,
+      "rally": 1,
+      "flight_id": 2,
+      "priority_reason": "automatic shadow/trajectory disagreement; no supplied hand shadow nearby",
+      "frames": [
+        {
+          "frame": 51,
+          "time_sec": 2.04,
+          "crop": {
+            "x": 960,
+            "y": 339,
+            "width": 960,
+            "height": 600
+          },
+          "ball_hint": [
+            1669.5,
+            547.5
+          ]
+        },
+        {
+          "frame": 53,
+          "time_sec": 2.12,
+          "crop": {
+            "x": 960,
+            "y": 339,
+            "width": 960,
+            "height": 600
+          },
+          "ball_hint": [
+            1780.5,
+            615.75
+          ]
+        },
+        {
+          "frame": 55,
+          "time_sec": 2.2,
+          "crop": {
+            "x": 960,
+            "y": 339,
+            "width": 960,
+            "height": 600
+          },
+          "ball_hint": [
+            1893.0,
+            696.75
+          ]
+        }
+      ],
+      "default_frame": 53,
+      "title": "מוצאים צל ראשון",
+      "subtitle": "התחלה ממוקדת"
+    },
+    {
+      "id": "mission-2",
+      "target_frame": 507,
+      "rally": 4,
+      "flight_id": 27,
+      "priority_reason": "automatic shadow/trajectory disagreement; no supplied hand shadow nearby",
+      "frames": [
+        {
+          "frame": 505,
+          "time_sec": 20.2,
+          "crop": {
+            "x": 0,
+            "y": 245,
+            "width": 960,
+            "height": 600
+          },
+          "ball_hint": [
+            263.65,
+            480.0
+          ]
+        },
+        {
+          "frame": 507,
+          "time_sec": 20.28,
+          "crop": {
+            "x": 0,
+            "y": 245,
+            "width": 960,
+            "height": 600
+          },
+          "ball_hint": [
+            314.8,
+            452.2
+          ]
+        },
+        {
+          "frame": 509,
+          "time_sec": 20.36,
+          "crop": {
+            "x": 0,
+            "y": 245,
+            "width": 960,
+            "height": 600
+          },
+          "ball_hint": [
+            424.9,
+            408.35
+          ]
+        }
+      ],
+      "default_frame": 507,
+      "title": "הסימן הקטן בחול",
+      "subtitle": "מבט חד"
+    },
+    {
+      "id": "mission-3",
+      "target_frame": 919,
+      "rally": 7,
+      "flight_id": 51,
+      "priority_reason": "automatic shadow/trajectory disagreement; no supplied hand shadow nearby",
+      "frames": [
+        {
+          "frame": 917,
+          "time_sec": 36.68,
+          "crop": {
+            "x": 960,
+            "y": 220,
+            "width": 960,
+            "height": 600
+          },
+          "ball_hint": [
+            1668.0,
+            510.75
+          ]
+        },
+        {
+          "frame": 919,
+          "time_sec": 36.76,
+          "crop": {
+            "x": 960,
+            "y": 220,
+            "width": 960,
+            "height": 600
+          },
+          "ball_hint": [
+            1653.0,
+            436.5
+          ]
+        },
+        {
+          "frame": 921,
+          "time_sec": 36.84,
+          "crop": {
+            "x": 960,
+            "y": 220,
+            "width": 960,
+            "height": 600
+          },
+          "ball_hint": [
+            1635.0,
+            369.0
+          ]
+        }
+      ],
+      "default_frame": 919,
+      "title": "עוקבים אחרי התנועה",
+      "subtitle": "מסתכלים גם ליד"
+    },
+    {
+      "id": "mission-4",
+      "target_frame": 14471,
+      "rally": 55,
+      "flight_id": 756,
+      "priority_reason": "automatic shadow/trajectory disagreement; no supplied hand shadow nearby",
+      "frames": [
+        {
+          "frame": 14469,
+          "time_sec": 578.76,
+          "crop": {
+            "x": 960,
+            "y": 199,
+            "width": 960,
+            "height": 600
+          },
+          "ball_hint": [
+            1752.0,
+            495.0
+          ]
+        },
+        {
+          "frame": 14471,
+          "time_sec": 578.84,
+          "crop": {
+            "x": 960,
+            "y": 199,
+            "width": 960,
+            "height": 600
+          },
+          "ball_hint": [
+            1734.0,
+            423.0
+          ]
+        },
+        {
+          "frame": 14473,
+          "time_sec": 578.92,
+          "crop": {
+            "x": 960,
+            "y": 199,
+            "width": 960,
+            "height": 600
+          },
+          "ball_hint": [
+            1711.5,
+            353.6
+          ]
+        }
+      ],
+      "default_frame": 14471,
+      "title": "מפרידים בין הצללים",
+      "subtitle": "בלי לנחש"
+    },
+    {
+      "id": "mission-5",
+      "target_frame": 3266,
+      "rally": 19,
+      "flight_id": 183,
+      "priority_reason": "automatic shadow/trajectory disagreement; no supplied hand shadow nearby",
+      "frames": [
+        {
+          "frame": 3264,
+          "time_sec": 130.56,
+          "crop": {
+            "x": 464,
+            "y": 320,
+            "width": 960,
+            "height": 600
+          },
+          "ball_hint": [
+            967.5,
+            568.5
+          ]
+        },
+        {
+          "frame": 3266,
+          "time_sec": 130.64,
+          "crop": {
+            "x": 464,
+            "y": 320,
+            "width": 960,
+            "height": 600
+          },
+          "ball_hint": [
+            961.5,
+            601.85
+          ]
+        },
+        {
+          "frame": 3268,
+          "time_sec": 130.72,
+          "crop": {
+            "x": 464,
+            "y": 320,
+            "width": 960,
+            "height": 600
+          },
+          "ball_hint": [
+            953.25,
+            502.5
+          ]
+        }
+      ],
+      "default_frame": 3266,
+      "title": "קרוב לרשת",
+      "subtitle": "גם ״לא בטוח״ עוזר"
+    },
+    {
+      "id": "mission-6",
+      "target_frame": 14865,
+      "rally": 57,
+      "flight_id": 780,
+      "priority_reason": "automatic shadow/trajectory disagreement; no supplied hand shadow nearby",
+      "frames": [
+        {
+          "frame": 14863,
+          "time_sec": 594.52,
+          "crop": {
+            "x": 960,
+            "y": 469,
+            "width": 960,
+            "height": 600
+          },
+          "ball_hint": [
+            1747.5,
+            753.0
+          ]
+        },
+        {
+          "frame": 14865,
+          "time_sec": 594.6,
+          "crop": {
+            "x": 960,
+            "y": 469,
+            "width": 960,
+            "height": 600
+          },
+          "ball_hint": [
+            1833.0,
+            751.15
+          ]
+        },
+        {
+          "frame": 14867,
+          "time_sec": 594.68,
+          "crop": {
+            "x": 960,
+            "y": 469,
+            "width": 960,
+            "height": 600
+          },
+          "ball_hint": [
+            1905.0,
+            757.3
+          ]
+        }
+      ],
+      "default_frame": 14865,
+      "title": "האתגר האחרון",
+      "subtitle": "אור, צל והחלטה"
+    }
+  ]
+}
