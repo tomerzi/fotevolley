@@ -1,0 +1,299 @@
+<title>אימות נגיעות</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans+Hebrew:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: work tool — touch list on the side, one large frame with a frame stepper, the five checks beside it; court-line blue accent on sand neutrals (same system as the chest marking page) */
+:root{
+  --bg:#f6f4ef; --surface:#ffffff; --ink:#1b2430; --ink-2:#4a5463; --muted:#7d8591; --line:#e3dfd6;
+  --accent:#1f5fbf; --accent-soft:#1f5fbf1f; --done:#1d7a4a; --warn:#b3541e; --ruler:#ffd400; --pole:#ff3bd0; --ball:#22e0e0;
+  --display:"Barlow Condensed","Arial Narrow",sans-serif; --body:"IBM Plex Sans Hebrew","Segoe UI",Arial,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12161c; --surface:#1a2029; --ink:#e9ecf0; --ink-2:#b4bcc7; --muted:#8a93a0; --line:#2a323d;
+  --accent:#6aa3ff; --accent-soft:#6aa3ff26; --done:#4cc38a; --warn:#f0935a; --ruler:#ffd400; --pole:#ff6bdc; --ball:#22e0e0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161c; --surface:#1a2029; --ink:#e9ecf0; --ink-2:#b4bcc7; --muted:#8a93a0; --line:#2a323d;
+  --accent:#6aa3ff; --accent-soft:#6aa3ff26; --done:#4cc38a; --warn:#f0935a; --ruler:#ffd400; --pole:#ff6bdc; --ball:#22e0e0; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5}
+.wrap{max-width:1240px;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:14px}
+header{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px}
+h1{font-family:var(--display);font-size:2.2rem;margin:0;line-height:1}
+.progress{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:.9rem;color:var(--ink-2)}
+.pbar{width:180px;max-width:40vw;height:8px;background:var(--line);border-radius:4px;overflow:hidden}
+.pbar i{display:block;height:100%;background:var(--done);width:0}
+.banner{background:var(--accent-soft);border:1px solid var(--line);padding:8px 12px;border-radius:4px;font-size:.9rem}
+.intro{margin:0;color:var(--ink-2);max-width:72ch}
+.layout{display:grid;grid-template-columns:200px minmax(0,1fr);gap:16px;align-items:start}
+.list{background:var(--surface);border:1px solid var(--line);max-height:82vh;overflow:auto;min-width:0}
+.list button{all:unset;box-sizing:border-box;display:flex;justify-content:space-between;align-items:center;gap:6px;width:100%;padding:6px 10px;border-bottom:1px solid var(--line);cursor:pointer;font-size:.85rem;font-variant-numeric:tabular-nums}
+.list button[aria-current="true"]{background:var(--accent-soft);font-weight:700}
+.list button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.chip{font-family:var(--mono);font-size:.7rem;padding:1px 6px;border-radius:3px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.chip.done{color:var(--done);border-color:var(--done)}
+.chip.diff{color:var(--warn);border-color:var(--warn)}
+.work{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:16px;align-items:start}
+.view{min-width:0;display:grid;gap:8px}
+.stage{background:#000;aspect-ratio:1/1;max-width:100%}
+.stage canvas{width:100%;height:100%;display:block}
+.frames{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.frames button{all:unset;cursor:pointer;aspect-ratio:1/1;border:2px solid transparent;position:relative;background-repeat:no-repeat}
+.frames button[aria-pressed="true"]{border-color:var(--accent)}
+.frames button:focus-visible{outline:2px solid var(--accent)}
+.frames span{position:absolute;inset:auto 0 0 0;font-family:var(--mono);font-size:.62rem;background:#000a;color:#fff;text-align:center}
+.tools{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font-size:.85rem;color:var(--ink-2)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:.8rem;color:var(--ink-2)}
+.legend i{display:inline-block;width:14px;height:4px;vertical-align:middle;margin-inline-end:5px}
+.panel{display:grid;gap:12px;background:var(--surface);border:1px solid var(--line);padding:14px;min-width:0}
+.panel h2{font-family:var(--display);font-size:1.5rem;margin:0;line-height:1.1}
+.meta{font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.step{display:grid;gap:5px}
+.step b{font-size:.86rem}
+.step p{margin:0;color:var(--ink-2);font-size:.8rem}
+.seg{display:flex;flex-wrap:wrap;gap:5px}
+button.btn{font:inherit;font-size:.86rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);padding:5px 9px;border-radius:4px;cursor:pointer}
+button.btn:hover{border-color:var(--accent)}
+button.btn[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+button.btn.was{box-shadow:inset 0 -3px 0 var(--muted)}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--surface);font-weight:700;padding:8px 12px}
+button.btn:disabled{opacity:.45;cursor:not-allowed}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.row{display:flex;flex-wrap:wrap;gap:6px}
+.status{font-size:.85rem;color:var(--ink-2);min-height:1.3em}
+.summary{background:var(--surface);border:1px solid var(--line);padding:12px 14px;display:grid;gap:6px}
+.summary h2{font-family:var(--display);font-size:1.4rem;margin:0}
+.summary table{border-collapse:collapse;font-size:.88rem;font-variant-numeric:tabular-nums}
+.summary td{padding:2px 14px 2px 0;border-bottom:1px solid var(--line)}
+.summary td:last-child{font-family:var(--mono)}
+@media (max-width:980px){.layout{grid-template-columns:1fr}.list{max-height:150px}.work{grid-template-columns:1fr}}
+</style>
+
+<div class="wrap" dir="rtl" lang="he">
+  <header>
+    <h1>אימות נגיעות</h1>
+    <div class="progress"><span id="count">0 / 0</span><div class="pbar"><i id="bar"></i></div></div>
+  </header>
+  <p class="intro">337 נגיעות בסדר אקראי, כך שגם בדיקה חלקית נותנת הערכה לא מוטה. בכל נגיעה בודקים חמישה דברים: מי נגע, באיזה איבר, מצב הרגליים, מיקום השחקן על החול, וגובה הכדור. הסדר נשמר, אפשר לעצור ולהמשיך בכל רגע.</p>
+  <div class="banner" id="banner" hidden></div>
+
+  <div class="layout">
+    <nav class="list" id="list" aria-label="רשימת הנגיעות"></nav>
+    <div class="work">
+      <div class="view">
+        <div class="stage"><canvas id="cv" width="800" height="800" aria-label="פריים הנגיעה"></canvas></div>
+        <div class="frames" id="frames"></div>
+        <div class="tools">
+          <label><input type="checkbox" id="ov" checked> הצג סימונים (מקש H)</label>
+          <span>מקשי חצים: פריים קודם / הבא</span>
+        </div>
+        <div class="legend">
+          <span><i style="background:var(--ruler)"></i>סרגל בגובה השחקן, שנתות כל חצי מטר, מהנקודה שבה המערכת חושבת שהוא עומד</span>
+          <span><i style="background:var(--pole)"></i>קו מהכדור אל הנקודה שמתחתיו על החול, לפי הגובה המחושב</span>
+          <span><i style="background:var(--ball)"></i>הכדור שזוהה</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div>
+          <h2 id="title">נגיעה</h2>
+          <div class="meta" id="meta"></div>
+        </div>
+        <div class="step"><b>1. מי נגע?</b><div class="seg" id="q-who"></div></div>
+        <div class="step"><b>2. באיזה איבר?</b><div class="seg" id="q-part"></div></div>
+        <div class="step"><b>3. הרגליים ברגע הנגיעה</b><div class="seg" id="q-feet"></div></div>
+        <div class="step"><b>4. הסרגל הצהוב</b><p>הבסיס אמור להיות בין כפות הרגליים, והקצה העליון בגובה הקודקוד כשהשחקן זקוף.</p><div class="seg" id="q-ruler"></div></div>
+        <div class="step" id="step-base"><b>5. הנקודה הוורודה על החול</b><p id="base-help"></p><div class="seg" id="q-base"></div></div>
+        <div class="row">
+          <button class="btn primary" id="save" type="button">שמור והמשך (Enter)</button>
+          <button class="btn" id="prev" type="button">הקודמת</button>
+          <button class="btn" id="next" type="button">הבאה שלא נבדקה</button>
+        </div>
+        <div class="status" id="status" role="status"></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="summary">
+    <h2>סיכום עד כה</h2>
+    <table id="sum"><tbody><tr><td>עוד לא נבדקו נגיעות. הסיכום יופיע כאן אחרי השמירה הראשונה.</td><td></td></tr></tbody></table>
+  </section>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const NAMES = { Maor_Haas: 'מאור האס', Ron_Ben_Ishay: 'רון בן ישי', Franklin: 'פרנקלין', Hiltinho: 'הילטיניו' };
+const PARTS = { head: 'ראש', chest: 'חזה', shoulder: 'כתף', foot: 'כף רגל', shin: 'שוק', knee: 'ברך', thigh: 'ירך', arm: 'יד / זרוע' };
+const ACTIONS = { reception: 'קבלה', set: 'הרמה', attack: 'התקפה', dead: 'מחוץ למשחק', serve: 'הגשה' };
+const Q = {
+  who: { ...NAMES, none: 'אף אחד / לא נגיעה' },
+  part: PARTS,
+  feet: { both: 'שתיהן על החול', one: 'אחת באוויר', air: 'שתיהן באוויר', unseen: 'לא רואים' },
+  ruler: { ok: 'מתאים', base_off: 'הבסיס לא ברגליים', height_off: 'הגובה לא מתאים', cant: 'אי אפשר לשפוט' },
+  base: { ok: 'בעומק של השחקן', near: 'קרוב מדי למצלמה', far: 'רחוק מדי מהמצלמה', cant: 'אי אפשר לשפוט' },
+};
+let TT = [], TILE = 400, OFFS = [], MID = 3, cur = 0, frame = 3, ans = {}, marks = {}, db = null, me = null, busy = false;
+const sheets = {};
+const cv = $('#cv'), cx = cv.getContext('2d');
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+function sheet(t) {
+  if (!sheets[t.sheet]) { const im = new Image(); im.onload = () => { if (TT[cur] && TT[cur].sheet === t.sheet) draw(); }; im.src = `sheets/s${t.sheet}.jpg`; sheets[t.sheet] = im; }
+  return sheets[t.sheet];
+}
+
+function draw() {
+  const t = TT[cur]; if (!t) return;
+  const im = sheet(t), S = cv.width, k = S / t.s;
+  cx.fillStyle = '#000'; cx.fillRect(0, 0, S, S);
+  if (im.complete && im.naturalWidth) cx.drawImage(im, frame * TILE, t.row * TILE, TILE, TILE, 0, 0, S, S);
+  if (!$('#ov').checked) return;
+  const m = p => [(p[0] - t.x0) * k, (p[1] - t.y0) * k];
+  cx.lineWidth = 3; cx.lineCap = 'round'; cx.font = '600 20px ' + css('--mono'); cx.textBaseline = 'middle'; cx.direction = 'ltr'; cx.textAlign = 'left';
+  const b = t.balls[frame];
+  if (b) { const c = m(b); cx.strokeStyle = css('--ball'); cx.beginPath(); cx.arc(c[0], c[1], Math.max(8, b[2] * k + 3), 0, 7); cx.stroke(); }
+  if (frame !== MID) return;
+  if (t.ruler) {
+    const P = t.ruler.map(m); cx.strokeStyle = css('--ruler');
+    cx.beginPath(); P.forEach((p, i) => i ? cx.lineTo(p[0], p[1]) : cx.moveTo(p[0], p[1])); cx.stroke();
+    P.forEach((p, i) => { const w = (i === 0 || i === P.length - 1) ? 14 : 8; cx.beginPath(); cx.moveTo(p[0] - w, p[1]); cx.lineTo(p[0] + w, p[1]); cx.stroke(); });
+    const top = P[P.length - 1]; label(t.stature.toFixed(2) + ' m', top[0] + 20, top[1], css('--ruler'));
+  }
+  if (t.pole) {
+    const a = m(t.pole[0]), c = m(t.pole[1]); cx.strokeStyle = css('--pole');
+    cx.beginPath(); cx.moveTo(a[0], a[1]); cx.lineTo(c[0], c[1]); cx.stroke();
+    cx.beginPath(); cx.ellipse(a[0], a[1], 13, 6, 0, 0, 7); cx.stroke();
+    label(t.h.toFixed(2) + ' m', c[0] + 22, c[1] - 22, css('--pole'));
+  }
+}
+function label(txt, x, y, col) {
+  const w = cx.measureText(txt).width; x = Math.min(Math.max(4, x), cv.width - w - 12);
+  y = Math.min(Math.max(16, y), cv.height - 16);
+  cx.fillStyle = '#000b'; cx.fillRect(x - 4, y - 14, w + 8, 28); cx.fillStyle = col; cx.fillText(txt, x, y);
+}
+
+function seg(q) {
+  const t = TT[cur], box = $('#q-' + q); box.textContent = '';
+  for (const [v, text] of Object.entries(Q[q])) {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'btn'; b.textContent = text;
+    b.setAttribute('aria-pressed', String(ans[q] === v));
+    if ((q === 'who' && v === t.player) || (q === 'part' && v === t.part)) { b.classList.add('was'); b.title = 'התיוג הקיים'; }
+    b.addEventListener('click', () => { ans[q] = v; if (q === 'who' && v === 'none') ans.part = null; render(); });
+    box.appendChild(b);
+  }
+}
+function needs() {
+  const t = TT[cur];
+  if (!ans.who) return 'who'; if (ans.who === 'none') return null;
+  if (!ans.part) return 'part'; if (!ans.feet) return 'feet'; if (!ans.ruler) return 'ruler';
+  if (t.pole && !ans.base) return 'base'; return null;
+}
+function render() {
+  const t = TT[cur]; if (!t) return;
+  $('#title').textContent = `נגיעה ${t.id}`;
+  $('#meta').textContent = `מערכה ${t.set} · נקודה ${t.rally} · פריים ${t.frame}` + (t.action ? ` · ${ACTIONS[t.action] || t.action}` : '') + (t.inplay || t.action === 'dead' ? '' : ' · מחוץ למשחק');
+  ['who', 'part', 'feet', 'ruler', 'base'].forEach(seg);
+  $('#step-base').hidden = !t.pole;
+  $('#base-help').textContent = t.pole ? `גובה מחושב ${t.h.toFixed(2)} מ' (אי-ודאות ±${t.hs ?? '?'} מ'). הנקודה אמורה להיות על החול מתחת לכדור, בערך בעומק של האיבר הנוגע. גובה שגוי מזיז אותה קדימה או אחורה.` : '';
+  const miss = needs(), canWrite = !!db && !busy;
+  $('#save').disabled = !canWrite || !!miss;
+  if (!busy) $('#status').textContent = marks[t.id] ? 'נבדקה. אפשר לשנות ולשמור שוב.' : (miss && db ? 'חסרה תשובה לשאלה ' + ({ who: 1, part: 2, feet: 3, ruler: 4, base: 5 })[miss] + '.' : '');
+  document.querySelectorAll('#frames button').forEach((b, i) => {
+    b.setAttribute('aria-pressed', String(i === frame));
+    b.style.backgroundImage = `url(sheets/s${t.sheet}.jpg)`;
+    b.style.backgroundSize = `700% ${100 * PER}%`;
+    b.style.backgroundPosition = `${i * 100 / 6}% ${PER > 1 ? t.row * 100 / (PER - 1) : 0}%`;
+  });
+  draw();
+}
+let PER = 4;
+function changed(t, mk) { return mk.who !== t.player || (mk.who !== 'none' && mk.part !== t.part) || ['base_off', 'height_off'].includes(mk.ruler) || ['near', 'far'].includes(mk.base); }
+function renderList() {
+  const box = $('#list'), keep = box.scrollTop; box.textContent = '';
+  TT.forEach((t, i) => {
+    const b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-current', String(i === cur));
+    const a = document.createElement('span'); a.textContent = `${i + 1}. ${NAMES[t.player]}`;
+    const c = document.createElement('span'); const mk = marks[t.id];
+    c.className = 'chip' + (mk ? (changed(t, mk) ? ' diff' : ' done') : ''); c.textContent = mk ? (changed(t, mk) ? 'הערה' : 'תקין') : PARTS[t.part] || t.part;
+    b.append(a, c); b.addEventListener('click', () => open(i)); box.appendChild(b);
+  });
+  box.scrollTop = keep;
+  const n = TT.filter(t => marks[t.id]).length;
+  $('#count').textContent = `${n} / ${TT.length}`; $('#bar').style.width = TT.length ? (100 * n / TT.length) + '%' : '0';
+  summary();
+}
+function summary() {
+  const done = TT.filter(t => marks[t.id]); if (!done.length) return;
+  const real = done.filter(t => marks[t.id].who !== 'none');
+  const pct = (a, b) => b ? `${a} / ${b} (${Math.round(100 * a / b)}%)` : '0 / 0';
+  const cnt = (arr, f) => arr.filter(f).length;
+  const judgedR = real.filter(t => marks[t.id].ruler && marks[t.id].ruler !== 'cant');
+  const judgedB = real.filter(t => marks[t.id].base && marks[t.id].base !== 'cant');
+  const feet = real.filter(t => ['both', 'one', 'air'].includes(marks[t.id].feet) && t.auto.airborne !== null);
+  const rows = [
+    ['נגיעה אמיתית', pct(real.length, done.length)],
+    ['השחקן המתויג נכון', pct(cnt(real, t => marks[t.id].who === t.player), real.length)],
+    ['האיבר המתויג נכון', pct(cnt(real, t => marks[t.id].part === t.part), real.length)],
+    ['זיהוי "באוויר" של המערכת תואם', pct(cnt(feet, t => (marks[t.id].feet === 'air') === t.auto.airborne), feet.length)],
+    ['הסרגל מתאים (מיקום וגובה השחקן)', pct(cnt(judgedR, t => marks[t.id].ruler === 'ok'), judgedR.length)],
+    ['גובה הכדור עקבי עם עומק השחקן', pct(cnt(judgedB, t => marks[t.id].base === 'ok'), judgedB.length)],
+  ];
+  const tb = $('#sum tbody'); tb.textContent = '';
+  rows.forEach(r => { const tr = document.createElement('tr'); r.forEach(v => { const td = document.createElement('td'); td.textContent = v; tr.appendChild(td); }); tb.appendChild(tr); });
+}
+function open(i) {
+  cur = Math.max(0, Math.min(TT.length - 1, i)); frame = MID;
+  const t = TT[cur], mk = marks[t.id];
+  ans = mk ? { who: mk.who, part: mk.part, feet: mk.feet, ruler: mk.ruler, base: mk.base } : { who: t.player, part: t.part };
+  try { localStorage.setItem('touch-check-cur', String(t.id)); } catch (e) {}
+  renderList(); render();
+  const el = $('#list').children[cur]; if (el) el.scrollIntoView({ block: 'nearest' });
+  const nx = TT[cur + 1]; if (nx) sheet(nx);
+}
+function nextOpen() { for (let k = 1; k <= TT.length; k++) { const i = (cur + k) % TT.length; if (!marks[TT[i].id]) return open(i); } $('#status').textContent = 'כל הנגיעות נבדקו.'; }
+async function save() {
+  const t = TT[cur]; if (!db || busy || needs()) return;
+  busy = true; $('#status').textContent = 'שומר…'; render();
+  const none = ans.who === 'none';
+  const doc = { touch: t.id, frame: t.frame, who: ans.who, part: none ? null : ans.part, feet: none ? null : ans.feet, ruler: none ? null : ans.ruler,
+    base: none || !t.pole ? null : ans.base, label_player: t.player, label_part: t.part, height_m: t.h, at: new Date().toISOString(), by: me };
+  try { await db.collection('marks').doc(String(t.id)).set(doc); marks[t.id] = doc; busy = false; nextOpen(); }
+  catch (e) { busy = false; $('#status').textContent = 'השמירה נכשלה. בדקו את החיבור ונסו שוב.'; render(); }
+}
+$('#save').addEventListener('click', save);
+$('#prev').addEventListener('click', () => open(cur - 1));
+$('#next').addEventListener('click', nextOpen);
+$('#ov').addEventListener('change', draw);
+document.addEventListener('keydown', e => {
+  if (e.target.matches('input,textarea') && e.key !== 'Enter') return;
+  if (e.key === 'ArrowRight') { frame = Math.min(OFFS.length - 1, frame + 1); render(); e.preventDefault(); }
+  else if (e.key === 'ArrowLeft') { frame = Math.max(0, frame - 1); render(); e.preventDefault(); }
+  else if (e.key === 'h' || e.key === 'H' || e.key === 'י') { $('#ov').checked = !$('#ov').checked; draw(); }
+  else if (e.key === 'Enter' && !e.target.matches('button')) { save(); e.preventDefault(); }
+});
+
+(async () => {
+  const banner = $('#banner'), say = s => { banner.textContent = s; banner.hidden = false; };
+  try {
+    const d = await (await fetch('touches.json')).json();
+    TT = d.touches; TILE = d.tile; OFFS = d.offs; PER = d.per; MID = OFFS.indexOf(0);
+  } catch (e) { say('טעינת הנגיעות נכשלה. רעננו את הדף.'); return; }
+  const fr = $('#frames');
+  OFFS.forEach((o, i) => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', `פריים ${o}`); const s = document.createElement('span'); s.textContent = o === 0 ? 'נגיעה' : (o > 0 ? '+' + o : o); b.appendChild(s); b.addEventListener('click', () => { frame = i; render(); }); fr.appendChild(b); });
+  fr.dir = 'ltr';
+  let start = 0; try { const id = Number(localStorage.getItem('touch-check-cur')); const i = TT.findIndex(t => t.id === id); if (i >= 0) start = i; } catch (e) {}
+  open(start);
+  db = await window.claude?.use?.('db') ?? null;
+  const user = await window.claude?.use?.('user') ?? null;
+  me = user ? await user.id().catch(() => null) : null;
+  if (!db) { say('השמירה לא זמינה בתצוגה הזו. פתחו את הדף מחוברים לחשבון ב-claude.ai כדי לשמור תשובות.'); render(); return; }
+  let first = true;
+  const timer = setTimeout(() => { if (first) say('התשובות השמורות לא נטענו עדיין. אפשר להמשיך לבדוק, והרשימה תתעדכן כשהחיבור יחזור.'); }, 10000);
+  db.collection('marks').onSnapshot(snap => {
+    clearTimeout(timer); banner.hidden = true;
+    marks = {}; snap.docs.forEach(d => { marks[Number(d.id)] = d.data(); });
+    if (first) { first = false; if (marks[TT[cur].id]) { const i = TT.findIndex(t => !marks[t.id]); open(i >= 0 ? i : cur); return; } }
+    renderList(); render();
+  }, () => { clearTimeout(timer); say('החיבור לשמירה נותק. רעננו את הדף.'); });
+  render();
+})();
+</script>
