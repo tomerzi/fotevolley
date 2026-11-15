@@ -16,7 +16,18 @@ import segment as sg
 import sun as sunmod
 
 GVEC = np.array([0.0, 0.0, -G])
-KD_DEFAULT = 0.018      # drag constant k = rho*Cd*A/(2m)  [1/m]  (Cd~0.35 for a size-5 ball)
+KD_DEFAULT = 0.012      # drag constant k = rho*Cd*A/(2m)  [1/m]  (Cd~0.23; tuned on the shadow-tracked flights)
+BALL_D_EFF = 0.205      # apparent ball diameter of the detector box [m] (calibrated on the shadow-tracked flights)
+# typical unmodelled acceleration seen in the shadow-tracked flights (wind, spin, scale); used as the prior mean
+# for flights that have no shadow.  Overwritten from physics.json when present.
+AE_MEAN = np.zeros(3)
+try:
+    import json as _json, os as _os
+    _p = _os.path.join(_os.path.dirname(_os.path.abspath(__file__)), 'physics.json')
+    if _os.path.exists(_p):
+        AE_MEAN = np.array(_json.load(open(_p))['ae_mean'], float)
+except Exception:
+    pass
 
 
 def integrate_drag(p0, v0, t_lo, t_hi, kd, h=0.008, gvec=GVEC):
@@ -156,19 +167,23 @@ def ransac_shadow(cam, t, rays, shad, sun_s, ks, tref, rng, tol=0.25, max_pairs=
     return chosen, th[:3], th[3:]
 
 
-def solve_shot(cam, frames, uv, w_obs, segs, players=None, kd=KD_DEFAULT, sun_s=None, shad=None, opts=None, gscale=1.0):
+def solve_shot(cam, frames, uv, w_obs, segs, players=None, kd=KD_DEFAULT, sun_s=None, shad=None, opts=None, gscale=1.0,
+               size=None, ae_mean=None):
     """frames/uv/w_obs: observations of the shot (as given to the DP); segs: DP output.
     sun_s: sun slope (a,b) of the shot; shad: per-observation arrays (m,2) of candidate shadow ground points.
     returns dict with flights, junctions, diagnostics"""
-    o = dict(sig_px=2.0, huber=2.5, sig_cont=0.04, sig_ground=0.10, sig_player=0.7, player_rel=1.1, use_player=True,
-             n_iter=9, sig_other_cont=0.6, sig_shadow=0.06, gate=0.30, use_shadow=True, sig_ae=2.0)
+    o = dict(sig_px=2.0, huber=2.5, sig_cont=0.04, sig_ground=0.10, sig_player=0.4, player_rel=1.1, use_player=True,
+             n_iter=9, sig_other_cont=0.6, sig_shadow=0.06, gate=0.30, use_shadow=True, sig_ae=2.0, sig_ae_poor=0.05,
+             sig_size_rel=0.12, use_size=True, sig_pos=(12.0, 6.0), sig_vel=30.0)
     o.update(opts or {})
     gvec = GVEC * gscale
+    ae_mean = AE_MEAN if ae_mean is None else np.asarray(ae_mean, float)
     f0 = frames[0]
     t = (frames - f0) / FPS
     n_obs = len(frames)
     a1, a2 = sg.rows(cam, uv)
     rays = cam.rays(uv)
+    mag = 1 + 2 * cam.k1 * (cam.undistort_norm(uv) ** 2).sum(1)      # local magnification of the lens distortion
     use_sh = o['use_shadow'] and sun_s is not None and shad is not None
     flights = []
     for s in segs:
@@ -273,8 +288,27 @@ def solve_shot(cam, frames, uv, w_obs, segs, players=None, kd=KD_DEFAULT, sun_s=
                 R[:, c0 + 6:c0 + 9] = ar * (w * 0.5 * dt ** 2)[:, None]
                 add(R, (ar @ cam.C - (ar @ gvec) * 0.5 * dt ** 2 - (ar * dl).sum(1)) * w)
             # prior on the extra acceleration: free only when the shadow pins the 3-D path
-            R = np.zeros((3, NP * nf)); R[:, c0 + 6:c0 + 9] = np.eye(3) / (o['sig_ae'] if fl.rich else 0.02)
+            sae = o['sig_ae'] if fl.rich else o['sig_ae_poor']
+            R = np.zeros((3, NP * nf)); R[:, c0 + 6:c0 + 9] = np.eye(3) / sae
+            add(R, ae_mean / sae)
+            # very weak priors that only matter when a flight is (almost) unconstrained: stay around the court, sane speed
+            tm = 0.5 * (t[ks[0]] + t[ks[-1]])
+            B, c = fl.basis(tm)
+            R = np.zeros((2, NP * nf)); R[:, c0:c0 + NP] = B[:2] / np.array(o['sig_pos'])[:, None]
+            add(R, (np.array([8.0, 4.0]) - c[:2]) / np.array(o['sig_pos']))
+            R = np.zeros((3, NP * nf)); R[:, c0 + 3:c0 + 6] = np.eye(3) / o['sig_vel']
             add(R, np.zeros(3))
+            # apparent ball size as a weak range measurement (keeps camera-only flights from drifting in depth)
+            if o['use_size'] and size is not None:
+                rg = BALL_D_EFF * cam.f / size[ks] * mag[ks]
+                okz = np.isfinite(rg)
+                ws = np.where(okz, 1.0 / (o['sig_size_rel'] * np.where(okz, rg, 1.0)), 0.0) * w_obs[ks]
+                ry = rays[ks]
+                R = np.zeros((len(ks), NP * nf))
+                R[:, c0:c0 + 3] = ry * ws[:, None]
+                R[:, c0 + 3:c0 + 6] = ry * (ws * dt)[:, None]
+                R[:, c0 + 6:c0 + 9] = ry * (ws * 0.5 * dt ** 2)[:, None]
+                add(R, (np.where(okz, rg, 0.0) + ry @ cam.C - (ry @ gvec) * 0.5 * dt ** 2 - (ry * dl).sum(1)) * ws)
             if use_sh:
                 sel = chosen[ks] >= 0
                 if sel.any():

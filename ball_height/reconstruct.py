@@ -30,6 +30,8 @@ def junction_has_cause(jn, x_net=X_NET):
     jn['dv'] = float(dv); jn['p'] = p
     if dv < 1.0:
         return False
+    if dv > 4.5:
+        return True                                        # a real event, whatever caused it
     c = jn['contact']
     if p[2] < 3.3:
         if jn['player_xy'] is not None and np.linalg.norm(p[:2] - jn['player_xy']) < 1.7:
@@ -43,7 +45,7 @@ def junction_has_cause(jn, x_net=X_NET):
     return False
 
 
-def merge_false_splits(cam, ball_shot, players, cd, sun_s, out, kd, verbose=False):
+def merge_false_splits(cam, ball_shot, players, cd, sun_s, out, kd, verbose=False, opts=None):
     """the DP may cut one flight in two (model error, a gap while the ball is out of the picture). Junctions without a
     physical cause are removed when a single flight explains both parts."""
     changed = True
@@ -64,7 +66,7 @@ def merge_false_splits(cam, ball_shot, players, cd, sun_s, out, kd, verbose=Fals
                 if s is sa:
                     s2['j'] = sb['j']; s2['fb'] = sb['fb']
                 segs.append(s2)
-            trial = pp.run_shot(cam, ball_shot, players, cd, sun_s, kd=kd, segs=segs)
+            trial = pp.run_shot(cam, ball_shot, players, cd, sun_s, kd=kd, segs=segs, opts=opts)
             fm = [s for s in trial['segs'] if s['kind'] == 'flight' and s['i'] == sa['i']][0]['flight']
             lim = 1.3 * max(fa_.rms, fb_.rms) + 0.5
             ok = fm.rms < lim and (np.isnan(fm.shadow_rms) or fm.shadow_rms < max(0.07, 1.6 * np.nanmax([fa_.shadow_rms, fb_.shadow_rms, 0.0])))
@@ -129,7 +131,7 @@ def assemble(cam, players, ball_shot, out, sun_s):
     flight_id = np.full(n, -1)
     shadow_used = np.zeros(n, bool)
     if out is None:
-        return cols, state, method, flight_id, shadow_used, [], []
+        return cols, state, method, flight_id, shadow_used, [], [], np.array([''] * n, dtype=object)
     frames, uv, t, f0 = out['frames'], out['uv'], out['t'], out['f0']
     obs_index = {int(f): k for k, f in enumerate(frames)}
     rays = cam.rays(uv)
@@ -143,6 +145,15 @@ def assemble(cam, players, ball_shot, out, sun_s):
             cols['z_sigma_m'][i] = sig
             state[i] = st; method[i] = me; flight_id[i] = fid
 
+    # flights tied to something else (another flight, the sand) are much better constrained than isolated ones
+    anchored = set()
+    for jn in out['junctions']:
+        if 'other' not in jn['kinds']:
+            for sgm in (jn['a'], jn['b']):
+                if sgm['kind'] == 'flight':
+                    anchored.add(id(sgm['flight']))
+    quality = np.array([''] * n, dtype=object)
+    rejected = set()
     flights_rows, fid = [], 0
     for s in out['segs']:
         if s['kind'] == 'flight':
@@ -155,15 +166,30 @@ def assemble(cam, players, ball_shot, out, sun_s):
             tt = (ff - f0) / FPS
             P = fl.pos(tt); sg_ = fl.sigma(tt)[:, 2]
             ns = fl.n_shadow
-            if held:
-                me = 'held'
-            elif ns >= 4:
-                me = 'flight+shadow'
-            else:
-                me = 'flight'
-            for f, p, sz in zip(ff, P, sg_):
-                put(f, p, 'held' if held else 'flight', me, sz, fid)
             ks = np.arange(fl.i, fl.j)
+            sp0 = np.linalg.norm(fl.vel(fl.t_start))
+            cover = len(ks) / max(1, len(ff))
+            # physically impossible solutions are dropped, weakly constrained ones are kept but flagged
+            if sp0 > 32 or P[:, 2].max() > 9 or P[:, 2].min() < -0.3 or fl.rms > 7:
+                flights_rows.append(dict(flight_id=fid, frame_start=fa, frame_end=fb, n_obs=len(ks), n_shadow=ns, state='rejected',
+                                         speed0=sp0, rms_px=fl.rms, z_max=P[:, 2].max(), z_min=P[:, 2].min()))
+                fid += 1
+                rejected.add(id(fl))
+                continue
+            if held:
+                me, q, floor = 'held', 'C', 0.25
+            elif ns >= 4:
+                me, q, floor = 'flight+shadow', 'A', 0.03
+            else:
+                me, floor = 'flight', 0.07
+                weak = fl.rms > 5 or len(ks) < 6 or cover < 0.35 or id(fl) not in anchored
+                q = 'C' if weak else 'B'
+                if weak:
+                    floor = 0.40
+            for f, p, sz in zip(ff, P, sg_):
+                put(f, p, 'held' if held else 'flight', me, float(np.hypot(sz if np.isfinite(sz) else 0.3, floor)), fid)
+                if 0 <= int(f) - f_first < n:
+                    quality[int(f) - f_first] = q
             for k in ks:
                 i = int(frames[k]) - f_first
                 cols['reproj_err_px'][i] = out['res'][k]
@@ -186,6 +212,8 @@ def assemble(cam, players, ball_shot, out, sun_s):
             Pi = np.stack([np.interp(ff, frames[ks], Pk[:, d]) for d in range(3)], 1)
             for f, p in zip(ff, Pi):
                 put(f, p, 'ground', 'ground', 0.03)
+                if 0 <= int(f) - f_first < n:
+                    quality[int(f) - f_first] = 'A'
     # direct per-frame shadow triangulation (independent of any dynamics), wherever a matched shadow exists
     if shad is not None and sun_s is not None:
         for k, f in enumerate(frames):
@@ -210,9 +238,9 @@ def assemble(cam, players, ball_shot, out, sun_s):
                 elif len(Pc) == 1 and Pc[0, 2] < 2.5:
                     Ps = Pc[0]
             if Ps is not None:
-                put(f, Ps, 'held', 'shadow', 0.08); cols['z_shadow_m'][i] = Ps[2]; shadow_used[i] = True
+                put(f, Ps, 'held', 'shadow', 0.08); cols['z_shadow_m'][i] = Ps[2]; shadow_used[i] = True; quality[i] = 'B'
             elif est is not None:
-                put(f, est[0], 'held', 'player-depth', 0.25)
+                put(f, est[0], 'held', 'player-depth', 0.25); quality[i] = 'C'
     # fill short holes between known frames by interpolation
     z = cols['z_m']
     known = np.nonzero(np.isfinite(z))[0]
@@ -225,7 +253,7 @@ def assemble(cam, players, ball_shot, out, sun_s):
                         cols[c][i] = (1 - w) * cols[c][a] + w * cols[c][b]
                     cols['z_sigma_m'][i] = max(cols['z_sigma_m'][a], cols['z_sigma_m'][b]) + 0.15
                     state[i] = state[a] if state[a] == state[b] else 'unknown'
-                    method[i] = 'interp'
+                    method[i] = 'interp'; quality[i] = 'C'
     # contacts
     contacts = []
     for jn in out['junctions']:
@@ -233,6 +261,8 @@ def assemble(cam, players, ball_shot, out, sun_s):
         if 'flight' not in (ka, kb) or 'other' in (ka, kb):
             continue
         fl = jn['a']['flight'] if ka == 'flight' else jn['b']['flight']
+        if any(sgm['kind'] == 'flight' and id(sgm['flight']) in rejected for sgm in (jn['a'], jn['b'])):
+            continue
         loose = jn.get('loose', False)
         tau = (jn['ta'] + 0.5 / FPS) if loose else jn['tau']
         if ka != 'flight':
@@ -259,10 +289,10 @@ def assemble(cam, players, ball_shot, out, sun_s):
         contacts.append(dict(frame=round(f0 + tau * FPS, 2), x_m=p[0], y_m=p[1], z_m=p[2], kind=kind, player=who, body_part=part,
                              ball_to_joint_m=rel, speed_in=np.linalg.norm(v_in), speed_out=np.linalg.norm(v_out),
                              between=ka + '>' + kb))
-    return cols, state, method, flight_id, shadow_used, flights_rows, contacts
+    return cols, state, method, flight_id, shadow_used, flights_rows, contacts, quality
 
 
-def main(out_dir=HERE, shots=None, verbose=True, kd=ch.KD_DEFAULT, cam=None, use_shadow=True, write=True):
+def main(out_dir=HERE, shots=None, verbose=True, kd=ch.KD_DEFAULT, cam=None, use_shadow=True, write=True, opts=None):
     cam = cam or Camera.from_json(os.path.join(HERE, 'camera.json'))
     ball = load_ball()
     pose = load_pose()
@@ -275,12 +305,12 @@ def main(out_dir=HERE, shots=None, verbose=True, kd=ch.KD_DEFAULT, cam=None, use
         if shots is not None and shot not in shots:
             continue
         sun_s = sun.loc[shot, ['a_fit', 'b_fit']].values.astype(float) if (shot in sun.index and use_shadow) else None
-        out = pp.run_shot(cam, g, players, cd, sun_s, kd=kd)
+        out = pp.run_shot(cam, g, players, cd, sun_s, kd=kd, opts=opts)
         if out is not None:
-            out = merge_false_splits(cam, g, players, cd, sun_s, out, kd, verbose=False)
+            out = merge_false_splits(cam, g, players, cd, sun_s, out, kd, verbose=False, opts=opts)
         outs[shot] = out
-        cols, state, method, flight_id, shadow_used, frows, contacts = assemble(cam, players, g, out, sun_s)
-        d = pd.DataFrame(dict(frame=g.frame.values, time_sec=g.time_sec.values, shot=shot, state=state, **cols, method=method,
+        cols, state, method, flight_id, shadow_used, frows, contacts, quality = assemble(cam, players, g, out, sun_s)
+        d = pd.DataFrame(dict(frame=g.frame.values, time_sec=g.time_sec.values, shot=shot, state=state, **cols, method=method, quality=quality,
                               ball_observed=g.obs.values, shadow_used=shadow_used,
                               flight_id=np.where(flight_id >= 0, flight_id + fid_off, -1)))
         for r in frows:
@@ -291,6 +321,9 @@ def main(out_dir=HERE, shots=None, verbose=True, kd=ch.KD_DEFAULT, cam=None, use
         rows.append(d); all_flights += frows; all_contacts += contacts
         if verbose:
             nf = sum(1 for r in frows if r['state'] == 'flight')
+            for r in frows:
+                if r['state'] == 'rejected':
+                    print('   rejected flight %d-%d: speed %.0f m/s, z %.1f..%.1f, rms %.1f px' % (r['frame_start'], r['frame_end'], r['speed0'], r['z_min'], r['z_max'], r['rms_px']))
             print('shot %2d frames %5d-%5d: %2d flights, z known in %3d/%3d frames, shadow in %3d' % (
                 shot, g.frame.min(), g.frame.max(), nf, np.isfinite(d.z_m).sum(), len(d), d.shadow_used.sum()), flush=True)
     res = pd.concat(rows, ignore_index=True)

@@ -41,7 +41,8 @@ def run_shot(cam, ball_shot, players, cands_by_frame=None, sun_s=None, kd=ch.KD_
     if segs is None:
         segs, cost = sg.segment_shot(cam, fr, uv, w, **(dp or DP))
     shad = shadow_lists(cam, fr, uv, cands_by_frame, sun_s) if (cands_by_frame is not None and sun_s is not None) else None
-    out = ch.solve_shot(cam, fr, uv, w, segs, players, kd=kd, sun_s=sun_s, shad=shad, opts=opts, gscale=gscale)
+    size = np.minimum(g.w.values, g.h.values).astype(float)
+    out = ch.solve_shot(cam, fr, uv, w, segs, players, kd=kd, sun_s=sun_s, shad=shad, opts=opts, gscale=gscale, size=size)
     out.update(frames=fr, uv=uv, w=w, shad=shad, sun_s=sun_s)
     return out
 
