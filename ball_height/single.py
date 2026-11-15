@@ -9,7 +9,7 @@ def fit_single(cam, fr, uv, kd=ch.KD_DEFAULT, n_iter=6, w=None):
     w0=np.ones(len(fr)) if w is None else w
     dw=sg.ref_weight(cam,uv)
     seg=dict(i=0,j=len(fr),theta=np.zeros(6))
-    fl=ch.Flight.__new__(ch.Flight); fl.seg=seg; fl.i=0; fl.j=len(fr); fl.tref=0.0; fl.kd=kd; fl.p0=np.zeros(3); fl.v0=np.zeros(3); fl._grid=None
+    fl=ch.Flight.__new__(ch.Flight); fl.seg=seg; fl.i=0; fl.j=len(fr); fl.tref=0.0; fl.kd=kd; fl.p0=np.zeros(3); fl.v0=np.zeros(3); fl._grid=None; fl.gvec=ch.GVEC; fl.ae=np.zeros(3); fl.rich=False; fl.cov=None
     fl.t_start,fl.t_end=t[0],t[-1]
     first=True
     for it in range(n_iter):

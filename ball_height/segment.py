@@ -39,7 +39,7 @@ def ref_weight(cam, uv):
 class Prefix:
     """prefix sums of the weighted normal equations for a linear model  A theta = b"""
 
-    def __init__(self, A, b, w):
+    def __init__(self, A, b, w, dim=3):
         # A: (n_obs, 2, k) ; b: (n_obs, 2) ; w: (n_obs,)
         Aw = A * w[:, None, None]
         bw = b * w[:, None]
@@ -49,16 +49,33 @@ class Prefix:
         z = lambda x: np.concatenate([np.zeros((1,) + x.shape[1:]), np.cumsum(x, 0)])
         self.M, self.q, self.s = z(M), z(q), z(s)
         self.k = A.shape[2]
+        self.dim = dim
 
-    def solve(self, i, j):
-        """least squares on observations i..j-1 (i may be an array). returns theta, cost"""
+    def solve(self, i, j, t0=0.0):
+        """least squares on observations i..j-1 (i may be an array). returns theta, cost.
+        The polynomial-in-time parameters are solved in a time frame centred at t0 (numerical conditioning: the prefix
+        sums use the shot's time origin, which can be many seconds away from the segment)."""
         M = self.M[j] - self.M[i]
         q = self.q[j] - self.q[i]
         s = self.s[j] - self.s[i]
-        M = M + 1e-9 * np.eye(self.k) * np.trace(M, axis1=-2, axis2=-1)[..., None, None]
-        th = np.linalg.solve(M, q[..., None])[..., 0]
-        cost = s - (q * th).sum(-1)
-        return th, np.maximum(cost, 0.0)
+        S = self.shift(t0)
+        Ml = S.T @ M @ S
+        ql = q @ S
+        Ml = Ml + 1e-10 * np.eye(self.k) * (np.trace(Ml, axis1=-2, axis2=-1)[..., None, None] / self.k)
+        thl = np.linalg.solve(Ml, ql[..., None])[..., 0]
+        cost = s - (ql * thl).sum(-1)
+        return thl @ S.T, np.maximum(cost, 0.0)
+
+    def shift(self, t0):
+        """global parameters = S @ local parameters (local = same polynomial expressed around t0)"""
+        nb = self.k // self.dim                  # number of polynomial blocks (2: p,v ; 3: p,v,a)
+        I = np.eye(self.dim)
+        S = np.zeros((self.k, self.k))
+        c = [[1, -t0, 0.5 * t0 * t0], [0, 1, -t0], [0, 0, 1]]
+        for r in range(nb):
+            for cc in range(nb):
+                S[r * self.dim:(r + 1) * self.dim, cc * self.dim:(cc + 1) * self.dim] = c[r][cc] * I
+        return S
 
 
 def build(cam, t, uv, w_obs):
@@ -72,7 +89,7 @@ def build(cam, t, uv, w_obs):
     A2 = A3[:, :, :2]
     Ag = np.concatenate([A2, A2 * t[:, None, None], A2 * (0.5 * t ** 2)[:, None, None]], 2)
     bg = A3 @ cam.C - A3[:, :, 2] * BALL_R
-    return Prefix(Af, bf, wr), Prefix(Ag, bg, wr)
+    return Prefix(Af, bf, wr, 3), Prefix(Ag, bg, wr, 2)
 
 
 def flight_pos(th, t):
@@ -143,7 +160,7 @@ def segment_shot(cam, frames, uv, w_obs, lam_f=60.0, lam_g=40.0, c_other=25.0, m
             ii = i[(j - i) >= mn]
             if not len(ii):
                 continue
-            th, cost = P.solve(ii, j)
+            th, cost = P.solve(ii, j, t0=t[j - 1])
             ok = okf(th, t[ii], t[j - 1])
             tot = np.where(ok, best[ii] + cost + lam, np.inf)
             k = int(np.argmin(tot))
