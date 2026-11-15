@@ -13,11 +13,12 @@ import numpy as np, pandas as pd
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from camera import Camera
 from data import *
-from players import Players, J, ARM
+from players import Players, J, ARM, UPPER, FOOT
 import pipeline as pp, segment as sg, chain as ch, sun as sunmod
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 X_NET = 7.90            # net plane in court coordinates (measured from the edge-on net in the image)
+MAX_EXTRAP = 4          # frames a flight may be extended beyond its first / last observation
 
 
 # ---------------------------------------------------------------------------------------------------------------
@@ -49,18 +50,32 @@ def merge_false_splits(cam, ball_shot, players, cd, sun_s, out, kd, verbose=Fals
     """the DP may cut one flight in two (model error, a gap while the ball is out of the picture). Junctions without a
     physical cause are removed when a single flight explains both parts."""
     changed = True
+    tested = set()
     while changed:
         changed = False
         for jn in out['junctions']:
-            if jn['kinds'] != ('flight', 'flight') or jn.get('loose'):
+            if jn['kinds'] != ('flight', 'flight'):
                 continue
-            if junction_has_cause(jn):
+            if (jn['a']['fb'], jn['b']['fa']) in tested:
                 continue
             sa, sb = jn['a'], jn['b']
             fa_, fb_ = sa['flight'], sb['flight']
+            drop = [sb]
+            if jn.get('loose'):
+                # two flights separated by a few unexplained observations: try ONE flight through all of it
+                oth = jn['other']
+                if oth['j'] - oth['i'] > 3:
+                    continue
+                drop.append(oth)
+                jn['dv'] = float('nan'); jn['p'] = fa_.pos(jn['ta'])[0]
+            else:
+                # an unobserved stretch between two flights (ball above the picture / hidden): first try ONE flight
+                gap_frames = (jn['tb'] - jn['ta']) * FPS
+                if junction_has_cause(jn) and gap_frames < 4:
+                    continue
             segs = []
             for s in out['segs']:
-                if s is sb:
+                if any(s is x for x in drop):
                     continue
                 s2 = {k: v for k, v in s.items() if k != 'flight'}
                 if s is sa:
@@ -78,7 +93,7 @@ def merge_false_splits(cam, ball_shot, players, cd, sun_s, out, kd, verbose=Fals
                 changed = True
                 break
             else:
-                jn['kept_after_test'] = True
+                tested.add((sa['fb'], sb['fa']))
         # do not test the same junction twice
         if changed:
             continue
@@ -86,6 +101,76 @@ def merge_false_splits(cam, ball_shot, players, cd, sun_s, out, kd, verbose=Fals
 
 
 # ---------------------------------------------------------------------------------------------------------------
+def ground_is_false(cam, players, out, seg, sun_s):
+    """A ball held still in a player's hands looks, in the image alone, like a ball lying on the sand further away.
+    Tell them apart with (1) the adjoining flight not reaching the sand, (2) the ball sitting at a player's hand /
+    upper body while his feet are far from where the ball would lie, confirmed by (3) a shadow well away from the ball."""
+    frames, uv = out['frames'], out['uv']
+    ks = np.arange(seg['i'], seg['j'])
+    for jn in out['junctions']:
+        if jn.get('loose'):
+            continue
+        if (jn['a'] is seg and jn['b']['kind'] == 'flight') or (jn['b'] is seg and jn['a']['kind'] == 'flight'):
+            if jn.get('gap', 0.0) > 0.5:
+                return True
+    sub = ks[::max(1, len(ks) // 12)]
+    hand, shadow_high, rel_pos, body = [], [], [], []
+    rays = cam.rays(uv[sub])
+    shad = out.get('shad')
+    for n_, k in enumerate(sub):
+        fr = int(frames[k])
+        est = player_depth_estimate(cam, players, fr, uv[k])
+        ok = False
+        if est is not None:
+            P, pl, rel = est
+            j = players.nearest(fr, uv[k])[0][1]
+            ok = rel < 0.4 and j not in FOOT and P[2] > 0.45
+            ref = players.arr[pl][0][fr, J['mid_hip']]
+            if np.isfinite(ref[0]):
+                rel_pos.append(uv[k] - ref); body.append(ref)
+        hand.append(ok)
+        if shad is not None and sun_s is not None and shad[k] is not None:
+            Pc, lam, miss = sunmod.triangulate(cam, np.repeat(rays[n_:n_ + 1], len(shad[k]), 0), shad[k], sun_s)
+            shadow_high.append(bool(((Pc[:, 2] > 0.5) & (Pc[:, 2] < 2.6)).any()))
+        else:
+            shadow_high.append(False)
+    if np.mean(hand) <= 0.6:
+        return False
+    # does the ball travel with the player (carried) or stay put while he moves (lying on the sand behind him)?
+    motion = 'unclear'
+    if len(body) >= 4:
+        body, rel_pos = np.array(body), np.array(rel_pos)
+        pm = np.linalg.norm(body.max(0) - body.min(0))
+        bm = np.linalg.norm(uv[sub].max(0) - uv[sub].min(0))
+        if pm > 40:
+            if np.linalg.norm(rel_pos.std(0)) < 0.3 * pm and bm > 0.5 * pm:
+                motion = 'carried'
+            elif bm < 0.25 * pm:
+                motion = 'static'
+    sunny = out.get('chosen') is not None and (out['chosen'] >= 0).sum() >= 10
+    if sunny:
+        return np.mean(shadow_high) >= 0.4 or motion == 'carried'
+    return motion != 'static'
+
+
+def fix_false_ground(cam, ball_shot, players, cd, sun_s, out, kd, opts=None, verbose=False):
+    bad = [s for s in out['segs'] if s['kind'] == 'ground' and ground_is_false(cam, players, out, s, sun_s)]
+    if not bad:
+        return out
+    segs = []
+    for s in out['segs']:
+        s2 = {k: v for k, v in s.items() if k != 'flight'}
+        if any(s is b for b in bad):
+            s2['kind'] = 'other'; s2['theta'] = None
+            if verbose:
+                print('   ground -> held: frames %d-%d' % (s['fa'], s['fb']))
+        if segs and s2['kind'] == 'other' and segs[-1]['kind'] == 'other':
+            segs[-1]['j'] = s2['j']; segs[-1]['fb'] = s2['fb']
+        else:
+            segs.append(s2)
+    return pp.run_shot(cam, ball_shot, players, cd, sun_s, kd=kd, segs=segs, opts=opts)
+
+
 def is_held(cam, players, frames, uv, seg):
     """a 'flight' whose ball stays next to a player's hand for the whole segment is a carried ball"""
     ks = np.arange(seg['i'], seg['j'])
@@ -160,6 +245,9 @@ def assemble(cam, players, ball_shot, out, sun_s):
             fl = s['flight']
             held = is_held(cam, players, frames, uv, s)
             fa = int(np.ceil(f0 + fl.t_start * FPS - 1e-6)); fb = int(np.floor(f0 + fl.t_end * FPS + 1e-6))
+            # a flight is only trusted close to its own observations: when the ball was not seen for a long stretch and
+            # something happened to it meanwhile (the two flights could not be joined), the stretch stays unknown
+            fa = max(fa, int(frames[fl.i]) - MAX_EXTRAP); fb = min(fb, int(frames[fl.j - 1]) + MAX_EXTRAP)
             ff = np.arange(fa, fb + 1)
             if len(ff) == 0:
                 continue
@@ -270,6 +358,7 @@ def assemble(cam, players, ball_shot, out, sun_s):
         p = fl.pos(tau)[0]
         c = jn['contact']
         kind = 'unknown'
+        unseen = (jn['tb'] - jn['ta']) * FPS > 2 * MAX_EXTRAP and not loose
         who, part, rel = '', '', np.nan
         if c is not None:
             rel = c['rel']
@@ -282,6 +371,8 @@ def assemble(cam, players, ball_shot, out, sun_s):
             kind = 'player'
         elif abs(p[0] - X_NET) < 0.35 and p[2] < 2.55:
             kind = 'net'
+        if unseen:
+            kind, p = 'unseen', np.full(3, np.nan)            # it happened while the ball was not visible
         if kind == 'player':
             who, part = c['player'], JOINTS[c['joint']]
         v_in = jn['a']['flight'].vel(tau)[0] if ka == 'flight' else np.full(3, np.nan)
@@ -308,6 +399,8 @@ def main(out_dir=HERE, shots=None, verbose=True, kd=ch.KD_DEFAULT, cam=None, use
         out = pp.run_shot(cam, g, players, cd, sun_s, kd=kd, opts=opts)
         if out is not None:
             out = merge_false_splits(cam, g, players, cd, sun_s, out, kd, verbose=False, opts=opts)
+            out = fix_false_ground(cam, g, players, cd, sun_s, out, kd, opts=opts, verbose=verbose)
+            out = merge_false_splits(cam, g, players, cd, sun_s, out, kd, verbose=False, opts=opts)
         outs[shot] = out
         cols, state, method, flight_id, shadow_used, frows, contacts, quality = assemble(cam, players, g, out, sun_s)
         d = pd.DataFrame(dict(frame=g.frame.values, time_sec=g.time_sec.values, shot=shot, state=state, **cols, method=method, quality=quality,
@@ -321,11 +414,11 @@ def main(out_dir=HERE, shots=None, verbose=True, kd=ch.KD_DEFAULT, cam=None, use
         rows.append(d); all_flights += frows; all_contacts += contacts
         if verbose:
             nf = sum(1 for r in frows if r['state'] == 'flight')
+            print('shot %2d frames %5d-%5d: %2d flights, z known in %3d/%3d frames, shadow in %3d' % (
+                shot, g.frame.min(), g.frame.max(), nf, np.isfinite(d.z_m).sum(), len(d), d.shadow_used.sum()), flush=True)
             for r in frows:
                 if r['state'] == 'rejected':
                     print('   rejected flight %d-%d: speed %.0f m/s, z %.1f..%.1f, rms %.1f px' % (r['frame_start'], r['frame_end'], r['speed0'], r['z_min'], r['z_max'], r['rms_px']))
-            print('shot %2d frames %5d-%5d: %2d flights, z known in %3d/%3d frames, shadow in %3d' % (
-                shot, g.frame.min(), g.frame.max(), nf, np.isfinite(d.z_m).sum(), len(d), d.shadow_used.sum()), flush=True)
     res = pd.concat(rows, ignore_index=True)
     fl = pd.DataFrame(all_flights)
     ct = pd.DataFrame(all_contacts)
