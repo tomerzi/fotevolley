@@ -1,2 +1,5 @@
 *.pt filter=lfs diff=lfs merge=lfs -text
 *.mp4 filter=lfs diff=lfs merge=lfs -text
+
+# ball-height overlay video: stored as a regular git file (Git LFS upload is blocked from the environment that produced it)
+ball_height/ball_height_overlay.mp4 -filter -diff -merge -text

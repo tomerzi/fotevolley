@@ -21,7 +21,7 @@
 | `ball_contacts.csv` | כל נגיעה/קפיצה של הכדור: פריים, מיקום, גובה, מי נגע ובאיזה חלק גוף (לפי המפרק הקרוב), חול / רשת |
 | `flights.csv` | שורה לכל מעוף בליסטי ששוחזר (אבחון) |
 | `plots/shot_XX_*.png` | גרף גובה מול פריים לכל קטע (shot) |
-| `ball_height_overlay.mp4` | הסרטון עם שכבת אימות (ראו למטה). **לא נמצא בריפו** (44MB, העלאה ל-Git LFS נחסמה בסביבת העבודה) – נוצר ב-`python render_overlay.py ball_height_overlay.mp4` (כ-7 דקות) |
+| `ball_height_overlay.mp4` | הסרטון המלא (10:23 דק', 720p, 44MB) עם שכבת אימות (ראו למטה). נשמר כקובץ git רגיל ולא ב-LFS. אפשר ליצור מחדש עם `python render_overlay.py ball_height_overlay.mp4` (כ-7 דקות) |
 | `camera.json`, `sun_per_shot.csv`, `physics.json` | כיול מצלמה, כיוון השמש לכל קטע, פיזיקת המעוף |
 | `validation_camera_only.csv`, `validation_net_height.csv` | נתוני האימות |
 
