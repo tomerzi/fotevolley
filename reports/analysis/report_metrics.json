@@ -1,0 +1,2498 @@
+{
+ "points": [
+  {
+   "n": 1,
+   "set": 1,
+   "winner": "BRA",
+   "isr": 0,
+   "bra": 1,
+   "t": 4.4,
+   "isr_side": "R",
+   "server": "ISR_A",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 2.8,
+   "nc": 2,
+   "last": "BRA_B",
+   "last_kind": "attack"
+  },
+  {
+   "n": 2,
+   "set": 1,
+   "winner": "ISR",
+   "isr": 1,
+   "bra": 1,
+   "t": 7.6,
+   "isr_side": "R",
+   "server": null,
+   "batch": false,
+   "etype": "POINT",
+   "dur": 2.6,
+   "nc": 2,
+   "last": "BRA_B",
+   "last_kind": "attack"
+  },
+  {
+   "n": 3,
+   "set": 1,
+   "winner": "BRA",
+   "isr": 1,
+   "bra": 2,
+   "t": 20.4,
+   "isr_side": "R",
+   "server": "ISR_B",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 9.9,
+   "nc": 5,
+   "last": "ISR_B",
+   "last_kind": "attack"
+  },
+  {
+   "n": 4,
+   "set": 1,
+   "winner": "ISR",
+   "isr": 2,
+   "bra": 2,
+   "t": 26.8,
+   "isr_side": "R",
+   "server": null,
+   "batch": false,
+   "etype": "POINT",
+   "dur": 5.1,
+   "nc": 3,
+   "last": "BRA_A",
+   "last_kind": "one_touch"
+  },
+  {
+   "n": 5,
+   "set": 1,
+   "winner": "BRA",
+   "isr": 2,
+   "bra": 3,
+   "t": 30.8,
+   "isr_side": "R",
+   "server": null,
+   "batch": false,
+   "etype": "POINT",
+   "dur": 3.6,
+   "nc": 3,
+   "last": "ISR_A",
+   "last_kind": "pass"
+  },
+  {
+   "n": 6,
+   "set": 1,
+   "winner": "ISR",
+   "isr": 3,
+   "bra": 3,
+   "t": 36.0,
+   "isr_side": "R",
+   "server": "ISR_B",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 2.5,
+   "nc": 2,
+   "last": "BRA_B",
+   "last_kind": "one_touch"
+  },
+  {
+   "n": 7,
+   "set": 1,
+   "winner": "BRA",
+   "isr": 3,
+   "bra": 4,
+   "t": 42.4,
+   "isr_side": "L",
+   "server": "ISR_B",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 5.8,
+   "nc": 5,
+   "last": "ISR_B",
+   "last_kind": "set"
+  },
+  {
+   "n": 8,
+   "set": 1,
+   "winner": "ISR",
+   "isr": 4,
+   "bra": 4,
+   "t": 46.8,
+   "isr_side": "L",
+   "server": "BRA_A",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 3.0,
+   "nc": 2,
+   "last": "ISR_B",
+   "last_kind": "attack"
+  },
+  {
+   "n": 9,
+   "set": 1,
+   "winner": "BRA",
+   "isr": 4,
+   "bra": 5,
+   "t": 52.0,
+   "isr_side": "L",
+   "server": null,
+   "batch": false,
+   "etype": "POINT",
+   "dur": 4.6,
+   "nc": 4,
+   "last": "ISR_A",
+   "last_kind": "one_touch"
+  },
+  {
+   "n": 10,
+   "set": 1,
+   "winner": "ISR",
+   "isr": 5,
+   "bra": 5,
+   "t": 70.4,
+   "isr_side": "L",
+   "server": "ISR_B",
+   "batch": true,
+   "etype": "BATCH_POINT",
+   "dur": 17.0,
+   "nc": 14,
+   "last": "ISR_B",
+   "last_kind": "set"
+  },
+  {
+   "n": 11,
+   "set": 1,
+   "winner": "ISR",
+   "isr": 6,
+   "bra": 5,
+   "t": 70.4,
+   "isr_side": "L",
+   "server": null,
+   "batch": true,
+   "etype": "BATCH_POINT",
+   "dur": null,
+   "nc": 0,
+   "last": null,
+   "last_kind": null
+  },
+  {
+   "n": 12,
+   "set": 1,
+   "winner": "ISR",
+   "isr": 7,
+   "bra": 5,
+   "t": 79.6,
+   "isr_side": "L",
+   "server": "ISR_B",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 6.3,
+   "nc": 5,
+   "last": "BRA_A",
+   "last_kind": "pass"
+  },
+  {
+   "n": 13,
+   "set": 1,
+   "winner": "BRA",
+   "isr": 7,
+   "bra": 6,
+   "t": 93.2,
+   "isr_side": "R",
+   "server": "ISR_A",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 8.8,
+   "nc": 9,
+   "last": "ISR_B",
+   "last_kind": "pass"
+  },
+  {
+   "n": 14,
+   "set": 1,
+   "winner": "ISR",
+   "isr": 8,
+   "bra": 6,
+   "t": 97.2,
+   "isr_side": "R",
+   "server": null,
+   "batch": false,
+   "etype": "REPAIRED_POINT",
+   "dur": 3.6,
+   "nc": 3,
+   "last": "BRA_A",
+   "last_kind": "pass"
+  },
+  {
+   "n": 15,
+   "set": 1,
+   "winner": "ISR",
+   "isr": 9,
+   "bra": 6,
+   "t": 105.2,
+   "isr_side": "R",
+   "server": null,
+   "batch": false,
+   "etype": "POINT",
+   "dur": 6.3,
+   "nc": 6,
+   "last": "BRA_A",
+   "last_kind": "pass"
+  },
+  {
+   "n": 16,
+   "set": 1,
+   "winner": "BRA",
+   "isr": 9,
+   "bra": 7,
+   "t": 108.0,
+   "isr_side": "R",
+   "server": null,
+   "batch": false,
+   "etype": "POINT",
+   "dur": 2.5,
+   "nc": 4,
+   "last": "ISR_A",
+   "last_kind": "set"
+  },
+  {
+   "n": 17,
+   "set": 1,
+   "winner": "ISR",
+   "isr": 10,
+   "bra": 7,
+   "t": 118.4,
+   "isr_side": "R",
+   "server": null,
+   "batch": false,
+   "etype": "POINT",
+   "dur": 8.9,
+   "nc": 7,
+   "last": "ISR_B",
+   "last_kind": "attack"
+  },
+  {
+   "n": 18,
+   "set": 1,
+   "winner": "BRA",
+   "isr": 10,
+   "bra": 8,
+   "t": 122.0,
+   "isr_side": "R",
+   "server": null,
+   "batch": false,
+   "etype": "REPAIRED_POINT",
+   "dur": 3.2,
+   "nc": 3,
+   "last": "ISR_B",
+   "last_kind": "one_touch"
+  },
+  {
+   "n": 19,
+   "set": 1,
+   "winner": "BRA",
+   "isr": 10,
+   "bra": 9,
+   "t": 133.2,
+   "isr_side": "L",
+   "server": "BRA_A",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 11.0,
+   "nc": 9,
+   "last": "ISR_B",
+   "last_kind": "one_touch"
+  },
+  {
+   "n": 20,
+   "set": 1,
+   "winner": "BRA",
+   "isr": 10,
+   "bra": 10,
+   "t": 158.8,
+   "isr_side": "L",
+   "server": "BRA_A",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 17.8,
+   "nc": 13,
+   "last": "ISR_A",
+   "last_kind": "one_touch"
+  },
+  {
+   "n": 21,
+   "set": 1,
+   "winner": "BRA",
+   "isr": 10,
+   "bra": 11,
+   "t": 163.6,
+   "isr_side": "L",
+   "server": "BRA_A",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 3.2,
+   "nc": 2,
+   "last": "ISR_B",
+   "last_kind": "attack"
+  },
+  {
+   "n": 22,
+   "set": 1,
+   "winner": "BRA",
+   "isr": 10,
+   "bra": 12,
+   "t": 168.8,
+   "isr_side": "L",
+   "server": "BRA_A",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 4.2,
+   "nc": 3,
+   "last": "ISR_B",
+   "last_kind": "attack"
+  },
+  {
+   "n": 23,
+   "set": 1,
+   "winner": "ISR",
+   "isr": 11,
+   "bra": 12,
+   "t": 174.0,
+   "isr_side": "L",
+   "server": "BRA_A",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 4.0,
+   "nc": 3,
+   "last": "ISR_B",
+   "last_kind": "attack"
+  },
+  {
+   "n": 24,
+   "set": 1,
+   "winner": "BRA",
+   "isr": 11,
+   "bra": 13,
+   "t": 183.2,
+   "isr_side": "L",
+   "server": null,
+   "batch": false,
+   "etype": "POINT",
+   "dur": 3.2,
+   "nc": 2,
+   "last": "BRA_B",
+   "last_kind": "set"
+  },
+  {
+   "n": 25,
+   "set": 1,
+   "winner": "BRA",
+   "isr": 11,
+   "bra": 14,
+   "t": 200.8,
+   "isr_side": "R",
+   "server": "BRA_B",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 10.7,
+   "nc": 10,
+   "last": "BRA_B",
+   "last_kind": "pass"
+  },
+  {
+   "n": 26,
+   "set": 1,
+   "winner": "ISR",
+   "isr": 12,
+   "bra": 14,
+   "t": 212.8,
+   "isr_side": "R",
+   "server": "ISR_A",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 6.4,
+   "nc": 5,
+   "last": "BRA_A",
+   "last_kind": "attack"
+  },
+  {
+   "n": 27,
+   "set": 1,
+   "winner": "BRA",
+   "isr": 12,
+   "bra": 15,
+   "t": 250.4,
+   "isr_side": "R",
+   "server": "ISR_A",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 35.4,
+   "nc": 25,
+   "last": "ISR_A",
+   "last_kind": "pass"
+  },
+  {
+   "n": 28,
+   "set": 1,
+   "winner": "BRA",
+   "isr": 12,
+   "bra": 16,
+   "t": 270.8,
+   "isr_side": "R",
+   "server": "ISR_A",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 20.1,
+   "nc": 17,
+   "last": "ISR_A",
+   "last_kind": "pass"
+  },
+  {
+   "n": 29,
+   "set": 1,
+   "winner": "BRA",
+   "isr": 12,
+   "bra": 17,
+   "t": 283.6,
+   "isr_side": "R",
+   "server": null,
+   "batch": false,
+   "etype": "POINT",
+   "dur": 12.6,
+   "nc": 12,
+   "last": "ISR_B",
+   "last_kind": "attack"
+  },
+  {
+   "n": 30,
+   "set": 1,
+   "winner": "ISR",
+   "isr": 13,
+   "bra": 17,
+   "t": 291.2,
+   "isr_side": "R",
+   "server": null,
+   "batch": false,
+   "etype": "POINT",
+   "dur": 2.6,
+   "nc": 2,
+   "last": "ISR_A",
+   "last_kind": "attack"
+  },
+  {
+   "n": 31,
+   "set": 1,
+   "winner": "BRA",
+   "isr": 13,
+   "bra": 18,
+   "t": 322.0,
+   "isr_side": "L",
+   "server": null,
+   "batch": false,
+   "etype": "SET_WIN",
+   "dur": 24.8,
+   "nc": 10,
+   "last": "BRA_B",
+   "last_kind": "set"
+  },
+  {
+   "n": 32,
+   "set": 2,
+   "winner": "BRA",
+   "isr": 0,
+   "bra": 1,
+   "t": 332.0,
+   "isr_side": "L",
+   "server": "BRA_B",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 7.4,
+   "nc": 5,
+   "last": "ISR_B",
+   "last_kind": "one_touch"
+  },
+  {
+   "n": 33,
+   "set": 2,
+   "winner": "BRA",
+   "isr": 0,
+   "bra": 2,
+   "t": 349.6,
+   "isr_side": "L",
+   "server": null,
+   "batch": false,
+   "etype": "POINT",
+   "dur": 16.1,
+   "nc": 13,
+   "last": "ISR_A",
+   "last_kind": "one_touch"
+  },
+  {
+   "n": 34,
+   "set": 2,
+   "winner": "BRA",
+   "isr": 0,
+   "bra": 3,
+   "t": 365.2,
+   "isr_side": "L",
+   "server": "BRA_B",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 14.4,
+   "nc": 13,
+   "last": "BRA_B",
+   "last_kind": "pass"
+  },
+  {
+   "n": 35,
+   "set": 2,
+   "winner": "BRA",
+   "isr": 0,
+   "bra": 4,
+   "t": 375.2,
+   "isr_side": "L",
+   "server": "BRA_B",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 7.0,
+   "nc": 3,
+   "last": "BRA_A",
+   "last_kind": "set"
+  },
+  {
+   "n": 36,
+   "set": 2,
+   "winner": "BRA",
+   "isr": 0,
+   "bra": 5,
+   "t": 387.6,
+   "isr_side": "L",
+   "server": "BRA_B",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 11.6,
+   "nc": 8,
+   "last": "BRA_B",
+   "last_kind": "attack"
+  },
+  {
+   "n": 37,
+   "set": 2,
+   "winner": "ISR",
+   "isr": 1,
+   "bra": 5,
+   "t": 392.8,
+   "isr_side": "L",
+   "server": "BRA_A",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 3.0,
+   "nc": 2,
+   "last": "ISR_B",
+   "last_kind": "attack"
+  },
+  {
+   "n": 38,
+   "set": 2,
+   "winner": "ISR",
+   "isr": 2,
+   "bra": 5,
+   "t": 410.8,
+   "isr_side": "R",
+   "server": "ISR_A",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 9.4,
+   "nc": 8,
+   "last": "ISR_A",
+   "last_kind": "set"
+  },
+  {
+   "n": 39,
+   "set": 2,
+   "winner": "BRA",
+   "isr": 2,
+   "bra": 6,
+   "t": 428.8,
+   "isr_side": "R",
+   "server": null,
+   "batch": false,
+   "etype": "POINT",
+   "dur": 14.9,
+   "nc": 13,
+   "last": "ISR_A",
+   "last_kind": "attack"
+  },
+  {
+   "n": 40,
+   "set": 2,
+   "winner": "BRA",
+   "isr": 2,
+   "bra": 7,
+   "t": 437.6,
+   "isr_side": "R",
+   "server": "ISR_A",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 6.3,
+   "nc": 4,
+   "last": "BRA_A",
+   "last_kind": "pass"
+  },
+  {
+   "n": 41,
+   "set": 2,
+   "winner": "BRA",
+   "isr": 2,
+   "bra": 8,
+   "t": 446.4,
+   "isr_side": "R",
+   "server": "ISR_A",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 6.9,
+   "nc": 5,
+   "last": "BRA_B",
+   "last_kind": "attack"
+  },
+  {
+   "n": 42,
+   "set": 2,
+   "winner": "BRA",
+   "isr": 2,
+   "bra": 9,
+   "t": 457.2,
+   "isr_side": "R",
+   "server": null,
+   "batch": false,
+   "etype": "REPAIRED_POINT",
+   "dur": 4.4,
+   "nc": 3,
+   "last": "ISR_B",
+   "last_kind": "set"
+  },
+  {
+   "n": 43,
+   "set": 2,
+   "winner": "BRA",
+   "isr": 2,
+   "bra": 10,
+   "t": 471.2,
+   "isr_side": "R",
+   "server": "ISR_B",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 9.6,
+   "nc": 7,
+   "last": "BRA_A",
+   "last_kind": "attack"
+  },
+  {
+   "n": 44,
+   "set": 2,
+   "winner": "BRA",
+   "isr": 2,
+   "bra": 11,
+   "t": 478.8,
+   "isr_side": "L",
+   "server": null,
+   "batch": false,
+   "etype": "REPAIRED_POINT",
+   "dur": 6.0,
+   "nc": 4,
+   "last": "ISR_A",
+   "last_kind": "pass"
+  },
+  {
+   "n": 45,
+   "set": 2,
+   "winner": "BRA",
+   "isr": 2,
+   "bra": 12,
+   "t": 490.8,
+   "isr_side": "L",
+   "server": null,
+   "batch": false,
+   "etype": "POINT",
+   "dur": 10.2,
+   "nc": 9,
+   "last": "ISR_B",
+   "last_kind": "attack"
+  },
+  {
+   "n": 46,
+   "set": 2,
+   "winner": "BRA",
+   "isr": 2,
+   "bra": 13,
+   "t": 498.4,
+   "isr_side": "L",
+   "server": "BRA_A",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 3.5,
+   "nc": 3,
+   "last": "ISR_A",
+   "last_kind": "attack"
+  },
+  {
+   "n": 47,
+   "set": 2,
+   "winner": "BRA",
+   "isr": 2,
+   "bra": 14,
+   "t": 510.4,
+   "isr_side": "L",
+   "server": "BRA_A",
+   "batch": false,
+   "etype": "REPAIRED_POINT",
+   "dur": 10.4,
+   "nc": 8,
+   "last": "ISR_A",
+   "last_kind": "attack"
+  },
+  {
+   "n": 48,
+   "set": 2,
+   "winner": "ISR",
+   "isr": 3,
+   "bra": 14,
+   "t": 523.2,
+   "isr_side": "L",
+   "server": "BRA_A",
+   "batch": false,
+   "etype": "POINT",
+   "dur": 12.6,
+   "nc": 9,
+   "last": "BRA_A",
+   "last_kind": "pass"
+  },
+  {
+   "n": 49,
+   "set": 2,
+   "winner": "BRA",
+   "isr": 3,
+   "bra": 15,
+   "t": 526.0,
+   "isr_side": "L",
+   "server": null,
+   "batch": false,
+   "etype": "POINT",
+   "dur": 1.6,
+   "nc": 1,
+   "last": "BRA_B",
+   "last_kind": "attack"
+  },
+  {
+   "n": 50,
+   "set": 2,
+   "winner": "ISR",
+   "isr": 4,
+   "bra": 15,
+   "t": 538.0,
+   "isr_side": "R",
+   "server": "BRA_B",
+   "batch": true,
+   "etype": "BATCH_POINT",
+   "dur": 10.4,
+   "nc": 8,
+   "last": "ISR_A",
+   "last_kind": "attack"
+  },
+  {
+   "n": 51,
+   "set": 2,
+   "winner": "ISR",
+   "isr": 5,
+   "bra": 15,
+   "t": 538.0,
+   "isr_side": "R",
+   "server": null,
+   "batch": true,
+   "etype": "BATCH_POINT",
+   "dur": null,
+   "nc": 0,
+   "last": null,
+   "last_kind": null
+  },
+  {
+   "n": 52,
+   "set": 2,
+   "winner": "ISR",
+   "isr": 6,
+   "bra": 15,
+   "t": 552.4,
+   "isr_side": "R",
+   "server": null,
+   "batch": false,
+   "etype": "POINT",
+   "dur": 11.7,
+   "nc": 10,
+   "last": "ISR_A",
+   "last_kind": "set"
+  },
+  {
+   "n": 53,
+   "set": 2,
+   "winner": "ISR",
+   "isr": 7,
+   "bra": 15,
+   "t": 574.6,
+   "isr_side": "R",
+   "server": null,
+   "batch": false,
+   "etype": "POINT",
+   "dur": 21.6,
+   "nc": 16,
+   "last": "BRA_A",
+   "last_kind": "attack"
+  },
+  {
+   "n": 54,
+   "set": 2,
+   "winner": "BRA",
+   "isr": 7,
+   "bra": 16,
+   "t": 578.0,
+   "isr_side": "R",
+   "server": null,
+   "batch": false,
+   "etype": "POINT",
+   "dur": 1.6,
+   "nc": 1,
+   "last": "BRA_B",
+   "last_kind": "attack"
+  },
+  {
+   "n": 55,
+   "set": 2,
+   "winner": "ISR",
+   "isr": 8,
+   "bra": 16,
+   "t": 582.8,
+   "isr_side": "R",
+   "server": null,
+   "batch": false,
+   "etype": "POINT",
+   "dur": 4.1,
+   "nc": 3,
+   "last": "ISR_B",
+   "last_kind": "attack"
+  },
+  {
+   "n": 56,
+   "set": 2,
+   "winner": "ISR",
+   "isr": 9,
+   "bra": 16,
+   "t": 589.2,
+   "isr_side": "L",
+   "server": null,
+   "batch": false,
+   "etype": "POINT",
+   "dur": 4.4,
+   "nc": 3,
+   "last": "BRA_A",
+   "last_kind": "attack"
+  },
+  {
+   "n": 57,
+   "set": 2,
+   "winner": "ISR",
+   "isr": 10,
+   "bra": 16,
+   "t": 596.0,
+   "isr_side": "L",
+   "server": null,
+   "batch": false,
+   "etype": "POINT",
+   "dur": 4.4,
+   "nc": 3,
+   "last": "ISR_A",
+   "last_kind": "one_touch"
+  },
+  {
+   "n": 58,
+   "set": 2,
+   "winner": "BRA",
+   "isr": 10,
+   "bra": 17,
+   "t": 608.8,
+   "isr_side": "L",
+   "server": null,
+   "batch": false,
+   "etype": "POINT",
+   "dur": 9.4,
+   "nc": 8,
+   "last": "ISR_B",
+   "last_kind": "pass"
+  },
+  {
+   "n": 59,
+   "set": 2,
+   "winner": "ISR",
+   "isr": 11,
+   "bra": 17,
+   "t": 616.4,
+   "isr_side": "L",
+   "server": null,
+   "batch": false,
+   "etype": "POINT",
+   "dur": 6.9,
+   "nc": 4,
+   "last": "BRA_B",
+   "last_kind": "set"
+  },
+  {
+   "n": 60,
+   "set": 2,
+   "winner": "BRA",
+   "isr": 11,
+   "bra": 18,
+   "t": 623.4,
+   "isr_side": "L",
+   "server": null,
+   "batch": false,
+   "etype": "SET_WIN",
+   "dur": 2.9,
+   "nc": 2,
+   "last": "BRA_A",
+   "last_kind": "set"
+  }
+ ],
+ "score_summary": {
+  "isr_total": 24,
+  "bra_total": 36,
+  "set1": {
+   "isr": 13,
+   "bra": 18
+  },
+  "set2": {
+   "isr": 11,
+   "bra": 18
+  },
+  "by_side": {
+   "L": {
+    "isr": 10,
+    "bra": 20
+   },
+   "R": {
+    "isr": 14,
+    "bra": 16
+   }
+  }
+ },
+ "runs": [
+  {
+   "team": "BRA",
+   "len": 9,
+   "from_n": 39
+  },
+  {
+   "team": "BRA",
+   "len": 6,
+   "from_n": 31
+  },
+  {
+   "team": "BRA",
+   "len": 5,
+   "from_n": 18
+  },
+  {
+   "team": "ISR",
+   "len": 4,
+   "from_n": 50
+  },
+  {
+   "team": "ISR",
+   "len": 3,
+   "from_n": 10
+  },
+  {
+   "team": "BRA",
+   "len": 3,
+   "from_n": 27
+  }
+ ],
+ "sideout": {
+  "ISR": [
+   5,
+   16
+  ],
+  "BRA": [
+   9,
+   14
+  ]
+ },
+ "serve_by_player": {
+  "ISR_A": [
+   2,
+   8
+  ],
+  "ISR_B": [
+   3,
+   6
+  ],
+  "BRA_A": [
+   6,
+   10
+  ],
+  "BRA_B": [
+   5,
+   6
+  ]
+ },
+ "by_len": {
+  "short": {
+   "isr": 6,
+   "bra": 10
+  },
+  "mid": {
+   "isr": 9,
+   "bra": 9
+  },
+  "long": {
+   "isr": 7,
+   "bra": 17
+  }
+ },
+ "last_contact": {
+  "ISR_A": {
+   "won": 5,
+   "lost": 11
+  },
+  "ISR_B": {
+   "won": 6,
+   "lost": 12
+  },
+  "BRA_A": {
+   "won": 4,
+   "lost": 8
+  },
+  "BRA_B": {
+   "won": 9,
+   "lost": 3
+  }
+ },
+ "move": {
+  "ISR_A": {
+   "avg_speed": 1.59,
+   "p95": 4.28,
+   "max": 7.12,
+   "m_per_min": 95.7,
+   "dist_total": 754.0,
+   "sprints": 21,
+   "sprints_per_min": 2.66,
+   "still_pct": 20.8,
+   "secs": 473.0,
+   "dnet_mean": 3.81,
+   "dnet_med": 3.78,
+   "near_net_pct": 24.5,
+   "back_pct": 21.1,
+   "y_mean": 4.54
+  },
+  "ISR_B": {
+   "avg_speed": 1.73,
+   "p95": 4.5,
+   "max": 7.29,
+   "m_per_min": 103.8,
+   "dist_total": 823.0,
+   "sprints": 15,
+   "sprints_per_min": 1.89,
+   "still_pct": 19.9,
+   "secs": 476.0,
+   "dnet_mean": 3.56,
+   "dnet_med": 3.63,
+   "near_net_pct": 31.2,
+   "back_pct": 15.1,
+   "y_mean": 4.68
+  },
+  "BRA_A": {
+   "avg_speed": 1.69,
+   "p95": 4.53,
+   "max": 7.29,
+   "m_per_min": 101.1,
+   "dist_total": 802.0,
+   "sprints": 16,
+   "sprints_per_min": 2.02,
+   "still_pct": 20.6,
+   "secs": 476.0,
+   "dnet_mean": 3.68,
+   "dnet_med": 3.47,
+   "near_net_pct": 28.4,
+   "back_pct": 18.9,
+   "y_mean": 4.53
+  },
+  "BRA_B": {
+   "avg_speed": 1.56,
+   "p95": 4.41,
+   "max": 7.15,
+   "m_per_min": 93.3,
+   "dist_total": 742.0,
+   "sprints": 17,
+   "sprints_per_min": 2.14,
+   "still_pct": 24.8,
+   "secs": 477.0,
+   "dnet_mean": 3.78,
+   "dnet_med": 3.8,
+   "near_net_pct": 25.6,
+   "back_pct": 18.5,
+   "y_mean": 4.64
+  }
+ },
+ "speed_hist": {
+  "ISR_A": [
+   2463,
+   2394,
+   3483,
+   1826,
+   908,
+   450,
+   303
+  ],
+  "ISR_B": [
+   2362,
+   2173,
+   3395,
+   1843,
+   1207,
+   497,
+   414
+  ],
+  "BRA_A": [
+   2452,
+   2305,
+   3227,
+   1991,
+   1038,
+   469,
+   418
+  ],
+  "BRA_B": [
+   2960,
+   2367,
+   3241,
+   1649,
+   875,
+   450,
+   382
+  ]
+ },
+ "heat": {
+  "ISR_A": [
+   [
+    0.1,
+    0.5,
+    0.7,
+    1.4,
+    2.2,
+    1.2,
+    0.8,
+    0.6,
+    0.0,
+    0.0
+   ],
+   [
+    0.3,
+    1.0,
+    1.1,
+    2.7,
+    2.8,
+    0.9,
+    0.6,
+    0.4,
+    0.1,
+    0.0
+   ],
+   [
+    0.3,
+    1.0,
+    1.7,
+    4.3,
+    3.3,
+    1.9,
+    1.4,
+    1.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.6,
+    1.2,
+    3.1,
+    7.2,
+    5.3,
+    2.9,
+    1.9,
+    0.4,
+    0.0,
+    0.2
+   ],
+   [
+    0.2,
+    0.2,
+    2.8,
+    7.5,
+    3.8,
+    2.4,
+    0.7,
+    0.1,
+    0.2,
+    0.2
+   ],
+   [
+    0.3,
+    0.1,
+    0.2,
+    1.9,
+    7.6,
+    2.0,
+    0.7,
+    0.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.1,
+    0.0,
+    0.1,
+    0.9,
+    6.3,
+    2.2,
+    0.7,
+    0.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.1,
+    0.0,
+    0.1,
+    0.7,
+    0.9,
+    0.7,
+    0.3,
+    0.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.1,
+    0.0,
+    0.0,
+    0.1,
+    0.3,
+    0.1,
+    0.1,
+    0.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0,
+    0.0,
+    0.1,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  ],
+  "ISR_B": [
+   [
+    0.2,
+    0.2,
+    0.4,
+    1.3,
+    1.6,
+    2.3,
+    2.9,
+    1.4,
+    0.2,
+    0.2
+   ],
+   [
+    0.0,
+    0.0,
+    0.0,
+    0.3,
+    1.2,
+    2.9,
+    3.5,
+    3.8,
+    1.0,
+    0.3
+   ],
+   [
+    0.0,
+    0.0,
+    0.1,
+    0.3,
+    1.8,
+    3.3,
+    5.1,
+    4.1,
+    1.9,
+    0.2
+   ],
+   [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.6,
+    1.7,
+    5.3,
+    4.9,
+    2.8,
+    1.0
+   ],
+   [
+    0.0,
+    0.0,
+    0.0,
+    0.1,
+    0.5,
+    1.9,
+    4.0,
+    6.0,
+    4.6,
+    2.6
+   ],
+   [
+    0.0,
+    0.2,
+    0.3,
+    0.2,
+    0.5,
+    2.5,
+    1.7,
+    4.7,
+    3.0,
+    0.1
+   ],
+   [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.2,
+    0.8,
+    1.9,
+    3.1,
+    0.9,
+    0.2
+   ],
+   [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.2,
+    0.3,
+    1.4,
+    0.5,
+    0.3
+   ],
+   [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.2,
+    0.6,
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  ],
+  "BRA_A": [
+   [
+    0.2,
+    0.4,
+    1.0,
+    2.5,
+    3.3,
+    1.5,
+    1.1,
+    0.1,
+    0.0,
+    0.0
+   ],
+   [
+    0.6,
+    0.7,
+    2.3,
+    3.3,
+    2.1,
+    0.7,
+    0.6,
+    0.1,
+    0.0,
+    0.0
+   ],
+   [
+    0.7,
+    2.0,
+    6.1,
+    4.1,
+    2.1,
+    2.1,
+    0.7,
+    0.2,
+    0.0,
+    0.0
+   ],
+   [
+    0.8,
+    3.3,
+    7.8,
+    3.5,
+    2.3,
+    1.7,
+    0.4,
+    0.0,
+    0.0,
+    0.0
+   ],
+   [
+    1.0,
+    2.0,
+    3.4,
+    3.1,
+    4.7,
+    1.7,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.3,
+    0.7,
+    1.5,
+    4.2,
+    4.3,
+    0.5,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.1,
+    1.2,
+    1.3,
+    2.0,
+    4.2,
+    0.7,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.1,
+    0.5,
+    1.1,
+    0.9,
+    0.5,
+    0.4,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.2,
+    0.2,
+    0.3,
+    0.1,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.1,
+    0.1,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  ],
+  "BRA_B": [
+   [
+    0.1,
+    0.2,
+    0.4,
+    0.9,
+    3.0,
+    2.0,
+    1.6,
+    0.9,
+    0.3,
+    0.1
+   ],
+   [
+    0.0,
+    0.0,
+    0.3,
+    1.0,
+    1.4,
+    2.9,
+    1.9,
+    1.1,
+    1.9,
+    0.0
+   ],
+   [
+    0.0,
+    0.0,
+    0.1,
+    0.3,
+    1.9,
+    5.1,
+    3.0,
+    0.9,
+    0.4,
+    0.1
+   ],
+   [
+    0.0,
+    0.0,
+    0.0,
+    0.4,
+    5.6,
+    9.4,
+    4.8,
+    1.4,
+    0.4,
+    0.4
+   ],
+   [
+    0.0,
+    0.0,
+    0.0,
+    0.4,
+    3.8,
+    4.2,
+    3.3,
+    3.0,
+    0.7,
+    1.1
+   ],
+   [
+    0.0,
+    0.1,
+    0.3,
+    0.6,
+    0.9,
+    1.7,
+    7.9,
+    5.6,
+    0.6,
+    0.4
+   ],
+   [
+    0.0,
+    0.2,
+    0.1,
+    0.1,
+    0.2,
+    0.9,
+    2.1,
+    2.2,
+    1.3,
+    0.4
+   ],
+   [
+    0.0,
+    0.0,
+    0.2,
+    0.2,
+    0.0,
+    0.4,
+    0.4,
+    0.6,
+    0.4,
+    0.0
+   ],
+   [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.2,
+    0.8,
+    0.0,
+    0.0,
+    0.0
+   ],
+   [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.1,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  ]
+ },
+ "pdist": {
+  "ISR": {
+   "mean": 3.49,
+   "med": 3.46,
+   "p10": 2.14,
+   "p90": 4.88,
+   "side_by_side_pct": 75.1,
+   "too_close_pct": 3.7,
+   "far_pct": 2.4,
+   "hist": [
+    434,
+    3471,
+    6066,
+    1559,
+    279
+   ],
+   "frames": 11809,
+   "series": []
+  },
+  "BRA": {
+   "mean": 3.42,
+   "med": 3.21,
+   "p10": 2.14,
+   "p90": 4.96,
+   "side_by_side_pct": 76.1,
+   "too_close_pct": 2.2,
+   "far_pct": 3.6,
+   "hist": [
+    265,
+    4661,
+    5093,
+    1429,
+    424
+   ],
+   "frames": 11872,
+   "series": []
+  }
+ },
+ "gaze": {
+  "ISR_A": {
+   "ball_opp": {
+    "n": 4759,
+    "to_net": 88.3,
+    "to_back": 5.8,
+    "camera": 5.5,
+    "away": 0.4,
+    "to_ball": 88.3,
+    "switch_per_sec": 0.35,
+    "secs": 183.9
+   },
+   "ball_own": {
+    "n": 5062,
+    "to_net": 48.8,
+    "to_back": 15.7,
+    "camera": 35.0,
+    "away": 0.5,
+    "to_ball": 51.0,
+    "switch_per_sec": 1.25,
+    "secs": 197.8
+   }
+  },
+  "ISR_B": {
+   "ball_opp": {
+    "n": 4437,
+    "to_net": 81.3,
+    "to_back": 6.3,
+    "camera": 12.4,
+    "away": 0.0,
+    "to_ball": 81.3,
+    "switch_per_sec": 0.62,
+    "secs": 170.2
+   },
+   "ball_own": {
+    "n": 5257,
+    "to_net": 59.7,
+    "to_back": 17.2,
+    "camera": 22.5,
+    "away": 0.7,
+    "to_ball": 66.6,
+    "switch_per_sec": 0.98,
+    "secs": 205.8
+   }
+  },
+  "BRA_A": {
+   "ball_opp": {
+    "n": 4655,
+    "to_net": 83.8,
+    "to_back": 8.4,
+    "camera": 7.7,
+    "away": 0.1,
+    "to_ball": 84.0,
+    "switch_per_sec": 0.49,
+    "secs": 179.9
+   },
+   "ball_own": {
+    "n": 5071,
+    "to_net": 53.3,
+    "to_back": 14.5,
+    "camera": 31.4,
+    "away": 0.7,
+    "to_ball": 54.8,
+    "switch_per_sec": 1.43,
+    "secs": 196.6
+   }
+  },
+  "BRA_B": {
+   "ball_opp": {
+    "n": 4770,
+    "to_net": 81.4,
+    "to_back": 7.9,
+    "camera": 10.4,
+    "away": 0.3,
+    "to_ball": 81.4,
+    "switch_per_sec": 0.59,
+    "secs": 184.0
+   },
+   "ball_own": {
+    "n": 4886,
+    "to_net": 58.4,
+    "to_back": 11.2,
+    "camera": 28.5,
+    "away": 1.9,
+    "to_ball": 60.3,
+    "switch_per_sec": 1.45,
+    "secs": 187.1
+   }
+  }
+ },
+ "body": {
+  "ISR_A": {
+   "n": 224,
+   "nose_to_ankle_m": 1.65,
+   "leg_ratio": 0.502,
+   "arm_ratio": 0.352,
+   "shoulder_px_m": 0.39
+  },
+  "ISR_B": {
+   "n": 113,
+   "nose_to_ankle_m": 1.63,
+   "leg_ratio": 0.497,
+   "arm_ratio": 0.352,
+   "shoulder_px_m": 0.41
+  },
+  "BRA_A": {
+   "n": 210,
+   "nose_to_ankle_m": 1.65,
+   "leg_ratio": 0.495,
+   "arm_ratio": 0.377,
+   "shoulder_px_m": 0.41
+  },
+  "BRA_B": {
+   "n": 234,
+   "nose_to_ankle_m": 1.56,
+   "leg_ratio": 0.502,
+   "arm_ratio": 0.352,
+   "shoulder_px_m": 0.4
+  }
+ },
+ "angles": {
+  "ISR_A": {
+   "serve": {
+    "elbow": 133.73,
+    "shoulder": 68.06,
+    "knee": 130.36,
+    "hip": 168.52,
+    "trunk_lean": 6.9,
+    "wrist_above_head_m": -0.27,
+    "dnet": 5.61,
+    "jump": 0.0,
+    "load_knee": 96.53,
+    "speed": 1.38,
+    "n": 5
+   },
+   "pass": {
+    "elbow": 135.17,
+    "shoulder": 54.49,
+    "knee": 110.55,
+    "hip": 148.48,
+    "trunk_lean": 12.94,
+    "wrist_above_head_m": -0.44,
+    "dnet": 3.7,
+    "jump": null,
+    "load_knee": null,
+    "speed": 2.67,
+    "n": 22
+   },
+   "set": {
+    "elbow": 96.1,
+    "shoulder": 67.53,
+    "knee": 148.71,
+    "hip": 158.26,
+    "trunk_lean": 12.04,
+    "wrist_above_head_m": 0.03,
+    "dnet": 2.76,
+    "jump": 0.0,
+    "load_knee": 72.69,
+    "speed": 0.57,
+    "n": 38
+   },
+   "attack": {
+    "elbow": 136.84,
+    "shoulder": 124.27,
+    "knee": 122.07,
+    "hip": 157.82,
+    "trunk_lean": 14.06,
+    "wrist_above_head_m": 0.18,
+    "dnet": 2.12,
+    "jump": 0.5,
+    "load_knee": 74.89,
+    "speed": 1.64,
+    "n": 22
+   },
+   "one_touch": {
+    "elbow": 127.33,
+    "shoulder": 97.96,
+    "knee": 95.2,
+    "hip": 142.6,
+    "trunk_lean": 15.87,
+    "wrist_above_head_m": -0.11,
+    "dnet": 2.8,
+    "jump": null,
+    "load_knee": null,
+    "speed": 1.89,
+    "n": 4
+   },
+   "block": {
+    "elbow": 142.89,
+    "shoulder": 75.64,
+    "knee": 132.16,
+    "hip": 152.53,
+    "trunk_lean": 19.88,
+    "wrist_above_head_m": -0.4,
+    "dnet": 0.12,
+    "jump": null,
+    "load_knee": null,
+    "speed": 3.05,
+    "n": 5
+   }
+  },
+  "ISR_B": {
+   "serve": {
+    "elbow": 120.44,
+    "shoulder": 45.69,
+    "knee": 117.91,
+    "hip": 166.0,
+    "trunk_lean": 12.79,
+    "wrist_above_head_m": -0.47,
+    "dnet": 6.66,
+    "jump": 0.19,
+    "load_knee": 48.64,
+    "speed": 1.29,
+    "n": 4
+   },
+   "pass": {
+    "elbow": 135.75,
+    "shoulder": 40.49,
+    "knee": 119.51,
+    "hip": 153.98,
+    "trunk_lean": 18.66,
+    "wrist_above_head_m": -0.31,
+    "dnet": 4.88,
+    "jump": null,
+    "load_knee": null,
+    "speed": 1.57,
+    "n": 29
+   },
+   "set": {
+    "elbow": 73.19,
+    "shoulder": 81.83,
+    "knee": 142.05,
+    "hip": 144.22,
+    "trunk_lean": 19.38,
+    "wrist_above_head_m": 0.07,
+    "dnet": 2.69,
+    "jump": 0.18,
+    "load_knee": 64.48,
+    "speed": 0.91,
+    "n": 10
+   },
+   "attack": {
+    "elbow": 133.14,
+    "shoulder": 106.69,
+    "knee": 139.46,
+    "hip": 156.63,
+    "trunk_lean": 14.17,
+    "wrist_above_head_m": 0.2,
+    "dnet": 1.68,
+    "jump": 0.52,
+    "load_knee": 54.54,
+    "speed": 2.73,
+    "n": 36
+   },
+   "one_touch": {
+    "elbow": 113.88,
+    "shoulder": 76.81,
+    "knee": 85.21,
+    "hip": 129.35,
+    "trunk_lean": 11.44,
+    "wrist_above_head_m": -0.19,
+    "dnet": 4.3,
+    "jump": null,
+    "load_knee": null,
+    "speed": 1.1,
+    "n": 6
+   },
+   "block": {
+    "elbow": 151.93,
+    "shoulder": 35.9,
+    "knee": 147.24,
+    "hip": 158.59,
+    "trunk_lean": 13.5,
+    "wrist_above_head_m": -0.56,
+    "dnet": 0.68,
+    "jump": null,
+    "load_knee": null,
+    "speed": 1.94,
+    "n": 6
+   }
+  },
+  "BRA_A": {
+   "serve": {
+    "elbow": 148.1,
+    "shoulder": 33.67,
+    "knee": 176.86,
+    "hip": 149.87,
+    "trunk_lean": 10.04,
+    "wrist_above_head_m": -0.44,
+    "dnet": 7.6,
+    "jump": 0.0,
+    "load_knee": 86.26,
+    "speed": 2.67,
+    "n": 1
+   },
+   "pass": {
+    "elbow": 142.12,
+    "shoulder": 34.73,
+    "knee": 109.47,
+    "hip": 148.58,
+    "trunk_lean": 12.28,
+    "wrist_above_head_m": -0.45,
+    "dnet": 3.92,
+    "jump": null,
+    "load_knee": null,
+    "speed": 1.9,
+    "n": 37
+   },
+   "set": {
+    "elbow": 106.91,
+    "shoulder": 53.45,
+    "knee": 131.65,
+    "hip": 148.25,
+    "trunk_lean": 21.05,
+    "wrist_above_head_m": -0.18,
+    "dnet": 3.25,
+    "jump": 0.47,
+    "load_knee": 74.25,
+    "speed": 1.04,
+    "n": 25
+   },
+   "attack": {
+    "elbow": 141.97,
+    "shoulder": 107.02,
+    "knee": 123.15,
+    "hip": 152.64,
+    "trunk_lean": 15.81,
+    "wrist_above_head_m": 0.25,
+    "dnet": 1.79,
+    "jump": 1.11,
+    "load_knee": 61.3,
+    "speed": 3.22,
+    "n": 36
+   },
+   "one_touch": {
+    "elbow": 151.65,
+    "shoulder": 146.83,
+    "knee": 84.93,
+    "hip": 110.36,
+    "trunk_lean": 51.81,
+    "wrist_above_head_m": 0.45,
+    "dnet": 5.37,
+    "jump": null,
+    "load_knee": null,
+    "speed": 2.64,
+    "n": 2
+   },
+   "block": {
+    "elbow": 96.69,
+    "shoulder": 42.37,
+    "knee": 121.31,
+    "hip": 80.19,
+    "trunk_lean": 16.3,
+    "wrist_above_head_m": -0.3,
+    "dnet": 0.19,
+    "jump": null,
+    "load_knee": null,
+    "speed": 0.45,
+    "n": 2
+   }
+  },
+  "BRA_B": {
+   "serve": {
+    "elbow": null,
+    "shoulder": null,
+    "knee": null,
+    "hip": null,
+    "trunk_lean": null,
+    "wrist_above_head_m": null,
+    "dnet": null,
+    "jump": null,
+    "load_knee": null,
+    "speed": null,
+    "n": 0
+   },
+   "pass": {
+    "elbow": 130.4,
+    "shoulder": 55.5,
+    "knee": 117.41,
+    "hip": 149.29,
+    "trunk_lean": 15.53,
+    "wrist_above_head_m": -0.47,
+    "dnet": 3.99,
+    "jump": null,
+    "load_knee": null,
+    "speed": 2.43,
+    "n": 19
+   },
+   "set": {
+    "elbow": 114.04,
+    "shoulder": 101.82,
+    "knee": 148.18,
+    "hip": 162.6,
+    "trunk_lean": 15.2,
+    "wrist_above_head_m": 0.15,
+    "dnet": 3.35,
+    "jump": 0.16,
+    "load_knee": 46.53,
+    "speed": 0.84,
+    "n": 26
+   },
+   "attack": {
+    "elbow": 130.12,
+    "shoulder": 71.7,
+    "knee": 126.35,
+    "hip": 157.69,
+    "trunk_lean": 11.82,
+    "wrist_above_head_m": 0.21,
+    "dnet": 1.59,
+    "jump": 0.31,
+    "load_knee": 30.38,
+    "speed": 4.23,
+    "n": 25
+   },
+   "one_touch": {
+    "elbow": 160.36,
+    "shoulder": 104.82,
+    "knee": 110.12,
+    "hip": 139.46,
+    "trunk_lean": 26.94,
+    "wrist_above_head_m": -0.11,
+    "dnet": 4.04,
+    "jump": null,
+    "load_knee": null,
+    "speed": 1.89,
+    "n": 2
+   },
+   "block": {
+    "elbow": 161.54,
+    "shoulder": 40.44,
+    "knee": 104.03,
+    "hip": 112.12,
+    "trunk_lean": 20.64,
+    "wrist_above_head_m": -0.54,
+    "dnet": 0.71,
+    "jump": null,
+    "load_knee": null,
+    "speed": 1.71,
+    "n": 6
+   }
+  }
+ },
+ "partner_during": {
+  "ISR_A": {
+   "pass": {
+    "n": 22,
+    "dist": 3.14,
+    "partner_dnet": 4.14,
+    "partner_to_net": 1.21,
+    "partner_speed": 2.3,
+    "approach_pct": 73.0,
+    "look_ball_pct": 77.0,
+    "head": {
+     "net": 73.0,
+     "camera": 14.0,
+     "back": 14.0
+    }
+   },
+   "set": {
+    "n": 38,
+    "dist": 3.08,
+    "partner_dnet": 3.64,
+    "partner_to_net": 1.79,
+    "partner_speed": 2.92,
+    "approach_pct": 63.0,
+    "look_ball_pct": 47.0,
+    "head": {
+     "net": 50.0,
+     "camera": 37.0,
+     "back": 13.0
+    }
+   },
+   "attack": {
+    "n": 22,
+    "dist": 2.63,
+    "partner_dnet": 2.68,
+    "partner_to_net": 0.34,
+    "partner_speed": 1.94,
+    "approach_pct": 55.0,
+    "look_ball_pct": 50.0,
+    "head": {
+     "net": 64.0,
+     "camera": 27.0,
+     "back": 9.0
+    }
+   },
+   "serve": {
+    "n": 5,
+    "dist": 2.75,
+    "partner_dnet": 6.67,
+    "partner_to_net": 1.91,
+    "partner_speed": 2.91,
+    "approach_pct": 60.0,
+    "look_ball_pct": 100.0,
+    "head": {
+     "net": 100.0
+    }
+   }
+  },
+  "ISR_B": {
+   "pass": {
+    "n": 29,
+    "dist": 3.48,
+    "partner_dnet": 4.41,
+    "partner_to_net": 1.14,
+    "partner_speed": 2.17,
+    "approach_pct": 59.0,
+    "look_ball_pct": 62.0,
+    "head": {
+     "net": 38.0,
+     "camera": 31.0,
+     "back": 28.0,
+     "away": 3.0
+    }
+   },
+   "set": {
+    "n": 10,
+    "dist": 3.18,
+    "partner_dnet": 3.08,
+    "partner_to_net": 0.21,
+    "partner_speed": 1.58,
+    "approach_pct": 50.0,
+    "look_ball_pct": 40.0,
+    "head": {
+     "net": 50.0,
+     "camera": 50.0
+    }
+   },
+   "attack": {
+    "n": 36,
+    "dist": 3.55,
+    "partner_dnet": 3.0,
+    "partner_to_net": -0.38,
+    "partner_speed": 1.07,
+    "approach_pct": 8.0,
+    "look_ball_pct": 72.0,
+    "head": {
+     "net": 67.0,
+     "camera": 25.0,
+     "back": 8.0
+    }
+   },
+   "serve": {
+    "n": 4,
+    "dist": 3.67,
+    "partner_dnet": 5.28,
+    "partner_to_net": -0.07,
+    "partner_speed": 1.38,
+    "approach_pct": 50.0,
+    "look_ball_pct": 67.0,
+    "head": {
+     "back": 33.0,
+     "net": 33.0,
+     "camera": 33.0
+    }
+   }
+  },
+  "BRA_A": {
+   "pass": {
+    "n": 37,
+    "dist": 3.44,
+    "partner_dnet": 4.65,
+    "partner_to_net": 0.62,
+    "partner_speed": 1.95,
+    "approach_pct": 62.0,
+    "look_ball_pct": 62.0,
+    "head": {
+     "net": 65.0,
+     "camera": 27.0,
+     "back": 8.0
+    }
+   },
+   "set": {
+    "n": 25,
+    "dist": 3.8,
+    "partner_dnet": 4.19,
+    "partner_to_net": 0.74,
+    "partner_speed": 1.99,
+    "approach_pct": 52.0,
+    "look_ball_pct": 57.0,
+    "head": {
+     "net": 61.0,
+     "camera": 26.0,
+     "back": 13.0
+    }
+   },
+   "attack": {
+    "n": 36,
+    "dist": 3.48,
+    "partner_dnet": 3.59,
+    "partner_to_net": -0.02,
+    "partner_speed": 0.8,
+    "approach_pct": 28.0,
+    "look_ball_pct": 54.0,
+    "head": {
+     "net": 57.0,
+     "camera": 34.0,
+     "back": 6.0,
+     "away": 3.0
+    }
+   },
+   "serve": {
+    "n": 1,
+    "dist": 4.31,
+    "partner_dnet": 8.47,
+    "partner_to_net": null,
+    "partner_speed": null,
+    "approach_pct": null,
+    "look_ball_pct": null,
+    "head": {}
+   }
+  },
+  "BRA_B": {
+   "pass": {
+    "n": 19,
+    "dist": 3.52,
+    "partner_dnet": 4.31,
+    "partner_to_net": 1.21,
+    "partner_speed": 2.03,
+    "approach_pct": 84.0,
+    "look_ball_pct": 47.0,
+    "head": {
+     "net": 53.0,
+     "camera": 42.0,
+     "back": 5.0
+    }
+   },
+   "set": {
+    "n": 26,
+    "dist": 3.83,
+    "partner_dnet": 3.76,
+    "partner_to_net": 2.07,
+    "partner_speed": 2.95,
+    "approach_pct": 73.0,
+    "look_ball_pct": 52.0,
+    "head": {
+     "net": 52.0,
+     "camera": 40.0,
+     "back": 8.0
+    }
+   },
+   "attack": {
+    "n": 25,
+    "dist": 3.8,
+    "partner_dnet": 3.33,
+    "partner_to_net": -0.26,
+    "partner_speed": 0.78,
+    "approach_pct": 16.0,
+    "look_ball_pct": 96.0,
+    "head": {
+     "net": 91.0,
+     "back": 4.0,
+     "camera": 4.0
+    }
+   }
+  }
+ },
+ "contacts": {
+  "BRA_A": {
+   "attack": 36,
+   "block": 2,
+   "one_touch": 2,
+   "pass": 37,
+   "serve": 1,
+   "set": 25
+  },
+  "BRA_B": {
+   "attack": 25,
+   "block": 6,
+   "one_touch": 2,
+   "pass": 19,
+   "serve": 0,
+   "set": 26
+  },
+  "ISR_A": {
+   "attack": 22,
+   "block": 5,
+   "one_touch": 4,
+   "pass": 22,
+   "serve": 5,
+   "set": 38
+  },
+  "ISR_B": {
+   "attack": 36,
+   "block": 6,
+   "one_touch": 6,
+   "pass": 29,
+   "serve": 4,
+   "set": 10
+  }
+ },
+ "defense": {
+  "ISR": {
+   "n": 61,
+   "one_at_net_pct": 7.0,
+   "dist": 3.72,
+   "blocker": {
+    "ISR_B": 46,
+    "ISR_A": 15
+   },
+   "front": 4.07,
+   "back": 5.52
+  },
+  "BRA": {
+   "n": 58,
+   "one_at_net_pct": 3.0,
+   "dist": 3.1,
+   "blocker": {
+    "BRA_A": 38,
+    "BRA_B": 20
+   },
+   "front": 3.61,
+   "back": 4.78
+  }
+ },
+ "meta": {
+  "fps": 25,
+  "frames": 15586,
+  "inplay_sec": 488.0,
+  "n_contacts": 368,
+  "n_rallies_with_play": 58
+ },
+ "phase": {
+  "ISR_A": {
+   "dnet_own": 3.53,
+   "dnet_opp": 4.04,
+   "speed_own": 1.8,
+   "speed_opp": 1.47
+  },
+  "ISR_B": {
+   "dnet_own": 3.64,
+   "dnet_opp": 3.65,
+   "speed_own": 2.04,
+   "speed_opp": 1.45
+  },
+  "BRA_A": {
+   "dnet_own": 3.38,
+   "dnet_opp": 3.38,
+   "speed_own": 1.99,
+   "speed_opp": 1.37
+  },
+  "BRA_B": {
+   "dnet_own": 3.76,
+   "dnet_opp": 3.77,
+   "speed_own": 1.85,
+   "speed_opp": 1.29
+  }
+ },
+ "pdist_phase": {
+  "ISR": {
+   "own": 3.19,
+   "opp": 3.66,
+   "all_mean": 3.49
+  },
+  "BRA": {
+   "own": 3.62,
+   "opp": 2.92,
+   "all_mean": 3.42
+  }
+ },
+ "pdist_wl": {
+  "ISR": {
+   "won": 3.49,
+   "lost": 3.44
+  },
+  "BRA": {
+   "won": 3.45,
+   "lost": 3.35
+  }
+ },
+ "speed_wl": {
+  "ISR_A": {
+   "won": 1.66,
+   "lost": 1.56
+  },
+  "ISR_B": {
+   "won": 1.86,
+   "lost": 1.66
+  },
+  "BRA_A": {
+   "won": 1.72,
+   "lost": 1.68
+  },
+  "BRA_B": {
+   "won": 1.6,
+   "lost": 1.62
+  }
+ }
+}

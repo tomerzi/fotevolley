@@ -1,0 +1,438 @@
+<title>הסקאוט שלך: ישראל נגד ברזיל</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;900&family=Heebo:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: one narrow scroll column, "scouting app" cards; court diagrams drawn as if you stand behind your own baseline */
+:root{
+  --bg:#eef2f5; --card:#ffffff; --ink:#0d1620; --muted:#56616d; --line:#d6dee6; --soft:#e4eaf0;
+  --isr:#2a78d6; --isr2:#1baf7a; --bra:#eb6834; --bra2:#eda100;
+  --good:#0f8a3c; --bad:#c9302c; --sand:#f1e6cf; --sandline:#c9b48a;
+  --f-display:"Rubik","Heebo",system-ui,sans-serif; --f-body:"Heebo",system-ui,sans-serif; --f-num:"JetBrains Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1318; --card:#161d25; --ink:#eef2f6; --muted:#9ba7b3; --line:#2a3541; --soft:#1e2731;
+  --isr:#3987e5; --isr2:#199e70; --bra:#d95926; --bra2:#c98500; --good:#3cc06a; --bad:#ef6461; --sand:#2b2618; --sandline:#6b5c3a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1318; --card:#161d25; --ink:#eef2f6; --muted:#9ba7b3; --line:#2a3541; --soft:#1e2731;
+  --isr:#3987e5; --isr2:#199e70; --bra:#d95926; --bra2:#c98500; --good:#3cc06a; --bad:#ef6461; --sand:#2b2618; --sandline:#6b5c3a; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;direction:rtl;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 64px}
+.wrap{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(2rem,6vw,3.2rem);font-weight:900;letter-spacing:-.01em}
+h2{font-size:1.6rem;font-weight:700}
+h3{font-size:1.1rem;font-weight:700}
+p{margin:0;max-width:65ch}
+.num{font-family:var(--f-num);font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+.eyebrow{font-family:var(--f-num);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.muted{color:var(--muted)}
+section.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px clamp(16px,4vw,28px);display:flex;flex-direction:column;gap:16px;min-width:0}
+.hero{display:flex;flex-direction:column;gap:14px;padding-top:8px}
+.score{display:flex;align-items:stretch;gap:10px;flex-wrap:wrap}
+.score .team{flex:1 1 140px;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:2px;border:2px solid var(--line);background:var(--card)}
+.score .team.isr{border-color:var(--isr)} .score .team.bra{border-color:var(--bra)}
+.score .big{font-family:var(--f-num);font-size:2.4rem;font-weight:700;line-height:1}
+.picker{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.picker button{font:inherit;font-weight:700;border:2px solid var(--isr);background:transparent;color:var(--ink);padding:8px 14px;border-radius:999px;cursor:pointer}
+.picker button[aria-pressed="true"]{background:var(--isr);color:#fff}
+.picker button:focus-visible{outline:3px solid var(--bra2);outline-offset:2px}
+.tldr{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.tldr div{background:var(--soft);border-radius:12px;padding:12px 14px;min-width:0}
+.tldr b{font-family:var(--f-display);font-size:1.05rem;display:block}
+.flag{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-num);font-size:.72rem;font-weight:700;letter-spacing:.08em;padding:2px 8px;border-radius:999px;border:1.5px solid currentColor}
+.flag::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.flag.g{color:var(--good)} .flag.r{color:var(--bad)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.tile{border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.tile.me{border:2px solid var(--isr);box-shadow:0 0 0 3px color-mix(in srgb,var(--isr) 18%,transparent)}
+.tile .lbl{font-weight:700;display:flex;justify-content:space-between;gap:6px;align-items:center}
+.you{font-family:var(--f-num);font-size:.68rem;background:var(--isr);color:#fff;padding:1px 7px;border-radius:999px}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:520px}
+th,td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:right}
+th{font-weight:700;color:var(--muted);font-size:.8rem}
+td.num,th.num{text-align:left}
+tr.me td{background:color-mix(in srgb,var(--isr) 10%,transparent);font-weight:700}
+.sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin-inline-end:6px;vertical-align:middle}
+svg{direction:ltr}
+svg text{fill:var(--muted);font-family:var(--f-num);font-size:11px}
+svg .ink{fill:var(--ink)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.85rem;color:var(--muted)}
+.callout{border-inline-start:4px solid var(--isr);padding:4px 14px;background:color-mix(in srgb,var(--isr) 7%,transparent);border-radius:4px 10px 10px 4px}
+.callout.b{border-color:var(--bra);background:color-mix(in srgb,var(--bra) 8%,transparent)}
+ul.clean{margin:0;padding-inline-start:20px;display:flex;flex-direction:column;gap:6px}
+.plan{counter-reset:s;display:flex;flex-direction:column;gap:10px;list-style:none;margin:0;padding:0}
+.plan li{counter-increment:s;display:grid;grid-template-columns:36px 1fr;gap:10px;align-items:start}
+.plan li::before{content:counter(s);font-family:var(--f-num);font-weight:700;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--isr);color:#fff}
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);font-size:.82rem;padding:6px 10px;border-radius:8px;z-index:20;max-width:240px}
+.bars{display:flex;flex-direction:column;gap:8px}
+.bar{display:grid;grid-template-columns:70px 1fr 56px;gap:8px;align-items:center;font-size:.88rem}
+.bar .track{height:14px;background:var(--soft);border-radius:4px;overflow:hidden}
+.bar .fill{height:100%;border-radius:0 4px 4px 0}
+.bar.me{font-weight:700}
+details summary{cursor:pointer;font-weight:700}
+@media (prefers-reduced-motion:no-preference){.fill{transition:width .5s ease}}
+</style>
+
+<div class="wrap">
+
+<header class="hero">
+  <span class="eyebrow">Scouting report · ביץ' וולי · מבוסס רק על הנתונים מהריפו</span>
+  <h1>הסקאוט שלך: ישראל 🇮🇱 נגד ברזיל 🇧🇷</h1>
+  <p class="muted">כל מספר פה נשלף מהקבצים שאספת: מיקומים במטרים (homography), שלד ViTPose ב-25 נקודות, מסלול הכדור, ו-60 אירועי נקודה מאומתים. בלי ניחושים מבחוץ. אורך הסרטון: <span class="num">10:23</span> דק', <span class="num">25</span> פריימים לשנייה.</p>
+  <div class="score">
+    <div class="team isr"><span class="eyebrow">ישראל · כחול</span><span class="big">24</span><span class="muted">נקודות שתועדו</span></div>
+    <div class="team bra"><span class="eyebrow">ברזיל · צהוב</span><span class="big">36</span><span class="muted">נקודות שתועדו · 2 מערכות</span></div>
+  </div>
+  <div class="picker" role="group" aria-label="מי אתה">
+    <span style="font-weight:700">מי אתה בסרטון?</span>
+    <button id="pickA" type="button" data-p="ISR_A">ISR_A · המוסר / הצד הימני</button>
+    <button id="pickB" type="button" data-p="ISR_B">ISR_B · התוקף / הצד השמאלי</button>
+  </div>
+  <p class="muted" style="font-size:.88rem">איך לדעת? לפי הנתונים <b>ISR_A</b> מסר <span class="num">38</span> פעמים ושיחק <span class="num">75%</span> מהזמן בצד הימני שלו. <b>ISR_B</b> תקף <span class="num">36</span> פעמים, היה הקרוב לרשת ב-<span class="num">75%</span> מהתקפות היריב ושיחק <span class="num">90%</span> מהזמן בצד השמאלי. בחר, וכל הדוח יסמן אותך.</p>
+</header>
+
+<section class="card">
+  <span class="eyebrow">TL;DR · בלי חפירות</span>
+  <h2>4 דברים שחייבים לדעת</h2>
+  <div class="tldr">
+    <div><span class="flag r">RED FLAG</span><b>קבלת הגשה</b><span>כשברזיל הגישה, ישראל לקחה רק <span class="num">5/16</span> נקודות (<span class="num">31%</span>). ברזיל בקבלה: <span class="num">9/14</span> (<span class="num">64%</span>).</span></div>
+    <div><span class="flag r">RED FLAG</span><b>ראליז ארוכים</b><span>בראלי של 8 שניות ומעלה: ישראל <span class="num">7</span>, ברזיל <span class="num">17</span>. ככל שזה נמשך, הם שוברים אותנו.</span></div>
+    <div><span class="flag g">GREEN FLAG</span><b>הקילומטראז'</b><span>ISR_B רץ הכי הרבה במגרש: <span class="num">103.8</span> מ' לדקה. ISR_A עשה הכי הרבה ספרינטים: <span class="num">21</span>.</span></div>
+    <div><span class="flag r">RED FLAG</span><b>הגישה לחבטה</b><span>הברזילאים מגיעים לחבטה ב-<span class="num">3.2–4.2</span> מ'/ש'. אנחנו ב-<span class="num">1.6–2.7</span>. פחות תנופה = פחות כוח.</span></div>
+  </div>
+</section>
+
+<section class="card" id="points">
+  <span class="eyebrow">01 · מתי היו נקודות לכל צד</span>
+  <h2>זרימת התוצאה</h2>
+  <p>הקו עולה כשישראל לוקחת נקודה ויורד כשברזיל לוקחת. מעל האפס = ישראל מובילה. רחף על נקודה כדי לראות את התוצאה והזמן בסרטון.</p>
+  <div class="scroll"><svg id="flow" viewBox="0 0 800 250" style="width:100%;min-width:520px;height:auto" role="img" aria-label="הפרש נקודות לאורך המשחק"></svg></div>
+  <div class="grid2">
+    <div class="callout"><b>הרגע הכי טוב שלנו</b><p>מערכה 1: עלינו ל-<span class="num">7–5</span> ול-<span class="num">10–7</span> (דקה <span class="num">1:58</span>). במערכה 2 היה ריצה של <span class="num">4</span> רצופות, מ-<span class="num">3–15</span> ל-<span class="num">7–15</span>.</p></div>
+    <div class="callout b"><b>איפה זה נשבר</b><p>ריצה של <span class="num">9</span> נקודות רצופות לברזיל במערכה 2 (מ-<span class="num">2–5</span> ל-<span class="num">2–14</span>, דקות <span class="num">7:08–8:30</span>). עוד ריצה של <span class="num">6</span> סגרה את מערכה 1 ופתחה את 2.</p></div>
+  </div>
+  <div class="grid4" id="splits"></div>
+</section>
+
+<section class="card" id="court">
+  <span class="eyebrow">02 · מיקום על המגרש</span>
+  <h2>איפה כל אחד חי במגרש</h2>
+  <p>מפת חום של זמן משחק פעיל. כל מגרש מצויר כאילו אתה עומד מאחורי קו הסיום שלך ומסתכל על הרשת (הרשת למעלה). כל משבצת = <span class="num">1×1</span> מ'. כהה יותר = יותר זמן שם.</p>
+  <div class="grid4" id="heat"></div>
+  <div class="scroll"><table id="posTable"></table></div>
+</section>
+
+<section class="card" id="pair">
+  <span class="eyebrow">03 · מרחק אחד מהשני</span>
+  <h2>הכימיה במטרים</h2>
+  <p>המרחק בין שני השותפים בכל פריים של משחק פעיל. שני הזוגות ממוצעים כמעט זהים (<span class="num">3.49</span> מ' אצלנו, <span class="num">3.42</span> אצלם), אבל ההבדל מופיע לפי שלב הנקודה.</p>
+  <div class="scroll"><svg id="pairHist" viewBox="0 0 640 230" style="width:100%;min-width:480px;height:auto" role="img" aria-label="התפלגות המרחק בין השותפים"></svg></div>
+  <div class="legend"><span><i class="sw" style="background:var(--isr)"></i>ישראל</span><span><i class="sw" style="background:var(--bra)"></i>ברזיל</span></div>
+  <div class="grid2">
+    <div class="tile"><span class="lbl">הכדור אצלנו (התקפה)</span><span>ישראל <b class="num">3.19</b> מ' · ברזיל <b class="num">3.62</b> מ'</span><span class="muted" style="font-size:.88rem">בהתקפה אנחנו צפופים יותר. ברזיל נפתחת ופורשת את המגרש.</span></div>
+    <div class="tile"><span class="lbl">הכדור אצלם (הגנה)</span><span>ישראל <b class="num">3.66</b> מ' · ברזיל <b class="num">2.92</b> מ'</span><span class="muted" style="font-size:.88rem">בהגנה זה הפוך: אנחנו נפתחים, ברזיל נסגרת ומגינה קרוב אחד לשני.</span></div>
+  </div>
+  <p class="muted" style="font-size:.9rem">בממוצע שני הזוגות עומדים זה לצד זה (לרוחב המגרש) ב-<span class="num">75–76%</span> מהזמן, ולא אחד מאחורי השני. צמוד מדי (פחות מ-<span class="num">1.5</span> מ'): ישראל <span class="num">3.7%</span>, ברזיל <span class="num">2.2%</span>.</p>
+</section>
+
+<section class="card" id="speed">
+  <span class="eyebrow">04 · מהירות ותנועה</span>
+  <h2>מי זז הכי הרבה</h2>
+  <p>מחושב רק בזמן משחק פעיל (מההגשה עד הנגיעה האחרונה), בערך <span class="num">8</span> דקות לכל שחקן. "ספרינט" = מעל <span class="num">3.5</span> מ'/ש' לפחות <span class="num">0.4</span> שניות.</p>
+  <div class="grid2" id="speedBars"></div>
+  <div class="callout"><b>הכי חשוב בסקשן הזה</b><p id="speedWL"></p></div>
+</section>
+
+<section class="card" id="body">
+  <span class="eyebrow">05 · מבנה גוף</span>
+  <h2>פרופורציות מהשלד</h2>
+  <p>נמדד רק בפריימים שבהם השחקן עומד זקוף ולא זז (ברכיים ישרות, גו ישר, מהירות מתחת ל-<span class="num">0.6</span> מ'/ש'). המצלמה מצלמת מלמעלה בזווית, ולכן הגובה בסנטימטרים לא מדויק. ההשוואה בין השחקנים כן אמינה.</p>
+  <div class="scroll"><table id="bodyTable"></table></div>
+  <p class="muted" style="font-size:.9rem">BRA_A הוא עם הזרועות הכי ארוכות ביחס לגוף (<span class="num">0.377</span> לעומת <span class="num">0.352</span> אצל כל השאר). זה ה-reach שלו מעל הרשת. שני הישראלים בגובה דומה ל-BRA_A, ו-BRA_B הוא הנמוך ברביעייה.</p>
+</section>
+
+<section class="card" id="angles">
+  <span class="eyebrow">06 · זוויות</span>
+  <h2>זוויות גוף בכל סוג נגיעה</h2>
+  <p>חציון לכל שחקן, ברגע המגע עם הכדור. זווית ברך <span class="num">180°</span> = רגל ישרה, ככל שהמספר קטן הכיפוף עמוק יותר. "ידיים מעל הראש" = כמה המפרק הגבוה מעל האף, במטרים.</p>
+  <div class="picker" role="group" aria-label="סוג נגיעה" id="kindPick"></div>
+  <div class="scroll"><table id="angTable"></table></div>
+  <p class="muted" style="font-size:.88rem">ספירת נגיעות שזוהו אוטומטית (מגע = הכדור משנה כיוון ליד השחקן): <span id="ccount"></span></p>
+</section>
+
+<section class="card" id="attack">
+  <span class="eyebrow">07 · רגע החבטה</span>
+  <h2>מה קורה כשאתה חובט</h2>
+  <div class="grid4" id="atkDials"></div>
+  <div class="callout" id="atkText"></div>
+</section>
+
+<section class="card" id="setting">
+  <span class="eyebrow">08 · כשאחד מוסר, מה השני עושה?</span>
+  <h2>השותף ברגע ההגבהה</h2>
+  <p>בכל רגע של מסירה (הנגיעה השנייה) בדקנו איפה השותף, כמה הוא מתקרב לרשת ב-<span class="num">0.8</span> השניות הבאות, באיזו מהירות, והאם הוא מסתכל על הכדור.</p>
+  <div class="scroll"><table id="setTable"></table></div>
+  <div class="callout" id="setText"></div>
+</section>
+
+<section class="card" id="gaze">
+  <span class="eyebrow">09 · כיוון המבט וסריקה</span>
+  <h2>לאן אתה מסתכל כשהכדור אצלם</h2>
+  <p>כיוון הראש נקבע מהשלד: מיקום האף ביחס לאוזניים. "לרשת" = הפנים לכיוון הצד של היריב. "הצידה" = פנים למצלמה, מבט לרוחב המגרש (למשל לשותף). "סריקות לשנייה" = כמה פעמים הראש מחליף כיוון בשנייה.</p>
+  <div class="bars" id="gazeBars"></div>
+  <div class="legend"><span><i class="sw" style="background:var(--isr)"></i>לכיוון הרשת</span><span><i class="sw" style="background:color-mix(in srgb,var(--isr) 45%,var(--soft))"></i>הצידה</span><span><i class="sw" style="background:var(--muted)"></i>לאחור / הגב לרשת</span></div>
+  <div class="scroll"><table id="gazeTable"></table></div>
+  <div class="callout" id="gazeText"></div>
+</section>
+
+<section class="card" id="defense">
+  <span class="eyebrow">10 · כשהיריב תוקף</span>
+  <h2>המערך ההגנתי ברגע החבטה שלהם</h2>
+  <div class="grid2">
+    <div class="tile"><span class="lbl">ישראל · <span class="num">61</span> התקפות של ברזיל</span>
+      <span>הקדמי: <b class="num">4.07</b> מ' מהרשת · האחורי: <b class="num">5.52</b> מ'</span>
+      <span>מרחק בין השותפים: <b class="num">3.72</b> מ'</span>
+      <span>מי הקדמי: ISR_B <b class="num">46</b> · ISR_A <b class="num">15</b></span></div>
+    <div class="tile"><span class="lbl">ברזיל · <span class="num">58</span> התקפות של ישראל</span>
+      <span>הקדמי: <b class="num">3.61</b> מ' מהרשת · האחורי: <b class="num">4.78</b> מ'</span>
+      <span>מרחק בין השותפים: <b class="num">3.10</b> מ'</span>
+      <span>מי הקדמי: BRA_A <b class="num">38</b> · BRA_B <b class="num">20</b></span></div>
+  </div>
+  <p>הקדמי שלנו עומד חצי מטר עמוק יותר מהקדמי שלהם, והאחורי שלנו כ-75 ס"מ עמוק יותר. גם המרחק בינינו גדול יותר ב-60 ס"מ. ברזיל מגינה קרוב לרשת ובזוג צפוף, אז פחות כדורים קצרים (שוטים) נופלים להם על החול.</p>
+</section>
+
+<section class="card" id="plan">
+  <span class="eyebrow">11 · הצ'יט קוד</span>
+  <h2>תוכנית שדרוג לאימונים הבאים</h2>
+  <ol class="plan" id="planList"></ol>
+</section>
+
+<section class="card">
+  <span class="eyebrow">איך זה חושב</span>
+  <h2>שקיפות מלאה</h2>
+  <details>
+    <summary>מקורות, שיטה ומגבלות</summary>
+    <ul class="clean" style="margin-top:10px">
+      <li><b>נקודות:</b> <span class="num">point_events_FINAL_VERIFIED.csv</span>, 60 אירועים. ב-2 מקרים לוח התוצאות קפץ בשתי נקודות בבת אחת, ולכן אין להם זמן מדויק.</li>
+      <li><b>מיקום ומהירות:</b> <span class="num">correct_bbox/player_boxes_v9.csv</span>, מיקום הרגליים מומר למטרים (court_x/court_y, הרשת ב-x=8). מוחלק בחלון של <span class="num">0.3</span> שניות, וקפיצות מעל <span class="num">8.5</span> מ'/ש' נזרקו כטעויות מעקב.</li>
+      <li><b>זוויות, מבט ומבנה גוף:</b> <span class="num">pose/vitpose_body25.csv</span> (שלד ViTPose BODY_25). הזוויות נמדדות בדו-ממד על התמונה, אז הן מושפעות מזווית המצלמה. השוואה בין שחקנים אמינה יותר מהערך המוחלט.</li>
+      <li><b>נגיעות:</b> זוהו מ-<span class="num">correct_bbox/ball_boxes_corrected3.csv</span>: הכדור משנה כיוון ליד שחקן. סוג הנגיעה נקבע לפי מאיפה הכדור הגיע ולאן הוא הלך: קבלה, מסירה, חבטה (כולל שוטים), הגשה או חסימה. הגשות רבות מתחילות מחוץ לפריים, ולכן חסרות. <span class="num">368</span> נגיעות זוהו.</li>
+      <li><b>צדדים:</b> <span class="num">team_sides_full_video.csv</span>. ישראל = כחול, ברזיל = צהוב.</li>
+      <li><b>"כיוון המבט"</b> הוא כיוון הראש, לא תנועת עיניים. הוא נמדד רק כשהאף והאוזניים מזוהים בביטחון.</li>
+    </ul>
+  </details>
+</section>
+
+</div>
+<div class="tip" id="tip" hidden></div>
+
+<script>
+const D = {"points":[{"n":1,"set":1,"winner":"BRA","isr":0,"bra":1,"t":4.4,"isr_side":"R","server":"ISR_A","batch":false,"etype":"POINT","dur":2.8,"nc":2,"last":"BRA_B","last_kind":"attack"},{"n":2,"set":1,"winner":"ISR","isr":1,"bra":1,"t":7.6,"isr_side":"R","server":null,"batch":false,"etype":"POINT","dur":2.6,"nc":2,"last":"BRA_B","last_kind":"attack"},{"n":3,"set":1,"winner":"BRA","isr":1,"bra":2,"t":20.4,"isr_side":"R","server":"ISR_B","batch":false,"etype":"POINT","dur":9.9,"nc":5,"last":"ISR_B","last_kind":"attack"},{"n":4,"set":1,"winner":"ISR","isr":2,"bra":2,"t":26.8,"isr_side":"R","server":null,"batch":false,"etype":"POINT","dur":5.1,"nc":3,"last":"BRA_A","last_kind":"one_touch"},{"n":5,"set":1,"winner":"BRA","isr":2,"bra":3,"t":30.8,"isr_side":"R","server":null,"batch":false,"etype":"POINT","dur":3.6,"nc":3,"last":"ISR_A","last_kind":"pass"},{"n":6,"set":1,"winner":"ISR","isr":3,"bra":3,"t":36.0,"isr_side":"R","server":"ISR_B","batch":false,"etype":"POINT","dur":2.5,"nc":2,"last":"BRA_B","last_kind":"one_touch"},{"n":7,"set":1,"winner":"BRA","isr":3,"bra":4,"t":42.4,"isr_side":"L","server":"ISR_B","batch":false,"etype":"POINT","dur":5.8,"nc":5,"last":"ISR_B","last_kind":"set"},{"n":8,"set":1,"winner":"ISR","isr":4,"bra":4,"t":46.8,"isr_side":"L","server":"BRA_A","batch":false,"etype":"POINT","dur":3.0,"nc":2,"last":"ISR_B","last_kind":"attack"},{"n":9,"set":1,"winner":"BRA","isr":4,"bra":5,"t":52.0,"isr_side":"L","server":null,"batch":false,"etype":"POINT","dur":4.6,"nc":4,"last":"ISR_A","last_kind":"one_touch"},{"n":10,"set":1,"winner":"ISR","isr":5,"bra":5,"t":70.4,"isr_side":"L","server":"ISR_B","batch":true,"etype":"BATCH_POINT","dur":17.0,"nc":14,"last":"ISR_B","last_kind":"set"},{"n":11,"set":1,"winner":"ISR","isr":6,"bra":5,"t":70.4,"isr_side":"L","server":null,"batch":true,"etype":"BATCH_POINT","dur":null,"nc":0,"last":null,"last_kind":null},{"n":12,"set":1,"winner":"ISR","isr":7,"bra":5,"t":79.6,"isr_side":"L","server":"ISR_B","batch":false,"etype":"POINT","dur":6.3,"nc":5,"last":"BRA_A","last_kind":"pass"},{"n":13,"set":1,"winner":"BRA","isr":7,"bra":6,"t":93.2,"isr_side":"R","server":"ISR_A","batch":false,"etype":"POINT","dur":8.8,"nc":9,"last":"ISR_B","last_kind":"pass"},{"n":14,"set":1,"winner":"ISR","isr":8,"bra":6,"t":97.2,"isr_side":"R","server":null,"batch":false,"etype":"REPAIRED_POINT","dur":3.6,"nc":3,"last":"BRA_A","last_kind":"pass"},{"n":15,"set":1,"winner":"ISR","isr":9,"bra":6,"t":105.2,"isr_side":"R","server":null,"batch":false,"etype":"POINT","dur":6.3,"nc":6,"last":"BRA_A","last_kind":"pass"},{"n":16,"set":1,"winner":"BRA","isr":9,"bra":7,"t":108.0,"isr_side":"R","server":null,"batch":false,"etype":"POINT","dur":2.5,"nc":4,"last":"ISR_A","last_kind":"set"},{"n":17,"set":1,"winner":"ISR","isr":10,"bra":7,"t":118.4,"isr_side":"R","server":null,"batch":false,"etype":"POINT","dur":8.9,"nc":7,"last":"ISR_B","last_kind":"attack"},{"n":18,"set":1,"winner":"BRA","isr":10,"bra":8,"t":122.0,"isr_side":"R","server":null,"batch":false,"etype":"REPAIRED_POINT","dur":3.2,"nc":3,"last":"ISR_B","last_kind":"one_touch"},{"n":19,"set":1,"winner":"BRA","isr":10,"bra":9,"t":133.2,"isr_side":"L","server":"BRA_A","batch":false,"etype":"POINT","dur":11.0,"nc":9,"last":"ISR_B","last_kind":"one_touch"},{"n":20,"set":1,"winner":"BRA","isr":10,"bra":10,"t":158.8,"isr_side":"L","server":"BRA_A","batch":false,"etype":"POINT","dur":17.8,"nc":13,"last":"ISR_A","last_kind":"one_touch"},{"n":21,"set":1,"winner":"BRA","isr":10,"bra":11,"t":163.6,"isr_side":"L","server":"BRA_A","batch":false,"etype":"POINT","dur":3.2,"nc":2,"last":"ISR_B","last_kind":"attack"},{"n":22,"set":1,"winner":"BRA","isr":10,"bra":12,"t":168.8,"isr_side":"L","server":"BRA_A","batch":false,"etype":"POINT","dur":4.2,"nc":3,"last":"ISR_B","last_kind":"attack"},{"n":23,"set":1,"winner":"ISR","isr":11,"bra":12,"t":174.0,"isr_side":"L","server":"BRA_A","batch":false,"etype":"POINT","dur":4.0,"nc":3,"last":"ISR_B","last_kind":"attack"},{"n":24,"set":1,"winner":"BRA","isr":11,"bra":13,"t":183.2,"isr_side":"L","server":null,"batch":false,"etype":"POINT","dur":3.2,"nc":2,"last":"BRA_B","last_kind":"set"},{"n":25,"set":1,"winner":"BRA","isr":11,"bra":14,"t":200.8,"isr_side":"R","server":"BRA_B","batch":false,"etype":"POINT","dur":10.7,"nc":10,"last":"BRA_B","last_kind":"pass"},{"n":26,"set":1,"winner":"ISR","isr":12,"bra":14,"t":212.8,"isr_side":"R","server":"ISR_A","batch":false,"etype":"POINT","dur":6.4,"nc":5,"last":"BRA_A","last_kind":"attack"},{"n":27,"set":1,"winner":"BRA","isr":12,"bra":15,"t":250.4,"isr_side":"R","server":"ISR_A","batch":false,"etype":"POINT","dur":35.4,"nc":25,"last":"ISR_A","last_kind":"pass"},{"n":28,"set":1,"winner":"BRA","isr":12,"bra":16,"t":270.8,"isr_side":"R","server":"ISR_A","batch":false,"etype":"POINT","dur":20.1,"nc":17,"last":"ISR_A","last_kind":"pass"},{"n":29,"set":1,"winner":"BRA","isr":12,"bra":17,"t":283.6,"isr_side":"R","server":null,"batch":false,"etype":"POINT","dur":12.6,"nc":12,"last":"ISR_B","last_kind":"attack"},{"n":30,"set":1,"winner":"ISR","isr":13,"bra":17,"t":291.2,"isr_side":"R","server":null,"batch":false,"etype":"POINT","dur":2.6,"nc":2,"last":"ISR_A","last_kind":"attack"},{"n":31,"set":1,"winner":"BRA","isr":13,"bra":18,"t":322.0,"isr_side":"L","server":null,"batch":false,"etype":"SET_WIN","dur":24.8,"nc":10,"last":"BRA_B","last_kind":"set"},{"n":32,"set":2,"winner":"BRA","isr":0,"bra":1,"t":332.0,"isr_side":"L","server":"BRA_B","batch":false,"etype":"POINT","dur":7.4,"nc":5,"last":"ISR_B","last_kind":"one_touch"},{"n":33,"set":2,"winner":"BRA","isr":0,"bra":2,"t":349.6,"isr_side":"L","server":null,"batch":false,"etype":"POINT","dur":16.1,"nc":13,"last":"ISR_A","last_kind":"one_touch"},{"n":34,"set":2,"winner":"BRA","isr":0,"bra":3,"t":365.2,"isr_side":"L","server":"BRA_B","batch":false,"etype":"POINT","dur":14.4,"nc":13,"last":"BRA_B","last_kind":"pass"},{"n":35,"set":2,"winner":"BRA","isr":0,"bra":4,"t":375.2,"isr_side":"L","server":"BRA_B","batch":false,"etype":"POINT","dur":7.0,"nc":3,"last":"BRA_A","last_kind":"set"},{"n":36,"set":2,"winner":"BRA","isr":0,"bra":5,"t":387.6,"isr_side":"L","server":"BRA_B","batch":false,"etype":"POINT","dur":11.6,"nc":8,"last":"BRA_B","last_kind":"attack"},{"n":37,"set":2,"winner":"ISR","isr":1,"bra":5,"t":392.8,"isr_side":"L","server":"BRA_A","batch":false,"etype":"POINT","dur":3.0,"nc":2,"last":"ISR_B","last_kind":"attack"},{"n":38,"set":2,"winner":"ISR","isr":2,"bra":5,"t":410.8,"isr_side":"R","server":"ISR_A","batch":false,"etype":"POINT","dur":9.4,"nc":8,"last":"ISR_A","last_kind":"set"},{"n":39,"set":2,"winner":"BRA","isr":2,"bra":6,"t":428.8,"isr_side":"R","server":null,"batch":false,"etype":"POINT","dur":14.9,"nc":13,"last":"ISR_A","last_kind":"attack"},{"n":40,"set":2,"winner":"BRA","isr":2,"bra":7,"t":437.6,"isr_side":"R","server":"ISR_A","batch":false,"etype":"POINT","dur":6.3,"nc":4,"last":"BRA_A","last_kind":"pass"},{"n":41,"set":2,"winner":"BRA","isr":2,"bra":8,"t":446.4,"isr_side":"R","server":"ISR_A","batch":false,"etype":"POINT","dur":6.9,"nc":5,"last":"BRA_B","last_kind":"attack"},{"n":42,"set":2,"winner":"BRA","isr":2,"bra":9,"t":457.2,"isr_side":"R","server":null,"batch":false,"etype":"REPAIRED_POINT","dur":4.4,"nc":3,"last":"ISR_B","last_kind":"set"},{"n":43,"set":2,"winner":"BRA","isr":2,"bra":10,"t":471.2,"isr_side":"R","server":"ISR_B","batch":false,"etype":"POINT","dur":9.6,"nc":7,"last":"BRA_A","last_kind":"attack"},{"n":44,"set":2,"winner":"BRA","isr":2,"bra":11,"t":478.8,"isr_side":"L","server":null,"batch":false,"etype":"REPAIRED_POINT","dur":6.0,"nc":4,"last":"ISR_A","last_kind":"pass"},{"n":45,"set":2,"winner":"BRA","isr":2,"bra":12,"t":490.8,"isr_side":"L","server":null,"batch":false,"etype":"POINT","dur":10.2,"nc":9,"last":"ISR_B","last_kind":"attack"},{"n":46,"set":2,"winner":"BRA","isr":2,"bra":13,"t":498.4,"isr_side":"L","server":"BRA_A","batch":false,"etype":"POINT","dur":3.5,"nc":3,"last":"ISR_A","last_kind":"attack"},{"n":47,"set":2,"winner":"BRA","isr":2,"bra":14,"t":510.4,"isr_side":"L","server":"BRA_A","batch":false,"etype":"REPAIRED_POINT","dur":10.4,"nc":8,"last":"ISR_A","last_kind":"attack"},{"n":48,"set":2,"winner":"ISR","isr":3,"bra":14,"t":523.2,"isr_side":"L","server":"BRA_A","batch":false,"etype":"POINT","dur":12.6,"nc":9,"last":"BRA_A","last_kind":"pass"},{"n":49,"set":2,"winner":"BRA","isr":3,"bra":15,"t":526.0,"isr_side":"L","server":null,"batch":false,"etype":"POINT","dur":1.6,"nc":1,"last":"BRA_B","last_kind":"attack"},{"n":50,"set":2,"winner":"ISR","isr":4,"bra":15,"t":538.0,"isr_side":"R","server":"BRA_B","batch":true,"etype":"BATCH_POINT","dur":10.4,"nc":8,"last":"ISR_A","last_kind":"attack"},{"n":51,"set":2,"winner":"ISR","isr":5,"bra":15,"t":538.0,"isr_side":"R","server":null,"batch":true,"etype":"BATCH_POINT","dur":null,"nc":0,"last":null,"last_kind":null},{"n":52,"set":2,"winner":"ISR","isr":6,"bra":15,"t":552.4,"isr_side":"R","server":null,"batch":false,"etype":"POINT","dur":11.7,"nc":10,"last":"ISR_A","last_kind":"set"},{"n":53,"set":2,"winner":"ISR","isr":7,"bra":15,"t":574.6,"isr_side":"R","server":null,"batch":false,"etype":"POINT","dur":21.6,"nc":16,"last":"BRA_A","last_kind":"attack"},{"n":54,"set":2,"winner":"BRA","isr":7,"bra":16,"t":578.0,"isr_side":"R","server":null,"batch":false,"etype":"POINT","dur":1.6,"nc":1,"last":"BRA_B","last_kind":"attack"},{"n":55,"set":2,"winner":"ISR","isr":8,"bra":16,"t":582.8,"isr_side":"R","server":null,"batch":false,"etype":"POINT","dur":4.1,"nc":3,"last":"ISR_B","last_kind":"attack"},{"n":56,"set":2,"winner":"ISR","isr":9,"bra":16,"t":589.2,"isr_side":"L","server":null,"batch":false,"etype":"POINT","dur":4.4,"nc":3,"last":"BRA_A","last_kind":"attack"},{"n":57,"set":2,"winner":"ISR","isr":10,"bra":16,"t":596.0,"isr_side":"L","server":null,"batch":false,"etype":"POINT","dur":4.4,"nc":3,"last":"ISR_A","last_kind":"one_touch"},{"n":58,"set":2,"winner":"BRA","isr":10,"bra":17,"t":608.8,"isr_side":"L","server":null,"batch":false,"etype":"POINT","dur":9.4,"nc":8,"last":"ISR_B","last_kind":"pass"},{"n":59,"set":2,"winner":"ISR","isr":11,"bra":17,"t":616.4,"isr_side":"L","server":null,"batch":false,"etype":"POINT","dur":6.9,"nc":4,"last":"BRA_B","last_kind":"set"},{"n":60,"set":2,"winner":"BRA","isr":11,"bra":18,"t":623.4,"isr_side":"L","server":null,"batch":false,"etype":"SET_WIN","dur":2.9,"nc":2,"last":"BRA_A","last_kind":"set"}],"score_summary":{"isr_total":24,"bra_total":36,"set1":{"isr":13,"bra":18},"set2":{"isr":11,"bra":18},"by_side":{"L":{"isr":10,"bra":20},"R":{"isr":14,"bra":16}}},"runs":[{"team":"BRA","len":9,"from_n":39},{"team":"BRA","len":6,"from_n":31},{"team":"BRA","len":5,"from_n":18},{"team":"ISR","len":4,"from_n":50},{"team":"ISR","len":3,"from_n":10},{"team":"BRA","len":3,"from_n":27}],"sideout":{"ISR":[5,16],"BRA":[9,14]},"serve_by_player":{"ISR_A":[2,8],"ISR_B":[3,6],"BRA_A":[6,10],"BRA_B":[5,6]},"by_len":{"short":{"isr":6,"bra":10},"mid":{"isr":9,"bra":9},"long":{"isr":7,"bra":17}},"last_contact":{"ISR_A":{"won":5,"lost":11},"ISR_B":{"won":6,"lost":12},"BRA_A":{"won":4,"lost":8},"BRA_B":{"won":9,"lost":3}},"move":{"ISR_A":{"avg_speed":1.59,"p95":4.28,"max":7.12,"m_per_min":95.7,"dist_total":754.0,"sprints":21,"sprints_per_min":2.66,"still_pct":20.8,"secs":473.0,"dnet_mean":3.81,"dnet_med":3.78,"near_net_pct":24.5,"back_pct":21.1,"y_mean":4.54},"ISR_B":{"avg_speed":1.73,"p95":4.5,"max":7.29,"m_per_min":103.8,"dist_total":823.0,"sprints":15,"sprints_per_min":1.89,"still_pct":19.9,"secs":476.0,"dnet_mean":3.56,"dnet_med":3.63,"near_net_pct":31.2,"back_pct":15.1,"y_mean":4.68},"BRA_A":{"avg_speed":1.69,"p95":4.53,"max":7.29,"m_per_min":101.1,"dist_total":802.0,"sprints":16,"sprints_per_min":2.02,"still_pct":20.6,"secs":476.0,"dnet_mean":3.68,"dnet_med":3.47,"near_net_pct":28.4,"back_pct":18.9,"y_mean":4.53},"BRA_B":{"avg_speed":1.56,"p95":4.41,"max":7.15,"m_per_min":93.3,"dist_total":742.0,"sprints":17,"sprints_per_min":2.14,"still_pct":24.8,"secs":477.0,"dnet_mean":3.78,"dnet_med":3.8,"near_net_pct":25.6,"back_pct":18.5,"y_mean":4.64}},"heat":{"ISR_A":[[0.1,0.5,0.7,1.4,2.2,1.2,0.8,0.6,0.0,0.0],[0.3,1.0,1.1,2.7,2.8,0.9,0.6,0.4,0.1,0.0],[0.3,1.0,1.7,4.3,3.3,1.9,1.4,1.0,0.0,0.0],[0.6,1.2,3.1,7.2,5.3,2.9,1.9,0.4,0.0,0.2],[0.2,0.2,2.8,7.5,3.8,2.4,0.7,0.1,0.2,0.2],[0.3,0.1,0.2,1.9,7.6,2.0,0.7,0.0,0.0,0.0],[0.1,0.0,0.1,0.9,6.3,2.2,0.7,0.0,0.0,0.0],[0.1,0.0,0.1,0.7,0.9,0.7,0.3,0.0,0.0,0.0],[0.1,0.0,0.0,0.1,0.3,0.1,0.1,0.0,0.0,0.0],[0.0,0.0,0.0,0.1,0.0,0.0,0.0,0.0,0.0,0.0]],"ISR_B":[[0.2,0.2,0.4,1.3,1.6,2.3,2.9,1.4,0.2,0.2],[0.0,0.0,0.0,0.3,1.2,2.9,3.5,3.8,1.0,0.3],[0.0,0.0,0.1,0.3,1.8,3.3,5.1,4.1,1.9,0.2],[0.0,0.0,0.0,0.0,0.6,1.7,5.3,4.9,2.8,1.0],[0.0,0.0,0.0,0.1,0.5,1.9,4.0,6.0,4.6,2.6],[0.0,0.2,0.3,0.2,0.5,2.5,1.7,4.7,3.0,0.1],[0.0,0.0,0.0,0.0,0.2,0.8,1.9,3.1,0.9,0.2],[0.0,0.0,0.0,0.0,0.0,0.2,0.3,1.4,0.5,0.3],[0.0,0.0,0.0,0.0,0.0,0.0,0.2,0.6,0.0,0.0],[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]],"BRA_A":[[0.2,0.4,1.0,2.5,3.3,1.5,1.1,0.1,0.0,0.0],[0.6,0.7,2.3,3.3,2.1,0.7,0.6,0.1,0.0,0.0],[0.7,2.0,6.1,4.1,2.1,2.1,0.7,0.2,0.0,0.0],[0.8,3.3,7.8,3.5,2.3,1.7,0.4,0.0,0.0,0.0],[1.0,2.0,3.4,3.1,4.7,1.7,0.0,0.0,0.0,0.0],[0.3,0.7,1.5,4.2,4.3,0.5,0.0,0.0,0.0,0.0],[0.1,1.2,1.3,2.0,4.2,0.7,0.0,0.0,0.0,0.0],[0.1,0.5,1.1,0.9,0.5,0.4,0.0,0.0,0.0,0.0],[0.0,0.2,0.2,0.3,0.1,0.0,0.0,0.0,0.0,0.0],[0.1,0.1,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0]],"BRA_B":[[0.1,0.2,0.4,0.9,3.0,2.0,1.6,0.9,0.3,0.1],[0.0,0.0,0.3,1.0,1.4,2.9,1.9,1.1,1.9,0.0],[0.0,0.0,0.1,0.3,1.9,5.1,3.0,0.9,0.4,0.1],[0.0,0.0,0.0,0.4,5.6,9.4,4.8,1.4,0.4,0.4],[0.0,0.0,0.0,0.4,3.8,4.2,3.3,3.0,0.7,1.1],[0.0,0.1,0.3,0.6,0.9,1.7,7.9,5.6,0.6,0.4],[0.0,0.2,0.1,0.1,0.2,0.9,2.1,2.2,1.3,0.4],[0.0,0.0,0.2,0.2,0.0,0.4,0.4,0.6,0.4,0.0],[0.0,0.0,0.0,0.0,0.0,0.2,0.8,0.0,0.0,0.0],[0.0,0.0,0.0,0.0,0.0,0.1,0.0,0.0,0.0,0.0]]},"pdist":{"ISR":{"mean":3.49,"med":3.46,"p10":2.14,"p90":4.88,"side_by_side_pct":75.1,"too_close_pct":3.7,"far_pct":2.4,"hist":[434,3471,6066,1559,279],"frames":11809},"BRA":{"mean":3.42,"med":3.21,"p10":2.14,"p90":4.96,"side_by_side_pct":76.1,"too_close_pct":2.2,"far_pct":3.6,"hist":[265,4661,5093,1429,424],"frames":11872}},"pdist_phase":{"ISR":{"own":3.19,"opp":3.66,"all_mean":3.49},"BRA":{"own":3.62,"opp":2.92,"all_mean":3.42}},"gaze":{"ISR_A":{"ball_opp":{"n":4759,"to_net":88.3,"to_back":5.8,"camera":5.5,"away":0.4,"to_ball":88.3,"switch_per_sec":0.35,"secs":183.9},"ball_own":{"n":5062,"to_net":48.8,"to_back":15.7,"camera":35.0,"away":0.5,"to_ball":51.0,"switch_per_sec":1.25,"secs":197.8}},"ISR_B":{"ball_opp":{"n":4437,"to_net":81.3,"to_back":6.3,"camera":12.4,"away":0.0,"to_ball":81.3,"switch_per_sec":0.62,"secs":170.2},"ball_own":{"n":5257,"to_net":59.7,"to_back":17.2,"camera":22.5,"away":0.7,"to_ball":66.6,"switch_per_sec":0.98,"secs":205.8}},"BRA_A":{"ball_opp":{"n":4655,"to_net":83.8,"to_back":8.4,"camera":7.7,"away":0.1,"to_ball":84.0,"switch_per_sec":0.49,"secs":179.9},"ball_own":{"n":5071,"to_net":53.3,"to_back":14.5,"camera":31.4,"away":0.7,"to_ball":54.8,"switch_per_sec":1.43,"secs":196.6}},"BRA_B":{"ball_opp":{"n":4770,"to_net":81.4,"to_back":7.9,"camera":10.4,"away":0.3,"to_ball":81.4,"switch_per_sec":0.59,"secs":184.0},"ball_own":{"n":4886,"to_net":58.4,"to_back":11.2,"camera":28.5,"away":1.9,"to_ball":60.3,"switch_per_sec":1.45,"secs":187.1}}},"body":{"ISR_A":{"n":224,"nose_to_ankle_m":1.65,"leg_ratio":0.502,"arm_ratio":0.352,"shoulder_px_m":0.39},"ISR_B":{"n":113,"nose_to_ankle_m":1.63,"leg_ratio":0.497,"arm_ratio":0.352,"shoulder_px_m":0.41},"BRA_A":{"n":210,"nose_to_ankle_m":1.65,"leg_ratio":0.495,"arm_ratio":0.377,"shoulder_px_m":0.41},"BRA_B":{"n":234,"nose_to_ankle_m":1.56,"leg_ratio":0.502,"arm_ratio":0.352,"shoulder_px_m":0.4}},"angles":{"ISR_A":{"serve":{"elbow":133.73,"shoulder":68.06,"knee":130.36,"hip":168.52,"trunk_lean":6.9,"wrist_above_head_m":-0.27,"dnet":5.61,"jump":0.0,"load_knee":96.53,"speed":1.38,"n":5},"pass":{"elbow":135.17,"shoulder":54.49,"knee":110.55,"hip":148.48,"trunk_lean":12.94,"wrist_above_head_m":-0.44,"dnet":3.7,"jump":null,"load_knee":null,"speed":2.67,"n":22},"set":{"elbow":96.1,"shoulder":67.53,"knee":148.71,"hip":158.26,"trunk_lean":12.04,"wrist_above_head_m":0.03,"dnet":2.76,"jump":0.0,"load_knee":72.69,"speed":0.57,"n":38},"attack":{"elbow":136.84,"shoulder":124.27,"knee":122.07,"hip":157.82,"trunk_lean":14.06,"wrist_above_head_m":0.18,"dnet":2.12,"jump":0.5,"load_knee":74.89,"speed":1.64,"n":22},"one_touch":{"elbow":127.33,"shoulder":97.96,"knee":95.2,"hip":142.6,"trunk_lean":15.87,"wrist_above_head_m":-0.11,"dnet":2.8,"jump":null,"load_knee":null,"speed":1.89,"n":4},"block":{"elbow":142.89,"shoulder":75.64,"knee":132.16,"hip":152.53,"trunk_lean":19.88,"wrist_above_head_m":-0.4,"dnet":0.12,"jump":null,"load_knee":null,"speed":3.05,"n":5}},"ISR_B":{"serve":{"elbow":120.44,"shoulder":45.69,"knee":117.91,"hip":166.0,"trunk_lean":12.79,"wrist_above_head_m":-0.47,"dnet":6.66,"jump":0.19,"load_knee":48.64,"speed":1.29,"n":4},"pass":{"elbow":135.75,"shoulder":40.49,"knee":119.51,"hip":153.98,"trunk_lean":18.66,"wrist_above_head_m":-0.31,"dnet":4.88,"jump":null,"load_knee":null,"speed":1.57,"n":29},"set":{"elbow":73.19,"shoulder":81.83,"knee":142.05,"hip":144.22,"trunk_lean":19.38,"wrist_above_head_m":0.07,"dnet":2.69,"jump":0.18,"load_knee":64.48,"speed":0.91,"n":10},"attack":{"elbow":133.14,"shoulder":106.69,"knee":139.46,"hip":156.63,"trunk_lean":14.17,"wrist_above_head_m":0.2,"dnet":1.68,"jump":0.52,"load_knee":54.54,"speed":2.73,"n":36},"one_touch":{"elbow":113.88,"shoulder":76.81,"knee":85.21,"hip":129.35,"trunk_lean":11.44,"wrist_above_head_m":-0.19,"dnet":4.3,"jump":null,"load_knee":null,"speed":1.1,"n":6},"block":{"elbow":151.93,"shoulder":35.9,"knee":147.24,"hip":158.59,"trunk_lean":13.5,"wrist_above_head_m":-0.56,"dnet":0.68,"jump":null,"load_knee":null,"speed":1.94,"n":6}},"BRA_A":{"serve":{"elbow":148.1,"shoulder":33.67,"knee":176.86,"hip":149.87,"trunk_lean":10.04,"wrist_above_head_m":-0.44,"dnet":7.6,"jump":0.0,"load_knee":86.26,"speed":2.67,"n":1},"pass":{"elbow":142.12,"shoulder":34.73,"knee":109.47,"hip":148.58,"trunk_lean":12.28,"wrist_above_head_m":-0.45,"dnet":3.92,"jump":null,"load_knee":null,"speed":1.9,"n":37},"set":{"elbow":106.91,"shoulder":53.45,"knee":131.65,"hip":148.25,"trunk_lean":21.05,"wrist_above_head_m":-0.18,"dnet":3.25,"jump":0.47,"load_knee":74.25,"speed":1.04,"n":25},"attack":{"elbow":141.97,"shoulder":107.02,"knee":123.15,"hip":152.64,"trunk_lean":15.81,"wrist_above_head_m":0.25,"dnet":1.79,"jump":1.11,"load_knee":61.3,"speed":3.22,"n":36},"one_touch":{"elbow":151.65,"shoulder":146.83,"knee":84.93,"hip":110.36,"trunk_lean":51.81,"wrist_above_head_m":0.45,"dnet":5.37,"jump":null,"load_knee":null,"speed":2.64,"n":2},"block":{"elbow":96.69,"shoulder":42.37,"knee":121.31,"hip":80.19,"trunk_lean":16.3,"wrist_above_head_m":-0.3,"dnet":0.19,"jump":null,"load_knee":null,"speed":0.45,"n":2}},"BRA_B":{"serve":{"elbow":null,"shoulder":null,"knee":null,"hip":null,"trunk_lean":null,"wrist_above_head_m":null,"dnet":null,"jump":null,"load_knee":null,"speed":null,"n":0},"pass":{"elbow":130.4,"shoulder":55.5,"knee":117.41,"hip":149.29,"trunk_lean":15.53,"wrist_above_head_m":-0.47,"dnet":3.99,"jump":null,"load_knee":null,"speed":2.43,"n":19},"set":{"elbow":114.04,"shoulder":101.82,"knee":148.18,"hip":162.6,"trunk_lean":15.2,"wrist_above_head_m":0.15,"dnet":3.35,"jump":0.16,"load_knee":46.53,"speed":0.84,"n":26},"attack":{"elbow":130.12,"shoulder":71.7,"knee":126.35,"hip":157.69,"trunk_lean":11.82,"wrist_above_head_m":0.21,"dnet":1.59,"jump":0.31,"load_knee":30.38,"speed":4.23,"n":25},"one_touch":{"elbow":160.36,"shoulder":104.82,"knee":110.12,"hip":139.46,"trunk_lean":26.94,"wrist_above_head_m":-0.11,"dnet":4.04,"jump":null,"load_knee":null,"speed":1.89,"n":2},"block":{"elbow":161.54,"shoulder":40.44,"knee":104.03,"hip":112.12,"trunk_lean":20.64,"wrist_above_head_m":-0.54,"dnet":0.71,"jump":null,"load_knee":null,"speed":1.71,"n":6}}},"partner_during":{"ISR_A":{"pass":{"n":22,"dist":3.14,"partner_dnet":4.14,"partner_to_net":1.21,"partner_speed":2.3,"approach_pct":73.0,"look_ball_pct":77.0,"head":{"net":73.0,"camera":14.0,"back":14.0}},"set":{"n":38,"dist":3.08,"partner_dnet":3.64,"partner_to_net":1.79,"partner_speed":2.92,"approach_pct":63.0,"look_ball_pct":47.0,"head":{"net":50.0,"camera":37.0,"back":13.0}},"attack":{"n":22,"dist":2.63,"partner_dnet":2.68,"partner_to_net":0.34,"partner_speed":1.94,"approach_pct":55.0,"look_ball_pct":50.0,"head":{"net":64.0,"camera":27.0,"back":9.0}},"serve":{"n":5,"dist":2.75,"partner_dnet":6.67,"partner_to_net":1.91,"partner_speed":2.91,"approach_pct":60.0,"look_ball_pct":100.0,"head":{"net":100.0}}},"ISR_B":{"pass":{"n":29,"dist":3.48,"partner_dnet":4.41,"partner_to_net":1.14,"partner_speed":2.17,"approach_pct":59.0,"look_ball_pct":62.0,"head":{"net":38.0,"camera":31.0,"back":28.0,"away":3.0}},"set":{"n":10,"dist":3.18,"partner_dnet":3.08,"partner_to_net":0.21,"partner_speed":1.58,"approach_pct":50.0,"look_ball_pct":40.0,"head":{"net":50.0,"camera":50.0}},"attack":{"n":36,"dist":3.55,"partner_dnet":3.0,"partner_to_net":-0.38,"partner_speed":1.07,"approach_pct":8.0,"look_ball_pct":72.0,"head":{"net":67.0,"camera":25.0,"back":8.0}},"serve":{"n":4,"dist":3.67,"partner_dnet":5.28,"partner_to_net":-0.07,"partner_speed":1.38,"approach_pct":50.0,"look_ball_pct":67.0,"head":{"back":33.0,"net":33.0,"camera":33.0}}},"BRA_A":{"pass":{"n":37,"dist":3.44,"partner_dnet":4.65,"partner_to_net":0.62,"partner_speed":1.95,"approach_pct":62.0,"look_ball_pct":62.0,"head":{"net":65.0,"camera":27.0,"back":8.0}},"set":{"n":25,"dist":3.8,"partner_dnet":4.19,"partner_to_net":0.74,"partner_speed":1.99,"approach_pct":52.0,"look_ball_pct":57.0,"head":{"net":61.0,"camera":26.0,"back":13.0}},"attack":{"n":36,"dist":3.48,"partner_dnet":3.59,"partner_to_net":-0.02,"partner_speed":0.8,"approach_pct":28.0,"look_ball_pct":54.0,"head":{"net":57.0,"camera":34.0,"back":6.0,"away":3.0}},"serve":{"n":1,"dist":4.31,"partner_dnet":8.47,"partner_to_net":null,"partner_speed":null,"approach_pct":null,"look_ball_pct":null,"head":{}}},"BRA_B":{"pass":{"n":19,"dist":3.52,"partner_dnet":4.31,"partner_to_net":1.21,"partner_speed":2.03,"approach_pct":84.0,"look_ball_pct":47.0,"head":{"net":53.0,"camera":42.0,"back":5.0}},"set":{"n":26,"dist":3.83,"partner_dnet":3.76,"partner_to_net":2.07,"partner_speed":2.95,"approach_pct":73.0,"look_ball_pct":52.0,"head":{"net":52.0,"camera":40.0,"back":8.0}},"attack":{"n":25,"dist":3.8,"partner_dnet":3.33,"partner_to_net":-0.26,"partner_speed":0.78,"approach_pct":16.0,"look_ball_pct":96.0,"head":{"net":91.0,"back":4.0,"camera":4.0}}}},"contacts":{"BRA_A":{"attack":36,"block":2,"one_touch":2,"pass":37,"serve":1,"set":25},"BRA_B":{"attack":25,"block":6,"one_touch":2,"pass":19,"serve":0,"set":26},"ISR_A":{"attack":22,"block":5,"one_touch":4,"pass":22,"serve":5,"set":38},"ISR_B":{"attack":36,"block":6,"one_touch":6,"pass":29,"serve":4,"set":10}},"defense":{"ISR":{"n":61,"one_at_net_pct":7.0,"dist":3.72,"blocker":{"ISR_B":46,"ISR_A":15},"front":4.07,"back":5.52},"BRA":{"n":58,"one_at_net_pct":3.0,"dist":3.1,"blocker":{"BRA_A":38,"BRA_B":20},"front":3.61,"back":4.78}},"phase":{"ISR_A":{"dnet_own":3.53,"dnet_opp":4.04,"speed_own":1.8,"speed_opp":1.47},"ISR_B":{"dnet_own":3.64,"dnet_opp":3.65,"speed_own":2.04,"speed_opp":1.45},"BRA_A":{"dnet_own":3.38,"dnet_opp":3.38,"speed_own":1.99,"speed_opp":1.37},"BRA_B":{"dnet_own":3.76,"dnet_opp":3.77,"speed_own":1.85,"speed_opp":1.29}},"speed_wl":{"ISR_A":{"won":1.66,"lost":1.56},"ISR_B":{"won":1.86,"lost":1.66},"BRA_A":{"won":1.72,"lost":1.68},"BRA_B":{"won":1.6,"lost":1.62}},"meta":{"fps":25,"frames":15586,"inplay_sec":488.0,"n_contacts":368,"n_rallies_with_play":58}};
+const PL = ['ISR_A','ISR_B','BRA_A','BRA_B'];
+const COL = {ISR_A:'var(--isr)',ISR_B:'var(--isr2)',BRA_A:'var(--bra)',BRA_B:'var(--bra2)'};
+let ME = 'ISR_A';
+try{ const s = localStorage.getItem('fv_me'); if(s==='ISR_A'||s==='ISR_B') ME=s; }catch(e){}
+const partnerOf = p => ({ISR_A:'ISR_B',ISR_B:'ISR_A',BRA_A:'BRA_B',BRA_B:'BRA_A'})[p];
+const f1 = v => v==null ? '–' : (+v).toFixed(1);
+const f2 = v => v==null ? '–' : (+v).toFixed(2);
+const f0 = v => v==null ? '–' : Math.round(+v);
+const N = (v)=>`<span class="num">${v}</span>`;
+const tip = document.getElementById('tip');
+function bindTips(root){
+  root.querySelectorAll('[data-tip]').forEach(el=>{
+    el.addEventListener('pointerenter',e=>{tip.textContent=el.dataset.tip;tip.hidden=false;});
+    el.addEventListener('pointermove',e=>{tip.style.left=Math.min(e.clientX+12,innerWidth-250)+'px';tip.style.top=(e.clientY+14)+'px';});
+    el.addEventListener('pointerleave',()=>{tip.hidden=true;});
+  });
+}
+const tag = p => p===ME ? ' <span class="you">אתה</span>' : (p===partnerOf(ME)?' <span class="muted" style="font-size:.75rem">השותף</span>':'');
+
+/* ---------- score flow ---------- */
+function drawFlow(){
+  const svg = document.getElementById('flow');
+  const pts = D.points; const W=800,H=250,L=40,R=12,T=18,B=34;
+  let diff=0, arr=[], set=1;
+  pts.forEach((p,i)=>{ if(p.set!==set){set=p.set;diff=0;} diff += p.winner==='ISR'?1:-1; arr.push({i,diff,p}); });
+  const mn=-13,mx=4; const x=i=>L+i*(W-L-R)/(pts.length-1); const y=v=>T+(mx-v)*(H-T-B)/(mx-mn);
+  let g='';
+  for(let v=mn+1; v<=mx; v+=3){ g+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-width="1"/><text x="${L-6}" y="${y(v)+4}" text-anchor="end">${v>0?'+'+v:v}</text>`; }
+  g+=`<line x1="${L}" x2="${W-R}" y1="${y(0)}" y2="${y(0)}" stroke="var(--muted)" stroke-width="1.5"/>`;
+  const splitI = pts.findIndex(p=>p.set===2);
+  g+=`<line x1="${(x(splitI-1)+x(splitI))/2}" x2="${(x(splitI-1)+x(splitI))/2}" y1="${T}" y2="${H-B}" stroke="var(--muted)" stroke-dasharray="4 4"/>`;
+  g+=`<text x="${x(2)}" y="${H-12}">מערכה 1 · 13–18 ובסוף ניצחון ברזיל</text><text x="${x(splitI+2)}" y="${H-12}">מערכה 2 · 11–18 ובסוף ניצחון ברזיל</text>`;
+  [arr.filter(a=>a.p.set===1),arr.filter(a=>a.p.set===2)].forEach(seg=>{
+    let d=seg.map((a,k)=>(k?'L':'M')+x(a.i)+','+y(a.diff)).join(' ');
+    g+=`<path d="${d}" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linejoin="round"/>`;
+  });
+  arr.forEach(a=>{ const c=a.p.winner==='ISR'?'var(--isr)':'var(--bra)';
+    const t = `נקודה ${a.p.n} ל${a.p.winner==='ISR'?'ישראל':'ברזיל'} · ${a.p.isr}–${a.p.bra} · ${Math.floor(a.p.t/60)}:${String(Math.round(a.p.t%60)).padStart(2,'0')}` + (a.p.dur?` · ראלי ${a.p.dur} ש'`:'') + (a.p.batch?' · זמן משוער':'');
+    g+=`<circle cx="${x(a.i)}" cy="${y(a.diff)}" r="4.5" fill="${c}" stroke="var(--card)" stroke-width="2" data-tip="${t}"/><rect x="${x(a.i)-6}" y="${T}" width="12" height="${H-T-B}" fill="transparent" data-tip="${t}"/>`; });
+  g+=`<text x="${W-R}" y="${T-4}" text-anchor="end" class="ink">↑ ישראל מובילה</text>`;
+  svg.innerHTML=g; bindTips(svg);
+  const S=D.score_summary, bl=D.by_len;
+  const items=[
+    ['כשישראל בצד שמאל של המצלמה', `${S.by_side.L.isr}–${S.by_side.L.bra}`, 'ישראל–ברזיל'],
+    ['כשישראל בצד ימין של המצלמה', `${S.by_side.R.isr}–${S.by_side.R.bra}`, 'ישראל–ברזיל'],
+    ['ראלי קצר (פחות מ-4 ש\')', `${bl.short.isr}–${bl.short.bra}`, 'ישראל–ברזיל'],
+    ['ראלי ארוך (8 ש\' ומעלה)', `${bl.long.isr}–${bl.long.bra}`, 'ישראל–ברזיל · הפער הכי גדול'],
+  ];
+  document.getElementById('splits').innerHTML = items.map(i=>`<div class="tile"><span class="muted" style="font-size:.85rem">${i[0]}</span><b class="num" style="font-size:1.5rem">${i[1]}</b><span class="muted" style="font-size:.8rem">${i[2]}</span></div>`).join('');
+}
+
+/* ---------- heatmaps ---------- */
+function drawHeat(){
+  const el=document.getElementById('heat'); let html='';
+  PL.forEach(p=>{
+    const h=D.heat[p]; const cs=22, ox=4, oy=16; const W=10*cs+8, Hh=10*cs+oy+18;
+    let maxv=0; h.forEach(r=>r.forEach(v=>maxv=Math.max(maxv,v)));
+    let s=`<svg viewBox="0 0 ${W} ${Hh}" style="width:100%;height:auto" role="img" aria-label="מפת חום ${p}">`;
+    s+=`<rect x="${ox+cs}" y="${oy}" width="${8*cs}" height="${8*cs}" fill="var(--sand)" stroke="var(--sandline)" stroke-width="1.5"/>`;
+    for(let r=0;r<10;r++) for(let c=0;c<10;c++){ const v=h[r][c]; if(v<=0) continue; const lat=c-1; const xx=ox+(9-c)*cs; const yy=oy+r*cs;
+      const op=Math.pow(v/maxv,.7);
+      s+=`<rect x="${xx+1}" y="${yy+1}" width="${cs-2}" height="${cs-2}" rx="3" fill="${COL[p]}" fill-opacity="${op.toFixed(2)}" data-tip="${p}: ${v}% מהזמן · ${r}–${r+1} מ' מהרשת"/>`; }
+    s+=`<line x1="${ox+cs-6}" x2="${ox+9*cs+6}" y1="${oy}" y2="${oy}" stroke="var(--ink)" stroke-width="3"/><text x="${W/2}" y="${oy-5}" text-anchor="middle" class="ink">רשת</text>`;
+    s+=`<text x="${ox+cs}" y="${Hh-4}" >שמאל</text><text x="${ox+9*cs}" y="${Hh-4}" text-anchor="end">ימין</text></svg>`;
+    const m=D.move[p];
+    html+=`<div class="tile ${p===ME?'me':''}"><span class="lbl">${p}${tag(p)}</span>${s}<span class="muted" style="font-size:.82rem">ממוצע ${N(f1(m.dnet_mean))} מ' מהרשת</span></div>`;
+  });
+  el.innerHTML=html; bindTips(el);
+  const rows=PL.map(p=>{const m=D.move[p], ph=D.phase[p]; return `<tr class="${p===ME?'me':''}"><td>${p}${tag(p)}</td><td class="num">${f2(m.dnet_med)}</td><td class="num">${f2(ph.dnet_own)}</td><td class="num">${f2(ph.dnet_opp)}</td><td class="num">${f1(m.near_net_pct)}%</td><td class="num">${f1(m.back_pct)}%</td></tr>`}).join('');
+  document.getElementById('posTable').innerHTML=`<thead><tr><th>שחקן</th><th class="num">מרחק מהרשת (חציון)</th><th class="num">כשהכדור אצלנו</th><th class="num">כשהכדור אצלם</th><th class="num">קרוב לרשת (&lt;2.5 מ')</th><th class="num">עמוק (&gt;5.5 מ')</th></tr></thead><tbody>${rows}</tbody>`;
+}
+
+/* ---------- pair histogram ---------- */
+function drawPair(){
+  const svg=document.getElementById('pairHist'); const labs=['<1.5','1.5–3','3–4.5','4.5–6','6+'];
+  const W=640,H=230,L=40,B=40,T=14; const a=D.pdist.ISR.hist, b=D.pdist.BRA.hist;
+  const sa=a.reduce((x,y)=>x+y), sb=b.reduce((x,y)=>x+y);
+  const pa=a.map(v=>v/sa*100), pb=b.map(v=>v/sb*100); const mx=60;
+  const y=v=>T+(H-T-B)*(1-v/mx); const gw=(W-L-10)/5, bw=Math.min(36,gw/3);
+  let g=''; [0,20,40,60].forEach(v=>{ g+=`<line x1="${L}" x2="${W-10}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)"/><text x="${L-6}" y="${y(v)+4}" text-anchor="end">${v}%</text>`;});
+  labs.forEach((l,i)=>{ const cx=L+gw*i+gw/2;
+    g+=`<path d="${barPath(cx-bw-1,y(pa[i]),bw,y(0)-y(pa[i]))}" fill="var(--isr)" data-tip="ישראל · ${l} מ' · ${pa[i].toFixed(1)}% מהזמן"/>`;
+    g+=`<path d="${barPath(cx+1,y(pb[i]),bw,y(0)-y(pb[i]))}" fill="var(--bra)" data-tip="ברזיל · ${l} מ' · ${pb[i].toFixed(1)}% מהזמן"/>`;
+    g+=`<text x="${cx}" y="${H-B+18}" text-anchor="middle">${l} מ'</text>`; });
+  g+=`<line x1="${L}" x2="${W-10}" y1="${y(0)}" y2="${y(0)}" stroke="var(--muted)"/>`;
+  svg.innerHTML=g; bindTips(svg);
+}
+function barPath(x,y,w,h){ const r=Math.min(4,h); return `M${x},${y+h} L${x},${y+r} Q${x},${y} ${x+r},${y} L${x+w-r},${y} Q${x+w},${y} ${x+w},${y+r} L${x+w},${y+h} Z`; }
+
+/* ---------- speed ---------- */
+function hbars(title, key, unit, fmt, max){
+  const vals=PL.map(p=>D.move[p][key]); const m=max||Math.max(...vals)*1.1;
+  return `<div class="tile"><span class="lbl">${title}</span><div class="bars">${PL.map((p,i)=>`<div class="bar ${p===ME?'me':''}"><span>${p}</span><div class="track"><div class="fill" style="width:${vals[i]/m*100}%;background:${COL[p]}"></div></div><span class="num">${fmt(vals[i])}${unit}</span></div>`).join('')}</div></div>`;
+}
+function drawSpeed(){
+  document.getElementById('speedBars').innerHTML =
+    hbars('מטרים לדקה','m_per_min','',f1)+hbars('מהירות ממוצעת (מ\'/ש\')','avg_speed','',f2)+
+    hbars('ספרינטים (סה"כ)','sprints','',f0)+hbars('מהירות שיא (מ\'/ש\')','max','',f1)+
+    hbars('% זמן עומד במקום','still_pct','%',f1)+hbars('מרחק כולל במשחק פעיל (מ\')','dist_total','',f0);
+  const me=D.speed_wl[ME], pa=D.speed_wl[partnerOf(ME)];
+  document.getElementById('speedWL').innerHTML = `בנקודות שישראל <b>ניצחה</b> זזת בממוצע ${N(f2(me.won))} מ'/ש', ובנקודות שהפסדנו רק ${N(f2(me.lost))}. אצל השותף: ${N(f2(pa.won))} מול ${N(f2(pa.lost))}. כשאנחנו זזים יותר, אנחנו לוקחים את הנקודה. אצל ברזיל אין הבדל כזה (BRA_A ${N('1.72')} / ${N('1.68')}), הם יציבים בכל מצב.`;
+}
+
+/* ---------- body ---------- */
+function drawBody(){
+  const top=Math.max(...PL.map(p=>D.body[p].nose_to_ankle_m));
+  document.getElementById('bodyTable').innerHTML=`<thead><tr><th>שחקן</th><th class="num">מדד גובה יחסי</th><th class="num">אף→קרסול (מטרי תמונה)</th><th class="num">אורך זרוע / גובה</th><th class="num">אורך רגל / גובה</th><th class="num">פריימים</th></tr></thead><tbody>`+
+   PL.map(p=>{const b=D.body[p]; return `<tr class="${p===ME?'me':''}"><td>${p}${tag(p)}</td><td class="num">${Math.round(b.nose_to_ankle_m/top*100)}</td><td class="num">${f2(b.nose_to_ankle_m)}</td><td class="num">${b.arm_ratio.toFixed(3)}</td><td class="num">${b.leg_ratio.toFixed(3)}</td><td class="num">${b.n}</td></tr>`}).join('')+`</tbody>`;
+}
+
+/* ---------- angles ---------- */
+const KINDS={pass:'קבלה / הגנה',set:'מסירה',attack:'חבטה',serve:'הגשה'};
+let KIND='attack';
+function drawAngles(){
+  document.getElementById('kindPick').innerHTML = Object.entries(KINDS).map(([k,v])=>`<button type="button" id="k_${k}" data-k="${k}" aria-pressed="${k===KIND}">${v}</button>`).join('');
+  document.querySelectorAll('#kindPick button').forEach(b=>b.onclick=()=>{KIND=b.dataset.k;drawAngles();});
+  const A=D.angles;
+  document.getElementById('angTable').innerHTML=`<thead><tr><th>שחקן</th><th class="num">n</th><th class="num">ברך °</th><th class="num">מרפק °</th><th class="num">כתף ° (זרוע-גו)</th><th class="num">הטיית גו °</th><th class="num">ידיים מעל הראש (מ')</th><th class="num">מרחק מרשת (מ')</th>${KIND==='attack'?'<th class="num">כיפוף ברך לפני הקפיצה °</th>':''}</tr></thead><tbody>`+
+    PL.map(p=>{const a=A[p][KIND]||{}; return `<tr class="${p===ME?'me':''}"><td>${p}${tag(p)}</td><td class="num">${a.n||0}</td><td class="num">${f0(a.knee)}</td><td class="num">${f0(a.elbow)}</td><td class="num">${f0(a.shoulder)}</td><td class="num">${f0(a.trunk_lean)}</td><td class="num">${f2(a.wrist_above_head_m)}</td><td class="num">${f2(a.dnet)}</td>${KIND==='attack'?`<td class="num">${f0(a.load_knee)}</td>`:''}</tr>`}).join('')+`</tbody>`;
+  const c=D.contacts; document.getElementById('ccount').innerHTML = PL.map(p=>`${p}: ${N(c[p].pass||0)} קבלות, ${N(c[p].set||0)} מסירות, ${N(c[p].attack||0)} חבטות`).join(' · ');
+}
+
+/* ---------- attack dials ---------- */
+function dial(label, val, ref, refLabel, min, max, unit, note){
+  const W=160,H=100,cx=80,cy=84,r=62; const ang=v=>Math.PI*(1-(Math.max(min,Math.min(max,v))-min)/(max-min));
+  const pt=(v,rr)=>[cx+rr*Math.cos(ang(v)), cy-rr*Math.sin(ang(v))];
+  const [x1,y1]=pt(min,r),[x2,y2]=pt(max,r),[vx,vy]=pt(val,r);
+  let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:200px;height:auto" role="img" aria-label="${label}">`;
+  s+=`<path d="M${x1},${y1} A${r},${r} 0 0 1 ${x2},${y2}" fill="none" stroke="var(--soft)" stroke-width="12" stroke-linecap="round"/>`;
+  s+=`<path d="M${x1},${y1} A${r},${r} 0 0 1 ${vx},${vy}" fill="none" stroke="var(--isr)" stroke-width="12" stroke-linecap="round"/>`;
+  if(ref!=null){const [a1,b1]=pt(ref,r-12),[a2,b2]=pt(ref,r+12); s+=`<line x1="${a1}" y1="${b1}" x2="${a2}" y2="${b2}" stroke="var(--bra)" stroke-width="3"/>`;}
+  s+=`<text x="${cx}" y="${cy-6}" text-anchor="middle" class="ink" style="font-size:20px;font-weight:700">${val==null?'–':(Math.abs(val)<10?val.toFixed(2):Math.round(val))}${unit}</text></svg>`;
+  return `<div class="tile" style="align-items:center;text-align:center"><span class="lbl">${label}</span>${s}<span class="muted" style="font-size:.8rem"><i class="sw" style="background:var(--bra)"></i>${refLabel}</span>${note?`<span style="font-size:.82rem">${note}</span>`:''}</div>`;
+}
+function drawAttack(){
+  const a=D.angles[ME].attack, b1=D.angles.BRA_A.attack, b2=D.angles.BRA_B.attack;
+  const avg=(k)=>(b1[k]+b2[k])/2; const mv=D.move;
+  const p=D.angles[partnerOf(ME)].attack;
+  document.getElementById('atkDials').innerHTML =
+    dial('כיפוף ברך לפני הקפיצה', a.load_knee, avg('load_knee'), `ממוצע ברזיל ${Math.round(avg('load_knee'))}°`, 20, 180, '°','קטן יותר = טעינה עמוקה')+
+    dial('מהירות בגישה', a.speed, avg('speed'), `ממוצע ברזיל ${avg('speed').toFixed(1)}`, 0, 5, '','מ\'/ש\' ברגע המגע')+
+    dial('מרפק ברגע המגע', a.elbow, avg('elbow'), `ממוצע ברזיל ${Math.round(avg('elbow'))}°`, 60, 180, '°','180° = יד ישרה')+
+    dial('יד מעל הראש', a.wrist_above_head_m, avg('wrist_above_head_m'), `ממוצע ברזיל ${avg('wrist_above_head_m').toFixed(2)}`, -0.2, 0.5, '','מ\' מעל האף');
+  const t = ME==='ISR_B'
+   ? `אתה חובט ${N(D.angles.ISR_B.attack.n)} פעמים, הכי הרבה בישראל, בממוצע ${N(f2(a.dnet))} מ' מהרשת. הטעינה שלך טובה (${N(f0(a.load_knee))}° לפני הקפיצה), אבל אתה מגיע לכדור ב-${N(f2(a.speed))} מ'/ש'. BRA_B מגיע ב-${N(f2(b2.speed))} ו-BRA_A ב-${N(f2(b1.speed))}. <b>המשימה:</b> גישה ארוכה ומהירה יותר, 3–4 צעדים במקום ריצה קצרה.`
+   : `אתה חובט ${N(a.n)} פעמים, בממוצע ${N(f2(a.dnet))} מ' מהרשת. זה הכי רחוק ברביעייה (ברזיל ${N('1.6–1.8')} מ'). הברך שלך נטענת רק ל-${N(f0(a.load_knee))}° (ברזיל ${N(Math.round(avg('load_knee')))}°) והגישה איטית: ${N(f2(a.speed))} מ'/ש'. <b>המשימה:</b> להתקרב לרשת, לרדת נמוך בצעד האחרון ולהתפוצץ למעלה.`;
+  const pd=D.partner_during[ME].attack;
+  document.getElementById('atkText').innerHTML = `<p>${t}</p><p style="margin-top:8px"><b>ומה השותף עושה כשאתה חובט?</b> ${partnerOf(ME)} עומד ${N(f2(pd.partner_dnet))} מ' מהרשת, במרחק ${N(f2(pd.dist))} מ' ממך, ומסתכל על הכדור ב-${N(f0(pd.look_ball_pct))}% מהמקרים. אצל BRA_B כשהוא חובט, השותף מסתכל על הכדור ב-${N('96%')} מהמקרים (כיסוי לחבטה שנחסמת).</p>`;
+}
+
+/* ---------- partner during set ---------- */
+function drawSet(){
+  const PDu=D.partner_during;
+  document.getElementById('setTable').innerHTML=`<thead><tr><th>מי מוסר</th><th class="num">מסירות</th><th class="num">מרחק לשותף (מ')</th><th class="num">השותף מהרשת (מ')</th><th class="num">השותף מתקרב לרשת (מ' ב-0.8 ש')</th><th class="num">מהירות השותף (מ'/ש')</th><th class="num">% שהשותף יצא לגישה</th><th class="num">% שהשותף מסתכל על הכדור</th></tr></thead><tbody>`+
+    PL.map(p=>{const s=PDu[p].set; return `<tr class="${p===ME?'me':''}"><td>${p}${tag(p)}</td><td class="num">${s.n}</td><td class="num">${f2(s.dist)}</td><td class="num">${f2(s.partner_dnet)}</td><td class="num">${f2(s.partner_to_net)}</td><td class="num">${f2(s.partner_speed)}</td><td class="num">${f0(s.approach_pct)}%</td><td class="num">${f0(s.look_ball_pct)}%</td></tr>`}).join('')+'</tbody>';
+  const t = ME==='ISR_A'
+   ? `כשאתה מוסר, ISR_B עושה את העבודה: מתקרב ${N('1.79')} מ' לרשת ב-${N('2.92')} מ'/ש', כמעט כמו BRA_A כש-BRA_B מוסר (${N('2.07')} מ', ${N('2.95')} מ'/ש'). מה שחסר: הוא מסתכל על הכדור רק ב-${N('47%')} מהמסירות שלך. <b>תן לו כדור צפוי</b> (גובה ומיקום קבועים) ותקרא את המיקום בקול.`
+   : `כשאתה מוסר (רק ${N('10')} פעמים), ISR_A כמעט לא יוצא לגישה: מתקרב רק ${N('0.21')} מ' לרשת ב-${N('1.58')} מ'/ש'. אצל ברזיל, כש-BRA_B מוסר, BRA_A מתקרב ${N('2.07')} מ'. <b>הסכימו מראש</b> שכשאתה המוסר, הוא נכנס לגישה מלאה. אחרת יוצאת ממנו חבטה מהמקום.`;
+  document.getElementById('setText').innerHTML = `<p>${t}</p><p style="margin-top:8px"><b>ובזמן הקבלה?</b> כש-${ME} מקבל, השותף כבר מתקדם לרשת ב-${N(f0(PDu[ME].pass.approach_pct))}% מהמקרים (${N(f2(PDu[ME].pass.partner_to_net))} מ'). אצל BRA_B זה ${N('84%')}.</p>`;
+}
+
+/* ---------- gaze ---------- */
+function drawGaze(){
+  const G=D.gaze;
+  document.getElementById('gazeBars').innerHTML = PL.map(p=>{const g=G[p].ball_opp; const side=g.camera+g.away;
+    return `<div class="bar ${p===ME?'me':''}" style="grid-template-columns:70px 1fr 56px"><span>${p}</span><div class="track" style="display:flex;height:18px;gap:2px;background:transparent">
+      <div class="fill" style="width:${g.to_net}%;background:var(--isr);border-radius:4px" data-tip="${p} · לכיוון הרשת ${g.to_net}%"></div>
+      <div class="fill" style="width:${side}%;background:color-mix(in srgb,var(--isr) 45%,var(--soft));border-radius:4px" data-tip="${p} · הצידה ${side.toFixed(1)}%"></div>
+      <div class="fill" style="width:${g.to_back}%;background:var(--muted);border-radius:4px" data-tip="${p} · לאחור ${g.to_back}%"></div></div><span class="num">${g.to_net}%</span></div>`}).join('');
+  bindTips(document.getElementById('gazeBars'));
+  document.getElementById('gazeTable').innerHTML=`<thead><tr><th>שחקן</th><th class="num">סריקות/ש' (כדור אצלם)</th><th class="num">סריקות/ש' (כדור אצלנו)</th><th class="num">מסתכל על הכדור (אצלנו)</th><th class="num">שניות שנמדדו</th></tr></thead><tbody>`+
+    PL.map(p=>{const a=G[p].ball_opp,b=G[p].ball_own; return `<tr class="${p===ME?'me':''}"><td>${p}${tag(p)}</td><td class="num">${f2(a.switch_per_sec)}</td><td class="num">${f2(b.switch_per_sec)}</td><td class="num">${f0(b.to_ball)}%</td><td class="num">${f0(a.secs+b.secs)}</td></tr>`}).join('')+'</tbody>';
+  const t = ME==='ISR_A'
+   ? `כשהכדור אצלם אתה נעול על הרשת: ${N('88%')} מהזמן, הכי הרבה ברביעייה. אבל אתה גם סורק הכי מעט: ${N('0.35')} החלפות כיוון ראש בשנייה. BRA_A עושה ${N('0.49')} ו-BRA_B ${N('0.59')}. זה פוקוס, אבל פחות מידע על השותף ועל איפה הפתחים. <b>אתגר:</b> הצצה אחת לשותף לפני כל חבטה של היריב.`
+   : `כשהכדור אצלם אתה מסתכל לרשת ${N('81%')} מהזמן, ו-${N('12%')} הצידה, כנראה לשותף. אתה הסורק הכי פעיל בישראל (${N('0.62')} החלפות בשנייה, כמו BRA_B עם ${N('0.59')}). <span class="flag g">GREEN FLAG</span> כשהכדור אצלנו אתה הכי מסתכל על הכדור ברביעייה: ${N('67%')}.`;
+  document.getElementById('gazeText').innerHTML=`<p>${t}</p>`;
+}
+
+/* ---------- plan ---------- */
+function drawPlan(){
+  const common=[
+    `<b>קבלה, קבלה, קבלה.</b> לקחנו רק ${N('31%')} מהנקודות כשברזיל הגישה, והם לקחו ${N('64%')} מאיתנו. 15 דקות קבלת הגשה בתחילת כל אימון, עם מטרה: הכדור נוחת ${N('2–3')} מ' מהרשת, באמצע.`,
+    `<b>סבולת לראליז ארוכים.</b> ${N('7–17')} בראליז של 8+ שניות. אינטרוולים של ${N('10')} שניות תנועה מלאה ו-${N('20')} שניות מנוחה, ${N('×10')}, כמו נקודה אמיתית.`,
+    `<b>להגן קרוב יותר.</b> ברגע החבטה של היריב הקדמי שלנו עומד ${N('4.07')} מ' מהרשת, הקדמי שלהם ${N('3.61')}. צעד אחד קדימה וסגירת המרחק לכ-${N('3')} מ' בינכם.`,
+    `<b>להפחית טעויות.</b> כשישראל נגעה אחרונה בכדור לפני שהנקודה נגמרה, הפסדנו ${N('23')} וניצחנו ${N('11')}. אצל ברזיל: ${N('13')} ניצחונות, ${N('11')} הפסדים. פחות "כל-או-כלום", יותר כדור למקום בטוח.`,
+  ];
+  const mine = ME==='ISR_A' ? [
+    `<b>חבטה מקרוב.</b> אתה חובט מ-${N('2.12')} מ' מהרשת. תרגיל: גישה של 3 צעדים עם קונוס ב-${N('1.5')} מ', והנחיתה חייבת להיות לפניו.`,
+    `<b>סריקה.</b> ${N('0.35')} סריקות בשנייה כשהכדור אצלם. כל פעם שהכדור עובר את הרשת: רשת, שותף, חובט.`,
+  ] : [
+    `<b>גישה מהירה.</b> ${N('2.73')} מ'/ש' בגישה מול ${N('3.2–4.2')} אצל ברזיל. תרגיל: גישה מלאה מ-${N('4')} מ' לכל חבטה, גם באימון קל.`,
+    `<b>החסימה.</b> אתה הקדמי ב-${N('75%')} מהתקפות שלהם, אבל ברגע החבטה שלהם הקדמי שלנו עומד בחציון ${N('4.07')} מ' מהרשת. החליטו כזוג מתי אתה עולה לחסום ומתי נשאר בהגנה.`,
+  ];
+  document.getElementById('planList').innerHTML=[...mine,...common].map(x=>`<li><span>${x}</span></li>`).join('');
+}
+
+function renderAll(){
+  document.querySelectorAll('.picker button[data-p]').forEach(b=>b.setAttribute('aria-pressed', b.dataset.p===ME));
+  drawHeat(); drawSpeed(); drawBody(); drawAngles(); drawAttack(); drawSet(); drawGaze(); drawPlan();
+}
+document.querySelectorAll('.picker button[data-p]').forEach(b=>b.onclick=()=>{ME=b.dataset.p; try{localStorage.setItem('fv_me',ME)}catch(e){} renderAll();});
+drawFlow(); drawPair(); renderAll();
+</script>
