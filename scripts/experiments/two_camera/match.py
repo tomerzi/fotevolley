@@ -12,7 +12,7 @@ pos = pd.read_csv(os.path.join(cm.ROOT, 'data', 'analysis', 'player_positions_v3
 def ground(frame, player):
     r = pos[(pos.v2_frame == frame) & (pos.player == player)].iloc[0]
     if np.isnan(r.u):
-        return [r.x * 16 / 18, r.y * 8 / 9]
+        return [r.x, r.y]   # player_positions_v3.csv is in metres (16 x 8)
     return main.ground(np.array([[r.u, r.v]]))[0][:2].tolist()
 
 

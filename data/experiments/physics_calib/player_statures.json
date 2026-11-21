@@ -1,17 +1,17 @@
 {
- "BRA_A": {
+ "Franklin": {
   "stature_m": 1.734,
   "source": "measured"
  },
- "BRA_B": {
+ "Hiltinho": {
   "stature_m": 1.651,
   "source": "measured"
  },
- "ISR_A": {
+ "Maor_Haas": {
   "stature_m": 1.713,
   "source": "measured"
  },
- "ISR_B": {
+ "Ron_Ben_Ishay": {
   "stature_m": 1.661,
   "source": "measured"
  }

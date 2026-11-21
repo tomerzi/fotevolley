@@ -11,7 +11,7 @@ rally,set,loser,score,point_frame,time_sec,source,distance_m,uncertain,reason
 10,1,BRA,5-5,1524,60.96,hand-marked moment,3.07,False,
 11,1,BRA,6-5,1657,66.28,hand-marked moment,2.99,False,
 12,1,BRA,7-5,1947,77.88,hand-marked moment,6.74,False,
-13,1,ISR,7-6,2206,88.24,own error (last touch),3.79,True,marked unclear by hand
+13,1,ISR,7-6,2206,88.24,own error (last touch),3.78,True,marked unclear by hand
 14,1,BRA,8-6,2410,96.4,hand-marked moment,4.02,False,
 15,1,BRA,9-6,2560,102.4,hand-marked moment,2.47,False,
 16,1,ISR,9-7,2659,106.36,own error (last touch),2.5,False,
@@ -22,10 +22,10 @@ rally,set,loser,score,point_frame,time_sec,source,distance_m,uncertain,reason
 21,1,ISR,10-11,4020,160.8,own error (last touch),3.3,False,
 22,1,ISR,10-12,4166,166.64,own error (last touch),2.06,False,
 23,1,BRA,11-12,4323,172.92,hand-marked landing,4.43,False,
-24,1,ISR,11-13,4512,180.48,hand-marked landing,3.72,False,
+24,1,ISR,11-13,4512,180.48,hand-marked landing,3.73,False,
 25,1,ISR,11-14,4931,197.24,own error (last touch),2.88,False,
 26,1,BRA,12-14,5212,208.48,own error (last touch),3.95,False,
-27,1,ISR,12-15,6186,247.44,own error (last touch),2.51,False,
+27,1,ISR,12-15,6186,247.44,own error (last touch),2.5,False,
 28,1,ISR,12-16,6752,270.08,hand-marked landing,2.59,False,
 29,1,ISR,12-17,7065,282.6,hand-marked landing,2.88,False,
 30,1,BRA,13-17,7197,287.88,hand-marked landing,3.03,False,

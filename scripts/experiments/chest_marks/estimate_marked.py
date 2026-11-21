@@ -62,7 +62,7 @@ PART = {'chest': (0.72, 0.12, 0.35), 'head': (0.95, 0.25, 0.35), 'shoulder': (0.
 FOOT_H = 0.4
 SAND_H, SAND_SIG = BALL_D / 2, 0.05
 HOLDOUT = os.environ.get('HOLDOUT', '')
-Hm = np.load('data/mappings/homography_px_to_m.npy')
+Hm = np.load('data/mappings/homography_px_to_court_units_18x9.npy')
 Hi = np.linalg.inv(Hm)
 pos = pd.read_csv('data/analysis/player_positions_v3.csv', usecols=['v2_frame', 'player', 'x', 'y'])
 pos = pos.set_index(['v2_frame', 'player'])

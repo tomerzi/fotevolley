@@ -17,3 +17,5 @@ data/experiments/improve/*.log
 data/experiments/sand_marks/anchor_*/
 data/experiments/sand_marks/calib_*/
 
+# landing review clips (re-create with coach_analysis/review/make_landing_clips.py)
+coach_analysis/review/clips/

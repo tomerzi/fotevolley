@@ -5,7 +5,7 @@ together with the main camera.
 Inputs (pixel readings in the 554x313 screenshot, see README):
   - left blue sideline (Y=0, Z=0) and right blue sideline (Y=8, Z=0): sub-pixel ridge points
   - net top tape upper edge (X=8, Z=-2.2)
-  - BRA_A standing: feet + head top, ground position from the main camera, stature 1.791 m
+  - Franklin standing: feet + head top, ground position from the main camera, stature 1.791 m
   - ball centre and diameter in the screenshot
 World frame as in the main pipeline: X along the court (0..16), Y toward the main camera,
 Z down (height = -Z).
@@ -67,7 +67,7 @@ def residuals(p, o, gp):
     r += list(line_dist(p, [0, 8, 0], [8, 8, 0], o['right']) / o['sig_line'])
     r += list(line_dist(p, [8, -1, -2.2], [8, 9, -2.2], o['tape']) / o['sig_tape'])
     X, Y = gp
-    s = stature['BRA_A']['stature_m']
+    s = stature['Franklin']['stature_m']
     r += list((project(p, [X, Y, 0])[0] - o['bra_feet']) / o['sig_player'])
     r += list((project(p, [X, Y, -s])[0] - o['bra_head']) / o['sig_player'])
     return np.array(r)
@@ -124,7 +124,7 @@ if __name__ == '__main__':
         print('frame %s: triangulated X %.2f Y %.2f height %.2f   (no size prior: X %.2f Y %.2f h %.2f)' % (f, *P[:2], -P[2], *P0[:2], -P0[2]))
         out[f] = P.tolist()
 
-    # Monte Carlo: pixel noise, BRA_A ground position from the main camera, ball diameter
+    # Monte Carlo: pixel noise, Franklin ground position from the main camera, ball diameter
     rng = np.random.default_rng(0)
     mc = {f: [] for f in o['main_ball']}
     cams = []

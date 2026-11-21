@@ -23,6 +23,7 @@ import os
 
 import numpy as np
 import pandas as pd
+TEAM_OF = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Maor_Haas': 'ISR', 'Ron_Ben_Ishay': 'ISR'}   # player -> team
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(ROOT, 'data', 'analysis')
@@ -41,7 +42,7 @@ def possession_actions(n):
 def main():
     t = pd.read_csv(os.path.join(ROOT, 'data', 'contacts', 'touch_labels_final.csv'))
     t = t[t.kind == 'player'].copy()
-    t['team'] = t.player.str[:3]
+    t['team'] = t.player.map(TEAM_OF)
     rallies = pd.read_csv(os.path.join(ROOT, 'data', 'points', 'rallies_v3video.csv'))
     prev_winner = dict(zip(rallies.rally, rallies.winner.shift(1)))
     ev = pd.read_csv(os.path.join(ROOT, 'data', 'contacts', 'ball_contacts_v3.csv'))
@@ -68,7 +69,7 @@ def main():
         if poss and poss[-1].team.iloc[0] != r.winner and len(poss[-1]) <= 2 and len(poss) > 1:
             lt = poss[-1].team.iloc[0]
             x = pos[pos.frame.between(r.start_frame, r.end_frame) & (pos.team == lt)].x
-            own = 'LEFT' if (x < 9).mean() > 0.5 else 'RIGHT'
+            own = 'LEFT' if (x < 8).mean() > 0.5 else 'RIGHT'
             land = ev[(ev.rally == r.rally) & (ev.frame > play.frame.iloc[-1])].ball_side
             failed_defence = not len(land) or land.iloc[0] == own
         for k, g in enumerate(poss):

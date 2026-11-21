@@ -132,7 +132,7 @@ for k, g in h0[h0.flight_id >= 0].groupby('flight_id'):
 flights = sorted(flights, key=len, reverse=True)[:N_FLIGHTS]
 # marked chest touches -> (flight index, frame, player ground point in pixels)
 pos = pd.read_csv('data/analysis/player_positions_v3.csv', usecols=['v2_frame', 'player', 'x', 'y']).drop_duplicates(['v2_frame', 'player']).set_index(['v2_frame', 'player'])
-Hi = np.linalg.inv(np.load('data/mappings/homography_px_to_m.npy'))
+Hi = np.linalg.inv(np.load('data/mappings/homography_px_to_court_units_18x9.npy'))
 mark_anchor = []  # (flight k, frame, ground pixel, torso (neck px, hip px, stature) or None)
 pose = pd.read_csv('data/pose/vitpose_body25.csv', usecols=['frame', 'player', 'neck_x', 'neck_y', 'neck_s', 'mid_hip_x', 'mid_hip_y', 'mid_hip_s']).drop_duplicates(['frame', 'player']).set_index(['frame', 'player'])
 STAT = {k: v['stature_m'] for k, v in json.load(open('data/experiments/physics_calib/player_statures.json')).items()}

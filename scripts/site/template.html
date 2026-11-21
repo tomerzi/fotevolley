@@ -425,13 +425,14 @@ $('#tbody').innerHTML = P.map((p, i) => `<tr data-i="${i}"><td>${p.n}</td><td>${
 $('#tbody').addEventListener('click', e => { const tr = e.target.closest('tr'); if (tr) { setRally(+tr.dataset.i); $('#main').scrollIntoView({ block: 'center' }); } });
 
 
-const NAMES = { ISR_A: 'רון בן ישי', ISR_B: 'מאור האס', BRA_A: 'הילטיניו', BRA_B: 'פרנקלין' };
-$('#players').innerHTML = Object.entries(D.players).map(([k, v]) => `<tr><td>${NAMES[k] || k} <span class="pill">${k}</span></td><td>${k.startsWith('ISR') ? 'ישראל' : 'ברזיל'}</td><td>${v.stature_m.toFixed(2)} מ'</td><td>${v.source === 'given' ? 'נתון' : 'נמדד בווידאו'}</td></tr>`).join('');
+const NAMES = { Maor_Haas: 'מאור האס', Ron_Ben_Ishay: 'רון בן ישי', Franklin: 'פרנקלין', Hiltinho: 'הילטיניו' };
+const ISR_PLAYERS = ['Maor_Haas', 'Ron_Ben_Ishay'];
+$('#players').innerHTML = Object.entries(D.players).map(([k, v]) => `<tr><td>${NAMES[k] || k} <span class="pill">${k}</span></td><td>${ISR_PLAYERS.includes(k) ? 'ישראל' : 'ברזיל'}</td><td>${v.stature_m.toFixed(2)} מ'</td><td>${v.source === 'given' ? 'נתון' : 'נמדד בווידאו'}</td></tr>`).join('');
 
 // player speeds
-const PL = ['ISR_A', 'ISR_B', 'BRA_A', 'BRA_B'], PCOL = ['--p1', '--p2', '--p3', '--p4'];
-const SP = D.speed, shown = { ISR_A: true, ISR_B: true, BRA_A: true, BRA_B: true };
-const label = k => `${k.startsWith('ISR') ? 'ישראל' : 'ברזיל'} ${k.slice(-1)}`;
+const PL = ['Maor_Haas', 'Ron_Ben_Ishay', 'Franklin', 'Hiltinho'], PCOL = ['--p1', '--p2', '--p3', '--p4'];
+const SP = D.speed, shown = { Maor_Haas: true, Ron_Ben_Ishay: true, Franklin: true, Hiltinho: true };
+const label = k => NAMES[k] || k;
 $('#ptoggles').innerHTML = PL.map((k, i) => `<button type="button" aria-pressed="true" data-k="${k}"><span class="dot" style="background:var(${PCOL[i]})"></span>${label(k)} <span class="pill">${k}</span></button>`).join('');
 $('#ptoggles').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; const k = b.dataset.k; shown[k] = !shown[k]; b.setAttribute('aria-pressed', String(shown[k])); draw(); });
 $('#sstats').innerHTML = PL.map((k, i) => { const s = D.sstats[k]; return `<tr><td><span class="dot" style="background:var(${PCOL[i]})"></span>${label(k)} <span class="pill">${k}</span></td><td>${s.top.toFixed(1)} קמ"ש</td><td>${s.median.toFixed(1)} קמ"ש</td><td>${s.fast.toFixed(1)} שנ'</td><td>${s.dist.toLocaleString('he-IL')} מ'</td></tr>`; }).join('');

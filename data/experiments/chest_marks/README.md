@@ -11,5 +11,5 @@ the automatic box unless marked by hand). 95 with both feet on the sand. 88 at t
    error -0.24 -> -0.10 m, MAE 0.24 -> 0.17 m, ball-player distance 0.53 -> 0.40 m.
 4. `calib_all/`: the same with all 94 usable marks. Lines <= 12 cm, antenna <= 0.9 px, sand landings 1.00,
    flights 1.43 px. Ball at chest touches 1.23 m vs expected 0.72 x stature = 1.24 m; shoulder +0.04 m.
-   Statures from the video: BRA_A 1.76, BRA_B 1.66, ISR_A 1.72, ISR_B 1.69 m. Ball in flight: median 2.36 m,
+   Statures from the video: Franklin 1.76, Hiltinho 1.66, Maor_Haas 1.72, Ron_Ben_Ishay 1.69 m. Ball in flight: median 2.36 m,
    95th percentile 4.06 m, max 6.17 m. Blue lines 16 x 8 m, no player heights used.

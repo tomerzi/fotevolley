@@ -17,7 +17,7 @@ def main():
     ev = pd.read_csv(os.path.join(ROOT, 'data', 'contacts', 'ball_contacts_v3.csv'))
     ev['event'] = range(len(ev))
     pose = pd.read_csv(os.path.join(ROOT, 'data', 'pose', 'sapiens2', 'sapiens2_pose_v3_00000-13494.csv'),
-                       usecols=['frame', 'player'] + [f'{j}_{c}' for j in JS for c in 'xys'])
+                       usecols=['frame', 'player'] + [f'{j}_{c}' for j in JS for c in 'xys']).replace({'player': {'BRA_A': 'Franklin', 'BRA_B': 'Hiltinho', 'ISR_A': 'Maor_Haas', 'ISR_B': 'Ron_Ben_Ishay'}})  # the LFS pose file still uses the old codes
     pf = {f: g for f, g in pose[pose.frame.isin(set(ev.frame))].groupby('frame')}
     ball = pd.read_csv(os.path.join(ROOT, 'data', 'boxes', 'ball_boxes_v3video.csv')).set_index('frame')
     cap = cv2.VideoCapture(os.path.join(ROOT, 'video', 'main_camera_clean_v3.mp4'))

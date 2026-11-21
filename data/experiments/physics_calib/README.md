@@ -13,7 +13,7 @@ Independent tests:
 |---|---|---|---|
 | ball to touching player, horizontally (median) | 0.95 m | 0.73 m | 0.47 m |
 | ball nearer the camera than the player by | +0.87 m | -0.64 m | +0.23 m |
-| player statures from the video | ISR 1.86 (input), BRA 1.84 / 1.76 | BRA_A 1.69, BRA_B 1.60, ISR_A 1.67, ISR_B 1.63 | ISR 1.86 (input), BRA 1.80 / 1.72 |
+| player statures from the video | ISR 1.86 (input), BRA 1.84 / 1.76 | Franklin 1.69, Hiltinho 1.60, Maor_Haas 1.67, Ron_Ben_Ishay 1.63 | ISR 1.86 (input), BRA 1.80 / 1.72 |
 | ball at chest touches | 1.74 m | 0.96 m (0.58 x stature) | 1.42 m |
 
 At a touch the ball should be ~0.2-0.3 m from the player and at ~0.72 x stature for the chest. The physics-only
@@ -31,6 +31,6 @@ The post cap edge (1017, 628) does not fit 2.55 m (57 px off) and is only report
 With the antenna instead of the single net point (no player heights):
 lines <= 10 cm, antenna stripes <= 1.5 px, net tape 3-5 cm, principal point (1018, 498), sand landings 0.98, flights 1.28 px,
 camera 6.04 m high.
-Independent tests: statures BRA_A 1.73, BRA_B 1.65, ISR_A 1.71, ISR_B 1.66 m; chest touches 1.08 m (expected
+Independent tests: statures Franklin 1.73, Hiltinho 1.65, Maor_Haas 1.71, Ron_Ben_Ishay 1.66 m; chest touches 1.08 m (expected
 0.72 x stature = 1.23, error -0.11 m), shoulder -0.02 m; ball 0.56 m from the touching player, 0.40 m behind him.
 Best result so far on every test, with the blue lines at 16 x 8.

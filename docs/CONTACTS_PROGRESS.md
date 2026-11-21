@@ -21,28 +21,28 @@ In play: head 107, chest 97, foot 94, shoulder 9, shin 8, thigh 7, arm 4, torso 
 
 ## Done 2026-10-11
 - Net crossing (Viterbi): crossed = ball's side at the touch != last toucher's court side; the path test (accumulated
-  since the last real touch, through "nobody" events) only when the ball is at the net. Recovers 2860 ISR_A, 11846 BRA_A
-  foot, and 9235 ISR_B hand (catch, dead ball).
+  since the last real touch, through "nobody" events) only when the ball is at the net. Recovers 2860 Maor_Haas, 11846 Franklin
+  foot, and 9235 Ron_Ben_Ishay hand (catch, dead ball).
 - Ball sent back up (v_in down, v_out up) with a player on its side within 0.30 m: "nobody" costs +1.5 (LIFT_NONE).
-  Recovers 2278 ISR_A foot, 2606 and 6336 ISR_B. Velocities alone cannot tell this from a sand bounce (cf. 383), and
+  Recovers 2278 Maor_Haas foot, 2606 and 6336 Ron_Ben_Ishay. Velocities alone cannot tell this from a sand bounce (cf. 383), and
   the sand test says "on sand" for these, so the nearby player is what decides it.
 - Ball at face height: a shoulder less than 0.10 m nearer than the head becomes head (side-of-head header);
   relabel only, the pose frame/player choice is unchanged. 2113, 2606, 6336, 7382 -> head (checked on video).
   (Tried a gap penalty on shoulders above the neck instead: too broad, changed the player at 10061. Reverted.)
-- manual_overrides.csv: 2860 ISR_A right foot (Sapiens2 loses the foot on that bicycle kick, auto said thigh).
+- manual_overrides.csv: 2860 Maor_Haas right foot (Sapiens2 loses the foot on that bicycle kick, auto said thigh).
 - Reviewed: in-play "nobody" events with a player within 0.35 m (13), random sample of 8 confident touches (all right
   player; 841 chest/head and 5716 shin/foot borderline).
 
 - Catch: the ball stops in the air (speed out < 4 px/frame, not on sand) on an arm/hand -> dead; later events of the
   same rally row get their own serve search and rally rules (segment `seg`). Rally 34 holds a replayed point (score
-  unchanged at 7630-7779): 7623 BRA_A catch, 7678/7685 pre-serve juggling now dead; the real point starts 7713.
+  unchanged at 7630-7779): 7623 Franklin catch, 7678/7685 pre-serve juggling now dead; the real point starts 7713.
 - Unclear "nobody" events checked frame by frame: 0 and 1627 are the first frame after a camera cut (ball just falling;
   the touch is the next event), 540 is the ball landing on the sand and rolling to a foot -> all correctly nobody.
-  1619 = nobody (BRA_B header 1601, net 1606, sand; user watched it) and 7618 = nobody,
+  1619 = nobody (Hiltinho header 1601, net 1606, sand; user watched it) and 7618 = nobody,
   ball lands on the sand (user checked) -> manual_overrides.csv (player "-" = nobody).
 
 ## Next
-0. (done) 1619 = nobody: BRA_B header 1601 -> net 1606 -> sand ~1619 (user watched the video).
+0. (done) 1619 = nobody: Hiltinho header 1601 -> net 1606 -> sand ~1619 (user watched the video).
 1. Ball reaching the sand right next to a player (7617) does not end the rally, because "a player is near" blocks
    the stop in in_play(); a touch that comes after a ground event with the ball barely rising may need a check.
 2. Shin/foot and chest/head borderline labels: maybe a sample focused on them.

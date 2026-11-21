@@ -9,7 +9,7 @@ LIMBS=[("left_shoulder","left_elbow"),("left_elbow","left_wrist"),("right_should
 def load(path,frames=None):
     cols=["frame","player","x1","y1","x2","y2"]+[f"{k}_{a}" for k in KP for a in "xys"]
     it=pd.read_csv(path,usecols=cols,chunksize=200000)
-    P=pd.concat([c[c.frame.isin(frames)] if frames is not None else c for c in it])
+    P=pd.concat([c[c.frame.isin(frames)] if frames is not None else c for c in it]).replace({"player":{'BRA_A': 'Franklin', 'BRA_B': 'Hiltinho', 'ISR_A': 'Maor_Haas', 'ISR_B': 'Ron_Ben_Ishay'}})  # the LFS pose file still uses the old codes
     return {f:g for f,g in P.groupby("frame")}
 def draw(mask,g,thr=0.3):
     for r in g.itertuples(index=False):

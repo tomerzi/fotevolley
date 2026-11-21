@@ -6,8 +6,8 @@ sys.path.insert(0,os.path.dirname(__file__));import posemask
 ROOT="/teamspace/studios/this_studio/fotevolley";OUTV=sys.argv[1];OUTCSV=sys.argv[2]
 B=pd.read_csv(ROOT+"/data/boxes/player_boxes_v3video.csv")
 def sq(x,y):
-    if not(0<=x<=18 and 0<=y<=9):return "out"
-    s="L" if x<9 else "R";c=min(int((x-(0 if s=="L" else 9))//3),2);r=min(int(y//3),2);return f"{s}{r*3+c+1}"
+    if not(0<=x<=16 and 0<=y<=8):return "out"   # metres, 16 x 8 court, net at x=8
+    C=8/3;s="L" if x<8 else "R";c=min(int((x-(0 if s=="L" else 8))//C),2);r=min(int(y//C),2);return f"{s}{r*3+c+1}"
 B["square"]=[sq(x,y) for x,y in zip(B.court_x,B.court_y)]
 B[["frame","time_sec","player","team","feet_x","feet_y","court_x","court_y","court_side","square","source"]].to_csv(OUTCSV,index=False)
 print("squares written",len(B),flush=True)
@@ -22,25 +22,25 @@ def c(x,y):return int((x-X0)*PPM),int((y-Y0)*PPM)
 can=np.zeros((CH,CW,3),np.uint8);alpha=np.zeros((CH,CW),np.float32)
 def line(p,q,w,a):
     m=np.zeros((CH,CW),np.uint8);cv2.line(m,c(*p),c(*q),255,w,cv2.LINE_AA);np.maximum(alpha,m/255*a,out=alpha);can[m>0]=(255,255,255)
-for x0 in (0,9):
+for x0 in (0,8):
     for k in range(4):
-        o=k in(0,3);line((x0+3*k,0),(x0+3*k,9),9 if o else 5,0.85 if o else 0.6);line((x0,3*k),(x0+9,3*k),9 if o else 5,0.85 if o else 0.6)
+        o=k in(0,3);line((x0+8/3*k,0),(x0+8/3*k,8),9 if o else 5,0.85 if o else 0.6);line((x0,8/3*k),(x0+8,8/3*k),9 if o else 5,0.85 if o else 0.6)
 tm=np.zeros((CH,CW),np.uint8)
-for s,x0 in (("L",0),("R",9)):
+for s,x0 in (("L",0),("R",8)):
     n=1
     for r in range(3):
         for cc in range(3):
             t_=f"{s}{n}";n+=1;(tw,th),_=cv2.getTextSize(t_,cv2.FONT_HERSHEY_DUPLEX,2.4,6)
-            cx,cy=c(x0+1.5+3*cc,1.5+3*r);cv2.putText(tm,t_,(cx-tw//2,cy+th//2),cv2.FONT_HERSHEY_DUPLEX,2.4,255,6,cv2.LINE_AA)
+            cx,cy=c(x0+4/3+8/3*cc,4/3+8/3*r);cv2.putText(tm,t_,(cx-tw//2,cy+th//2),cv2.FONT_HERSHEY_DUPLEX,2.4,255,6,cv2.LINE_AA)
 can[tm>0]=(255,255,255);np.maximum(alpha,tm/255*0.25,out=alpha)
 W,H=1920,1080
 gcol=cv2.warpPerspective(can,Hc,(W,H)).astype(np.float32);ga=cv2.warpPerspective(alpha,Hc,(W,H))
 POST=np.zeros((H,W),np.uint8);cv2.rectangle(POST,(989,736),(1050,1080),255,-1);cv2.rectangle(POST,(1003,350),(1025,745),255,-1)
 TCOL={"BRA":(40,200,255),"ISR":(235,120,30)}
 CELLQ={}
-for s,x0 in (("L",0),("R",9)):
+for s,x0 in (("L",0),("R",8)):
     for n in range(9):
-        q=np.array([c(x0+3*(n%3),3*(n//3)),c(x0+3*(n%3)+3,3*(n//3)),c(x0+3*(n%3)+3,3*(n//3)+3),c(x0+3*(n%3),3*(n//3)+3)],np.float32)
+        C=8/3;q=np.array([c(x0+C*(n%3),C*(n//3)),c(x0+C*(n%3)+C,C*(n//3)),c(x0+C*(n%3)+C,C*(n//3)+C),c(x0+C*(n%3),C*(n//3)+C)],np.float32)
         CELLQ[f"{s}{n+1}"]=cv2.perspectiveTransform(q[None],Hc)[0].astype(np.int32)   # cell corners in frame px
 cap=cv2.VideoCapture(ROOT+"/video/main_camera_clean_v3.mp4")
 p=subprocess.Popen([imageio_ffmpeg.get_ffmpeg_exe(),"-y","-loglevel","error","-f","rawvideo","-pix_fmt","bgr24","-s",f"{W}x{H}","-r","25","-i","-",
