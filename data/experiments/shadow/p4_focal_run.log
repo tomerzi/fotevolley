@@ -1,0 +1,8 @@
+== p4_focal
+status 0 nfev 150 cost 24928.0
+height sigma (raw): flights median 0.014 m, others median 0.612 m
+camera change: focal +55.6 px, principal point +0.0/-0.0 px, k1 -0.000, k2 -0.000, rotation 0.001 deg, position 0.000 m; landmark rms 9.91 (start 2.64)
+sun: azimuth -115.19, elevation 47.02, drift +0.419, elevation drift -0.341 deg / 1000 frames
+sand landings (odd) n=21: height median 0.05 m (0.11 expected), MAE 0.07 m
+n=40 (odd): fit - marked height median +0.02 m, MAE 0.10 m (vs chest point: -0.16 / 0.17); ball-player distance 0.25 m; marked height 1.37 m; ball in flight median 2.45 / p95 4.11 m
+net crossings (odd) n=64: height median 2.59 m, below the net top 11% (by 0.08 m median)

@@ -1,0 +1,8 @@
+size fix from 18 landings: ball px = -8.28 + 1.301 x box px
+825 flights, 553 continuity links, 33 sand pins, 130 net crossings, 3 net touches, 0 chest points (vitpose), 6118 shadows, 0 touch anchors
+status 0 nfev 150 cost 24928.0
+drag k = 0.0000 1/m
+height sigma (raw): flights median 0.014 m, others median 0.612 m
+camera change: focal +55.6 px, principal point +0.0/-0.0 px, k1 -0.000, k2 -0.000, rotation 0.001 deg, position 0.000 m; landmark rms 9.91 (start 2.64)
+sun: azimuth -115.19, elevation 47.02, drift +0.419, elevation drift -0.341 deg / 1000 frames
+jump between consecutive flights: median 0.74 -> 0.15 m; reprojection median 1.74 px

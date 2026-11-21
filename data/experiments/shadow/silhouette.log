@@ -1,0 +1,6 @@
+ball size from the silhouette in 9032 frames
+size fix from 18 landings: ball px = 5.33 + 0.827 x box px
+825 flights, 553 continuity links, 33 sand pins, 0 net crossings, 0 net touches, 0 chest points (vitpose), 0 shadows
+status 0 nfev 80 cost 12394.2
+drag k = 0.0000 1/m
+jump between consecutive flights: median 0.74 -> 0.13 m; reprojection median 1.58 px

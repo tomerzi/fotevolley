@@ -1,0 +1,127 @@
+idx,rally,frame,team,conceded,d_pose,d_user,d_track,how
+0,1,38,ISR,True,3.341,3.234,3.447,at the moment
+2,2,135,ISR,False,2.72,,2.854,at the moment
+3,3,441,ISR,True,3.766,3.922,3.763,at the moment
+5,4,600,BRA,True,2.507,,2.841,at the moment
+7,5,712,ISR,True,3.053,,3.11,at the moment
+9,6,805,BRA,False,2.416,,2.654,at the moment
+10,6,827,ISR,False,3.631,4.4,3.621,at the moment
+11,7,983,ISR,True,4.306,4.567,4.381,grounded frames around it / at the moment
+13,8,1100,BRA,True,2.778,3.057,2.768,at the moment
+15,9,1217,ISR,True,3.319,3.384,3.475,grounded frames around it / at the moment
+17,10,1334,BRA,False,2.719,,2.934,at the moment
+18,10,1419,ISR,False,2.152,,2.288,at the moment
+19,10,1509,BRA,True,2.242,,2.09,at the moment
+21,11,1642,ISR,False,2.382,,2.278,grounded frames around it / at the moment
+22,12,1944,ISR,False,3.457,3.854,3.57,at the moment
+23,13,2026,ISR,False,3.664,3.943,3.665,at the moment
+24,13,2106,BRA,False,3.772,3.635,3.666,at the moment
+25,13,2190,ISR,True,3.707,,3.854,at the moment
+27,14,2369,BRA,True,3.301,3.173,3.084,at the moment
+29,15,2473,ISR,False,3.128,,3.165,at the moment
+30,15,2547,BRA,True,8.36,,2.608,at the moment
+32,16,2639,ISR,True,2.715,,2.948,at the moment / grounded frames around it
+34,17,2745,BRA,False,2.658,2.477,2.566,at the moment
+35,17,2787,ISR,False,3.684,,3.89,at the moment
+36,17,2901,BRA,True,3.255,3.238,3.189,at the moment
+38,18,2998,ISR,True,4.483,,4.143,grounded frames around it / at the moment
+40,19,3076,BRA,False,2.597,3.01,2.624,grounded frames around it / at the moment
+41,19,3144,ISR,False,2.694,,2.646,at the moment
+42,19,3152,BRA,False,3.231,3.599,4.461,at the moment / grounded frames around it
+43,19,3188,ISR,True,4.177,,4.271,at the moment
+45,20,3402,BRA,False,2.831,3.11,2.267,grounded frames around it / at the moment
+46,20,3497,ISR,False,3.02,,3.197,at the moment
+47,20,3597,BRA,False,2.489,,2.503,at the moment
+48,20,3697,ISR,False,3.821,,3.894,at the moment
+49,20,3782,BRA,False,3.258,3.26,3.114,at the moment
+50,20,3790,ISR,True,3.205,3.805,3.596,grounded frames around it / at the moment
+52,21,4020,BRA,False,2.713,,3.265,at the moment
+53,22,4166,BRA,False,2.927,,3.29,at the moment
+54,23,4300,BRA,True,2.979,,3.189,at the moment
+56,24,4500,ISR,True,3.268,4.254,3.988,grounded frames around it / at the moment
+58,25,4830,BRA,False,2.814,,2.962,at the moment
+59,25,4890,ISR,True,3.301,3.371,3.475,at the moment
+61,26,5127,BRA,False,2.865,2.764,2.868,at the moment
+62,26,5212,ISR,False,3.725,,3.849,at the moment
+63,27,5376,ISR,False,2.459,3.159,2.577,at the moment
+64,27,5431,BRA,False,2.415,,2.426,at the moment
+65,27,5543,ISR,False,3.73,3.896,3.745,at the moment
+66,27,5627,BRA,False,2.94,,3.431,at the moment
+67,27,5729,ISR,True,3.456,3.187,3.579,at the moment
+69,28,6315,BRA,False,2.708,2.707,2.802,at the moment
+70,28,6407,ISR,False,3.134,,3.222,at the moment
+71,28,6491,BRA,False,2.626,,2.68,at the moment
+72,28,6513,ISR,False,2.193,,2.262,at the moment
+73,28,6619,BRA,False,2.817,2.921,2.712,at the moment
+74,28,6718,ISR,True,2.751,,2.539,at the moment / grounded frames around it
+76,29,6776,BRA,False,2.435,,2.468,at the moment
+77,29,6863,ISR,False,3.273,3.465,3.305,at the moment
+78,29,6935,BRA,False,2.097,1.697,2.258,at the moment
+79,29,7033,ISR,True,4.33,,4.299,at the moment
+81,30,7173,BRA,True,2.856,3.189,2.873,at the moment
+83,31,7772,ISR,False,3.317,3.593,3.318,at the moment
+84,31,7877,BRA,False,2.445,,2.424,at the moment
+85,31,7962,ISR,True,1.768,,2.409,at the moment
+87,32,8092,BRA,False,2.851,,2.804,at the moment / grounded frames around it
+88,32,8198,ISR,True,2.332,,2.748,at the moment
+90,33,8381,BRA,False,2.493,,2.51,at the moment
+91,33,8481,ISR,False,3.832,,4.034,at the moment / grounded frames around it
+92,33,8561,BRA,False,3.461,3.721,3.428,at the moment
+93,33,8662,ISR,True,3.202,,3.676,grounded frames around it / at the moment
+95,34,8802,BRA,False,3.169,,3.033,at the moment
+96,34,8887,ISR,False,2.415,,2.455,at the moment
+97,34,9097,BRA,False,3.261,,3.231,at the moment
+98,34,9112,ISR,True,3.081,3.375,3.395,at the moment
+100,36,9416,BRA,False,2.836,,2.926,at the moment
+101,36,9505,ISR,False,2.871,,3.394,at the moment
+102,36,9514,BRA,False,5.19,,2.893,at the moment
+103,36,9638,ISR,True,3.608,3.514,3.509,at the moment
+105,37,9733,BRA,True,2.979,,3.082,at the moment
+107,38,9967,ISR,False,3.351,2.969,3.29,at the moment
+108,39,10326,ISR,False,2.945,,2.944,at the moment
+109,39,10404,BRA,False,1.929,,1.998,at the moment
+110,39,10592,ISR,False,3.49,3.565,3.657,at the moment
+111,39,10634,BRA,False,2.836,3.413,3.028,at the moment
+112,41,10996,BRA,False,2.626,1.182,2.527,at the moment / grounded frames around it
+113,41,11084,ISR,True,3.645,3.656,3.626,at the moment
+115,42,11301,BRA,False,3.25,3.055,3.0,grounded frames around it / at the moment
+116,43,11625,BRA,False,2.666,2.659,2.703,at the moment
+117,43,11712,ISR,True,4.135,,4.338,at the moment
+119,44,11794,BRA,False,2.684,,2.67,at the moment
+120,44,11878,ISR,True,3.627,,3.921,at the moment
+122,45,12007,BRA,False,3.283,3.567,3.36,at the moment
+123,45,12095,ISR,False,3.571,,3.653,at the moment
+124,45,12188,BRA,False,3.048,,3.047,at the moment
+125,46,12385,BRA,False,2.375,,2.452,at the moment
+126,47,12523,BRA,False,3.035,,3.071,at the moment
+127,47,12610,ISR,False,2.44,,2.614,at the moment
+128,47,12705,BRA,False,3.473,4.141,3.561,at the moment
+129,48,12847,BRA,False,2.861,,2.702,at the moment / grounded frames around it
+130,48,12938,ISR,False,2.901,,3.102,at the moment
+131,48,13023,BRA,True,3.09,,3.022,at the moment
+133,49,13106,ISR,False,3.773,,3.862,at the moment
+134,49,13129,BRA,True,5.094,,5.28,at the moment
+136,50,13269,BRA,False,2.639,3.308,2.664,at the moment
+137,50,13360,ISR,False,3.529,3.952,3.295,at the moment
+138,50,13381,BRA,True,4.296,,4.733,at the moment
+140,51,13488,ISR,False,3.157,,3.239,at the moment
+141,51,13535,BRA,False,3.09,,3.007,at the moment
+142,51,13644,ISR,False,2.948,,3.003,at the moment
+143,51,13736,BRA,True,2.909,2.861,2.868,at the moment
+145,52,13855,ISR,False,4.017,,4.028,at the moment
+146,52,13935,BRA,False,3.115,3.541,3.28,at the moment
+147,52,14034,ISR,True,4.246,,4.369,at the moment
+149,53,14184,BRA,False,2.536,2.756,2.631,at the moment / grounded frames around it
+150,53,14274,ISR,False,4.1,,4.288,at the moment
+151,54,14396,ISR,True,4.257,,3.953,grounded frames around it / at the moment
+153,55,14533,BRA,True,2.713,3.3,2.854,at the moment
+155,56,14651,ISR,False,2.874,,3.454,grounded frames around it / at the moment
+156,57,14763,ISR,False,3.294,,3.099,at the moment
+157,57,14848,BRA,True,2.625,,2.975,at the moment
+159,58,14952,ISR,False,2.046,,2.176,at the moment
+160,58,15004,BRA,False,1.723,,1.739,at the moment
+161,58,15100,ISR,True,3.474,,3.616,at the moment
+163,59,15233,BRA,False,2.732,,2.738,at the moment / grounded frames around it
+164,59,15289,ISR,False,2.271,,2.502,at the moment
+165,59,15327,BRA,True,1.987,,2.159,at the moment
+167,60,15454,ISR,True,3.501,3.658,3.658,at the moment

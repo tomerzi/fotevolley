@@ -1,0 +1,61 @@
+rally,team,frame,conceded,d_track,d_pose,doubtful,hidden,how,far_y,diff,best,sigma,verdict,flipped
+1,ISR,38,True,3.447,3.341,True,False,pose at the moment,2.577,-0.106,3.394,0.105,undecided,False
+3,ISR,441,True,3.763,3.747,True,False,pose at the moment,3.064,-0.016,3.755,0.105,clearly above 3.5,False
+6,ISR,827,False,3.621,3.631,True,False,pose at the moment,2.337,0.01,3.626,0.105,undecided,False
+7,ISR,983,True,4.381,4.155,True,True,grounded frames around it / pose at the moment,2.374,-0.226,4.155,0.148,clearly above 3.5,False
+8,BRA,1100,True,2.768,2.671,True,True,pose at the moment,2.365,-0.097,2.671,0.148,clearly below 3.5,False
+9,ISR,1217,True,3.475,3.389,True,False,pose at the moment,1.92,-0.086,3.432,0.105,undecided,False
+12,ISR,1944,False,3.57,3.457,True,False,pose at the moment,2.184,-0.113,3.514,0.105,undecided,False
+13,ISR,2026,False,3.665,3.575,True,False,pose at the moment,2.938,-0.09,3.62,0.105,undecided,False
+13,BRA,2106,False,3.666,3.794,True,False,pose at the moment,1.611,0.128,3.73,0.105,clearly above 3.5,False
+14,BRA,2369,True,3.084,3.301,True,True,pose at the moment,2.63,0.217,3.301,0.148,undecided,False
+17,BRA,2745,False,2.566,2.743,True,True,pose at the moment,3.332,0.177,2.743,0.148,clearly below 3.5,False
+17,BRA,2901,True,3.189,3.192,True,True,pose at the moment,2.741,0.003,3.192,0.148,clearly below 3.5,False
+19,BRA,3076,False,2.624,2.605,True,True,pose at the moment,2.512,-0.019,2.605,0.148,clearly below 3.5,False
+19,BRA,3152,False,4.461,3.028,True,True,pose at the moment / grounded frames around it,1.075,-1.433,3.028,0.148,clearly below 3.5,True
+20,BRA,3402,False,2.267,2.311,True,True,grounded frames around it / pose at the moment,2.699,0.044,2.311,0.148,clearly below 3.5,False
+20,BRA,3782,False,3.114,3.258,True,True,pose at the moment,3.004,0.144,3.258,0.148,undecided,False
+20,ISR,3790,True,3.596,3.227,True,True,grounded frames around it / pose at the moment,2.147,-0.369,3.227,0.148,undecided,True
+21,BRA,4020,False,3.265,2.713,True,False,pose at the moment,2.258,-0.552,2.989,0.105,clearly below 3.5,False
+22,BRA,4166,False,3.29,3.058,True,False,pose at the moment,2.592,-0.232,3.174,0.105,clearly below 3.5,False
+24,ISR,4500,True,3.988,3.388,True,True,grounded frames around it / pose at the moment,2.123,-0.6,3.388,0.148,undecided,True
+25,ISR,4890,True,3.475,3.301,True,False,pose at the moment,2.832,-0.174,3.388,0.105,undecided,False
+26,BRA,5127,False,2.868,2.865,True,True,pose at the moment,3.319,-0.003,2.865,0.148,clearly below 3.5,False
+27,ISR,5376,False,2.577,2.459,True,True,pose at the moment,3.141,-0.118,2.459,0.148,clearly below 3.5,False
+27,ISR,5543,False,3.745,3.73,True,False,pose at the moment,2.275,-0.015,3.738,0.105,clearly above 3.5,False
+27,BRA,5627,False,3.431,2.896,True,False,pose at the moment,3.126,-0.535,3.164,0.105,clearly below 3.5,False
+27,ISR,5729,True,3.579,3.441,True,False,pose at the moment,2.673,-0.138,3.51,0.105,undecided,False
+28,BRA,6315,False,2.802,2.708,True,True,pose at the moment,3.625,-0.094,2.708,0.148,clearly below 3.5,False
+28,ISR,6407,False,3.222,3.134,True,False,pose at the moment,2.74,-0.088,3.178,0.105,clearly below 3.5,False
+28,BRA,6619,False,2.712,2.817,True,True,pose at the moment,3.271,0.105,2.817,0.148,clearly below 3.5,False
+29,ISR,6863,False,3.305,3.283,True,False,pose at the moment,2.877,-0.022,3.294,0.105,undecided,False
+29,BRA,6935,False,2.258,2.048,True,True,pose at the moment,3.195,-0.21,2.048,0.148,clearly below 3.5,False
+30,BRA,7173,True,2.873,2.835,True,True,pose at the moment,3.501,-0.038,2.835,0.148,clearly below 3.5,False
+31,ISR,7772,False,3.318,3.317,True,False,pose at the moment,3.142,-0.001,3.317,0.105,undecided,False
+33,BRA,8561,False,3.428,3.461,True,False,pose at the moment,2.429,0.033,3.445,0.105,undecided,False
+33,ISR,8662,True,3.676,3.133,True,False,pose at the moment,2.912,-0.543,3.405,0.105,undecided,True
+34,BRA,9097,False,3.231,3.288,True,False,pose at the moment,2.226,0.057,3.26,0.105,clearly below 3.5,False
+34,ISR,9112,True,3.395,3.081,True,False,pose at the moment,3.699,-0.314,3.238,0.105,clearly below 3.5,False
+36,ISR,9505,False,3.394,2.883,True,False,pose at the moment,3.506,-0.511,3.138,0.105,clearly below 3.5,False
+36,ISR,9638,True,3.509,3.693,True,False,pose at the moment,2.4,0.184,3.601,0.105,undecided,False
+38,ISR,9967,False,3.29,3.229,True,False,pose at the moment,2.759,-0.061,3.259,0.105,clearly below 3.5,False
+39,ISR,10592,False,3.657,3.49,True,True,pose at the moment,3.006,-0.167,3.49,0.148,undecided,True
+39,BRA,10634,False,3.028,2.757,True,True,pose at the moment,2.262,-0.271,2.757,0.148,clearly below 3.5,False
+41,BRA,10996,False,2.527,2.54,True,True,pose at the moment,3.336,0.013,2.54,0.148,clearly below 3.5,False
+41,ISR,11084,True,3.626,3.587,True,False,pose at the moment,3.158,-0.039,3.607,0.105,undecided,False
+42,BRA,11301,False,3.0,3.289,True,True,pose at the moment,2.52,0.289,3.289,0.148,undecided,False
+43,BRA,11625,False,2.703,2.732,True,True,pose at the moment,3.439,0.029,2.732,0.148,clearly below 3.5,False
+45,BRA,12007,False,3.36,3.283,True,False,pose at the moment,2.047,-0.077,3.321,0.105,undecided,False
+45,ISR,12095,False,3.653,3.571,True,False,pose at the moment,1.508,-0.082,3.612,0.105,undecided,False
+47,BRA,12705,False,3.561,3.473,True,False,pose at the moment,2.396,-0.088,3.517,0.105,undecided,False
+50,BRA,13269,False,2.664,2.571,True,True,pose at the moment,3.242,-0.093,2.571,0.148,clearly below 3.5,False
+50,ISR,13360,False,3.295,3.523,True,False,pose at the moment,2.592,0.228,3.409,0.105,undecided,False
+51,ISR,13488,False,3.239,3.158,True,False,pose at the moment,3.09,-0.081,3.198,0.105,clearly below 3.5,False
+51,BRA,13736,True,2.868,2.909,True,True,pose at the moment,2.951,0.041,2.909,0.148,clearly below 3.5,False
+52,BRA,13935,False,3.28,3.157,True,True,pose at the moment,2.848,-0.123,3.157,0.148,clearly below 3.5,False
+53,BRA,14184,False,2.631,2.516,True,True,pose at the moment,3.393,-0.115,2.516,0.148,clearly below 3.5,False
+55,BRA,14533,True,2.854,2.72,True,True,pose at the moment,3.657,-0.134,2.72,0.148,clearly below 3.5,False
+56,ISR,14651,False,3.454,2.981,True,True,grounded frames around it / pose at the moment,2.147,-0.473,2.981,0.148,clearly below 3.5,False
+58,ISR,15100,True,3.616,3.415,True,False,pose at the moment,3.086,-0.201,3.515,0.105,undecided,False
+59,BRA,15327,True,2.159,1.978,True,True,pose at the moment,4.139,-0.181,1.978,0.148,clearly below 3.5,False
+60,ISR,15454,True,3.658,3.501,True,False,pose at the moment,2.757,-0.157,3.58,0.105,undecided,False
