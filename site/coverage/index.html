@@ -1,0 +1,185 @@
+<meta charset="utf-8">
+<title>מפת הכיסוי</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;900&family=Heebo:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one sand court in the middle; the view switches on the right, the numbers that explain the view on the left. Single daylight look. */
+:root{--sand:#e6cfa2;--sand-hi:#efdcb6;--sand-lo:#d7bb88;--tape:#1d4fa8;--net:#1b1b1b;--post:#f6f1e6;
+  --ink:#2a2016;--ink-2:#5e4d37;--ink-3:#8a7556;--panel:#f6efe0;--panel-2:#efe5d0;
+  --isr:#1f63c9;--bra:#0d7f3f;--hit:#c8322c;--won:#5b3fa8;--lost:#b04c12;--hole:#2a2016;
+  --display:"Rubik","Heebo",system-ui,sans-serif;--body:"Heebo",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;color-scheme:light}
+html{background:var(--sand)}
+body{background:var(--sand);color:var(--ink);font:14px/1.45 var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:14px 30px}
+.app{max-width:1500px;margin:0 auto;display:grid;grid-template-columns:240px minmax(0,1fr) 330px;grid-template-areas:"top top top" "ctl mid ctx";gap:14px}
+@media (max-width:1180px){.app{grid-template-columns:230px minmax(0,1fr);grid-template-areas:"top top" "ctl mid" "ctx ctx"}}
+@media (max-width:760px){.app{grid-template-columns:1fr;grid-template-areas:"top" "mid" "ctl" "ctx"}}
+.top{grid-area:top}
+h1{font:900 clamp(20px,3vw,28px) var(--display);margin:0}
+.sub{font:12px var(--mono);color:var(--ink-2)}
+.ctl,.ctx{background:var(--panel);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px;min-width:0;align-self:start}
+.ctl{grid-area:ctl}.ctx{grid-area:ctx}.mid{grid-area:mid;display:flex;flex-direction:column;gap:10px;min-width:0}
+.glabel{font:500 11.5px var(--mono);color:var(--ink-3);margin-top:4px}
+.chips{display:flex;gap:5px;flex-wrap:wrap}
+.chip{font:500 13px var(--body);color:var(--ink);background:#fff9;border:1.5px solid var(--sand-lo);border-radius:999px;padding:4px 10px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.chip .dot{width:8px;height:8px;border-radius:50%}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--panel);border-color:var(--ink)}
+.chip:focus-visible,.btn:focus-visible{outline:2px solid var(--tape);outline-offset:2px}
+.btn{font:500 13px var(--body);background:#fff;border:1.5px solid var(--sand-lo);border-radius:8px;padding:5px 10px;cursor:pointer;color:var(--ink)}
+.courtwrap{background:var(--panel);border-radius:12px;padding:8px;min-width:0}
+.scroller{overflow-x:auto}
+svg{display:block;width:100%;height:auto;direction:ltr;overflow:hidden}
+svg text{font-family:var(--body)}svg text:not([fill]){fill:var(--ink)}
+@media (max-width:760px){svg#court{width:760px;max-width:none}}
+.cap{background:var(--panel);border-radius:12px;padding:10px 14px;font-size:14px}
+.cap b{font-family:var(--display)}
+h3{font:700 14px var(--display);margin:0}
+.ctx section{display:flex;flex-direction:column;gap:6px;border-top:1px dashed var(--sand-lo);padding-top:10px}
+.ctx section:first-child{border-top:0;padding-top:0}
+.def{font-size:12.5px;color:var(--ink-2)}
+.note{font-size:11.5px;color:var(--ink-3)}
+.kpi{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.kpi div{background:var(--panel-2);border-radius:8px;padding:6px 8px}
+.kpi b{display:block;font:900 20px var(--display);font-variant-numeric:tabular-nums}
+.kpi span{font-size:12px;color:var(--ink-2)}
+.ramp{height:10px;border-radius:5px}
+.legend{font-size:12px;color:var(--ink-2);display:flex;flex-direction:column;gap:4px}
+#tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--panel);border-radius:6px;padding:6px 9px;font-size:12.5px;z-index:20;max-width:270px;opacity:0;transition:opacity .1s}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="app" dir="rtl">
+  <div class="top"><h1>מפת הכיסוי · ישראל – ברזיל</h1><div class="sub">כל המיקומים בזמן משחק · ישראל תמיד בחצי השמאלי · משבצת = 0.5 × 0.5 מ׳</div></div>
+
+  <aside class="ctl" aria-label="מה להציג">
+    <div class="glabel">תצוגה</div>
+    <div class="chips" id="modes"></div>
+    <div id="heatCtl">
+      <div class="glabel">שחקנים</div><div class="chips" id="players"></div>
+      <div class="glabel">מתי</div><div class="chips" id="phases"></div>
+    </div>
+    <div id="holeCtl" hidden>
+      <div class="glabel">קבוצה מגינה</div><div class="chips" id="teams"></div>
+      <div class="glabel">על המפה</div><div class="chips" id="holeOpts"></div>
+    </div>
+    <div id="attCtl" hidden>
+      <div class="glabel">התקפה</div>
+      <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><button class="btn" id="prevA">‹</button><span id="attLbl" style="font:500 13px var(--mono)"></span><button class="btn" id="nextA">›</button></div>
+      <div class="glabel">סינון</div><div class="chips" id="attFlt"></div>
+    </div>
+    <div class="legend" id="legend"></div>
+  </aside>
+
+  <main class="mid">
+    <div class="courtwrap"><div class="scroller"><svg id="court" viewBox="0 0 1000 560" role="img" aria-label="מגרש עם מפת כיסוי"></svg></div></div>
+    <div class="cap" id="caption"></div>
+  </main>
+
+  <aside class="ctx" id="ctx" aria-live="polite"></aside>
+</div>
+<div id="tip" role="tooltip"></div>
+
+<script>
+const NS='http://www.w3.org/2000/svg';
+const PL=['Maor_Haas','Ron_Ben_Ishay','Franklin','Hiltinho'];
+const NM={Maor_Haas:'מאור האס',Ron_Ben_Ishay:'רון בן ישי',Franklin:'פרנקלין',Hiltinho:'הילטיניו'};
+const TM={Maor_Haas:'ISR',Ron_Ben_Ishay:'ISR',Franklin:'BRA',Hiltinho:'BRA'};
+const PAIR={ISR:['Maor_Haas','Ron_Ben_Ishay'],BRA:['Franklin','Hiltinho']};
+const V=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const C={isr:V('--isr'),bra:V('--bra'),hit:V('--hit'),ink:V('--ink'),ink2:V('--ink-2'),ink3:V('--ink-3'),tape:V('--tape'),net:V('--net'),post:V('--post'),hi:V('--sand-hi'),lo:V('--sand-lo'),panel:V('--panel'),panel2:V('--panel-2'),sand:V('--sand'),won:V('--won'),lost:V('--lost'),hole:V('--hole')};
+const TC={ISR:C.isr,BRA:C.bra},TN={ISR:'ישראל',BRA:'ברזיל'};
+const PH={all:'כל המשחק','own ball':'הכדור אצלנו','opponent ball':'הכדור אצל היריב',won:'נקודות שזכינו',lost:'נקודות שהפסדנו',diff:'זכינו מול הפסדנו'};
+const OUTN={kill:'נקודה',failed_defence:'נקודה',returned:'הוחזרה',error:'טעות'};
+function el(t,a={},p){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e}
+function txt(p,x,y,s,a={}){const t=el('text',Object.assign({x,y},a),p);t.textContent=s;return t}
+const tip=document.getElementById('tip');
+function hover(n,h){n.addEventListener('pointermove',e=>{tip.innerHTML=h;tip.style.opacity=1;const w=tip.offsetWidth;tip.style.left=Math.max(8,Math.min(innerWidth-w-8,e.clientX+12))+'px';tip.style.top=(e.clientY+14)+'px'});n.addEventListener('pointerleave',()=>tip.style.opacity=0)}
+const $=s=>document.querySelector(s);
+const S={mode:'heat',players:new Set(PL),phase:'all',team:'ISR',showDest:true,ai:0,aflt:'all'};
+let D;
+fetch('coverage.json').then(r=>r.json()).then(d=>{D=d;init();render()}).catch(e=>{$('#ctx').textContent='הנתונים לא נטענו: '+e.message});
+
+function chip(html,fn){const b=document.createElement('button');b.className='chip';b.innerHTML=html;b.onclick=fn;return b}
+function init(){
+  [['heat','מפת חום'],['holes','שטח פתוח'],['attack','התקפה אחת']].forEach(([k,l])=>{const b=chip(l,()=>{S.mode=k;render()});b.dataset.k=k;$('#modes').appendChild(b)});
+  PL.forEach(p=>{const b=chip(`<span class="dot" style="background:${TC[TM[p]]}"></span>${NM[p]}`,()=>{S.players.has(p)?S.players.delete(p):S.players.add(p);render()});b.dataset.p=p;$('#players').appendChild(b)});
+  Object.entries(PH).forEach(([k,l])=>{const b=chip(l,()=>{S.phase=k;render()});b.dataset.k=k;$('#phases').appendChild(b)});
+  ['ISR','BRA'].forEach(t=>{const b=chip(`<span class="dot" style="background:${TC[t]}"></span>${TN[t]}`,()=>{S.team=t;S.ai=0;render()});b.dataset.t=t;$('#teams').appendChild(b)});
+  const d=chip('לאן הכדור הגיע',()=>{S.showDest=!S.showDest;render()});d.id='destChip';$('#holeOpts').appendChild(d);
+  [['all','כולן'],['ISR','ישראל מגינה'],['BRA','ברזיל מגינה'],['open','נחת בשטח פתוח']].forEach(([k,l])=>{const b=chip(l,()=>{S.aflt=k;S.ai=0;render()});b.dataset.k=k;$('#attFlt').appendChild(b)});
+  $('#prevA').onclick=()=>{S.ai=Math.max(0,S.ai-1);render()};$('#nextA').onclick=()=>{S.ai=Math.min(attList().length-1,S.ai+1);render()};
+}
+function attList(){return D.attacks.filter(a=>S.aflt=='all'||(S.aflt=='open'?!a.reach:a.tm==S.aflt))}
+
+/* ---------------- court ---------------- */
+const SC=50,OX=100,OY=70,X=x=>OX+x*SC,Y=y=>OY+y*SC;const svg=$('#court');let LEG=[];
+function base(){svg.innerHTML='';el('rect',{x:0,y:0,width:1000,height:560,fill:C.sand,rx:8},svg);
+  const g=el('g',{opacity:.35},svg);for(let i=0;i<24;i++){const y=12+i*24;el('path',{d:`M0 ${y} Q 250 ${y+(i%2?7:-7)} 500 ${y} T 1000 ${y}`,fill:'none',stroke:i%3?C.hi:C.lo,'stroke-width':1.1},g)}}
+function lines(){el('rect',{x:X(0),y:Y(0),width:16*SC,height:8*SC,fill:'none',stroke:C.tape,'stroke-width':5},svg);
+  el('line',{x1:X(8),y1:Y(-0.7),x2:X(8),y2:Y(8.7),stroke:C.net,'stroke-width':4},svg);[-0.7,8.7].forEach(y=>el('circle',{cx:X(8),cy:Y(y),r:8,fill:C.post,stroke:C.net,'stroke-width':2},svg));
+  txt(svg,X(4),Y(-0.45),'ישראל',{'text-anchor':'middle','font-size':16,'font-weight':700,fill:C.isr,'font-family':'Rubik'});txt(svg,X(12),Y(-0.45),'ברזיל',{'text-anchor':'middle','font-size':16,'font-weight':700,fill:C.bra,'font-family':'Rubik'})}
+function grid(G,colorFn,tipFn){const g=el('g',{},svg);G.forEach((row,j)=>row.forEach((v,i)=>{const c=colorFn(v);if(!c)return;const r=el('rect',{x:X(D.x0+i*D.cell),y:Y(D.y0+j*D.cell),width:D.cell*SC+.5,height:D.cell*SC+.5,fill:c[0],opacity:c[1]},g);if(tipFn)hover(r,tipFn(v,i,j))}))}
+
+function viewHeat(){const sel=PL.filter(p=>S.players.has(p));
+  if(S.phase=='diff'){sel.forEach(p=>{const W=D.heat[p].won,L=D.heat[p].lost;const sw=W.flat().reduce((a,b)=>a+b,0),sl=L.flat().reduce((a,b)=>a+b,0);
+      const G=W.map((row,j)=>row.map((v,i)=>v/sw-L[j][i]/sl));const mx=Math.max(...G.flat().map(Math.abs));
+      grid(G,v=>Math.abs(v)<mx*0.08?null:[v>0?C.won:C.lost,Math.min(.85,Math.abs(v)/mx)],(v)=>`${NM[p]}: ${v>0?'יותר בנקודות שזכו':'יותר בנקודות שהפסידו'}`)});
+    LEG.push(`<div><span style="color:${C.won};font-weight:700">■</span> כאן השחקן היה יותר בנקודות שזכה · <span style="color:${C.lost};font-weight:700">■</span> יותר בנקודות שהפסיד</div>`)}
+  else{sel.forEach(p=>{const G=D.heat[p][S.phase];const mx=Math.max(...G.flat());grid(G,v=>v<mx*0.04?null:[TC[TM[p]],Math.min(.85,v/mx*.95)],v=>`${NM[p]} · ${PH[S.phase]}<br>${(v/10).toFixed(2)}% מהזמן במשבצת הזאת`)});
+    LEG.push('צבע כהה = השחקן היה שם יותר מהזמן (בתוך התנאי שנבחר)')}
+  lines()}
+function viewHoles(){const G=D.holes.maps[S.team];grid(G,v=>v<0.02?null:[C.hole,Math.min(.8,v*.85)],v=>`פתוח ב-${Math.round(v*100)}% מההתקפות של היריב`);
+  lines();
+  if(S.showDest)D.attacks.filter(a=>a.tm==S.team&&(S.team=='ISR'?a.dest[0]<8.5:a.dest[0]>7.5)).forEach(a=>{const good=a.c;const m=el('circle',{cx:X(a.dest[0]),cy:Y(a.dest[1]),r:6,fill:good?C.hit:C.post,stroke:good?C.post:C.ink,'stroke-width':1.6},svg);hover(m,`נקודה ${a.r} · ${OUTN[a.o]}<br>${a.reach?'בהישג יד':'בשטח פתוח'} · ${a.open} מ״ר פתוחים`)});
+  LEG.push('כהה = משבצת שאף מגין לא היה מגיע אליה בזמן מעוף הכדור, באחוז מההתקפות של היריב');if(S.showDest)LEG.push(`<span style="color:${C.hit}">●</span> לאן הגיע כדור שהביא נקודה · ○ כדור שהוחזר או טעות`)}
+function viewAttack(){const L=attList();if(!L.length){lines();return}const a=L[S.ai],M=D.model;const R=Math.max(0,M.speed*(a.fl-M.react))+M.reach;
+  const half=(a.tm=='ISR')?[0,8]:[8,16];const clip=el('clipPath',{id:'half'},svg);el('rect',{x:X(half[0]),y:Y(0),width:8*SC,height:8*SC},clip);
+  el('rect',{x:X(half[0]),y:Y(0),width:8*SC,height:8*SC,fill:C.hole,opacity:.55},svg);
+  const g=el('g',{'clip-path':'url(#half)'},svg);a.p.forEach(p=>el('circle',{cx:X(p[0]),cy:Y(p[1]),r:R*SC,fill:C.sand,opacity:1},g));
+  lines();
+  a.p.forEach(p=>{el('circle',{cx:X(p[0]),cy:Y(p[1]),r:R*SC,fill:'none',stroke:TC[a.tm],'stroke-width':2,'stroke-dasharray':'6 4'},svg);el('circle',{cx:X(p[0]),cy:Y(p[1]),r:9,fill:TC[a.tm],stroke:C.post,'stroke-width':2},svg)});
+  const dx=X(a.dest[0]),dy=Y(a.dest[1]);el('circle',{cx:dx,cy:dy,r:8,fill:a.c?C.hit:C.post,stroke:C.ink,'stroke-width':2},svg);
+  txt(svg,dx+12,dy-10,a.c?'נקודה':'הוחזר',{'font-size':13,'font-weight':700});
+  LEG.push(`עיגול מקווקו = לאן המגין מגיע בזמן מעוף הכדור (${a.fl} שנ׳): ${R.toFixed(1)} מ׳`);LEG.push('כהה = שטח פתוח');}
+
+/* ---------------- context ---------------- */
+function bars(rows,opt={}){const w=300,rh=22,h=rows.length*rh+8,s=el('svg',{viewBox:`0 0 ${w} ${h}`});const L=140,Rr=w-44,mx=opt.max||Math.max(...rows.map(r=>r[1]))||1;
+  rows.forEach(([l,v,c,t],i)=>{const y=4+i*rh;txt(s,L-6,y+14,l,{'text-anchor':'end','font-size':12});const r=el('rect',{x:L,y:y+4,width:Math.max(1,(Rr-L)*v/mx),height:13,fill:c,rx:2},s);txt(s,L+(Rr-L)*v/mx+4,y+14,opt.fmt?opt.fmt(v):v,{'font-size':11,'font-family':'IBM Plex Mono',fill:C.ink2});if(t)hover(r,t)});return s}
+function sec(title,def){const s=document.createElement('section');s.innerHTML=`<h3>${title}</h3>${def?`<div class="def">${def}</div>`:''}`;$('#ctx').appendChild(s);return s}
+function ctx(){$('#ctx').innerHTML='';const T=D.team;
+  if(S.mode=='heat'){const ph=S.phase=='diff'?'all':S.phase;
+    const s1=sec('כמה שטח כל שחקן תופס',`השטח הקטן ביותר שבו השחקן נמצא חצי מהזמן (50%) ו-90% מהזמן · ${PH[ph]}`);
+    s1.appendChild(bars(PL.flatMap(p=>{const t=T[TM[p]][ph],k=PAIR[TM[p]][0]==p?'a':'b';return [[NM[p]+' 90%',t['area90_'+k],TC[TM[p]]],[NM[p]+' 50%',t['area50_'+k],TC[TM[p]]+'99']]}),{fmt:v=>v+' מ״ר'}));
+    const s2=sec('כמה בני הזוג חולקים שטח','חפיפה בין מפות החום של שני השותפים: 0 = כל אחד בשטח משלו, 1 = אותו שטח בדיוק.');
+    const SH={'own ball':'כדור אצלם','opponent ball':'כדור אצל היריב',won:'נקודות שזכו',lost:'נקודות שהפסידו'};s2.appendChild(bars(['own ball','opponent ball','won','lost'].flatMap(k=>['ISR','BRA'].map(tm=>[`${TN[tm]} · ${SH[k]}`,T[tm][k].overlap,TC[tm]])),{max:.6,fmt:v=>v.toFixed(2)}));
+    s2.insertAdjacentHTML('beforeend','<div class="note">כשהיריב מחזיק בכדור החפיפה יורדת לכ-0.18: כל שחקן מגן על חצי משלו. כשהכדור אצלם היא כ-0.47.</div>')}
+  if(S.mode=='holes'){const A=D.attacks;const mid=tm=>{const v=A.filter(a=>a.tm==tm).map(a=>a.open).sort((a,b)=>a-b);return v[v.length>>1]};
+    const s1=sec('כמה שטח נשאר פתוח','בכל התקפה של היריב: כמה מ״ר מתוך 64 מ״ר של החצי (בתוך הקווים) אף מגין לא היה מגיע אליהם בזמן.');
+    s1.insertAdjacentHTML('beforeend',`<div class="kpi"><div><b style="color:${C.isr}">${mid('ISR').toFixed(0)} מ״ר</b><span>ישראל מגינה (חציון)</span></div><div><b style="color:${C.bra}">${mid('BRA').toFixed(0)} מ״ר</b><span>ברזיל מגינה (חציון)</span></div></div>`);
+    const w=300,h=110,s=el('svg',{viewBox:`0 0 ${w} ${h}`}),L=70,Rr=w-10,xs=v=>L+(Rr-L)*v/64;[0,16,32,48,64].forEach(v=>{el('line',{x1:xs(v),x2:xs(v),y1:4,y2:h-16,stroke:C.panel2},s);txt(s,xs(v),h-3,v,{'text-anchor':'middle','font-size':10,fill:C.ink3,'font-family':'IBM Plex Mono'})});
+    ['ISR','BRA'].forEach((tm,i)=>{const y=26+i*40;txt(s,L-6,y+4,TN[tm],{'text-anchor':'end','font-size':12,fill:TC[tm]});A.filter(a=>a.tm==tm).forEach((a,j)=>{const c=el('circle',{cx:xs(a.open),cy:y+((j%3)-1)*6,r:3.5,fill:a.c?C.hit:C.post,stroke:a.c?'none':TC[tm],'stroke-width':1.2},s);hover(c,`נקודה ${a.r} · ${a.open} מ״ר פתוחים · ${OUTN[a.o]}`)})});
+    s1.appendChild(s);s1.insertAdjacentHTML('beforeend','<div class="note">אדום = ההתקפה הביאה נקודה · חלול = לא</div>');
+    const s2=sec('לאן הלך הכדור','הכדורים שנחתו בשטח פתוח מול כדורים שנחתו בהישג יד של מגין.');
+    const rch=A.filter(a=>a.reach),opn=A.filter(a=>!a.reach);
+    s2.appendChild(bars([['בהישג יד',rch.filter(a=>a.c).length/rch.length,C.ink2,`${rch.filter(a=>a.c).length} נקודות מתוך ${rch.length}`],['בשטח פתוח',opn.filter(a=>a.c).length/opn.length,C.hit,`${opn.filter(a=>a.c).length} נקודות מתוך ${opn.length}`]],{max:1,fmt:v=>Math.round(v*100)+'% נקודה'}));
+    s2.insertAdjacentHTML('beforeend',`<div class="note">מוטה מעצם ההגדרה: המהירות כוילה כך ש-95% מהכדורים שהוחזרו ייחשבו בהישג יד.</div>`)}
+  if(S.mode=='attack'){const L=attList();if(!L.length){sec('אין התקפות בסינון');return}const a=L[S.ai];
+    const s1=sec(`נקודה ${a.r} · ${TN[a.tm]} מגינה`,`מעוף ${a.fl} שנ׳ · ${OUTN[a.o]}`);
+    s1.insertAdjacentHTML('beforeend',`<div class="kpi"><div><b>${a.open} מ״ר</b><span>שטח פתוח</span></div><div><b>${a.reach?'כן':'לא'}</b><span>הכדור נחת בהישג יד</span></div></div>`)}
+  const M=D.model;const sm=sec('איך מחושב "בהישג יד"',`מגין מגיע לנקודה אם המרחק אליה, פחות ${M.reach} מ׳ של צעד וזינוק, קטן ממהירות × (זמן מעוף הכדור − ${M.react} שנ׳ תגובה). המהירות (${M.speed} מ׳/ש׳) כוילה על ${M.n_returns} כדורים שהוחזרו. מיקום המגינים לפי מפרקי הרגליים ברגע ההתקפה.`)}
+
+function render(){LEG=[];base();
+  if(S.mode=='heat')viewHeat();else if(S.mode=='holes')viewHoles();else viewAttack();
+  ctx();$('#legend').innerHTML=LEG.map(l=>`<div>${l}</div>`).join('');
+  $('#heatCtl').hidden=S.mode!='heat';$('#holeCtl').hidden=S.mode!='holes';$('#attCtl').hidden=S.mode!='attack';
+  document.querySelectorAll('#modes .chip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k==S.mode));
+  document.querySelectorAll('#players .chip').forEach(b=>b.setAttribute('aria-pressed',S.players.has(b.dataset.p)));
+  document.querySelectorAll('#phases .chip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k==S.phase));
+  document.querySelectorAll('#teams .chip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.t==S.team));
+  document.querySelectorAll('#attFlt .chip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k==S.aflt));
+  $('#destChip').setAttribute('aria-pressed',S.showDest);
+  const L=attList();$('#attLbl').textContent=L.length?`${S.ai+1} / ${L.length}`:'0';
+  const A=D.attacks,mid=tm=>{const v=A.filter(a=>a.tm==tm).map(a=>a.open).sort((a,b)=>a-b);return v[v.length>>1]};
+  $('#caption').innerHTML=S.mode=='heat'?(S.phase=='diff'?`<b>זכינו מול הפסדנו.</b> איפה השחקן עמד יותר בנקודות שקבוצתו זכתה בהן, ואיפה בנקודות שהפסידה. הכי ברור עם שחקן אחד דלוק.`:`<b>${PH[S.phase]}.</b> כשהיריב מחזיק בכדור, בני הזוג מתפצלים כמעט לגמרי לשני חצאים; כשהכדור אצלם הם מתקרבים זה לזה.`)
+   :S.mode=='holes'?`<b>שטח פתוח.</b> ברגע ההתקפה של היריב, ישראל משאירה בחציון ${mid('ISR').toFixed(0)} מ״ר שאף מגין לא היה מגיע אליהם בזמן, וברזיל ${mid('BRA').toFixed(0)} מ״ר.`
+   :`<b>התקפה אחת.</b> מה כל מגין היה מספיק לכסות עד שהכדור הגיע, ואיפה הכדור נחת.`;}
+</script>
