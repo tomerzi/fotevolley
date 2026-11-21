@@ -17,13 +17,13 @@ Attack quality (chance that an attack wins the point, from how it was struck)
   Ridge logistic regression on body part (foot / head / other), angle to the line (< 15, 15-35, > 35 deg),
   contact height (< 2.3, 2.3-2.6, > 2.6 m) and length of the shot. Fitted on this match's 126 attacks only.
   Quality = the model's probability; the outcome itself is not an input.
-usage: python scripts/site/build_analysis_ui.py -> site/analysis_ui/data.json
+usage: python aside/probabilities/build_analysis_ui.py -> aside/probabilities/analysis_ui/data.json
 """
 import os, json
 from functools import lru_cache
 import numpy as np, pandas as pd
 
-ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # aside/probabilities -> repo root
 os.chdir(ROOT)
 cs = json.load(open('site/court_story/data.json'))
 out = {k: cs[k] for k in ('rallies', 'sideout', 'heatz', 'move', 'rose', 'lines', 'landz', 'spacez', 'netz', 'stature', 'chest')}
@@ -139,7 +139,7 @@ for a, qq in zip(az, q):
     a['q'] = r2(qq)
 out['attacks'] = az
 out['attack_model'] = dict(coef={n: r2(c) for n, c in zip(FN, w)}, brier=r2(brier), brier_base=r2(base), n=len(az), rate=r2(y.mean()))
-os.makedirs('site/analysis_ui', exist_ok=True)
+os.makedirs('aside/probabilities/analysis_ui', exist_ok=True)
 def clean(o):
     if isinstance(o, dict):
         return {k: clean(v) for k, v in o.items()}
@@ -154,8 +154,8 @@ def clean(o):
     if isinstance(o, np.bool_):
         return bool(o)
     return o
-json.dump(clean(out), open('site/analysis_ui/data.json', 'w'), separators=(',', ':'), allow_nan=False)
+json.dump(clean(out), open('aside/probabilities/analysis_ui/data.json', 'w'), separators=(',', ':'), allow_nan=False)
 print('WP model', out['wp']['model']); print('touch V', out['touch_model']); print('attack model', out['attack_model'])
 tv = pd.DataFrame(vals); print(tv.groupby(['p']).val.agg(['sum', 'mean', 'size']).round(3)); print(tv.groupby('a').val.mean().round(3))
 wpd = pd.DataFrame(wpl); print(wpd.sort_values('wpa', key=abs, ascending=False).head(5).to_string())
-print(os.path.getsize('site/analysis_ui/data.json') // 1024, 'KB')
+print(os.path.getsize('aside/probabilities/analysis_ui/data.json') // 1024, 'KB')
