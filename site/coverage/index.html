@@ -4,8 +4,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karantina:wght@400;700&family=Assistant:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
-/* Layout: a night session under floodlights. The court is the stage, lit from both ends; heat glows like a thermal
-   camera, open space is hatched amber, reach is drawn as radar rings. Controls ride on a glass bar over the court;
+/* Layout: a realistic daylight footvolley court (raked sand, footprints where the players stood, blue tape, the net
+   and posts casting shadows at the project's sun angle) framed by a dark broadcast UI. Heat is laid into the sand,
+   open space is hatched, reach is drawn as rings. Controls ride on a glass bar over the court;
    the numbers sit below on a scoreboard band. Single dark look by design. */
 :root{
   --night:#090d16; --night-2:#111827; --glass:#ffffff10; --glass-line:#ffffff1f;
@@ -51,7 +52,7 @@ svg text{font-family:var(--body)}
 .seg button[aria-pressed="true"]{background:var(--fg);color:var(--night)}
 .step{font:600 16px var(--mono);color:var(--fg);background:none;border:0;border-radius:999px;width:32px;height:32px;cursor:pointer}
 .cnt{font:600 13px var(--mono);color:var(--fg-2);padding:0 4px;direction:ltr}
-.lede{position:absolute;inset:auto 18px 14px auto;max-width:52ch;font-size:14px;color:var(--fg-2);z-index:2;text-align:end;text-shadow:0 1px 8px #000}
+.lede{position:absolute;inset:auto 18px 14px auto;max-width:52ch;font-size:14px;color:var(--fg);z-index:2;text-align:end;background:#0b111cd9;border:1px solid var(--glass-line);border-radius:12px;padding:8px 12px}
 .lede b{color:var(--fg);font-weight:800}
 @media (max-width:760px){.lede{position:static;padding:10px 14px;text-align:start}.bar{position:static;padding:10px}}
 
@@ -125,68 +126,105 @@ const SC=52,OX=84,OY=92,X=x=>OX+x*SC,Y=y=>OY+y*SC;
 const cv=$('#cv'),cx=cv.getContext('2d'),K=2;
 const sv=$('#sv');
 
-function stage(){cx.setTransform(1,0,0,1,0,0);cx.globalCompositeOperation='source-over';cx.filter='none';cx.globalAlpha=1;cx.clearRect(0,0,cv.width,cv.height);cx.setTransform(K,0,0,K,0,0);
-  cx.fillStyle=C.night;cx.fillRect(0,0,1000,600);
-  const g=cx.createRadialGradient(500,300,40,500,300,560);g.addColorStop(0,C.lit);g.addColorStop(1,'#120f0a');cx.fillStyle=g;cx.fillRect(0,0,1000,600);
-  [[120,-40],[880,-40]].forEach(([x,y])=>{const f=cx.createRadialGradient(x,y,10,x,y,520);f.addColorStop(0,'#fff6dc22');f.addColorStop(1,'#fff6dc00');cx.fillStyle=f;cx.fillRect(0,0,1000,600)});
-  let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;cx.globalAlpha=.06;for(let i=0;i<2600;i++){cx.fillStyle=i%2?'#fff':'#000';cx.fillRect(rnd()*1000,rnd()*600,1,1)}cx.globalAlpha=1;
-  sv.innerHTML='';const defs=el('defs',{},sv);
-  const glow=el('filter',{id:'glow',x:'-20%',y:'-20%',width:'140%',height:'140%'},defs);el('feGaussianBlur',{stdDeviation:2.2,result:'b'},glow);const m=el('feMerge',{},glow);el('feMergeNode',{in:'b'},m);el('feMergeNode',{in:'SourceGraphic'},m)}
-function lines(){const g=el('g',{filter:'url(#glow)'},sv);
-  el('rect',{x:X(0),y:Y(0),width:16*SC,height:8*SC,fill:'none',stroke:C.tape,'stroke-width':3,opacity:.9},g);
-  el('line',{x1:X(8),y1:Y(-0.8),x2:X(8),y2:Y(8.8),stroke:C.net,'stroke-width':3.5},g);
-  [-0.8,8.8].forEach(y=>el('circle',{cx:X(8),cy:Y(y),r:6,fill:C.net},g));
-  txt(sv,X(0),Y(-0.55),'ISR',{'font-size':24,'font-family':'Karantina','font-weight':700,fill:C.isr,'letter-spacing':2});
-  txt(sv,X(16),Y(-0.55),'BRA',{'font-size':24,'font-family':'Karantina','font-weight':700,fill:C.bra,'text-anchor':'end','letter-spacing':2});
-  for(let m=0;m<=16;m+=2){el('line',{x1:X(m),x2:X(m),y1:Y(8)+8,y2:Y(8)+14,stroke:C.fg3},sv);txt(sv,X(m),Y(8)+28,m,{'font-size':10,fill:C.fg3,'text-anchor':'middle','font-family':'JetBrains Mono'})}
-  txt(sv,X(16)+8,Y(8)+28,'מ׳',{'font-size':10,fill:C.fg3})}
+/* ---- realistic daylight court, rendered once and cached ---- */
+const TS={ISR:'#1f63c9',BRA:'#0d7f3f'},SAND={won:'#5b3fa8',lost:'#b04c12',hit:'#c8322c',ink:'#2a1c0c'};
+let COURT=null;
+function buildCourt(){const W=1000*K,H=600*K,c=document.createElement('canvas');c.width=W;c.height=H;const g=c.getContext('2d');
+  let seed=11;const R=()=>(seed=(seed*16807)%2147483647)/2147483647;
+  // base sand + broad tonal patches (wind and wear)
+  g.fillStyle='#d8bb87';g.fillRect(0,0,W,H);
+  for(let i=0;i<60;i++){const x=R()*W,y=R()*H,r=80+R()*380,lt=R()<.5;const gr=g.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,lt?'rgba(246,226,186,.35)':'rgba(170,135,85,.22)');gr.addColorStop(1,'rgba(0,0,0,0)');g.fillStyle=gr;g.fillRect(x-r,y-r,2*r,2*r)}
+  // rake marks outside the court
+  g.save();g.beginPath();g.rect(0,0,W,H);g.rect(X(-0.6)*K,Y(-0.6)*K,(16+1.2)*SC*K,(8+1.2)*SC*K);g.clip('evenodd');
+  for(let y=0;y<H;y+=7*K){g.strokeStyle=`rgba(${R()<.5?'255,240,210':'140,110,70'},.18)`;g.lineWidth=1.4*K;g.beginPath();g.moveTo(0,y);for(let x=0;x<=W;x+=40*K)g.lineTo(x,y+Math.sin(x/(160*K)+y)*3*K);g.stroke()}g.restore();
+  // footprints where the players actually stood (all four heat maps)
+  const cells=[];let tot=0;PL.forEach(p=>D.heat[p].all.forEach((row,j)=>row.forEach((v,i)=>{if(v>0){cells.push([i,j,v]);tot+=v}})));
+  const fl=document.createElement('canvas');fl.width=W;fl.height=H;const f=fl.getContext('2d');
+  for(let n=0;n<1100;n++){let t=R()*tot,k=0;while(k<cells.length-1&&(t-=cells[k][2])>0)k++;const [i,j]=cells[k];
+    const x=(X(D.x0+(i+R())*D.cell))*K,y=(Y(D.y0+(j+R())*D.cell))*K,a=R()*Math.PI,len=(6+R()*3)*K,wd=(2.6+R()*1)*K;
+    f.save();f.translate(x,y);f.rotate(a);
+    f.fillStyle='rgba(120,88,48,.13)';f.beginPath();f.ellipse(0,0,len,wd,0,0,Math.PI*2);f.fill();
+    f.fillStyle='rgba(255,244,220,.14)';f.beginPath();f.ellipse(-1.2*K,-1.2*K,len*.9,wd*.7,0,0,Math.PI*2);f.fill();
+    f.fillStyle='rgba(98,70,36,.10)';f.beginPath();f.ellipse(len*.55,0,len*.35,wd*.8,0,0,Math.PI*2);f.fill();f.restore()}
+  g.filter='blur(1.5px)';g.drawImage(fl,0,0);g.filter='none';
+  // grain
+  const im=g.getImageData(0,0,W,H),d=im.data;for(let q=0;q<d.length;q+=4){const n=(R()-.5)*26;d[q]+=n;d[q+1]+=n*.92;d[q+2]+=n*.8}g.putImageData(im,0,0);
+  // boundary tapes: 5 cm blue ribbon with a shadow and a light edge, slight wobble
+  const tape=(x1,y1,x2,y2)=>{const seg=24;[[1.6,1.6,'rgba(70,50,20,.35)',4.6],[0,0,'#1d4fa8',4.2],[-.8,-.8,'rgba(170,200,255,.55)',1.2]].forEach(([ox,oy,col,w])=>{g.strokeStyle=col;g.lineWidth=w*K;g.lineCap='round';g.beginPath();for(let s_=0;s_<=seg;s_++){const t=s_/seg,wob=(R()-.5)*.6*K;const px=(X(x1+(x2-x1)*t)+ox)*K+(y1==y2?0:wob),py=(Y(y1+(y2-y1)*t)+oy)*K+(y1==y2?wob:0);s_?g.lineTo(px,py):g.moveTo(px,py)}g.stroke()})};
+  tape(0,0,16,0);tape(0,8,16,8);tape(0,0,0,8);tape(16,0,16,8);
+  // sun from azimuth -115 deg, elevation 47 deg (the project's sun fit): shadows fall toward -x and -y
+  const sh=h=>[-0.43*h/Math.tan(47*Math.PI/180),-0.90*h/Math.tan(47*Math.PI/180)];
+  // net shadow: a band of mesh lines on the sand
+  const [nx,ny]=sh(2.2),[bx,by]=sh(1.2);const nl=document.createElement('canvas');nl.width=W;nl.height=H;const G0=g;{const g=nl.getContext('2d');g.save();g.strokeStyle='rgba(60,40,15,.14)';g.lineWidth=1*K;
+  for(let y=-0.9;y<=8.9;y+=0.1){g.beginPath();g.moveTo(X(8+bx)*K,Y(y+by)*K);g.lineTo(X(8+nx)*K,Y(y+ny)*K);g.stroke()}
+  g.lineWidth=2.4*K;g.strokeStyle='rgba(60,40,15,.22)';[[nx,ny],[bx,by]].forEach(([dx,dy])=>{g.beginPath();g.moveTo(X(8+dx)*K,Y(-0.9+dy)*K);g.lineTo(X(8+dx)*K,Y(8.9+dy)*K);g.stroke()});g.restore();}G0.filter='blur(1.2px)';G0.drawImage(nl,0,0);G0.filter='none';
+  // post shadows
+  [-0.9,8.9].forEach(py=>{const [dx,dy]=sh(2.5);g.strokeStyle='rgba(60,40,15,.38)';g.lineWidth=9*K;g.lineCap='round';g.beginPath();g.moveTo(X(8)*K,Y(py)*K);g.lineTo(X(8+dx)*K,Y(py+dy)*K);g.stroke()});
+  // net from above: white top tape over a dark mesh line, antennas at the sidelines
+  g.strokeStyle='rgba(30,30,30,.55)';g.lineWidth=5*K;g.beginPath();g.moveTo(X(8)*K,Y(-0.9)*K);g.lineTo(X(8)*K,Y(8.9)*K);g.stroke();
+  g.strokeStyle='#fbfbf6';g.lineWidth=2.6*K;g.beginPath();g.moveTo(X(8)*K,Y(-0.9)*K);g.lineTo(X(8)*K,Y(8.9)*K);g.stroke();
+  [0,8].forEach(py=>{for(let k=0;k<6;k++){g.fillStyle=k%2?'#fff':'#d22';g.beginPath();g.arc(X(8)*K,(Y(py)+(k-2.5)*2.4)*K,2.4*K,0,Math.PI*2);g.fill()}});
+  // posts with padding
+  [-0.9,8.9].forEach(py=>{const x=X(8)*K,y=Y(py)*K;const gr=g.createRadialGradient(x-3*K,y-3*K,1,x,y,11*K);gr.addColorStop(0,'#ffffff');gr.addColorStop(.7,'#c9d3e6');gr.addColorStop(1,'#5f6f8e');g.fillStyle=gr;g.beginPath();g.arc(x,y,10*K,0,Math.PI*2);g.fill();g.strokeStyle='#1d4fa8';g.lineWidth=2*K;g.stroke()});
+  // referee stand by the near post and its shadow
+  {const x=X(8)*K,y=Y(9.7)*K,[dx,dy]=sh(2);g.fillStyle='rgba(60,40,15,.3)';g.fillRect(x-14*K+dx*SC*K,y-12*K+dy*SC*K,28*K,24*K);g.fillStyle='#e9e4da';g.fillRect(x-14*K,y-12*K,28*K,24*K);g.strokeStyle='#8b8578';g.lineWidth=1.5*K;g.strokeRect(x-14*K,y-12*K,28*K,24*K);g.fillStyle='#4a4a4a';g.fillRect(x-7*K,y-6*K,14*K,12*K)}
+  // sponsor boards along the far side (blank)
+  for(let i=0;i<7;i++){const x=(X(-0.6+i*2.5))*K,y=Y(-1.5)*K;g.fillStyle='rgba(60,40,15,.28)';g.fillRect(x+3*K,y+8*K,118*K,10*K);g.fillStyle=i%2?'#1d4fa8':'#f0c23a';g.fillRect(x,y,118*K,11*K);g.fillStyle='rgba(255,255,255,.35)';g.fillRect(x,y,118*K,2*K)}
+  COURT=c}
+function stage(){if(!COURT)buildCourt();cx.setTransform(1,0,0,1,0,0);cx.globalCompositeOperation='source-over';cx.filter='none';cx.globalAlpha=1;cx.drawImage(COURT,0,0);cx.setTransform(K,0,0,K,0,0);
+  sv.innerHTML='';const defs=el('defs',{},sv);const glow=el('filter',{id:'glow'},defs);el('feGaussianBlur',{stdDeviation:0},glow)}
+function lines(){
+  txt(sv,X(0),Y(-0.62),'ISR',{'font-size':26,'font-family':'Karantina','font-weight':700,fill:TS.ISR,'letter-spacing':2,stroke:'#f6ead0','stroke-width':3,'paint-order':'stroke'});
+  txt(sv,X(16),Y(-0.62),'BRA',{'font-size':26,'font-family':'Karantina','font-weight':700,fill:TS.BRA,'text-anchor':'end','letter-spacing':2,stroke:'#f6ead0','stroke-width':3,'paint-order':'stroke'});
+  for(let m=0;m<=16;m+=2){el('line',{x1:X(m),x2:X(m),y1:Y(8)+8,y2:Y(8)+14,stroke:SAND.ink,opacity:.6},sv);txt(sv,X(m),Y(8)+28,m,{'font-size':10,fill:SAND.ink,opacity:.75,'text-anchor':'middle','font-family':'JetBrains Mono'})}
+  txt(sv,X(16)+8,Y(8)+28,'מ׳',{'font-size':10,fill:SAND.ink,opacity:.75})}
 
 function thermal(G,color,opts={}){const off=document.createElement('canvas');off.width=1000*K;off.height=600*K;const o=off.getContext('2d');o.setTransform(K,0,0,K,0,0);
   const mx=opts.max||Math.max(...G.flat().map(Math.abs))||1;const [r,g,b]=rgb(color);
   G.forEach((row,j)=>row.forEach((v,i)=>{const a=(opts.sign?Math.max(0,opts.sign*v):v)/mx;if(a<=0.03)return;o.fillStyle=`rgba(${r},${g},${b},${Math.min(1,a*1.15)})`;o.fillRect(X(D.x0+i*D.cell)-1,Y(D.y0+j*D.cell)-1,D.cell*SC+2,D.cell*SC+2)}));
-  cx.save();cx.setTransform(1,0,0,1,0,0);cx.globalCompositeOperation=opts.over?'source-over':'lighter';cx.filter=`blur(${opts.blur||30}px)`;cx.drawImage(off,0,0);cx.drawImage(off,0,0);cx.filter='blur(6px)';cx.globalAlpha=.35;cx.drawImage(off,0,0);cx.restore()}
+  cx.save();cx.setTransform(1,0,0,1,0,0);cx.globalCompositeOperation='multiply';cx.filter=`blur(${opts.blur||26}px)`;cx.globalAlpha=.95;cx.drawImage(off,0,0);cx.globalCompositeOperation='source-over';cx.filter='blur(5px)';cx.globalAlpha=.28;cx.drawImage(off,0,0);cx.restore()}
 function hatch(G){const off=document.createElement('canvas');off.width=1000*K;off.height=600*K;const o=off.getContext('2d');o.setTransform(K,0,0,K,0,0);
   const vals=G.flat().filter(v=>v>0.02),lo=Math.min(...vals),hi=Math.max(...vals);
   G.forEach((row,j)=>row.forEach((v,i)=>{if(v<0.02)return;const a=hi>lo?Math.pow((v-lo)/(hi-lo),1.3)*.9+.1:1;o.fillStyle=`rgba(255,255,255,${a})`;o.fillRect(X(D.x0+i*D.cell),Y(D.y0+j*D.cell),D.cell*SC,D.cell*SC)}));
   // hatch first, then keep it only where the blurred mask is (destination-in)
   const m=document.createElement('canvas');m.width=off.width;m.height=off.height;const mm=m.getContext('2d');
-  mm.strokeStyle=C.amber;mm.lineWidth=3.4;mm.beginPath();for(let k=-m.height;k<m.width;k+=14){mm.moveTo(k,0);mm.lineTo(k+m.height,m.height)}mm.stroke();
+  mm.strokeStyle='#7a2a0c';mm.lineWidth=3.2;mm.beginPath();for(let k=-m.height;k<m.width;k+=14){mm.moveTo(k,0);mm.lineTo(k+m.height,m.height)}mm.stroke();
   const bl=document.createElement('canvas');bl.width=off.width;bl.height=off.height;const bb=bl.getContext('2d');bb.filter='blur(12px)';bb.drawImage(off,0,0);
   mm.globalCompositeOperation='destination-in';mm.drawImage(bl,0,0);
-  cx.save();cx.setTransform(1,0,0,1,0,0);cx.globalAlpha=.22;cx.drawImage(bl,0,0);cx.globalAlpha=1;cx.globalCompositeOperation='source-over';
+  cx.save();cx.setTransform(1,0,0,1,0,0);cx.globalCompositeOperation='multiply';cx.globalAlpha=.16;cx.drawImage(bl,0,0);cx.globalCompositeOperation='source-over';cx.globalAlpha=1;cx.globalCompositeOperation='source-over';
   cx.fillStyle='rgba(0,0,0,0)';cx.drawImage(m,0,0);cx.restore()}
 
 function viewHeat(){stage();const sel=PL.filter(p=>S.players.has(p));
-  if(S.phase=='diff'){sel.forEach(p=>{const W=D.heat[p].won,L=D.heat[p].lost,sw=W.flat().reduce((a,b)=>a+b,0),sl=L.flat().reduce((a,b)=>a+b,0);const G=W.map((r,j)=>r.map((v,i)=>v/sw-L[j][i]/sl));const mx=Math.max(...G.flat().map(Math.abs));thermal(G,C.won,{sign:1,max:mx,blur:22,over:true});thermal(G,C.lost,{sign:-1,max:mx,blur:22,over:true})})}
-  else sel.forEach(p=>thermal(D.heat[p][S.phase],TC[TM[p]]));
+  if(S.phase=='diff'){sel.forEach(p=>{const W=D.heat[p].won,L=D.heat[p].lost,sw=W.flat().reduce((a,b)=>a+b,0),sl=L.flat().reduce((a,b)=>a+b,0);const G=W.map((r,j)=>r.map((v,i)=>v/sw-L[j][i]/sl));const mx=Math.max(...G.flat().map(Math.abs));thermal(G,SAND.won,{sign:1,max:mx,blur:22});thermal(G,SAND.lost,{sign:-1,max:mx,blur:22})})}
+  else sel.forEach(p=>thermal(D.heat[p][S.phase],TS[TM[p]]));
   lines();
   sel.forEach(p=>{const G=D.heat[p][S.phase=='diff'?'all':S.phase];let sx=0,sy=0,s=0;G.forEach((r,j)=>r.forEach((v,i)=>{sx+=v*(D.x0+(i+.5)*D.cell);sy+=v*(D.y0+(j+.5)*D.cell);s+=v}));const mx_=sx/s,my_=sy/s;
-    const c=el('g',{},sv);el('circle',{cx:X(mx_),cy:Y(my_),r:15,fill:'#0b111c',stroke:TC[TM[p]],'stroke-width':2.5},c);txt(c,X(mx_),Y(my_)+4,IN[p],{'text-anchor':'middle','font-size':11,'font-family':'JetBrains Mono','font-weight':600,fill:'#fff'});hover(c,`<b>${NM[p]}</b><br>מרכז הכובד של המיקום · ${PH.find(x=>x[0]==S.phase)[1]}`)});
+    const c=el('g',{},sv);el('circle',{cx:X(mx_),cy:Y(my_),r:15,fill:TS[TM[p]],stroke:'#fffaf0','stroke-width':2.5},c);txt(c,X(mx_),Y(my_)+4,IN[p],{'text-anchor':'middle','font-size':11,'font-family':'JetBrains Mono','font-weight':600,fill:'#fff'});hover(c,`<b>${NM[p]}</b><br>מרכז הכובד של המיקום · ${PH.find(x=>x[0]==S.phase)[1]}`)});
   $('#barA').innerHTML=PL.map(p=>`<button class="pill" data-p="${p}" aria-pressed="${S.players.has(p)}"><i style="background:${TC[TM[p]]}">${IN[p]}</i>${NM[p]}</button>`).join('');
   $('#barA').querySelectorAll('.pill').forEach(b=>b.onclick=()=>{const p=b.dataset.p;S.players.has(p)?S.players.delete(p):S.players.add(p);render()});
   $('#barB').innerHTML=`<div class="seg">${PH.map(([k,l])=>`<button data-k="${k}" aria-pressed="${S.phase==k}">${l}</button>`).join('')}</div>`;
   $('#barB').querySelectorAll('button').forEach(b=>b.onclick=()=>{S.phase=b.dataset.k;render()});
-  $('#lede').innerHTML=S.phase=='diff'?`<b style="color:${C.won}">סגול</b> = עמד שם יותר בנקודות שזכו · <b style="color:${C.lost}">כתום</b> = יותר בנקודות שהפסידו. הכי ברור עם שחקן אחד.`:`האור = כמה זמן השחקן בילה בכל נקודה במגרש · <b>${PH.find(x=>x[0]==S.phase)[1]}</b>`;
+  $('#lede').innerHTML=S.phase=='diff'?`<b style="color:${C.won}">סגול</b> = עמד שם יותר בנקודות שזכו · <b style="color:${C.lost}">כתום</b> = יותר בנקודות שהפסידו. הכי ברור עם שחקן אחד.`:`הצבע בחול = כמה זמן השחקן בילה בכל נקודה; עקבות הרגליים מפוזרות לפי אותם נתונים · <b>${PH.find(x=>x[0]==S.phase)[1]}</b>`;
   boardHeat()}
 function viewHoles(){stage();hatch(D.holes.maps[S.team]);lines();
   D.attacks.filter(a=>a.tm==S.team&&(S.team=='ISR'?a.dest[0]<8.5:a.dest[0]>7.5)).forEach(a=>{const x=X(a.dest[0]),y=Y(a.dest[1]);const g=el('g',{},sv);
-    if(a.c){el('circle',{cx:x,cy:y,r:10,fill:C.hit,opacity:.25,class:'spark'},g);el('path',{d:`M${x-6},${y}L${x+6},${y}M${x},${y-6}L${x},${y+6}M${x-4},${y-4}L${x+4},${y+4}M${x+4},${y-4}L${x-4},${y+4}`,stroke:C.hit,'stroke-width':2,'stroke-linecap':'round'},g)}
-    else el('circle',{cx:x,cy:y,r:3.5,fill:C.fg,opacity:.8},g);
+    if(a.c){el('circle',{cx:x,cy:y,r:10,fill:SAND.hit,opacity:.25,class:'spark'},g);el('path',{d:`M${x-6},${y}L${x+6},${y}M${x},${y-6}L${x},${y+6}M${x-4},${y-4}L${x+4},${y+4}M${x+4},${y-4}L${x-4},${y+4}`,stroke:SAND.hit,'stroke-width':2,'stroke-linecap':'round'},g)}
+    else el('circle',{cx:x,cy:y,r:4,fill:'#fffaf0',stroke:SAND.ink,'stroke-width':1.2},g);
     el('circle',{cx:x,cy:y,r:11,fill:'transparent'},g);hover(g,`נקודה ${a.r} · <b>${OUTN[a.o]}</b><br>${a.reach?'בהישג יד של מגין':'בשטח פתוח'} · ${a.open} מ״ר פתוחים`)});
   $('#barA').innerHTML=`<div class="seg">${['ISR','BRA'].map(t=>`<button data-t="${t}" aria-pressed="${S.team==t}">${TN[t]} מגינה</button>`).join('')}</div>`;
   $('#barA').querySelectorAll('button').forEach(b=>b.onclick=()=>{S.team=b.dataset.t;render()});
   $('#barB').innerHTML=`<span class="cnt">${D.holes.n[S.team]} התקפות של היריב</span>`;
-  $('#lede').innerHTML=`<b style="color:${C.amber}">פסים כתומים</b> = שטח שאף מגין לא היה מגיע אליו בזמן מעוף הכדור; בהיר יותר = פתוח בעוד התקפות (יחסית לשאר החצי). <b style="color:${C.hit}">✳</b> כדור שהביא נקודה · • כדור שלא.`;
+  $('#lede').innerHTML=`<b style="color:${C.amber}">פסים</b> = שטח שאף מגין לא היה מגיע אליו בזמן מעוף הכדור; כהה יותר = פתוח בעוד התקפות (יחסית לשאר החצי). <b style="color:${C.hit}">✳</b> כדור שהביא נקודה · • כדור שלא.`;
   boardHoles()}
 function attList(){return D.attacks.filter(a=>S.aflt=='all'||(S.aflt=='open'?!a.reach:a.tm==S.aflt))}
 function viewAttack(){stage();const L=attList();const a=L[Math.min(S.ai,L.length-1)],M=D.model;if(!a){lines();return}
   const R=Math.max(0,M.speed*(a.fl-M.react))+M.reach,h0=a.tm=='ISR'?0:8;
   const n=D.holes.maps.ISR.length,m=D.holes.maps.ISR[0].length;const G=[];for(let j=0;j<n;j++){G.push([]);for(let i=0;i<m;i++){const x=D.x0+(i+.5)*D.cell,y=D.y0+(j+.5)*D.cell;const inHalf=x>h0&&x<h0+8&&y>0&&y<8;const reach=a.p.some(p=>Math.hypot(x-p[0],y-p[1])<=R);G[j].push(inHalf&&!reach?1:0)}}
   hatch(G);lines();
-  a.p.forEach(p=>{const g=el('g',{},sv);[1,.66,.33].forEach((f,k)=>el('circle',{cx:X(p[0]),cy:Y(p[1]),r:R*SC*f,fill:k==0?TC[a.tm]+'14':'none',stroke:TC[a.tm],'stroke-width':k==0?2:1,'stroke-dasharray':k==0?'10 10':'2 6',opacity:k==0?1:.55,class:k==0?'ring':''},g));
-    el('circle',{cx:X(p[0]),cy:Y(p[1]),r:8,fill:TC[a.tm],stroke:'#0b111c','stroke-width':2},g)});
-  const x=X(a.dest[0]),y=Y(a.dest[1]);el('circle',{cx:x,cy:y,r:14,fill:'none',stroke:a.c?C.hit:C.fg,'stroke-width':2,class:'spark'},sv);el('circle',{cx:x,cy:y,r:5,fill:a.c?C.hit:C.fg},sv);
-  txt(sv,x+18,y+6,a.c?'נקודה':OUTN[a.o],{'font-size':24,'font-family':'Karantina','font-weight':700,fill:a.c?C.hit:C.fg});
+  a.p.forEach(p=>{const g=el('g',{},sv);[1,.66,.33].forEach((f,k)=>el('circle',{cx:X(p[0]),cy:Y(p[1]),r:R*SC*f,fill:k==0?TS[a.tm]+'1c':'none',stroke:TS[a.tm],'stroke-width':k==0?2:1,'stroke-dasharray':k==0?'10 10':'2 6',opacity:k==0?1:.55,class:k==0?'ring':''},g));
+    el('circle',{cx:X(p[0]),cy:Y(p[1]),r:8,fill:TS[a.tm],stroke:'#fffaf0','stroke-width':2},g)});
+  const x=X(a.dest[0]),y=Y(a.dest[1]);el('circle',{cx:x,cy:y,r:14,fill:'none',stroke:a.c?SAND.hit:SAND.ink,'stroke-width':2,class:'spark'},sv);el('circle',{cx:x,cy:y,r:5,fill:a.c?SAND.hit:SAND.ink},sv);
+  txt(sv,x+18,y+6,a.c?'נקודה':OUTN[a.o],{'font-size':24,'font-family':'Karantina','font-weight':700,fill:a.c?SAND.hit:SAND.ink,stroke:'#f6ead0','stroke-width':3,'paint-order':'stroke'});
   $('#barA').innerHTML=`<button class="step" id="pa" aria-label="הקודמת">‹</button><span class="cnt">${S.ai+1} / ${L.length}</span><button class="step" id="na" aria-label="הבאה">›</button>`;
   $('#pa').onclick=()=>{S.ai=Math.max(0,S.ai-1);render()};$('#na').onclick=()=>{S.ai=Math.min(L.length-1,S.ai+1);render()};
   $('#barB').innerHTML=`<div class="seg">${[['all','כולן'],['ISR','ישראל מגינה'],['BRA','ברזיל מגינה'],['open','נחת בשטח פתוח']].map(([k,l])=>`<button data-k="${k}" aria-pressed="${S.aflt==k}">${l}</button>`).join('')}</div>`;
