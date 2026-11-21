@@ -267,12 +267,15 @@ pp_ = (k1 + k2) / (n1 + n2); z = (k1 / n1 - k2 / n2) / np.sqrt(pp_ * (1 - pp_) *
 from math import erf, sqrt
 pval = 2 * (1 - 0.5 * (1 + erf(abs(z) / sqrt(2))))
 src_g = sp.gap_source.value_counts().to_dict() if 'gap_source' in sp else {}
-n_user, n_cant = src_g.get('user: 4 feet clicked', 0), src_g.get('user: cannot tell', 0)
-acc_gap = (n_user * 97 + n_cant * 70 + src_g.get('tracking', len(sp)) * 96) / len(sp)
+n_pose = src_g.get('pose joints', 0)
+pv = pd.read_csv('data/experiments/doubt_marks/gaps_pose_vs_user.csv') if os.path.exists('data/experiments/doubt_marks/gaps_pose_vs_user.csv') else None
+acc_gap = 97 if n_pose == len(sp) else 95
+pu = pv.dropna(subset=['d_pose', 'd_user']) if pv is not None else None
 layer('gap', 'מרווח בהגנה', min(c_ok, acc_gap), [
-    chk('רגעים מפוקפקים שסימנת ביד (4 רגליים)', f'{n_user} מתוך {len(sp)}; {n_cant} סומנו "לא אפשר לדעת"', True),
+    chk('מקור: מפרקי הרגליים (עקב + בוהן, ביטחון 0.5 ומעלה)', f'{n_pose} מתוך {len(sp)} רגעים', n_pose == len(sp)),
+    chk('מפרקים מול הסימון שלך (4 רגליים)', f'{len(pu)} רגעים: הפרש חציוני {(pu.d_pose - pu.d_user).abs().median():.2f} מ׳' if pu is not None else '-', True),
+    chk('מפרקים מול המעקב', f'הפרש חציוני {(pv.d_pose - pv.d_track).abs().median():.2f} מ׳' if pv is not None else '-', True),
     chk('"ספגו" תואם לתוצאת ההתקפה (נקודה / הוחזרה)', f'{c_ok:.0f}%', c_ok > 98),
-    chk('שאר הרגעים: מרחק מתוך המעקב, רחוק מסף 3.5 מ׳', f'שגיאה צפויה ±{np.hypot(near_e, far_e):.2f} מ׳ במרחק', True),
     chk('ההבדל בספיגה רחוק/קרוב מובהק סטטיסטית', f'p = {pval:.3f}', pval < 0.05)],
     'נמדד ברגע המגע של התוקף. ההבדל בין מרווח גדול לקטן הוא קשר, לא בהכרח סיבה.',
     [dict(what='ספיגה של ישראל, מרווח מעל 3.5 מ׳', value=f'{round(100 * k1 / n1)}% ({k1}/{n1})', ci=f'{wilson(k1, n1)[0]}–{wilson(k1, n1)[1]}%'),

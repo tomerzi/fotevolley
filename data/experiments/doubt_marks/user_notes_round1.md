@@ -30,3 +30,11 @@
 - 27 (question): point Brazil (matches).
 - Gaps: 48 marked with 4 feet, 6 "cannot tell". vs tracking median |diff| 0.21 m; 6 crossed the 3.5 m line.
   ISR concede above 3.5 m 53% (17/32), at or below 31% (10/32), p = 0.076 (was 58% vs 27%, p = 0.013).
+
+# Round 3
+- 35: the mark (frame 9152) is where the Brazilian's foot crosses the net line, i.e. the point ended on a net-line
+  fault by Brazil; the scoreboard still gives the point to Brazil (0-4) -> conflict noted, scoreboard kept.
+- 41 gap (frame 10996): "cannot tell".
+- Gaps: the user asked to go by the pose joints ("the most certain there is"). All 126 attack moments now use the
+  feet joints (heel + big toe, conf >= 0.5; grounded frames around it when in the air). Pose vs the user's 4-click
+  marks: median |diff| 0.26 m (pose 0.18 m smaller on average); pose vs tracking 0.11 m.
