@@ -155,6 +155,99 @@ ch = pd.read_csv('data/analysis/chest_profile_by_player.csv').set_index('player'
 out['chest'] = {p: dict(n=int(ch.loc[p, 'chest_touches']), h=r2(ch.loc[p, 'ball_height_m']), won=r2(ch.loc[p, 'point_won_pct'], 0),
                         descent=r2(ch.loc[p, 'ball_descent_deg'], 0), vin=r2(ch.loc[p, 'ball_speed_in'], 1)) for p in PL if p in ch.index}
 
+# ================= one fixed court frame: ISR always on the left half, BRA on the right =================
+# teams change ends every 6 points; a rally with ISR on the right is rotated 180 deg (x -> 16-x, y -> 8-y).
+pos_all = pd.read_csv('data/analysis/player_positions_v3.csv', usecols=['v2_frame', 'player', 'team', 'x', 'y']).drop_duplicates(['v2_frame', 'player'])
+rid = np.full(len(inplay), -1)
+for x in ral.itertuples():
+    rid[x.start_frame:x.end_frame + 1] = x.rally
+pos_all = pos_all[pos_all.v2_frame < len(inplay)]
+pos_all['rally'] = rid[pos_all.v2_frame.to_numpy()]
+pos_all = pos_all[pos_all.rally > 0]
+isr_left = pos_all[pos_all.team == 'ISR'].groupby('rally').x.mean().lt(8).to_dict()
+out['isr_left'] = {int(k): bool(v) for k, v in isr_left.items()}
+
+
+def nz(xx, yy, rally):
+    """to the fixed frame (ISR left)"""
+    if isr_left.get(int(rally), True):
+        return xx, yy
+    return 16 - xx, 8 - yy
+
+
+X2 = np.arange(-1, 17.01, 0.5); Y2 = np.arange(-1, 9.01, 0.5)
+hz = {}
+for p in PL:
+    g = pos_all[pos_all.player == p]
+    flip = ~g.rally.map(isr_left).fillna(True).astype(bool)
+    xx = np.where(flip, 16 - g.x, g.x); yy = np.where(flip, 8 - g.y, g.y)
+    H, _, _ = np.histogram2d(xx, yy, [X2, Y2]); H = H / H.max()
+    hz[p] = dict(grid=np.round(H.T * 99).astype(int).tolist(), mx=r2(np.mean(xx)), my=r2(np.mean(yy)), sx=r2(np.std(xx)), sy=r2(np.std(yy)))
+out['heatz'] = dict(x0=-1, y0=-1, cell=0.5, players=hz)
+
+# touches in the fixed frame
+tz = []
+for x in t.itertuples():
+    if not isinstance(x.player, str) or x.action not in ('reception', 'set', 'attack') or not np.isfinite(x.ball_court_x_m):
+        continue
+    a, b = nz(x.ball_court_x_m, x.ball_court_y_m, x.rally)
+    tz.append(dict(p=x.player, a=x.action, s=x.action_subtype if isinstance(x.action_subtype, str) else '', b=x.body_part, h=r2(x.ball_height_m), x=r2(a), y=r2(b), r=int(x.rally)))
+out['touchz'] = tz
+
+# attacks in the fixed frame (attacker on his own half)
+az = []
+for x in tt[tt.action == 'attack'].itertuples():
+    nxt = tt[(tt.rally == x.rally) & (tt.v2_frame > x.v2_frame)]
+    to = None
+    if len(nxt) and np.isfinite(nxt.iloc[0].ball_court_x_m):
+        to = (nxt.iloc[0].ball_court_x_m, nxt.iloc[0].ball_court_y_m)
+    elif x.rally in land.index and np.isfinite(land.loc[x.rally, 'x']):
+        to = (land.loc[x.rally, 'x'], land.loc[x.rally, 'y'])
+    if to is None or not np.isfinite(x.ball_court_x_m):
+        continue
+    x0, y0 = nz(x.ball_court_x_m, x.ball_court_y_m, x.rally); x1, y1 = nz(to[0], to[1], x.rally)
+    if abs(x1 - x0) < 1.0:
+        continue
+    ang = float(np.degrees(np.arctan2(abs(y1 - y0), abs(x1 - x0))))
+    az.append(dict(p=x.player, tm=x.team, b=x.body_part, s=x.action_subtype, x0=r2(x0), y0=r2(y0), x1=r2(x1), y1=r2(y1), h=r2(x.ball_height_m), ang=r2(ang, 1), r=int(x.rally)))
+out['attackz'] = az
+
+# landings in the fixed frame
+lz = []
+for x in lr.itertuples():
+    if np.isfinite(x.x):
+        a, b = nz(x.x, x.y, x.rally)
+        lz.append(dict(r=int(x.rally), w=x.winner, x=r2(a), y=r2(b), k=x.kind, p=x.last_touch_player, b=x.last_touch_part))
+out['landz'] = lz
+
+# partner spacing at the opponent's attack, fixed frame
+sz = []
+for x in pd.read_csv('data/analysis/team_spacing_v3.csv').query("moment == 'attack'").itertuples():
+    if not np.isfinite(x.distance):
+        continue
+    a1, b1 = nz(x.p1_x, x.p1_y, x.rally); a2, b2 = nz(x.p2_x, x.p2_y, x.rally)
+    sz.append(dict(tm=x.defending_team, d=r2(x.distance), c=bool(x.conceded), x1=r2(a1), y1=r2(b1), x2=r2(a2), y2=r2(b2), r=int(x.rally)))
+out['spacez'] = sz
+
+# net crossings: where along the net (y) and how high, fixed frame; from = team that sent it
+bh2 = pd.read_csv('data/analysis/ball_height_v2.csv')
+bh2 = bh2[(bh2.frame < len(inplay)) & bh2.flight_id.notna() & (bh2.method == 'flight_fit')]
+bh2 = bh2[inplay[bh2.frame.to_numpy()]]
+nzc = []
+for fid, g in bh2.groupby('flight_id'):
+    g = g.sort_values('frame'); xs, ys, hs, fr = g.court_x_m.to_numpy(), g.court_y_m.to_numpy(), g.height_m.to_numpy(), g.frame.to_numpy()
+    for i in range(len(xs) - 1):
+        if (xs[i] - 8) * (xs[i + 1] - 8) < 0:
+            w = (8 - xs[i]) / (xs[i + 1] - xs[i]); yy = ys[i] + w * (ys[i + 1] - ys[i]); h = hs[i] + w * (hs[i + 1] - hs[i])
+            rl = int(rid[fr[i]])
+            if rl <= 0:
+                continue
+            left = isr_left.get(rl, True)
+            yy2 = yy if left else 8 - yy
+            moving_right = xs[i + 1] > xs[i]
+            sender = ('ISR' if moving_right else 'BRA') if left else ('BRA' if moving_right else 'ISR')
+            nzc.append(dict(y=r2(yy2), h=r2(h), fr=sender, r=rl))
+out['netz'] = nzc
 os.makedirs('site/court_story', exist_ok=True)
 s = json.dumps(out, separators=(',', ':'))
 open('site/court_story/data.json', 'w').write(s)

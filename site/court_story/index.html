@@ -2,145 +2,82 @@
 <title>ISR–BRA על החול</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&family=Heebo:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&family=Heebo:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
 <style>
-/* Layout: one night-lit sand court per idea, stacked; numbers sit on the court itself, words kept to a caption. */
+/* Layout: the whole page is a sand court seen from above. The data are layers lying on the sand; switches sit at the scorer's table under it. Single daylight look by design. */
 :root{
-  --bg:#101214; --panel:#17191c; --sand:#2b261e; --sand-2:#352e24; --grain:#3d3529;
-  --line:#8fb4f0; --net:#ebe7de; --fg:#efece5; --muted:#a39d91; --faint:#6f695e;
-  --isr:#3987e5; --bra:#d95926; --good:#199e70; --bad:#e66767; --neutral:#857f73;
+  --sand:#e6cfa2; --sand-hi:#efdcb6; --sand-lo:#d7bb88; --tape:#1d4fa8; --net:#1b1b1b; --post:#f6f1e6;
+  --ink:#2a2016; --ink-2:#5e4d37; --ink-3:#8a7556;
+  --isr:#1f63c9; --bra:#0d7f3f; --hit:#c8322c; --table:#f6efe0;
   --display:"Rubik","Heebo",system-ui,sans-serif; --body:"Heebo","Rubik",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
-  color-scheme:dark;
+  color-scheme:light;
 }
-html{background:var(--bg)}
-body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.5;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
-.wrap{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:56px}
-h1,h2{font-family:var(--display);text-wrap:balance;margin:0}
-h1{font-size:clamp(28px,5vw,44px);font-weight:900;letter-spacing:-.01em}
-h2{font-size:clamp(20px,3vw,26px);font-weight:700}
-.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
-.cap{color:var(--muted);max-width:62ch;margin:0}
-section{display:flex;flex-direction:column;gap:14px;min-width:0}
-.head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
-.big{font-family:var(--display);font-weight:900;font-size:clamp(34px,6vw,56px);line-height:1;font-variant-numeric:tabular-nums}
-.isr{color:var(--isr)} .bra{color:var(--bra)} .good{color:var(--good)} .bad{color:var(--bad)}
+html{background:var(--sand)}
+body{color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45;
+  background:
+   url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .33 0 0 0 0 .18 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"),
+   var(--sand);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px}
+.wrap{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+header{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+h1{font-family:var(--display);font-weight:900;font-size:clamp(24px,4vw,38px);margin:0;text-wrap:balance}
+.sub{font-family:var(--mono);font-size:12px;color:var(--ink-2)}
+.board{display:flex;align-items:center;gap:10px;background:var(--ink);color:var(--table);border-radius:8px;padding:6px 12px;font-family:var(--display);font-weight:700}
+.board .n{font-size:26px;font-variant-numeric:tabular-nums}
+.board small{font:500 11px var(--mono);color:#cbbfa8}
+.courtbox{position:relative;min-width:0}
+@media (max-width:720px){.courtbox{overflow-x:auto;border-radius:8px}.courtbox svg{width:760px;max-width:none}.hint{display:block!important}}
+.hint{display:none;font-size:12px;color:var(--ink-3)}
 svg{display:block;width:100%;height:auto;direction:ltr;overflow:hidden}
 svg text{font-family:var(--body)}
-svg text:not([fill]){fill:var(--fg)}
-.mono{font-family:var(--mono)}
-.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
-@media (max-width:760px){.grid2{grid-template-columns:1fr}.grid4{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.card{background:var(--panel);border-radius:10px;padding:14px;min-width:0}
-.pname{font-family:var(--display);font-weight:500;font-size:14px;display:flex;justify-content:space-between;gap:4px 8px;flex-wrap:wrap;margin-bottom:6px}
-.chips{display:flex;gap:8px;flex-wrap:wrap}
-.chip{font:500 13px var(--body);color:var(--fg);background:var(--panel);border:1px solid var(--grain);border-radius:999px;padding:5px 12px;cursor:pointer}
-.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
-.chip:focus-visible{outline:2px solid var(--line);outline-offset:2px}
-.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
-.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-inline-end:6px;vertical-align:-1px}
-#tip{position:fixed;pointer-events:none;background:#000d;color:var(--fg);border:1px solid var(--grain);border-radius:6px;padding:6px 9px;font-size:13px;z-index:20;max-width:240px;opacity:0;transition:opacity .1s}
-.verdict{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
-@media (max-width:760px){.verdict{grid-template-columns:1fr}}
-.verdict ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.verdict li{display:grid;grid-template-columns:104px 1fr;gap:12px;align-items:baseline}
-.verdict b{font-family:var(--display);font-size:22px;font-variant-numeric:tabular-nums}
-.tag{font-family:var(--display);font-weight:700;font-size:14px;margin-bottom:10px}
-.scroll{overflow-x:auto}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+svg text:not([fill]){fill:var(--ink)}
+.table{background:var(--table);border-radius:12px;padding:14px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px;box-shadow:0 1px 0 #0001, 0 8px 24px -12px #5a43204d}
+@media (max-width:820px){.table{grid-template-columns:1fr}}
+.group{display:flex;flex-direction:column;gap:8px;min-width:0}
+.glabel{font:500 12px var(--mono);color:var(--ink-3)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font:500 13.5px var(--body);color:var(--ink);background:#fff8;border:1.5px solid var(--sand-lo);border-radius:999px;padding:5px 12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.chip .dot{width:9px;height:9px;border-radius:50%;background:var(--ink-3)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--table)}
+.chip:focus-visible{outline:2px solid var(--tape);outline-offset:2px}
+.facts{display:flex;flex-direction:column;gap:8px;min-width:0}
+.fact{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:baseline;border-top:1px dashed var(--sand-lo);padding-top:8px}
+.fact b{font-family:var(--display);font-size:20px;font-variant-numeric:tabular-nums;white-space:nowrap;direction:ltr;unicode-bidi:isolate;display:inline-flex;gap:6px;align-items:baseline}
+.fact > span{color:var(--ink-2);font-size:14px}
+.empty{color:var(--ink-3);font-size:14px}
+.legendbox{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--ink-2)}
+.legendbox div::before{content:"◆ ";color:var(--ink-3)}
+#tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--table);border-radius:6px;padding:6px 9px;font-size:13px;z-index:20;max-width:260px;opacity:0;transition:opacity .1s}
+.note{font-size:12px;color:var(--ink-3)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
 <div class="wrap" dir="rtl">
+  <header>
+    <div>
+      <h1>ישראל – ברזיל, על החול</h1>
+      <div class="sub">גראץ 2022 · 60 נקודות · ישראל תמיד בחצי השמאלי</div>
+    </div>
+    <div class="board" aria-label="תוצאה"><span class="n" id="bI" style="color:#8db8ff"></span><small id="bSets"></small><span class="n" id="bB" style="color:#7fd3a0"></span></div>
+  </header>
 
-<section id="hero">
-  <span class="kicker">גראץ 2022 · ישראל נגד ברזיל · 60 נקודות · 10:23 דקות</span>
-  <h1>המשחק, מצויר על החול</h1>
-  <svg id="heroCourt" viewBox="0 0 760 460" role="img" aria-label="מגרש עם התוצאה"></svg>
-</section>
+  <div class="hint">גוללים את המגרש לצדדים ←→</div>
+  <div class="courtbox"><svg id="court" viewBox="0 0 1060 640" role="img" aria-label="מגרש פוצ'יוולי עם שכבות נתונים"></svg></div>
 
-<section>
-  <div class="head"><h2>מומנטום</h2><div class="legend"><span><i style="background:var(--isr)"></i>ישראל מובילה</span><span><i style="background:var(--bra)"></i>ברזיל מובילה</span></div></div>
-  <p class="cap">הפרש הנקודות אחרי כל נקודה. הרשת = שוויון.</p>
-  <div class="scroll"><svg id="worm" viewBox="0 0 760 230" role="img" aria-label="הפרש נקודות לאורך המשחק"></svg></div>
-</section>
-
-<section>
-  <div class="head"><h2>בקבלה: מי מחזיר את ההגשה לעצמו</h2><div class="big"><span class="bra" id="soB"></span> · <span class="isr" id="soI"></span></div></div>
-  <p class="cap">כל עיגול = הגשה של היריב. מלא = הנקודה נשארה אצל המקבלים.</p>
-  <svg id="sideout" viewBox="0 0 760 300" role="img" aria-label="אחוז זכייה בקבלה"></svg>
-</section>
-
-<section>
-  <div class="head"><h2>ההתקפות</h2>
-    <div class="chips" role="group" aria-label="קבוצה">
-      <button class="chip" id="fA" aria-pressed="true">כולם</button>
-      <button class="chip" id="fI" aria-pressed="false">ישראל</button>
-      <button class="chip" id="fB" aria-pressed="false">ברזיל</button>
-    </div></div>
-  <div class="legend"><span><i style="background:var(--good)"></i>נקודה</span><span><i style="background:var(--neutral)"></i>הוחזר</span><span><i style="background:var(--bad)"></i>טעות</span><span>כל ההתקפות מסובבות כך שהתוקף משמאל</span></div>
-  <svg id="attackMap" viewBox="0 0 760 440" role="img" aria-label="מפת התקפות"></svg>
-  <div class="grid2">
-    <div class="card"><div class="pname"><span>זווית הבעיטה ביחס לקו</span><span class="mono" style="color:var(--muted)">% נקודה</span></div><svg id="fan" viewBox="0 0 360 210"></svg></div>
-    <div class="card"><div class="pname"><span>במה תוקפים</span><span class="mono" style="color:var(--muted)">נקודות / ניסיונות</span></div><svg id="parts" viewBox="0 0 360 210"></svg></div>
+  <div class="table">
+    <div class="group">
+      <div class="glabel">שחקנים</div>
+      <div class="chips" id="players"></div>
+      <div class="glabel">על המגרש</div>
+      <div class="chips" id="layersCourt"></div>
+      <div class="glabel">על הרשת ובחול מסביב</div>
+      <div class="chips" id="layersEdge"></div>
+      <div class="glabel" id="subLabel" hidden>סינון</div>
+      <div class="chips" id="subChips" hidden></div>
+    </div>
+    <div class="facts"><div class="legendbox" id="legend"></div><div class="facts" id="facts" aria-live="polite"></div></div>
   </div>
-</section>
-
-<section>
-  <div class="head"><h2>כל כדור, מהצד</h2><div class="big"><span id="netMed"></span><span style="font-size:.45em;color:var(--muted)"> מ' מעל החול במעבר הרשת</span></div></div>
-  <p class="cap">681 מעופים בזמן משחק, במבט מהצד. הפס על עמוד הרשת: איפה הכדור חצה אותה.</p>
-  <svg id="side" viewBox="0 0 760 300" role="img" aria-label="מסלולי הכדור במבט צד"></svg>
-</section>
-
-<section>
-  <div class="head"><h2>המרווח בין השותפים</h2><div class="big bad" id="gapBig"></div></div>
-  <p class="cap">המרחק בין שני המגינים ברגע ההתקפה של היריב. אדום = ספגו את הנקודה.</p>
-  <svg id="gap" viewBox="0 0 760 250" role="img" aria-label="מרחק בין השותפים ונקודות שנספגו"></svg>
-</section>
-
-<section>
-  <div class="head"><h2>מערך ההגנה</h2></div>
-  <svg id="form" viewBox="0 0 760 270" role="img" aria-label="מערכים וניצחונות"></svg>
-</section>
-
-<section>
-  <div class="head"><h2>איפה כל אחד גר</h2></div>
-  <p class="cap">צפיפות המיקום בזמן משחק, כשהרשת תמיד מימין. האליפסה = שם הוא נמצא בדרך כלל.</p>
-  <div class="grid4" id="heat"></div>
-</section>
-
-<section>
-  <div class="head"><h2>לאן הכתפיים פונות</h2></div>
-  <p class="cap">כל שושנה: כיוון הכתפיים ביחס לרשת, לאורך כל המשחק. למעלה = מול הרשת.</p>
-  <div class="grid4" id="rose"></div>
-</section>
-
-<section>
-  <div class="head"><h2>גובה המגע בהתקפה</h2></div>
-  <p class="cap">כל נקודה = התקפה, בגובה שבו הכדור נבעט. הקו הלבן = הרשת (2.2 מ'), המקווקו = גובה השחקן.</p>
-  <svg id="heights" viewBox="0 0 760 300" role="img" aria-label="גובה הכדור בהתקפה לפי שחקן"></svg>
-</section>
-
-<section>
-  <div class="head"><h2>המנוע</h2></div>
-  <p class="cap">מטרים שרצו בזמן משחק, מהירות שיא, וכמה רצו בממוצע בנקודה שניצחו מול נקודה שהפסידו.</p>
-  <svg id="engine" viewBox="0 0 760 300" role="img" aria-label="מרחק ריצה ומהירות"></svg>
-</section>
-
-<section>
-  <div class="head"><h2>זמן תגובה</h2><div class="big">0.3 <span style="font-size:.45em;color:var(--muted)">שנ'</span></div></div>
-  <p class="cap">כמה זמן אחרי ששחקן משנה קצב, השני משנה את שלו (30 השניות הראשונות). הקו = מה שהיה יוצא במקרה.</p>
-  <svg id="react" viewBox="0 0 760 220" role="img" aria-label="זמני תגובה לשינוי קצב"></svg>
-</section>
-
-<section>
-  <h2>השורה התחתונה</h2>
-  <div class="verdict">
-    <div class="card"><div class="tag good">מה עבד</div><ul id="goodList"></ul></div>
-    <div class="card"><div class="tag bad">מה לשפר (ישראל)</div><ul id="fixList"></ul></div>
-  </div>
-</section>
-
+  <p class="note">מקור: קבצי הניתוח בריפו (מיקומי שחקנים, מגעים, גובה כדור, כיוון גוף). הקבוצות התחלפו בצדדים כל 6 נקודות, אז כל נקודה סובבה כך שישראל משמאל.</p>
 </div>
 <div id="tip" role="tooltip"></div>
 
@@ -148,248 +85,194 @@ svg text:not([fill]){fill:var(--fg)}
 const NS='http://www.w3.org/2000/svg';
 const PL=['Maor_Haas','Ron_Ben_Ishay','Franklin','Hiltinho'];
 const NM={Maor_Haas:'מאור האס',Ron_Ben_Ishay:'רון בן ישי',Franklin:'פרנקלין',Hiltinho:'הילטיניו'};
+const IN={Maor_Haas:'MH',Ron_Ben_Ishay:'RB',Franklin:'F',Hiltinho:'H'};
 const TM={Maor_Haas:'ISR',Ron_Ben_Ishay:'ISR',Franklin:'BRA',Hiltinho:'BRA'};
-const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-const C={};['isr','bra','good','bad','neutral','sand','sand-2','grain','line','net','fg','muted','faint','panel'].forEach(k=>C[k]=css('--'+k));
+const V=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const C={isr:V('--isr'),bra:V('--bra'),hit:V('--hit'),ink:V('--ink'),ink2:V('--ink-2'),ink3:V('--ink-3'),tape:V('--tape'),net:V('--net'),post:V('--post'),sand:V('--sand'),hi:V('--sand-hi'),lo:V('--sand-lo'),table:V('--table')};
 const TC={ISR:C.isr,BRA:C.bra};
+const PART={foot:'רגל',head:'ראש',chest:'חזה',shoulder:'כתף',thigh:'ירך',knee:'ברך',shin:'שוק',arm:'יד'};
+const ACT={reception:'קבלה',set:'הנחה',attack:'התקפה'};
+const pct=(a,b)=>b?Math.round(100*a/b):0;
 function el(tag,attrs={},parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}
 function txt(parent,x,y,s,attrs={}){const t=el('text',Object.assign({x,y},attrs),parent);t.textContent=s;return t}
 const tip=document.getElementById('tip');
-function hover(node,html){node.addEventListener('pointermove',e=>{tip.innerHTML=html;tip.style.opacity=1;const w=tip.offsetWidth;tip.style.left=Math.min(innerWidth-w-8,e.clientX+12)+'px';tip.style.top=(e.clientY+14)+'px'});node.addEventListener('pointerleave',()=>tip.style.opacity=0)}
-const pct=(a,b)=>b?Math.round(100*a/b):0;
+function hover(node,html){node.addEventListener('pointermove',e=>{tip.innerHTML=html;tip.style.opacity=1;const w=tip.offsetWidth;tip.style.left=Math.max(8,Math.min(innerWidth-w-8,e.clientX+12))+'px';tip.style.top=(e.clientY+14)+'px'});node.addEventListener('pointerleave',()=>tip.style.opacity=0)}
 
-/* court in top view: x 0..16 (along), y 0..8 (far->near). returns mapper */
-function court(svg,ox,oy,s,opt={}){
-  const g=el('g',{},svg);
-  const X=x=>ox+x*s, Y=y=>oy+y*s;
-  const len=opt.half?8:16;
-  el('rect',{x:X(-1),y:Y(-1),width:(len+(opt.half?1.6:2))*s,height:10*s,fill:C.sand,rx:6},g);
-  el('rect',{x:X(0),y:Y(0),width:len*s,height:8*s,fill:C['sand-2']},g);
-  el('rect',{x:X(0),y:Y(0),width:len*s,height:8*s,fill:'none',stroke:C.line,'stroke-width':Math.max(1.5,s*0.06)},g);
-  el('line',{x1:X(8),y1:Y(-0.6),x2:X(8),y2:Y(8.6),stroke:C.net,'stroke-width':Math.max(2,s*0.08)},g);
-  [-0.6,8.6].forEach(y=>el('circle',{cx:X(8),cy:Y(y),r:Math.max(2.5,s*0.1),fill:C.net},g));
-  return {g,X,Y};
-}
+/* geometry: 50 px per metre, court 16 x 8 at (130, 80) */
+const S=50,OX=130,OY=80, X=x=>OX+x*S, Y=y=>OY+y*S;
+const svg=document.getElementById('court');
 
-fetch('data.json').then(r=>r.json()).then(D=>{
-/* ---------------- hero ---------------- */
-{const svg=document.getElementById('heroCourt');const {X,Y}=court(svg,40,25,42.5);
- const R=D.rallies; const s1=R.filter(r=>r.s==1).at(-1), s2=R.at(-1);
- const sI=(s1.i>s1.b)+(s2.i>s2.b), sB=2-sI;
- const tI=R.filter(r=>r.w=='ISR').length, tB=R.length-tI;
- txt(svg,X(4),Y(4.4),sI,{'text-anchor':'middle','font-size':170,'font-family':'Rubik','font-weight':900,fill:C.isr});
- txt(svg,X(12),Y(4.4),sB,{'text-anchor':'middle','font-size':170,'font-family':'Rubik','font-weight':900,fill:C.bra});
- txt(svg,X(4),Y(6.1),'ישראל',{'text-anchor':'middle','font-size':24,'font-weight':700,fill:C.isr});
- txt(svg,X(12),Y(6.1),'ברזיל',{'text-anchor':'middle','font-size':24,'font-weight':700,fill:C.bra});
- [[s1.i,s1.b,'מערכה 1'],[s2.i,s2.b,'מערכה 2'],[tI,tB,'סך הנקודות']].forEach(([a,b,l],k)=>{const y=Y(7.05)+k*0;const cx=X(8)+(k-1)*210;
-   txt(svg,cx,428,`${a} – ${b}`,{'text-anchor':'middle','font-size':22,'font-family':'IBM Plex Mono',fill:C.fg});
-   txt(svg,cx,452,l,{'text-anchor':'middle','font-size':13,fill:C.muted})});
-}
-/* ---------------- momentum worm ---------------- */
-{const svg=document.getElementById('worm');const R=D.rallies;const W=760,H=230,L=24,Rr=736,M=H/2;let c0=0,mxd=1;R.forEach(r=>{c0+=r.w=='ISR'?1:-1;mxd=Math.max(mxd,Math.abs(c0))});const k=(M-22)/mxd;
- const X=i=>L+(Rr-L)*i/(R.length);
- el('rect',{x:0,y:0,width:W,height:H,fill:C.sand,rx:8},svg);
- el('line',{x1:L,y1:M,x2:Rr,y2:M,stroke:C.net,'stroke-width':2,'stroke-dasharray':'2 3'},svg);
- let d0=0,pts=[[X(0),M]];R.forEach((r,i)=>{d0+=r.w=='ISR'?1:-1;pts.push([X(i+1),M-d0*k])});
- // fill areas above (ISR ahead) / below (BRA ahead)
- const area=pts.map(p=>p.join(',')).join(' ');
- const clipA=el('clipPath',{id:'cA'},svg);el('rect',{x:0,y:0,width:W,height:M},clipA);
- const clipB=el('clipPath',{id:'cB'},svg);el('rect',{x:0,y:M,width:W,height:M},clipB);
- el('polygon',{points:`${L},${M} ${area} ${Rr},${M}`,fill:C.isr,opacity:.35,'clip-path':'url(#cA)'},svg);
- el('polygon',{points:`${L},${M} ${area} ${Rr},${M}`,fill:C.bra,opacity:.35,'clip-path':'url(#cB)'},svg);
- el('polyline',{points:area,fill:'none',stroke:C.fg,'stroke-width':2,'stroke-linejoin':'round'},svg);
- const sb=R.findIndex(r=>r.s==2);el('line',{x1:X(sb),y1:16,x2:X(sb),y2:H-16,stroke:C.faint,'stroke-dasharray':'4 4'},svg);
- txt(svg,X(sb)+6,26,'מערכה 2',{'font-size':12,fill:C.muted});txt(svg,L+6,26,'מערכה 1',{'font-size':12,fill:C.muted});
- let mn=0,mi=0;pts.forEach((p,i)=>{if(p[1]>mn){mn=p[1];mi=i}});
- txt(svg,pts[mi][0],pts[mi][1]+18,`−${Math.round((mn-M)/k)}`,{'text-anchor':'middle','font-size':13,fill:C.bra,'font-weight':700});
- R.forEach((r,i)=>{const hit=el('rect',{x:X(i),y:0,width:(Rr-L)/R.length,height:H,fill:'transparent'},svg);
-   hover(hit,`נקודה ${r.r} · ${r.w=='ISR'?'ישראל':'ברזיל'} זכתה<br>${r.i}–${r.b} · ${r.d} שנ' · הגישה ${r.sv=='ISR'?'ישראל':'ברזיל'}`)});
-}
-/* ---------------- side-out ---------------- */
-{const svg=document.getElementById('sideout');const {X,Y}=court(svg,70,25,38.75);
- const R=D.rallies;const so=D.sideout;
- document.getElementById('soI').textContent=pct(so.ISR.sideout,so.ISR.receive)+'%';
- document.getElementById('soB').textContent=pct(so.BRA.sideout,so.BRA.receive)+'%';
- [['ISR',0],['BRA',8]].forEach(([tm,x0])=>{
-   const rec=R.filter(r=>r.sv!=tm);const cols=7;
-   rec.forEach((r,i)=>{const cx=X(x0+0.9+(i%cols)*1.03),cy=Y(0.9+Math.floor(i/cols)*1.25);const won=r.w==tm;
-     const c=el('circle',{cx,cy,r:13,fill:won?TC[tm]:'none',stroke:TC[tm],'stroke-width':2},svg);
-     hover(c,`נקודה ${r.r}: ${won?'נשארה אצל המקבלים':'השגיאה/הנקודה לטובת המגישים'}`)});
-   txt(svg,X(x0+4),Y(8.55),`${tm=='ISR'?'ישראל':'ברזיל'} מקבלת: ${so[tm].sideout} מתוך ${so[tm].receive}`,{'text-anchor':'middle','font-size':14,fill:C.fg});
- });
-}
-/* ---------------- attack map ---------------- */
+const LAYERS=[
+ {id:'heat',label:'מפת חום',where:'court',on:true},
+ {id:'spots',label:'מיקום ממוצע',where:'court',on:true},
+ {id:'lines',label:'מרחק מהקווים',where:'court'},
+ {id:'shoulders',label:'כיוון כתפיים',where:'court'},
+ {id:'touches',label:'מגעים בכדור',where:'court'},
+ {id:'attacks',label:'התקפות',where:'court'},
+ {id:'landings',label:'איפה נגמרו נקודות',where:'court'},
+ {id:'gap',label:'מרווח בהגנה',where:'court'},
+ {id:'net',label:'מעברי רשת',where:'edge'},
+ {id:'sideout',label:'קבלת הגשה',where:'edge',on:true},
+ {id:'momentum',label:'מומנטום',where:'edge',on:true},
+ {id:'engine',label:'ריצה',where:'edge'},
+];
+const state={players:new Set(PL),layers:new Set(LAYERS.filter(l=>l.on).map(l=>l.id)),touchAct:new Set(['reception','set','attack']),attRes:new Set(['good','neutral','bad'])};
 const OUTC=s=>s=='kill'||s=='failed_defence'?'good':(s=='returned'?'neutral':'bad');
-function drawAttacks(filter){const svg=document.getElementById('attackMap');svg.innerHTML='';
- const defs=el('defs',{},svg);['good','neutral','bad'].forEach(k=>{const m=el('marker',{id:'ah'+k,viewBox:'0 0 10 10',refX:8,refY:5,markerWidth:5,markerHeight:5,orient:'auto-start-reverse'},defs);el('path',{d:'M0,0 L10,5 L0,10 z',fill:C[k]},m)});
- const {X,Y}=court(svg,40,48,42.5);
- const A=D.attacks.filter(a=>filter=='all'||a.tm==filter).sort((a,b)=>OUTC(a.s)=='good'?1:-1);
- A.forEach(a=>{const k=OUTC(a.s);const x0=X(a.x0),y0=Y(a.y0),x1=X(a.x1),y1=Y(a.y1);const mx=(x0+x1)/2,my=(y0+y1)/2-Math.min(60,Math.hypot(x1-x0,y1-y0)*0.18);
-   const p=el('path',{d:`M${x0},${y0} Q${mx},${my} ${x1},${y1}`,fill:'none',stroke:C[k],'stroke-width':k=='good'?2.4:1.4,opacity:k=='neutral'?.45:.95,'marker-end':`url(#ah${k})`},svg);
-   el('circle',{cx:x0,cy:y0,r:3,fill:TC[a.tm]},svg);
-   const hit=el('path',{d:`M${x0},${y0} Q${mx},${my} ${x1},${y1}`,fill:'none',stroke:'transparent','stroke-width':12},svg);
-   hover(hit,`${NM[a.p]} · ${({foot:'רגל',head:'ראש',chest:'חזה',shoulder:'כתף'})[a.b]||a.b}<br>${({kill:'נקודה',failed_defence:'נקודה (ההגנה נכשלה)',returned:'הוחזר',error:'טעות'})[a.s]} · זווית ${Math.round(a.ang)}° · גובה ${a.h} מ'`)});
- const n=A.length,g=A.filter(a=>OUTC(a.s)=='good').length;
- txt(svg,X(4),Y(-0.6),`${g} נקודות מתוך ${n} התקפות שחצו את הרשת (${pct(g,n)}%)`,{'text-anchor':'middle','font-size':14,fill:C.fg});
+
+let D;const LEG=[];
+fetch('data.json').then(r=>r.json()).then(d=>{D=d;init();render()}).catch(e=>{document.getElementById('facts').innerHTML=`<div class="empty">הנתונים לא נטענו: ${e.message}</div>`});
+
+function init(){
+  const R=D.rallies, s1=R.filter(r=>r.s==1).at(-1), s2=R.at(-1);
+  const sI=(s1.i>s1.b)+(s2.i>s2.b);
+  document.getElementById('bI').textContent=sI; document.getElementById('bB').textContent=2-sI;
+  document.getElementById('bSets').textContent=`${s1.i}–${s1.b} · ${s2.i}–${s2.b}`;
+  const pc=document.getElementById('players');
+  PL.forEach(p=>{const b=document.createElement('button');b.className='chip';b.setAttribute('aria-pressed','true');b.innerHTML=`<span class="dot" style="background:${TC[TM[p]]}"></span>${NM[p]}`;
+    b.onclick=()=>{state.players.has(p)?state.players.delete(p):state.players.add(p);b.setAttribute('aria-pressed',state.players.has(p));render()};pc.appendChild(b)});
+  LAYERS.forEach(l=>{const host=document.getElementById(l.where=='court'?'layersCourt':'layersEdge');const b=document.createElement('button');b.className='chip';b.id='L_'+l.id;b.textContent=l.label;b.setAttribute('aria-pressed',state.layers.has(l.id));
+    b.onclick=()=>{state.layers.has(l.id)?state.layers.delete(l.id):state.layers.add(l.id);b.setAttribute('aria-pressed',state.layers.has(l.id));render()};host.appendChild(b)});
 }
-const fbtn={all:'fA',ISR:'fI',BRA:'fB'};
-Object.entries(fbtn).forEach(([k,id])=>document.getElementById(id).addEventListener('click',()=>{Object.values(fbtn).forEach(i=>document.getElementById(i).setAttribute('aria-pressed',i==id));drawAttacks(k)}));
-drawAttacks('all');
-/* fan: angle bins per team */
-{const svg=document.getElementById('fan');const bins=[[0,15,'בקו'],[15,30,''],[30,50,'אלכסון'],[50,90,'חד']];
- [['ISR',95],['BRA',265]].forEach(([tm,cx])=>{const cy=170,R0=22,Rm=120;
-   const A=D.attacks.filter(a=>a.tm==tm);const mx=Math.max(...bins.map(b=>A.filter(a=>a.ang>=b[0]&&a.ang<b[1]).length));
-   bins.forEach(b=>{const S=A.filter(a=>a.ang>=b[0]&&a.ang<b[1]);const g=S.filter(a=>OUTC(a.s)=='good').length;
-     const r=R0+(Rm-R0)*0.62*S.length/mx;
-     [-1,1].forEach(sg=>{const a0=(-90+sg*b[0])*Math.PI/180,a1=(-90+sg*b[1])*Math.PI/180;
-       const p=`M${cx+R0*Math.cos(a0)},${cy+R0*Math.sin(a0)} L${cx+r*Math.cos(a0)},${cy+r*Math.sin(a0)} A${r},${r} 0 0 ${sg>0?1:0} ${cx+r*Math.cos(a1)},${cy+r*Math.sin(a1)} L${cx+R0*Math.cos(a1)},${cy+R0*Math.sin(a1)} A${R0},${R0} 0 0 ${sg>0?0:1} ${cx+R0*Math.cos(a0)},${cy+R0*Math.sin(a0)}Z`;
-       const w=el('path',{d:p,fill:TC[tm],opacity:.25+.75*(S.length?g/S.length:0),stroke:C.panel,'stroke-width':2},svg);
-       hover(w,`${tm=='ISR'?'ישראל':'ברזיל'} · זווית ${b[0]}–${b[1]}°<br>${g} נקודות מתוך ${S.length} (${pct(g,S.length)}%)`)});
-     const am=(-90+(b[0]+b[1])/2)*Math.PI/180;txt(svg,cx+(r+12)*Math.cos(am),cy+(r+12)*Math.sin(am)+4,pct(g,S.length)+'%',{'text-anchor':'middle','font-size':11,fill:C.fg,'font-family':'IBM Plex Mono'})});
-   el('line',{x1:cx,y1:cy,x2:cx,y2:cy-128,stroke:C.line,'stroke-dasharray':'3 3'},svg);
-   txt(svg,cx,cy+26,tm=='ISR'?'ישראל':'ברזיל',{'text-anchor':'middle','font-size':13,fill:TC[tm],'font-weight':700});
- });
- txt(svg,180,18,'מקווקו = במקביל לקו הצד',{'text-anchor':'middle','font-size':10.5,fill:C.muted});
+
+function subChips(){
+  const lab=document.getElementById('subLabel'),host=document.getElementById('subChips');host.innerHTML='';
+  const items=[];
+  if(state.layers.has('touches'))Object.entries(ACT).forEach(([k,v])=>items.push([v,state.touchAct,k]));
+  if(state.layers.has('attacks'))[['good','התקפה שהביאה נקודה'],['neutral','הוחזרה'],['bad','טעות']].forEach(([k,v])=>items.push([v,state.attRes,k]));
+  lab.hidden=host.hidden=!items.length;
+  items.forEach(([label,set,k])=>{const b=document.createElement('button');b.className='chip';b.textContent=label;b.setAttribute('aria-pressed',set.has(k));
+    b.onclick=()=>{set.has(k)?set.delete(k):set.add(k);render()};host.appendChild(b)});
 }
-/* parts: kill rate by body part per team, as stacked rows */
-{const svg=document.getElementById('parts');const P=[['foot','רגל'],['head','ראש']];let y=30;
- [['ISR'],['BRA']].forEach(([tm])=>{P.forEach(([b,lab])=>{const A=D.attacks.filter(a=>a.tm==tm&&a.b==b);const g=A.filter(a=>OUTC(a.s)=='good').length,e=A.filter(a=>OUTC(a.s)=='bad').length;
-   const W=210,x0=120,u=W/45;
-   txt(svg,x0-10,y+13,`${tm=='ISR'?'ישראל':'ברזיל'} · ${lab}`,{'text-anchor':'end','font-size':12,fill:C.fg});
-   let x=x0;[[g,C.good],[A.length-g-e,C.neutral],[e,C.bad]].forEach(([n,c])=>{if(n){el('rect',{x,y,width:n*u-2,height:18,fill:c,rx:2},svg);x+=n*u}});
-   txt(svg,x+6,y+13,`${g}/${A.length}`,{'font-size':12,fill:C.muted,'font-family':'IBM Plex Mono'});y+=40})});
+
+function drawSand(){
+  el('rect',{x:0,y:0,width:1060,height:640,fill:C.sand},svg);
+  const g=el('g',{opacity:.35},svg);
+  for(let i=0;i<26;i++){const y=20+i*24;el('path',{d:`M0 ${y} Q 265 ${y+(i%2?8:-8)} 530 ${y} T 1060 ${y}`,fill:'none',stroke:i%3?C.hi:C.lo,'stroke-width':1.2},g)}
+  el('rect',{x:X(0),y:Y(0),width:16*S,height:8*S,fill:'none',stroke:C.tape,'stroke-width':5},svg);
 }
-/* ---------------- side view ---------------- */
-{const svg=document.getElementById('side');const L=30,Rr=730,B=270,T=20,hmax=5.2;const X=x=>L+(Rr-L)*(x+0.5)/17,Yh=h=>B-(B-T)*h/hmax;
- el('rect',{x:0,y:0,width:760,height:300,fill:C.sand,rx:8},svg);
- el('rect',{x:X(0),y:B,width:X(16)-X(0),height:8,fill:C['sand-2']},svg);
- [1,2,3,4,5].forEach(h=>{el('line',{x1:L,y1:Yh(h),x2:Rr,y2:Yh(h),stroke:C.grain,'stroke-width':1},svg);txt(svg,L-6,Yh(h)+4,h,{'text-anchor':'end','font-size':10,fill:C.faint,'font-family':'IBM Plex Mono'})});
- D.flights.forEach(f=>{el('polyline',{points:f.pts.map(p=>X(p[0])+','+Yh(Math.max(0,p[1]))).join(' '),fill:'none',stroke:f.dir>0?C.isr:C.bra,'stroke-width':1,opacity:.22},svg)});
- el('line',{x1:X(8),y1:B,x2:X(8),y2:Yh(2.2),stroke:C.net,'stroke-width':3},svg);
- // crossing heights strip on the post
- const hs=D.net_cross.map(c=>c.h).sort((a,b)=>a-b);const med=hs[Math.floor(hs.length/2)];
- document.getElementById('netMed').textContent=med.toFixed(2);
- hs.forEach(h=>el('line',{x1:X(8)-9,x2:X(8)+9,y1:Yh(h),y2:Yh(h),stroke:C.fg,'stroke-width':1.2,opacity:.55},svg));
- el('line',{x1:X(8)-16,x2:X(8)+16,y1:Yh(med),y2:Yh(med),stroke:C.good,'stroke-width':3},svg);
- txt(svg,X(8)+20,Yh(med)+4,`חציון ${med.toFixed(2)} מ'`,{'font-size':12,fill:C.good});
- txt(svg,X(8)+20,Yh(2.2)+14,"רשת 2.20",{'font-size':11,fill:C.muted});
- const low=hs.filter(h=>h<2.4).length;txt(svg,X(8)-20,Yh(2.2)+14,`${low} מעברים בפחות מ-20 ס"מ מעל הרשת`,{'text-anchor':'end','font-size':11,fill:C.muted});
- txt(svg,X(2),B+24,'←  מעופים לכיוון צד שמאל',{'font-size':11,fill:C.bra,'text-anchor':'middle'});txt(svg,X(14),B+24,'מעופים לכיוון צד ימין  →',{'font-size':11,fill:C.isr,'text-anchor':'middle'});
+function drawNet(){
+  el('line',{x1:X(8),y1:Y(-0.7),x2:X(8),y2:Y(8.7),stroke:C.net,'stroke-width':4},svg);
+  el('line',{x1:X(8),y1:Y(-0.7),x2:X(8),y2:Y(8.7),stroke:C.post,'stroke-width':1,'stroke-dasharray':'2 4'},svg);
+  [-0.7,8.7].forEach(y=>{el('circle',{cx:X(8),cy:Y(y),r:9,fill:C.post,stroke:C.net,'stroke-width':2},svg)});
+  txt(svg,X(4),Y(-0.35),'ישראל',{'text-anchor':'middle','font-size':16,'font-weight':700,fill:C.isr,'font-family':'Rubik'});
+  txt(svg,X(12),Y(-0.35),'ברזיל',{'text-anchor':'middle','font-size':16,'font-weight':700,fill:C.bra,'font-family':'Rubik'});
 }
-/* ---------------- partner gap ---------------- */
-{const svg=document.getElementById('gap');const L=120,Rr=730,X=d=>L+(Rr-L)*(d-1)/5.5;
- el('rect',{x:0,y:0,width:760,height:250,fill:C.sand,rx:8},svg);
- [1.5,2,2.5,3,3.5,4,4.5,5,5.5,6].forEach(d=>{el('line',{x1:X(d),y1:24,x2:X(d),y2:214,stroke:C.grain},svg);txt(svg,X(d),232,d+" מ'",{'text-anchor':'middle','font-size':10.5,fill:C.faint,'font-family':'IBM Plex Mono'})});
- el('rect',{x:X(3.5),y:24,width:X(6.5)-X(3.5),height:190,fill:C.bad,opacity:.08},svg);
- [['ISR',70],['BRA',165]].forEach(([tm,cy])=>{const S=D.spacing.filter(s=>s.tm==tm).sort((a,b)=>a.d-b.d);const used={};
-   S.forEach(s=>{const b=Math.round(X(Math.min(6.4,s.d))/9);used[b]=(used[b]||0)+1;const k=used[b];const dy=(k%2?1:-1)*Math.floor(k/2)*9;
-     const c=el('circle',{cx:X(Math.min(6.4,s.d)),cy:cy+dy,r:4,fill:s.c?C.bad:C.neutral},svg);hover(c,`${tm=='ISR'?'ישראל':'ברזיל'} מגינה · מרווח ${s.d} מ'<br>${s.c?'ספגו את הנקודה':'לא ספגו'}`)});
-   const far=S.filter(s=>s.d>3.5),near=S.filter(s=>s.d<=3.5);
-   txt(svg,L-12,cy-6,tm=='ISR'?'ישראל':'ברזיל',{'text-anchor':'end','font-size':14,fill:TC[tm],'font-weight':700});
-   txt(svg,L-12,cy+12,`מעל 3.5 מ׳ – ${pct(far.filter(s=>s.c).length,far.length)}% ספיגה`,{'text-anchor':'end','font-size':10.5,fill:C.muted});
-   txt(svg,L-12,cy+26,`עד 3.5 מ׳ – ${pct(near.filter(s=>s.c).length,near.length)}%`,{'text-anchor':'end','font-size':10.5,fill:C.muted});
- });
- const fI=D.spacing.filter(s=>s.tm=='ISR'&&s.d>3.5);document.getElementById('gapBig').textContent=pct(fI.filter(s=>s.c).length,fI.length)+'%';
- txt(svg,X(5),40,'מעל 3.5 מ\'',{'text-anchor':'middle','font-size':12,fill:C.bad});
+const on=id=>state.layers.has(id);
+const pon=p=>state.players.has(p);
+
+function layerHeat(){const H=D.heatz;const g=el('g',{style:'mix-blend-mode:multiply'},svg);
+  PL.filter(pon).forEach(p=>{const P=H.players[p];P.grid.forEach((row,j)=>row.forEach((v,i)=>{if(v>4)el('rect',{x:X(H.x0+i*H.cell),y:Y(H.y0+j*H.cell),width:H.cell*S+.5,height:H.cell*S+.5,fill:TC[TM[p]],opacity:Math.min(.75,v/99*0.9)},g)}))});}
+function layerSpots(){PL.filter(pon).forEach(p=>{const P=D.heatz.players[p];const c=TC[TM[p]];
+  el('ellipse',{cx:X(P.mx),cy:Y(P.my),rx:P.sx*S,ry:P.sy*S,fill:'none',stroke:c,'stroke-width':2,'stroke-dasharray':'6 4'},svg);
+  const m=el('circle',{cx:X(P.mx),cy:Y(P.my),r:15,fill:c,stroke:C.post,'stroke-width':2.5},svg);
+  txt(svg,X(P.mx),Y(P.my)+5,IN[p],{'text-anchor':'middle','font-size':12,'font-weight':700,fill:'#fff','font-family':'IBM Plex Mono','pointer-events':'none'});
+  hover(m,`${NM[p]} · מיקום ממוצע בזמן משחק<br>פיזור: ±${P.sx} מ׳ לאורך, ±${P.sy} מ׳ לרוחב`)})}
+function layerLines(){PL.filter(pon).forEach(p=>{const P=D.heatz.players[p],L=D.lines[p];const left=TM[p]=='ISR';
+  const arrows=[[left?0:16,P.my,L.base,'קו הבסיס'],[8,P.my,L.net,'הרשת'],[P.mx,0,L.far,'קו הצד הרחוק'],[P.mx,8,L.near,'קו הצד הקרוב']];
+  arrows.forEach(([x,y,d,lab])=>{el('line',{x1:X(P.mx),y1:Y(P.my),x2:X(x),y2:Y(y),stroke:C.ink,'stroke-width':1.3,'stroke-dasharray':'2 3'},svg);
+    el('circle',{cx:X(x),cy:Y(y),r:3,fill:C.ink},svg);
+    const mx=(X(P.mx)+X(x))/2,my=(Y(P.my)+Y(y))/2;
+    const r=el('rect',{x:mx-18,y:my-9,width:36,height:17,rx:3,fill:C.table,stroke:TC[TM[p]],'stroke-width':1},svg);
+    txt(svg,mx,my+4,d.toFixed(1),{'text-anchor':'middle','font-size':11,'font-family':'IBM Plex Mono',fill:C.ink,'pointer-events':'none'});
+    hover(r,`${NM[p]} ← ${lab}: ${d} מ׳ (חציון בזמן משחק)`)});})}
+function layerShoulders(){PL.filter(pon).forEach(p=>{const P=D.heatz.players[p],R=D.rose[p].shoulders;const toNet=TM[p]=='ISR'?0:180;const c=TC[TM[p]];
+  const cx=X(P.mx),cy=Y(P.my),Rm=62,mx=Math.max(...R.bins);
+  el('circle',{cx,cy,r:Rm,fill:C.table,opacity:.55,stroke:C.lo},svg);
+  R.bins.forEach((v,i)=>{const a0=(toNet+(-180+i*15))*Math.PI/180,a1=(toNet+(-180+(i+1)*15))*Math.PI/180,r=Math.sqrt(v/mx)*Rm;
+    el('path',{d:`M${cx},${cy} L${cx+r*Math.cos(a0)},${cy+r*Math.sin(a0)} A${r},${r} 0 0 1 ${cx+r*Math.cos(a1)},${cy+r*Math.sin(a1)}Z`,fill:c,opacity:.85,stroke:C.table,'stroke-width':.8},svg)});
+  const hit=el('circle',{cx,cy,r:Rm,fill:'transparent'},svg);hover(hit,`${NM[p]} · כיוון הכתפיים (העלה הארוך = הכיוון הנפוץ)<br>מול הרשת ${R.square}% · בצד ${R.side}% · גב לרשת ${R.back}%`)})}
+function layerTouches(){
+  D.touchz.filter(t=>pon(t.p)&&state.touchAct.has(t.a)).forEach(t=>{const c=TC[TM[t.p]],x=X(t.x),y=Y(t.y);let m;
+    if(t.b=='foot')m=el('path',{d:`M${x},${y-6} L${x+5.5},${y+4} L${x-5.5},${y+4}Z`,fill:c,stroke:C.post,'stroke-width':1},svg);
+    else if(t.b=='chest')m=el('rect',{x:x-4.5,y:y-4.5,width:9,height:9,fill:c,stroke:C.post,'stroke-width':1},svg);
+    else m=el('circle',{cx:x,cy:y,r:4.8,fill:c,stroke:C.post,'stroke-width':1},svg);
+    hover(m,`${NM[t.p]} · ${ACT[t.a]} · ${PART[t.b]||t.b}<br>גובה הכדור ${t.h} מ׳`)});
+  LEG.push('מגעים: ▲ רגל · ■ חזה · ● ראש או כתף');}
+function layerAttacks(){const defs=el('defs',{},svg);
+  ['ISR','BRA'].forEach(tm=>{const m=el('marker',{id:'ar'+tm,viewBox:'0 0 10 10',refX:8,refY:5,markerWidth:5,markerHeight:5,orient:'auto-start-reverse'},defs);el('path',{d:'M0,0 L10,5 L0,10z',fill:TC[tm]},m)});
+  D.attackz.filter(a=>pon(a.p)&&state.attRes.has(OUTC(a.s))).forEach(a=>{const k=OUTC(a.s),c=TC[a.tm];const x0=X(a.x0),y0=Y(a.y0),x1=X(a.x1),y1=Y(a.y1);
+    const mx=(x0+x1)/2,my=(y0+y1)/2-Math.min(70,Math.hypot(x1-x0,y1-y0)*.2);const d=`M${x0},${y0} Q${mx},${my} ${x1},${y1}`;
+    el('path',{d,fill:'none',stroke:c,'stroke-width':k=='good'?3:1.4,'stroke-dasharray':k=='neutral'?'5 4':'',opacity:k=='neutral'?.55:.95,'marker-end':k=='bad'?'':`url(#ar${a.tm})`},svg);
+    if(k=='good')el('circle',{cx:x1,cy:y1,r:6,fill:c,stroke:C.post,'stroke-width':2},svg);
+    if(k=='bad')el('path',{d:`M${x1-6},${y1-6}L${x1+6},${y1+6}M${x1+6},${y1-6}L${x1-6},${y1+6}`,stroke:C.hit,'stroke-width':3},svg);
+    const hit=el('path',{d,fill:'none',stroke:'transparent','stroke-width':12},svg);
+    hover(hit,`${NM[a.p]} · ${PART[a.b]||a.b} · ${({kill:'נקודה',failed_defence:'נקודה – ההגנה נגעה ונכשלה',returned:'הוחזרה',error:'טעות'})[a.s]}<br>זווית ${Math.round(a.ang)}° מהקו · גובה מגע ${a.h} מ׳`)});
+  LEG.push('התקפות: קו עבה ועיגול = נקודה · מקווקו = הוחזרה · ✕ אדום = טעות');}
+function layerLandings(){D.landz.forEach(l=>{const c=TC[l.w];const inCourt=l.k=='in_court';
+  const m=el('circle',{cx:X(l.x),cy:Y(l.y),r:9,fill:inCourt?c:C.table,stroke:c,'stroke-width':3},svg);
+  txt(svg,X(l.x),Y(l.y)+3.5,l.r,{'text-anchor':'middle','font-size':9,'font-weight':700,fill:inCourt?'#fff':c,'font-family':'IBM Plex Mono','pointer-events':'none'});
+  hover(m,`נקודה ${l.r} · ${l.w=='ISR'?'ישראל':'ברזיל'} זכתה<br>${inCourt?'הכדור נחת במגרש':l.k=='out'?'הכדור יצא':'ברשת'} · נגיעה אחרונה: ${NM[l.p]||'-'} (${PART[l.b]||l.b||'-'})`)});
+  LEG.push('סיום נקודה: צבע = מי זכה · מלא = נחת בפנים · חלול = יצא · המספר = מספר הנקודה');}
+function layerGap(){D.spacez.forEach(s=>{const c=s.c?C.hit:C.ink3;
+  el('line',{x1:X(s.x1),y1:Y(s.y1),x2:X(s.x2),y2:Y(s.y2),stroke:c,'stroke-width':s.c?2.4:1.2,opacity:s.c?.9:.5,'stroke-dasharray':s.c?'':'3 3'},svg);
+  [[s.x1,s.y1],[s.x2,s.y2]].forEach(([x,y])=>el('circle',{cx:X(x),cy:Y(y),r:3,fill:TC[s.tm]},svg));
+  if(s.c){const mx=X((s.x1+s.x2)/2),my=Y((s.y1+s.y2)/2);el('path',{d:`M${mx-4},${my-4}L${mx+4},${my+4}M${mx+4},${my-4}L${mx-4},${my+4}`,stroke:C.hit,'stroke-width':2},svg)}
+  const hit=el('line',{x1:X(s.x1),y1:Y(s.y1),x2:X(s.x2),y2:Y(s.y2),stroke:'transparent','stroke-width':10},svg);
+  hover(hit,`${s.tm=='ISR'?'ישראל':'ברזיל'} מגינה · מרווח ${s.d} מ׳<br>${s.c?'ספגו את הנקודה':'לא ספגו'}`)});
+  LEG.push('מרווח: קו בין שני המגינים ברגע ההתקפה של היריב · אדום עם ✕ = ספגו');}
+function layerNet(){
+  D.netz.forEach(n=>{const y=Y(n.y),over=Math.max(0,n.h-2.2),len=8+over*30,dir=n.fr=='ISR'?1:-1;
+    const t=el('line',{x1:X(8),y1:y,x2:X(8)+dir*len,y2:y,stroke:TC[n.fr],'stroke-width':2.2,opacity:.8,'stroke-linecap':'round'},svg);
+    hover(t,`${n.fr=='ISR'?'ישראל':'ברזיל'} מעבירה · ${n.h} מ׳ מעל החול<br>${(n.h>=2.2?'+':'')+Math.round((n.h-2.2)*100)} ס״מ מעל הרשת`)});
+  LEG.push('מעברי רשת: קו לכל כדור, בצד שממנו נבעט; אורכו = הגובה מעל הרשת');}
+function layerSideout(){const R=D.rallies;
+  [['ISR',X(-1.25)],['BRA',X(17.25)]].forEach(([tm,cx])=>{const rec=R.filter(r=>r.sv!=tm);const cols=2;
+    rec.forEach((r,i)=>{const x=cx+((i%cols)-0.5)*22,y=Y(0.15)+Math.floor(i/cols)*22.5;const won=r.w==tm;
+      const c=el('circle',{cx:x,cy:y,r:8,fill:won?TC[tm]:C.table,stroke:TC[tm],'stroke-width':2},svg);
+      hover(c,`נקודה ${r.r} · ${tm=='ISR'?'ישראל':'ברזיל'} מקבלת הגשה<br>${won?'זכתה בנקודה':'הפסידה את הנקודה'}`)});
+    const so=D.sideout[tm];txt(svg,cx,Y(-0.35),pct(so.sideout,so.receive)+'%',{'text-anchor':'middle','font-size':17,'font-weight':900,fill:TC[tm],'font-family':'Rubik'});
+    txt(svg,cx,Y(-0.85),'קבלה',{'text-anchor':'middle','font-size':11,fill:C.ink2});
+  });}
+function layerMomentum(){const R=D.rallies;const top=Y(8)+36,bot=630,M=(top+bot)/2;let c=0,mx=1;R.forEach(r=>{c+=r.w=='ISR'?1:-1;mx=Math.max(mx,Math.abs(c))});
+  const k=(bot-top)/2/mx,xs=i=>X(0)+16*S*i/R.length;let d=0;const pts=[[xs(0),M]];R.forEach((r,i)=>{d+=r.w=='ISR'?1:-1;pts.push([xs(i+1),M-d*k])});
+  el('line',{x1:X(0),y1:M,x2:X(16),y2:M,stroke:C.net,'stroke-width':1.5,'stroke-dasharray':'2 3'},svg);
+  const P=pts.map(p=>p.join(',')).join(' ');
+  el('polyline',{points:P,fill:'none',stroke:C.ink,'stroke-width':3.4,'stroke-linejoin':'round','stroke-linecap':'round'},svg);
+  el('polyline',{points:P,fill:'none',stroke:C.table,'stroke-width':1.2,'stroke-dasharray':'1 5','stroke-linecap':'round'},svg);
+  const sb=R.findIndex(r=>r.s==2);el('line',{x1:xs(sb),y1:top,x2:xs(sb),y2:bot,stroke:C.ink3,'stroke-dasharray':'4 4'},svg);
+  txt(svg,X(0)-8,top+10,'ישראל מובילה',{'text-anchor':'end','font-size':11,fill:C.isr});txt(svg,X(0)-8,bot-2,'ברזיל מובילה',{'text-anchor':'end','font-size':11,fill:C.bra});
+  txt(svg,xs(sb)+5,top+10,'מערכה 2',{'font-size':11,fill:C.ink2});
+  const lo=pts.reduce((a,p,i)=>p[1]>pts[a][1]?i:a,0);txt(svg,pts[lo][0]+8,pts[lo][1]+2,'−'+Math.round((pts[lo][1]-M)/k),{'font-size':12,'font-weight':700,fill:C.bra});
+  R.forEach((r,i)=>{const h=el('rect',{x:xs(i),y:top,width:16*S/R.length,height:bot-top,fill:'transparent'},svg);hover(h,`נקודה ${r.r} · ${r.w=='ISR'?'ישראל':'ברזיל'} זכתה · ${r.i}–${r.b}<br>${r.d} שנ׳ · הגישה ${r.sv=='ISR'?'ישראל':'ברזיל'}`)});}
+function layerEngine(){PL.filter(pon).forEach(p=>{const P=D.heatz.players[p],m=D.move[p];const x=X(P.mx),y=Y(P.my)-P.sy*S-6;
+  el('rect',{x:x-70,y:y-30,width:140,height:34,rx:6,fill:C.ink,opacity:.9},svg);
+  txt(svg,x,y-15,`${m.dist} מ׳ · ${m.top_kmh} קמ״ש`,{'text-anchor':'middle','font-size':12,fill:C.table,'font-family':'IBM Plex Mono'});
+  txt(svg,x,y-1,`ריצה לנקודה: ניצחון ${m.won_dist} · הפסד ${m.lost_dist}`,{'text-anchor':'middle','font-size':10,fill:'#cbbfa8'});
+  el('path',{d:`M${x-6},${y+4} L${x},${y+12} L${x+6},${y+4}Z`,fill:C.ink,opacity:.9},svg)})}
+
+function facts(){const F=[];const so=D.sideout;
+  const at=tm=>{const A=D.attackz.filter(a=>a.tm==tm);return [A.filter(a=>OUTC(a.s)=='good').length,A.length]};
+  const add=(b,t,c)=>F.push(`<div class="fact"><b style="color:${c||C.ink}" dir="ltr">${b}</b><span>${t}</span></div>`);
+  const two=(i,b)=>`<span style="color:${C.isr}">${i}</span> · <span style="color:${C.bra}">${b}</span>`;
+  if(on('sideout'))add(two(pct(so.ISR.sideout,so.ISR.receive)+'%',pct(so.BRA.sideout,so.BRA.receive)+'%'),'זכייה בנקודה כשמקבלים הגשה (ישראל · ברזיל). כאן הוכרע המשחק.');
+  if(on('momentum'))add('−17','השפל של ישראל. אחרי פתיחה צמודה ברזיל ברחה כבר באמצע המערכה הראשונה.',C.bra);
+  if(on('attacks')){const [gI,nI]=at('ISR'),[gB,nB]=at('BRA');add(two(pct(gI,nI)+'%',pct(gB,nB)+'%'),'התקפות שהביאו נקודה (ישראל · ברזיל).');
+    const line=D.attackz.filter(a=>a.tm=='ISR'&&a.ang<15);add(pct(line.filter(a=>OUTC(a.s)=='good').length,line.length)+'%','ישראל בבעיטה ישרה בקו: הבעיטה הנפוצה שלה, והכי פחות מסיימת.',C.hit)}
+  if(on('gap')){const f=D.spacez.filter(s=>s.tm=='ISR'&&s.d>3.5),n=D.spacez.filter(s=>s.tm=='ISR'&&s.d<=3.5);
+    add(`${pct(f.filter(s=>s.c).length,f.length)}%`,`ספיגה של ישראל כשהמרווח מעל 3.5 מ׳ (${pct(n.filter(s=>s.c).length,n.length)}% כשקרובים). לישראל ${f.length} הגנות כאלה, לברזיל ${D.spacez.filter(s=>s.tm=='BRA'&&s.d>3.5).length}.`,C.hit)}
+  if(on('net')){const hs=D.netz.map(n=>n.h).sort((a,b)=>a-b);add(hs[hs.length>>1].toFixed(2)+' מ׳','הגובה החציוני שבו הכדור חוצה את הרשת (הרשת 2.20).')}
+  if(on('landings')){const L=D.landz;add(L.filter(l=>l.w=='BRA'&&l.k=='in_court').length,'נקודות שברזיל זכתה בהן כשהכדור נחת בתוך המגרש של ישראל.',C.bra)}
+  if(on('touches')){const ch=D.chest;add(two(ch.Maor_Haas.won+'%',ch.Franklin.won+'%'),'נקודות שזכו אחרי קבלה בחזה (מאור · פרנקלין).')}
+  if(on('shoulders'))add('18–27%','מהזמן השחקנים עומדים עם הכתפיים מול הרשת. רוב הזמן הם בחצי סיבוב לצד.');
+  if(on('lines')){const r=D.lines.Ron_Ben_Ishay;add(r.net.toFixed(1)+' מ׳',`רון הכי קרוב לרשת מכולם, והכי רחוק מקו הבסיס (${r.base.toFixed(1)} מ׳).`,C.isr)}
+  if(on('engine')){const m=D.move.Maor_Haas;add(`${m.lost_dist} / ${m.won_dist}`,'מטרים שמאור רץ בנקודה שהפסידו / שניצחו. ישראל רצה יותר כשהיא מפסידה – רודפת אחרי הכדור.',C.isr)}
+  if(on('heat')||on('spots'))add('25–28 מ״ר','השטח שכל שחקן מכסה ב-90% מהזמן. פרנקלין מכסה הכי הרבה.');
+  document.getElementById('facts').innerHTML=F.length?F.join(''):'<div class="empty">הדליקו שכבה כדי לראות מה היא מספרת.</div>';
 }
-/* ---------------- formation ---------------- */
-{const svg=document.getElementById('form');const F=D.formation;const shapes={both_net:[[6.2,2.5],[6.2,5.5]],front_back:[[6.2,4],[2.8,4]],side_side:[[4.2,2],[4.2,6]]};
- const lab={both_net:'שניהם ברשת',front_back:'אחד מקדימה, אחד מאחור',side_side:'זה לצד זה'};
- Object.keys(shapes).forEach((f,i)=>{const ox=20+i*250,s=13;const g=el('g',{},svg);
-   el('rect',{x:ox,y:20,width:8*s+12,height:8*s,fill:C['sand-2'],stroke:C.line,'stroke-width':1.5},g);
-   el('line',{x1:ox+8*s+12,y1:14,x2:ox+8*s+12,y2:20+8*s+6,stroke:C.net,'stroke-width':3},g);
-   shapes[f].forEach(([x,y])=>el('circle',{cx:ox+x*s+12,cy:20+y*s,r:6,fill:C.fg},g));
-   txt(svg,ox+60,20+8*s+22,lab[f],{'text-anchor':'middle','font-size':13,fill:C.fg});
-   ['ISR','BRA'].forEach((tm,j)=>{const r=F.find(q=>q.team==tm&&q.formation==f);const n=r.won+r.lost,y=20+8*s+44+j*34;
-     txt(svg,ox+8*s+12+108,y+12,tm=='ISR'?'ישראל':'ברזיל',{'text-anchor':'end','font-size':12,fill:TC[tm]});
-     const w=110;el('rect',{x:ox,y,width:w,height:16,fill:C.grain,rx:3},svg);el('rect',{x:ox,y,width:w*r.won/n,height:16,fill:C.good,rx:3},svg);
-     txt(svg,ox+w+6,y+12,`${r.won}–${r.lost}`,{'font-size':12,fill:C.muted,'font-family':'IBM Plex Mono'})});
- });
-}
-/* ---------------- heatmaps ---------------- */
-{const host=document.getElementById('heat');const H=D.heat;
- PL.forEach(p=>{const card=document.createElement('div');card.className='card';
-   const L=D.lines[p];card.innerHTML=`<div class="pname"><span class="${TM[p].toLowerCase()}">${NM[p]}</span><span class="mono" style="color:var(--muted);font-size:12px">רשת ${L.net.toFixed(1)} · בסיס ${L.base.toFixed(1)}</span></div>`;
-   const svg=el('svg',{viewBox:'0 0 300 300'});card.appendChild(svg);host.appendChild(card);
-   const s=29,{X,Y}=court(svg,10+29,4+29,s,{half:true});const P=H.players[p];
-   P.grid.forEach((row,j)=>row.forEach((v,i)=>{if(v>3)el('rect',{x:X(H.x0+i*H.cell),y:Y(H.y0+j*H.cell),width:H.cell*s,height:H.cell*s,fill:TC[TM[p]],opacity:Math.min(.95,v/99*1.1)},svg)}));
-   el('ellipse',{cx:X(P.mx),cy:Y(P.my),rx:P.sx*s,ry:P.sy*s,fill:'none',stroke:C.fg,'stroke-width':1.5,'stroke-dasharray':'4 3'},svg);
-   el('circle',{cx:X(P.mx),cy:Y(P.my),r:4,fill:C.fg},svg);
-   const m=D.move[p];txt(svg,X(4),Y(8.75),`כיסוי ${m.area90} מ"ר`,{'text-anchor':'middle','font-size':12,fill:C.muted});
- });
-}
-/* ---------------- roses ---------------- */
-{const host=document.getElementById('rose');
- PL.forEach(p=>{const R=D.rose[p].shoulders;const card=document.createElement('div');card.className='card';
-   card.innerHTML=`<div class="pname"><span class="${TM[p].toLowerCase()}">${NM[p]}</span></div>`;
-   const svg=el('svg',{viewBox:'0 0 220 236'});card.appendChild(svg);host.appendChild(card);
-   const cx=110,cy=112,Rm=92,mx=Math.max(...R.bins);
-   [0.33,0.66,1].forEach(f=>el('circle',{cx,cy,r:Rm*f,fill:'none',stroke:C.grain},svg));
-   el('line',{x1:cx,y1:cy-Rm-6,x2:cx,y2:cy+Rm+6,stroke:C.grain},svg);el('line',{x1:cx-Rm-6,y1:cy,x2:cx+Rm+6,y2:cy,stroke:C.grain},svg);
-   el('rect',{x:cx-30,y:cy-Rm-14,width:60,height:5,fill:C.net,rx:2},svg);
-   R.bins.forEach((v,i)=>{const a0=(-180+i*15-90)*Math.PI/180,a1=(-180+(i+1)*15-90)*Math.PI/180,r=Math.sqrt(v/mx)*Rm;
-     el('path',{d:`M${cx},${cy} L${cx+r*Math.cos(a0)},${cy+r*Math.sin(a0)} A${r},${r} 0 0 1 ${cx+r*Math.cos(a1)},${cy+r*Math.sin(a1)}Z`,fill:TC[TM[p]],opacity:.85,stroke:C.panel,'stroke-width':1},svg)});
-   txt(svg,cx,230,`מול הרשת ${R.square}% · בצד ${R.side}% · גב ${R.back}%`,{'text-anchor':'middle','font-size':11,fill:C.muted});
- });
-}
-/* ---------------- attack heights ---------------- */
-{const svg=document.getElementById('heights');const B=262,T=18,hmax=3.4,Yh=h=>B-(B-T)*h/hmax;
- el('rect',{x:0,y:0,width:760,height:300,fill:C.sand,rx:8},svg);
- [0.5,1,1.5,2,2.5,3].forEach(h=>{el('line',{x1:40,y1:Yh(h),x2:740,y2:Yh(h),stroke:C.grain},svg);txt(svg,34,Yh(h)+4,h,{'text-anchor':'end','font-size':10,fill:C.faint,'font-family':'IBM Plex Mono'})});
- el('line',{x1:40,y1:Yh(2.2),x2:740,y2:Yh(2.2),stroke:C.net,'stroke-width':2},svg);
- PL.forEach((p,i)=>{const cx=130+i*170;const A=D.attacks.filter(a=>a.p==p&&a.h>0).sort((a,b)=>a.h-b.h);
-   el('line',{x1:cx-60,x2:cx+60,y1:Yh(D.stature[p]),y2:Yh(D.stature[p]),stroke:C.fg,'stroke-dasharray':'4 3',opacity:.6},svg);
-   const used={};A.forEach(a=>{const b=Math.round(Yh(a.h)/7);used[b]=(used[b]||0)+1;const k=used[b];const dx=(k%2?1:-1)*Math.floor(k/2)*8;
-     const c=el('circle',{cx:cx+dx,cy:Yh(a.h),r:3.6,fill:C[OUTC(a.s)]},svg);hover(c,`${NM[p]} · ${a.h} מ' · ${({foot:'רגל',head:'ראש',chest:'חזה',shoulder:'כתף'})[a.b]||a.b}`)});
-   const hi=A.filter(a=>a.h>=2.4),lo=A.filter(a=>a.h<2.4);
-   txt(svg,cx,B+18,NM[p],{'text-anchor':'middle','font-size':13,fill:TC[TM[p]],'font-weight':700});
-   txt(svg,cx,B+33,`מעל 2.4 מ': ${pct(hi.filter(a=>OUTC(a.s)=='good').length,hi.length)}% נקודה`,{'text-anchor':'middle','font-size':10.5,fill:C.muted});
- });
-}
-/* ---------------- engine ---------------- */
-{const svg=document.getElementById('engine');const L=150,Rr=600;const mx=Math.max(...PL.map(p=>D.move[p].dist));
- PL.forEach((p,i)=>{const m=D.move[p],y=30+i*66;
-   el('rect',{x:L,y,width:Rr-L,height:30,fill:C.sand,rx:4},svg);
-   for(let k=16;k<mx;k+=16)el('line',{x1:L+(Rr-L)*k/mx,y1:y,x2:L+(Rr-L)*k/mx,y2:y+30,stroke:C.grain},svg);
-   el('rect',{x:L,y:y+8,width:(Rr-L)*m.dist/mx,height:14,fill:TC[TM[p]],rx:3},svg);
-   txt(svg,L-12,y+20,NM[p],{'text-anchor':'end','font-size':14,fill:C.fg,'font-weight':500});
-   txt(svg,L+(Rr-L)*m.dist/mx-6,y+19,`${m.dist} מ'`,{'text-anchor':'end','font-size':11,fill:C.bg||'#101214','font-family':'IBM Plex Mono','font-weight':500});
-   txt(svg,Rr+14,y+12,`${m.top_kmh} קמ"ש שיא`,{'font-size':12,fill:C.fg,'font-family':'IBM Plex Mono'});
-   const w=m.won_dist,l=m.lost_dist;txt(svg,Rr+14,y+28,`ניצחון ${w} · הפסד ${l} מ'/נק'`,{'font-size':11,fill:l>w?C.bad:C.good});
- });
- txt(svg,(L+Rr)/2,290,`כל משבצת = אורך מגרש (16 מ')`,{'text-anchor':'middle','font-size':11,fill:C.muted});
-}
-/* ---------------- reaction ---------------- */
-{const svg=document.getElementById('react');const E=D.reaction;
- [['teammate',30,'אחרי החבר',C.isr],['opponent',400,'אחרי היריב',C.bra]].forEach(([rel,ox,lab,col])=>{const S=E.filter(e=>e.relation==rel);const w=330,B=180,mx=34;
-   S.forEach((e,i)=>{const x=ox+i*(w/S.length),h=(B-30)*e.real/mx;el('rect',{x,y:B-h,width:w/S.length-3,height:h,fill:e.lag_from_s>=0.28&&e.lag_from_s<=0.32?col:C.neutral,rx:2},svg)});
-   el('polyline',{points:S.map((e,i)=>`${ox+i*(w/S.length)},${B-(B-30)*e.chance/mx} ${ox+(i+1)*(w/S.length)-3},${B-(B-30)*e.chance/mx}`).join(' '),fill:'none',stroke:C.fg,'stroke-width':1.5},svg);
-   txt(svg,ox+w/2,B+20,lab,{'text-anchor':'middle','font-size':13,fill:C.fg});
-   [0,0.5,1].forEach(t=>txt(svg,ox+t*w,B+36,t+' שנ\'',{'text-anchor':'middle','font-size':10,fill:C.faint,'font-family':'IBM Plex Mono'}));
- });
-}
-/* ---------------- verdict ---------------- */
-{const so=D.sideout;const at=tm=>{const A=D.attacks.filter(a=>a.tm==tm);return [A.filter(a=>OUTC(a.s)=='good').length,A.length]};
- const [gB,nB]=at('BRA'),[gI,nI]=at('ISR');
- const lineI=D.attacks.filter(a=>a.tm=='ISR'&&a.ang<15),crossI=D.attacks.filter(a=>a.tm=='ISR'&&a.ang>=30);
- const headI=D.attacks.filter(a=>a.tm=='ISR'&&a.b=='head'),footB=D.attacks.filter(a=>a.tm=='BRA'&&a.b=='foot');
- const gpI=D.spacing.filter(s=>s.tm=='ISR'),gpB=D.spacing.filter(s=>s.tm=='BRA');
- const F=(tm,f)=>D.formation.find(q=>q.team==tm&&q.formation==f);
- const good=[
-  [pct(gB,nB)+'%','ברזיל: התקפה שמסיימת. כמעט פי 2 מישראל ('+pct(gI,nI)+'%).','bra'],
-  [pct(footB.filter(a=>OUTC(a.s)=='good').length,footB.length)+'%','ברזיל ברגל: הנשק הכי יעיל במשחק.','bra'],
-  [pct(crossI.filter(a=>OUTC(a.s)=='good').length,crossI.length)+'%','ישראל באלכסון (מעל 30°) – הבעיטות הכי טובות שלה.','isr'],
-  [F('ISR','both_net').won+'–'+F('ISR','both_net').lost,'ישראל כששניהם ברשת – המערך הכי מצליח שלה.','isr'],
-  [D.chest.Franklin.won+'%','פרנקלין: נקודות שזכו אחרי קבלה בחזה.','bra']];
- const fix=[
-  [pct(so.ISR.sideout,so.ISR.receive)+'%','זכייה בקבלה, מול '+pct(so.BRA.sideout,so.BRA.receive)+'% של ברזיל. כאן הלך המשחק.','isr'],
-  [pct(headI.filter(a=>a.s=='returned').length,headI.length)+'%','מהתקפות הראש הוחזרו. ראש = צפוי; לגוון לרגל.','isr'],
-  [pct(lineI.filter(a=>OUTC(a.s)=='good').length,lineI.length)+'%','נקודה בבעיטה בקו ישר. הבעיטה הכי נפוצה – הכי פחות מסיימת.','isr'],
-  [gpI.filter(s=>s.d>3.5).length+':'+gpB.filter(s=>s.d>3.5).length,'הגנות עם מרווח מעל 3.5 מ׳ (ישראל מול ברזיל). שם רוב הספיגות.','isr'],
-  [F('ISR','side_side').won+'–'+F('ISR','side_side').lost,'"זה לצד זה" – המערך שישראל משתמשת בו הכי הרבה, ומפסידה בו.','isr'],
-  [D.chest.Ron_Ben_Ishay.vin+' m/s','הכדור מגיע לחזה של רון מהר ושטוח – קבלה קשה. לסגור עליו מוקדם.','isr']];
- const fill=(id,L)=>{document.getElementById(id).innerHTML=L.map(([b,t,c])=>`<li><b class="${c}" dir="ltr">${b}</b><span>${t}</span></li>`).join('')};
- fill('goodList',good);fill('fixList',fix);
-}
-}).catch(e=>{document.querySelector('.wrap').insertAdjacentHTML('beforeend',`<p class="cap">הנתונים לא נטענו: ${e.message}</p>`)});
+
+function render(){svg.innerHTML='';LEG.length=0;drawSand();
+  if(on('heat'))layerHeat();
+  if(on('gap'))layerGap();
+  if(on('lines'))layerLines();
+  if(on('shoulders'))layerShoulders();
+  if(on('landings'))layerLandings();
+  if(on('attacks'))layerAttacks();
+  if(on('touches'))layerTouches();
+  drawNet();
+  if(on('net'))layerNet();
+  if(on('spots'))layerSpots();
+  if(on('sideout'))layerSideout();
+  if(on('momentum'))layerMomentum();
+  if(on('engine'))layerEngine();
+  subChips();facts();document.getElementById('legend').innerHTML=LEG.map(l=>`<div>${l}</div>`).join('');}
 </script>
