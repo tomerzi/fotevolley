@@ -178,7 +178,7 @@ if TOUCH_ANCHOR != 'none':
             continue
         for i, d in enumerate(FL):
             if d['f0'] - 2 <= f <= d['f1'] + 2:
-                touch_anchor.append((i, f, px_ * 16 / 18, py_ * 8 / 9))
+                touch_anchor.append((i, f, px_, py_))  # positions are in m (16 x 8 court)
 chest = []  # (flight i, frame, neck px, hip px, stature)
 if CHEST_MARKS != 'none':
     STAT = {k_: v['stature_m'] for k_, v in json.load(open('data/experiments/physics_calib/player_statures.json')).items()}
