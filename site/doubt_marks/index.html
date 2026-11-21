@@ -48,7 +48,7 @@ table.tl td{padding:5px 6px;border-top:1px dashed var(--sand-lo)}
 
 <div class="wrap" dir="rtl">
   <header>
-    <div><h1>סימון הספקות</h1><div class="sub">כל מה שאני בטוח בו פחות מ-99%. כל סימון נשמר מיד ועובר לבא בתור.</div></div>
+    <div><h1>סימון הספקות</h1><div class="sub">רק מה שעדיין פתוח: פעם ראשונה או בדיקה חוזרת. מה שסומן ונכנס לנתונים לא מוצג שוב.</div></div>
     <div class="prog" id="prog"></div>
   </header>
   <main class="task" id="task"><div class="hint">טוען…</div></main>
@@ -59,7 +59,7 @@ table.tl td{padding:5px 6px;border-top:1px dashed var(--sand-lo)}
 </div>
 
 <script>
-const TYPES={land:'נחיתות',gap:'מרווח בהגנה',touches:'נקודה 39',question:'נקודה 49'};
+const TYPES={land:'נחיתות',gap:'מרווח בהגנה',touches:'נקודה 39',question:'שאלות'};
 let ITEMS=[],MARKS={},cur=0,filter='all',db=null,draft={};
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -70,20 +70,24 @@ function isDone(x){const m=MARKS[x.id];if(!m)return false;if(x.type=='gap'&&m.ve
 (async()=>{db=await claude.use('db');
   if(!db){$('#task').insertAdjacentHTML('afterbegin','<div class="offline">השמירה לא זמינה בתצוגה הזאת. פתח את הדף כשאתה מחובר ל-claude.ai.</div>');return}
   const t=setTimeout(()=>status('לא מצליח לטעון סימונים קודמים – אפשר להמשיך לסמן.',true),10000);
-  db.collection('marks').onSnapshot(s=>{clearTimeout(t);MARKS={};s.docs.forEach(d=>MARKS[d.id]=d.data());renderSide();renderProg()},e=>{clearTimeout(t);status('שגיאה בטעינת סימונים: '+e.message,true)});
+  db.collection('marks').onSnapshot(s=>{clearTimeout(t);MARKS={};s.docs.forEach(d=>MARKS[d.id]=d.data());jumpIfDone();renderSide();renderProg()},e=>{clearTimeout(t);status('שגיאה בטעינת סימונים: '+e.message,true)});
 })();
 
-function visible(){return ITEMS.map((x,i)=>[x,i]).filter(([x])=>filter=='all'||x.type==filter)}
+function visible(){return ITEMS.map((x,i)=>[x,i]).filter(([x,i])=>(filter=='all'||x.type==filter)&&(!isDone(x)||i==cur))}
+function left(){return ITEMS.filter(x=>!isDone(x))}
+function jumpIfDone(){const x=ITEMS[cur];if(x&&isDone(x)){const v=visible().filter(([y])=>!isDone(y));const n=v.length?v[0][1]:ITEMS.findIndex(y=>!isDone(y));if(n>=0){cur=n;renderTask()}else allDone()}}
+function allDone(){$('#task').innerHTML='<div class="thead"><h2>הכל סומן</h2></div><div class="ask">אין כרגע שום דבר פתוח. תגיד לי, ואכניס את הסימונים לנתונים.</div>'}
 function renderAll(){renderSide();renderProg();renderTask()}
-function renderProg(){const by={};ITEMS.forEach(x=>{by[x.type]=by[x.type]||[0,0];by[x.type][1]++;if(isDone(x))by[x.type][0]++});
-  $('#prog').innerHTML=Object.entries(by).map(([k,[a,b]])=>`<span>${TYPES[k]} ${a}/${b}</span>`).join('')}
+function renderProg(){const by={};left().forEach(x=>{by[x.type]=(by[x.type]||0)+1});const n=left().length;
+  $('#prog').innerHTML=`<span>נשארו ${n}</span>`+Object.entries(by).map(([k,c])=>`<span>${TYPES[k]}: ${c}</span>`).join('')}
 function renderSide(){
-  $('#flt').innerHTML=['all',...Object.keys(TYPES)].map(k=>`<button class="btn" data-f="${k}" aria-pressed="${filter==k}">${k=='all'?'הכל':TYPES[k]}</button>`).join('');
+  const open=new Set(left().map(x=>x.type));if(filter!='all'&&!open.has(filter))filter='all';
+  $('#flt').innerHTML=['all',...Object.keys(TYPES).filter(k=>open.has(k))].map(k=>`<button class="btn" data-f="${k}" aria-pressed="${filter==k}">${k=='all'?'הכל':TYPES[k]}</button>`).join('');
   document.querySelectorAll('#flt button').forEach(b=>b.onclick=()=>{filter=b.dataset.f;const v=visible();if(v.length&&!v.some(([,i])=>i==cur)){cur=v[0][1];renderTask()}renderSide()});
   $('#queue').innerHTML=visible().map(([x,i])=>`<li><button data-i="${i}" aria-current="${i==cur}"><span>${label(x)}</span><span class="ok">${isDone(x)?'✓':(x.recheck&&MARKS[x.id]?'↻':'')}</span></button></li>`).join('');
   document.querySelectorAll('#queue button').forEach(b=>b.onclick=()=>{cur=+b.dataset.i;renderTask();renderSide()});
 }
-function label(x){return x.type=='land'?`נחיתה · נקודה ${x.rally}`:x.type=='gap'?`מרווח · נקודה ${x.rally} · ${x.team}`:TYPES[x.type]}
+function label(x){return x.type=='land'?`נחיתה · נקודה ${x.rally}`:x.type=='gap'?`מרווח · נקודה ${x.rally} · ${x.team}`:x.type=='question'?`שאלה · נקודה ${x.rally}`:TYPES[x.type]}
 function status(m,err){const s=$('#status');if(s){s.textContent=m;s.className='status'+(err?' err':'')}}
 function stageClick(stage,cb){stage.addEventListener('click',e=>{const r=stage.getBoundingClientRect();cb((e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height)})}
 function dot(stage,fx,fy,cls,txt){const m=document.createElement('div');m.className='mk '+(cls||'');m.style.left=(fx*100)+'%';m.style.top=(fy*100)+'%';m.textContent=txt||'';stage.appendChild(m)}
@@ -129,7 +133,7 @@ function renderTask(){const x=ITEMS[cur];if(!x)return;const prev=MARKS[x.id];dra
     $('#save').onclick=()=>{draft.fix=x.touches.map((t,i)=>$('#s'+i).value);draft.verdict='done';save(x)};
   } else {
     T.innerHTML=head+`<div class="ask">${esc(x.q)}</div>
-      <div class="stage"><video src="clips/r49.mp4" controls muted playsinline preload="auto"></video></div>
+      <div class="stage"><video src="clips/${x.clip||'r49'}.mp4" controls muted playsinline preload="auto"></video></div>
       <div class="row" id="verd">${x.opts.map(o=>`<button class="btn" data-v="${esc(o)}" aria-pressed="${draft.verdict==o}">${esc(o)}</button>`).join('')}</div>
       <label class="hint" for="note">הערה (לא חובה)</label><textarea id="note" rows="2" style="font:inherit;border-radius:8px;border:1.5px solid var(--sand-lo);padding:6px">${esc(draft.note||'')}</textarea>
       <div class="row"><button class="btn primary" id="save">שמור</button><span class="status" id="status"></span></div>`;
@@ -140,6 +144,6 @@ function renderTask(){const x=ITEMS[cur];if(!x)return;const prev=MARKS[x.id];dra
 let saving=false;
 async function save(x){if(!db)return status('השמירה לא זמינה בתצוגה הזאת.',true);if(saving)return;saving=true;$('#save').disabled=true;status('שומר…');
   try{await db.doc('marks/'+x.id).set(Object.assign({},draft,{item:x.id,type:x.type,rally:x.rally,f0:x.f0,rev:REV,at:Date.now()}));MARKS[x.id]=Object.assign({},draft,{rev:REV});
-    const v=visible();const nx=v.find(([y,i])=>i>cur&&!isDone(y))||v.find(([y])=>!isDone(y));if(nx)cur=nx[1];renderTask();renderSide();renderProg();status('נשמר ✓')}
+    const v=visible();const nx=v.find(([y,i])=>i>cur&&!isDone(y))||v.find(([y])=>!isDone(y));if(nx){cur=nx[1];renderTask()}else allDone();renderSide();renderProg();status('נשמר ✓')}
   catch(e){status('השמירה נכשלה: '+(e.message||e.code)+' – נסה שוב.',true)}finally{saving=false;const b=$('#save');if(b)b.disabled=false}}
 </script>
