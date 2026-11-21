@@ -176,7 +176,7 @@ near = np.array(near)
 layer('touches', 'מגעים בכדור (מי, באיזה איבר, איזו פעולה)', min(pl_ok, side_pct) - (100 - part_ok) * 0.3, [
     chk('זיהוי אוטומטי של השחקן מול התיוג הסופי', f'{pl_ok:.0f}% תואם', pl_ok > 95),
     chk('זיהוי אוטומטי של איבר הגוף מול התיוג הסופי', f'{part_ok:.0f}% תואם (התיוג הסופי תוקן ידנית)', part_ok > 90),
-    chk('לכל היותר 3 מגעים לקבוצה (חוק)', f'נקודה 39: 5 מגעים רצופים לברזיל, פרנקלין פעמיים ברצף – כנראה טעות תיוג', over3 == 0),
+    chk('לכל היותר 3 מגעים לקבוצה (חוק)', 'אין הפרות (נקודה 39 תוקנה לפי הסימון שלך: נגיעה של מאור בפריים 10506)' if over3 == 0 else f'{over3} הפרות', over3 == 0),
     chk('הכדור בצד של הקבוצה הנוגעת', f'{side_pct:.1f}%', side_pct > 97),
     chk('הכדור עד 1.5 מ׳ מהשחקן ברגע המגע', f'{100 * np.mean(near < 1.5):.0f}% (חציון {np.median(near):.2f} מ׳)', np.mean(near < 1.5) > 0.9),
     chk('מגעים שסומנו לבדיקה', f'{flagged}', flagged < 15)],
@@ -211,15 +211,20 @@ outs = lr[(lr.kind == 'out') & lr.x.notna()]
 geo_out = (((outs.x < 0.2) | (outs.x > 15.8) | (outs.y < 0.2) | (outs.y > 7.8)).mean() * 100) if len(outs) else 100
 w_ok = (lr.winner == ral.set_index('rally').loc[lr.rally, 'winner'].values).mean() * 100
 hand = src.get('hand-marked landing', 0)
-acc_l = (hand * 97 + src.get('ball track', 0) * 85 + src.get('rally end', 0) * 50) / len(lr)
+dp = lr[lr.source == 'hand-marked (doubt page)']
+dp_xy, dp_kind = int(dp.x.notna().sum()), int(dp.x.isna().sum())
+acc_l = (hand * 97 + dp_xy * 95 + dp_kind * 80 + src.get('ball track', 0) * 85 + src.get('rally end', 0) * 50) / len(lr)
+bad_out = outs[~((outs.x < 0.2) | (outs.x > 15.8) | (outs.y < 0.2) | (outs.y > 7.8))].rally.tolist()
 layer('landings', 'איפה נגמרו הנקודות', acc_l, [
-    chk('מקור: סימון ידני', f'{hand}/{len(lr)}', True),
+    chk('מקור: סימון ידני (סבב ראשון)', f'{hand}/{len(lr)}', True),
+    chk('מקור: סימון ידני בדף הספקות – עם מיקום', f'{dp_xy}/{len(lr)}', True),
+    chk('מקור: סימון ידני – רק בפנים/בחוץ, בלי מיקום', f'{dp_kind}/{len(lr)}', True),
     chk('מקור: מסלול כדור', f'{src.get("ball track", 0)}/{len(lr)}', True),
-    chk('מקור: סוף נקודה בלבד (בלי מיקום אמין)', f'{src.get("rally end", 0)}/{len(lr)}', src.get('rally end', 0) < 10),
+    chk('מקור: סוף נקודה בלבד (בלי מיקום אמין)', f'{src.get("rally end", 0)}/{len(lr)}', src.get('rally end', 0) < 5),
     chk('"בפנים" באמת בתוך הקווים', f'{geo:.0f}%', geo > 95),
-    chk('"בחוץ" באמת מחוץ לקווים', f'{geo_out:.0f}%', geo_out > 95),
+    chk('"בחוץ" באמת מחוץ לקווים', f'{geo_out:.0f}%' + (f' – לבדיקה חוזרת: נקודות {", ".join(map(str, bad_out))}' if bad_out else ''), geo_out > 95),
     chk('המנצח מתאים ללוח', f'{w_ok:.0f}%', w_ok == 100)],
-    'מיקומים שמקורם ב"סוף נקודה" הם הערכה; 12 נקודות אין להן מיקום בכלל.')
+    'אחרי סבב הסימון הראשון: 9 נקודות עדיין רק "סוף נקודה", ו־5 עם בפנים/בחוץ בלי מיקום.')
 
 # ---------------------------------------------------------------- ball height & net crossings
 bh = pd.read_csv('data/analysis/ball_height_v2.csv')

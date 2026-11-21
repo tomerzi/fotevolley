@@ -64,7 +64,9 @@ let ITEMS=[],MARKS={},cur=0,filter='all',db=null,draft={};
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
-fetch('items.json').then(r=>r.json()).then(it=>{ITEMS=it;cur=0;renderAll()});
+let REV=1;
+fetch('items.json').then(r=>r.json()).then(j=>{ITEMS=j.items||j;REV=j.rev||1;const f=ITEMS.findIndex(x=>!isDone(x));cur=f<0?0:f;renderAll()});
+function isDone(x){const m=MARKS[x.id];if(!m)return false;if(x.type=='gap'&&m.verdict!='cant'&&(!m.pts||m.pts.length!=4))return false;return !x.recheck||m.rev>=REV}
 (async()=>{db=await claude.use('db');
   if(!db){$('#task').insertAdjacentHTML('afterbegin','<div class="offline">השמירה לא זמינה בתצוגה הזאת. פתח את הדף כשאתה מחובר ל-claude.ai.</div>');return}
   const t=setTimeout(()=>status('לא מצליח לטעון סימונים קודמים – אפשר להמשיך לסמן.',true),10000);
@@ -73,12 +75,12 @@ fetch('items.json').then(r=>r.json()).then(it=>{ITEMS=it;cur=0;renderAll()});
 
 function visible(){return ITEMS.map((x,i)=>[x,i]).filter(([x])=>filter=='all'||x.type==filter)}
 function renderAll(){renderSide();renderProg();renderTask()}
-function renderProg(){const by={};ITEMS.forEach(x=>{by[x.type]=by[x.type]||[0,0];by[x.type][1]++;if(MARKS[x.id])by[x.type][0]++});
+function renderProg(){const by={};ITEMS.forEach(x=>{by[x.type]=by[x.type]||[0,0];by[x.type][1]++;if(isDone(x))by[x.type][0]++});
   $('#prog').innerHTML=Object.entries(by).map(([k,[a,b]])=>`<span>${TYPES[k]} ${a}/${b}</span>`).join('')}
 function renderSide(){
   $('#flt').innerHTML=['all',...Object.keys(TYPES)].map(k=>`<button class="btn" data-f="${k}" aria-pressed="${filter==k}">${k=='all'?'הכל':TYPES[k]}</button>`).join('');
   document.querySelectorAll('#flt button').forEach(b=>b.onclick=()=>{filter=b.dataset.f;const v=visible();if(v.length&&!v.some(([,i])=>i==cur)){cur=v[0][1];renderTask()}renderSide()});
-  $('#queue').innerHTML=visible().map(([x,i])=>`<li><button data-i="${i}" aria-current="${i==cur}"><span>${label(x)}</span><span class="ok">${MARKS[x.id]?'✓':''}</span></button></li>`).join('');
+  $('#queue').innerHTML=visible().map(([x,i])=>`<li><button data-i="${i}" aria-current="${i==cur}"><span>${label(x)}</span><span class="ok">${isDone(x)?'✓':(x.recheck&&MARKS[x.id]?'↻':'')}</span></button></li>`).join('');
   document.querySelectorAll('#queue button').forEach(b=>b.onclick=()=>{cur=+b.dataset.i;renderTask();renderSide()});
 }
 function label(x){return x.type=='land'?`נחיתה · נקודה ${x.rally}`:x.type=='gap'?`מרווח · נקודה ${x.rally} · ${x.team}`:TYPES[x.type]}
@@ -87,7 +89,7 @@ function stageClick(stage,cb){stage.addEventListener('click',e=>{const r=stage.g
 function dot(stage,fx,fy,cls,txt){const m=document.createElement('div');m.className='mk '+(cls||'');m.style.left=(fx*100)+'%';m.style.top=(fy*100)+'%';m.textContent=txt||'';stage.appendChild(m)}
 
 function renderTask(){const x=ITEMS[cur];if(!x)return;const prev=MARKS[x.id];draft=prev?JSON.parse(JSON.stringify(prev)):{};
-  const T=$('#task');const head=`<div class="thead"><h2>${label(x)}</h2><span class="hint">${cur+1} מתוך ${ITEMS.length}${prev?' · כבר סומן – אפשר לתקן':''}</span></div>`;
+  const T=$('#task');const head=(x.recheck&&!isDone(x)?`<div class="offline" style="background:#f2d9a6;color:#5a3a00">לבדיקה חוזרת: ${esc(x.recheck)}</div>`:'')+`<div class="thead"><h2>${label(x)}</h2><span class="hint">${cur+1} מתוך ${ITEMS.length}${prev?' · כבר סומן – אפשר לתקן':''}</span></div>`;
   if(x.type=='land'){
     T.innerHTML=head+`<div class="ask">איפה הכדור פגש את החול? עצור את הסרטון ברגע הנגיעה ולחץ על הכדור. אחר כך בחר מה קרה.</div>
       <div class="facts"><span>זכתה: <b>${x.winner=='ISR'?'ישראל':'ברזיל'}</b></span><span>נגיעה אחרונה: <b>${esc(x.last)}</b></span><span>התיוג שלי עכשיו: <b>${esc(x.label)}</b></span></div>
@@ -105,19 +107,19 @@ function renderTask(){const x=ITEMS[cur];if(!x)return;const prev=MARKS[x.id];dra
     document.querySelectorAll('#verd button').forEach(b=>b.onclick=()=>{draft.verdict=b.dataset.v;document.querySelectorAll('#verd button').forEach(c=>c.setAttribute('aria-pressed',c==b))});
     $('#save').onclick=()=>{if(!draft.verdict)return status('בחר מה קרה (בפנים / בחוץ / ברשת / לא רואים).',true);save(x)};
   } else if(x.type=='gap'){
-    T.innerHTML=head+`<div class="ask">לחץ על הרגליים של שני המגינים של <b>${esc(x.team)}</b> (${x.team=='ישראל'?'גופיות כחולות':'גופיות צהובות-ירוקות'}), בכל סדר – ברגע ההתקפה של היריב. שחקן באוויר: לחץ על החול שמתחתיו.</div>
+    T.innerHTML=head+`<div class="ask">ארבע לחיצות: שתי הרגליים של המגין הראשון (1, 2) ואז שתי הרגליים של השני (3, 4) – <b>${esc(x.team)}</b>, ${x.team=='ישראל'?'גופיות כחולות':'גופיות צהובות-ירוקות'}, ברגע ההתקפה של היריב. רגל באוויר: לחץ על החול שמתחתיה. רגל מוסתרת: הערכה.</div>
       <div class="facts"><span>מגינה: <b>${esc(x.team)}</b></span><span>פריים ${x.frame}</span></div>
       <div class="stage" id="stage"><img id="img" src="stills/${x.id}.jpg" alt="הפריים ברגע ההתקפה"></div>
       <div class="row"><button class="btn" id="reset">נקה סימונים</button><button class="btn" id="showclip">הצג את הרגע בווידאו</button><button class="btn" data-v="cant" id="cant" aria-pressed="${draft.verdict=='cant'}">לא אפשר לדעת</button></div>
       <div id="clipbox" hidden><video src="clips/${x.id}.mp4" controls muted playsinline loop style="width:100%;border-radius:8px"></video></div>
       <div class="row"><button class="btn primary" id="save">שמור והמשך</button><span class="status" id="status"></span></div>`;
     const st=$('#stage');draft.pts=draft.pts||[];
-    const redraw=()=>{st.querySelectorAll('.mk').forEach(m=>m.remove());draft.pts.forEach((p,i)=>dot(st,p.fx,p.fy,'',i+1))};redraw();
-    stageClick(st,(fx,fy)=>{if(draft.pts.length>=2)draft.pts=[];draft.pts.push({fx,fy,u:Math.round(fx*1920),v:Math.round(fy*1080)});draft.verdict='marked';$('#cant').setAttribute('aria-pressed','false');redraw();status(draft.pts.length==1?'עכשיו המגין השני':'שני המגינים סומנו')});
+    const redraw=()=>{st.querySelectorAll('.mk').forEach(m=>m.remove());draft.pts.forEach((p,i)=>dot(st,p.fx,p.fy,i<2?'':'ball',i+1))};redraw();
+    stageClick(st,(fx,fy)=>{if(draft.pts.length>=4)draft.pts=[];draft.pts.push({fx,fy,u:Math.round(fx*1920),v:Math.round(fy*1080)});draft.verdict='marked';$('#cant').setAttribute('aria-pressed','false');redraw();status(['','עכשיו הרגל השנייה של המגין הראשון','עכשיו רגל ראשונה של המגין השני','עכשיו הרגל השנייה של המגין השני','ארבע הרגליים סומנו'][draft.pts.length])});
     $('#reset').onclick=()=>{draft.pts=[];delete draft.verdict;redraw()};
     $('#showclip').onclick=()=>{const c=$('#clipbox');c.hidden=!c.hidden};
     $('#cant').onclick=()=>{draft.verdict='cant';draft.pts=[];redraw();$('#cant').setAttribute('aria-pressed','true')};
-    $('#save').onclick=()=>{if(draft.verdict!='cant'&&draft.pts.length!=2)return status('צריך שני סימונים (או "לא אפשר לדעת").',true);save(x)};
+    $('#save').onclick=()=>{if(draft.verdict!='cant'&&draft.pts.length!=4)return status('צריך ארבעה סימונים (או "לא אפשר לדעת").',true);save(x)};
   } else if(x.type=='touches'){
     T.innerHTML=head+`<div class="ask">בנקודה הזאת רשומים 5 מגעים רצופים לברזיל (מותר 3). מה לא נכון?</div>
       <div class="stage"><video src="clips/r39.mp4" controls muted playsinline preload="auto"></video></div>
@@ -137,7 +139,7 @@ function renderTask(){const x=ITEMS[cur];if(!x)return;const prev=MARKS[x.id];dra
 }
 let saving=false;
 async function save(x){if(!db)return status('השמירה לא זמינה בתצוגה הזאת.',true);if(saving)return;saving=true;$('#save').disabled=true;status('שומר…');
-  try{await db.doc('marks/'+x.id).set(Object.assign({},draft,{item:x.id,type:x.type,rally:x.rally,f0:x.f0,at:Date.now()}));MARKS[x.id]=draft;
-    const v=visible();const nx=v.find(([y,i])=>i>cur&&!MARKS[y.id])||v.find(([y])=>!MARKS[y.id]);if(nx)cur=nx[1];renderTask();renderSide();renderProg();status('נשמר ✓')}
+  try{await db.doc('marks/'+x.id).set(Object.assign({},draft,{item:x.id,type:x.type,rally:x.rally,f0:x.f0,rev:REV,at:Date.now()}));MARKS[x.id]=Object.assign({},draft,{rev:REV});
+    const v=visible();const nx=v.find(([y,i])=>i>cur&&!isDone(y))||v.find(([y])=>!isDone(y));if(nx)cur=nx[1];renderTask();renderSide();renderProg();status('נשמר ✓')}
   catch(e){status('השמירה נכשלה: '+(e.message||e.code)+' – נסה שוב.',true)}finally{saving=false;const b=$('#save');if(b)b.disabled=false}}
 </script>
