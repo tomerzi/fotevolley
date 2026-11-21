@@ -19,3 +19,14 @@
 - Gaps: 2 clicks are not enough, each player has two feet -> page now takes 4 clicks.
 - 39: a Maor Haas touch between touches 7 and 8 resets Brazil's touches (applied: frame 10506).
 - 49 (question): the ball hits the net and falls on Israel's side -> Brazil won; the final scoreboard gives the point to Israel.
+
+# Round 2
+- 13: an Israeli player kicks the ball out -> point BRA (matches); kind set to out, no landing seen.
+- 19: the point is cut in the middle -> go by the scoreboard (BRA, matches).
+- 21: ignore the "out" click -> landing back to unknown.
+- 34: a Brazil player crossed the net line (scoreboard still gives BRA) -> conflict noted, scoreboard kept.
+- 35: the clip still did not reach the ground contact -> clip now covers the whole rally 9110-9400; the tags have no in-play touch in this rally.
+- 42: ball hits the net and Israel had already touched 3 times -> point BRA (matches).
+- 27 (question): point Brazil (matches).
+- Gaps: 48 marked with 4 feet, 6 "cannot tell". vs tracking median |diff| 0.21 m; 6 crossed the 3.5 m line.
+  ISR concede above 3.5 m 53% (17/32), at or below 31% (10/32), p = 0.076 (was 58% vs 27%, p = 0.013).

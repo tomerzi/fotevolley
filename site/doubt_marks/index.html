@@ -66,7 +66,7 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',
 
 let REV=1;
 fetch('items.json').then(r=>r.json()).then(j=>{ITEMS=j.items||j;REV=j.rev||1;const f=ITEMS.findIndex(x=>!isDone(x));cur=f<0?0:f;renderAll()});
-function isDone(x){const m=MARKS[x.id];if(!m)return false;if(x.type=='gap'&&m.verdict!='cant'&&(!m.pts||m.pts.length!=4))return false;return !x.recheck||m.rev>=REV}
+function isDone(x){const m=MARKS[x.id];if(!m)return false;if(x.type=='gap'&&m.verdict!='cant'&&(!m.pts||m.pts.length!=4))return false;return !x.recheck||m.rev>=(x.rrev||REV)}
 (async()=>{db=await claude.use('db');
   if(!db){$('#task').insertAdjacentHTML('afterbegin','<div class="offline">השמירה לא זמינה בתצוגה הזאת. פתח את הדף כשאתה מחובר ל-claude.ai.</div>');return}
   const t=setTimeout(()=>status('לא מצליח לטעון סימונים קודמים – אפשר להמשיך לסמן.',true),10000);

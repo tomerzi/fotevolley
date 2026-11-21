@@ -1,9 +1,9 @@
 rally,set,winner,loser,frame,source,last_touch_player,last_touch_part,x,y,height_m,kind,half_team,landed_on,square,lane,depth
 1,1,BRA,ISR,57,hand-marked (doubt page),Hiltinho,foot,14.35,5.8,0.0,in_court,ISR,loser,out,,
 2,1,ISR,BRA,128,hand-marked (doubt page),Hiltinho,foot,5.01,3.44,0.0,in_court,BRA,loser,L2,left,mid
-3,1,BRA,ISR,504,rally end,Ron_Ben_Ishay,foot,6.72,5.11,2.65,in_court,BRA,winner,L6,mid,net
+3,1,BRA,ISR,455,hand-marked (doubt page),Ron_Ben_Ishay,foot,11.92,6.15,0.0,in_court,BRA,winner,L6,mid,net
 4,1,ISR,BRA,612,hand-marked landing,Ron_Ben_Ishay,head,6.24,5.76,0.0,in_court,BRA,loser,L9,right,net
-5,1,BRA,ISR,765,rally end,Maor_Haas,chest,8.64,2.74,0.41,in_court,ISR,loser,R4,mid,net
+5,1,BRA,ISR,736,hand-marked (doubt page),Maor_Haas,chest,9.58,4.72,0.0,in_court,ISR,loser,R4,mid,net
 6,1,ISR,BRA,849,hand-marked (doubt page),Hiltinho,foot,7.69,3.57,0.0,in_court,BRA,loser,L6,mid,net
 7,1,BRA,ISR,1014,hand-marked (doubt page),Ron_Ben_Ishay,foot,4.9,-3.66,0.0,out,ISR,loser,out,,
 8,1,ISR,BRA,1127,hand-marked (doubt page),Ron_Ben_Ishay,head,15.94,1.5,0.0,in_court,BRA,loser,out,,
@@ -11,7 +11,7 @@ rally,set,winner,loser,frame,source,last_touch_player,last_touch_part,x,y,height
 10,1,ISR,BRA,1524,hand-marked landing,Ron_Ben_Ishay,head,14.36,0.05,0.04,in_court,BRA,loser,R3,right,base
 11,1,ISR,BRA,1678,hand-marked landing,Hiltinho,foot,3.46,-1.59,0.09,out,ISR,winner,out,,
 12,1,ISR,BRA,1946,hand-marked (doubt page),Hiltinho,head,8.0,5.39,2.16,net,BRA,loser,R4,mid,net
-13,1,BRA,ISR,2235,rally end,Ron_Ben_Ishay,foot,,,,out,ISR,loser,out,,
+13,1,BRA,ISR,2235,hand-marked (doubt page),Ron_Ben_Ishay,foot,,,,out,ISR,loser,out,,
 14,1,ISR,BRA,2410,hand-marked (doubt page),Franklin,foot,,,,out,BRA,loser,out,,
 15,1,ISR,BRA,2621,hand-marked landing,Franklin,foot,-0.32,3.01,0.13,out,BRA,loser,out,,
 16,1,BRA,ISR,2651,hand-marked (doubt page),Maor_Haas,arm,10.75,3.8,0.0,in_court,ISR,loser,R2,right,mid
@@ -19,7 +19,7 @@ rally,set,winner,loser,frame,source,last_touch_player,last_touch_part,x,y,height
 18,1,BRA,ISR,3012,hand-marked landing,Hiltinho,foot,12.35,3.36,0.05,in_court,ISR,loser,R5,mid,mid
 19,1,BRA,ISR,3310,rally end,Ron_Ben_Ishay,head,8.48,1.89,3.55,in_court,BRA,winner,R1,right,net
 20,1,BRA,ISR,3884,hand-marked landing,Hiltinho,head,6.6,6.88,0.06,in_court,ISR,loser,L9,right,net
-21,1,BRA,ISR,4052,hand-marked (doubt page),Ron_Ben_Ishay,head,15.84,2.89,0.0,out,BRA,winner,out,,
+21,1,BRA,ISR,4081,rally end,Ron_Ben_Ishay,head,,,,out,BRA,winner,out,,
 22,1,BRA,ISR,4204,hand-marked landing,Ron_Ben_Ishay,head,6.97,3.23,0.16,in_court,ISR,loser,L6,mid,net
 23,1,ISR,BRA,4323,hand-marked landing,Ron_Ben_Ishay,head,15.37,0.59,0.1,in_court,BRA,loser,R3,right,base
 24,1,BRA,ISR,4512,hand-marked landing,Franklin,foot,6.12,6.04,0.0,in_court,ISR,loser,L9,right,net
@@ -29,7 +29,7 @@ rally,set,winner,loser,frame,source,last_touch_player,last_touch_part,x,y,height
 28,1,BRA,ISR,6752,hand-marked landing,Franklin,foot,11.7,3.06,0.12,in_court,ISR,loser,R5,mid,mid
 29,1,BRA,ISR,7065,hand-marked landing,Hiltinho,foot,13.19,2.22,0.17,in_court,ISR,loser,R2,right,mid
 30,1,ISR,BRA,7197,hand-marked landing,Ron_Ben_Ishay,head,6.71,4.09,0.05,in_court,BRA,loser,L6,mid,net
-31,1,BRA,ISR,7985,hand-marked (doubt page),Hiltinho,head,8.62,5.01,0.0,out,BRA,winner,R4,mid,net
+31,1,BRA,ISR,7985,hand-marked (doubt page),Hiltinho,head,8.62,5.01,0.0,in_court,BRA,winner,R4,mid,net
 32,2,BRA,ISR,8265,rally end,Ron_Ben_Ishay,knee,,,,out,BRA,winner,out,,
 33,2,BRA,ISR,8691,hand-marked (doubt page),Maor_Haas,foot,4.79,-0.3,0.0,out,ISR,loser,L2,left,mid
 34,2,BRA,ISR,9130,rally end,Hiltinho,foot,9.18,4.5,3.33,in_court,BRA,winner,R4,mid,net
@@ -40,11 +40,11 @@ rally,set,winner,loser,frame,source,last_touch_player,last_touch_part,x,y,height
 39,2,BRA,ISR,10647,hand-marked landing,Maor_Haas,foot,9.1,5.68,0.02,in_court,ISR,loser,R7,left,net
 40,2,BRA,ISR,10763,hand-marked (doubt page),Maor_Haas,chest,8.0,3.91,1.36,net,BRA,winner,L1,left,base
 41,2,BRA,ISR,11159,hand-marked (doubt page),Hiltinho,foot,,,,in_court,ISR,loser,out,,
-42,2,BRA,ISR,11410,ball track,Maor_Haas,foot,7.48,1.26,0.23,in_court,BRA,winner,L3,left,net
+42,2,BRA,ISR,11336,hand-marked (doubt page),Maor_Haas,foot,8.73,1.69,0.0,in_court,BRA,winner,L3,left,net
 43,2,BRA,ISR,11734,hand-marked (doubt page),Franklin,head,13.72,6.8,0.0,in_court,ISR,loser,out,,
 44,2,BRA,ISR,11903,hand-marked landing,Franklin,shoulder,0.93,-0.08,0.03,out,ISR,loser,out,,
 45,2,BRA,ISR,12215,hand-marked landing,Ron_Ben_Ishay,shoulder,10.25,-1.21,0.12,out,BRA,winner,out,,
-46,2,BRA,ISR,12418,hand-marked (doubt page),Maor_Haas,chest,7.82,7.24,0.0,out,BRA,winner,out,,
+46,2,BRA,ISR,12418,hand-marked (doubt page),Maor_Haas,chest,7.82,7.24,0.0,in_court,BRA,winner,out,,
 47,2,BRA,ISR,12758,rally end,Maor_Haas,head,,,,out,BRA,winner,out,,
 48,2,ISR,BRA,13047,hand-marked (doubt page),Franklin,foot,10.4,0.15,0.0,in_court,BRA,loser,out,,
 49,2,ISR,BRA,13136,hand-marked (doubt page),Maor_Haas,foot,8.0,7.12,0.94,net,BRA,loser,out,,

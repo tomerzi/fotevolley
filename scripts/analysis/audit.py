@@ -74,7 +74,7 @@ layer('score', 'תוצאה ומומנטום', 100 * min(agree_c, step_ok) / len(
     chk('כל נקודה מוסיפה בדיוק נקודה אחת למנצח', f'{step_ok}/{len(ral)}', step_ok == len(ral)),
     chk('הנקודה נגמרת לפני שהלוח מתעדכן', f'{order_ok}/{len(ral)}', order_ok >= len(ral) - 2),
     chk('רגע עדכון הלוח מדויק (לא בקבוצה)', f'{exact}/{len(ev)}', exact >= 55)],
-    'מקור עצמאי: לוח התוצאות בשידור. המומנטום הוא סכום מצטבר של אותם מנצחים.')
+    'מקור עצמאי: לוח התוצאות בשידור. לפי הצפייה שלך יש שתי נקודות שהלוח הרשמי סותר: 34 (שחקן ברזיל עבר את קו הרשת, הלוח: ברזיל) ו־49 (הכדור נפל בצד של ישראל, הלוח אחרי תיקון: ישראל). נשאר לפי הלוח.')
 
 # ---------------------------------------------------------------- side-out (needs the server)
 sv = act[act.action == 'serve'].groupby('rally').team.first()
@@ -266,9 +266,13 @@ k1, n1, k2, n2 = int(fI.conceded.sum()), len(fI), int(nI.conceded.sum()), len(nI
 pp_ = (k1 + k2) / (n1 + n2); z = (k1 / n1 - k2 / n2) / np.sqrt(pp_ * (1 - pp_) * (1 / n1 + 1 / n2))
 from math import erf, sqrt
 pval = 2 * (1 - 0.5 * (1 + erf(abs(z) / sqrt(2))))
-layer('gap', 'מרווח בהגנה', min(c_ok, acc_pos), [
+src_g = sp.gap_source.value_counts().to_dict() if 'gap_source' in sp else {}
+n_user, n_cant = src_g.get('user: 4 feet clicked', 0), src_g.get('user: cannot tell', 0)
+acc_gap = (n_user * 97 + n_cant * 70 + src_g.get('tracking', len(sp)) * 96) / len(sp)
+layer('gap', 'מרווח בהגנה', min(c_ok, acc_gap), [
+    chk('רגעים מפוקפקים שסימנת ביד (4 רגליים)', f'{n_user} מתוך {len(sp)}; {n_cant} סומנו "לא אפשר לדעת"', True),
     chk('"ספגו" תואם לתוצאת ההתקפה (נקודה / הוחזרה)', f'{c_ok:.0f}%', c_ok > 98),
-    chk('מרחק בין שחקנים מתוך המיקומים', f'שגיאה צפויה ±{np.hypot(near_e, far_e):.2f} מ׳ במרחק', True),
+    chk('שאר הרגעים: מרחק מתוך המעקב, רחוק מסף 3.5 מ׳', f'שגיאה צפויה ±{np.hypot(near_e, far_e):.2f} מ׳ במרחק', True),
     chk('ההבדל בספיגה רחוק/קרוב מובהק סטטיסטית', f'p = {pval:.3f}', pval < 0.05)],
     'נמדד ברגע המגע של התוקף. ההבדל בין מרווח גדול לקטן הוא קשר, לא בהכרח סיבה.',
     [dict(what='ספיגה של ישראל, מרווח מעל 3.5 מ׳', value=f'{round(100 * k1 / n1)}% ({k1}/{n1})', ci=f'{wilson(k1, n1)[0]}–{wilson(k1, n1)[1]}%'),
