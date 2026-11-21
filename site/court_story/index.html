@@ -49,6 +49,27 @@ svg text:not([fill]){fill:var(--ink)}
 .legendbox div::before{content:"◆ ";color:var(--ink-3)}
 #tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--table);border-radius:6px;padding:6px 9px;font-size:13px;z-index:20;max-width:260px;opacity:0;transition:opacity .1s}
 .note{font-size:12px;color:var(--ink-3)}
+.acc{font:500 11px var(--mono);border-radius:999px;padding:1px 6px;background:var(--sand-hi);color:var(--ink)}
+.chip[aria-pressed="true"] .acc{background:#fff2;color:var(--table)}
+.acc.gC{background:#f2d9a6;color:#7a4a00}.acc.gD{background:#f3c8c3;color:#8f1d17}
+.audit{display:flex;flex-direction:column;gap:12px}
+.audit h2{font-family:var(--display);font-size:clamp(20px,3vw,26px);margin:0}
+.acards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.acard{background:var(--table);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.acard.hl{outline:2px solid var(--ink)}
+.atop{display:flex;align-items:center;gap:10px}
+.grade{font:900 22px var(--display);width:38px;height:38px;border-radius:8px;display:grid;place-items:center;background:var(--ink);color:var(--table);flex:none}
+.grade.gC{background:#b7791f}.grade.gD{background:var(--hit)}
+.aname{font:700 15px var(--display);line-height:1.2}
+.abar{height:6px;background:var(--sand-hi);border-radius:3px;overflow:hidden}.abar i{display:block;height:100%;background:var(--ink)}
+.abar.gC i{background:#b7791f}.abar.gD i{background:var(--hit)}
+.alist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px;font-size:13px}
+.alist li{display:grid;grid-template-columns:18px 1fr;gap:6px;color:var(--ink-2)}
+.alist li b{font-weight:700;color:var(--ink)}
+.ok::before{content:"✓";color:var(--bra);font-weight:700}.warn::before{content:"!";color:var(--hit);font-weight:900;text-align:center}
+.prec{font-size:12.5px;color:var(--ink-2);border-top:1px dashed var(--sand-lo);padding-top:6px}
+.anote{font-size:12.5px;color:var(--ink-3)}
+.legend2{font-size:13px;color:var(--ink-2);max-width:80ch}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
@@ -77,6 +98,11 @@ svg text:not([fill]){fill:var(--ink)}
     </div>
     <div class="facts"><div class="legendbox" id="legend"></div><div class="facts" id="facts" aria-live="polite"></div></div>
   </div>
+  <section class="audit" id="audit">
+    <h2>כמה אפשר לסמוך על זה</h2>
+    <p class="legend2">כל שכבה עברה בדיקות עצמאיות: הצלבה עם לוח התוצאות, חוקי המשחק, פיזיקה, סימונים ידניים ועקביות פנימית. <b>האחוז</b> = הערכה לכמה מהרשומות נכונות. <b>±</b> = כמה המספר יכול לזוז במקרה, כי יש מעט נקודות (טווח 95%).</p>
+    <div class="acards" id="acards"></div>
+  </section>
   <p class="note">מקור: קבצי הניתוח בריפו (מיקומי שחקנים, מגעים, גובה כדור, כיוון גוף). הקבוצות התחלפו בצדדים כל 6 נקודות, אז כל נקודה סובבה כך שישראל משמאל.</p>
 </div>
 <div id="tip" role="tooltip"></div>
@@ -119,8 +145,9 @@ const LAYERS=[
 const state={players:new Set(PL),layers:new Set(LAYERS.filter(l=>l.on).map(l=>l.id)),touchAct:new Set(['reception','set','attack']),attRes:new Set(['good','neutral','bad'])};
 const OUTC=s=>s=='kill'||s=='failed_defence'?'good':(s=='returned'?'neutral':'bad');
 
-let D;const LEG=[];
-fetch('data.json').then(r=>r.json()).then(d=>{D=d;init();render()}).catch(e=>{document.getElementById('facts').innerHTML=`<div class="empty">הנתונים לא נטענו: ${e.message}</div>`});
+let D,AUD;const LEG=[];
+const AMAP={heat:'positions',spots:'positions',lines:'positions',shoulders:'shoulders',touches:'touches',attacks:'attacks',landings:'landings',gap:'gap',net:'height',sideout:'sideout',momentum:'score',engine:'engine'};
+Promise.all([fetch('data.json').then(r=>r.json()),fetch('audit.json').then(r=>r.json()).catch(()=>null)]).then(([d,a])=>{D=d;AUD=a;init();render();auditCards()}).catch(e=>{document.getElementById('facts').innerHTML=`<div class="empty">הנתונים לא נטענו: ${e.message}</div>`});
 
 function init(){
   const R=D.rallies, s1=R.filter(r=>r.s==1).at(-1), s2=R.at(-1);
@@ -130,7 +157,7 @@ function init(){
   const pc=document.getElementById('players');
   PL.forEach(p=>{const b=document.createElement('button');b.className='chip';b.setAttribute('aria-pressed','true');b.innerHTML=`<span class="dot" style="background:${TC[TM[p]]}"></span>${NM[p]}`;
     b.onclick=()=>{state.players.has(p)?state.players.delete(p):state.players.add(p);b.setAttribute('aria-pressed',state.players.has(p));render()};pc.appendChild(b)});
-  LAYERS.forEach(l=>{const host=document.getElementById(l.where=='court'?'layersCourt':'layersEdge');const b=document.createElement('button');b.className='chip';b.id='L_'+l.id;b.textContent=l.label;b.setAttribute('aria-pressed',state.layers.has(l.id));
+  LAYERS.forEach(l=>{const host=document.getElementById(l.where=='court'?'layersCourt':'layersEdge');const b=document.createElement('button');b.className='chip';b.id='L_'+l.id;b.textContent=l.label;{const a=AUD&&AUD.layers[AMAP[l.id]];if(a){const sp=document.createElement('span');sp.className='acc g'+a.grade;sp.textContent=a.accuracy+'%';sp.title='אמינות משוערת';b.appendChild(sp)}}b.setAttribute('aria-pressed',state.layers.has(l.id));
     b.onclick=()=>{state.layers.has(l.id)?state.layers.delete(l.id):state.layers.add(l.id);b.setAttribute('aria-pressed',state.layers.has(l.id));render()};host.appendChild(b)});
 }
 
@@ -260,6 +287,13 @@ function facts(){const F=[];const so=D.sideout;
   document.getElementById('facts').innerHTML=F.length?F.join(''):'<div class="empty">הדליקו שכבה כדי לראות מה היא מספרת.</div>';
 }
 
+function auditCards(){if(!AUD)return;const host=document.getElementById('acards');
+  const order=['score','sideout','touches','attacks','positions','gap','shoulders','engine','formation','height','landings','reaction'];
+  host.innerHTML=order.filter(k=>AUD.layers[k]).map(k=>{const a=AUD.layers[k];
+    const checks=a.checks.map(c=>`<li class="${c.ok?'ok':'warn'}"><span>${c.what}: <b>${c.result}</b></span></li>`).join('');
+    const prec=a.precision.length?`<div class="prec">${a.precision.map(p=>`${p.what}: <b>${p.value}</b> · טווח 95%: <bdi dir="ltr">${p.ci}</bdi>`).join('<br>')}</div>`:'';
+    const extra=k=='score'?`<figure style="margin:0"><img src="scoreboard_49_52.png" alt="לוח התוצאות בשידור בפריימים 13070–14090: ברזיל מקבלת נקודה 15 ואז היא מבוטלת" style="width:100%;border-radius:6px"><figcaption class="anote">הוכחה מהווידאו: הלוח נתן לברזיל 15 ואז תוקן ל־5–14 לישראל.</figcaption></figure>`:'';
+    return `<article class="acard" id="A_${k}"><div class="atop"><div class="grade g${a.grade}">${a.grade}</div><div style="flex:1;min-width:0"><div class="aname">${a.name}</div><div class="abar g${a.grade}"><i style="width:${a.accuracy}%"></i></div></div><b style="font:900 20px var(--display)">${a.accuracy}%</b></div><ul class="alist">${checks}</ul>${prec}<div class="anote">${a.notes}</div>${extra}</article>`}).join('');}
 function render(){svg.innerHTML='';LEG.length=0;drawSand();
   if(on('heat'))layerHeat();
   if(on('gap'))layerGap();
