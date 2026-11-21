@@ -8,7 +8,7 @@ the pose's left/right labels: right = R - L, facing = up x right). Angle to the 
 camera side, - towards the far sideline). Lightly smoothed over 5 frames; frames where the shoulders are missing,
 low-confidence or implausibly short/long (< 0.22 m or > 0.60 m apart on the sand plane) are left out.
 Writes data/analysis/shoulder_orientation_<start>_<end>.csv and, with --video, an overlay clip with two rays per
-player (one from each shoulder, 1.6 m long, along the facing direction) and a top-down court inset.
+player (dashed, one from each shoulder along the facing direction, running to the net where they meet it; 1.2 m when the player faces away) and a top-down court inset.
 usage: python scripts/analysis/shoulder_rays.py [START_FRAME END_FRAME] [--video OUT.mp4]
 """
 import os, sys, json, subprocess
@@ -94,6 +94,15 @@ if VIDEO:
     def ins(x, y):
         return int(IX + 10 + x * IS), int(IY + 10 + y * IS)
     byf = {f: g for f, g in d.groupby('frame')}
+
+    def dashed(img, A, B, col, dash=0.22):
+        """dashed 3-D segment A -> B (dashes of `dash` m), dark outline under the player colour"""
+        L = float(np.linalg.norm(B - A)); n = max(2, int(L / dash))
+        P = (cam.project(A + np.linspace(0, 1, n + 1)[:, None] * (B - A)) * S).astype(int)
+        for k in range(0, n, 2):
+            cv2.line(img, tuple(P[k]), tuple(P[k + 1]), (0, 0, 0), 4, cv2.LINE_AA)
+        for k in range(0, n, 2):
+            cv2.line(img, tuple(P[k]), tuple(P[k + 1]), col, 2, cv2.LINE_AA)
     cap = cv2.VideoCapture('video/main_camera_clean_v2.mp4'); cap.set(cv2.CAP_PROP_POS_FRAMES, F0)
     ff = subprocess.Popen(['ffmpeg', '-y', '-loglevel', 'error', '-f', 'rawvideo', '-pix_fmt', 'bgr24', '-s', f'{W}x{H}', '-r', '25', '-i', '-',
                            '-c:v', 'libx264', '-preset', 'medium', '-crf', '22', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', VIDEO], stdin=subprocess.PIPE)
@@ -112,17 +121,35 @@ if VIDEO:
                 continue
             c = COL.get(r.player, (200, 200, 200))
             fvec = np.array([r.face_x_s, r.face_y_s, 0.0])
+            hits = []
             for sx, sy in ((r.Rx, r.Ry), (r.Lx, r.Ly)):
-                A = np.array([sx, sy, -r.z]); B = A + 1.6 * fvec
-                a2, b2 = (cam.project(np.array([A, B])) * S).astype(int)
-                cv2.arrowedLine(im, tuple(a2), tuple(b2), (0, 0, 0), 5, cv2.LINE_AA, tipLength=0.15)
-                cv2.arrowedLine(im, tuple(a2), tuple(b2), c, 2, cv2.LINE_AA, tipLength=0.15)
+                A = np.array([sx, sy, -r.z])
+                t_net = (8.0 - sx) / fvec[0] if abs(fvec[0]) > 1e-6 else -1
+                hit = t_net > 0 and -1.0 <= sy + t_net * fvec[1] <= 9.0  # the ray reaches the net between the posts
+                B = A + (t_net if hit else 1.2) * fvec
+                dashed(im, A, B, c)
+                if hit:
+                    hits.append(B)
+            for B in hits:  # where the shoulder lines meet the net
+                b2 = (cam.project(B[None])[0] * S).astype(int)
+                cv2.circle(im, tuple(b2), 6, (0, 0, 0), -1, cv2.LINE_AA); cv2.circle(im, tuple(b2), 4, c, -1, cv2.LINE_AA)
             mid = (cam.project(np.array([[(r.Rx + r.Lx) / 2, (r.Ry + r.Ly) / 2, -r.z - 0.45]]))[0] * S).astype(int)
             txt = f'{abs(r.angle_to_net_deg):.0f}'
             cv2.putText(im, txt, (mid[0] - 12, mid[1]), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 4, cv2.LINE_AA)
             cv2.putText(im, txt, (mid[0] - 12, mid[1]), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2, cv2.LINE_AA)
-            p0 = ins(r.x, r.y); p1 = ins(r.x + 1.3 * r.face_x_s, r.y + 1.3 * r.face_y_s)
-            cv2.circle(im, p0, 4, c, -1); cv2.arrowedLine(im, p0, p1, c, 2, cv2.LINE_AA, tipLength=0.3)
+            p0 = ins(r.x, r.y)
+            t_net = (8.0 - r.x) / r.face_x_s if abs(r.face_x_s) > 1e-6 else -1
+            hit = t_net > 0 and -1.0 <= r.y + t_net * r.face_y_s <= 9.0
+            tt = t_net if hit else 1.2
+            p1 = ins(r.x + tt * r.face_x_s, r.y + tt * r.face_y_s)
+            n = max(2, int(np.hypot(p1[0] - p0[0], p1[1] - p0[1]) / 4))
+            for k in range(0, n - 1, 2):
+                q0 = (int(p0[0] + (p1[0] - p0[0]) * k / n), int(p0[1] + (p1[1] - p0[1]) * k / n))
+                q1 = (int(p0[0] + (p1[0] - p0[0]) * (k + 1) / n), int(p0[1] + (p1[1] - p0[1]) * (k + 1) / n))
+                cv2.line(im, q0, q1, c, 2, cv2.LINE_AA)
+            cv2.circle(im, p0, 4, c, -1)
+            if hit:
+                cv2.circle(im, p1, 3, c, -1)
         cv2.putText(im, f'frame {f}  ({f / 25:.1f} s)   number = angle of the shoulders to the net (0 = square, 90 = side-on, 180 = back)',
                     (10, H - 12), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (255, 255, 255), 1, cv2.LINE_AA)
         ff.stdin.write(im.tobytes())
