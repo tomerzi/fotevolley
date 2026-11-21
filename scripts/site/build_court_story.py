@@ -249,7 +249,15 @@ for fid, g in bh2.groupby('flight_id'):
             nzc.append(dict(y=r2(yy2), h=r2(h), fr=sender, r=rl))
 out['netz'] = nzc
 os.makedirs('site/court_story', exist_ok=True)
-s = json.dumps(out, separators=(',', ':'))
+def _clean(o):
+    if isinstance(o, dict):
+        return {k: _clean(v) for k, v in o.items()}
+    if isinstance(o, list):
+        return [_clean(v) for v in o]
+    if isinstance(o, float) and not np.isfinite(o):
+        return None
+    return o
+s = json.dumps(_clean(out), separators=(',', ':'), allow_nan=False)
 open('site/court_story/data.json', 'w').write(s)
 print(len(s) // 1024, 'KB')
 print(json.dumps(dict(sideout=so, move=mov, lines=out['lines'], chest=out['chest']), indent=0)[:3000])
