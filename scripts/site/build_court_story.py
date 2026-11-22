@@ -125,7 +125,7 @@ out['landings'] = [dict(r=int(x.rally), w=x.winner, l=x.loser, x=r2(x.x), y=r2(x
                    for x in lr.itertuples()]
 
 # ---- body orientation (whole match, play time): shoulders and eyes, 15-degree rose -------------------------------
-bo = pd.read_csv('data/analysis/body_orientation_0_15585.csv', usecols=['frame', 'player', 'part', 'angle_to_net_deg'])
+bo = pd.read_csv('data/analysis/body_direction_full_match.csv', usecols=['frame', 'player', 'part', 'angle_to_net_deg'])
 bo = bo[bo.frame < len(inplay)]
 bo = bo[inplay[bo.frame.to_numpy()]]
 bo = bo.groupby(['player', 'part', 'frame']).angle_to_net_deg.mean().reset_index()
