@@ -34,8 +34,8 @@ SIGMA = 0.25
 CELL = 0.1
 XR = (-2.0, 8.5)    # own view: from 2 m behind the baseline to just past the net
 YR = (-1.5, 9.5)
-TEAM = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Maor_Haas': 'ISR', 'Ron_Ben_Ishay': 'ISR'}
-PAIRS = {'ISR': ('Maor_Haas', 'Ron_Ben_Ishay'), 'BRA': ('Franklin', 'Hiltinho')}
+TEAM = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Ron_Ben_Ishay': 'ISR', 'Maor_Haas': 'ISR'}
+PAIRS = {'ISR': ('Ron_Ben_Ishay', 'Maor_Haas'), 'BRA': ('Franklin', 'Hiltinho')}
 PHASES = ['serve', 'reception', 'build', 'attack', 'defence']
 GOOD_SRC = {'ankles', 'ankle', 'planted', 'hips'}
 

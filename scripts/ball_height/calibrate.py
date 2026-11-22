@@ -25,7 +25,7 @@ os.chdir(ROOT)  # all paths below are relative to the repo root
 
 
 # Known statures (given). Franklin / Hiltinho are solved for.
-STATURE = {'Maor_Haas': 1.86, 'Ron_Ben_Ishay': 1.86}   # Ron Ben Ishay, Maor Haas
+STATURE = {'Ron_Ben_Ishay': 1.86, 'Maor_Haas': 1.86}   # Maor Haas, Ron Ben Ishay
 FREE = ['Franklin', 'Hiltinho']
 NET_H = 2.20
 NET_TOP_NEAR = (1008, 622)  # net top at the near antenna (just above the post cap), X = 8, Y = 8

@@ -16,7 +16,7 @@ import pandas as pd
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(ROOT, 'data', 'analysis')
-TEAM_OF = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Maor_Haas': 'ISR', 'Ron_Ben_Ishay': 'ISR'}
+TEAM_OF = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Ron_Ben_Ishay': 'ISR', 'Maor_Haas': 'ISR'}
 NEAR = 5
 C = 8 / 3
 LANES, DEPTHS = ('left', 'mid', 'right'), ('net', 'mid', 'base')

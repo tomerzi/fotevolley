@@ -10,8 +10,8 @@ Points where the moment or the players' positions are doubtful get `uncertain=Tr
 """
 import glob, json, os
 import numpy as np, pandas as pd
-TEAM_OF = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Maor_Haas': 'ISR', 'Ron_Ben_Ishay': 'ISR'}   # player -> team
-PAIR = {'BRA': ('Franklin', 'Hiltinho'), 'ISR': ('Maor_Haas', 'Ron_Ben_Ishay')}
+TEAM_OF = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Ron_Ben_Ishay': 'ISR', 'Maor_Haas': 'ISR'}   # player -> team
+PAIR = {'BRA': ('Franklin', 'Hiltinho'), 'ISR': ('Ron_Ben_Ishay', 'Maor_Haas')}
 
 h = pd.read_csv('data/analysis/ball_height_v2.csv').set_index('frame')
 r = pd.read_csv('data/points/rallies_v2.csv')

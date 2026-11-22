@@ -2351,7 +2351,7 @@
     ]
    },
    {
-    "player": "Maor_Haas",
+    "player": "Ron_Ben_Ishay",
     "ground": [
      9.53,
      3.15
@@ -2362,7 +2362,7 @@
     ]
    },
    {
-    "player": "Ron_Ben_Ishay",
+    "player": "Maor_Haas",
     "ground": [
      12.4,
      6.15
@@ -4244,7 +4244,7 @@
   "ball_diam": 30,
   "players": [
    {
-    "player": "Maor_Haas",
+    "player": "Ron_Ben_Ishay",
     "ground": [
      5.805,
      5.319

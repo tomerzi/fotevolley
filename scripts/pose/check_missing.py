@@ -26,7 +26,7 @@ weak = pose[pose.n_ok < MIN_JOINTS]
 rows = [(r.frame, 'pose_edge' if r.edge else 'pose_weak', r.player, f'{r.n_ok}/25 joints') for r in weak.itertuples()]
 
 cnt = boxes.groupby('frame').player.apply(set).reindex(range(done), fill_value=set())
-allp = {'Franklin', 'Hiltinho', 'Maor_Haas', 'Ron_Ben_Ishay'}
+allp = {'Franklin', 'Hiltinho', 'Ron_Ben_Ishay', 'Maor_Haas'}
 rows += [(f, 'player_none', '+'.join(sorted(allp - ps)), f'{len(ps)} players') for f, ps in cnt.items() if len(ps) < 4]
 
 ball = pd.read_csv(os.path.join(ROOT, 'data', 'ball_pipeline', 'ball_boxes.csv')).iloc[:done]

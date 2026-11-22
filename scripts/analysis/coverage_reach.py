@@ -13,8 +13,8 @@ import numpy as np, pandas as pd
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(ROOT)
 FPS, REACT, REACH = 25, 0.30, 1.0
-TEAM = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Maor_Haas': 'ISR', 'Ron_Ben_Ishay': 'ISR'}
-PL = ['Maor_Haas', 'Ron_Ben_Ishay', 'Franklin', 'Hiltinho']
+TEAM = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Ron_Ben_Ishay': 'ISR', 'Maor_Haas': 'ISR'}
+PL = ['Ron_Ben_Ishay', 'Maor_Haas', 'Franklin', 'Hiltinho']
 r3 = lambda v: None if v is None or not np.isfinite(v) else round(float(v), 3)
 ral = pd.read_csv('data/points/rallies_v2.csv')
 fm = pd.read_csv('data/mappings/frame_mapping_v3.csv'); fm = fm[~fm.deleted].set_index('v3_frame').v2_frame
@@ -52,7 +52,7 @@ for p in PL:
 def area(H, q):
     v = np.sort(np.asarray(H).ravel())[::-1]; c = np.cumsum(v) / v.sum(); return float((np.searchsorted(c, q) + 1) * 0.25)
 team = {}
-for tm, (a, b) in {'ISR': ('Maor_Haas', 'Ron_Ben_Ishay'), 'BRA': ('Franklin', 'Hiltinho')}.items():
+for tm, (a, b) in {'ISR': ('Ron_Ben_Ishay', 'Maor_Haas'), 'BRA': ('Franklin', 'Hiltinho')}.items():
     team[tm] = {}
     for k in ('all', 'own ball', 'opponent ball', 'won', 'lost'):
         A = np.array(heat[a][k]); B = np.array(heat[b][k]); A = A / A.sum(); B = B / B.sum()

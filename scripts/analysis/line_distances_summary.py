@@ -11,7 +11,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 os.chdir(ROOT)
 F0, F1 = (int(sys.argv[1]), int(sys.argv[2])) if len(sys.argv) >= 3 else (0, 15585)
 LINES = ['baseline', 'far sideline', 'near sideline', 'net']
-ORDER = ['Maor_Haas', 'Ron_Ben_Ishay', 'Franklin', 'Hiltinho']
+ORDER = ['Ron_Ben_Ishay', 'Maor_Haas', 'Franklin', 'Hiltinho']
 d = pd.read_csv(f'data/analysis/line_distances_{F0}_{F1}.csv')
 ral = pd.read_csv('data/points/rallies_v2.csv')
 rid = pd.Series(np.nan, index=range(F0, F1 + 1))
@@ -35,7 +35,7 @@ print('rallies:', br.rally.nunique())
 import matplotlib; matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 COL_HEX = {'baseline': '#2a78d6', 'far sideline': '#eb6834', 'near sideline': '#1baf7a', 'net': '#eda100'}
-NAMES = {'Franklin': 'Franklin (BRA)', 'Hiltinho': 'Hiltinho (BRA)', 'Maor_Haas': 'Maor Haas (ISR)', 'Ron_Ben_Ishay': 'Ron Ben Ishay (ISR)'}
+NAMES = {'Franklin': 'Franklin (BRA)', 'Hiltinho': 'Hiltinho (BRA)', 'Ron_Ben_Ishay': 'Ron Ben Ishay (ISR)', 'Maor_Haas': 'Maor Haas (ISR)'}
 fig, axs = plt.subplots(4, 1, figsize=(11, 10), sharex=True, sharey=True)
 for ax, p_ in zip(axs, ORDER):
     g = br[br.player == p_].sort_values('rally')

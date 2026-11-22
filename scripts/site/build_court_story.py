@@ -8,8 +8,8 @@ import numpy as np, pandas as pd
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(ROOT)
 FPS = 25
-TEAM = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Maor_Haas': 'ISR', 'Ron_Ben_Ishay': 'ISR'}
-PL = ['Maor_Haas', 'Ron_Ben_Ishay', 'Franklin', 'Hiltinho']
+TEAM = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Ron_Ben_Ishay': 'ISR', 'Maor_Haas': 'ISR'}
+PL = ['Ron_Ben_Ishay', 'Maor_Haas', 'Franklin', 'Hiltinho']
 r2 = lambda v, n=2: None if v is None or (isinstance(v, float) and not np.isfinite(v)) else round(float(v), n)
 out = {}
 

@@ -13,7 +13,7 @@ import numpy as np, pandas as pd
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(ROOT)
 FPS = 25
-TEAM = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Maor_Haas': 'ISR', 'Ron_Ben_Ishay': 'ISR'}
+TEAM = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Ron_Ben_Ishay': 'ISR', 'Maor_Haas': 'ISR'}
 R = lambda v, n=1: None if v is None or not np.isfinite(v) else round(float(v), n)
 
 
@@ -110,7 +110,7 @@ inb = ((pp.x > -3) & (pp.x < 19) & (pp.y > -3) & (pp.y < 11)).mean() * 100
 fast = (pp.speed > 9).mean() * 100
 # teammates on top of each other = possible identity swap
 piv = pp.pivot_table(index='v2_frame', columns='player', values=['x', 'y'])
-d_isr = np.hypot(piv['x']['Maor_Haas'] - piv['x']['Ron_Ben_Ishay'], piv['y']['Maor_Haas'] - piv['y']['Ron_Ben_Ishay'])
+d_isr = np.hypot(piv['x']['Ron_Ben_Ishay'] - piv['x']['Maor_Haas'], piv['y']['Ron_Ben_Ishay'] - piv['y']['Maor_Haas'])
 d_bra = np.hypot(piv['x']['Franklin'] - piv['x']['Hiltinho'], piv['y']['Franklin'] - piv['y']['Hiltinho'])
 close = (pd.concat([d_isr, d_bra]) < 0.4).mean() * 100
 # ground scale: metres per pixel at the far / near sideline (camera model) -> position error from ~2 px tracking noise
@@ -123,7 +123,7 @@ def m_per_px(x, y):
 PX = 10  # assumed error of the feet point: ankle keypoints vs the true ground contact, occlusion
 far_e, near_e = PX * m_per_px(4, 0.5), PX * m_per_px(4, 7.5)
 # jitter: distance at full rate vs every 5th frame
-g = pp[pp.player == 'Maor_Haas'].sort_values('v2_frame')
+g = pp[pp.player == 'Ron_Ben_Ishay'].sort_values('v2_frame')
 d1 = np.nansum(np.hypot(np.diff(g.x), np.diff(g.y))[np.diff(g.v2_frame) == 1])
 g5 = g[g.v2_frame % 5 == 0]
 d5 = np.nansum(np.hypot(np.diff(g5.x), np.diff(g5.y))[np.diff(g5.v2_frame) == 5])
@@ -176,7 +176,7 @@ near = np.array(near)
 layer('touches', 'מגעים בכדור (מי, באיזה איבר, איזו פעולה)', min(pl_ok, side_pct) - (100 - part_ok) * 0.3, [
     chk('זיהוי אוטומטי של השחקן מול התיוג הסופי', f'{pl_ok:.0f}% תואם', pl_ok > 95),
     chk('זיהוי אוטומטי של איבר הגוף מול התיוג הסופי', f'{part_ok:.0f}% תואם (התיוג הסופי תוקן ידנית)', part_ok > 90),
-    chk('לכל היותר 3 מגעים לקבוצה (חוק)', 'אין הפרות (נקודה 39 תוקנה לפי הסימון שלך: נגיעה של מאור בפריים 10506)' if over3 == 0 else f'{over3} הפרות', over3 == 0),
+    chk('לכל היותר 3 מגעים לקבוצה (חוק)', 'אין הפרות (נקודה 39 תוקנה לפי הסימון שלך: נגיעה של רון בפריים 10506)' if over3 == 0 else f'{over3} הפרות', over3 == 0),
     chk('הכדור בצד של הקבוצה הנוגעת', f'{side_pct:.1f}%', side_pct > 97),
     chk('הכדור עד 1.5 מ׳ מהשחקן ברגע המגע', f'{100 * np.mean(near < 1.5):.0f}% (חציון {np.median(near):.2f} מ׳)', np.mean(near < 1.5) > 0.9),
     chk('מגעים שסומנו לבדיקה', f'{flagged}', flagged < 15)],

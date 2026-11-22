@@ -21,15 +21,15 @@ In play: head 107, chest 97, foot 94, shoulder 9, shin 8, thigh 7, arm 4, torso 
 
 ## Done 2026-10-11
 - Net crossing (Viterbi): crossed = ball's side at the touch != last toucher's court side; the path test (accumulated
-  since the last real touch, through "nobody" events) only when the ball is at the net. Recovers 2860 Maor_Haas, 11846 Franklin
-  foot, and 9235 Ron_Ben_Ishay hand (catch, dead ball).
+  since the last real touch, through "nobody" events) only when the ball is at the net. Recovers 2860 Ron_Ben_Ishay, 11846 Franklin
+  foot, and 9235 Maor_Haas hand (catch, dead ball).
 - Ball sent back up (v_in down, v_out up) with a player on its side within 0.30 m: "nobody" costs +1.5 (LIFT_NONE).
-  Recovers 2278 Maor_Haas foot, 2606 and 6336 Ron_Ben_Ishay. Velocities alone cannot tell this from a sand bounce (cf. 383), and
+  Recovers 2278 Ron_Ben_Ishay foot, 2606 and 6336 Maor_Haas. Velocities alone cannot tell this from a sand bounce (cf. 383), and
   the sand test says "on sand" for these, so the nearby player is what decides it.
 - Ball at face height: a shoulder less than 0.10 m nearer than the head becomes head (side-of-head header);
   relabel only, the pose frame/player choice is unchanged. 2113, 2606, 6336, 7382 -> head (checked on video).
   (Tried a gap penalty on shoulders above the neck instead: too broad, changed the player at 10061. Reverted.)
-- manual_overrides.csv: 2860 Maor_Haas right foot (Sapiens2 loses the foot on that bicycle kick, auto said thigh).
+- manual_overrides.csv: 2860 Ron_Ben_Ishay right foot (Sapiens2 loses the foot on that bicycle kick, auto said thigh).
 - Reviewed: in-play "nobody" events with a player within 0.35 m (13), random sample of 8 confident touches (all right
   player; 841 chest/head and 5716 shin/foot borderline).
 

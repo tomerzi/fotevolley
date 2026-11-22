@@ -13,7 +13,7 @@ import os
 import numpy as np, pandas as pd
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.chdir(ROOT)
-OLD = {'BRA_A': 'Franklin', 'BRA_B': 'Hiltinho', 'ISR_A': 'Maor_Haas', 'ISR_B': 'Ron_Ben_Ishay'}
+OLD = {'BRA_A': 'Franklin', 'BRA_B': 'Hiltinho', 'ISR_A': 'Ron_Ben_Ishay', 'ISR_B': 'Maor_Haas'}
 K = ['nose', 'l_eye', 'r_eye', 'neck', 'mid_hip', 'l_shoulder', 'r_shoulder']
 p = pd.read_csv('data/pose/vitpose_body25.csv', usecols=['frame', 'player'] + [f'{k}_{a}' for k in K for a in 'xys'])
 p['player'] = p.player.replace(OLD)

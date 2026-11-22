@@ -32,7 +32,7 @@ import os
 
 import numpy as np
 import pandas as pd
-TEAM_OF = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Maor_Haas': 'ISR', 'Ron_Ben_Ishay': 'ISR'}   # player -> team
+TEAM_OF = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Ron_Ben_Ishay': 'ISR', 'Maor_Haas': 'ISR'}   # player -> team
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(ROOT, 'data', 'analysis')
@@ -154,9 +154,9 @@ def ground_points(boxes):
     neither feeds the jump detector nor seeds a reset."""
     kp = [f'{s}_{j}' for s in ('left', 'right') for j in ('ankle', 'hip', 'shoulder') + SOLE_KP]
     cols = ['frame', 'player'] + [f'{k}_{a}' for k in kp for a in 'xys']
-    p = pd.read_csv(os.path.join(ROOT, 'data', 'pose', 'sapiens2', 'sapiens2_pose_v3_00000-13494.csv'), usecols=cols).replace({'player': {'BRA_A': 'Franklin', 'BRA_B': 'Hiltinho', 'ISR_A': 'Maor_Haas', 'ISR_B': 'Ron_Ben_Ishay'}})  # the LFS pose file still uses the old codes
+    p = pd.read_csv(os.path.join(ROOT, 'data', 'pose', 'sapiens2', 'sapiens2_pose_v3_00000-13494.csv'), usecols=cols).replace({'player': {'BRA_A': 'Franklin', 'BRA_B': 'Hiltinho', 'ISR_A': 'Ron_Ben_Ishay', 'ISR_B': 'Maor_Haas'}})  # the LFS pose file still uses the old codes
     b = boxes.merge(p, on=['frame', 'player'], how='left').sort_values(['player', 'frame']).reset_index(drop=True)
-    mates = {'Franklin': 'Hiltinho', 'Hiltinho': 'Franklin', 'Maor_Haas': 'Ron_Ben_Ishay', 'Ron_Ben_Ishay': 'Maor_Haas'}
+    mates = {'Franklin': 'Hiltinho', 'Hiltinho': 'Franklin', 'Ron_Ben_Ishay': 'Maor_Haas', 'Maor_Haas': 'Ron_Ben_Ishay'}
     mc = ['x1', 'y1', 'x2', 'y2'] + [f'{s}_ankle_{a}' for s in ('left', 'right') for a in 'xys']
     m = b[['frame', 'player'] + mc].assign(player=lambda d: d.player.map(mates))
     o = b[['frame', 'player']].merge(m, on=['frame', 'player'], how='left')       # same row order as b

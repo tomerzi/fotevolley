@@ -425,13 +425,13 @@ $('#tbody').innerHTML = P.map((p, i) => `<tr data-i="${i}"><td>${p.n}</td><td>${
 $('#tbody').addEventListener('click', e => { const tr = e.target.closest('tr'); if (tr) { setRally(+tr.dataset.i); $('#main').scrollIntoView({ block: 'center' }); } });
 
 
-const NAMES = { Maor_Haas: 'מאור האס', Ron_Ben_Ishay: 'רון בן ישי', Franklin: 'פרנקלין', Hiltinho: 'הילטיניו' };
-const ISR_PLAYERS = ['Maor_Haas', 'Ron_Ben_Ishay'];
+const NAMES = { Ron_Ben_Ishay: 'רון בן ישי', Maor_Haas: 'מאור האס', Franklin: 'פרנקלין', Hiltinho: 'הילטיניו' };
+const ISR_PLAYERS = ['Ron_Ben_Ishay', 'Maor_Haas'];
 $('#players').innerHTML = Object.entries(D.players).map(([k, v]) => `<tr><td>${NAMES[k] || k} <span class="pill">${k}</span></td><td>${ISR_PLAYERS.includes(k) ? 'ישראל' : 'ברזיל'}</td><td>${v.stature_m.toFixed(2)} מ'</td><td>${v.source === 'given' ? 'נתון' : 'נמדד בווידאו'}</td></tr>`).join('');
 
 // player speeds
-const PL = ['Maor_Haas', 'Ron_Ben_Ishay', 'Franklin', 'Hiltinho'], PCOL = ['--p1', '--p2', '--p3', '--p4'];
-const SP = D.speed, shown = { Maor_Haas: true, Ron_Ben_Ishay: true, Franklin: true, Hiltinho: true };
+const PL = ['Ron_Ben_Ishay', 'Maor_Haas', 'Franklin', 'Hiltinho'], PCOL = ['--p1', '--p2', '--p3', '--p4'];
+const SP = D.speed, shown = { Ron_Ben_Ishay: true, Maor_Haas: true, Franklin: true, Hiltinho: true };
 const label = k => NAMES[k] || k;
 $('#ptoggles').innerHTML = PL.map((k, i) => `<button type="button" aria-pressed="true" data-k="${k}"><span class="dot" style="background:var(${PCOL[i]})"></span>${label(k)} <span class="pill">${k}</span></button>`).join('');
 $('#ptoggles').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; const k = b.dataset.k; shown[k] = !shown[k]; b.setAttribute('aria-pressed', String(shown[k])); draw(); });

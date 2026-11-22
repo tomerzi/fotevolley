@@ -17,7 +17,7 @@
 - 50: a Brazil player crosses the net line; impact not visible, point ISR by the ball's direction (data: ISR).
 - 55: a Brazil player touches the ball and sends it out; the moment of that touch is marked (point ISR, matches).
 - Gaps: 2 clicks are not enough, each player has two feet -> page now takes 4 clicks.
-- 39: a Maor Haas touch between touches 7 and 8 resets Brazil's touches (applied: frame 10506).
+- 39: a Ron Ben Ishay touch between touches 7 and 8 resets Brazil's touches (applied: frame 10506).
 - 49 (question): the ball hits the net and falls on Israel's side -> Brazil won; the final scoreboard gives the point to Israel.
 
 # Round 2

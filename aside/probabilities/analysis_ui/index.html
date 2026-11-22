@@ -89,10 +89,10 @@ table.t td.n{font-family:var(--mono);text-align:end;direction:ltr}
 
 <script>
 const NS='http://www.w3.org/2000/svg';
-const PL=['Maor_Haas','Ron_Ben_Ishay','Franklin','Hiltinho'];
-const NM={Maor_Haas:'מאור האס',Ron_Ben_Ishay:'רון בן ישי',Franklin:'פרנקלין',Hiltinho:'הילטיניו'};
-const IN={Maor_Haas:'MH',Ron_Ben_Ishay:'RB',Franklin:'F',Hiltinho:'H'};
-const TM={Maor_Haas:'ISR',Ron_Ben_Ishay:'ISR',Franklin:'BRA',Hiltinho:'BRA'};
+const PL=['Ron_Ben_Ishay','Maor_Haas','Franklin','Hiltinho'];
+const NM={Ron_Ben_Ishay:'רון בן ישי',Maor_Haas:'מאור האס',Franklin:'פרנקלין',Hiltinho:'הילטיניו'};
+const IN={Ron_Ben_Ishay:'RB',Maor_Haas:'MH',Franklin:'F',Hiltinho:'H'};
+const TM={Ron_Ben_Ishay:'ISR',Maor_Haas:'ISR',Franklin:'BRA',Hiltinho:'BRA'};
 const V=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 const C={isr:V('--isr'),bra:V('--bra'),hit:V('--hit'),ink:V('--ink'),ink2:V('--ink-2'),ink3:V('--ink-3'),tape:V('--tape'),net:V('--net'),post:V('--post'),court:V('--court'),hi:V('--sand-hi'),lo:V('--sand-lo'),panel:V('--panel'),panel2:V('--panel-2'),sand:V('--sand')};
 const TC={ISR:C.isr,BRA:C.bra};const TN={ISR:'ישראל',BRA:'ברזיל'};

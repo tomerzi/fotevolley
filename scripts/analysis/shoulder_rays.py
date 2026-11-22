@@ -24,8 +24,8 @@ F0, F1 = (int(args[0]), int(args[1])) if len(args) >= 2 else (0, 749)
 VIDEO = sys.argv[sys.argv.index('--video') + 1] if '--video' in sys.argv else None
 cam = Camera()
 STAT = {k: v['stature_m'] for k, v in json.load(open('data/analysis/player_statures.json')).items()}
-NAMES = {'Franklin': 'Franklin', 'Hiltinho': 'Hiltinho', 'Maor_Haas': 'Maor Haas', 'Ron_Ben_Ishay': 'Ron Ben Ishay'}
-COL = {'Maor_Haas': (214, 120, 42), 'Ron_Ben_Ishay': (52, 104, 235), 'Franklin': (122, 175, 27), 'Hiltinho': (0, 161, 237)}  # BGR
+NAMES = {'Franklin': 'Franklin', 'Hiltinho': 'Hiltinho', 'Ron_Ben_Ishay': 'Ron Ben Ishay', 'Maor_Haas': 'Maor Haas'}
+COL = {'Ron_Ben_Ishay': (214, 120, 42), 'Maor_Haas': (52, 104, 235), 'Franklin': (122, 175, 27), 'Hiltinho': (0, 161, 237)}  # BGR
 MIN_S = 0.3
 
 pose = pd.read_csv('data/pose/vitpose_body25.csv', usecols=['frame', 'player', 'r_shoulder_x', 'r_shoulder_y', 'r_shoulder_s',

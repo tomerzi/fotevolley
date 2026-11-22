@@ -53,7 +53,7 @@ def main():
     frames = set(f for x in t.frame for f in range(x - PLANT_DT, x + PLANT_DT + 1))
     pose = pd.concat(c[c.frame.isin(frames)] for c in pd.read_csv(
         os.path.join(ROOT, 'data', 'pose', 'sapiens2', 'sapiens2_pose_v3_00000-13494.csv'), usecols=cols,
-        chunksize=100000)).replace({'player': {'BRA_A': 'Franklin', 'BRA_B': 'Hiltinho', 'ISR_A': 'Maor_Haas', 'ISR_B': 'Ron_Ben_Ishay'}}).set_index(['frame', 'player'])  # the LFS pose file still uses the old codes
+        chunksize=100000)).replace({'player': {'BRA_A': 'Franklin', 'BRA_B': 'Hiltinho', 'ISR_A': 'Ron_Ben_Ishay', 'ISR_B': 'Maor_Haas'}}).set_index(['frame', 'player'])  # the LFS pose file still uses the old codes
     pos = pd.read_csv(os.path.join(OUT, 'player_positions_v3.csv'), usecols=['frame', 'player', 'jump', 'posture'])
     pos = pos.set_index(['frame', 'player'])
     rows = []

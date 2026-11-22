@@ -16,17 +16,24 @@ All in v3 frames unless noted; lengths in metres on the 16 × 8 court.
 Definitions (coach): a touch succeeds unless it lost the ball (last touch of the point by the team that lost it);
 base = the player's mean position in his own view.
 
-## Open: needs a human decision / check
+## ISR names corrected (2026-11-22)
 
-1. **ISR names in the point review.** `point_end_verified.csv` `last_touch` disagrees with `touches_master.csv` in
-   28 of 56 points; for Israel it is a swap (owner says Maor_Haas where the touch table says Ron_Ben_Ishay in 22 of 26
-   ISR points, and the reverse in 8 of 8). Frames 528 and 887 (v3) show the touch table matches the player boxes and
-   `graz2022_final_player_names.csv` (Maor_Haas = white armband). Point outcomes here use the touch table; the owner
-   should confirm which player is which before the review's `last_touch` is used anywhere.
-2. **Stance at the touch.** Against the 99 hand-marked chest touches (`data/experiments/chest_marks`, feet on the
-   sand: 95 both, 4 air) the automatic `air` finds 1 of the 4. "Planted" (foot still ±2 frames) is a different
-   question from "on the sand". Needs hand labels per foot (planted / sliding / in the air) on a sample (~40 touches)
-   to set the thresholds.
-3. **Facing.** Spot-checked on 16 chest touches only; a labelled sample of ~50 frames would give its error rate.
+The owner's labelling page (`data/experiments/feet_isr_labels/`) showed that Maor_Haas and Ron_Ben_Ishay were swapped
+in every file derived from the player boxes: 5 of 5 blind identity frames, 5 of 5 marked touches and 23 of 23
+disputed ISR points. Ron Ben Ishay wears the white armband (box code ISR_A). The two names were swapped in 181 text
+files (data, scripts, docs, reports, site pages); not swapped: the owner's own marks (`landing_marks_owner.json`,
+`point_end_verified.csv`), `docs/time_log.md` and the labelling folder. Images with names drawn on them (contact
+sheets, site stills) still show the old names until they are re-rendered. The owner review now agrees with the touch
+table on 48 of 56 points.
+
+## Open
+
+1. Points 13 and 27 (ISR, ball out): the touch table now says Maor_Haas touched last, the owner review Ron_Ben_Ishay.
+   Points 28 and 56: the owner review says Ron_Ben_Ishay, the touch table Franklin (the owner chose Franklin for 28 on
+   the labelling page). Point 2: Hiltinho (table) vs Franklin (review), not visible.
+2. Stance: calibrated on the 40 labelled touches (`stance_cal` in `touch_body.csv`): jump from the jump test (10 of
+   12), else set when the body moves < 1.3 m/s at the touch; 67% leave-one-out over set / moving / jump. Foot-by-foot
+   planted / sliding / air from the pose stays weak (about 45%) and is not used for conclusions.
+3. Facing: 25 of 40 against the labels; side-on players are often called 'camera'.
 4. Position from heel + toes instead of ankles was tested (`POS_GROUND=sole` in `player_positions.py`): noisier in
    the sand (outliers 3.1% vs 2.2%), shift 6 cm median, so the ankle stays the default.

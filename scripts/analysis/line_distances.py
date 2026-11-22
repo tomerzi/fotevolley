@@ -21,8 +21,8 @@ opt = lambda k: sys.argv[sys.argv.index(k) + 1] if k in sys.argv else None
 VIDEO, CHART = opt('--video'), opt('--chart')
 LINES = ['baseline', 'far sideline', 'near sideline', 'net']
 COL_HEX = {'baseline': '#2a78d6', 'far sideline': '#eb6834', 'near sideline': '#1baf7a', 'net': '#eda100'}  # validated categorical slots 1-4
-NAMES = {'Franklin': 'Franklin (BRA)', 'Hiltinho': 'Hiltinho (BRA)', 'Maor_Haas': 'Maor Haas (ISR)', 'Ron_Ben_Ishay': 'Ron Ben Ishay (ISR)'}
-ORDER = ['Maor_Haas', 'Ron_Ben_Ishay', 'Franklin', 'Hiltinho']
+NAMES = {'Franklin': 'Franklin (BRA)', 'Hiltinho': 'Hiltinho (BRA)', 'Ron_Ben_Ishay': 'Ron Ben Ishay (ISR)', 'Maor_Haas': 'Maor Haas (ISR)'}
+ORDER = ['Ron_Ben_Ishay', 'Maor_Haas', 'Franklin', 'Hiltinho']
 
 p = pd.read_csv('data/analysis/player_positions_v3.csv', usecols=['v2_frame', 'player', 'x', 'y', 'occluded'])
 p = p[(p.v2_frame >= F0) & (p.v2_frame <= F1)].drop_duplicates(['v2_frame', 'player']).rename(columns={'v2_frame': 'frame'})

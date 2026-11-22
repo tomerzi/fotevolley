@@ -38,8 +38,9 @@ FORESHORT = 0.6
 DT = 1
 PLANT_DT = 2
 PLANT_MOVE = 0.06
+SET_SPEED = 1.3     # m/s at the touch: below = stood set (calibrated, see stance_cal)
 LIFT_FRAC = 0.5
-OLD = {'BRA_A': 'Franklin', 'BRA_B': 'Hiltinho', 'ISR_A': 'Maor_Haas', 'ISR_B': 'Ron_Ben_Ishay'}
+OLD = {'BRA_A': 'Franklin', 'BRA_B': 'Hiltinho', 'ISR_A': 'Ron_Ben_Ishay', 'ISR_B': 'Maor_Haas'}
 J = ['nose', 'left_eye', 'right_eye', 'left_ear', 'right_ear', 'neck', 'left_shoulder', 'right_shoulder', 'left_elbow',
      'right_elbow', 'left_wrist', 'right_wrist', 'left_hip', 'right_hip', 'left_knee', 'right_knee', 'left_ankle',
      'right_ankle', 'left_heel', 'right_heel', 'left_big_toe', 'right_big_toe', 'left_small_toe', 'right_small_toe']
@@ -184,6 +185,11 @@ for r in t.itertuples():
                      'set' if npl == 2 else 'one_foot' if npl == 1 else 'moving')
     row['approach_speed'] = spd.approach_speed.get(r.touch, np.nan)
     row['speed_at_touch'] = spd.speed_at_touch.get(r.touch, np.nan)
+    # calibrated on the owner's 40 hand-labelled touches (data/experiments/feet_isr_labels/answers_final.csv):
+    # jump = the jump / both-feet-raised test (10 of 12 jumps), else 'set' when the body moves slower than
+    # SET_SPEED at the touch; leave-one-out accuracy 67% over set / moving / jump (foot-motion stance: 54%)
+    row['stance_cal'] = ('jump' if row['stance'] == 'air' else
+                         'set' if row['speed_at_touch'] < SET_SPEED else 'moving')
     rows.append(row)
 out = pd.DataFrame(rows)
 out.to_csv('data/analysis/touch_body.csv', index=False)
@@ -200,6 +206,8 @@ for (p, bp), g in out[out.in_play].groupby(['player', 'body_part']):
         s[a] = round(g.loc[okc, a].median(), 1) if okc.any() else np.nan
         s[f'{a}_n'] = int(okc.sum())
     s['lean_back_share'] = round((g.trunk_lean_dir == 'back').mean(), 2)
+    for k in ('set', 'moving', 'jump'):
+        s[f'stable_{k}'] = round((g.stance_cal == k).mean(), 2)
     for k in ('set', 'one_foot', 'moving', 'air', 'unknown'):
         s[f'stance_{k}'] = round((g.stance == k).mean(), 2)
     for k in ('camera', 'side', 'away'):

@@ -9,11 +9,11 @@ All work is in v3 frames (`*_v3video.csv`, Sapiens2, contacts); every output kee
 
 - Event: **EFVL World Challenge Graz 2022** (banner in the video, bolao branding). EFVL report: final, Brazil beat
   Israel 2-0 (footvolleyeurope.com/news/28/6/2022/brazil-still-on-top).
-- Players (scoreboard): ISR **R.B. Ishay** (Ron Ben Yishai, רון בן ישי) and **M. Haas** (Maor Haas, מאור האס);
+- Players (scoreboard): ISR **R.B. Ishay** (Ron Ben Yishai, מאור האס) and **M. Haas** (Ron Ben Ishay, רון בן ישי);
   BRA **Hiltinho** (Hilton Joaquim de Melo Junior) and **Franklin** (Franklin Henrique Freitas dos Santos).
   Player labels (confirmed by the project owner, 2026-10-31; the old codes were BRA_A/BRA_B/ISR_A/ISR_B and were
   renamed everywhere): **Franklin** (old BRA_A: blond, green bib #1 over long yellow sleeves), **Hiltinho** (old BRA_B:
-  sleeveless yellow, bib #2), **Maor_Haas** (old ISR_A: blue bib #1, white armband), **Ron_Ben_Ishay** (old ISR_B:
+  sleeveless yellow, bib #2), **Ron_Ben_Ishay** (old ISR_A: blue bib #1, white armband), **Maor_Haas** (old ISR_B:
   blue bib #2).
 - Score: the EFVL report says 18:14, 18:11. The on-screen scoreboard shows ISR 13 - BRA 17 at the end of set 1
   (the last point is never shown) and our files follow the scoreboard (18:13, 18:11).
@@ -48,19 +48,19 @@ All work is in v3 frames (`*_v3video.csv`, Sapiens2, contacts); every output kee
   largest frame-to-frame step 0.39 units; summed steps = integrated speed (3404 vs 3412 units).
 - Verification (2026-10-22): two rounds of independent checks (code review, jumps / speeds / postures / occlusion by
   eye in the video, data integrity) found ~20 then 8 problems; all fixed except the limits below. On the
-  verifiers' labelled cases: 13 of 14 seen jumps flagged and 1 of 18 non-jumps (Maor_Haas 10800-10812, standing on one
+  verifiers' labelled cases: 13 of 14 seen jumps flagged and 1 of 18 non-jumps (Ron_Ben_Ishay 10800-10812, standing on one
   leg - the position correction is still right there); the bicycle kick Hiltinho 4196-4228 now rises smoothly
   2.8 -> 4.3; no reset makes a position jump.
 - Limits: small hops (< 0.7 units of bump) are not flagged; a jump hidden behind the teammate is not flagged
   (Hiltinho 4820-4838, its upside-down frames are still airborne); sitting down with the legs toward the camera can
-  push the ankles ahead of the body for a few frames (Maor_Haas 11263, top speed 9.1 vs ~5 from the hips).
+  push the ankles ahead of the body for a few frames (Ron_Ben_Ishay 11263, top speed 9.1 vs ~5 from the hips).
 
 ### 1. Ball height and ball position on the court
 Status (2026-10-28): current version in `data/analysis/ball_height_v2.csv` (v2 frames), from
 `data/experiments/improve/final` - camera from the 16 x 8 lines, net top and antenna stripes only; flights fitted
 jointly (continuity, air drag k = 0.0135 1/m), anchored on 94 hand-marked chest touches (pose chest point) and 41
 hand-marked sand landings; box sizes corrected (ball = 1.198 x box - 5.7 px). Held-out checks: chest touches and
-sand landings both ~0.12 m typical error. Statures from the video: Franklin 1.79, Hiltinho 1.69, Maor_Haas 1.74, Ron_Ben_Ishay 1.72 m.
+sand landings both ~0.12 m typical error. Statures from the video: Franklin 1.79, Hiltinho 1.69, Ron_Ben_Ishay 1.74, Maor_Haas 1.72 m.
 The experiments leading here are in data/experiments/*/README.md.
 Status (2026-10-27): first version done in v2 frames, `scripts/ball_height/` -> `data/analysis/ball_height_v2.csv`.
 Joint fit of f, k1/k2, R, t to the court lines (taken as 16 x 8 m, as asked by the project owner), the net top at the
@@ -126,7 +126,7 @@ over the 0.5 s before each touch).
 `scripts/analysis/coverage.py [HEATMAP.png]` -> `coverage_rallies_v3.csv` (per rally: hull, squares),
 `coverage_match_v3.csv` (hull, 50% / 90% areas, squares), `coverage_heatmaps_v3.png`. Match-level numbers are in the
 team's view (distance from the net, left / right facing the net), since the teams switch sides: each player then has
-one clear zone - Franklin and Maor_Haas play the right side, Hiltinho and Ron_Ben_Ishay the left; 90% areas 25-28 m^2 (16 x 8 court).
+one clear zone - Franklin and Ron_Ben_Ishay play the right side, Hiltinho and Maor_Haas the left; 90% areas 25-28 m^2 (16 x 8 court).
 Next: at each opponent attack, the part of the half closer to each defender (Voronoi).
 
 ## Order

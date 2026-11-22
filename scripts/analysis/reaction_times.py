@@ -26,8 +26,8 @@ F0, F1 = (int(args[0]), int(args[1])) if len(args) >= 2 else (0, 749)
 opt = lambda k: sys.argv[sys.argv.index(k) + 1] if k in sys.argv else None
 CHART, VIDEO = opt('--chart'), opt('--video')
 FPS = 25
-TEAM = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Maor_Haas': 'ISR', 'Ron_Ben_Ishay': 'ISR'}
-NAMES = {'Franklin': 'Franklin', 'Hiltinho': 'Hiltinho', 'Maor_Haas': 'Maor Haas', 'Ron_Ben_Ishay': 'Ron Ben Ishay'}
+TEAM = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Ron_Ben_Ishay': 'ISR', 'Maor_Haas': 'ISR'}
+NAMES = {'Franklin': 'Franklin', 'Hiltinho': 'Hiltinho', 'Ron_Ben_Ishay': 'Ron Ben Ishay', 'Maor_Haas': 'Maor Haas'}
 
 fm = pd.read_csv('data/mappings/frame_mapping_v3.csv'); fm = fm[~fm.deleted].set_index('v3_frame').v2_frame
 ev = pd.read_csv('data/contacts/ball_contacts_v3.csv')
@@ -126,7 +126,7 @@ if CHART:
     import matplotlib; matplotlib.use('Agg')
     import matplotlib.pyplot as plt
     COL = {'teammate': '#2a78d6', 'opponent': '#eb6834'}
-    ORDER = ['Maor_Haas', 'Ron_Ben_Ishay', 'Franklin', 'Hiltinho']
+    ORDER = ['Ron_Ben_Ishay', 'Maor_Haas', 'Franklin', 'Hiltinho']
     fig, axs = plt.subplots(1, 2, figsize=(11, 4.6), sharey=True, gridspec_kw=dict(width_ratios=[3, 2]))
     ax = axs[0]
     for yi, pl in enumerate(ORDER):

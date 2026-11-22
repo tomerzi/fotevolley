@@ -1,376 +1,376 @@
 frame,time_s,leader,leader_kind,player,relation,react_frame,reaction_s,react_kind,same_direction,react_dv,react_acc
 0,0.0,Hiltinho,speeds up,Franklin,teammate,,,,,,
-0,0.0,Hiltinho,speeds up,Maor_Haas,opponent,13.0,0.52,slows down,False,-2.51,11.0
-0,0.0,Hiltinho,speeds up,Ron_Ben_Ishay,opponent,,,,,,
-0,0.0,Maor_Haas,speeds up,Franklin,opponent,,,,,,
-0,0.0,Maor_Haas,speeds up,Hiltinho,opponent,12.0,0.48,slows down,False,-1.16,8.9
-0,0.0,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,,,,,,
+0,0.0,Hiltinho,speeds up,Ron_Ben_Ishay,opponent,13.0,0.52,slows down,False,-2.51,11.0
+0,0.0,Hiltinho,speeds up,Maor_Haas,opponent,,,,,,
+0,0.0,Ron_Ben_Ishay,speeds up,Franklin,opponent,,,,,,
+0,0.0,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,12.0,0.48,slows down,False,-1.16,8.9
+0,0.0,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,,,,,,
 12,0.48,Hiltinho,slows down,Franklin,teammate,,,,,,
-12,0.48,Hiltinho,slows down,Maor_Haas,opponent,13.0,0.04,slows down,True,-2.51,11.0
-12,0.48,Hiltinho,slows down,Ron_Ben_Ishay,opponent,29.0,0.68,speeds up,False,2.36,12.2
-13,0.52,Maor_Haas,slows down,Franklin,opponent,,,,,,
-13,0.52,Maor_Haas,slows down,Hiltinho,opponent,22.0,0.36,slows down,True,-4.82,20.5
-13,0.52,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,29.0,0.64,speeds up,False,2.36,12.2
+12,0.48,Hiltinho,slows down,Ron_Ben_Ishay,opponent,13.0,0.04,slows down,True,-2.51,11.0
+12,0.48,Hiltinho,slows down,Maor_Haas,opponent,29.0,0.68,speeds up,False,2.36,12.2
+13,0.52,Ron_Ben_Ishay,slows down,Franklin,opponent,,,,,,
+13,0.52,Ron_Ben_Ishay,slows down,Hiltinho,opponent,22.0,0.36,slows down,True,-4.82,20.5
+13,0.52,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,29.0,0.64,speeds up,False,2.36,12.2
 22,0.88,Hiltinho,slows down,Franklin,teammate,,,,,,
-22,0.88,Hiltinho,slows down,Maor_Haas,opponent,30.0,0.32,speeds up,False,2.48,13.6
-22,0.88,Hiltinho,slows down,Ron_Ben_Ishay,opponent,29.0,0.28,speeds up,False,2.36,12.2
-29,1.16,Ron_Ben_Ishay,speeds up,Franklin,opponent,,,,,,
-29,1.16,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,35.0,0.24,speeds up,True,3.0,8.7
-29,1.16,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,30.0,0.04,speeds up,True,2.48,13.6
-30,1.2,Maor_Haas,speeds up,Franklin,opponent,,,,,,
-30,1.2,Maor_Haas,speeds up,Hiltinho,opponent,35.0,0.2,speeds up,True,3.0,8.7
-30,1.2,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,37.0,0.28,slows down,False,-1.27,7.6
+22,0.88,Hiltinho,slows down,Ron_Ben_Ishay,opponent,30.0,0.32,speeds up,False,2.48,13.6
+22,0.88,Hiltinho,slows down,Maor_Haas,opponent,29.0,0.28,speeds up,False,2.36,12.2
+29,1.16,Maor_Haas,speeds up,Franklin,opponent,,,,,,
+29,1.16,Maor_Haas,speeds up,Hiltinho,opponent,35.0,0.24,speeds up,True,3.0,8.7
+29,1.16,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,30.0,0.04,speeds up,True,2.48,13.6
+30,1.2,Ron_Ben_Ishay,speeds up,Franklin,opponent,,,,,,
+30,1.2,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,35.0,0.2,speeds up,True,3.0,8.7
+30,1.2,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,37.0,0.28,slows down,False,-1.27,7.6
 35,1.4,Hiltinho,speeds up,Franklin,teammate,,,,,,
-35,1.4,Hiltinho,speeds up,Maor_Haas,opponent,39.0,0.16,slows down,False,-0.99,5.6
-35,1.4,Hiltinho,speeds up,Ron_Ben_Ishay,opponent,37.0,0.08,slows down,False,-1.27,7.6
-37,1.48,Ron_Ben_Ishay,slows down,Franklin,opponent,,,,,,
-37,1.48,Ron_Ben_Ishay,slows down,Hiltinho,opponent,53.0,0.64,slows down,True,-2.52,15.7
-37,1.48,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,39.0,0.08,slows down,True,-0.99,5.6
-39,1.56,Maor_Haas,slows down,Franklin,opponent,,,,,,
-39,1.56,Maor_Haas,slows down,Hiltinho,opponent,53.0,0.56,slows down,True,-2.52,15.7
-39,1.56,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,54.0,0.6,slows down,True,-0.89,6.4
+35,1.4,Hiltinho,speeds up,Ron_Ben_Ishay,opponent,39.0,0.16,slows down,False,-0.99,5.6
+35,1.4,Hiltinho,speeds up,Maor_Haas,opponent,37.0,0.08,slows down,False,-1.27,7.6
+37,1.48,Maor_Haas,slows down,Franklin,opponent,,,,,,
+37,1.48,Maor_Haas,slows down,Hiltinho,opponent,53.0,0.64,slows down,True,-2.52,15.7
+37,1.48,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,39.0,0.08,slows down,True,-0.99,5.6
+39,1.56,Ron_Ben_Ishay,slows down,Franklin,opponent,,,,,,
+39,1.56,Ron_Ben_Ishay,slows down,Hiltinho,opponent,53.0,0.56,slows down,True,-2.52,15.7
+39,1.56,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,54.0,0.6,slows down,True,-0.89,6.4
 53,2.12,Hiltinho,slows down,Franklin,teammate,,,,,,
-53,2.12,Hiltinho,slows down,Maor_Haas,opponent,56.0,0.12,slows down,True,-2.64,15.9
-53,2.12,Hiltinho,slows down,Ron_Ben_Ishay,opponent,54.0,0.04,slows down,True,-0.89,6.4
-54,2.16,Ron_Ben_Ishay,slows down,Franklin,opponent,,,,,,
-54,2.16,Ron_Ben_Ishay,slows down,Hiltinho,opponent,,,,,,
-54,2.16,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,56.0,0.08,slows down,True,-2.64,15.9
-56,2.24,Maor_Haas,slows down,Franklin,opponent,,,,,,
-56,2.24,Maor_Haas,slows down,Hiltinho,opponent,,,,,,
-56,2.24,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,,,,,,
-109,4.36,Ron_Ben_Ishay,slows down,Franklin,opponent,119.0,0.4,slows down,True,-4.72,22.2
-109,4.36,Ron_Ben_Ishay,slows down,Hiltinho,opponent,114.0,0.2,speeds up,False,3.37,17.2
-109,4.36,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,114.0,0.2,speeds up,False,1.38,7.8
+53,2.12,Hiltinho,slows down,Ron_Ben_Ishay,opponent,56.0,0.12,slows down,True,-2.64,15.9
+53,2.12,Hiltinho,slows down,Maor_Haas,opponent,54.0,0.04,slows down,True,-0.89,6.4
+54,2.16,Maor_Haas,slows down,Franklin,opponent,,,,,,
+54,2.16,Maor_Haas,slows down,Hiltinho,opponent,,,,,,
+54,2.16,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,56.0,0.08,slows down,True,-2.64,15.9
+56,2.24,Ron_Ben_Ishay,slows down,Franklin,opponent,,,,,,
+56,2.24,Ron_Ben_Ishay,slows down,Hiltinho,opponent,,,,,,
+56,2.24,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,,,,,,
+109,4.36,Maor_Haas,slows down,Franklin,opponent,119.0,0.4,slows down,True,-4.72,22.2
+109,4.36,Maor_Haas,slows down,Hiltinho,opponent,114.0,0.2,speeds up,False,3.37,17.2
+109,4.36,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,114.0,0.2,speeds up,False,1.38,7.8
 109,4.36,Franklin,speeds up,Hiltinho,teammate,114.0,0.2,speeds up,True,3.37,17.2
-109,4.36,Franklin,speeds up,Maor_Haas,opponent,114.0,0.2,speeds up,True,1.38,7.8
-109,4.36,Franklin,speeds up,Ron_Ben_Ishay,opponent,,,,,,
+109,4.36,Franklin,speeds up,Ron_Ben_Ishay,opponent,114.0,0.2,speeds up,True,1.38,7.8
+109,4.36,Franklin,speeds up,Maor_Haas,opponent,,,,,,
 114,4.56,Hiltinho,speeds up,Franklin,teammate,119.0,0.2,slows down,False,-4.72,22.2
-114,4.56,Hiltinho,speeds up,Maor_Haas,opponent,129.0,0.6,speeds up,True,1.73,10.9
-114,4.56,Hiltinho,speeds up,Ron_Ben_Ishay,opponent,,,,,,
-114,4.56,Maor_Haas,speeds up,Franklin,opponent,119.0,0.2,slows down,False,-4.72,22.2
-114,4.56,Maor_Haas,speeds up,Hiltinho,opponent,122.0,0.32,slows down,False,-3.45,9.6
-114,4.56,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,,,,,,
+114,4.56,Hiltinho,speeds up,Ron_Ben_Ishay,opponent,129.0,0.6,speeds up,True,1.73,10.9
+114,4.56,Hiltinho,speeds up,Maor_Haas,opponent,,,,,,
+114,4.56,Ron_Ben_Ishay,speeds up,Franklin,opponent,119.0,0.2,slows down,False,-4.72,22.2
+114,4.56,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,122.0,0.32,slows down,False,-3.45,9.6
+114,4.56,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,,,,,,
 119,4.76,Franklin,slows down,Hiltinho,teammate,122.0,0.12,slows down,True,-3.45,9.6
-119,4.76,Franklin,slows down,Maor_Haas,opponent,129.0,0.4,speeds up,False,1.73,10.9
-119,4.76,Franklin,slows down,Ron_Ben_Ishay,opponent,,,,,,
+119,4.76,Franklin,slows down,Ron_Ben_Ishay,opponent,129.0,0.4,speeds up,False,1.73,10.9
+119,4.76,Franklin,slows down,Maor_Haas,opponent,,,,,,
 122,4.88,Hiltinho,slows down,Franklin,teammate,129.0,0.28,speeds up,False,0.93,7.7
-122,4.88,Hiltinho,slows down,Maor_Haas,opponent,129.0,0.28,speeds up,False,1.73,10.9
-122,4.88,Hiltinho,slows down,Ron_Ben_Ishay,opponent,,,,,,
+122,4.88,Hiltinho,slows down,Ron_Ben_Ishay,opponent,129.0,0.28,speeds up,False,1.73,10.9
+122,4.88,Hiltinho,slows down,Maor_Haas,opponent,,,,,,
 129,5.16,Franklin,speeds up,Hiltinho,teammate,,,,,,
-129,5.16,Franklin,speeds up,Maor_Haas,opponent,,,,,,
 129,5.16,Franklin,speeds up,Ron_Ben_Ishay,opponent,,,,,,
-129,5.16,Maor_Haas,speeds up,Franklin,opponent,,,,,,
-129,5.16,Maor_Haas,speeds up,Hiltinho,opponent,,,,,,
-129,5.16,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,,,,,,
+129,5.16,Franklin,speeds up,Maor_Haas,opponent,,,,,,
+129,5.16,Ron_Ben_Ishay,speeds up,Franklin,opponent,,,,,,
+129,5.16,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,,,,,,
+129,5.16,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,,,,,,
 182,7.28,Hiltinho,speeds up,Franklin,teammate,184.0,0.08,slows down,False,-0.88,6.6
-182,7.28,Hiltinho,speeds up,Maor_Haas,opponent,198.0,0.64,speeds up,True,3.0,12.0
-182,7.28,Hiltinho,speeds up,Ron_Ben_Ishay,opponent,190.0,0.32,slows down,False,-1.16,9.0
-182,7.28,Ron_Ben_Ishay,speeds up,Franklin,opponent,184.0,0.08,slows down,False,-0.88,6.6
-182,7.28,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,190.0,0.32,slows down,False,-0.98,7.2
-182,7.28,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,198.0,0.64,speeds up,True,3.0,12.0
+182,7.28,Hiltinho,speeds up,Ron_Ben_Ishay,opponent,198.0,0.64,speeds up,True,3.0,12.0
+182,7.28,Hiltinho,speeds up,Maor_Haas,opponent,190.0,0.32,slows down,False,-1.16,9.0
+182,7.28,Maor_Haas,speeds up,Franklin,opponent,184.0,0.08,slows down,False,-0.88,6.6
+182,7.28,Maor_Haas,speeds up,Hiltinho,opponent,190.0,0.32,slows down,False,-0.98,7.2
+182,7.28,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,198.0,0.64,speeds up,True,3.0,12.0
 184,7.36,Franklin,slows down,Hiltinho,teammate,190.0,0.24,slows down,True,-0.98,7.2
-184,7.36,Franklin,slows down,Maor_Haas,opponent,198.0,0.56,speeds up,False,3.0,12.0
-184,7.36,Franklin,slows down,Ron_Ben_Ishay,opponent,190.0,0.24,slows down,True,-1.16,9.0
-190,7.6,Ron_Ben_Ishay,slows down,Franklin,opponent,197.0,0.28,slows down,True,-1.18,8.9
-190,7.6,Ron_Ben_Ishay,slows down,Hiltinho,opponent,211.0,0.84,slows down,True,-1.13,7.2
-190,7.6,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,198.0,0.32,speeds up,False,3.0,12.0
+184,7.36,Franklin,slows down,Ron_Ben_Ishay,opponent,198.0,0.56,speeds up,False,3.0,12.0
+184,7.36,Franklin,slows down,Maor_Haas,opponent,190.0,0.24,slows down,True,-1.16,9.0
+190,7.6,Maor_Haas,slows down,Franklin,opponent,197.0,0.28,slows down,True,-1.18,8.9
+190,7.6,Maor_Haas,slows down,Hiltinho,opponent,211.0,0.84,slows down,True,-1.13,7.2
+190,7.6,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,198.0,0.32,speeds up,False,3.0,12.0
 190,7.6,Hiltinho,slows down,Franklin,teammate,197.0,0.28,slows down,True,-1.18,8.9
-190,7.6,Hiltinho,slows down,Maor_Haas,opponent,198.0,0.32,speeds up,False,3.0,12.0
-190,7.6,Hiltinho,slows down,Ron_Ben_Ishay,opponent,200.0,0.4,slows down,True,-1.43,10.2
+190,7.6,Hiltinho,slows down,Ron_Ben_Ishay,opponent,198.0,0.32,speeds up,False,3.0,12.0
+190,7.6,Hiltinho,slows down,Maor_Haas,opponent,200.0,0.4,slows down,True,-1.43,10.2
 197,7.88,Franklin,slows down,Hiltinho,teammate,211.0,0.56,slows down,True,-1.13,7.2
-197,7.88,Franklin,slows down,Maor_Haas,opponent,198.0,0.04,speeds up,False,3.0,12.0
-197,7.88,Franklin,slows down,Ron_Ben_Ishay,opponent,200.0,0.12,slows down,True,-1.43,10.2
-198,7.92,Maor_Haas,speeds up,Franklin,opponent,210.0,0.48,slows down,False,-1.14,7.3
-198,7.92,Maor_Haas,speeds up,Hiltinho,opponent,211.0,0.52,slows down,False,-1.13,7.2
-198,7.92,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,200.0,0.08,slows down,False,-1.43,10.2
-200,8.0,Ron_Ben_Ishay,slows down,Franklin,opponent,210.0,0.4,slows down,True,-1.14,7.3
-200,8.0,Ron_Ben_Ishay,slows down,Hiltinho,opponent,211.0,0.44,slows down,True,-1.13,7.2
-200,8.0,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,208.0,0.32,slows down,True,-3.05,13.4
-208,8.32,Maor_Haas,slows down,Franklin,opponent,210.0,0.08,slows down,True,-1.14,7.3
-208,8.32,Maor_Haas,slows down,Hiltinho,opponent,211.0,0.12,slows down,True,-1.13,7.2
-208,8.32,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,215.0,0.28,speeds up,False,1.7,5.6
+197,7.88,Franklin,slows down,Ron_Ben_Ishay,opponent,198.0,0.04,speeds up,False,3.0,12.0
+197,7.88,Franklin,slows down,Maor_Haas,opponent,200.0,0.12,slows down,True,-1.43,10.2
+198,7.92,Ron_Ben_Ishay,speeds up,Franklin,opponent,210.0,0.48,slows down,False,-1.14,7.3
+198,7.92,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,211.0,0.52,slows down,False,-1.13,7.2
+198,7.92,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,200.0,0.08,slows down,False,-1.43,10.2
+200,8.0,Maor_Haas,slows down,Franklin,opponent,210.0,0.4,slows down,True,-1.14,7.3
+200,8.0,Maor_Haas,slows down,Hiltinho,opponent,211.0,0.44,slows down,True,-1.13,7.2
+200,8.0,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,208.0,0.32,slows down,True,-3.05,13.4
+208,8.32,Ron_Ben_Ishay,slows down,Franklin,opponent,210.0,0.08,slows down,True,-1.14,7.3
+208,8.32,Ron_Ben_Ishay,slows down,Hiltinho,opponent,211.0,0.12,slows down,True,-1.13,7.2
+208,8.32,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,215.0,0.28,speeds up,False,1.7,5.6
 210,8.4,Franklin,slows down,Hiltinho,teammate,211.0,0.04,slows down,True,-1.13,7.2
-210,8.4,Franklin,slows down,Maor_Haas,opponent,218.0,0.32,speeds up,False,1.88,7.4
-210,8.4,Franklin,slows down,Ron_Ben_Ishay,opponent,215.0,0.2,speeds up,False,1.7,5.6
+210,8.4,Franklin,slows down,Ron_Ben_Ishay,opponent,218.0,0.32,speeds up,False,1.88,7.4
+210,8.4,Franklin,slows down,Maor_Haas,opponent,215.0,0.2,speeds up,False,1.7,5.6
 211,8.44,Hiltinho,slows down,Franklin,teammate,231.0,0.8,slows down,True,-0.9,4.7
-211,8.44,Hiltinho,slows down,Maor_Haas,opponent,218.0,0.28,speeds up,False,1.88,7.4
-211,8.44,Hiltinho,slows down,Ron_Ben_Ishay,opponent,215.0,0.16,speeds up,False,1.7,5.6
-215,8.6,Ron_Ben_Ishay,speeds up,Franklin,opponent,231.0,0.64,slows down,False,-0.9,4.7
-215,8.6,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,,,,,,
-215,8.6,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,218.0,0.12,speeds up,True,1.88,7.4
-218,8.72,Maor_Haas,speeds up,Franklin,opponent,231.0,0.52,slows down,False,-0.9,4.7
-218,8.72,Maor_Haas,speeds up,Hiltinho,opponent,,,,,,
-218,8.72,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,226.0,0.32,slows down,False,-0.89,5.6
-226,9.04,Ron_Ben_Ishay,slows down,Franklin,opponent,231.0,0.2,slows down,True,-0.9,4.7
-226,9.04,Ron_Ben_Ishay,slows down,Hiltinho,opponent,,,,,,
-226,9.04,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,230.0,0.16,slows down,True,-1.61,7.9
-230,9.2,Maor_Haas,slows down,Franklin,opponent,231.0,0.04,slows down,True,-0.9,4.7
-230,9.2,Maor_Haas,slows down,Hiltinho,opponent,,,,,,
-230,9.2,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,238.0,0.32,slows down,True,-0.97,6.2
+211,8.44,Hiltinho,slows down,Ron_Ben_Ishay,opponent,218.0,0.28,speeds up,False,1.88,7.4
+211,8.44,Hiltinho,slows down,Maor_Haas,opponent,215.0,0.16,speeds up,False,1.7,5.6
+215,8.6,Maor_Haas,speeds up,Franklin,opponent,231.0,0.64,slows down,False,-0.9,4.7
+215,8.6,Maor_Haas,speeds up,Hiltinho,opponent,,,,,,
+215,8.6,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,218.0,0.12,speeds up,True,1.88,7.4
+218,8.72,Ron_Ben_Ishay,speeds up,Franklin,opponent,231.0,0.52,slows down,False,-0.9,4.7
+218,8.72,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,,,,,,
+218,8.72,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,226.0,0.32,slows down,False,-0.89,5.6
+226,9.04,Maor_Haas,slows down,Franklin,opponent,231.0,0.2,slows down,True,-0.9,4.7
+226,9.04,Maor_Haas,slows down,Hiltinho,opponent,,,,,,
+226,9.04,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,230.0,0.16,slows down,True,-1.61,7.9
+230,9.2,Ron_Ben_Ishay,slows down,Franklin,opponent,231.0,0.04,slows down,True,-0.9,4.7
+230,9.2,Ron_Ben_Ishay,slows down,Hiltinho,opponent,,,,,,
+230,9.2,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,238.0,0.32,slows down,True,-0.97,6.2
 231,9.24,Franklin,slows down,Hiltinho,teammate,,,,,,
-231,9.24,Franklin,slows down,Maor_Haas,opponent,252.0,0.84,speeds up,False,1.98,10.2
-231,9.24,Franklin,slows down,Ron_Ben_Ishay,opponent,238.0,0.28,slows down,True,-0.97,6.2
-238,9.52,Ron_Ben_Ishay,slows down,Franklin,opponent,260.0,0.88,speeds up,False,1.9,9.8
-238,9.52,Ron_Ben_Ishay,slows down,Hiltinho,opponent,,,,,,
-238,9.52,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,252.0,0.56,speeds up,False,1.98,10.2
-252,10.08,Maor_Haas,speeds up,Franklin,opponent,260.0,0.32,speeds up,True,1.9,9.8
-252,10.08,Maor_Haas,speeds up,Hiltinho,opponent,,,,,,
-252,10.08,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,,,,,,
-260,10.4,Maor_Haas,slows down,Franklin,opponent,271.0,0.44,slows down,True,-1.25,5.1
-260,10.4,Maor_Haas,slows down,Hiltinho,opponent,,,,,,
-260,10.4,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,,,,,,
+231,9.24,Franklin,slows down,Ron_Ben_Ishay,opponent,252.0,0.84,speeds up,False,1.98,10.2
+231,9.24,Franklin,slows down,Maor_Haas,opponent,238.0,0.28,slows down,True,-0.97,6.2
+238,9.52,Maor_Haas,slows down,Franklin,opponent,260.0,0.88,speeds up,False,1.9,9.8
+238,9.52,Maor_Haas,slows down,Hiltinho,opponent,,,,,,
+238,9.52,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,252.0,0.56,speeds up,False,1.98,10.2
+252,10.08,Ron_Ben_Ishay,speeds up,Franklin,opponent,260.0,0.32,speeds up,True,1.9,9.8
+252,10.08,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,,,,,,
+252,10.08,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,,,,,,
+260,10.4,Ron_Ben_Ishay,slows down,Franklin,opponent,271.0,0.44,slows down,True,-1.25,5.1
+260,10.4,Ron_Ben_Ishay,slows down,Hiltinho,opponent,,,,,,
+260,10.4,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,,,,,,
 260,10.4,Franklin,speeds up,Hiltinho,teammate,,,,,,
-260,10.4,Franklin,speeds up,Maor_Haas,opponent,274.0,0.56,slows down,False,-1.61,10.8
-260,10.4,Franklin,speeds up,Ron_Ben_Ishay,opponent,,,,,,
+260,10.4,Franklin,speeds up,Ron_Ben_Ishay,opponent,274.0,0.56,slows down,False,-1.61,10.8
+260,10.4,Franklin,speeds up,Maor_Haas,opponent,,,,,,
 271,10.84,Franklin,slows down,Hiltinho,teammate,,,,,,
-271,10.84,Franklin,slows down,Maor_Haas,opponent,274.0,0.12,slows down,True,-1.61,10.8
-271,10.84,Franklin,slows down,Ron_Ben_Ishay,opponent,,,,,,
-274,10.96,Maor_Haas,slows down,Franklin,opponent,285.0,0.44,slows down,True,-0.86,7.4
-274,10.96,Maor_Haas,slows down,Hiltinho,opponent,,,,,,
-274,10.96,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,,,,,,
+271,10.84,Franklin,slows down,Ron_Ben_Ishay,opponent,274.0,0.12,slows down,True,-1.61,10.8
+271,10.84,Franklin,slows down,Maor_Haas,opponent,,,,,,
+274,10.96,Ron_Ben_Ishay,slows down,Franklin,opponent,285.0,0.44,slows down,True,-0.86,7.4
+274,10.96,Ron_Ben_Ishay,slows down,Hiltinho,opponent,,,,,,
+274,10.96,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,,,,,,
 285,11.4,Franklin,slows down,Hiltinho,teammate,,,,,,
-285,11.4,Franklin,slows down,Maor_Haas,opponent,288.0,0.12,slows down,True,-1.23,9.1
-285,11.4,Franklin,slows down,Ron_Ben_Ishay,opponent,,,,,,
-288,11.52,Maor_Haas,slows down,Franklin,opponent,299.0,0.44,slows down,True,-0.99,4.8
-288,11.52,Maor_Haas,slows down,Hiltinho,opponent,,,,,,
-288,11.52,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,,,,,,
+285,11.4,Franklin,slows down,Ron_Ben_Ishay,opponent,288.0,0.12,slows down,True,-1.23,9.1
+285,11.4,Franklin,slows down,Maor_Haas,opponent,,,,,,
+288,11.52,Ron_Ben_Ishay,slows down,Franklin,opponent,299.0,0.44,slows down,True,-0.99,4.8
+288,11.52,Ron_Ben_Ishay,slows down,Hiltinho,opponent,,,,,,
+288,11.52,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,,,,,,
 299,11.96,Franklin,slows down,Hiltinho,teammate,,,,,,
-299,11.96,Franklin,slows down,Maor_Haas,opponent,303.0,0.16,slows down,True,-1.29,10.6
-299,11.96,Franklin,slows down,Ron_Ben_Ishay,opponent,,,,,,
-303,12.12,Maor_Haas,slows down,Franklin,opponent,,,,,,
-303,12.12,Maor_Haas,slows down,Hiltinho,opponent,,,,,,
-303,12.12,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,,,,,,
-317,12.68,Maor_Haas,slows down,Franklin,opponent,,,,,,
-317,12.68,Maor_Haas,slows down,Hiltinho,opponent,,,,,,
-317,12.68,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,,,,,,
-372,14.88,Maor_Haas,speeds up,Franklin,opponent,374.0,0.08,speeds up,True,1.55,14.2
-372,14.88,Maor_Haas,speeds up,Hiltinho,opponent,378.0,0.24,speeds up,True,0.92,5.3
-372,14.88,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,,,,,,
+299,11.96,Franklin,slows down,Ron_Ben_Ishay,opponent,303.0,0.16,slows down,True,-1.29,10.6
+299,11.96,Franklin,slows down,Maor_Haas,opponent,,,,,,
+303,12.12,Ron_Ben_Ishay,slows down,Franklin,opponent,,,,,,
+303,12.12,Ron_Ben_Ishay,slows down,Hiltinho,opponent,,,,,,
+303,12.12,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,,,,,,
+317,12.68,Ron_Ben_Ishay,slows down,Franklin,opponent,,,,,,
+317,12.68,Ron_Ben_Ishay,slows down,Hiltinho,opponent,,,,,,
+317,12.68,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,,,,,,
+372,14.88,Ron_Ben_Ishay,speeds up,Franklin,opponent,374.0,0.08,speeds up,True,1.55,14.2
+372,14.88,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,378.0,0.24,speeds up,True,0.92,5.3
+372,14.88,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,,,,,,
 374,14.96,Franklin,speeds up,Hiltinho,teammate,378.0,0.16,speeds up,True,0.92,5.3
-374,14.96,Franklin,speeds up,Maor_Haas,opponent,,,,,,
 374,14.96,Franklin,speeds up,Ron_Ben_Ishay,opponent,,,,,,
+374,14.96,Franklin,speeds up,Maor_Haas,opponent,,,,,,
 378,15.12,Hiltinho,speeds up,Franklin,teammate,396.0,0.72,slows down,False,-2.32,12.4
-378,15.12,Hiltinho,speeds up,Maor_Haas,opponent,402.0,0.96,speeds up,True,4.25,9.5
-378,15.12,Hiltinho,speeds up,Ron_Ben_Ishay,opponent,,,,,,
+378,15.12,Hiltinho,speeds up,Ron_Ben_Ishay,opponent,402.0,0.96,speeds up,True,4.25,9.5
+378,15.12,Hiltinho,speeds up,Maor_Haas,opponent,,,,,,
 388,15.52,Hiltinho,speeds up,Franklin,teammate,396.0,0.32,slows down,False,-2.32,12.4
-388,15.52,Hiltinho,speeds up,Maor_Haas,opponent,402.0,0.56,speeds up,True,4.25,9.5
-388,15.52,Hiltinho,speeds up,Ron_Ben_Ishay,opponent,,,,,,
+388,15.52,Hiltinho,speeds up,Ron_Ben_Ishay,opponent,402.0,0.56,speeds up,True,4.25,9.5
+388,15.52,Hiltinho,speeds up,Maor_Haas,opponent,,,,,,
 396,15.84,Franklin,slows down,Hiltinho,teammate,399.0,0.12,speeds up,False,1.47,8.0
-396,15.84,Franklin,slows down,Maor_Haas,opponent,402.0,0.24,speeds up,False,4.25,9.5
-396,15.84,Franklin,slows down,Ron_Ben_Ishay,opponent,420.0,0.96,slows down,True,-1.3,8.2
+396,15.84,Franklin,slows down,Ron_Ben_Ishay,opponent,402.0,0.24,speeds up,False,4.25,9.5
+396,15.84,Franklin,slows down,Maor_Haas,opponent,420.0,0.96,slows down,True,-1.3,8.2
 399,15.96,Hiltinho,speeds up,Franklin,teammate,414.0,0.6,slows down,False,-0.82,5.9
-399,15.96,Hiltinho,speeds up,Maor_Haas,opponent,402.0,0.12,speeds up,True,4.25,9.5
-399,15.96,Hiltinho,speeds up,Ron_Ben_Ishay,opponent,420.0,0.84,slows down,False,-1.3,8.2
-402,16.08,Maor_Haas,speeds up,Franklin,opponent,414.0,0.48,slows down,False,-0.82,5.9
-402,16.08,Maor_Haas,speeds up,Hiltinho,opponent,412.0,0.4,speeds up,True,2.51,19.1
-402,16.08,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,420.0,0.72,slows down,False,-1.3,8.2
+399,15.96,Hiltinho,speeds up,Ron_Ben_Ishay,opponent,402.0,0.12,speeds up,True,4.25,9.5
+399,15.96,Hiltinho,speeds up,Maor_Haas,opponent,420.0,0.84,slows down,False,-1.3,8.2
+402,16.08,Ron_Ben_Ishay,speeds up,Franklin,opponent,414.0,0.48,slows down,False,-0.82,5.9
+402,16.08,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,412.0,0.4,speeds up,True,2.51,19.1
+402,16.08,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,420.0,0.72,slows down,False,-1.3,8.2
 412,16.48,Hiltinho,speeds up,Franklin,teammate,414.0,0.08,slows down,False,-0.82,5.9
-412,16.48,Hiltinho,speeds up,Maor_Haas,opponent,424.0,0.48,slows down,False,-3.16,15.0
-412,16.48,Hiltinho,speeds up,Ron_Ben_Ishay,opponent,420.0,0.32,slows down,False,-1.3,8.2
+412,16.48,Hiltinho,speeds up,Ron_Ben_Ishay,opponent,424.0,0.48,slows down,False,-3.16,15.0
+412,16.48,Hiltinho,speeds up,Maor_Haas,opponent,420.0,0.32,slows down,False,-1.3,8.2
 414,16.56,Franklin,slows down,Hiltinho,teammate,425.0,0.44,slows down,True,-4.41,23.6
-414,16.56,Franklin,slows down,Maor_Haas,opponent,424.0,0.4,slows down,True,-3.16,15.0
-414,16.56,Franklin,slows down,Ron_Ben_Ishay,opponent,420.0,0.24,slows down,True,-1.3,8.2
-420,16.8,Ron_Ben_Ishay,slows down,Franklin,opponent,,,,,,
-420,16.8,Ron_Ben_Ishay,slows down,Hiltinho,opponent,425.0,0.2,slows down,True,-4.41,23.6
-420,16.8,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,424.0,0.16,slows down,True,-3.16,15.0
-424,16.96,Maor_Haas,slows down,Franklin,opponent,,,,,,
-424,16.96,Maor_Haas,slows down,Hiltinho,opponent,425.0,0.04,slows down,True,-4.41,23.6
-424,16.96,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,433.0,0.36,speeds up,False,3.59,20.2
+414,16.56,Franklin,slows down,Ron_Ben_Ishay,opponent,424.0,0.4,slows down,True,-3.16,15.0
+414,16.56,Franklin,slows down,Maor_Haas,opponent,420.0,0.24,slows down,True,-1.3,8.2
+420,16.8,Maor_Haas,slows down,Franklin,opponent,,,,,,
+420,16.8,Maor_Haas,slows down,Hiltinho,opponent,425.0,0.2,slows down,True,-4.41,23.6
+420,16.8,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,424.0,0.16,slows down,True,-3.16,15.0
+424,16.96,Ron_Ben_Ishay,slows down,Franklin,opponent,,,,,,
+424,16.96,Ron_Ben_Ishay,slows down,Hiltinho,opponent,425.0,0.04,slows down,True,-4.41,23.6
+424,16.96,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,433.0,0.36,speeds up,False,3.59,20.2
 425,17.0,Hiltinho,slows down,Franklin,teammate,,,,,,
-425,17.0,Hiltinho,slows down,Maor_Haas,opponent,433.0,0.32,speeds up,False,1.2,11.4
-425,17.0,Hiltinho,slows down,Ron_Ben_Ishay,opponent,433.0,0.32,speeds up,False,3.59,20.2
-433,17.32,Ron_Ben_Ishay,speeds up,Franklin,opponent,,,,,,
-433,17.32,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,434.0,0.04,speeds up,True,2.44,6.3
-433,17.32,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,,,,,,
+425,17.0,Hiltinho,slows down,Ron_Ben_Ishay,opponent,433.0,0.32,speeds up,False,1.2,11.4
+425,17.0,Hiltinho,slows down,Maor_Haas,opponent,433.0,0.32,speeds up,False,3.59,20.2
 433,17.32,Maor_Haas,speeds up,Franklin,opponent,,,,,,
 433,17.32,Maor_Haas,speeds up,Hiltinho,opponent,434.0,0.04,speeds up,True,2.44,6.3
 433,17.32,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,,,,,,
+433,17.32,Ron_Ben_Ishay,speeds up,Franklin,opponent,,,,,,
+433,17.32,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,434.0,0.04,speeds up,True,2.44,6.3
+433,17.32,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,,,,,,
 434,17.36,Hiltinho,speeds up,Franklin,teammate,,,,,,
-434,17.36,Hiltinho,speeds up,Maor_Haas,opponent,,,,,,
 434,17.36,Hiltinho,speeds up,Ron_Ben_Ishay,opponent,,,,,,
+434,17.36,Hiltinho,speeds up,Maor_Haas,opponent,,,,,,
 456,18.24,Hiltinho,slows down,Franklin,teammate,464.0,0.32,speeds up,False,1.23,7.0
-456,18.24,Hiltinho,slows down,Maor_Haas,opponent,470.0,0.56,speeds up,False,0.84,5.3
-456,18.24,Hiltinho,slows down,Ron_Ben_Ishay,opponent,460.0,0.16,speeds up,False,1.46,6.2
-460,18.4,Ron_Ben_Ishay,speeds up,Franklin,opponent,464.0,0.16,speeds up,True,1.23,7.0
-460,18.4,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,478.0,0.72,slows down,False,-1.27,8.7
-460,18.4,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,470.0,0.4,speeds up,True,0.84,5.3
+456,18.24,Hiltinho,slows down,Ron_Ben_Ishay,opponent,470.0,0.56,speeds up,False,0.84,5.3
+456,18.24,Hiltinho,slows down,Maor_Haas,opponent,460.0,0.16,speeds up,False,1.46,6.2
+460,18.4,Maor_Haas,speeds up,Franklin,opponent,464.0,0.16,speeds up,True,1.23,7.0
+460,18.4,Maor_Haas,speeds up,Hiltinho,opponent,478.0,0.72,slows down,False,-1.27,8.7
+460,18.4,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,470.0,0.4,speeds up,True,0.84,5.3
 464,18.56,Franklin,speeds up,Hiltinho,teammate,478.0,0.56,slows down,False,-1.27,8.7
-464,18.56,Franklin,speeds up,Maor_Haas,opponent,470.0,0.24,speeds up,True,0.84,5.3
-464,18.56,Franklin,speeds up,Ron_Ben_Ishay,opponent,470.0,0.24,slows down,False,-1.19,5.3
-470,18.8,Ron_Ben_Ishay,slows down,Franklin,opponent,492.0,0.88,speeds up,False,0.81,5.5
-470,18.8,Ron_Ben_Ishay,slows down,Hiltinho,opponent,478.0,0.32,slows down,True,-1.27,8.7
-470,18.8,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,486.0,0.64,speeds up,False,1.0,5.9
-470,18.8,Maor_Haas,speeds up,Franklin,opponent,492.0,0.88,speeds up,True,0.81,5.5
-470,18.8,Maor_Haas,speeds up,Hiltinho,opponent,478.0,0.32,slows down,False,-1.27,8.7
-470,18.8,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,491.0,0.84,slows down,False,-1.06,6.2
+464,18.56,Franklin,speeds up,Ron_Ben_Ishay,opponent,470.0,0.24,speeds up,True,0.84,5.3
+464,18.56,Franklin,speeds up,Maor_Haas,opponent,470.0,0.24,slows down,False,-1.19,5.3
+470,18.8,Maor_Haas,slows down,Franklin,opponent,492.0,0.88,speeds up,False,0.81,5.5
+470,18.8,Maor_Haas,slows down,Hiltinho,opponent,478.0,0.32,slows down,True,-1.27,8.7
+470,18.8,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,486.0,0.64,speeds up,False,1.0,5.9
+470,18.8,Ron_Ben_Ishay,speeds up,Franklin,opponent,492.0,0.88,speeds up,True,0.81,5.5
+470,18.8,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,478.0,0.32,slows down,False,-1.27,8.7
+470,18.8,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,491.0,0.84,slows down,False,-1.06,6.2
 478,19.12,Hiltinho,slows down,Franklin,teammate,492.0,0.56,speeds up,False,0.81,5.5
-478,19.12,Hiltinho,slows down,Maor_Haas,opponent,486.0,0.32,speeds up,False,1.0,5.9
-478,19.12,Hiltinho,slows down,Ron_Ben_Ishay,opponent,491.0,0.52,slows down,True,-1.06,6.2
-486,19.44,Maor_Haas,speeds up,Franklin,opponent,492.0,0.24,speeds up,True,0.81,5.5
-486,19.44,Maor_Haas,speeds up,Hiltinho,opponent,503.0,0.68,slows down,False,-1.59,13.8
-486,19.44,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,491.0,0.2,slows down,False,-1.06,6.2
+478,19.12,Hiltinho,slows down,Ron_Ben_Ishay,opponent,486.0,0.32,speeds up,False,1.0,5.9
+478,19.12,Hiltinho,slows down,Maor_Haas,opponent,491.0,0.52,slows down,True,-1.06,6.2
+486,19.44,Ron_Ben_Ishay,speeds up,Franklin,opponent,492.0,0.24,speeds up,True,0.81,5.5
+486,19.44,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,503.0,0.68,slows down,False,-1.59,13.8
+486,19.44,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,491.0,0.2,slows down,False,-1.06,6.2
 486,19.44,Hiltinho,speeds up,Franklin,teammate,492.0,0.24,speeds up,True,0.81,5.5
-486,19.44,Hiltinho,speeds up,Maor_Haas,opponent,494.0,0.32,slows down,False,-1.07,8.0
-486,19.44,Hiltinho,speeds up,Ron_Ben_Ishay,opponent,491.0,0.2,slows down,False,-1.06,6.2
-491,19.64,Ron_Ben_Ishay,slows down,Franklin,opponent,492.0,0.04,speeds up,False,0.81,5.5
-491,19.64,Ron_Ben_Ishay,slows down,Hiltinho,opponent,503.0,0.48,slows down,True,-1.59,13.8
-491,19.64,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,494.0,0.12,slows down,True,-1.07,8.0
+486,19.44,Hiltinho,speeds up,Ron_Ben_Ishay,opponent,494.0,0.32,slows down,False,-1.07,8.0
+486,19.44,Hiltinho,speeds up,Maor_Haas,opponent,491.0,0.2,slows down,False,-1.06,6.2
+491,19.64,Maor_Haas,slows down,Franklin,opponent,492.0,0.04,speeds up,False,0.81,5.5
+491,19.64,Maor_Haas,slows down,Hiltinho,opponent,503.0,0.48,slows down,True,-1.59,13.8
+491,19.64,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,494.0,0.12,slows down,True,-1.07,8.0
 492,19.68,Franklin,speeds up,Hiltinho,teammate,503.0,0.44,slows down,False,-1.59,13.8
-492,19.68,Franklin,speeds up,Maor_Haas,opponent,494.0,0.08,slows down,False,-1.07,8.0
-492,19.68,Franklin,speeds up,Ron_Ben_Ishay,opponent,501.0,0.36,speeds up,True,2.38,28.1
-494,19.76,Maor_Haas,slows down,Franklin,opponent,,,,,,
-494,19.76,Maor_Haas,slows down,Hiltinho,opponent,503.0,0.36,slows down,True,-1.59,13.8
-494,19.76,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,501.0,0.28,speeds up,False,2.38,28.1
-501,20.04,Ron_Ben_Ishay,speeds up,Franklin,opponent,,,,,,
-501,20.04,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,503.0,0.08,slows down,False,-1.59,13.8
-501,20.04,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,503.0,0.08,slows down,False,-0.87,7.6
-503,20.12,Maor_Haas,slows down,Franklin,opponent,,,,,,
-503,20.12,Maor_Haas,slows down,Hiltinho,opponent,,,,,,
-503,20.12,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,509.0,0.24,speeds up,False,1.21,7.7
+492,19.68,Franklin,speeds up,Ron_Ben_Ishay,opponent,494.0,0.08,slows down,False,-1.07,8.0
+492,19.68,Franklin,speeds up,Maor_Haas,opponent,501.0,0.36,speeds up,True,2.38,28.1
+494,19.76,Ron_Ben_Ishay,slows down,Franklin,opponent,,,,,,
+494,19.76,Ron_Ben_Ishay,slows down,Hiltinho,opponent,503.0,0.36,slows down,True,-1.59,13.8
+494,19.76,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,501.0,0.28,speeds up,False,2.38,28.1
+501,20.04,Maor_Haas,speeds up,Franklin,opponent,,,,,,
+501,20.04,Maor_Haas,speeds up,Hiltinho,opponent,503.0,0.08,slows down,False,-1.59,13.8
+501,20.04,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,503.0,0.08,slows down,False,-0.87,7.6
+503,20.12,Ron_Ben_Ishay,slows down,Franklin,opponent,,,,,,
+503,20.12,Ron_Ben_Ishay,slows down,Hiltinho,opponent,,,,,,
+503,20.12,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,509.0,0.24,speeds up,False,1.21,7.7
 503,20.12,Hiltinho,slows down,Franklin,teammate,,,,,,
-503,20.12,Hiltinho,slows down,Maor_Haas,opponent,521.0,0.72,speeds up,False,1.57,8.3
-503,20.12,Hiltinho,slows down,Ron_Ben_Ishay,opponent,509.0,0.24,speeds up,False,1.21,7.7
-509,20.36,Ron_Ben_Ishay,speeds up,Franklin,opponent,529.0,0.8,speeds up,True,1.91,13.7
-509,20.36,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,,,,,,
-509,20.36,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,521.0,0.48,speeds up,True,1.57,8.3
-518,20.72,Ron_Ben_Ishay,slows down,Franklin,opponent,529.0,0.44,speeds up,False,1.91,13.7
-518,20.72,Ron_Ben_Ishay,slows down,Hiltinho,opponent,,,,,,
-518,20.72,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,521.0,0.12,speeds up,False,1.57,8.3
-521,20.84,Maor_Haas,speeds up,Franklin,opponent,529.0,0.32,speeds up,True,1.91,13.7
-521,20.84,Maor_Haas,speeds up,Hiltinho,opponent,,,,,,
-521,20.84,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,529.0,0.32,speeds up,True,1.12,3.9
-529,21.16,Ron_Ben_Ishay,speeds up,Franklin,opponent,546.0,0.68,slows down,False,-1.64,9.6
-529,21.16,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,,,,,,
-529,21.16,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,532.0,0.12,speeds up,True,1.63,10.5
+503,20.12,Hiltinho,slows down,Ron_Ben_Ishay,opponent,521.0,0.72,speeds up,False,1.57,8.3
+503,20.12,Hiltinho,slows down,Maor_Haas,opponent,509.0,0.24,speeds up,False,1.21,7.7
+509,20.36,Maor_Haas,speeds up,Franklin,opponent,529.0,0.8,speeds up,True,1.91,13.7
+509,20.36,Maor_Haas,speeds up,Hiltinho,opponent,,,,,,
+509,20.36,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,521.0,0.48,speeds up,True,1.57,8.3
+518,20.72,Maor_Haas,slows down,Franklin,opponent,529.0,0.44,speeds up,False,1.91,13.7
+518,20.72,Maor_Haas,slows down,Hiltinho,opponent,,,,,,
+518,20.72,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,521.0,0.12,speeds up,False,1.57,8.3
+521,20.84,Ron_Ben_Ishay,speeds up,Franklin,opponent,529.0,0.32,speeds up,True,1.91,13.7
+521,20.84,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,,,,,,
+521,20.84,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,529.0,0.32,speeds up,True,1.12,3.9
+529,21.16,Maor_Haas,speeds up,Franklin,opponent,546.0,0.68,slows down,False,-1.64,9.6
+529,21.16,Maor_Haas,speeds up,Hiltinho,opponent,,,,,,
+529,21.16,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,532.0,0.12,speeds up,True,1.63,10.5
 529,21.16,Franklin,speeds up,Hiltinho,teammate,,,,,,
-529,21.16,Franklin,speeds up,Maor_Haas,opponent,532.0,0.12,speeds up,True,1.63,10.5
-529,21.16,Franklin,speeds up,Ron_Ben_Ishay,opponent,542.0,0.52,slows down,False,-1.15,6.7
-532,21.28,Maor_Haas,speeds up,Franklin,opponent,546.0,0.56,slows down,False,-1.64,9.6
-532,21.28,Maor_Haas,speeds up,Hiltinho,opponent,,,,,,
-532,21.28,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,542.0,0.4,slows down,False,-1.15,6.7
-542,21.68,Ron_Ben_Ishay,slows down,Franklin,opponent,546.0,0.16,slows down,True,-1.64,9.6
-542,21.68,Ron_Ben_Ishay,slows down,Hiltinho,opponent,,,,,,
-542,21.68,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,549.0,0.28,speeds up,False,2.76,13.5
+529,21.16,Franklin,speeds up,Ron_Ben_Ishay,opponent,532.0,0.12,speeds up,True,1.63,10.5
+529,21.16,Franklin,speeds up,Maor_Haas,opponent,542.0,0.52,slows down,False,-1.15,6.7
+532,21.28,Ron_Ben_Ishay,speeds up,Franklin,opponent,546.0,0.56,slows down,False,-1.64,9.6
+532,21.28,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,,,,,,
+532,21.28,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,542.0,0.4,slows down,False,-1.15,6.7
+542,21.68,Maor_Haas,slows down,Franklin,opponent,546.0,0.16,slows down,True,-1.64,9.6
+542,21.68,Maor_Haas,slows down,Hiltinho,opponent,,,,,,
+542,21.68,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,549.0,0.28,speeds up,False,2.76,13.5
 546,21.84,Franklin,slows down,Hiltinho,teammate,,,,,,
-546,21.84,Franklin,slows down,Maor_Haas,opponent,549.0,0.12,speeds up,False,2.76,13.5
-546,21.84,Franklin,slows down,Ron_Ben_Ishay,opponent,550.0,0.16,speeds up,False,1.92,7.7
-549,21.96,Maor_Haas,speeds up,Franklin,opponent,558.0,0.36,slows down,False,-0.97,7.4
-549,21.96,Maor_Haas,speeds up,Hiltinho,opponent,,,,,,
-549,21.96,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,550.0,0.04,speeds up,True,1.92,7.7
-550,22.0,Ron_Ben_Ishay,speeds up,Franklin,opponent,558.0,0.32,slows down,False,-0.97,7.4
-550,22.0,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,,,,,,
-550,22.0,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,558.0,0.32,slows down,False,-2.91,16.9
+546,21.84,Franklin,slows down,Ron_Ben_Ishay,opponent,549.0,0.12,speeds up,False,2.76,13.5
+546,21.84,Franklin,slows down,Maor_Haas,opponent,550.0,0.16,speeds up,False,1.92,7.7
+549,21.96,Ron_Ben_Ishay,speeds up,Franklin,opponent,558.0,0.36,slows down,False,-0.97,7.4
+549,21.96,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,,,,,,
+549,21.96,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,550.0,0.04,speeds up,True,1.92,7.7
+550,22.0,Maor_Haas,speeds up,Franklin,opponent,558.0,0.32,slows down,False,-0.97,7.4
+550,22.0,Maor_Haas,speeds up,Hiltinho,opponent,,,,,,
+550,22.0,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,558.0,0.32,slows down,False,-2.91,16.9
 558,22.32,Franklin,slows down,Hiltinho,teammate,,,,,,
-558,22.32,Franklin,slows down,Maor_Haas,opponent,579.0,0.84,speeds up,False,0.87,5.7
-558,22.32,Franklin,slows down,Ron_Ben_Ishay,opponent,571.0,0.52,speeds up,False,1.06,4.1
-558,22.32,Maor_Haas,slows down,Franklin,opponent,570.0,0.48,slows down,True,-1.09,7.0
-558,22.32,Maor_Haas,slows down,Hiltinho,opponent,,,,,,
-558,22.32,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,571.0,0.52,speeds up,False,1.06,4.1
+558,22.32,Franklin,slows down,Ron_Ben_Ishay,opponent,579.0,0.84,speeds up,False,0.87,5.7
+558,22.32,Franklin,slows down,Maor_Haas,opponent,571.0,0.52,speeds up,False,1.06,4.1
+558,22.32,Ron_Ben_Ishay,slows down,Franklin,opponent,570.0,0.48,slows down,True,-1.09,7.0
+558,22.32,Ron_Ben_Ishay,slows down,Hiltinho,opponent,,,,,,
+558,22.32,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,571.0,0.52,speeds up,False,1.06,4.1
 570,22.8,Franklin,slows down,Hiltinho,teammate,585.0,0.6,speeds up,False,4.81,14.0
-570,22.8,Franklin,slows down,Maor_Haas,opponent,579.0,0.36,speeds up,False,0.87,5.7
-570,22.8,Franklin,slows down,Ron_Ben_Ishay,opponent,571.0,0.04,speeds up,False,1.06,4.1
-571,22.84,Ron_Ben_Ishay,speeds up,Franklin,opponent,579.0,0.32,speeds up,True,0.87,6.1
-571,22.84,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,585.0,0.56,speeds up,True,4.81,14.0
-571,22.84,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,579.0,0.32,speeds up,True,0.87,5.7
-579,23.16,Maor_Haas,speeds up,Franklin,opponent,591.0,0.48,slows down,False,-1.13,8.8
-579,23.16,Maor_Haas,speeds up,Hiltinho,opponent,585.0,0.24,speeds up,True,4.81,14.0
-579,23.16,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,582.0,0.12,slows down,False,-2.39,12.4
+570,22.8,Franklin,slows down,Ron_Ben_Ishay,opponent,579.0,0.36,speeds up,False,0.87,5.7
+570,22.8,Franklin,slows down,Maor_Haas,opponent,571.0,0.04,speeds up,False,1.06,4.1
+571,22.84,Maor_Haas,speeds up,Franklin,opponent,579.0,0.32,speeds up,True,0.87,6.1
+571,22.84,Maor_Haas,speeds up,Hiltinho,opponent,585.0,0.56,speeds up,True,4.81,14.0
+571,22.84,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,579.0,0.32,speeds up,True,0.87,5.7
+579,23.16,Ron_Ben_Ishay,speeds up,Franklin,opponent,591.0,0.48,slows down,False,-1.13,8.8
+579,23.16,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,585.0,0.24,speeds up,True,4.81,14.0
+579,23.16,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,582.0,0.12,slows down,False,-2.39,12.4
 579,23.16,Franklin,speeds up,Hiltinho,teammate,585.0,0.24,speeds up,True,4.81,14.0
-579,23.16,Franklin,speeds up,Maor_Haas,opponent,593.0,0.56,speeds up,True,1.52,9.3
-579,23.16,Franklin,speeds up,Ron_Ben_Ishay,opponent,582.0,0.12,slows down,False,-2.39,12.4
-582,23.28,Ron_Ben_Ishay,slows down,Franklin,opponent,591.0,0.36,slows down,True,-1.13,8.8
-582,23.28,Ron_Ben_Ishay,slows down,Hiltinho,opponent,585.0,0.12,speeds up,False,4.81,14.0
-582,23.28,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,593.0,0.44,speeds up,False,1.52,9.3
+579,23.16,Franklin,speeds up,Ron_Ben_Ishay,opponent,593.0,0.56,speeds up,True,1.52,9.3
+579,23.16,Franklin,speeds up,Maor_Haas,opponent,582.0,0.12,slows down,False,-2.39,12.4
+582,23.28,Maor_Haas,slows down,Franklin,opponent,591.0,0.36,slows down,True,-1.13,8.8
+582,23.28,Maor_Haas,slows down,Hiltinho,opponent,585.0,0.12,speeds up,False,4.81,14.0
+582,23.28,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,593.0,0.44,speeds up,False,1.52,9.3
 585,23.4,Hiltinho,speeds up,Franklin,teammate,591.0,0.24,slows down,False,-1.13,8.8
-585,23.4,Hiltinho,speeds up,Maor_Haas,opponent,593.0,0.32,speeds up,True,1.52,9.3
-585,23.4,Hiltinho,speeds up,Ron_Ben_Ishay,opponent,590.0,0.2,speeds up,True,2.82,14.5
-590,23.6,Ron_Ben_Ishay,speeds up,Franklin,opponent,591.0,0.04,slows down,False,-1.13,8.8
-590,23.6,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,597.0,0.28,slows down,False,-4.51,14.8
-590,23.6,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,593.0,0.12,speeds up,True,1.52,9.3
+585,23.4,Hiltinho,speeds up,Ron_Ben_Ishay,opponent,593.0,0.32,speeds up,True,1.52,9.3
+585,23.4,Hiltinho,speeds up,Maor_Haas,opponent,590.0,0.2,speeds up,True,2.82,14.5
+590,23.6,Maor_Haas,speeds up,Franklin,opponent,591.0,0.04,slows down,False,-1.13,8.8
+590,23.6,Maor_Haas,speeds up,Hiltinho,opponent,597.0,0.28,slows down,False,-4.51,14.8
+590,23.6,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,593.0,0.12,speeds up,True,1.52,9.3
 591,23.64,Franklin,slows down,Hiltinho,teammate,597.0,0.24,slows down,True,-4.51,14.8
-591,23.64,Franklin,slows down,Maor_Haas,opponent,593.0,0.08,speeds up,False,1.52,9.3
-591,23.64,Franklin,slows down,Ron_Ben_Ishay,opponent,598.0,0.28,slows down,True,-2.92,18.4
-593,23.72,Maor_Haas,speeds up,Franklin,opponent,601.0,0.32,slows down,False,-1.74,11.7
-593,23.72,Maor_Haas,speeds up,Hiltinho,opponent,597.0,0.16,slows down,False,-4.51,14.8
-593,23.72,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,598.0,0.2,slows down,False,-2.92,18.4
+591,23.64,Franklin,slows down,Ron_Ben_Ishay,opponent,593.0,0.08,speeds up,False,1.52,9.3
+591,23.64,Franklin,slows down,Maor_Haas,opponent,598.0,0.28,slows down,True,-2.92,18.4
+593,23.72,Ron_Ben_Ishay,speeds up,Franklin,opponent,601.0,0.32,slows down,False,-1.74,11.7
+593,23.72,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,597.0,0.16,slows down,False,-4.51,14.8
+593,23.72,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,598.0,0.2,slows down,False,-2.92,18.4
 597,23.88,Hiltinho,slows down,Franklin,teammate,601.0,0.16,slows down,True,-1.74,11.7
-597,23.88,Hiltinho,slows down,Maor_Haas,opponent,607.0,0.4,speeds up,False,0.85,8.6
-597,23.88,Hiltinho,slows down,Ron_Ben_Ishay,opponent,598.0,0.04,slows down,True,-2.92,18.4
-598,23.92,Ron_Ben_Ishay,slows down,Franklin,opponent,601.0,0.12,slows down,True,-1.74,11.7
-598,23.92,Ron_Ben_Ishay,slows down,Hiltinho,opponent,616.0,0.72,slows down,True,-0.97,7.2
-598,23.92,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,607.0,0.36,speeds up,False,0.85,8.6
+597,23.88,Hiltinho,slows down,Ron_Ben_Ishay,opponent,607.0,0.4,speeds up,False,0.85,8.6
+597,23.88,Hiltinho,slows down,Maor_Haas,opponent,598.0,0.04,slows down,True,-2.92,18.4
+598,23.92,Maor_Haas,slows down,Franklin,opponent,601.0,0.12,slows down,True,-1.74,11.7
+598,23.92,Maor_Haas,slows down,Hiltinho,opponent,616.0,0.72,slows down,True,-0.97,7.2
+598,23.92,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,607.0,0.36,speeds up,False,0.85,8.6
 601,24.04,Franklin,slows down,Hiltinho,teammate,616.0,0.6,slows down,True,-0.97,7.2
-601,24.04,Franklin,slows down,Maor_Haas,opponent,607.0,0.24,speeds up,False,0.85,8.6
-601,24.04,Franklin,slows down,Ron_Ben_Ishay,opponent,613.0,0.48,speeds up,False,1.47,8.7
-607,24.28,Maor_Haas,speeds up,Franklin,opponent,611.0,0.16,slows down,False,-1.85,11.0
-607,24.28,Maor_Haas,speeds up,Hiltinho,opponent,616.0,0.36,slows down,False,-0.97,7.2
-607,24.28,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,613.0,0.24,speeds up,True,1.47,8.7
+601,24.04,Franklin,slows down,Ron_Ben_Ishay,opponent,607.0,0.24,speeds up,False,0.85,8.6
+601,24.04,Franklin,slows down,Maor_Haas,opponent,613.0,0.48,speeds up,False,1.47,8.7
+607,24.28,Ron_Ben_Ishay,speeds up,Franklin,opponent,611.0,0.16,slows down,False,-1.85,11.0
+607,24.28,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,616.0,0.36,slows down,False,-0.97,7.2
+607,24.28,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,613.0,0.24,speeds up,True,1.47,8.7
 611,24.44,Franklin,slows down,Hiltinho,teammate,616.0,0.2,slows down,True,-0.97,7.2
-611,24.44,Franklin,slows down,Maor_Haas,opponent,616.0,0.2,speeds up,False,1.2,7.8
-611,24.44,Franklin,slows down,Ron_Ben_Ishay,opponent,613.0,0.08,speeds up,False,1.47,8.7
-613,24.52,Ron_Ben_Ishay,speeds up,Franklin,opponent,,,,,,
-613,24.52,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,616.0,0.12,slows down,False,-0.97,7.2
-613,24.52,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,616.0,0.12,speeds up,True,1.2,7.8
-616,24.64,Maor_Haas,speeds up,Franklin,opponent,,,,,,
-616,24.64,Maor_Haas,speeds up,Hiltinho,opponent,,,,,,
-616,24.64,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,,,,,,
+611,24.44,Franklin,slows down,Ron_Ben_Ishay,opponent,616.0,0.2,speeds up,False,1.2,7.8
+611,24.44,Franklin,slows down,Maor_Haas,opponent,613.0,0.08,speeds up,False,1.47,8.7
+613,24.52,Maor_Haas,speeds up,Franklin,opponent,,,,,,
+613,24.52,Maor_Haas,speeds up,Hiltinho,opponent,616.0,0.12,slows down,False,-0.97,7.2
+613,24.52,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,616.0,0.12,speeds up,True,1.2,7.8
+616,24.64,Ron_Ben_Ishay,speeds up,Franklin,opponent,,,,,,
+616,24.64,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,,,,,,
+616,24.64,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,,,,,,
 616,24.64,Hiltinho,slows down,Franklin,teammate,,,,,,
-616,24.64,Hiltinho,slows down,Maor_Haas,opponent,,,,,,
 616,24.64,Hiltinho,slows down,Ron_Ben_Ishay,opponent,,,,,,
+616,24.64,Hiltinho,slows down,Maor_Haas,opponent,,,,,,
 671,26.84,Hiltinho,slows down,Franklin,teammate,678.0,0.28,speeds up,False,1.44,7.5
-671,26.84,Hiltinho,slows down,Maor_Haas,opponent,672.0,0.04,slows down,True,-2.28,12.0
-671,26.84,Hiltinho,slows down,Ron_Ben_Ishay,opponent,685.0,0.56,slows down,True,-1.13,5.4
-672,26.88,Maor_Haas,slows down,Franklin,opponent,678.0,0.24,speeds up,False,1.44,7.5
-672,26.88,Maor_Haas,slows down,Hiltinho,opponent,694.0,0.88,speeds up,False,1.11,6.4
-672,26.88,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,685.0,0.52,slows down,True,-1.13,5.4
+671,26.84,Hiltinho,slows down,Ron_Ben_Ishay,opponent,672.0,0.04,slows down,True,-2.28,12.0
+671,26.84,Hiltinho,slows down,Maor_Haas,opponent,685.0,0.56,slows down,True,-1.13,5.4
+672,26.88,Ron_Ben_Ishay,slows down,Franklin,opponent,678.0,0.24,speeds up,False,1.44,7.5
+672,26.88,Ron_Ben_Ishay,slows down,Hiltinho,opponent,694.0,0.88,speeds up,False,1.11,6.4
+672,26.88,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,685.0,0.52,slows down,True,-1.13,5.4
 678,27.12,Franklin,speeds up,Hiltinho,teammate,694.0,0.64,speeds up,True,1.11,6.4
-678,27.12,Franklin,speeds up,Maor_Haas,opponent,684.0,0.24,slows down,False,-0.89,5.6
-678,27.12,Franklin,speeds up,Ron_Ben_Ishay,opponent,685.0,0.28,slows down,False,-1.13,5.4
-684,27.36,Maor_Haas,slows down,Franklin,opponent,687.0,0.12,slows down,True,-0.89,7.5
-684,27.36,Maor_Haas,slows down,Hiltinho,opponent,694.0,0.4,speeds up,False,1.11,6.4
-684,27.36,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,685.0,0.04,slows down,True,-1.13,5.4
-685,27.4,Ron_Ben_Ishay,slows down,Franklin,opponent,687.0,0.08,slows down,True,-0.89,7.5
-685,27.4,Ron_Ben_Ishay,slows down,Hiltinho,opponent,694.0,0.36,speeds up,False,1.11,6.4
-685,27.4,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,704.0,0.76,speeds up,False,1.01,7.5
+678,27.12,Franklin,speeds up,Ron_Ben_Ishay,opponent,684.0,0.24,slows down,False,-0.89,5.6
+678,27.12,Franklin,speeds up,Maor_Haas,opponent,685.0,0.28,slows down,False,-1.13,5.4
+684,27.36,Ron_Ben_Ishay,slows down,Franklin,opponent,687.0,0.12,slows down,True,-0.89,7.5
+684,27.36,Ron_Ben_Ishay,slows down,Hiltinho,opponent,694.0,0.4,speeds up,False,1.11,6.4
+684,27.36,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,685.0,0.04,slows down,True,-1.13,5.4
+685,27.4,Maor_Haas,slows down,Franklin,opponent,687.0,0.08,slows down,True,-0.89,7.5
+685,27.4,Maor_Haas,slows down,Hiltinho,opponent,694.0,0.36,speeds up,False,1.11,6.4
+685,27.4,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,704.0,0.76,speeds up,False,1.01,7.5
 687,27.48,Franklin,slows down,Hiltinho,teammate,694.0,0.28,speeds up,False,1.11,6.4
-687,27.48,Franklin,slows down,Maor_Haas,opponent,704.0,0.68,speeds up,False,1.01,7.5
-687,27.48,Franklin,slows down,Ron_Ben_Ishay,opponent,695.0,0.32,speeds up,False,3.64,12.9
+687,27.48,Franklin,slows down,Ron_Ben_Ishay,opponent,704.0,0.68,speeds up,False,1.01,7.5
+687,27.48,Franklin,slows down,Maor_Haas,opponent,695.0,0.32,speeds up,False,3.64,12.9
 694,27.76,Hiltinho,speeds up,Franklin,teammate,695.0,0.04,slows down,False,-3.35,21.2
-694,27.76,Hiltinho,speeds up,Maor_Haas,opponent,704.0,0.4,speeds up,True,1.01,7.5
-694,27.76,Hiltinho,speeds up,Ron_Ben_Ishay,opponent,695.0,0.04,speeds up,True,3.64,12.9
+694,27.76,Hiltinho,speeds up,Ron_Ben_Ishay,opponent,704.0,0.4,speeds up,True,1.01,7.5
+694,27.76,Hiltinho,speeds up,Maor_Haas,opponent,695.0,0.04,speeds up,True,3.64,12.9
 695,27.8,Franklin,slows down,Hiltinho,teammate,702.0,0.28,slows down,True,-1.82,8.4
-695,27.8,Franklin,slows down,Maor_Haas,opponent,704.0,0.36,speeds up,False,1.01,7.5
-695,27.8,Franklin,slows down,Ron_Ben_Ishay,opponent,708.0,0.52,slows down,True,-2.83,16.3
-695,27.8,Ron_Ben_Ishay,speeds up,Franklin,opponent,712.0,0.68,slows down,False,-2.51,12.3
-695,27.8,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,702.0,0.28,slows down,False,-1.82,8.4
-695,27.8,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,704.0,0.36,speeds up,True,1.01,7.5
+695,27.8,Franklin,slows down,Ron_Ben_Ishay,opponent,704.0,0.36,speeds up,False,1.01,7.5
+695,27.8,Franklin,slows down,Maor_Haas,opponent,708.0,0.52,slows down,True,-2.83,16.3
+695,27.8,Maor_Haas,speeds up,Franklin,opponent,712.0,0.68,slows down,False,-2.51,12.3
+695,27.8,Maor_Haas,speeds up,Hiltinho,opponent,702.0,0.28,slows down,False,-1.82,8.4
+695,27.8,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,704.0,0.36,speeds up,True,1.01,7.5
 702,28.08,Hiltinho,slows down,Franklin,teammate,712.0,0.4,slows down,True,-2.51,12.3
-702,28.08,Hiltinho,slows down,Maor_Haas,opponent,704.0,0.08,speeds up,False,1.01,7.5
-702,28.08,Hiltinho,slows down,Ron_Ben_Ishay,opponent,708.0,0.24,slows down,True,-2.83,16.3
-704,28.16,Maor_Haas,speeds up,Franklin,opponent,712.0,0.32,slows down,False,-2.51,12.3
-704,28.16,Maor_Haas,speeds up,Hiltinho,opponent,,,,,,
-704,28.16,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,708.0,0.16,slows down,False,-2.83,16.3
-708,28.32,Ron_Ben_Ishay,slows down,Franklin,opponent,712.0,0.16,slows down,True,-2.51,12.3
-708,28.32,Ron_Ben_Ishay,slows down,Hiltinho,opponent,733.0,1.0,speeds up,False,1.8,5.7
-708,28.32,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,720.0,0.48,speeds up,False,2.24,7.0
+702,28.08,Hiltinho,slows down,Ron_Ben_Ishay,opponent,704.0,0.08,speeds up,False,1.01,7.5
+702,28.08,Hiltinho,slows down,Maor_Haas,opponent,708.0,0.24,slows down,True,-2.83,16.3
+704,28.16,Ron_Ben_Ishay,speeds up,Franklin,opponent,712.0,0.32,slows down,False,-2.51,12.3
+704,28.16,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,,,,,,
+704,28.16,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,708.0,0.16,slows down,False,-2.83,16.3
+708,28.32,Maor_Haas,slows down,Franklin,opponent,712.0,0.16,slows down,True,-2.51,12.3
+708,28.32,Maor_Haas,slows down,Hiltinho,opponent,733.0,1.0,speeds up,False,1.8,5.7
+708,28.32,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,720.0,0.48,speeds up,False,2.24,7.0
 712,28.48,Franklin,slows down,Hiltinho,teammate,733.0,0.84,speeds up,False,1.8,5.7
-712,28.48,Franklin,slows down,Maor_Haas,opponent,720.0,0.32,speeds up,False,2.24,7.0
-712,28.48,Franklin,slows down,Ron_Ben_Ishay,opponent,723.0,0.44,speeds up,False,2.82,18.7
-720,28.8,Maor_Haas,speeds up,Franklin,opponent,725.0,0.2,speeds up,True,1.58,11.3
-720,28.8,Maor_Haas,speeds up,Hiltinho,opponent,733.0,0.52,speeds up,True,1.8,5.7
-720,28.8,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,723.0,0.12,speeds up,True,2.82,18.7
-723,28.92,Ron_Ben_Ishay,speeds up,Franklin,opponent,725.0,0.08,speeds up,True,1.58,11.3
-723,28.92,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,733.0,0.4,speeds up,True,1.8,5.7
-723,28.92,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,731.0,0.32,slows down,False,-3.49,17.8
+712,28.48,Franklin,slows down,Ron_Ben_Ishay,opponent,720.0,0.32,speeds up,False,2.24,7.0
+712,28.48,Franklin,slows down,Maor_Haas,opponent,723.0,0.44,speeds up,False,2.82,18.7
+720,28.8,Ron_Ben_Ishay,speeds up,Franklin,opponent,725.0,0.2,speeds up,True,1.58,11.3
+720,28.8,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,733.0,0.52,speeds up,True,1.8,5.7
+720,28.8,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,723.0,0.12,speeds up,True,2.82,18.7
+723,28.92,Maor_Haas,speeds up,Franklin,opponent,725.0,0.08,speeds up,True,1.58,11.3
+723,28.92,Maor_Haas,speeds up,Hiltinho,opponent,733.0,0.4,speeds up,True,1.8,5.7
+723,28.92,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,731.0,0.32,slows down,False,-3.49,17.8
 725,29.0,Franklin,speeds up,Hiltinho,teammate,733.0,0.32,speeds up,True,1.8,5.7
-725,29.0,Franklin,speeds up,Maor_Haas,opponent,731.0,0.24,slows down,False,-3.49,17.8
-725,29.0,Franklin,speeds up,Ron_Ben_Ishay,opponent,740.0,0.6,speeds up,True,1.64,7.6
-731,29.24,Maor_Haas,slows down,Franklin,opponent,,,,,,
-731,29.24,Maor_Haas,slows down,Hiltinho,opponent,733.0,0.08,speeds up,False,1.8,5.7
-731,29.24,Maor_Haas,slows down,Ron_Ben_Ishay,teammate,740.0,0.36,speeds up,False,1.64,7.6
+725,29.0,Franklin,speeds up,Ron_Ben_Ishay,opponent,731.0,0.24,slows down,False,-3.49,17.8
+725,29.0,Franklin,speeds up,Maor_Haas,opponent,740.0,0.6,speeds up,True,1.64,7.6
+731,29.24,Ron_Ben_Ishay,slows down,Franklin,opponent,,,,,,
+731,29.24,Ron_Ben_Ishay,slows down,Hiltinho,opponent,733.0,0.08,speeds up,False,1.8,5.7
+731,29.24,Ron_Ben_Ishay,slows down,Maor_Haas,teammate,740.0,0.36,speeds up,False,1.64,7.6
 733,29.32,Hiltinho,speeds up,Franklin,teammate,,,,,,
-733,29.32,Hiltinho,speeds up,Maor_Haas,opponent,,,,,,
-733,29.32,Hiltinho,speeds up,Ron_Ben_Ishay,opponent,740.0,0.28,speeds up,True,1.64,7.6
-740,29.6,Ron_Ben_Ishay,speeds up,Franklin,opponent,,,,,,
-740,29.6,Ron_Ben_Ishay,speeds up,Hiltinho,opponent,,,,,,
-740,29.6,Ron_Ben_Ishay,speeds up,Maor_Haas,teammate,,,,,,
+733,29.32,Hiltinho,speeds up,Ron_Ben_Ishay,opponent,,,,,,
+733,29.32,Hiltinho,speeds up,Maor_Haas,opponent,740.0,0.28,speeds up,True,1.64,7.6
+740,29.6,Maor_Haas,speeds up,Franklin,opponent,,,,,,
+740,29.6,Maor_Haas,speeds up,Hiltinho,opponent,,,,,,
+740,29.6,Maor_Haas,speeds up,Ron_Ben_Ishay,teammate,,,,,,

@@ -127,7 +127,7 @@ function renderTask(){const x=ITEMS[cur];if(!x)return;const prev=MARKS[x.id];dra
   } else if(x.type=='touches'){
     T.innerHTML=head+`<div class="ask">בנקודה הזאת רשומים 5 מגעים רצופים לברזיל (מותר 3). מה לא נכון?</div>
       <div class="stage"><video src="clips/r39.mp4" controls muted playsinline preload="auto"></video></div>
-      <table class="tl">${x.touches.map((t,i)=>`<tr><td>מגע ${i+1}</td><td class="hint">${((t.f-x.f0)/25).toFixed(2)} ש׳ בסרטון</td><td>${esc(t.p)}</td><td>${esc(t.a)}</td><td><select id="s${i}" aria-label="תיקון למגע ${i+1}"><option value="">נכון</option><option value="none">לא היה מגע</option><option value="Franklin">פרנקלין</option><option value="Hiltinho">הילטיניו</option><option value="Maor_Haas">מאור האס</option><option value="Ron_Ben_Ishay">רון בן ישי</option></select></td></tr>`).join('')}</table>
+      <table class="tl">${x.touches.map((t,i)=>`<tr><td>מגע ${i+1}</td><td class="hint">${((t.f-x.f0)/25).toFixed(2)} ש׳ בסרטון</td><td>${esc(t.p)}</td><td>${esc(t.a)}</td><td><select id="s${i}" aria-label="תיקון למגע ${i+1}"><option value="">נכון</option><option value="none">לא היה מגע</option><option value="Franklin">פרנקלין</option><option value="Hiltinho">הילטיניו</option><option value="Ron_Ben_Ishay">רון בן ישי</option><option value="Maor_Haas">מאור האס</option></select></td></tr>`).join('')}</table>
       <div class="row"><button class="btn primary" id="save">שמור והמשך</button><span class="status" id="status"></span></div>`;
     x.touches.forEach((t,i)=>{const s=$('#s'+i);if(draft.fix&&draft.fix[i])s.value=draft.fix[i]});
     $('#save').onclick=()=>{draft.fix=x.touches.map((t,i)=>$('#s'+i).value);draft.verdict='done';save(x)};

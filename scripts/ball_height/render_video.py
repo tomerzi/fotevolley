@@ -47,7 +47,7 @@ ps['speed_kmh'] = ps.speed * 3.6                   # m/s (16 x 8 court) -> km/h
 ps['reliable'] = ~ps.airborne & ~ps.posture.isin(['hidden', 'none'])
 pl = pb.merge(ps, on=['frame', 'player'], how='left')
 pl = {f: t[['player', 'x1', 'x2', 'y2', 'speed_kmh', 'reliable']].values for f, t in pl.groupby('frame')}
-PCOL = {'Maor_Haas': (214, 120, 42), 'Ron_Ben_Ishay': (52, 104, 235), 'Franklin': (122, 175, 27), 'Hiltinho': (0, 161, 237)}  # BGR, chart slots 1-4
+PCOL = {'Ron_Ben_Ishay': (214, 120, 42), 'Maor_Haas': (52, 104, 235), 'Franklin': (122, 175, 27), 'Hiltinho': (0, 161, 237)}  # BGR, chart slots 1-4
 
 COL = {'flight_fit': (230, 140, 40), 'touch_depth': (230, 140, 40), 'shadow_tri': (230, 140, 40), 'size_only': (40, 170, 230)}  # BGR: blue (fitted / player depth / shadow) / amber (size only)
 FONT = cv2.FONT_HERSHEY_SIMPLEX

@@ -78,8 +78,8 @@ PARTS = [('head', '', 'FACE', 'HEADTOP', 0.11),
          ('arm', 'right', 'right_shoulder', 'right_elbow', 0.05), ('arm', 'right', 'right_elbow', 'right_wrist', 0.05),
          ('arm', 'left', 'left_shoulder', 'left_elbow', 0.05), ('arm', 'left', 'left_elbow', 'left_wrist', 0.05),
          ('hand', 'right', 'right_wrist', 'R_HAND', 0.06), ('hand', 'left', 'left_wrist', 'L_HAND', 0.06)]
-PLAYERS = ['Franklin', 'Hiltinho', 'Maor_Haas', 'Ron_Ben_Ishay']
-TEAM = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Maor_Haas': 'ISR', 'Ron_Ben_Ishay': 'ISR'}
+PLAYERS = ['Franklin', 'Hiltinho', 'Ron_Ben_Ishay', 'Maor_Haas']
+TEAM = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Ron_Ben_Ishay': 'ISR', 'Maor_Haas': 'ISR'}
 
 H = np.load(os.path.join(ROOT, 'data', 'mappings', 'homography_px_to_m.npy'))
 Hi = np.linalg.inv(H)
@@ -165,7 +165,7 @@ def ball_events(ball, rallies):
 # ---------------------------------------------------------------- skeletons
 def load_pose(boxes):
     cols = ['frame', 'player'] + [f'{j}_{c}' for j in J for c in 'xys']
-    s = pd.read_csv(os.path.join(ROOT, 'data', 'pose', 'sapiens2', 'sapiens2_pose_v3_00000-13494.csv'), usecols=cols).replace({'player': {'BRA_A': 'Franklin', 'BRA_B': 'Hiltinho', 'ISR_A': 'Maor_Haas', 'ISR_B': 'Ron_Ben_Ishay'}})  # the LFS pose file still uses the old codes
+    s = pd.read_csv(os.path.join(ROOT, 'data', 'pose', 'sapiens2', 'sapiens2_pose_v3_00000-13494.csv'), usecols=cols).replace({'player': {'BRA_A': 'Franklin', 'BRA_B': 'Hiltinho', 'ISR_A': 'Ron_Ben_Ishay', 'ISR_B': 'Maor_Haas'}})  # the LFS pose file still uses the old codes
     nf = int(max(s.frame.max(), boxes.frame.max())) + 1
     K = np.full((nf, len(PLAYERS), len(J), 2), np.nan)
     pi = s.player.map({p: i for i, p in enumerate(PLAYERS)}).values

@@ -1,31 +1,31 @@
 status,frame,time_s,rally,action,actor,actor_team,player,relation,onset_frame,reaction_s,to_2ms_s,peak_speed_1s,dist_1s_m
 reacted,38,1.52,1,attack,Hiltinho,BRA,Franklin,teammate,41.0,0.12,,1.14,0.71
-reacted,38,1.52,1,attack,Hiltinho,BRA,Maor_Haas,opponent,35.0,-0.12,0.04,3.9,2.76
-already moving,38,1.52,1,attack,Hiltinho,BRA,Ron_Ben_Ishay,opponent,,,,,
+reacted,38,1.52,1,attack,Hiltinho,BRA,Ron_Ben_Ishay,opponent,35.0,-0.12,0.04,3.9,2.76
+already moving,38,1.52,1,attack,Hiltinho,BRA,Maor_Haas,opponent,,,,,
 already moving,122,4.88,2,reception,Franklin,BRA,Hiltinho,teammate,,,,,
-already moving,122,4.88,2,reception,Franklin,BRA,Maor_Haas,opponent,,,,,
-reacted,122,4.88,2,reception,Franklin,BRA,Ron_Ben_Ishay,opponent,116.0,-0.24,0.92,2.28,1.73
+already moving,122,4.88,2,reception,Franklin,BRA,Ron_Ben_Ishay,opponent,,,,,
+reacted,122,4.88,2,reception,Franklin,BRA,Maor_Haas,opponent,116.0,-0.24,0.92,2.28,1.73
 stayed,135,5.4,2,attack,Hiltinho,BRA,Franklin,teammate,,,,,
-reacted,135,5.4,2,attack,Hiltinho,BRA,Maor_Haas,opponent,130.0,-0.2,0.12,2.87,0.98
-already moving,135,5.4,2,attack,Hiltinho,BRA,Ron_Ben_Ishay,opponent,,,,,
+reacted,135,5.4,2,attack,Hiltinho,BRA,Ron_Ben_Ishay,opponent,130.0,-0.2,0.12,2.87,0.98
+already moving,135,5.4,2,attack,Hiltinho,BRA,Maor_Haas,opponent,,,,,
 already moving,408,16.32,3,reception,Franklin,BRA,Hiltinho,teammate,,,,,
-reacted,408,16.32,3,reception,Franklin,BRA,Maor_Haas,opponent,402.0,-0.24,0.2,5.28,3.39
-reacted,408,16.32,3,reception,Franklin,BRA,Ron_Ben_Ishay,opponent,407.0,-0.04,0.48,2.22,1.19
+reacted,408,16.32,3,reception,Franklin,BRA,Ron_Ben_Ishay,opponent,402.0,-0.24,0.2,5.28,3.39
+reacted,408,16.32,3,reception,Franklin,BRA,Maor_Haas,opponent,407.0,-0.04,0.48,2.22,1.19
 stayed,441,17.64,3,attack,Hiltinho,BRA,Franklin,teammate,,,,,
-already moving,441,17.64,3,attack,Hiltinho,BRA,Maor_Haas,opponent,,,,,
 already moving,441,17.64,3,attack,Hiltinho,BRA,Ron_Ben_Ishay,opponent,,,,,
-already moving,531,21.24,4,reception,Ron_Ben_Ishay,ISR,Franklin,opponent,,,,,
-stayed,531,21.24,4,reception,Ron_Ben_Ishay,ISR,Hiltinho,opponent,,,,,
-reacted,531,21.24,4,reception,Ron_Ben_Ishay,ISR,Maor_Haas,teammate,527.0,-0.16,0.0,4.35,2.2
-reacted,567,22.68,4,set,Maor_Haas,ISR,Franklin,opponent,566.0,-0.04,0.92,2.93,0.93
-reacted,567,22.68,4,set,Maor_Haas,ISR,Hiltinho,opponent,586.0,0.76,0.08,5.71,3.69
-already moving,567,22.68,4,set,Maor_Haas,ISR,Ron_Ben_Ishay,teammate,,,,,
-reacted,600,24.0,4,attack,Ron_Ben_Ishay,ISR,Franklin,opponent,599.0,-0.04,0.0,3.59,1.29
-already moving,600,24.0,4,attack,Ron_Ben_Ishay,ISR,Hiltinho,opponent,,,,,
-reacted,600,24.0,4,attack,Ron_Ben_Ishay,ISR,Maor_Haas,teammate,594.0,-0.24,0.2,2.45,1.24
+already moving,441,17.64,3,attack,Hiltinho,BRA,Maor_Haas,opponent,,,,,
+already moving,531,21.24,4,reception,Maor_Haas,ISR,Franklin,opponent,,,,,
+stayed,531,21.24,4,reception,Maor_Haas,ISR,Hiltinho,opponent,,,,,
+reacted,531,21.24,4,reception,Maor_Haas,ISR,Ron_Ben_Ishay,teammate,527.0,-0.16,0.0,4.35,2.2
+reacted,567,22.68,4,set,Ron_Ben_Ishay,ISR,Franklin,opponent,566.0,-0.04,0.92,2.93,0.93
+reacted,567,22.68,4,set,Ron_Ben_Ishay,ISR,Hiltinho,opponent,586.0,0.76,0.08,5.71,3.69
+already moving,567,22.68,4,set,Ron_Ben_Ishay,ISR,Maor_Haas,teammate,,,,,
+reacted,600,24.0,4,attack,Maor_Haas,ISR,Franklin,opponent,599.0,-0.04,0.0,3.59,1.29
+already moving,600,24.0,4,attack,Maor_Haas,ISR,Hiltinho,opponent,,,,,
+reacted,600,24.0,4,attack,Maor_Haas,ISR,Ron_Ben_Ishay,teammate,594.0,-0.24,0.2,2.45,1.24
 already moving,679,27.16,5,reception,Hiltinho,BRA,Franklin,teammate,,,,,
-already moving,679,27.16,5,reception,Hiltinho,BRA,Maor_Haas,opponent,,,,,
 already moving,679,27.16,5,reception,Hiltinho,BRA,Ron_Ben_Ishay,opponent,,,,,
+already moving,679,27.16,5,reception,Hiltinho,BRA,Maor_Haas,opponent,,,,,
 stayed,712,28.48,5,attack,Franklin,BRA,Hiltinho,teammate,,,,,
-reacted,712,28.48,5,attack,Franklin,BRA,Maor_Haas,opponent,707.0,-0.2,0.04,4.25,2.15
-reacted,712,28.48,5,attack,Franklin,BRA,Ron_Ben_Ishay,opponent,724.0,0.48,0.04,4.6,1.57
+reacted,712,28.48,5,attack,Franklin,BRA,Ron_Ben_Ishay,opponent,707.0,-0.2,0.04,4.25,2.15
+reacted,712,28.48,5,attack,Franklin,BRA,Maor_Haas,opponent,724.0,0.48,0.04,4.6,1.57

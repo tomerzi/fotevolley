@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from point_positions import verified_point_moments
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-PAIR = {'BRA': ('Franklin', 'Hiltinho'), 'ISR': ('Maor_Haas', 'Ron_Ben_Ishay')}
+PAIR = {'BRA': ('Franklin', 'Hiltinho'), 'ISR': ('Ron_Ben_Ishay', 'Maor_Haas')}
 NET_ZONE = 8 / 3
 
 

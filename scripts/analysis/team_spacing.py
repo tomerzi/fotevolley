@@ -24,7 +24,7 @@ import pandas as pd
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 OUT = os.path.join(ROOT, 'data', 'analysis')
 NEAR = 5             # frames: use the nearest position within this many frames when the exact frame has none
-TEAMS = {'BRA': ('Franklin', 'Hiltinho'), 'ISR': ('Maor_Haas', 'Ron_Ben_Ishay')}
+TEAMS = {'BRA': ('Franklin', 'Hiltinho'), 'ISR': ('Ron_Ben_Ishay', 'Maor_Haas')}
 OTHER = {'BRA': 'ISR', 'ISR': 'BRA'}
 
 

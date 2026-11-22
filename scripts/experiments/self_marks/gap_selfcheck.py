@@ -11,7 +11,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.a
 os.chdir(ROOT); sys.path.insert(0, 'scripts/ball_height')
 from traj import Camera
 cam = Camera()
-TEAM = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Maor_Haas': 'ISR', 'Ron_Ben_Ishay': 'ISR'}
+TEAM = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Ron_Ben_Ishay': 'ISR', 'Maor_Haas': 'ISR'}
 fm = pd.read_csv('data/mappings/frame_mapping_v3.csv'); fm = fm[~fm.deleted].set_index('v3_frame').v2_frame
 sp = pd.read_csv('data/analysis/team_spacing_v3.csv').query("moment == 'attack'").reset_index(drop=True)
 sp['v2'] = sp.frame.map(fm).astype(int)

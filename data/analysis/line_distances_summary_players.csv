@@ -1,5 +1,5 @@
 player,frames,baseline_median_m,far sideline_median_m,near sideline_median_m,net_median_m,nearest_line_median_m,net_min_m,outside_pct,nearest_line_most_often
-Maor_Haas,12899,4.48,3.8,4.2,3.52,2.85,0.01,1.19,far sideline
-Ron_Ben_Ishay,12775,4.82,4.4,3.6,3.18,2.15,0.0,1.81,near sideline
+Ron_Ben_Ishay,12899,4.48,3.8,4.2,3.52,2.85,0.01,1.19,far sideline
+Maor_Haas,12775,4.82,4.4,3.6,3.18,2.15,0.0,1.81,near sideline
 Franklin,12799,4.53,3.98,4.01,3.47,2.52,0.01,2.82,near sideline
 Hiltinho,12906,4.24,3.63,4.37,3.76,2.92,0.0,1.19,far sideline

@@ -17,7 +17,7 @@ import pandas as pd
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 FPS = 25
-TEAM = {'Maor_Haas': 'ISR', 'Ron_Ben_Ishay': 'ISR', 'Franklin': 'BRA', 'Hiltinho': 'BRA'}
+TEAM = {'Ron_Ben_Ishay': 'ISR', 'Maor_Haas': 'ISR', 'Franklin': 'BRA', 'Hiltinho': 'BRA'}
 
 
 def read(*p, **k):

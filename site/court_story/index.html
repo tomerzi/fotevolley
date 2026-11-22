@@ -109,10 +109,10 @@ svg text:not([fill]){fill:var(--ink)}
 
 <script>
 const NS='http://www.w3.org/2000/svg';
-const PL=['Maor_Haas','Ron_Ben_Ishay','Franklin','Hiltinho'];
-const NM={Maor_Haas:'מאור האס',Ron_Ben_Ishay:'רון בן ישי',Franklin:'פרנקלין',Hiltinho:'הילטיניו'};
-const IN={Maor_Haas:'MH',Ron_Ben_Ishay:'RB',Franklin:'F',Hiltinho:'H'};
-const TM={Maor_Haas:'ISR',Ron_Ben_Ishay:'ISR',Franklin:'BRA',Hiltinho:'BRA'};
+const PL=['Ron_Ben_Ishay','Maor_Haas','Franklin','Hiltinho'];
+const NM={Ron_Ben_Ishay:'רון בן ישי',Maor_Haas:'מאור האס',Franklin:'פרנקלין',Hiltinho:'הילטיניו'};
+const IN={Ron_Ben_Ishay:'MH',Maor_Haas:'RB',Franklin:'F',Hiltinho:'H'};
+const TM={Ron_Ben_Ishay:'ISR',Maor_Haas:'ISR',Franklin:'BRA',Hiltinho:'BRA'};
 const V=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 const C={isr:V('--isr'),bra:V('--bra'),hit:V('--hit'),ink:V('--ink'),ink2:V('--ink-2'),ink3:V('--ink-3'),tape:V('--tape'),net:V('--net'),post:V('--post'),sand:V('--sand'),hi:V('--sand-hi'),lo:V('--sand-lo'),table:V('--table')};
 const TC={ISR:C.isr,BRA:C.bra};
@@ -279,10 +279,10 @@ function facts(){const F=[];const so=D.sideout;
     add(`${pct(f.filter(s=>s.c).length,f.length)}%`,`ספיגה של ישראל כשהמרווח מעל 3.5 מ׳ (${pct(n.filter(s=>s.c).length,n.length)}% כשקרובים). לישראל ${f.length} הגנות כאלה, לברזיל ${D.spacez.filter(s=>s.tm=='BRA'&&s.d>3.5).length}.`,C.hit)}
   if(on('net')){const hs=D.netz.map(n=>n.h).sort((a,b)=>a-b);add(hs[hs.length>>1].toFixed(2)+' מ׳','הגובה החציוני שבו הכדור חוצה את הרשת (הרשת 2.20).')}
   if(on('landings')){const L=D.landz;add(L.filter(l=>l.w=='BRA'&&l.k=='in_court').length,'נקודות שברזיל זכתה בהן כשהכדור נחת בתוך המגרש של ישראל.',C.bra)}
-  if(on('touches')){const ch=D.chest;add(two(ch.Maor_Haas.won+'%',ch.Franklin.won+'%'),'נקודות שזכו אחרי קבלה בחזה (מאור · פרנקלין).')}
+  if(on('touches')){const ch=D.chest;add(two(ch.Ron_Ben_Ishay.won+'%',ch.Franklin.won+'%'),'נקודות שזכו אחרי קבלה בחזה (רון · פרנקלין).')}
   if(on('shoulders'))add('18–27%','מהזמן השחקנים עומדים עם הכתפיים מול הרשת. רוב הזמן הם בחצי סיבוב לצד.');
-  if(on('lines')){const r=D.lines.Ron_Ben_Ishay;add(r.net.toFixed(1)+' מ׳',`רון הכי קרוב לרשת מכולם, והכי רחוק מקו הבסיס (${r.base.toFixed(1)} מ׳).`,C.isr)}
-  if(on('engine')){const m=D.move.Maor_Haas;add(`${m.lost_dist} / ${m.won_dist}`,'מטרים שמאור רץ בנקודה שהפסידו / שניצחו. ישראל רצה יותר כשהיא מפסידה – רודפת אחרי הכדור.',C.isr)}
+  if(on('lines')){const r=D.lines.Maor_Haas;add(r.net.toFixed(1)+' מ׳',`מאור הכי קרוב לרשת מכולם, והכי רחוק מקו הבסיס (${r.base.toFixed(1)} מ׳).`,C.isr)}
+  if(on('engine')){const m=D.move.Ron_Ben_Ishay;add(`${m.lost_dist} / ${m.won_dist}`,'מטרים שמאור רץ בנקודה שהפסידו / שניצחו. ישראל רצה יותר כשהיא מפסידה – רודפת אחרי הכדור.',C.isr)}
   if(on('heat')||on('spots'))add('25–28 מ״ר','השטח שכל שחקן מכסה ב-90% מהזמן. פרנקלין מכסה הכי הרבה.');
   document.getElementById('facts').innerHTML=F.length?F.join(''):'<div class="empty">הדליקו שכבה כדי לראות מה היא מספרת.</div>';
 }

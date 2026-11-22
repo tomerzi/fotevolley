@@ -3,7 +3,7 @@ per item) to the analysis data:
 - landings: a click on the ball at its landing frame -> court x, y on the sand (camera ray at z = 0.11 m); a click
   with "ברשת" -> the point on the net plane (x = 8). The verdict sets the kind (in_court / out / net). "לא רואים"
   keeps the old values. Source becomes "hand-marked (doubt page)".
-- rally 39: the untagged touch at v2 frame 10506 is Maor Haas (user), which splits Brazil's possession.
+- rally 39: the untagged touch at v2 frame 10506 is Ron Ben Ishay (user), which splits Brazil's possession.
 Writes data/analysis/point_landings.csv and data/contacts/touches_master.csv in place (originals kept as *_before_doubt.csv).
 """
 import os, sys, json, glob, shutil
@@ -62,7 +62,7 @@ if not os.path.exists(TP.replace('.csv', '_before_doubt.csv')):
 t = pd.read_csv(TP.replace('.csv', '_before_doubt.csv'))
 if marks.get('touch_39'):
     i = t.index[(t.rally == 39) & (t.v2_frame == 10506)][0]
-    t.loc[i, ['kind', 'player', 'team', 'in_play', 'action']] = ['player', 'Maor_Haas', 'ISR', True, 'attack']
+    t.loc[i, ['kind', 'player', 'team', 'in_play', 'action']] = ['player', 'Ron_Ben_Ishay', 'ISR', True, 'attack']
     t.loc[i, 'action_subtype'] = 'returned'
     # possessions of rally 39 rebuilt from the team sequence
     r = t[(t.rally == 39) & (t.kind == 'player')].sort_values('v2_frame')

@@ -29,7 +29,7 @@ cs = json.load(open('site/court_story/data.json'))
 out = {k: cs[k] for k in ('rallies', 'sideout', 'heatz', 'move', 'rose', 'lines', 'landz', 'spacez', 'netz', 'stature', 'chest')}
 isr_left = {int(k): v for k, v in cs['isr_left'].items()}
 r2 = lambda v, n=3: None if v is None or not np.isfinite(v) else round(float(v), n)
-TEAM = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Maor_Haas': 'ISR', 'Ron_Ben_Ishay': 'ISR'}
+TEAM = {'Franklin': 'BRA', 'Hiltinho': 'BRA', 'Ron_Ben_Ishay': 'ISR', 'Maor_Haas': 'ISR'}
 
 # ------------------------------------------------------------------ set win probability
 ral = pd.read_csv('data/points/rallies_v2.csv')

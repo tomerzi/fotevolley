@@ -7,7 +7,7 @@ Found by `pose/check_missing.py` -> `pose/suspect_ranges.csv` and checked by eye
 | frames | player | problem | box source now |
 |---|---|---|---|
 | 305–375 | Hiltinho | visible (standing next to Franklin) but no box | none (only 10 boxes in 300–380) |
-| 5311 | Hiltinho, Ron_Ben_Ishay | Hiltinho visible mid-court, Ron_Ben_Ishay partly visible at right edge; no boxes | none |
+| 5311 | Hiltinho, Maor_Haas | Hiltinho visible mid-court, Maor_Haas partly visible at right edge; no boxes | none |
 | 6734 | Franklin | box on empty sand near the net | `redetect` |
 | 8251–8289 | Franklin | box on empty sand (player actually off-screen) | `interpolated` |
 | 9651 | Hiltinho | box on empty sand near the net | `interpolated` |

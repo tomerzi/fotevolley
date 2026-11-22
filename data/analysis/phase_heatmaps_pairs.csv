@@ -1,10 +1,10 @@
 team,phase,overlap,a,b,a_left,b_left,a_from_net,b_from_net
-ISR,all,0.445,Maor_Haas,Ron_Ben_Ishay,0.19,0.93,3.34,3.16
-ISR,serve,0.027,Maor_Haas,Ron_Ben_Ishay,0.01,0.99,4.84,4.75
-ISR,reception,0.272,Maor_Haas,Ron_Ben_Ishay,0.13,0.97,3.73,3.68
-ISR,build,0.566,Maor_Haas,Ron_Ben_Ishay,0.33,0.93,2.83,2.93
-ISR,attack,0.448,Maor_Haas,Ron_Ben_Ishay,0.24,0.89,2.72,2.12
-ISR,defence,0.234,Maor_Haas,Ron_Ben_Ishay,0.08,0.93,3.65,3.29
+ISR,all,0.445,Ron_Ben_Ishay,Maor_Haas,0.19,0.93,3.34,3.16
+ISR,serve,0.027,Ron_Ben_Ishay,Maor_Haas,0.01,0.99,4.84,4.75
+ISR,reception,0.272,Ron_Ben_Ishay,Maor_Haas,0.13,0.97,3.73,3.68
+ISR,build,0.566,Ron_Ben_Ishay,Maor_Haas,0.33,0.93,2.83,2.93
+ISR,attack,0.448,Ron_Ben_Ishay,Maor_Haas,0.24,0.89,2.72,2.12
+ISR,defence,0.234,Ron_Ben_Ishay,Maor_Haas,0.08,0.93,3.65,3.29
 BRA,all,0.417,Franklin,Hiltinho,0.09,0.86,3.33,3.39
 BRA,serve,0.0,Franklin,Hiltinho,0.0,1.0,4.79,4.96
 BRA,reception,0.255,Franklin,Hiltinho,0.05,0.9,3.98,3.72
