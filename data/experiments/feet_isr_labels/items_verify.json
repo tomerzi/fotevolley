@@ -1,0 +1,54 @@
+{
+ "verify": [
+  {
+   "id": "v528",
+   "frame": 528,
+   "touch": 13,
+   "desc": "נגיעה בראש ליד הרשת",
+   "img": "verify_0.jpg",
+   "_ours": "Ron_Ben_Ishay"
+  },
+  {
+   "id": "v2354",
+   "frame": 2354,
+   "touch": 65,
+   "desc": "נגיעה בראש",
+   "img": "verify_1.jpg",
+   "_ours": "Ron_Ben_Ishay"
+  },
+  {
+   "id": "v9373",
+   "frame": 9373,
+   "touch": 258,
+   "desc": "נגיעה בראש",
+   "img": "verify_2.jpg",
+   "_ours": "Ron_Ben_Ishay"
+  },
+  {
+   "id": "v921",
+   "frame": 921,
+   "touch": 24,
+   "desc": "קבלה בחזה",
+   "img": "verify_3.jpg",
+   "_ours": "Maor_Haas"
+  },
+  {
+   "id": "v7437",
+   "frame": 7437,
+   "touch": 205,
+   "desc": "קבלה בחזה",
+   "img": "verify_4.jpg",
+   "_ours": "Maor_Haas"
+  }
+ ],
+ "p59": [
+  13240,
+  13260,
+  13280,
+  13300,
+  13320,
+  13340,
+  13360,
+  13380
+ ]
+}
