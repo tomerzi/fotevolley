@@ -1,0 +1,708 @@
+{
+ "actions": [
+  {
+   "id": "a3",
+   "touch": 3,
+   "frame": 85,
+   "rally": 2,
+   "player": "Franklin",
+   "part": "foot",
+   "img": "act_3.jpg",
+   "auto": {
+    "action": "reception",
+    "sub": "after_serve",
+    "nth": 1.0
+   }
+  },
+  {
+   "id": "a4",
+   "touch": 4,
+   "frame": 98,
+   "rally": 2,
+   "player": "Hiltinho",
+   "part": "foot",
+   "img": "act_4.jpg",
+   "auto": {
+    "action": "attack",
+    "sub": "error",
+    "nth": 2.0
+   }
+  },
+  {
+   "id": "a244",
+   "touch": 244,
+   "frame": 8898,
+   "rally": 39,
+   "player": "Hiltinho",
+   "part": "foot",
+   "img": "act_244.jpg",
+   "auto": {
+    "action": "reception",
+    "sub": "after_attack",
+    "nth": 1.0
+   }
+  },
+  {
+   "id": "a245",
+   "touch": 245,
+   "frame": 8933,
+   "rally": 39,
+   "player": "Franklin",
+   "part": "chest",
+   "img": "act_245.jpg",
+   "auto": {
+    "action": "set",
+    "sub": NaN,
+    "nth": 2.0
+   }
+  },
+  {
+   "id": "a247",
+   "touch": 247,
+   "frame": 8982,
+   "rally": 39,
+   "player": "Franklin",
+   "part": "foot",
+   "img": "act_247.jpg",
+   "auto": {
+    "action": "reception",
+    "sub": "after_attack",
+    "nth": 1.0
+   }
+  },
+  {
+   "id": "a248",
+   "touch": 248,
+   "frame": 9023,
+   "rally": 39,
+   "player": "Hiltinho",
+   "part": "chest",
+   "img": "act_248.jpg",
+   "auto": {
+    "action": "set",
+    "sub": NaN,
+    "nth": 2.0
+   }
+  },
+  {
+   "id": "a249",
+   "touch": 249,
+   "frame": 9052,
+   "rally": 39,
+   "player": "Franklin",
+   "part": "head",
+   "img": "act_249.jpg",
+   "auto": {
+    "action": "attack",
+    "sub": "returned",
+    "nth": 3.0
+   }
+  },
+  {
+   "id": "a304",
+   "touch": 304,
+   "frame": 11334,
+   "rally": 50,
+   "player": "Maor_Haas",
+   "part": "chest",
+   "img": "act_304.jpg",
+   "auto": {
+    "action": "reception",
+    "sub": "after_serve",
+    "nth": 1.0
+   }
+  },
+  {
+   "id": "a305",
+   "touch": 305,
+   "frame": 11369,
+   "rally": 50,
+   "player": "Ron_Ben_Ishay",
+   "part": "chest",
+   "img": "act_305.jpg",
+   "auto": {
+    "action": "set",
+    "sub": NaN,
+    "nth": 2.0
+   }
+  },
+  {
+   "id": "a306",
+   "touch": 306,
+   "frame": 11403,
+   "rally": 50,
+   "player": "Maor_Haas",
+   "part": "head",
+   "img": "act_306.jpg",
+   "auto": {
+    "action": "attack",
+    "sub": "returned",
+    "nth": 3.0
+   }
+  }
+ ],
+ "stance": [
+  {
+   "id": "s28",
+   "touch": 28,
+   "frame": 1109,
+   "player": "Ron_Ben_Ishay",
+   "part": "shoulder",
+   "img": "st_28.jpg",
+   "auto": {
+    "stance_cal": "set",
+    "speed": 1.0
+   }
+  },
+  {
+   "id": "s37",
+   "touch": 37,
+   "frame": 1418,
+   "player": "Franklin",
+   "part": "chest",
+   "img": "st_37.jpg",
+   "auto": {
+    "stance_cal": "set",
+    "speed": 0.81
+   }
+  },
+  {
+   "id": "s51",
+   "touch": 51,
+   "frame": 1848,
+   "player": "Maor_Haas",
+   "part": "foot",
+   "img": "st_51.jpg",
+   "auto": {
+    "stance_cal": "set",
+    "speed": 1.05
+   }
+  },
+  {
+   "id": "s57",
+   "touch": 57,
+   "frame": 2113,
+   "player": "Ron_Ben_Ishay",
+   "part": "head",
+   "img": "st_57.jpg",
+   "auto": {
+    "stance_cal": "moving",
+    "speed": 1.67
+   }
+  },
+  {
+   "id": "s76",
+   "touch": 76,
+   "frame": 2694,
+   "player": "Franklin",
+   "part": "foot",
+   "img": "st_76.jpg",
+   "auto": {
+    "stance_cal": "set",
+    "speed": 1.13
+   }
+  },
+  {
+   "id": "s89",
+   "touch": 89,
+   "frame": 3114,
+   "player": "Maor_Haas",
+   "part": "head",
+   "img": "st_89.jpg",
+   "auto": {
+    "stance_cal": "set",
+    "speed": 0.99
+   }
+  },
+  {
+   "id": "s116",
+   "touch": 116,
+   "frame": 4378,
+   "player": "Ron_Ben_Ishay",
+   "part": "foot",
+   "img": "st_116.jpg",
+   "auto": {
+    "stance_cal": "set",
+    "speed": 1.27
+   }
+  },
+  {
+   "id": "s125",
+   "touch": 125,
+   "frame": 4718,
+   "player": "Maor_Haas",
+   "part": "chest",
+   "img": "st_125.jpg",
+   "auto": {
+    "stance_cal": "moving",
+    "speed": 1.36
+   }
+  },
+  {
+   "id": "s128",
+   "touch": 128,
+   "frame": 4830,
+   "player": "Hiltinho",
+   "part": "foot",
+   "img": "st_128.jpg",
+   "auto": {
+    "stance_cal": "moving",
+    "speed": 1.44
+   }
+  },
+  {
+   "id": "s137",
+   "touch": 137,
+   "frame": 5049,
+   "player": "Maor_Haas",
+   "part": "foot",
+   "img": "st_137.jpg",
+   "auto": {
+    "stance_cal": "moving",
+    "speed": 1.76
+   }
+  },
+  {
+   "id": "s169",
+   "touch": 169,
+   "frame": 6186,
+   "player": "Ron_Ben_Ishay",
+   "part": "foot",
+   "img": "st_169.jpg",
+   "auto": {
+    "stance_cal": "moving",
+    "speed": 1.59
+   }
+  },
+  {
+   "id": "s185",
+   "touch": 185,
+   "frame": 6790,
+   "player": "Ron_Ben_Ishay",
+   "part": "chest",
+   "img": "st_185.jpg",
+   "auto": {
+    "stance_cal": "set",
+    "speed": 0.91
+   }
+  },
+  {
+   "id": "s187",
+   "touch": 187,
+   "frame": 6892,
+   "player": "Franklin",
+   "part": "chest",
+   "img": "st_187.jpg",
+   "auto": {
+    "stance_cal": "moving",
+    "speed": 1.3
+   }
+  },
+  {
+   "id": "s191",
+   "touch": 191,
+   "frame": 7055,
+   "player": "Ron_Ben_Ishay",
+   "part": "chest",
+   "img": "st_191.jpg",
+   "auto": {
+    "stance_cal": "set",
+    "speed": 0.91
+   }
+  },
+  {
+   "id": "s200",
+   "touch": 200,
+   "frame": 7322,
+   "player": "Hiltinho",
+   "part": "foot",
+   "img": "st_200.jpg",
+   "auto": {
+    "stance_cal": "set",
+    "speed": 0.9
+   }
+  },
+  {
+   "id": "s228",
+   "touch": 228,
+   "frame": 8245,
+   "player": "Franklin",
+   "part": "chest",
+   "img": "st_228.jpg",
+   "auto": {
+    "stance_cal": "set",
+    "speed": 0.82
+   }
+  },
+  {
+   "id": "s230",
+   "touch": 230,
+   "frame": 8310,
+   "player": "Ron_Ben_Ishay",
+   "part": "chest",
+   "img": "st_230.jpg",
+   "auto": {
+    "stance_cal": "set",
+    "speed": 1.29
+   }
+  },
+  {
+   "id": "s234",
+   "touch": 234,
+   "frame": 8532,
+   "player": "Hiltinho",
+   "part": "shoulder",
+   "img": "st_234.jpg",
+   "auto": {
+    "stance_cal": "set",
+    "speed": 1.22
+   }
+  },
+  {
+   "id": "s240",
+   "touch": 240,
+   "frame": 8786,
+   "player": "Franklin",
+   "part": "foot",
+   "img": "st_240.jpg",
+   "auto": {
+    "stance_cal": "set",
+    "speed": 1.01
+   }
+  },
+  {
+   "id": "s263",
+   "touch": 263,
+   "frame": 9642,
+   "player": "Ron_Ben_Ishay",
+   "part": "chest",
+   "img": "st_263.jpg",
+   "auto": {
+    "stance_cal": "set",
+    "speed": 1.28
+   }
+  },
+  {
+   "id": "s266",
+   "touch": 266,
+   "frame": 9856,
+   "player": "Ron_Ben_Ishay",
+   "part": "chest",
+   "img": "st_266.jpg",
+   "auto": {
+    "stance_cal": "moving",
+    "speed": 1.42
+   }
+  },
+  {
+   "id": "s283",
+   "touch": 283,
+   "frame": 10582,
+   "player": "Ron_Ben_Ishay",
+   "part": "chest",
+   "img": "st_283.jpg",
+   "auto": {
+    "stance_cal": "set",
+    "speed": 0.84
+   }
+  },
+  {
+   "id": "s284",
+   "touch": 284,
+   "frame": 10662,
+   "player": "Ron_Ben_Ishay",
+   "part": "chest",
+   "img": "st_284.jpg",
+   "auto": {
+    "stance_cal": "set",
+    "speed": 0.84
+   }
+  },
+  {
+   "id": "s286",
+   "touch": 286,
+   "frame": 10712,
+   "player": "Franklin",
+   "part": "head",
+   "img": "st_286.jpg",
+   "auto": {
+    "stance_cal": "set",
+    "speed": 1.01
+   }
+  },
+  {
+   "id": "s310",
+   "touch": 310,
+   "frame": 11515,
+   "player": "Maor_Haas",
+   "part": "foot",
+   "img": "st_310.jpg",
+   "auto": {
+    "stance_cal": "moving",
+    "speed": 1.67
+   }
+  },
+  {
+   "id": "s325",
+   "touch": 325,
+   "frame": 11966,
+   "player": "Maor_Haas",
+   "part": "head",
+   "img": "st_325.jpg",
+   "auto": {
+    "stance_cal": "moving",
+    "speed": 1.57
+   }
+  },
+  {
+   "id": "s334",
+   "touch": 334,
+   "frame": 12307,
+   "player": "Hiltinho",
+   "part": "chest",
+   "img": "st_334.jpg",
+   "auto": {
+    "stance_cal": "set",
+    "speed": 0.84
+   }
+  },
+  {
+   "id": "s339",
+   "touch": 339,
+   "frame": 12553,
+   "player": "Ron_Ben_Ishay",
+   "part": "shoulder",
+   "img": "st_339.jpg",
+   "auto": {
+    "stance_cal": "set",
+    "speed": 1.28
+   }
+  },
+  {
+   "id": "s360",
+   "touch": 360,
+   "frame": 13321,
+   "player": "Franklin",
+   "part": "foot",
+   "img": "st_360.jpg",
+   "auto": {
+    "stance_cal": "moving",
+    "speed": 1.33
+   }
+  },
+  {
+   "id": "s363",
+   "touch": 363,
+   "frame": 13449,
+   "player": "Franklin",
+   "part": "head",
+   "img": "st_363.jpg",
+   "auto": {
+    "stance_cal": "set",
+    "speed": 1.22
+   }
+  }
+ ],
+ "facing": [
+  {
+   "id": "c64",
+   "touch": 64,
+   "frame": 2328,
+   "player": "Ron_Ben_Ishay",
+   "img": "fc_64.jpg",
+   "auto": {
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "c69",
+   "touch": 69,
+   "frame": 2477,
+   "player": "Ron_Ben_Ishay",
+   "img": "fc_69.jpg",
+   "auto": {
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "c88",
+   "touch": 88,
+   "frame": 3091,
+   "player": "Franklin",
+   "img": "fc_88.jpg",
+   "auto": {
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "c94",
+   "touch": 94,
+   "frame": 3318,
+   "player": "Ron_Ben_Ishay",
+   "img": "fc_94.jpg",
+   "auto": {
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "c99",
+   "touch": 99,
+   "frame": 3552,
+   "player": "Maor_Haas",
+   "img": "fc_99.jpg",
+   "auto": {
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "c105",
+   "touch": 105,
+   "frame": 3832,
+   "player": "Maor_Haas",
+   "img": "fc_105.jpg",
+   "auto": {
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "c119",
+   "touch": 119,
+   "frame": 4466,
+   "player": "Hiltinho",
+   "img": "fc_119.jpg",
+   "auto": {
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "c133",
+   "touch": 133,
+   "frame": 4944,
+   "player": "Hiltinho",
+   "img": "fc_133.jpg",
+   "auto": {
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "c136",
+   "touch": 136,
+   "frame": 5040,
+   "player": "Ron_Ben_Ishay",
+   "img": "fc_136.jpg",
+   "auto": {
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "c151",
+   "touch": 151,
+   "frame": 5660,
+   "player": "Hiltinho",
+   "img": "fc_151.jpg",
+   "auto": {
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "c166",
+   "touch": 166,
+   "frame": 6114,
+   "player": "Hiltinho",
+   "img": "fc_166.jpg",
+   "auto": {
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "c175",
+   "touch": 175,
+   "frame": 6435,
+   "player": "Ron_Ben_Ishay",
+   "img": "fc_175.jpg",
+   "auto": {
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "c192",
+   "touch": 192,
+   "frame": 7082,
+   "player": "Maor_Haas",
+   "img": "fc_192.jpg",
+   "auto": {
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "c194",
+   "touch": 194,
+   "frame": 7142,
+   "player": "Hiltinho",
+   "img": "fc_194.jpg",
+   "auto": {
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "c207",
+   "touch": 207,
+   "frame": 7489,
+   "player": "Franklin",
+   "img": "fc_207.jpg",
+   "auto": {
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "c216",
+   "touch": 216,
+   "frame": 7779,
+   "player": "Hiltinho",
+   "img": "fc_216.jpg",
+   "auto": {
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "c239",
+   "touch": 239,
+   "frame": 8756,
+   "player": "Hiltinho",
+   "img": "fc_239.jpg",
+   "auto": {
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "c259",
+   "touch": 259,
+   "frame": 9393,
+   "player": "Hiltinho",
+   "img": "fc_259.jpg",
+   "auto": {
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "c262",
+   "touch": 262,
+   "frame": 9607,
+   "player": "Maor_Haas",
+   "img": "fc_262.jpg",
+   "auto": {
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "c323",
+   "touch": 323,
+   "frame": 11921,
+   "player": "Franklin",
+   "img": "fc_323.jpg",
+   "auto": {
+    "facing": "camera"
+   }
+  }
+ ]
+}
