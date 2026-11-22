@@ -1,0 +1,9 @@
+player,action,n,dist_from_base,return_s_median,returned_share
+Franklin,attack,38,2.48,2.14,0.63
+Franklin,set,12,2.31,2.32,0.67
+Hiltinho,attack,26,2.44,1.44,0.38
+Hiltinho,set,22,1.9,2.92,0.82
+Maor_Haas,attack,18,2.58,1.72,0.72
+Maor_Haas,set,22,1.84,1.68,0.77
+Ron_Ben_Ishay,attack,45,2.14,1.88,0.69
+Ron_Ben_Ishay,set,10,1.7,2.2,0.7

@@ -40,6 +40,8 @@ FPS = 25
 DT = 1 / FPS
 W, H_IMG = 1920, 1080
 S_MIN = 0.3          # keypoint score
+GROUND = os.environ.get('POS_GROUND', 'ankle')  # 'ankle' = ankle joint + ANKLE_LIFT (default); 'sole' = heel + toes: tested 2026-11-22, noisier in the sand (outliers 3.1% vs 2.2%), shift 6 cm median
+SOLE_KP = ('heel', 'big_toe', 'small_toe')
 ANKLE_LIFT = 0.04    # box heights: the ankle joint sits this far above the sole
 LIFT_FRAC = 0.5      # ankles further apart than this x leg length (image height): one foot may be up ...
 PLANT_DT = 2         # ... and it is, if over +-PLANT_DT frames it moves more than PLANT_SWING box heights and
@@ -150,7 +152,7 @@ def ground_points(boxes):
     different. Occluded = the teammate's box overlaps (IoU > OCC_IOU) or stands in front of the feet (its bottom
     lower in the image, the player's box bottom and centre inside it). Occluded and border-cut rows count less, and
     neither feeds the jump detector nor seeds a reset."""
-    kp = [f'{s}_{j}' for s in ('left', 'right') for j in ('ankle', 'hip', 'shoulder')]
+    kp = [f'{s}_{j}' for s in ('left', 'right') for j in ('ankle', 'hip', 'shoulder') + SOLE_KP]
     cols = ['frame', 'player'] + [f'{k}_{a}' for k in kp for a in 'xys']
     p = pd.read_csv(os.path.join(ROOT, 'data', 'pose', 'sapiens2', 'sapiens2_pose_v3_00000-13494.csv'), usecols=cols).replace({'player': {'BRA_A': 'Franklin', 'BRA_B': 'Hiltinho', 'ISR_A': 'Maor_Haas', 'ISR_B': 'Ron_Ben_Ishay'}})  # the LFS pose file still uses the old codes
     b = boxes.merge(p, on=['frame', 'player'], how='left').sort_values(['player', 'frame']).reset_index(drop=True)
@@ -184,7 +186,16 @@ def ground_points(boxes):
     ax, ay = np.where(bad, np.nan, ax), np.where(bad, np.nan, ay)
     same = np.hypot(ax[0] - ax[1], ay[0] - ay[1]) < SHARED_PX       # both ankle keypoints on one foot
     ax[1], ay[1] = np.where(same, np.nan, ax[1]), np.where(same, np.nan, ay[1])
-    ay = ay + ANKLE_LIFT * bh                                       # ankle joint -> sole
+    ay = ay + ANKLE_LIFT * bh                                       # ankle joint -> sole (fallback)
+    if GROUND == 'sole':
+        # the foot's own ground point: mean of heel, big toe and small toe (Sapiens2), where the ankle is kept
+        for k, s_ in enumerate(('left', 'right')):
+            px, py, n = np.zeros(n_rows), np.zeros(n_rows), np.zeros(n_rows)
+            for j in SOLE_KP:
+                ok = b[f'{s_}_{j}_s'].values >= S_MIN
+                px += np.where(ok, b[f'{s_}_{j}_x'].values, 0); py += np.where(ok, b[f'{s_}_{j}_y'].values, 0); n += ok
+            use = np.isfinite(ax[k]) & (n > 0)
+            ax[k] = np.where(use, px / np.maximum(n, 1), ax[k]); ay[k] = np.where(use, py / np.maximum(n, 1), ay[k])
     hx, hy = pts('hip')
     sx, sy = pts('shoulder')
     n_ank = np.isfinite(ax).sum(0)
@@ -497,7 +508,7 @@ def main():
     for c in ('raw_x', 'raw_y', 'bump', 'x', 'y', 'vx', 'vy', 'speed'):
         s[c] = s[c].round(3)
     s['u'], s['v'] = s.u.round(1), s.v.round(1)
-    s.to_csv(os.path.join(OUT, 'player_positions_v3.csv'), index=False)
+    s.to_csv(os.environ.get('POS_OUT', os.path.join(OUT, 'player_positions_v3.csv')), index=False)
     m = s[np.isfinite(s.raw_x)]
     print(f'{len(s)} rows ({len(s) - len(m)} bridged), {s.track.nunique()} tracks, outliers {m.outlier.mean():.1%}, '
           f'resets {int(s.reset.sum())}, jump frames {int(s.jump.sum())}')
