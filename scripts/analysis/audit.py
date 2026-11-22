@@ -282,7 +282,7 @@ layer('gap', 'מרווח בהגנה', min(c_ok, acc_gap), [
      dict(what='ספיגה של ישראל, מרווח עד 3.5 מ׳', value=f'{round(100 * k2 / n2)}% ({k2}/{n2})', ci=f'{wilson(k2, n2)[0]}–{wilson(k2, n2)[1]}%')])
 
 # ---------------------------------------------------------------- shoulders (pose)
-bo = pd.read_csv('data/analysis/body_orientation_0_15585.csv', usecols=['frame', 'player', 'part', 'k', 'angle_to_net_deg'])
+bo = pd.read_csv('data/analysis/body_direction_full_match.csv', usecols=['frame', 'player', 'part', 'k', 'angle_to_net_deg'])
 sh = bo[(bo.part == 'shoulders') & (bo.k == 0)].sort_values(['player', 'frame'])
 flips = []
 for pl, g in sh.groupby('player'):

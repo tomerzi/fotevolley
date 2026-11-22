@@ -7,7 +7,7 @@ the pose's left/right labels: right = R - L, facing = up x right). Angle to the 
 90 = side-on, 180 = back to the net; its sign says which way the player is turned (+ towards the near sideline / the
 camera side, - towards the far sideline). Lightly smoothed over 5 frames; frames where the shoulders are missing,
 low-confidence or implausibly short/long (< 0.22 m or > 0.60 m apart on the sand plane) are left out.
-Writes data/analysis/shoulder_orientation_<start>_<end>.csv and, with --video, an overlay clip with two rays per
+Writes data/analysis/shoulder_direction_<full_match|first_30s|start_end>.csv and, with --video, an overlay clip with two rays per
 player (dashed, one from each shoulder along the facing direction, running to the net where they meet it; 1.2 m when the player faces away) and a top-down court inset.
 usage: python scripts/analysis/shoulder_rays.py [START_FRAME END_FRAME] [--video OUT.mp4]
 """
@@ -80,7 +80,8 @@ a = np.degrees(np.arctan2(tn * d.face_y_s, tn * d.face_x_s))
 d['angle_to_net_deg'] = np.where(d.x < 8, a, -a).round(1)
 d['abs_angle_to_net_deg'] = d.angle_to_net_deg.abs()
 cols = ['frame', 'player', 'x', 'y', 'facing_deg', 'angle_to_net_deg', 'abs_angle_to_net_deg', 'shoulder_w', 'Rx', 'Ry', 'Lx', 'Ly', 'z']
-d[cols].round(3).to_csv(f'data/analysis/shoulder_orientation_{F0}_{F1}.csv', index=False)
+NAME = 'full_match' if (F0, F1) == (0, 15585) else 'first_30s' if (F0, F1) == (0, 749) else f'{F0}_{F1}'
+d[cols].round(3).to_csv(f'data/analysis/shoulder_direction_{NAME}.csv', index=False)
 print(d.groupby('player').agg(frames=('frame', 'size'), median_abs_angle=('abs_angle_to_net_deg', 'median'),
                               square_to_net_pct=('abs_angle_to_net_deg', lambda v: (v < 30).mean() * 100),
                               side_on_pct=('abs_angle_to_net_deg', lambda v: ((v >= 60) & (v <= 120)).mean() * 100),

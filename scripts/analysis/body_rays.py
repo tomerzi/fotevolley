@@ -11,7 +11,7 @@ the horizontal plane at that point's height (a share of the player's measured st
 Heights assume an upright player, so crouched or airborne players are less exact. Keypoints below 0.3 confidence and
 implausible spans are dropped; directions are smoothed over 5 frames.
 Angle to the net: 0 = square to the net, 90 = side-on, 180 = back to it; + = turned towards the near (camera) side.
-Writes data/analysis/body_orientation_<start>_<end>.csv and, with --video, an overlay clip (fixed-length rays,
+Writes data/analysis/body_direction_<full_match|first_30s|start_end>.csv and, with --video, an overlay clip (fixed-length rays,
 1.4 m, fading out, one colour per body part, and a top-down court inset).
 usage: python scripts/analysis/body_rays.py [START END] [--video OUT.mp4]
 """
@@ -110,7 +110,8 @@ tn = np.where(d.x < 8, 1.0, -1.0)
 a = np.degrees(np.arctan2(tn * d.fy, tn * d.fx))
 d['angle_to_net_deg'] = np.where(d.x < 8, a, -a).round(1)
 d['facing_deg'] = np.degrees(np.arctan2(d.fy, d.fx)).round(1)
-d.round(3).to_csv(f'data/analysis/body_orientation_{F0}_{F1}.csv', index=False)
+NAME = 'full_match' if (F0, F1) == (0, 15585) else 'first_30s' if (F0, F1) == (0, 749) else f'{F0}_{F1}'
+d.round(3).to_csv(f'data/analysis/body_direction_{NAME}.csv', index=False)
 per = d.groupby(['player', 'part', 'frame']).angle_to_net_deg.mean().abs().reset_index()
 print(per.pivot_table(index='player', columns='part', values='angle_to_net_deg', aggfunc='median').round(0)[PARTS].to_string())
 
