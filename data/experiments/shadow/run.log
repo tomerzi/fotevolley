@@ -1,0 +1,71 @@
+== shadow
+825 flights, 553 continuity links, 33 sand pins, 0 net crossings, 0 net touches, 0 chest points (vitpose), 4262 shadows
+status 0 nfev 80 cost 28207.5
+jump between consecutive flights: median 0.74 -> 0.15 m; reprojection median 1.80 px
+sand landings (odd) n=21: height median 0.07 m (0.11 expected), MAE 0.07 m
+n=40 (odd): fit - marked height median +0.08 m, MAE 0.13 m (vs chest point: -0.12 / 0.13); ball-player distance 0.28 m; marked height 1.40 m; ball in flight median 2.52 / p95 4.22 m
+net crossings (odd) n=64: height median 2.70 m, below the net top 12% (by 0.34 m median)
+== shadow_sig5
+825 flights, 553 continuity links, 33 sand pins, 0 net crossings, 0 net touches, 0 chest points (vitpose), 4262 shadows
+status 0 nfev 80 cost 22070.4
+jump between consecutive flights: median 0.74 -> 0.15 m; reprojection median 1.72 px
+sand landings (odd) n=21: height median 0.08 m (0.11 expected), MAE 0.11 m
+n=40 (odd): fit - marked height median +0.08 m, MAE 0.13 m (vs chest point: -0.09 / 0.12); ball-player distance 0.30 m; marked height 1.40 m; ball in flight median 2.53 / p95 4.22 m
+net crossings (odd) n=64: height median 2.69 m, below the net top 14% (by 0.33 m median)
+== net_all
+825 flights, 553 continuity links, 33 sand pins, 130 net crossings, 3 net touches, 0 chest points (vitpose), 0 shadows
+status 0 nfev 80 cost 15475.6
+jump between consecutive flights: median 0.74 -> 0.14 m; reprojection median 1.59 px
+sand landings (odd) n=21: height median 0.25 m (0.11 expected), MAE 0.14 m
+n=40 (odd): fit - marked height median +0.13 m, MAE 0.18 m (vs chest point: -0.04 / 0.11); ball-player distance 0.43 m; marked height 1.40 m; ball in flight median 2.58 / p95 4.24 m
+net crossings (odd) n=67: height median 2.68 m, below the net top 15% (by 0.07 m median)
+== shadow_net
+825 flights, 553 continuity links, 33 sand pins, 130 net crossings, 3 net touches, 0 chest points (vitpose), 4262 shadows
+status 0 nfev 80 cost 28548.1
+jump between consecutive flights: median 0.74 -> 0.16 m; reprojection median 1.80 px
+sand landings (odd) n=21: height median 0.07 m (0.11 expected), MAE 0.07 m
+n=40 (odd): fit - marked height median +0.07 m, MAE 0.13 m (vs chest point: -0.12 / 0.13); ball-player distance 0.28 m; marked height 1.40 m; ball in flight median 2.52 / p95 4.22 m
+net crossings (odd) n=65: height median 2.70 m, below the net top 14% (by 0.16 m median)
+silhouette failed
+    size[sl_.frame.values] = sl_.diam_px.values
+    ~~~~^^^^^^^^^^^^^^^^^^
+ValueError: assignment destination is read-only
+shadow_silhouette failed
+    size[sl_.frame.values] = sl_.diam_px.values
+    ~~~~^^^^^^^^^^^^^^^^^^
+ValueError: assignment destination is read-only
+== silhouette
+825 flights, 553 continuity links, 33 sand pins, 0 net crossings, 0 net touches, 0 chest points (vitpose), 0 shadows
+status 0 nfev 80 cost 12394.2
+jump between consecutive flights: median 0.74 -> 0.13 m; reprojection median 1.58 px
+sand landings (odd) n=21: height median 0.36 m (0.11 expected), MAE 0.25 m
+n=40 (odd): fit - marked height median +0.15 m, MAE 0.18 m (vs chest point: +0.00 / 0.10); ball-player distance 0.45 m; marked height 1.40 m; ball in flight median 2.62 / p95 4.26 m
+net crossings (odd) n=67: height median 2.77 m, below the net top 13% (by 0.39 m median)
+== shadow_silhouette
+825 flights, 553 continuity links, 33 sand pins, 0 net crossings, 0 net touches, 0 chest points (vitpose), 4262 shadows
+status 0 nfev 80 cost 25922.6
+jump between consecutive flights: median 0.74 -> 0.16 m; reprojection median 1.80 px
+sand landings (odd) n=21: height median 0.08 m (0.11 expected), MAE 0.07 m
+n=40 (odd): fit - marked height median +0.10 m, MAE 0.13 m (vs chest point: -0.10 / 0.13); ball-player distance 0.29 m; marked height 1.40 m; ball in flight median 2.53 / p95 4.22 m
+net crossings (odd) n=64: height median 2.71 m, below the net top 12% (by 0.34 m median)
+== shadow_net_silhouette
+825 flights, 553 continuity links, 33 sand pins, 130 net crossings, 3 net touches, 0 chest points (vitpose), 4262 shadows
+status 0 nfev 80 cost 26261.4
+jump between consecutive flights: median 0.74 -> 0.16 m; reprojection median 1.80 px
+sand landings (odd) n=21: height median 0.08 m (0.11 expected), MAE 0.07 m
+n=40 (odd): fit - marked height median +0.10 m, MAE 0.13 m (vs chest point: -0.10 / 0.13); ball-player distance 0.29 m; marked height 1.40 m; ball in flight median 2.53 / p95 4.22 m
+net crossings (odd) n=64: height median 2.71 m, below the net top 12% (by 0.18 m median)
+== p2_shadow_net
+825 flights, 553 continuity links, 33 sand pins, 130 net crossings, 3 net touches, 0 chest points (vitpose), 4365 shadows
+status 0 nfev 80 cost 25633.4
+jump between consecutive flights: median 0.74 -> 0.15 m; reprojection median 1.81 px
+sand landings (odd) n=21: height median 0.10 m (0.11 expected), MAE 0.08 m
+n=40 (odd): fit - marked height median +0.07 m, MAE 0.12 m (vs chest point: -0.10 / 0.15); ball-player distance 0.25 m; marked height 1.40 m; ball in flight median 2.52 / p95 4.22 m
+net crossings (odd) n=65: height median 2.69 m, below the net top 12% (by 0.11 m median)
+== p2_shadow
+825 flights, 553 continuity links, 33 sand pins, 0 net crossings, 0 net touches, 0 chest points (vitpose), 4365 shadows
+status 0 nfev 80 cost 25302.7
+jump between consecutive flights: median 0.74 -> 0.15 m; reprojection median 1.81 px
+sand landings (odd) n=21: height median 0.10 m (0.11 expected), MAE 0.08 m
+n=40 (odd): fit - marked height median +0.07 m, MAE 0.12 m (vs chest point: -0.10 / 0.15); ball-player distance 0.25 m; marked height 1.40 m; ball in flight median 2.52 / p95 4.22 m
+net crossings (odd) n=65: height median 2.69 m, below the net top 12% (by 0.28 m median)

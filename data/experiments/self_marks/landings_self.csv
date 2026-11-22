@@ -1,0 +1,23 @@
+rally,label_before,verdict,x,y,confidence,how
+1,out,in court (bounced near the right baseline then rolled out),14.7,4.9,medium-low,first low ball point (M2) + frames 49-55
+3,in_court,undecided: ball rises toward the far stands,,,none,frames 482-504; single camera cannot tell high-above-court from out
+5,in_court,in court,10.2,3.9,high,flight reaches the sand (M1) and first low point (M2) agree; seen rolling
+8,out,out behind the right baseline,16.2,1.4,high,M2 and M3 agree within 0.2 m
+13,out,undecided: ball leaves the frame,,,none,no ball after the touch
+14,out,own side near the near sideline,4.1,7.2,medium,ball on the sand next to Franklin (frames 2407-2410)
+19,in_court,undecided: ball rises toward the far stands,,,none,frames 3304-3315
+21,out,undecided: ball over the far right corner,,,none,frames 4027-4048
+26,in_court,just outside the far right corner,15.8,-0.2,medium,M2 and M3 agree within 0.2 m; 0.2 m out is inside the error
+27,in_court,undecided: ball leaves the frame at the far right corner,,,none,frames 6188-6197
+32,out,undecided: ball into the far stands,,,none,frame 8213
+34,in_court,undecided: ball rises toward the far stands,,,none,frames 9122-9130
+36,in_court,in court near the left baseline,1.0,5.6,high,M2 and M3 agree within 0.3 m
+37,out,undecided: ball over the far right tent,,,none,frames 9761-9764
+41,out,undecided: ball low toward the right edge,,,none,frame 11099
+43,out,undecided: ball low toward the right edge,,,none,frame 11730
+46,out,net,7.7,5.6,high,ball drops down the net (frames 12404-12414)
+47,out,undecided: ball over the far right crowd,,,none,frames 12716-12734
+49,out,ISR side next to the net,7.3,6.0,medium,ball off the net post onto the sand (frames 13140-13145); see the scoreboard correction of this point
+50,in_court,undecided: ball rises toward the far banner,,,none,frames 13391-13395
+55,out,undecided: ball leaves the far left corner,,,none,frames 14550-14554
+56,out,in court on the BRA side near the net,9.9,2.4,high,M2 and M3 agree within 0.1 m; ball rolling on the sand

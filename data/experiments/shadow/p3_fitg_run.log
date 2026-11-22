@@ -1,0 +1,6 @@
+== p3_fitg
+status 0 nfev 80 cost 26521.2
+height sigma (raw): flights median 0.016 m, others median 0.612 m
+sand landings (odd) n=21: height median 0.08 m (0.11 expected), MAE 0.06 m
+n=40 (odd): fit - marked height median +0.03 m, MAE 0.11 m (vs chest point: -0.16 / 0.17); ball-player distance 0.25 m; marked height 1.40 m; ball in flight median 2.50 / p95 4.21 m
+net crossings (odd) n=66: height median 2.68 m, below the net top 11% (by 0.15 m median)

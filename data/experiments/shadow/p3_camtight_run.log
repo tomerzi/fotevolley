@@ -1,0 +1,8 @@
+== p3_camtight
+status 0 nfev 80 cost 25317.9
+height sigma (raw): flights median 0.015 m, others median 0.612 m
+camera change: focal +105.2 px, principal point +8.0/+69.1 px, k1 -0.230, k2 +0.310, rotation 2.460 deg, position 0.287 m; landmark rms 4.15 (start 2.64)
+sun: azimuth -112.12, elevation 43.68, drift +0.074
+sand landings (odd) n=21: height median 0.06 m (0.11 expected), MAE 0.07 m
+n=40 (odd): fit - marked height median +0.01 m, MAE 0.11 m (vs chest point: -0.17 / 0.20); ball-player distance 0.24 m; marked height 1.38 m; ball in flight median 2.43 / p95 4.10 m
+net crossings (odd) n=65: height median 2.59 m, below the net top 15% (by 0.10 m median)

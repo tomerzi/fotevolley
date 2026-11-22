@@ -1,0 +1,237 @@
+<meta charset="utf-8">
+<title>חדר הניתוח</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;900&family=Heebo:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: an analyst's desk around one sand court. Controls on the right (start of the line in RTL), the court in the
+   middle, context charts on the left, the set win-probability strip under the court. Single daylight look. */
+:root{--sand:#e6cfa2;--sand-hi:#efdcb6;--sand-lo:#d7bb88;--court:#e9d4a8;--tape:#1d4fa8;--net:#1b1b1b;--post:#f6f1e6;
+  --ink:#2a2016;--ink-2:#5e4d37;--ink-3:#8a7556;--panel:#f6efe0;--panel-2:#efe5d0;
+  --isr:#1f63c9;--bra:#0d7f3f;--hit:#c8322c;
+  --display:"Rubik","Heebo",system-ui,sans-serif;--body:"Heebo",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;color-scheme:light}
+html{background:var(--sand)}
+body{background:var(--sand);color:var(--ink);font:14px/1.45 var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:14px 30px}
+.app{max-width:1500px;margin:0 auto;display:grid;grid-template-columns:230px minmax(0,1fr) 330px;grid-template-areas:"top top top" "ctl mid ctx";gap:14px}
+@media (max-width:1180px){.app{grid-template-columns:220px minmax(0,1fr);grid-template-areas:"top top" "ctl mid" "ctx ctx"}}
+@media (max-width:760px){.app{grid-template-columns:1fr;grid-template-areas:"top" "mid" "ctl" "ctx"}}
+.top{grid-area:top;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+h1{font:900 clamp(20px,3vw,28px) var(--display);margin:0}
+.sub{font:12px var(--mono);color:var(--ink-2)}
+.board{display:flex;gap:14px;align-items:center;background:var(--ink);color:var(--panel);border-radius:8px;padding:6px 14px;font-family:var(--display);font-weight:700}
+.board .n{font-size:24px;font-variant-numeric:tabular-nums}.board small{font:12px var(--mono);color:#cbbfa8}
+.ctl,.ctx{background:var(--panel);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px;min-width:0;align-self:start}
+.ctl{grid-area:ctl}.ctx{grid-area:ctx}
+.mid{grid-area:mid;display:flex;flex-direction:column;gap:10px;min-width:0}
+.glabel{font:500 11.5px var(--mono);color:var(--ink-3);margin-top:4px}
+.chips{display:flex;gap:5px;flex-wrap:wrap}
+.chip{font:500 13px var(--body);color:var(--ink);background:#fff9;border:1.5px solid var(--sand-lo);border-radius:999px;padding:4px 10px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.chip .dot{width:8px;height:8px;border-radius:50%}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--panel);border-color:var(--ink)}
+.chip.focus{box-shadow:0 0 0 2px var(--sand),0 0 0 4px var(--ink)}
+.chip:focus-visible,.btn:focus-visible{outline:2px solid var(--tape);outline-offset:2px}
+.btn{font:500 13px var(--body);background:#fff;border:1.5px solid var(--sand-lo);border-radius:8px;padding:5px 10px;cursor:pointer;color:var(--ink)}
+.courtwrap{background:var(--panel);border-radius:12px;padding:8px;min-width:0}
+.courtwrap .scroller{overflow-x:auto}
+svg{display:block;width:100%;height:auto;direction:ltr;overflow:hidden}
+svg text{font-family:var(--body)}svg text:not([fill]){fill:var(--ink)}
+@media (max-width:760px){.courtwrap svg#court{width:760px;max-width:none}}
+.wpwrap{background:var(--panel);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+h2{font:700 16px var(--display);margin:0}
+h3{font:700 14px var(--display);margin:0}
+.ctx section{display:flex;flex-direction:column;gap:6px;border-top:1px dashed var(--sand-lo);padding-top:10px}
+.ctx section:first-child{border-top:0;padding-top:0}
+.def{font-size:12.5px;color:var(--ink-2)}
+.kpi{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.kpi div{background:var(--panel-2);border-radius:8px;padding:6px 8px}
+.kpi b{display:block;font:900 20px var(--display);font-variant-numeric:tabular-nums}
+.kpi span{font-size:12px;color:var(--ink-2)}
+table.t{border-collapse:collapse;width:100%;font-size:12.5px}
+table.t td,table.t th{padding:3px 4px;border-top:1px solid var(--panel-2);text-align:start}
+table.t th{font:500 11px var(--mono);color:var(--ink-3)}
+table.t td.n{font-family:var(--mono);text-align:end;direction:ltr}
+#tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--panel);border-radius:6px;padding:6px 9px;font-size:12.5px;z-index:20;max-width:270px;opacity:0;transition:opacity .1s}
+.legend{font-size:12px;color:var(--ink-2);display:flex;flex-direction:column;gap:3px}
+.note{font-size:11.5px;color:var(--ink-3)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="app" dir="rtl">
+  <div class="top">
+    <div><h1>חדר הניתוח · ישראל – ברזיל</h1><div class="sub">גראץ 2022 · 60 נקודות · ישראל תמיד בחצי השמאלי</div></div>
+    <div class="board"><span class="n" id="bI" style="color:#8db8ff"></span><small id="bSets"></small><span class="n" id="bB" style="color:#7fd3a0"></span></div>
+  </div>
+
+  <aside class="ctl" aria-label="מה להציג">
+    <div class="glabel">שכבות על המגרש</div>
+    <div class="chips" id="layers"></div>
+    <div class="glabel">שחקנים</div>
+    <div class="chips" id="players"></div>
+    <div class="glabel">מערכה</div>
+    <div class="chips" id="sets"></div>
+    <div class="glabel">נקודה</div>
+    <div class="row" style="justify-content:flex-start"><button class="btn" id="prevR">‹</button><span id="rallyLbl" style="font:500 13px var(--mono)">כל הנקודות</span><button class="btn" id="nextR">›</button><button class="btn" id="allR">הכל</button></div>
+    <div class="legend" id="legend"></div>
+  </aside>
+
+  <main class="mid">
+    <div class="courtwrap"><div class="scroller"><svg id="court" viewBox="0 0 1000 560" role="img" aria-label="מגרש הפוצ'יוולי"></svg></div></div>
+    <div class="wpwrap">
+      <div class="row"><h2>סיכוי של ישראל לנצח במערכה</h2><span class="note">לחיצה על נקודה בגרף מציגה אותה על המגרש</span></div>
+      <svg id="wp" viewBox="0 0 1000 180" role="img" aria-label="סיכוי לנצח במערכה לאורך המשחק"></svg>
+      <div class="note" id="wpnote"></div>
+    </div>
+  </main>
+
+  <aside class="ctx" id="ctx" aria-live="polite"></aside>
+</div>
+<div id="tip" role="tooltip"></div>
+
+<script>
+const NS='http://www.w3.org/2000/svg';
+const PL=['Maor_Haas','Ron_Ben_Ishay','Franklin','Hiltinho'];
+const NM={Maor_Haas:'מאור האס',Ron_Ben_Ishay:'רון בן ישי',Franklin:'פרנקלין',Hiltinho:'הילטיניו'};
+const IN={Maor_Haas:'MH',Ron_Ben_Ishay:'RB',Franklin:'F',Hiltinho:'H'};
+const TM={Maor_Haas:'ISR',Ron_Ben_Ishay:'ISR',Franklin:'BRA',Hiltinho:'BRA'};
+const V=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const C={isr:V('--isr'),bra:V('--bra'),hit:V('--hit'),ink:V('--ink'),ink2:V('--ink-2'),ink3:V('--ink-3'),tape:V('--tape'),net:V('--net'),post:V('--post'),court:V('--court'),hi:V('--sand-hi'),lo:V('--sand-lo'),panel:V('--panel'),panel2:V('--panel-2'),sand:V('--sand')};
+const TC={ISR:C.isr,BRA:C.bra};const TN={ISR:'ישראל',BRA:'ברזיל'};
+const PART={foot:'רגל',head:'ראש',chest:'חזה',shoulder:'כתף',thigh:'ירך',knee:'ברך',shin:'שוק',arm:'יד'};
+const ACT={reception:'קבלה',set:'הנחה',attack:'התקפה'};
+const OUT=s=>s=='kill'||s=='failed_defence'?'good':(s=='returned'?'neutral':'bad');
+const pct=x=>Math.round(x*100)+'%';const pp=x=>(x>=0?'+':'−')+Math.abs(Math.round(x*100));
+function el(tag,a={},p){const e=document.createElementNS(NS,tag);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e}
+function txt(p,x,y,s,a={}){const t=el('text',Object.assign({x,y},a),p);t.textContent=s;return t}
+const tip=document.getElementById('tip');
+function hover(n,h){n.addEventListener('pointermove',e=>{tip.innerHTML=h;tip.style.opacity=1;const w=tip.offsetWidth;tip.style.left=Math.max(8,Math.min(innerWidth-w-8,e.clientX+12))+'px';tip.style.top=(e.clientY+14)+'px'});n.addEventListener('pointerleave',()=>tip.style.opacity=0)}
+
+const LAYERS=[{id:'pos',label:'מיקומים',on:true},{id:'touch',label:'ערך נגיעה'},{id:'attack',label:'איכות התקפה'},{id:'land',label:'איפה נגמרו נקודות'},{id:'gap',label:'מרווח בהגנה'},{id:'net',label:'מעברי רשת'}];
+const S={layers:new Set(['pos']),focus:'pos',players:new Set(PL),set:0,rally:null};
+let D;
+fetch('data.json').then(r=>r.json()).then(d=>{D=d;init();render()}).catch(e=>{document.getElementById('ctx').textContent='הנתונים לא נטענו: '+e.message});
+
+function init(){const R=D.rallies,s1=R.filter(r=>r.s==1).at(-1),s2=R.at(-1);const sI=(s1.i>s1.b)+(s2.i>s2.b);
+  bI.textContent=sI;bB.textContent=2-sI;bSets.textContent=`${s1.i}–${s1.b} · ${s2.i}–${s2.b}`;
+  LAYERS.forEach(l=>{const b=chip(l.label,S.layers.has(l.id),()=>{if(S.layers.has(l.id)&&S.focus==l.id){S.layers.delete(l.id);S.focus=[...S.layers].at(-1)||null}else{S.layers.add(l.id);S.focus=l.id}render()});b.dataset.l=l.id;layers.appendChild(b)});
+  PL.forEach(p=>{const b=chip(`<span class="dot" style="background:${TC[TM[p]]}"></span>${NM[p]}`,true,()=>{S.players.has(p)?S.players.delete(p):S.players.add(p);render()});b.dataset.p=p;players.appendChild(b)});
+  [[0,'שתיהן'],[1,'מערכה 1'],[2,'מערכה 2']].forEach(([v,l])=>{const b=chip(l,S.set==v,()=>{S.set=v;S.rally=null;render()});b.dataset.s=v;sets.appendChild(b)});
+  prevR.onclick=()=>stepR(-1);nextR.onclick=()=>stepR(1);allR.onclick=()=>{S.rally=null;render()};
+}
+function chip(html,on,fn){const b=document.createElement('button');b.className='chip';b.innerHTML=html;b.setAttribute('aria-pressed',on);b.onclick=fn;return b}
+function stepR(d){const R=D.rallies.filter(r=>!S.set||r.s==S.set).map(r=>r.r);if(S.rally==null)S.rally=d>0?R[0]:R.at(-1);else{const i=R.indexOf(S.rally);S.rally=R[Math.max(0,Math.min(R.length-1,i+d))]}render()}
+const inScope=r=>(S.rally!=null?r==S.rally:(!S.set||D.rallies.find(x=>x.r==r)?.s==S.set));
+const pon=p=>S.players.has(p);
+
+/* ------------------------------------------------ court ------------------------------------------------ */
+const SC=50,OX=100,OY=70,X=x=>OX+x*SC,Y=y=>OY+y*SC;const svg=document.getElementById('court');let LEG=[];
+function drawCourt(){svg.innerHTML='';el('rect',{x:0,y:0,width:1000,height:560,fill:C.sand,rx:8},svg);
+  const g=el('g',{opacity:.35},svg);for(let i=0;i<24;i++){const y=12+i*24;el('path',{d:`M0 ${y} Q 250 ${y+(i%2?7:-7)} 500 ${y} T 1000 ${y}`,fill:'none',stroke:i%3?C.hi:C.lo,'stroke-width':1.1},g)}
+  el('rect',{x:X(0),y:Y(0),width:16*SC,height:8*SC,fill:'none',stroke:C.tape,'stroke-width':5},svg);
+  txt(svg,X(4),Y(-0.45),'ישראל',{'text-anchor':'middle','font-size':16,'font-weight':700,fill:C.isr,'font-family':'Rubik'});
+  txt(svg,X(12),Y(-0.45),'ברזיל',{'text-anchor':'middle','font-size':16,'font-weight':700,fill:C.bra,'font-family':'Rubik'});}
+function drawNet(){el('line',{x1:X(8),y1:Y(-0.7),x2:X(8),y2:Y(8.7),stroke:C.net,'stroke-width':4},svg);[-0.7,8.7].forEach(y=>el('circle',{cx:X(8),cy:Y(y),r:8,fill:C.post,stroke:C.net,'stroke-width':2},svg))}
+function layerPos(){const H=D.heatz;const g=el('g',{style:'mix-blend-mode:multiply'},svg);
+  if(S.rally==null)PL.filter(pon).forEach(p=>{H.players[p].grid.forEach((row,j)=>row.forEach((v,i)=>{if(v>4)el('rect',{x:X(H.x0+i*H.cell),y:Y(H.y0+j*H.cell),width:H.cell*SC+.5,height:H.cell*SC+.5,fill:TC[TM[p]],opacity:Math.min(.7,v/99*.85)},g)}))});
+  PL.filter(pon).forEach(p=>{const P=H.players[p],c=TC[TM[p]];el('ellipse',{cx:X(P.mx),cy:Y(P.my),rx:P.sx*SC,ry:P.sy*SC,fill:'none',stroke:c,'stroke-width':2,'stroke-dasharray':'6 4',opacity:S.rally==null?1:.35},svg);
+    const m=el('circle',{cx:X(P.mx),cy:Y(P.my),r:14,fill:c,stroke:C.post,'stroke-width':2.5,opacity:S.rally==null?1:.35},svg);txt(svg,X(P.mx),Y(P.my)+4.5,IN[p],{'text-anchor':'middle','font-size':11,'font-weight':700,fill:'#fff','font-family':'IBM Plex Mono','pointer-events':'none'});
+    hover(m,`${NM[p]} · מיקום ממוצע בזמן משחק<br>כיסוי 90%: ${D.move[p].area90} מ״ר`)});
+  LEG.push('מיקומים: צפיפות המיקום בזמן משחק; עיגול = מיקום ממוצע, אליפסה = הפיזור הרגיל')}
+function layerTouch(){const T=D.touches.filter(t=>inScope(t.r)&&pon(t.p)&&t.x!=null);
+  if(S.rally!=null&&T.length>1){const pts=T.map(t=>`${X(t.x)},${Y(t.y)}`).join(' ');el('polyline',{points:pts,fill:'none',stroke:C.ink,'stroke-width':1.5,'stroke-dasharray':'4 4',opacity:.6},svg)}
+  T.forEach((t,i)=>{const c=TC[t.tm],x=X(t.x),y=Y(t.y),v=t.val,s=5+Math.min(12,Math.abs(v)*40),up=v>=0;
+    const m=el('path',{d:up?`M${x},${y-s} L${x+s*.9},${y+s*.6} L${x-s*.9},${y+s*.6}Z`:`M${x},${y+s} L${x+s*.9},${y-s*.6} L${x-s*.9},${y-s*.6}Z`,fill:c,stroke:C.post,'stroke-width':1.2,opacity:S.rally==null?.8:1},svg);
+    if(S.rally!=null)txt(svg,x+s+3,y-s,i+1,{'font-size':11,'font-weight':700,'font-family':'IBM Plex Mono'});
+    hover(m,`${NM[t.p]} · ${ACT[t.a]} · ${PART[t.b]||t.b} · נקודה ${t.r}<br>ערך נגיעה <b>${pp(v)}</b> נק׳ אחוז<br>סיכוי לזכות בנקודה: ${pct(t.vb)} ← ${pct(t.va)}`)});
+  LEG.push('ערך נגיעה: ▲ הנגיעה העלתה את סיכוי הקבוצה לזכות בנקודה, ▼ הורידה; הגודל = כמה')}
+function layerAttack(){const defs=el('defs',{},svg);['ISR','BRA'].forEach(tm=>{const m=el('marker',{id:'ar'+tm,viewBox:'0 0 10 10',refX:8,refY:5,markerWidth:4,markerHeight:4,orient:'auto-start-reverse'},defs);el('path',{d:'M0,0 L10,5 L0,10z',fill:TC[tm]},m)});
+  const A=D.attacks.filter(a=>inScope(a.r??0)&&pon(a.p));
+  A.sort((a,b)=>a.q-b.q).forEach(a=>{const c=TC[a.tm],x0=X(a.x0),y0=Y(a.y0),x1=X(a.x1),y1=Y(a.y1),mx=(x0+x1)/2,my=(y0+y1)/2-Math.min(60,Math.hypot(x1-x0,y1-y0)*.18),d=`M${x0},${y0} Q${mx},${my} ${x1},${y1}`;
+    el('path',{d,fill:'none',stroke:c,'stroke-width':1+a.q*7,opacity:.25+a.q*.75,'marker-end':`url(#ar${a.tm})`,'stroke-linecap':'round'},svg);
+    const o=OUT(a.s);if(o=='good')el('circle',{cx:x1,cy:y1,r:5,fill:c,stroke:C.post,'stroke-width':2},svg);if(o=='bad')el('path',{d:`M${x1-5},${y1-5}L${x1+5},${y1+5}M${x1+5},${y1-5}L${x1-5},${y1+5}`,stroke:C.hit,'stroke-width':3},svg);
+    const h=el('path',{d,fill:'none',stroke:'transparent','stroke-width':12},svg);hover(h,`${NM[a.p]} · ${PART[a.b]||a.b} · נקודה ${a.r}<br>איכות התקפה <b>${pct(a.q)}</b> · ${({kill:'נקודה',failed_defence:'נקודה',returned:'הוחזרה',error:'טעות'})[a.s]}<br>זווית ${Math.round(a.ang)}° · גובה מגע ${a.h} מ׳`)});
+  LEG.push('איכות התקפה: עובי הקשת = הסיכוי שהתקפה כזו מסיימת; ● = נקודה, ✕ = טעות')}
+function layerLand(){D.landz.filter(l=>inScope(l.r)).forEach(l=>{const c=TC[l.w],inC=l.k=='in_court';const m=el('circle',{cx:X(l.x),cy:Y(l.y),r:9,fill:inC?c:C.panel,stroke:c,'stroke-width':3},svg);
+  txt(svg,X(l.x),Y(l.y)+3.5,l.r,{'text-anchor':'middle','font-size':9,'font-weight':700,fill:inC?'#fff':c,'font-family':'IBM Plex Mono','pointer-events':'none'});
+  hover(m,`נקודה ${l.r} · ${TN[l.w]} זכתה<br>${inC?'נחת בפנים':l.k=='out'?'יצא':'ברשת'}`)});LEG.push('איפה נגמרו: צבע = מי זכה, מלא = נחת בפנים, חלול = יצא/רשת')}
+function layerGap(){D.spacez.filter(s=>inScope(s.r)).forEach(s=>{const c=s.c?C.hit:C.ink3;el('line',{x1:X(s.x1),y1:Y(s.y1),x2:X(s.x2),y2:Y(s.y2),stroke:c,'stroke-width':s.c?2.4:1.2,opacity:s.c?.9:.5,'stroke-dasharray':s.c?'':'3 3'},svg);
+  [[s.x1,s.y1],[s.x2,s.y2]].forEach(([x,y])=>el('circle',{cx:X(x),cy:Y(y),r:3,fill:TC[s.tm]},svg));
+  const h=el('line',{x1:X(s.x1),y1:Y(s.y1),x2:X(s.x2),y2:Y(s.y2),stroke:'transparent','stroke-width':10},svg);hover(h,`${TN[s.tm]} מגינה · ${s.d} מ׳ · נקודה ${s.r}<br>${s.c?'ספגו':'לא ספגו'}`)});LEG.push('מרווח בהגנה: קו בין שני המגינים ברגע ההתקפה של היריב; אדום מלא = ספגו')}
+function layerNet(){D.netz.filter(n=>inScope(n.r)).forEach(n=>{const y=Y(n.y),len=8+Math.max(0,n.h-2.2)*30,dir=n.fr=='ISR'?1:-1;const t=el('line',{x1:X(8),y1:y,x2:X(8)+dir*len,y2:y,stroke:TC[n.fr],'stroke-width':2.2,opacity:.8,'stroke-linecap':'round'},svg);hover(t,`${TN[n.fr]} מעבירה · ${n.h} מ׳ מעל החול`)});LEG.push('מעברי רשת: קו לכל כדור בצד שבעט אותו; האורך = הגובה מעל הרשת')}
+
+/* ------------------------------------------------ win probability strip ------------------------------------------------ */
+function drawWP(){const s=document.getElementById('wp');s.innerHTML='';const W=D.wp.rallies;const sets=S.set?[S.set]:[1,2];
+  const L=40,R=990,T=14,B=160,gap=24,tot=sets.reduce((a,k)=>a+W.filter(w=>w.s==k).length+1,0),u=(R-L-gap*(sets.length-1))/tot;let x0=L;
+  [0,.25,.5,.75,1].forEach(v=>{el('line',{x1:L,x2:R,y1:B-(B-T)*v,y2:B-(B-T)*v,stroke:v==.5?C.ink3:C.panel2,'stroke-dasharray':v==.5?'4 4':''},s);txt(s,L-6,B-(B-T)*v+4,Math.round(v*100)+'%',{'text-anchor':'end','font-size':10,fill:C.ink3,'font-family':'IBM Plex Mono'})});
+  sets.forEach(k=>{const w=W.filter(x=>x.s==k);const xs=i=>x0+i*u;const pts=[[xs(0),B-(B-T)*w[0].before],...w.map((r,i)=>[xs(i+1),B-(B-T)*r.after])];
+    el('polygon',{points:`${xs(0)},${B} ${pts.map(p=>p.join(',')).join(' ')} ${xs(w.length)},${B}`,fill:C.isr,opacity:.12},s);
+    el('polyline',{points:pts.map(p=>p.join(',')).join(' '),fill:'none',stroke:C.isr,'stroke-width':2.4,'stroke-linejoin':'round'},s);
+    txt(s,x0,B+16,`מערכה ${k}`,{'font-size':11,fill:C.ink2});
+    w.forEach((r,i)=>{const cx=xs(i+1),cy=B-(B-T)*r.after,sel=S.rally==r.r;
+      if(sel)el('line',{x1:cx,x2:cx,y1:T,y2:B,stroke:C.ink,'stroke-width':1.5},s);
+      el('circle',{cx,cy,r:sel?6:3.2,fill:TC[r.w],stroke:sel?C.ink:'none','stroke-width':2},s);
+      const h=el('rect',{x:cx-u/2,y:T,width:u,height:B-T,fill:'transparent',style:'cursor:pointer'},s);
+      h.onclick=()=>{S.rally=S.rally==r.r?null:r.r;render()};
+      hover(h,`נקודה ${r.r} · ${r.i}–${r.b} · ${TN[r.w]} זכתה<br>סיכוי ישראל: ${pct(r.before)} ← ${pct(r.after)} (${pp(r.w=='ISR'?r.wpa:-r.wpa)})`)});
+    x0+=(w.length+1)*u+gap});
+  document.getElementById('wpnote').textContent=`המודל מתחשב רק בתוצאה ובמגיש: המגיש זוכה ב-${pct(D.wp.model.p_serve)} מהנקודות (${D.wp.model.raw.replace(' rallies won by the server',' במשחק')}), מערכה עד 18 בהפרש 2. הוא לא יודע מי הקבוצה הטובה יותר.`;}
+
+/* ------------------------------------------------ context panel ------------------------------------------------ */
+function bars(rows,opt={}){/* rows: [label,value,color] ; diverging if opt.div */const w=300,rh=22,h=rows.length*rh+8,s=el('svg',{viewBox:`0 0 ${w} ${h}`});const L=96,Rr=w-40;
+  const mx=Math.max(...rows.map(r=>Math.abs(r[1])))||1;const zero=opt.div?(L+Rr)/2:L;const sc=v=>(opt.div?(Rr-L)/2:(Rr-L))*v/mx;
+  if(opt.div)el('line',{x1:zero,x2:zero,y1:0,y2:h,stroke:C.ink3},s);
+  rows.forEach(([l,v,c,tipH],i)=>{const y=4+i*rh;txt(s,L-6,y+14,l,{'text-anchor':'end','font-size':12});
+    const x=v>=0?zero:zero+sc(v),wd=Math.abs(sc(v));const r=el('rect',{x,y:y+4,width:Math.max(1,wd),height:13,fill:c,rx:2},s);
+    txt(s,v>=0?zero+wd+4:zero+4,y+14,opt.fmt?opt.fmt(v):v,{'font-size':11,'font-family':'IBM Plex Mono','text-anchor':'start',fill:C.ink2});if(tipH)hover(r,tipH)});return s}
+function section(title,def){const sec=document.createElement('section');sec.innerHTML=`<h3>${title}</h3>${def?`<div class="def">${def}</div>`:''}`;ctx.appendChild(sec);return sec}
+function ctxPanel(){ctx.innerHTML='';const f=S.focus;
+  if(S.rally!=null){const r=D.rallies.find(x=>x.r==S.rally),w=D.wp.rallies.find(x=>x.r==S.rally);const sec=section(`נקודה ${S.rally}`,`מערכה ${r.s} · הגישה ${TN[r.sv]} · ${r.d} שנ׳`);
+    sec.insertAdjacentHTML('beforeend',`<div class="kpi"><div><b style="color:${TC[r.w]}">${TN[r.w]}</b><span>זכתה · ${r.i}–${r.b}</span></div><div><b>${pp(w.w=='ISR'?w.wpa:-w.wpa)}</b><span>שינוי בסיכוי של ישראל במערכה</span></div></div>`);
+    const T=D.touches.filter(t=>t.r==S.rally);sec.insertAdjacentHTML('beforeend',`<table class="t"><tr><th>#</th><th>שחקן</th><th>פעולה</th><th>ערך</th></tr>${T.map((t,i)=>`<tr><td>${i+1}</td><td style="color:${TC[t.tm]}">${NM[t.p]}</td><td>${ACT[t.a]} · ${PART[t.b]||t.b}</td><td class="n">${pp(t.val)}</td></tr>`).join('')}</table>`);
+    const A=D.attacks.filter(a=>a.r==S.rally);if(A.length)sec.insertAdjacentHTML('beforeend',`<div class="def">איכות ההתקפות בנקודה: ${A.map(a=>`${NM[a.p]} ${pct(a.q)}`).join(' · ')}</div>`)}
+  if(!f){section('בחר שכבה','בחר בצד מה להציג על המגרש.');return}
+  if(f=='pos'){const sec=section('מיקומים','איפה כל שחקן עומד בזמן משחק, והמרחק החציוני שלו מהקווים.');
+    sec.appendChild(bars(PL.filter(pon).map(p=>[NM[p],D.move[p].area90,TC[TM[p]],`${NM[p]}: 90% מהזמן בשטח של ${D.move[p].area90} מ״ר`]),{fmt:v=>v+' מ״ר'}));
+    sec.insertAdjacentHTML('beforeend',`<table class="t"><tr><th>שחקן</th><th>רשת</th><th>בסיס</th><th>צד רחוק</th><th>צד קרוב</th></tr>${PL.filter(pon).map(p=>{const l=D.lines[p];return `<tr><td style="color:${TC[TM[p]]}">${NM[p]}</td><td class="n">${l.net.toFixed(1)}</td><td class="n">${l.base.toFixed(1)}</td><td class="n">${l.far.toFixed(1)}</td><td class="n">${l.near.toFixed(1)}</td></tr>`}).join('')}</table><div class="note">מטרים, חציון בזמן משחק</div>`);
+    const s2=section('ריצה');s2.appendChild(bars(PL.filter(pon).map(p=>[NM[p],D.move[p].dist,TC[TM[p]],`${NM[p]}: מהירות שיא ${D.move[p].top_kmh} קמ״ש`]),{fmt:v=>v+' מ׳'}))}
+  if(f=='touch'){const T=D.touches.filter(t=>inScope(t.r)&&pon(t.p));
+    const sec=section('ערך נגיעה','בכמה נקודות אחוז כל נגיעה שינתה את הסיכוי של הקבוצה לזכות בנקודה. מחושב ממצב הכדור לפני ואחרי: מספר הנגיעה (1–3) והמרחק מהרשת.');
+    sec.appendChild(bars(PL.filter(pon).map(p=>{const v=T.filter(t=>t.p==p).reduce((a,t)=>a+t.val,0);return [NM[p],v,TC[TM[p]],`${NM[p]}: ${T.filter(t=>t.p==p).length} נגיעות, סך ${pp(v)}`]}),{div:true,fmt:v=>pp(v)}));
+    sec.insertAdjacentHTML('beforeend','<div class="note">סכום על כל הנגיעות בטווח שנבחר</div>');
+    const s2=section('ממוצע לפי פעולה');s2.appendChild(bars(Object.keys(ACT).map(a=>{const g=T.filter(t=>t.a==a);const v=g.length?g.reduce((x,t)=>x+t.val,0)/g.length:0;return [ACT[a],v,C.ink2,`${g.length} נגיעות`]}),{div:true,fmt:v=>pp(v)}));
+    const s3=section('הסיכוי לזכות בנקודה לפי מצב','השורה = מספר הנגיעה של הקבוצה, העמודה = איפה הכדור.');
+    const M=D.touch_model;s3.insertAdjacentHTML('beforeend',`<table class="t"><tr><th></th><th>ליד הרשת</th><th>אמצע</th><th>מאחור</th></tr>${[1,2,3].map(k=>`<tr><td>נגיעה ${k}</td>${['net','mid','back'].map(z=>`<td class="n">${M[k+'-'+z]!=null?pct(M[k+'-'+z]):'–'}</td>`).join('')}</tr>`).join('')}</table>`)}
+  if(f=='attack'){const A=D.attacks.filter(a=>inScope(a.r)&&pon(a.p));
+    const sec=section('איכות התקפה','הסיכוי שהתקפה כזו מסיימת את הנקודה, לפי איך שנבעטה: איבר, זווית, גובה מגע ואורך. התוצאה עצמה לא נכנסת לחישוב.');
+    const w=300,h=150,s=el('svg',{viewBox:`0 0 ${w} ${h}`});const L=96,Rr=w-12,xq=q=>L+(Rr-L)*q/.7;
+    [0,.2,.4,.6].forEach(v=>{el('line',{x1:xq(v),x2:xq(v),y1:0,y2:h-16,stroke:C.panel2},s);txt(s,xq(v),h-3,Math.round(v*100)+'%',{'text-anchor':'middle','font-size':10,fill:C.ink3,'font-family':'IBM Plex Mono'})});
+    PL.filter(pon).forEach((p,i)=>{const y=14+i*30;txt(s,L-6,y+4,NM[p],{'text-anchor':'end','font-size':12});const g=A.filter(a=>a.p==p);
+      g.forEach((a,j)=>{const o=OUT(a.s);const c=el('circle',{cx:xq(a.q),cy:y+((j%3)-1)*5,r:3.6,fill:o=='good'?TC[a.tm]:o=='bad'?C.hit:C.panel,stroke:o=='neutral'?TC[a.tm]:'none','stroke-width':1.3},s);hover(c,`נקודה ${a.r} · איכות ${pct(a.q)} · ${({kill:'נקודה',failed_defence:'נקודה',returned:'הוחזרה',error:'טעות'})[a.s]}`)});
+      if(g.length){const m=g.reduce((x,a)=>x+a.q,0)/g.length;el('line',{x1:xq(m),x2:xq(m),y1:y-9,y2:y+9,stroke:C.ink,'stroke-width':2},s)}});
+    sec.appendChild(s);sec.insertAdjacentHTML('beforeend','<div class="note">נקודה מלאה = הסתיימה בנקודה · חלולה = הוחזרה · אדומה = טעות · קו = ממוצע</div>');
+    const M=D.attack_model,co=M.coef;const s2=section('מה מעלה את האיכות','כמה כל תכונה משנה את הסיכוי (מקדם, + מעלה).');
+    s2.appendChild(bars([['רגל',co.foot],['ראש',co.head],['זווית 15–35°',co['angle 15-35']],['זווית מעל 35°',co['angle > 35']],['מגע מתחת 2.3 מ׳',co['contact < 2.3 m']],['מגע מעל 2.6 מ׳',co['contact > 2.6 m']]].map(([l,v])=>[l,v,C.ink2]),{div:true,fmt:v=>(v>=0?'+':'')+v.toFixed(2)}));
+    s2.insertAdjacentHTML('beforeend',`<div class="note">נלמד מ-${M.n} התקפות של המשחק הזה בלבד; משפר רק מעט על ניחוש לפי הממוצע (${M.brier} מול ${M.brier_base}, נמוך = טוב).</div>`)}
+  if(f=='land'){const L=D.landz.filter(l=>inScope(l.r));const sec=section('איפה נגמרו נקודות','לכל נקודה עם מיקום ידוע.');
+    const rows=[];['ISR','BRA'].forEach(tm=>{['in_court','out','net'].forEach(k=>{const n=L.filter(l=>l.w==tm&&l.k==k).length;rows.push([`${TN[tm]} · ${({in_court:'בפנים',out:'החוצה',net:'רשת'})[k]}`,n,TC[tm]])})});sec.appendChild(bars(rows,{fmt:v=>v}));
+    sec.insertAdjacentHTML('beforeend','<div class="note">"ישראל · בפנים" = נקודות שישראל זכתה בהן כשהכדור נחת בפנים</div>')}
+  if(f=='gap'){const G=D.spacez.filter(s=>inScope(s.r));const sec=section('מרווח בהגנה','המרחק בין שני המגינים ברגע ההתקפה של היריב, ואחוז הנקודות שספגו.');
+    const bins=[[0,2.75,'עד 2.75 מ׳'],[2.75,3.25,'2.75–3.25'],[3.25,3.75,'3.25–3.75'],[3.75,9,'מעל 3.75 מ׳']];
+    ['ISR','BRA'].forEach(tm=>{sec.insertAdjacentHTML('beforeend',`<div class="def" style="color:${TC[tm]};font-weight:700">${TN[tm]} מגינה</div>`);sec.appendChild(bars(bins.map(([a,b,l])=>{const g=G.filter(s=>s.tm==tm&&s.d>=a&&s.d<b);return [l,g.length?g.filter(s=>s.c).length/g.length:0,TC[tm],`${g.filter(s=>s.c).length} מתוך ${g.length}`]}),{fmt:v=>pct(v)}))});
+    sec.insertAdjacentHTML('beforeend','<div class="note">מרחק מתוך מפרקי הרגליים (עקב ובוהן). מעט הגנות בכל עמודה – תיאור, לא מסקנה.</div>')}
+  if(f=='net'){const N=D.netz.filter(n=>inScope(n.r));const sec=section('מעברי רשת','באיזה גובה הכדור חצה את הרשת (2.20 מ׳).');
+    const bins=[[0,2.4,'עד 20 ס״מ מעל'],[2.4,2.7,'20–50 ס״מ'],[2.7,3.2,'50–100 ס״מ'],[3.2,9,'מעל מטר']];
+    sec.appendChild(bars(bins.flatMap(([a,b,l])=>['ISR','BRA'].map(tm=>[`${TN[tm]} · ${l}`,N.filter(n=>n.fr==tm&&n.h>=a&&n.h<b).length,TC[tm]])),{fmt:v=>v}))}
+  if(S.rally==null){const W=D.wp.rallies.filter(w=>!S.set||w.s==S.set).slice().sort((a,b)=>b.wpa-a.wpa).slice(0,5);const sec=section('הנקודות שהזיזו הכי הרבה','שינוי בסיכוי של הקבוצה המנצחת לזכות במערכה.');
+    sec.insertAdjacentHTML('beforeend',`<table class="t">${W.map(w=>`<tr data-r="${w.r}" style="cursor:pointer"><td>נקודה ${w.r}</td><td style="color:${TC[w.w]}">${TN[w.w]}</td><td class="n">${w.i}–${w.b}</td><td class="n">+${Math.round(w.wpa*100)}</td></tr>`).join('')}</table>`);
+    sec.querySelectorAll('tr[data-r]').forEach(tr=>tr.onclick=()=>{S.rally=+tr.dataset.r;render()})}
+}
+
+function render(){LEG=[];drawCourt();
+  if(S.layers.has('pos'))layerPos();if(S.layers.has('gap'))layerGap();if(S.layers.has('land'))layerLand();if(S.layers.has('attack'))layerAttack();if(S.layers.has('touch'))layerTouch();
+  drawNet();if(S.layers.has('net'))layerNet();drawWP();ctxPanel();
+  legend.innerHTML=LEG.map(l=>`<div>${l}</div>`).join('');
+  document.querySelectorAll('#layers .chip').forEach(b=>{b.setAttribute('aria-pressed',S.layers.has(b.dataset.l));b.classList.toggle('focus',S.focus==b.dataset.l)});
+  document.querySelectorAll('#players .chip').forEach(b=>b.setAttribute('aria-pressed',S.players.has(b.dataset.p)));
+  document.querySelectorAll('#sets .chip').forEach(b=>b.setAttribute('aria-pressed',S.set==+b.dataset.s));
+  rallyLbl.textContent=S.rally==null?'כל הנקודות':`נקודה ${S.rally}`;}
+</script>
