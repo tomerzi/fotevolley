@@ -1,0 +1,982 @@
+{
+ "feet": [
+  {
+   "id": "f249",
+   "touch": 249,
+   "frame": 9052,
+   "player": "Franklin",
+   "body_part": "head",
+   "action": "attack",
+   "img": "feet_00.jpg",
+   "zoom": "feetzoom_00.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "moving",
+    "stance": "air",
+    "facing": "away"
+   }
+  },
+  {
+   "id": "f345",
+   "touch": 345,
+   "frame": 12811,
+   "player": "Franklin",
+   "body_part": "foot",
+   "action": "attack",
+   "img": "feet_01.jpg",
+   "zoom": "feetzoom_01.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "raised",
+    "stance": "air",
+    "facing": "side"
+   }
+  },
+  {
+   "id": "f222",
+   "touch": 222,
+   "frame": 8026,
+   "player": "Maor_Haas",
+   "body_part": "chest",
+   "action": "reception",
+   "img": "feet_02.jpg",
+   "zoom": "feetzoom_02.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "moving",
+    "stance": "moving",
+    "facing": "side"
+   }
+  },
+  {
+   "id": "f351",
+   "touch": 351,
+   "frame": 12991,
+   "player": "Ron_Ben_Ishay",
+   "body_part": "foot",
+   "action": "reception",
+   "img": "feet_03.jpg",
+   "zoom": "feetzoom_03.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "raised",
+    "stance": "moving",
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "f26",
+   "touch": 26,
+   "frame": 1040,
+   "player": "Hiltinho",
+   "body_part": "chest",
+   "action": "reception",
+   "img": "feet_04.jpg",
+   "zoom": "feetzoom_04.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "planted",
+    "stance": "one_foot",
+    "facing": "away"
+   }
+  },
+  {
+   "id": "f247",
+   "touch": 247,
+   "frame": 8982,
+   "player": "Franklin",
+   "body_part": "foot",
+   "action": "reception",
+   "img": "feet_05.jpg",
+   "zoom": "feetzoom_05.jpg",
+   "auto": {
+    "left": "planted",
+    "right": "raised",
+    "stance": "one_foot",
+    "facing": "side"
+   }
+  },
+  {
+   "id": "f32",
+   "touch": 32,
+   "frame": 1229,
+   "player": "Franklin",
+   "body_part": "head",
+   "action": "attack",
+   "img": "feet_06.jpg",
+   "zoom": "feetzoom_06.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "moving",
+    "stance": "air",
+    "facing": "away"
+   }
+  },
+  {
+   "id": "f132",
+   "touch": 132,
+   "frame": 4914,
+   "player": "Ron_Ben_Ishay",
+   "body_part": "head",
+   "action": "attack",
+   "img": "feet_07.jpg",
+   "zoom": "feetzoom_07.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "moving",
+    "stance": "moving",
+    "facing": "away"
+   }
+  },
+  {
+   "id": "f197",
+   "touch": 197,
+   "frame": 7231,
+   "player": "Ron_Ben_Ishay",
+   "body_part": "chest",
+   "action": "set",
+   "img": "feet_08.jpg",
+   "zoom": "feetzoom_08.jpg",
+   "auto": {
+    "left": "planted",
+    "right": "moving",
+    "stance": "one_foot",
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "f210",
+   "touch": 210,
+   "frame": 7572,
+   "player": "Ron_Ben_Ishay",
+   "body_part": "foot",
+   "action": "reception",
+   "img": "feet_09.jpg",
+   "zoom": "feetzoom_09.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "moving",
+    "stance": "moving",
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "f243",
+   "touch": 243,
+   "frame": 8864,
+   "player": "Ron_Ben_Ishay",
+   "body_part": "foot",
+   "action": "attack",
+   "img": "feet_10.jpg",
+   "zoom": "feetzoom_10.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "raised",
+    "stance": "air",
+    "facing": "away"
+   }
+  },
+  {
+   "id": "f109",
+   "touch": 109,
+   "frame": 4086,
+   "player": "Maor_Haas",
+   "body_part": "chest",
+   "action": "reception",
+   "img": "feet_11.jpg",
+   "zoom": "feetzoom_11.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "moving",
+    "stance": "moving",
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "f30",
+   "touch": 30,
+   "frame": 1157,
+   "player": "Franklin",
+   "body_part": "head",
+   "action": "reception",
+   "img": "feet_12.jpg",
+   "zoom": "feetzoom_12.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "moving",
+    "stance": "moving",
+    "facing": "side"
+   }
+  },
+  {
+   "id": "f309",
+   "touch": 309,
+   "frame": 11494,
+   "player": "Hiltinho",
+   "body_part": "head",
+   "action": "attack",
+   "img": "feet_13.jpg",
+   "zoom": "feetzoom_13.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "raised",
+    "stance": "air",
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "f290",
+   "touch": 290,
+   "frame": 10845,
+   "player": "Ron_Ben_Ishay",
+   "body_part": "chest",
+   "action": "set",
+   "img": "feet_14.jpg",
+   "zoom": "feetzoom_14.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "moving",
+    "stance": "moving",
+    "facing": "away"
+   }
+  },
+  {
+   "id": "f291",
+   "touch": 291,
+   "frame": 10881,
+   "player": "Maor_Haas",
+   "body_part": "head",
+   "action": "attack",
+   "img": "feet_15.jpg",
+   "zoom": "feetzoom_15.jpg",
+   "auto": {
+    "left": "raised",
+    "right": "moving",
+    "stance": "moving",
+    "facing": "away"
+   }
+  },
+  {
+   "id": "f267",
+   "touch": 267,
+   "frame": 9892,
+   "player": "Ron_Ben_Ishay",
+   "body_part": "head",
+   "action": "attack",
+   "img": "feet_16.jpg",
+   "zoom": "feetzoom_16.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "moving",
+    "stance": "air",
+    "facing": "side"
+   }
+  },
+  {
+   "id": "f78",
+   "touch": 78,
+   "frame": 2746,
+   "player": "Ron_Ben_Ishay",
+   "body_part": "head",
+   "action": "attack",
+   "img": "feet_17.jpg",
+   "zoom": "feetzoom_17.jpg",
+   "auto": {
+    "left": "planted",
+    "right": "planted",
+    "stance": "set",
+    "facing": "side"
+   }
+  },
+  {
+   "id": "f161",
+   "touch": 161,
+   "frame": 5972,
+   "player": "Hiltinho",
+   "body_part": "chest",
+   "action": "set",
+   "img": "feet_18.jpg",
+   "zoom": "feetzoom_18.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "moving",
+    "stance": "moving",
+    "facing": "away"
+   }
+  },
+  {
+   "id": "f277",
+   "touch": 277,
+   "frame": 10336,
+   "player": "Franklin",
+   "body_part": "chest",
+   "action": "set",
+   "img": "feet_19.jpg",
+   "zoom": "feetzoom_19.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "moving",
+    "stance": "moving",
+    "facing": "away"
+   }
+  },
+  {
+   "id": "f301",
+   "touch": 301,
+   "frame": 11240,
+   "player": "Hiltinho",
+   "body_part": "head",
+   "action": "attack",
+   "img": "feet_20.jpg",
+   "zoom": "feetzoom_20.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "raised",
+    "stance": "moving",
+    "facing": "side"
+   }
+  },
+  {
+   "id": "f21",
+   "touch": 21,
+   "frame": 841,
+   "player": "Franklin",
+   "body_part": "chest",
+   "action": "set",
+   "img": "feet_21.jpg",
+   "zoom": "feetzoom_21.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "moving",
+    "stance": "moving",
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "f59",
+   "touch": 59,
+   "frame": 2176,
+   "player": "Maor_Haas",
+   "body_part": "foot",
+   "action": "attack",
+   "img": "feet_22.jpg",
+   "zoom": "feetzoom_22.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "raised",
+    "stance": "air",
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "f41",
+   "touch": 41,
+   "frame": 1562,
+   "player": "Franklin",
+   "body_part": "foot",
+   "action": "set",
+   "img": "feet_23.jpg",
+   "zoom": "feetzoom_23.jpg",
+   "auto": {
+    "left": "planted",
+    "right": "raised",
+    "stance": "one_foot",
+    "facing": "away"
+   }
+  },
+  {
+   "id": "f338",
+   "touch": 338,
+   "frame": 12514,
+   "player": "Ron_Ben_Ishay",
+   "body_part": "chest",
+   "action": "reception",
+   "img": "feet_24.jpg",
+   "zoom": "feetzoom_24.jpg",
+   "auto": {
+    "left": "planted",
+    "right": "moving",
+    "stance": "one_foot",
+    "facing": "side"
+   }
+  },
+  {
+   "id": "f107",
+   "touch": 107,
+   "frame": 4000,
+   "player": "Hiltinho",
+   "body_part": "chest",
+   "action": "set",
+   "img": "feet_25.jpg",
+   "zoom": "feetzoom_25.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "moving",
+    "stance": "moving",
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "f318",
+   "touch": 318,
+   "frame": 11760,
+   "player": "Ron_Ben_Ishay",
+   "body_part": "chest",
+   "action": "reception",
+   "img": "feet_26.jpg",
+   "zoom": "feetzoom_26.jpg",
+   "auto": {
+    "left": "planted",
+    "right": "moving",
+    "stance": "one_foot",
+    "facing": "side"
+   }
+  },
+  {
+   "id": "f261",
+   "touch": 261,
+   "frame": 9461,
+   "player": "Hiltinho",
+   "body_part": "foot",
+   "action": "attack",
+   "img": "feet_27.jpg",
+   "zoom": "feetzoom_27.jpg",
+   "auto": {
+    "left": "raised",
+    "right": "moving",
+    "stance": "air",
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "f47",
+   "touch": 47,
+   "frame": 1748,
+   "player": "Maor_Haas",
+   "body_part": "head",
+   "action": "attack",
+   "img": "feet_28.jpg",
+   "zoom": "feetzoom_28.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "moving",
+    "stance": "air",
+    "facing": "side"
+   }
+  },
+  {
+   "id": "f20",
+   "touch": 20,
+   "frame": 806,
+   "player": "Hiltinho",
+   "body_part": "chest",
+   "action": "reception",
+   "img": "feet_29.jpg",
+   "zoom": "feetzoom_29.jpg",
+   "auto": {
+    "left": "planted",
+    "right": "planted",
+    "stance": "set",
+    "facing": "side"
+   }
+  },
+  {
+   "id": "f101",
+   "touch": 101,
+   "frame": 3659,
+   "player": "Maor_Haas",
+   "body_part": "foot",
+   "action": "set",
+   "img": "feet_30.jpg",
+   "zoom": "feetzoom_30.jpg",
+   "auto": {
+    "left": "raised",
+    "right": "planted",
+    "stance": "one_foot",
+    "facing": "away"
+   }
+  },
+  {
+   "id": "f155",
+   "touch": 155,
+   "frame": 5778,
+   "player": "Maor_Haas",
+   "body_part": "head",
+   "action": "attack",
+   "img": "feet_31.jpg",
+   "zoom": "feetzoom_31.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "moving",
+    "stance": "air",
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "f97",
+   "touch": 97,
+   "frame": 3384,
+   "player": "Hiltinho",
+   "body_part": "head",
+   "action": "attack",
+   "img": "feet_32.jpg",
+   "zoom": "feetzoom_32.jpg",
+   "auto": {
+    "left": "planted",
+    "right": "raised",
+    "stance": "one_foot",
+    "facing": "side"
+   }
+  },
+  {
+   "id": "f17",
+   "touch": 17,
+   "frame": 661,
+   "player": "Maor_Haas",
+   "body_part": "chest",
+   "action": "reception",
+   "img": "feet_33.jpg",
+   "zoom": "feetzoom_33.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "moving",
+    "stance": "moving",
+    "facing": "away"
+   }
+  },
+  {
+   "id": "f9",
+   "touch": 9,
+   "frame": 369,
+   "player": "Hiltinho",
+   "body_part": "foot",
+   "action": "attack",
+   "img": "feet_34.jpg",
+   "zoom": "feetzoom_34.jpg",
+   "auto": {
+    "left": "raised",
+    "right": "moving",
+    "stance": "air",
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "f4",
+   "touch": 4,
+   "frame": 98,
+   "player": "Hiltinho",
+   "body_part": "foot",
+   "action": "attack",
+   "img": "feet_35.jpg",
+   "zoom": "feetzoom_35.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "moving",
+    "stance": "moving",
+    "facing": "camera"
+   }
+  },
+  {
+   "id": "f8",
+   "touch": 8,
+   "frame": 336,
+   "player": "Franklin",
+   "body_part": "chest",
+   "action": "reception",
+   "img": "feet_36.jpg",
+   "zoom": "feetzoom_36.jpg",
+   "auto": {
+    "left": "planted",
+    "right": "planted",
+    "stance": "set",
+    "facing": "away"
+   }
+  },
+  {
+   "id": "f24",
+   "touch": 24,
+   "frame": 921,
+   "player": "Maor_Haas",
+   "body_part": "chest",
+   "action": "reception",
+   "img": "feet_37.jpg",
+   "zoom": "feetzoom_37.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "moving",
+    "stance": "moving",
+    "facing": "away"
+   }
+  },
+  {
+   "id": "f55",
+   "touch": 55,
+   "frame": 2072,
+   "player": "Franklin",
+   "body_part": "chest",
+   "action": "reception",
+   "img": "feet_38.jpg",
+   "zoom": "feetzoom_38.jpg",
+   "auto": {
+    "left": "planted",
+    "right": "planted",
+    "stance": "set",
+    "facing": "away"
+   }
+  },
+  {
+   "id": "f164",
+   "touch": 164,
+   "frame": 6063,
+   "player": "Maor_Haas",
+   "body_part": "foot",
+   "action": "attack",
+   "img": "feet_39.jpg",
+   "zoom": "feetzoom_39.jpg",
+   "auto": {
+    "left": "moving",
+    "right": "raised",
+    "stance": "air",
+    "facing": "camera"
+   }
+  }
+ ],
+ "ident": [
+  {
+   "id": "i524",
+   "frame": 524,
+   "img": "ident_0.jpg",
+   "_answer": {
+    "A": "Maor_Haas",
+    "B": "Ron_Ben_Ishay"
+   }
+  },
+  {
+   "id": "i2313",
+   "frame": 2313,
+   "img": "ident_1.jpg",
+   "_answer": {
+    "A": "Maor_Haas",
+    "B": "Ron_Ben_Ishay"
+   }
+  },
+  {
+   "id": "i4459",
+   "frame": 4459,
+   "img": "ident_2.jpg",
+   "_answer": {
+    "A": "Ron_Ben_Ishay",
+    "B": "Maor_Haas"
+   }
+  },
+  {
+   "id": "i6055",
+   "frame": 6055,
+   "img": "ident_3.jpg",
+   "_answer": {
+    "A": "Maor_Haas",
+    "B": "Ron_Ben_Ishay"
+   }
+  },
+  {
+   "id": "i9390",
+   "frame": 9390,
+   "img": "ident_4.jpg",
+   "_answer": {
+    "A": "Ron_Ben_Ishay",
+    "B": "Maor_Haas"
+   }
+  },
+  {
+   "id": "i10506",
+   "frame": 10506,
+   "img": "ident_5.jpg",
+   "_answer": {
+    "A": "Ron_Ben_Ishay",
+    "B": "Maor_Haas"
+   }
+  }
+ ],
+ "points": [
+  {
+   "id": "p2",
+   "point": 2,
+   "frame": 98,
+   "end": "landed_in",
+   "img": "point_02.jpg",
+   "team": "BRA",
+   "touch_table": "Hiltinho",
+   "owner_review": "Franklin"
+  },
+  {
+   "id": "p4",
+   "point": 4,
+   "frame": 528,
+   "end": "landed_in",
+   "img": "point_04.jpg",
+   "team": "ISR",
+   "touch_table": "Ron_Ben_Ishay",
+   "owner_review": "Maor_Haas"
+  },
+  {
+   "id": "p7",
+   "point": 7,
+   "frame": 887,
+   "end": "out",
+   "img": "point_07.jpg",
+   "team": "ISR",
+   "touch_table": "Ron_Ben_Ishay",
+   "owner_review": "Maor_Haas"
+  },
+  {
+   "id": "p8",
+   "point": 8,
+   "frame": 955,
+   "end": "landed_in",
+   "img": "point_08.jpg",
+   "team": "ISR",
+   "touch_table": "Ron_Ben_Ishay",
+   "owner_review": "Maor_Haas"
+  },
+  {
+   "id": "p10",
+   "point": 10,
+   "frame": 1319,
+   "end": "landed_in",
+   "img": "point_10.jpg",
+   "team": "ISR",
+   "touch_table": "Ron_Ben_Ishay",
+   "owner_review": "Maor_Haas"
+  },
+  {
+   "id": "p17",
+   "point": 17,
+   "frame": 2510,
+   "end": "landed_in",
+   "img": "point_17.jpg",
+   "team": "ISR",
+   "touch_table": "Ron_Ben_Ishay",
+   "owner_review": "Maor_Haas"
+  },
+  {
+   "id": "p19",
+   "point": 19,
+   "frame": 2860,
+   "end": "fault",
+   "img": "point_19.jpg",
+   "team": "ISR",
+   "touch_table": "Maor_Haas",
+   "owner_review": NaN
+  },
+  {
+   "id": "p21",
+   "point": 21,
+   "frame": 3552,
+   "end": "out",
+   "img": "point_21.jpg",
+   "team": "ISR",
+   "touch_table": "Ron_Ben_Ishay",
+   "owner_review": "Maor_Haas"
+  },
+  {
+   "id": "p22",
+   "point": 22,
+   "frame": 3698,
+   "end": "net",
+   "img": "point_22.jpg",
+   "team": "ISR",
+   "touch_table": "Ron_Ben_Ishay",
+   "owner_review": "Maor_Haas"
+  },
+  {
+   "id": "p23",
+   "point": 23,
+   "frame": 3832,
+   "end": "landed_in",
+   "img": "point_23.jpg",
+   "team": "ISR",
+   "touch_table": "Ron_Ben_Ishay",
+   "owner_review": "Maor_Haas"
+  },
+  {
+   "id": "p25",
+   "point": 25,
+   "frame": 4218,
+   "end": "fault",
+   "img": "point_25.jpg",
+   "team": "ISR",
+   "touch_table": "Maor_Haas",
+   "owner_review": "Ron_Ben_Ishay"
+  },
+  {
+   "id": "p28",
+   "point": 28,
+   "frame": 6005,
+   "end": "landed_in",
+   "img": "point_28.jpg",
+   "team": "BRA",
+   "touch_table": "Franklin",
+   "owner_review": "Ron_Ben_Ishay"
+  },
+  {
+   "id": "p30",
+   "point": 30,
+   "frame": 6460,
+   "end": "landed_in",
+   "img": "point_30.jpg",
+   "team": "ISR",
+   "touch_table": "Ron_Ben_Ishay",
+   "owner_review": "Maor_Haas"
+  },
+  {
+   "id": "p32",
+   "point": 32,
+   "frame": 6934,
+   "end": "out",
+   "img": "point_32.jpg",
+   "team": "ISR",
+   "touch_table": "Ron_Ben_Ishay",
+   "owner_review": "Maor_Haas"
+  },
+  {
+   "id": "p33",
+   "point": 33,
+   "frame": 7382,
+   "end": "out",
+   "img": "point_33.jpg",
+   "team": "ISR",
+   "touch_table": "Maor_Haas",
+   "owner_review": "Ron_Ben_Ishay"
+  },
+  {
+   "id": "p34",
+   "point": 34,
+   "frame": 7779,
+   "end": "fault",
+   "img": "point_34.jpg",
+   "team": "BRA",
+   "touch_table": "Hiltinho",
+   "owner_review": NaN
+  },
+  {
+   "id": "p39",
+   "point": 39,
+   "frame": 9094,
+   "end": "landed_in",
+   "img": "point_39.jpg",
+   "team": "ISR",
+   "touch_table": "Maor_Haas",
+   "owner_review": "Ron_Ben_Ishay"
+  },
+  {
+   "id": "p45",
+   "point": 45,
+   "frame": 10455,
+   "end": "out",
+   "img": "point_45.jpg",
+   "team": "ISR",
+   "touch_table": "Ron_Ben_Ishay",
+   "owner_review": "Maor_Haas"
+  },
+  {
+   "id": "p46",
+   "point": 46,
+   "frame": 10582,
+   "end": "out",
+   "img": "point_46.jpg",
+   "team": "ISR",
+   "touch_table": "Maor_Haas",
+   "owner_review": "Ron_Ben_Ishay"
+  },
+  {
+   "id": "p47",
+   "point": 47,
+   "frame": 10881,
+   "end": "out",
+   "img": "point_47.jpg",
+   "team": "ISR",
+   "touch_table": "Maor_Haas",
+   "owner_review": "Ron_Ben_Ishay"
+  },
+  {
+   "id": "p48",
+   "point": 48,
+   "frame": 11157,
+   "end": "landed_in",
+   "img": "point_48.jpg",
+   "team": "ISR",
+   "touch_table": "Ron_Ben_Ishay",
+   "owner_review": "Maor_Haas"
+  },
+  {
+   "id": "p49",
+   "point": 49,
+   "frame": 11263,
+   "end": "net",
+   "img": "point_49.jpg",
+   "team": "ISR",
+   "touch_table": "Maor_Haas",
+   "owner_review": "Ron_Ben_Ishay"
+  },
+  {
+   "id": "p50",
+   "point": 50,
+   "frame": 11515,
+   "end": "fault",
+   "img": "point_50.jpg",
+   "team": "ISR",
+   "touch_table": "Ron_Ben_Ishay",
+   "owner_review": NaN
+  },
+  {
+   "id": "p51",
+   "point": 51,
+   "frame": 11824,
+   "end": "landed_in",
+   "img": "point_51.jpg",
+   "team": "ISR",
+   "touch_table": "Ron_Ben_Ishay",
+   "owner_review": "Maor_Haas"
+  },
+  {
+   "id": "p56",
+   "point": 56,
+   "frame": 12699,
+   "end": "landed_in",
+   "img": "point_56.jpg",
+   "team": "BRA",
+   "touch_table": "Franklin",
+   "owner_review": "Ron_Ben_Ishay"
+  },
+  {
+   "id": "p57",
+   "point": 57,
+   "frame": 12896,
+   "end": "landed_in",
+   "img": "point_57.jpg",
+   "team": "ISR",
+   "touch_table": "Maor_Haas",
+   "owner_review": "Ron_Ben_Ishay"
+  },
+  {
+   "id": "p58",
+   "point": 58,
+   "frame": 13146,
+   "end": "landed_in",
+   "img": "point_58.jpg",
+   "team": "ISR",
+   "touch_table": "Ron_Ben_Ishay",
+   "owner_review": "Maor_Haas"
+  },
+  {
+   "id": "p59",
+   "point": 59,
+   "frame": 13359,
+   "end": "landed_in",
+   "img": "point_59.jpg",
+   "team": "ISR",
+   "touch_table": "Maor_Haas",
+   "owner_review": "Ron_Ben_Ishay"
+  }
+ ]
+}

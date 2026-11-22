@@ -1,0 +1,163 @@
+<title>תיוג רגליים וזיהוי ישראל</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: one column of label cards, sticky tab bar with progress; sand + net-blue palette */
+:root{
+  --bg:#f6f3ec; --surface:#fffdf8; --ink:#1f2421; --muted:#6b6a62; --line:#e2dccd;
+  --accent:#1d5fa8; --accent-ink:#fff; --chip:#efe9dc; --done:#2f7d4f; --warn:#b5651d;
+  --f-body:"Heebo",system-ui,sans-serif; --f-mono:"IBM Plex Mono",ui-monospace,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141716; --surface:#1d2120; --ink:#ecebe5; --muted:#a2a196; --line:#323734;
+  --accent:#6aa7ea; --accent-ink:#0d1a28; --chip:#272c2a; --done:#5cc48a; --warn:#e0a060; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141716; --surface:#1d2120; --ink:#ecebe5; --muted:#a2a196; --line:#323734;
+  --accent:#6aa7ea; --accent-ink:#0d1a28; --chip:#272c2a; --done:#5cc48a; --warn:#e0a060; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 60px}
+header h1{font-size:1.6rem;font-weight:800;margin:0 0 4px;text-wrap:balance}
+header p{margin:0;color:var(--muted);max-width:68ch}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line);margin:16px calc(-1*max(16px,env(safe-area-inset-left,0px))) 0;padding:10px max(16px,env(safe-area-inset-left,0px));display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tab{border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:999px;padding:6px 14px;font:inherit;font-weight:500;cursor:pointer;display:flex;gap:8px;align-items:center}
+.tab[aria-selected="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.tab .n{font-family:var(--f-mono);font-size:.8rem}
+.status{margin-inline-start:auto;font-size:.85rem;color:var(--muted)}
+.status.err{color:var(--warn)}
+.intro{margin:18px 0 8px;color:var(--muted);max-width:75ch}
+.intro b{color:var(--ink)}
+.list{display:flex;flex-direction:column;gap:18px;margin-top:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card.done{border-inline-start:5px solid var(--done)}
+.card h3{margin:0;font-size:1.02rem;font-weight:700;display:flex;flex-wrap:wrap;gap:8px;align-items:baseline}
+.card h3 .meta{font-family:var(--f-mono);font-size:.78rem;color:var(--muted);font-weight:500}
+.tick{color:var(--done);font-size:.85rem;font-weight:700}
+.imgs{overflow-x:auto;display:flex;gap:10px;align-items:flex-start}
+.imgs img{max-width:none;height:240px;border-radius:6px;display:block}
+.imgs img.zoom{height:240px}
+@media (max-width:600px){.imgs img,.imgs img.zoom{height:170px}}
+.q{display:flex;flex-direction:column;gap:6px}
+.q .lbl{font-weight:500;font-size:.92rem}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:8px;padding:7px 12px;font:inherit;font-size:.9rem;cursor:pointer}
+.opt:hover{border-color:var(--accent)}
+.opt[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:500}
+.opt:focus-visible,.tab:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+input.note{font:inherit;font-size:.9rem;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);width:100%;box-sizing:border-box}
+.hint{font-size:.82rem;color:var(--muted)}
+.empty{padding:24px;border:1px dashed var(--line);border-radius:10px;color:var(--muted)}
+</style>
+<div class="wrap" dir="rtl">
+  <header>
+    <h1>תיוג רגליים וזיהוי ישראל</h1>
+    <p>גמר Graz 2022, ישראל מול ברזיל. כל תשובה נשמרת ברגע הלחיצה, ואפשר לעצור ולהמשיך מאוחר יותר.</p>
+  </header>
+  <nav class="bar" role="tablist">
+    <button class="tab" role="tab" id="tab-ident" data-tab="ident" aria-selected="true">זיהוי השחקנים <span class="n" id="n-ident"></span></button>
+    <button class="tab" role="tab" id="tab-points" data-tab="points" aria-selected="false">נגיעה אחרונה בנקודה <span class="n" id="n-points"></span></button>
+    <button class="tab" role="tab" id="tab-feet" data-tab="feet" aria-selected="false">רגליים בנגיעה <span class="n" id="n-feet"></span></button>
+    <span class="status" id="status">מתחבר לשמירה…</span>
+  </nav>
+
+  <section id="sec-ident">
+    <p class="intro"><b>שלב 1.</b> בכל תמונה מופיעים שני השחקנים הישראלים, מסומנים A ו־B (הסדר משתנה בין התמונות). סמן מי מהם הוא <b>מאור האס</b>. הסימנים שרשומים אצלנו: מאור עם סרט לבן על הזרוע, גופייה 1; רון גופייה 2.</p>
+    <div class="list" id="list-ident"></div>
+  </section>
+  <section id="sec-points" hidden>
+    <p class="intro"><b>שלב 2.</b> 28 נקודות שבהן טבלת הנגיעות והבדיקה הקודמת לא מסכימות מי נגע אחרון. בכל שורה ארבעה פריימים מסביב לנגיעה האחרונה שזוהתה (המסגרת הצהובה היא רגע הנגיעה). אם צריך, פתח את הווידאו בפריים שמצוין (מספור הווידאו v3).</p>
+    <div class="list" id="list-points"></div>
+  </section>
+  <section id="sec-feet" hidden>
+    <p class="intro"><b>שלב 3.</b> 40 נגיעות. חמישה פריימים סביב הנגיעה (המסגרת הצהובה היא רגע הנגיעה), ובסוף תקריב של כפות הרגליים ברגע הנגיעה. השחקן הוא זה שבמרכז. <b>שמאל וימין הם של השחקן עצמו</b>, לא של התמונה. כשלא רואים, סמן "לא רואים".</p>
+    <div class="list" id="list-feet"></div>
+  </section>
+</div>
+<script>
+const DATA={"feet": [{"id": "f249", "touch": 249, "frame": 9052, "player": "Franklin", "part": "head", "img": "feet_00.jpg", "zoom": "feetzoom_00.jpg"}, {"id": "f345", "touch": 345, "frame": 12811, "player": "Franklin", "part": "foot", "img": "feet_01.jpg", "zoom": "feetzoom_01.jpg"}, {"id": "f222", "touch": 222, "frame": 8026, "player": "Maor_Haas", "part": "chest", "img": "feet_02.jpg", "zoom": "feetzoom_02.jpg"}, {"id": "f351", "touch": 351, "frame": 12991, "player": "Ron_Ben_Ishay", "part": "foot", "img": "feet_03.jpg", "zoom": "feetzoom_03.jpg"}, {"id": "f26", "touch": 26, "frame": 1040, "player": "Hiltinho", "part": "chest", "img": "feet_04.jpg", "zoom": "feetzoom_04.jpg"}, {"id": "f247", "touch": 247, "frame": 8982, "player": "Franklin", "part": "foot", "img": "feet_05.jpg", "zoom": "feetzoom_05.jpg"}, {"id": "f32", "touch": 32, "frame": 1229, "player": "Franklin", "part": "head", "img": "feet_06.jpg", "zoom": "feetzoom_06.jpg"}, {"id": "f132", "touch": 132, "frame": 4914, "player": "Ron_Ben_Ishay", "part": "head", "img": "feet_07.jpg", "zoom": "feetzoom_07.jpg"}, {"id": "f197", "touch": 197, "frame": 7231, "player": "Ron_Ben_Ishay", "part": "chest", "img": "feet_08.jpg", "zoom": "feetzoom_08.jpg"}, {"id": "f210", "touch": 210, "frame": 7572, "player": "Ron_Ben_Ishay", "part": "foot", "img": "feet_09.jpg", "zoom": "feetzoom_09.jpg"}, {"id": "f243", "touch": 243, "frame": 8864, "player": "Ron_Ben_Ishay", "part": "foot", "img": "feet_10.jpg", "zoom": "feetzoom_10.jpg"}, {"id": "f109", "touch": 109, "frame": 4086, "player": "Maor_Haas", "part": "chest", "img": "feet_11.jpg", "zoom": "feetzoom_11.jpg"}, {"id": "f30", "touch": 30, "frame": 1157, "player": "Franklin", "part": "head", "img": "feet_12.jpg", "zoom": "feetzoom_12.jpg"}, {"id": "f309", "touch": 309, "frame": 11494, "player": "Hiltinho", "part": "head", "img": "feet_13.jpg", "zoom": "feetzoom_13.jpg"}, {"id": "f290", "touch": 290, "frame": 10845, "player": "Ron_Ben_Ishay", "part": "chest", "img": "feet_14.jpg", "zoom": "feetzoom_14.jpg"}, {"id": "f291", "touch": 291, "frame": 10881, "player": "Maor_Haas", "part": "head", "img": "feet_15.jpg", "zoom": "feetzoom_15.jpg"}, {"id": "f267", "touch": 267, "frame": 9892, "player": "Ron_Ben_Ishay", "part": "head", "img": "feet_16.jpg", "zoom": "feetzoom_16.jpg"}, {"id": "f78", "touch": 78, "frame": 2746, "player": "Ron_Ben_Ishay", "part": "head", "img": "feet_17.jpg", "zoom": "feetzoom_17.jpg"}, {"id": "f161", "touch": 161, "frame": 5972, "player": "Hiltinho", "part": "chest", "img": "feet_18.jpg", "zoom": "feetzoom_18.jpg"}, {"id": "f277", "touch": 277, "frame": 10336, "player": "Franklin", "part": "chest", "img": "feet_19.jpg", "zoom": "feetzoom_19.jpg"}, {"id": "f301", "touch": 301, "frame": 11240, "player": "Hiltinho", "part": "head", "img": "feet_20.jpg", "zoom": "feetzoom_20.jpg"}, {"id": "f21", "touch": 21, "frame": 841, "player": "Franklin", "part": "chest", "img": "feet_21.jpg", "zoom": "feetzoom_21.jpg"}, {"id": "f59", "touch": 59, "frame": 2176, "player": "Maor_Haas", "part": "foot", "img": "feet_22.jpg", "zoom": "feetzoom_22.jpg"}, {"id": "f41", "touch": 41, "frame": 1562, "player": "Franklin", "part": "foot", "img": "feet_23.jpg", "zoom": "feetzoom_23.jpg"}, {"id": "f338", "touch": 338, "frame": 12514, "player": "Ron_Ben_Ishay", "part": "chest", "img": "feet_24.jpg", "zoom": "feetzoom_24.jpg"}, {"id": "f107", "touch": 107, "frame": 4000, "player": "Hiltinho", "part": "chest", "img": "feet_25.jpg", "zoom": "feetzoom_25.jpg"}, {"id": "f318", "touch": 318, "frame": 11760, "player": "Ron_Ben_Ishay", "part": "chest", "img": "feet_26.jpg", "zoom": "feetzoom_26.jpg"}, {"id": "f261", "touch": 261, "frame": 9461, "player": "Hiltinho", "part": "foot", "img": "feet_27.jpg", "zoom": "feetzoom_27.jpg"}, {"id": "f47", "touch": 47, "frame": 1748, "player": "Maor_Haas", "part": "head", "img": "feet_28.jpg", "zoom": "feetzoom_28.jpg"}, {"id": "f20", "touch": 20, "frame": 806, "player": "Hiltinho", "part": "chest", "img": "feet_29.jpg", "zoom": "feetzoom_29.jpg"}, {"id": "f101", "touch": 101, "frame": 3659, "player": "Maor_Haas", "part": "foot", "img": "feet_30.jpg", "zoom": "feetzoom_30.jpg"}, {"id": "f155", "touch": 155, "frame": 5778, "player": "Maor_Haas", "part": "head", "img": "feet_31.jpg", "zoom": "feetzoom_31.jpg"}, {"id": "f97", "touch": 97, "frame": 3384, "player": "Hiltinho", "part": "head", "img": "feet_32.jpg", "zoom": "feetzoom_32.jpg"}, {"id": "f17", "touch": 17, "frame": 661, "player": "Maor_Haas", "part": "chest", "img": "feet_33.jpg", "zoom": "feetzoom_33.jpg"}, {"id": "f9", "touch": 9, "frame": 369, "player": "Hiltinho", "part": "foot", "img": "feet_34.jpg", "zoom": "feetzoom_34.jpg"}, {"id": "f4", "touch": 4, "frame": 98, "player": "Hiltinho", "part": "foot", "img": "feet_35.jpg", "zoom": "feetzoom_35.jpg"}, {"id": "f8", "touch": 8, "frame": 336, "player": "Franklin", "part": "chest", "img": "feet_36.jpg", "zoom": "feetzoom_36.jpg"}, {"id": "f24", "touch": 24, "frame": 921, "player": "Maor_Haas", "part": "chest", "img": "feet_37.jpg", "zoom": "feetzoom_37.jpg"}, {"id": "f55", "touch": 55, "frame": 2072, "player": "Franklin", "part": "chest", "img": "feet_38.jpg", "zoom": "feetzoom_38.jpg"}, {"id": "f164", "touch": 164, "frame": 6063, "player": "Maor_Haas", "part": "foot", "img": "feet_39.jpg", "zoom": "feetzoom_39.jpg"}], "ident": [{"id": "i524", "frame": 524, "img": "ident_0.jpg"}, {"id": "i2313", "frame": 2313, "img": "ident_1.jpg"}, {"id": "i4459", "frame": 4459, "img": "ident_2.jpg"}, {"id": "i6055", "frame": 6055, "img": "ident_3.jpg"}, {"id": "i9390", "frame": 9390, "img": "ident_4.jpg"}, {"id": "i10506", "frame": 10506, "img": "ident_5.jpg"}], "points": [{"id": "p2", "point": 2, "frame": 98, "end": "הכדור נחת בתוך המגרש", "img": "point_02.jpg"}, {"id": "p4", "point": 4, "frame": 528, "end": "הכדור נחת בתוך המגרש", "img": "point_04.jpg"}, {"id": "p7", "point": 7, "frame": 887, "end": "הכדור יצא החוצה", "img": "point_07.jpg"}, {"id": "p8", "point": 8, "frame": 955, "end": "הכדור נחת בתוך המגרש", "img": "point_08.jpg"}, {"id": "p10", "point": 10, "frame": 1319, "end": "הכדור נחת בתוך המגרש", "img": "point_10.jpg"}, {"id": "p17", "point": 17, "frame": 2510, "end": "הכדור נחת בתוך המגרש", "img": "point_17.jpg"}, {"id": "p19", "point": 19, "frame": 2860, "end": "עבירה ברשת", "img": "point_19.jpg"}, {"id": "p21", "point": 21, "frame": 3552, "end": "הכדור יצא החוצה", "img": "point_21.jpg"}, {"id": "p22", "point": 22, "frame": 3698, "end": "הכדור נפל מהרשת", "img": "point_22.jpg"}, {"id": "p23", "point": 23, "frame": 3832, "end": "הכדור נחת בתוך המגרש", "img": "point_23.jpg"}, {"id": "p25", "point": 25, "frame": 4218, "end": "עבירה ברשת", "img": "point_25.jpg"}, {"id": "p28", "point": 28, "frame": 6005, "end": "הכדור נחת בתוך המגרש", "img": "point_28.jpg"}, {"id": "p30", "point": 30, "frame": 6460, "end": "הכדור נחת בתוך המגרש", "img": "point_30.jpg"}, {"id": "p32", "point": 32, "frame": 6934, "end": "הכדור יצא החוצה", "img": "point_32.jpg"}, {"id": "p33", "point": 33, "frame": 7382, "end": "הכדור יצא החוצה", "img": "point_33.jpg"}, {"id": "p34", "point": 34, "frame": 7779, "end": "עבירה ברשת", "img": "point_34.jpg"}, {"id": "p39", "point": 39, "frame": 9094, "end": "הכדור נחת בתוך המגרש", "img": "point_39.jpg"}, {"id": "p45", "point": 45, "frame": 10455, "end": "הכדור יצא החוצה", "img": "point_45.jpg"}, {"id": "p46", "point": 46, "frame": 10582, "end": "הכדור יצא החוצה", "img": "point_46.jpg"}, {"id": "p47", "point": 47, "frame": 10881, "end": "הכדור יצא החוצה", "img": "point_47.jpg"}, {"id": "p48", "point": 48, "frame": 11157, "end": "הכדור נחת בתוך המגרש", "img": "point_48.jpg"}, {"id": "p49", "point": 49, "frame": 11263, "end": "הכדור נפל מהרשת", "img": "point_49.jpg"}, {"id": "p50", "point": 50, "frame": 11515, "end": "עבירה ברשת", "img": "point_50.jpg"}, {"id": "p51", "point": 51, "frame": 11824, "end": "הכדור נחת בתוך המגרש", "img": "point_51.jpg"}, {"id": "p56", "point": 56, "frame": 12699, "end": "הכדור נחת בתוך המגרש", "img": "point_56.jpg"}, {"id": "p57", "point": 57, "frame": 12896, "end": "הכדור נחת בתוך המגרש", "img": "point_57.jpg"}, {"id": "p58", "point": 58, "frame": 13146, "end": "הכדור נחת בתוך המגרש", "img": "point_58.jpg"}, {"id": "p59", "point": 59, "frame": 13359, "end": "הכדור נחת בתוך המגרש", "img": "point_59.jpg"}]};
+const HE={Franklin:'פרנקלין',Hiltinho:'הילטיניו',Maor_Haas:'מאור האס',Ron_Ben_Ishay:'רון בן ישי'};
+const PART={chest:'חזה',foot:'רגל',head:'ראש'};
+const FOOT=[['planted','על החול, לא זזה'],['sliding','על החול, זזה / מחליקה'],['air','באוויר'],['unseen','לא רואים']];
+const Q={
+  ident:[{k:'maor',l:'מי מהשניים הוא מאור האס?',o:[['A','A'],['B','B'],['unsure','לא בטוח']]}],
+  points:[{k:'last',l:'מי נגע אחרון בכדור לפני שהנקודה נגמרה?',o:[['Maor_Haas','מאור האס'],['Ron_Ben_Ishay','רון בן ישי'],['Franklin','פרנקלין'],['Hiltinho','הילטיניו'],['unseen','לא רואים']]}],
+  feet:[{k:'left',l:'רגל שמאל של השחקן',o:FOOT},{k:'right',l:'רגל ימין של השחקן',o:FOOT},
+        {k:'stance',l:'ברגע הנגיעה השחקן…',o:[['set','עמד יציב'],['moving','הגיע בתנועה'],['jump','קפץ (באוויר)'],['unsure','לא ברור']]},
+        {k:'facing',l:'הגוף ביחס למצלמה',o:[['camera','פנים למצלמה'],['away','גב למצלמה'],['side','צד למצלמה'],['unsure','לא ברור']]}]
+};
+const state={}; let db=null;
+const $=s=>document.querySelector(s);
+function title(kind,it){
+  if(kind==='ident') return `תמונה ${DATA.ident.indexOf(it)+1} מתוך ${DATA.ident.length}<span class="meta">פריים ${it.frame}</span>`;
+  if(kind==='points') return `נקודה ${it.point} · ${it.end}<span class="meta">פריים ${it.frame}</span>`;
+  return `${HE[it.player]} · נגיעה ב${PART[it.part]||it.part}<span class="meta">נגיעה ${it.touch} · פריים ${it.frame}</span>`;
+}
+function complete(kind,id){const s=state[id]||{};return Q[kind].every(q=>s[q.k]);}
+function render(kind){
+  const box=$('#list-'+kind); box.textContent='';
+  DATA[kind].forEach(it=>{
+    const c=document.createElement('article'); c.className='card'+(complete(kind,it.id)?' done':''); c.id='card-'+it.id;
+    const h=document.createElement('h3'); h.innerHTML=title(kind,it);
+    if(complete(kind,it.id)){const t=document.createElement('span');t.className='tick';t.textContent='✓ נשמר';h.appendChild(t);}
+    c.appendChild(h);
+    const im=document.createElement('div'); im.className='imgs';
+    [it.img,it.zoom].filter(Boolean).forEach((src,i)=>{const g=document.createElement('img');g.src='img/'+src;g.loading='lazy';g.alt=i?'תקריב כפות הרגליים':'פריימים סביב הנגיעה';if(i)g.className='zoom';im.appendChild(g);});
+    c.appendChild(im);
+    const qs=document.createElement('div'); qs.className=kind==='feet'?'grid2':'q';
+    Q[kind].forEach(q=>{
+      const w=document.createElement('div'); w.className='q';
+      const l=document.createElement('div'); l.className='lbl'; l.textContent=q.l; w.appendChild(l);
+      const o=document.createElement('div'); o.className='opts';
+      q.o.forEach(([v,txt])=>{const b=document.createElement('button');b.className='opt';b.type='button';b.textContent=txt;
+        b.setAttribute('aria-pressed',(state[it.id]||{})[q.k]===v?'true':'false');
+        b.onclick=()=>save(kind,it,{[q.k]:v}); o.appendChild(b);});
+      w.appendChild(o); qs.appendChild(w);
+    });
+    c.appendChild(qs);
+    const n=document.createElement('input'); n.className='note'; n.id='note-'+it.id; n.placeholder='הערה (לא חובה)';
+    n.value=(state[it.id]||{}).note||''; n.onchange=()=>save(kind,it,{note:n.value.trim()});
+    c.appendChild(n);
+    box.appendChild(c);
+  });
+  counts();
+}
+function counts(){for(const k of ['ident','points','feet']){$('#n-'+k).textContent=`${DATA[k].filter(it=>complete(k,it.id)).length}/${DATA[k].length}`;}}
+function status(t,err){const s=$('#status');s.textContent=t;s.classList.toggle('err',!!err);}
+async function save(kind,it,patch){
+  const prev=state[it.id]||{}; const next={...prev,...patch};
+  state[it.id]=next; rerenderCard(kind,it);
+  if(!db){status('השמירה לא זמינה בתצוגה הזו',true);return;}
+  const doc={kind,item:it.id,frame:it.frame,...(kind==='feet'?{touch:it.touch,player:it.player,body_part:it.part}:{}),...(kind==='points'?{point:it.point}:{}),
+    ...Object.fromEntries(Object.entries(next).filter(([k])=>!['kind','item','frame','touch','player','body_part','point','updated_at'].includes(k))),updated_at:new Date().toISOString()};
+  status('שומר…');
+  try{await db.collection('labels').doc(it.id).set(doc);status('נשמר');}
+  catch(e){status('לא נשמר: '+(e&&e.message||e.code||'שגיאה'),true);}
+}
+function rerenderCard(kind,it){
+  const old=document.getElementById('card-'+it.id); if(!old) return;
+  const y=window.scrollY; const box=$('#list-'+kind);
+  const tmp=document.createElement('div'); const saveList=box; 
+  // rebuild only this card
+  const idx=DATA[kind].indexOf(it); render(kind); window.scrollTo(0,y);
+}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected',x===b?'true':'false'));
+  for(const k of ['ident','points','feet']) document.getElementById('sec-'+k).hidden=k!==b.dataset.tab;
+  try{localStorage.setItem('tab',b.dataset.tab)}catch(e){}
+});
+try{const t=localStorage.getItem('tab');if(t)document.getElementById('tab-'+t)?.click();}catch(e){}
+['ident','points','feet'].forEach(render);
+(async()=>{
+  const timer=setTimeout(()=>status('השמירה לא עונה. רענן את הדף',true),10000);
+  db=window.claude?await window.claude.use('db'):null;
+  if(!db){clearTimeout(timer);status('השמירה לא זמינה בתצוגה הזו. התחבר ל-claude.ai',true);return;}
+  db.collection('labels').onSnapshot(snap=>{
+    clearTimeout(timer);
+    snap.docs.forEach(d=>{const v=d.data();if(v)state[d.id]={...v};});
+    ['ident','points','feet'].forEach(k=>{const y=window.scrollY;render(k);window.scrollTo(0,y);});
+    status('מחובר · התשובות נשמרות');
+  },e=>{clearTimeout(timer);status('שגיאת שמירה: '+(e.message||e.code),true);});
+})();
+</script>
