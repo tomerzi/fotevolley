@@ -7,5 +7,5 @@ touch,306,50,11403,Maor_Haas,crossed,True,"owner 2026-11-24: reception / set / a
 add,,56,12736,Ron_Ben_Ishay,last_touch,Ron_Ben_Ishay,"owner 2026-11-24: Ron touched the ball last (after Franklin's attack, touch 343); frame and body part not marked (frame = middle of 12699-12774)"
 point,,13,,Maor_Haas,last_touch,Maor_Haas,"owner 2026-11-24: touch table confirmed (the earlier review said Ron_Ben_Ishay)"
 point,,2,,Franklin,last_touch,Franklin,"owner 2026-11-24"
-point,,27,,,last_touch_seen,False,"owner 2026-11-24: last touch not visible in the video"
-point,,28,,,last_touch_seen,False,"owner 2026-11-24: last touch not visible in the video"
+point,,27,,Maor_Haas,last_touch,Maor_Haas,"owner 2026-11-24 (clip 5030-5150): Maor_Haas touched last, the ball went out. The ball is hidden at v3 5092-5124 and comes back rising at 5128, so a touch there is missing from the table (the table's last touch is Maor_Haas's set at 5049)"
+point,,28,,Franklin,last_touch,Franklin,"owner 2026-11-24 (clip 5985-6052): Franklin touched last (attack at 6005); the ball passed the Israeli defender at ~6015 without a touch. The earlier review (Ron_Ben_Ishay) was wrong"

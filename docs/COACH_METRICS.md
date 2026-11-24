@@ -31,12 +31,14 @@ table on 48 of 56 points.
 `data/contacts/owner_decisions.csv`, applied by `touch_outcomes.py` (answers in `data/experiments/doubts/answers.csv`):
 - Point 2: Hiltinho's touch 4 is a dead ball; Franklin (reception, foot) touched last. Point 13: Maor_Haas (touch
   table right, the earlier review wrong). Point 56: Ron_Ben_Ishay touched last after Franklin's attack, a touch the
-  table missed (added, body part unknown). Points 27 and 28: last touch not visible (`last_touch_seen = False`).
+  table missed (added, body part unknown). Point 27 (checked on a half-speed clip): Maor_Haas touched last and the
+  ball went out; the ball is hidden at v3 5092-5124, so one touch there is missing from the table. Point 28:
+  Franklin's attack touched last, the Israeli defender did not touch it.
 - Rally 39: touches 244 and 247 are attacks that crossed the net. The sequence is still odd (Brazil touches again
   right after both, with no Israeli touch in the table), so one or two Israeli touches may be missing there.
 - Rally 50: reception / set / attack confirmed.
-- The touch table and the owner review now differ only at the 3 net faults (no last touch in the review) and the
-  points above.
+- The last toucher in the table now matches the owner on 53 of 56 shown points; the other 3 are net faults with no
+  last touch in the review (points 19, 34, 50).
 
 ## Stance and facing: what to trust
 

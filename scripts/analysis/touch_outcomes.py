@@ -44,6 +44,7 @@ for d in dec[dec.kind == 'add'].itertuples():
     t = pd.concat([t, pd.DataFrame([dict(touch=float(t.touch.max() + 1), frame=int(d.frame), v2_frame=np.nan, time_sec=int(d.frame) / FPS,
                                          rally=int(d.rally), set=base.set, in_play=True, kind='player', player=d.player, team=team,
                                          body_part='unknown', action='attack', action_subtype='added_by_owner')])], ignore_index=True)
+FINAL_LAST = {int(d.rally): d.value for d in dec[(dec.kind.isin(['point', 'add'])) & (dec.field == 'last_touch')].itertuples()}
 UNSEEN = set(dec[(dec.kind == 'point') & (dec.field == 'last_touch_seen') & (dec.value == 'False')].rally.astype(int))
 t = t[(t.kind == 'player') & t.in_play.astype(bool) & t.player.notna()].sort_values(['rally', 'frame']).reset_index(drop=True)
 e = pd.read_csv('data/points/point_end_verified.csv').rename(columns={'point': 'rally'}).set_index('rally')
@@ -107,6 +108,7 @@ for rally, g in t.groupby('rally'):
                    kind='winning_touch' if l.won_point else 'losing_touch',
                    matches_owner_last_touch=l.player == e.loc[rally, 'last_touch'],
                    last_touch_seen=rally not in UNSEEN,
+                   owner_last_touch=FINAL_LAST.get(rally, e.loc[rally, 'last_touch']),
                    x=e.loc[rally, 'x'], y=e.loc[rally, 'y'], square=e.loc[rally, 'square']))
 pt = pd.DataFrame(pt)
 
@@ -121,12 +123,13 @@ cols = ['touch', 'frame', 'v2_frame', 'time_sec', 'rally', 'set', 'player', 'tea
         'lost', 'won_point', 'success', 'quality', 'end_type']
 t[cols].to_csv('data/analysis/touch_outcomes.csv', index=False)
 summ.to_csv('data/analysis/touch_success_summary.csv', index=False)
+pt['matches_owner_final'] = pt.last_player == pt.owner_last_touch
 pt.to_csv('data/analysis/point_touches.csv', index=False)
 sq.to_csv('data/analysis/set_quality.csv', index=False)
 
 print('touches', len(t), 'unknown', int(t.success.isna().sum()), 'lost', int(t.lost.sum()))
-print('last toucher agrees with the owner review:', int(pt.matches_owner_last_touch.sum()), '/', len(pt))
-print(pt[~pt.matches_owner_last_touch][['rally', 'last_player', 'end_type', 'owner_category']].to_string())
+print('last toucher agrees with the owner (review + decisions):', int(pt.matches_owner_final.sum()), '/', len(pt), '; no owner answer:', int(pt.owner_last_touch.isna().sum()))
+print(pt[~pt.matches_owner_final][['rally', 'last_player', 'owner_last_touch', 'end_type']].to_string())
 print(t[t.success.notna()].groupby(['player', 'action']).success.agg(['size', 'mean']).round(2))
 r = t[t.action == 'reception']
 print(pd.crosstab([r.player, r.body_part], r.quality))
