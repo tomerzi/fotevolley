@@ -51,3 +51,16 @@ table on 48 of 56 points.
 - Foot-by-foot planted / sliding / air from the pose: about 45%, not used.
 - Position from heel + toes instead of ankles was tested (`POS_GROUND=sole` in `player_positions.py`): noisier in
   the sand (outliers 3.1% vs 2.2%), shift 6 cm median, so the ankle stays the default.
+
+## Labelling game (2026-11-24, evening)
+
+`data/experiments/labelling_game/` (answers, page link), applied as "labelling game" rows in
+`data/contacts/owner_decisions.csv`; metrics recomputed in `coach_analysis/recomputed_2026-11-24/` (data/analysis not
+yet rerun):
+- Net faults: point 19 Ron_Ben_Ishay, 34 Maor_Haas, 50 Hiltinho. Point 56: Ron's added touch is a foot, about v3 12700.
+- Point 27: no touch is missing; Maor_Haas's set (foot, v3 5049) is the last touch. Replaces the note above.
+- Rally 19: touch 80 is a reception (Ron sets, then the net fault).
+- Actions: on a 60-touch stratified sample the possession rule was right on 20/20 attacks and 20/20 sets but 14/20
+  receptions. 32 of the 53 rallies whose first filmed touch was called a serve reception actually start with the
+  set (the camera picked the rally up late): serve-reception rates now use only the 21 filmed serve receptions.
+- Stance: 60 more owner labels (128 in all).

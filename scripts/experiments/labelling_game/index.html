@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>מעבדת התיוג – גראץ 2022</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&family=Secular+One&display=swap" rel="stylesheet">
+<style>
+/* VOICE: a beach-court scoreboard game; quick, confident, a little playful.
+   IDEA: the broadcast scoreboard + the referee's clipboard on sand.
+   PICTURE: the clip itself, large, under the scoreboard; the yellow box is the hero mark.
+   COLOUR and TYPE: sand ground, deep sea teal, broadcast yellow accent; Secular One titles, Rubik body.
+   LAYOUT: scoreboard band, stage chips, clip + answer panel side by side above 900px, stacked below. */
+:root{color-scheme:light dark;
+ --bg:light-dark(#f2e6cc,#10262b);--card:light-dark(#fffaf0,#16343a);--ink:light-dark(#1d2b2e,#eef3ee);--mute:light-dark(#6b6a5c,#9fb4b0);
+ --sea:light-dark(#0b5d6b,#0b5d6b);--sea2:light-dark(#0f7e8f,#3fb3c2);--yel:#ffd21f;--line:light-dark(#e2d3b2,#24474e);
+ --isr:#2563c9;--bra:#1f9a4a;--bad:light-dark(#b3261e,#ff8a80)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Rubik,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3,.disp{font-family:"Secular One",Rubik,sans-serif;font-weight:400;line-height:1.1;margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:3px solid var(--yel);outline-offset:2px}
+.board{background:var(--sea);color:#fff;padding:14px max(4vw,14px);display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center}
+.teams{display:grid;gap:3px;font-weight:700;font-size:14px}
+.teams div{display:flex;gap:8px;align-items:center}.teams i{width:12px;height:12px;border-radius:2px;display:inline-block}
+.board h1{font-size:clamp(22px,3.4vw,34px);text-wrap:balance}
+.board .sub{opacity:.8;font-size:14px}
+.stats{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.stat{background:#0007;border-radius:8px;padding:6px 12px;text-align:center;min-width:72px}
+.stat b{display:block;font-family:"Secular One";font-size:24px;color:var(--yel);line-height:1.1}.stat span{font-size:12px;opacity:.85}
+nav.tabs{display:flex;gap:6px;padding:10px max(4vw,14px) 0;flex-wrap:wrap}
+nav.tabs a{padding:10px 18px;border-radius:10px 10px 0 0;background:var(--line);color:var(--ink);text-decoration:none;font-weight:500;min-height:44px}
+nav.tabs a[aria-current=true]{background:var(--card)}
+main{background:var(--card);margin:0 max(4vw,14px) 30px;border-radius:0 12px 12px 12px;padding:clamp(14px,2.5vw,26px)}
+.stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:16px}
+.stage{border:2px solid var(--line);background:transparent;border-radius:12px;padding:10px 12px;text-align:start;min-height:44px}
+.stage[aria-pressed=true]{border-color:var(--sea2);background:light-dark(#e6f3f2,#1d454c)}
+.stage h3{font-size:18px}.stage small{color:var(--mute);display:block}
+.meter{height:8px;background:var(--line);border-radius:4px;margin-top:8px;overflow:hidden}.meter i{display:block;height:100%;background:var(--sea2);border-radius:4px}
+.stage.done .meter i{background:var(--yel)}
+.play{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px;align-items:start}
+.vid{background:#000;border-radius:12px;overflow:hidden;aspect-ratio:16/9;position:relative}
+.vid video{width:100%;height:100%;display:block}
+.vbar{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;align-items:center}
+.chip{border:1px solid var(--line);background:transparent;border-radius:999px;padding:8px 14px;min-height:40px;font-size:14px}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--card)}
+.panel h2{font-size:24px;margin-bottom:4px}
+.meta{color:var(--mute);font-size:14px;margin-bottom:12px}
+.q{margin:14px 0 6px;font-weight:700}
+.opts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.opt{border:2px solid var(--line);background:transparent;border-radius:10px;padding:10px;min-height:48px;text-align:start;display:flex;justify-content:space-between;gap:6px;align-items:center}
+.opt kbd{font:12px Rubik;color:var(--mute);border:1px solid var(--line);border-radius:4px;padding:0 5px}
+.opt.auto{border-style:dashed;border-color:var(--sea2)}
+.opt[aria-pressed=true]{background:var(--sea);border-color:var(--sea);color:#fff}.opt[aria-pressed=true] kbd{color:#fff;border-color:#fff8}
+.tag{display:inline-block;font-size:12px;padding:1px 8px;border-radius:999px;background:var(--line);margin-inline-start:6px}
+.tag.ok{background:var(--yel);color:#1d2b2e}
+.go{width:100%;margin-top:16px;background:var(--yel);color:#1d2b2e;border:0;border-radius:10px;padding:14px;font-weight:700;font-size:18px;min-height:52px}
+.go:disabled{opacity:.45;cursor:not-allowed}
+.nav{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}.nav button{flex:1}
+.toast{position:fixed;inset-inline:0;bottom:18px;margin:auto;width:max-content;max-width:92vw;background:var(--ink);color:var(--card);padding:10px 18px;border-radius:10px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:5}
+.toast.on{opacity:1}
+.note{background:light-dark(#fff3c4,#3b3a1c);border-radius:10px;padding:10px 14px;font-size:14px;margin-bottom:12px}
+.marks{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.marks span{background:var(--line);border-radius:6px;padding:4px 8px;font-size:14px}
+.marks button{border:0;background:none;color:var(--bad);padding:0 0 0 4px}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:start}td.n{text-align:end;font-variant-numeric:tabular-nums;white-space:nowrap}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:20px}
+.kpi{border:2px solid var(--line);border-radius:12px;padding:12px}.kpi b{font-family:"Secular One";font-size:clamp(26px,4vw,38px);display:block;line-height:1.1}.kpi span{color:var(--mute);font-size:14px}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}
+.sec h2{font-size:22px;margin:18px 0 8px}
+.bar{display:flex;height:22px;border-radius:5px;overflow:hidden;background:var(--line)}
+.bar i{display:block;height:100%}
+.legend{display:flex;gap:14px;font-size:13px;color:var(--mute);margin:6px 0 10px;flex-wrap:wrap}.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-inline-end:4px}
+.srow{display:grid;grid-template-columns:7em minmax(0,1fr) 3em;gap:10px;align-items:center;margin:6px 0;font-size:14px}
+.up{color:var(--bra);font-weight:700}.down{color:var(--bad);font-weight:700}
+.done-banner{background:var(--yel);color:#1d2b2e;border-radius:12px;padding:14px 18px;margin-bottom:16px;font-weight:500}
+.hidden{display:none!important}
+@media(max-width:900px){.play{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){.board{grid-template-columns:minmax(0,1fr)}.stats{justify-content:flex-start}.stages{grid-template-columns:minmax(0,1fr)}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2{grid-template-columns:minmax(0,1fr)}table{font-size:13px}th,td{padding:6px}}
+@media(prefers-reduced-motion:reduce){.toast{transition:none}}
+</style>
+</head>
+<body>
+<header class="board">
+ <div class="teams"><div><i style="background:var(--isr)"></i>ישראל</div><div><i style="background:var(--bra)"></i>ברזיל</div></div>
+ <div><h1>מעבדת התיוג: גמר גראץ 2022</h1><div class="sub">כל תשובה נשמרת ומעדכנת את המדדים מיד</div></div>
+ <div class="stats"><div class="stat"><b id="xp">0</b><span>נקודות</span></div><div class="stat"><b id="lvl">1</b><span>רמה</span></div><div class="stat"><b id="streak">0</b><span>רצף</span></div></div>
+</header>
+<nav class="tabs" aria-label="תצוגות"><a href="#play" id="tab-play">משחק</a><a href="#live" id="tab-live">לוח מדדים חי</a></nav>
+<main>
+ <div id="status" class="note">טוען נתונים…</div>
+ <div id="finish" class="done-banner hidden">כל השלבים הושלמו. המדדים בלוח כבר מעודכנים לפי התשובות שלך. כדי לעדכן גם את הריפו ואת המסמך, כתוב לי בצ'אט "סיימתי".</div>
+ <section id="v-play">
+  <div class="stages" id="stages"></div>
+  <div class="play">
+   <div>
+    <div class="vid"><video id="video" muted playsinline loop autoplay preload="auto"></video></div>
+    <div class="vbar" id="speeds"><span style="color:var(--mute);font-size:14px">מהירות:</span></div>
+   </div>
+   <div class="panel" id="panel"></div>
+  </div>
+ </section>
+ <section id="v-live" class="hidden"></section>
+</main>
+<div class="toast" id="toast" role="status"></div>
+<script>
+{
+const ACT={reception:'קבלה',set:'הגבהה',attack:'התקפה',dead:'כדור מת'};
+const ACTK=['reception','set','attack','dead'];
+const ST={set:'עומד יציב',moving:'מגיע בתנועה',jump:'בקפיצה',unclear:'לא ברור'};
+const STK=['set','moving','jump','unclear'];
+const PART={foot:'רגל',head:'ראש',chest:'חזה',shoulder:'כתף',knee:'ברך',shin:'שוק',thigh:'ירך',unclear:'לא רואים'};
+const SIDE={left:'שמאל',right:'ימין'};
+const PL={Franklin:'פרנקלין',Hiltinho:'הילטיניו',Ron_Ben_Ishay:'רון בן ישי',Maor_Haas:'מאור האס',unclear:'לא רואים'};
+const TEAM={ISR:'ישראל',BRA:'ברזיל'};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $=id=>document.getElementById(id);
+let D=null, A={}, db=null, col=null, stage=0, cur=null, draft={}, streak=0, onlyNew=true, rate=0.5;
+
+const SPECIAL=[
+ {id:'p19',stage:0,title:'נקודה 19: עבירת רשת',ask:'fault'},
+ {id:'p34',stage:0,title:'נקודה 34: עבירת רשת',ask:'fault'},
+ {id:'p50',stage:0,title:'נקודה 50: עבירת רשת',ask:'fault'},
+ {id:'p27',stage:1,title:'נקודה 27: הנגיעה המוסתרת',ask:'hidden'},
+ {id:'p56',stage:1,title:'נקודה 56: הנגיעה של רון',ask:'p56'},
+ {id:'r39',stage:1,title:'ראלי 39: נגיעות חסרות?',ask:'r39'},
+ {id:'r19',stage:4,title:'ראלי 19: מה קרה אחרי הנגיעה של מאור?',ask:'r19'},
+ {id:'approve',stage:4,title:'אישור עדכון הריפו',ask:'approve'},
+];
+const STAGES=[{name:'שופט רשת',desc:'3 עבירות רשת'},{name:'הכדור הנעלם',desc:'נקודות 27, 56 וראלי 39'},{name:'מדגם נגיעות',desc:'60 נגיעות לדוגמה: פעולה ועמידה'},{name:'נגיעה ראשונה',desc:'44 נגיעות: קבלה או הגבהה'},{name:'סגירה',desc:'ראלי 19 ואישור העדכון'}];
+
+function toast(m){const t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove('on'),1800)}
+function done(id){return !!A[id]}
+const SAMP=()=>D.touches.filter(t=>t.sample);
+const TL=i=>i===2?SAMP():i===3?D.touches.filter(t=>t.first):null;
+function stageItems(i){return TL(i)?TL(i).map(t=>t.id):SPECIAL.filter(s=>s.stage===i).map(s=>s.id)}
+function stageDone(i){const it=stageItems(i);return it.filter(done).length}
+function winnerOf(p){const x=D.points.find(q=>q.point===p);return x?x.winner:''}
+
+function header(){
+ const n=Object.keys(A).length, sp=SPECIAL.filter(s=>done(s.id)).length, tt=D.touches.filter(t=>done(t.id)).length;
+ const xp=sp*50+tt*10; $('xp').textContent=xp; $('lvl').textContent=Math.floor(xp/500)+1; $('streak').textContent=streak;
+ $('stages').innerHTML=STAGES.map((s,i)=>{const tot=stageItems(i).length,d=stageDone(i);
+  return `<button class="stage${d===tot?' done':''}" aria-pressed="${i===stage}" data-st="${i}"><h3>${s.name}</h3><small>${s.desc} · ${d}/${tot}${d===tot?' · הושלם':''}</small><div class="meter"><i style="width:${100*d/tot}%"></i></div></button>`}).join('');
+ const all=STAGES.every((s,i)=>stageDone(i)===stageItems(i).length);
+ $('finish').classList.toggle('hidden',!all);
+}
+
+function setVideo(src,start){const v=$('video');if(v.dataset.src!==src){v.dataset.src=src;v.src=src;v.dataset.start=start??'';}v.playbackRate=rate;v.play().catch(()=>{})}
+function speeds(){$('speeds').innerHTML='<span style="color:var(--mute);font-size:14px">מהירות:</span>'+[0.25,0.5,1].map(r=>`<button class="chip" data-rate="${r}" aria-pressed="${r===rate}">${r}×</button>`).join('')+'<button class="chip" id="pp">עצור / נגן</button>'}
+function curFrame(){const v=$('video');return Number(v.dataset.start||0)+Math.round(v.currentTime*25)}
+
+function opts(name,keys,labels,sel,auto,kb){return `<div class="opts">${keys.map((k,i)=>`<button class="opt${k===auto?' auto':''}" data-f="${name}" data-v="${k}" aria-pressed="${sel===k}"><span>${labels[k]}${k===auto?' <span class="tag">ניחוש</span>':''}</span>${kb?`<kbd>${kb[i]}</kbd>`:''}</button>`).join('')}</div>`}
+
+function nextTouch(from){const L=TL(stage);let i=from==null?0:L.findIndex(t=>t.id===from)+1;
+ for(let k=0;k<L.length;k++){const t=L[(i+k)%L.length];if(!onlyNew||!done(t.id))return t.id}return L[0].id}
+function nextSpecial(st){const L=SPECIAL.filter(s=>s.stage===st);return (L.find(s=>!done(s.id))||L[0]).id}
+
+function render(){
+ header();
+ if(TL(stage)){ if(!cur||!TL(stage).some(t=>t.id===cur)) cur=nextTouch(null); renderTouch(); }
+ else { if(!cur||!SPECIAL.find(s=>s.id===cur&&s.stage===stage)) cur=nextSpecial(stage); renderSpecial(); }
+ if(location.hash==='#live') renderLive();
+}
+
+function renderTouch(){
+ const t=D.touches.find(x=>x.id===cur), a=A[t.id]||{};
+ if(!draft.id||draft.id!==t.id) draft={id:t.id,action:a.action||t.action,stance:a.stance||t.stance||''};
+ setVideo(t.clip,null);
+ const S=TL(stage), idx=S.indexOf(t)+1, left=S.filter(x=>!done(x.id)).length;
+ if(stage===3){$('panel').innerHTML=`<h2>${esc(t.he)} · ${esc(PART[t.part]||t.part||'?')}</h2>
+ <div class="meta">נקודה ${t.rally} · מערכה ${t.set} · נגיעה ${t.touch} · ${idx}/${S.length} · נשארו ${left}${a.action?' <span class="tag ok">תויג</span>':''}</div>
+ <div class="note">זו הנגיעה הראשונה שרואים בראלי, והטבלה רושמת אותה כקבלת הגשה. האם זו באמת קבלה, או שהקבלה לא צולמה וזו כבר ההגבהה? בחירה שומרת וממשיכה.</div>
+ <div class="q">מה הנגיעה הזו?</div>${opts('action',['reception','set','attack','unclear'],{reception:'קבלה',set:'הגבהה',attack:'התקפה (שלח מעבר לרשת)',unclear:'לא ברור'},a.action||'',t.action,['1','2','3','4'])}
+ <div class="nav"><button class="chip" id="prev">→ הקודמת</button><button class="chip" id="skip">דלג ←</button></div>`;return}
+ $('panel').innerHTML=`<h2>${esc(t.he)} · ${esc(PART[t.part]||t.part||'?')}${t.side?' '+esc(SIDE[t.side]):''}</h2>
+ <div class="meta">נקודה ${t.rally} · מערכה ${t.set} · נגיעה ${t.touch} · ${idx}/${S.length} במדגם · נשארו ${left}${a.action?' <span class="tag ok">תויג</span>':''}${t.confirmed?' <span class="tag ok">הפעולה אושרה בעבר</span>':''}</div>
+ <div class="note">המסגרת הצהובה מהבהבת על השחקן ברגע הנגיעה. בחר עמידה (7–0) כדי לשמור ולהמשיך. פעולה (1–4) רק אם הניחוש שגוי.</div>
+ <div class="q">הפעולה</div>${opts('action',ACTK,ACT,draft.action,t.action,['1','2','3','4'])}
+ <div class="q">העמידה ברגע הנגיעה${t.stance?' <span class="tag">תויג בעבר</span>':''}</div>${opts('stance',STK,ST,draft.stance,null,['7','8','9','0'])}
+ <button class="go" id="save" ${draft.stance?'':'disabled'}>שמור והמשך <kbd style="font-size:12px">Enter</kbd></button>
+ <div class="nav"><button class="chip" id="prev">→ הקודמת</button><button class="chip" id="skip">דלג ←</button></div>`;
+}
+
+function renderSpecial(){
+ const s=SPECIAL.find(x=>x.id===cur), sp=D.special[s.id], a=A[s.id]||{};
+ if(!draft.id||draft.id!==s.id) draft=Object.assign({id:s.id},JSON.parse(JSON.stringify(a)));
+ setVideo(sp.clip,sp.start);
+ let body='';
+ if(s.ask==='fault'){const p=+s.id.slice(1);
+  body=`<div class="meta">קטע: פריימים ${sp.start}–${sp.end} (v3). המספר הצהוב בפינה הוא מספר הפריים.</div>
+  <div class="q">מי ביצע את העבירה?</div>${opts('who',Object.keys(PL),PL,draft.who)}
+  <div class="q">מי זכה בנקודה במגרש?</div>${opts('winner',['ISR','BRA'],TEAM,draft.winner,winnerOf(p))}
+  <div class="q">סוג העבירה</div>${opts('kind',['net_touch','under_net','other','unclear'],{net_touch:'נגיעה ברשת',under_net:'מעבר מתחת לרשת',other:'אחר',unclear:'לא רואים'},draft.kind)}`;}
+ if(s.ask==='hidden'){body=`<div class="meta">הכדור מוסתר בפריימים 5092–5124 וחוזר עולה ב-5128. הטבלה רושמת כנגיעה אחרונה את ההגבהה של מאור ב-5049.</div>
+  <div class="q">מי נגע בכדור המוסתר?</div>${opts('who',Object.keys(PL),PL,draft.who,'Maor_Haas')}
+  <div class="q">באיזה איבר?</div>${opts('part',Object.keys(PART),PART,draft.part)}
+  <div class="q">איזו פעולה?</div>${opts('action',['reception','set','attack','unclear'],{...ACT,unclear:'לא ברור'},draft.action)}
+  ${markBtn()}`;}
+ if(s.ask==='p56'){body=`<div class="meta">רון נגע אחרון אחרי ההתקפה של פרנקלין (נגיעה 343). צריך איבר ורגע.</div>
+  <div class="q">באיזה איבר נגע רון?</div>${opts('part',Object.keys(PART),PART,draft.part)}${markBtn()}`;}
+ if(s.ask==='r39'){body=`<div class="meta">הנגיעות שבטבלה כרגע: ${D.r39.map(x=>`${x.frame} ${esc(x.he)} (${esc(PART[x.part]||x.part)}, ${esc(ACT[x.action]||x.action)})`).join(' · ')}</div>
+  <div class="q">כמה נגיעות של ישראל חסרות?</div>${opts('missing',['0','1','2','3+'],{'0':'אין חסרות','1':'אחת','2':'שתיים','3+':'שלוש ומעלה'},draft.missing)}
+  <div class="q">באיזה איבר נגע רון בנגיעה 246 (פריים ${D.r39.find(x=>x.touch===246)?.frame??''})?</div>${opts('part246',Object.keys(PART),PART,draft.part246)}
+  <div class="q">סמן כל נגיעה חסרה</div><div class="opts">${['Ron_Ben_Ishay','Maor_Haas'].map(p=>`<button class="opt" data-addmiss="${p}"><span>נגיעה של ${PL[p]} בפריים הנוכחי</span></button>`).join('')}</div>
+  <div class="marks">${(draft.marks||[]).map((m,i)=>`<span>${esc(PL[m.who])} · ${+m.frame}<button data-delm="${i}" aria-label="מחק">×</button></span>`).join('')}</div>`;}
+ if(s.ask==='r19'){body=`<div class="meta">הנגיעות שבטבלה: ${D.r19.map(x=>`${x.frame} ${esc(x.he)} (${esc(PART[x.part]||x.part)}, ${esc(ACT[x.action]||x.action)})`).join(' · ')}</div>
+  <div class="note">במדגם סימנת את נגיעה 80 של מאור (פריים 2832) ככדור מת, כלומר התקפה שיצאה. אבל בטבלה רון מגביה אחריה (פריים 2860), וענית שרון עבר את הרשת.</div>
+  <div class="q">מה קרה אחרי הנגיעה של מאור?</div>${opts('what',['ended','continued','other'],{ended:'הנגיעה של מאור סיימה את הנקודה: הכדור יצא',continued:'זו הייתה קבלה: רון המשיך ועבר את הרשת',other:'משהו אחר'},draft.what)}
+  <div class="q">מה הייתה הנגיעה של מאור?</div>${opts('act80',['reception','attack','dead'],{reception:'קבלה',attack:'התקפה',dead:'כדור מת אחרי סוף הנקודה'},draft.act80)}`;}
+ if(s.ask==='approve'){body=`<div class="note">אחרי האישור אוסיף את ההחלטות ל-owner_decisions.csv, אשמור את תיוגי העמידה בקובץ חדש, אחשב מחדש את המדדים, אעדכן את המסמך ואעשה commit לענף חדש (לא ל-main).</div>
+  <div class="q">לעדכן את הריפו?</div>${opts('ok',['yes','no'],{yes:'מאשר: לעדכן ולעשות commit',no:'עוד לא'},draft.ok)}`;}
+ const L=SPECIAL.filter(x=>x.stage===stage);
+ $('panel').innerHTML=`<h2>${esc(s.title)}${a.at?' <span class="tag ok">נשמר</span>':''}</h2>${body}
+ <button class="go" id="save">שמור${L.indexOf(s)<L.length-1?' והמשך':''}</button>
+ <div class="nav">${L.map(x=>`<button class="chip" data-goto="${x.id}" aria-pressed="${x.id===cur}">${esc(x.title.split(':')[0])}${done(x.id)?' ✓':''}</button>`).join('')}</div>`;
+}
+function markBtn(){return `<div class="q">רגע הנגיעה</div><button class="chip" id="mark">עצור על הנגיעה ולחץ כאן לסימון הפריים</button> <span id="markv" style="font-weight:700">${draft.frame?'פריים '+(+draft.frame):''}</span>`}
+
+async function save(){
+ if(!col){toast('אין חיבור למסד הנתונים, התשובה לא נשמרה');return}
+ const id=draft.id, rec=Object.assign({},draft,{at:new Date().toISOString()}); delete rec.id;
+ if(id.startsWith('t')){const t=D.touches.find(x=>x.id===id);rec.kind=stage===3?'first_touch':'touch';if(stage===3)delete rec.stance;rec.touch=t.touch;rec.auto_action=t.action;rec.changed=rec.action!==t.action}else rec.kind=id;
+ const btn=$('save'); if(btn) btn.disabled=true;
+ try{await col.doc(id).set(rec);A[id]=rec;streak++;}catch(e){toast(e&&e.code==='quota_exceeded'?'מסד הנתונים מלא':'השמירה נכשלה, נסה שוב');if(btn)btn.disabled=false;return}
+ if(TL(stage)){cur=nextTouch(id)}else{const L=SPECIAL.filter(x=>x.stage===stage);const i=L.findIndex(x=>x.id===id);const nx=L.slice(i+1).find(x=>!done(x.id));if(nx)cur=nx.id;}
+ draft={}; if(stageDone(stage)===stageItems(stage).length&&stage<2&&!done(cur)) {} render();
+ if(stageDone(stage)===stageItems(stage).length) toast(`השלב "${STAGES[stage].name}" הושלם`); else if(streak%25===0) toast(`רצף של ${streak}`);
+}
+
+document.addEventListener('click',e=>{
+ const b=e.target.closest('button'); if(!b) return;
+ if(b.dataset.st){stage=+b.dataset.st;cur=null;draft={};render();return}
+ if(b.dataset.rate){rate=+b.dataset.rate;$('video').playbackRate=rate;speeds();return}
+ if(b.id==='pp'){const v=$('video');v.paused?v.play():v.pause();return}
+ if(b.dataset.f){if(stage===3&&!draft.id)draft={id:cur};draft[b.dataset.f]=b.dataset.v;if((b.dataset.f==='stance'&&stage===2)||(b.dataset.f==='action'&&stage===3)){save();return}render();return}
+ if(b.id==='save'){save();return}
+ if(b.id==='skip'){cur=nextTouch(cur);draft={};streak=0;render();return}
+ if(b.id==='prev'){const S=TL(stage),i=S.findIndex(t=>t.id===cur);cur=S[(i-1+S.length)%S.length].id;draft={};render();return}
+ if(b.id==='onlynew'){onlyNew=!onlyNew;render();return}
+ if(b.dataset.goto){cur=b.dataset.goto;draft={};render();return}
+ if(b.id==='mark'){draft.frame=curFrame();$('video').pause();render();return}
+ if(b.dataset.addmiss){draft.marks=(draft.marks||[]).concat([{who:b.dataset.addmiss,frame:curFrame()}]);$('video').pause();render();return}
+ if(b.dataset.delm){draft.marks.splice(+b.dataset.delm,1);render();return}
+});
+document.addEventListener('keydown',e=>{
+ if(!D||location.hash==='#live'||(e.target.closest&&e.target.closest('input,textarea')))return;
+ if(stage===3){const ai='1234'.indexOf(e.key);if(ai>=0){draft={id:cur,action:['reception','set','attack','unclear'][ai]};save();e.preventDefault();return}}
+ if(stage===2){const ai='1234'.indexOf(e.key),si='7890'.indexOf(e.key);
+  if(ai>=0){draft.action=ACTK[ai];render();e.preventDefault()}
+  else if(si>=0){draft.stance=STK[si];save();e.preventDefault()}
+  else if(e.key==='Enter'&&draft.stance){save();e.preventDefault()}
+  else if(e.key==='ArrowLeft'){cur=nextTouch(cur);draft={};render()}
+  else if(e.key==='ArrowRight'){const S=TL(stage),i=S.findIndex(t=>t.id===cur);cur=S[(i-1+S.length)%S.length].id;draft={};render()}}
+ if(e.key===' '){const v=$('video');v.paused?v.play():v.pause();e.preventDefault()}
+});
+
+/* ---------- live metrics ---------- */
+function actionOf(t,useAns){const a=useAns&&A[t.id];return a&&a.action?a.action:t.action}
+function reception(useAns){
+ const out={};
+ const by={};D.touches.forEach(t=>{(by[t.rally]=by[t.rally]||[]).push(t)});
+ for(const r in by){const L=by[r].slice().sort((a,b)=>a.frame-b.frame).filter(t=>actionOf(t,useAns)!=='dead');
+  let poss=[],cur=null,prevAtt=false;
+  for(const t of L){if(!cur||cur.team!==t.team||prevAtt){cur={team:t.team,touches:[]};poss.push(cur)}cur.touches.push(t);prevAtt=actionOf(t,useAns)==='attack'}
+  poss.forEach((p,i)=>{const f=p.touches[0];if(actionOf(f,useAns)!=='reception')return;
+   const sit=i===0?'serve':'attack',ok=p.touches.some(t=>actionOf(t,useAns)==='attack');
+   for(const k of [p.team+'|'+sit,f.player+'|'+sit]){out[k]=out[k]||[0,0];out[k][1]++;if(ok)out[k][0]++}});}
+ return out;
+}
+function wilson(k,n){if(!n)return[0,0];const z=1.96,p=k/n,d=1+z*z/n,c=(p+z*z/(2*n))/d,h=z*Math.sqrt(p*(1-p)/n+z*z/(4*n*n))/d;return[Math.round(100*(c-h)),Math.round(100*(c+h))]}
+function fmt(v){return v?`${v[0]}/${v[1]} = ${Math.round(100*v[0]/v[1])}%`:'–'}
+function delta(a,b){if(!a||!b)return'';const d=Math.round(100*b[0]/b[1])-Math.round(100*a[0]/a[1]);return d?`<span class="${d>0?'up':'down'}">${d>0?'+':''}${d}</span>`:''}
+function renderLive(){
+ const tt=D.touches, F=TL(3), S=SAMP(), lab=S.filter(t=>done(t.id)), changed=lab.filter(t=>A[t.id].action!==t.action), right=lab.length-changed.length, ci=wilson(right,lab.length);
+ const stanceN=tt.filter(t=>(A[t.id]&&A[t.id].stance&&A[t.id].stance!=='unclear')||(!A[t.id]&&t.stance)).length;
+ const spDone=SPECIAL.filter(s=>done(s.id)).length;
+ const R0=reception(false),R1=reception(true);
+ const rows=['ISR','BRA','Ron_Ben_Ishay','Maor_Haas','Franklin','Hiltinho'];
+ const recT=rows.map(k=>`<tr><td>${esc(TEAM[k]||PL[k])}</td>${['serve','attack'].map(s=>`<td class="n">${fmt(R0[k+'|'+s])}</td><td class="n">${fmt(R1[k+'|'+s])} ${delta(R0[k+'|'+s],R1[k+'|'+s])}</td>`).join('')}</tr>`).join('');
+ const stc={set:'var(--sea2)',moving:'var(--yel)',jump:'var(--bad)'};
+ const stRows=['Ron_Ben_Ishay','Maor_Haas','Franklin','Hiltinho'].map(p=>{const c={set:0,moving:0,jump:0};
+  tt.filter(t=>t.player===p).forEach(t=>{const s=A[t.id]?A[t.id].stance:t.stance;if(c[s]!=null)c[s]++});const n=c.set+c.moving+c.jump;
+  return `<div class="srow"><span>${esc(PL[p])}</span><div class="bar">${n?['set','moving','jump'].map(s=>`<i style="width:${100*c[s]/n}%;background:${stc[s]}" title="${ST[s]} ${c[s]}"></i>`).join(''):''}</div><span class="n">${n}</span></div>`}).join('');
+ const pts=SPECIAL.map(s=>{const a=A[s.id];let v='ממתין';
+  if(a){if(s.ask==='fault')v=`${esc(PL[a.who]||'?')} · זכתה ${esc(TEAM[a.winner]||'?')}`;
+   if(s.ask==='hidden')v=`${esc(PL[a.who]||'?')} · ${esc(PART[a.part]||'?')} · ${esc(ACT[a.action]||'לא ברור')}${a.frame?' · פריים '+(+a.frame):''}`;
+   if(s.ask==='p56')v=`${esc(PART[a.part]||'?')}${a.frame?' · פריים '+(+a.frame):''}`;
+   if(s.ask==='r19')v=`${a.what==='ended'?'מאור סיים את הנקודה':a.what==='continued'?'רון המשיך ועבר את הרשת':'אחר'} · ${esc(ACT[a.act80]||'?')}`;
+   if(s.ask==='approve')v=a.ok==='yes'?'אושר':'עוד לא';
+   if(s.ask==='r39')v=`חסרות: ${esc(a.missing||'?')} · נגיעה 246: ${esc(PART[a.part246]||'?')}`;}
+  return `<tr><td>${esc(s.title)}</td><td>${v}</td></tr>`}).join('');
+ const ch=changed.slice(0,40).map(t=>`<tr><td>${t.rally}</td><td>${t.touch}</td><td>${esc(t.he)}</td><td>${esc(ACT[t.action])} ← ${esc(ACT[A[t.id].action])}</td></tr>`).join('');
+ $('v-live').innerHTML=`
+ <div class="kpis"><div class="kpi"><b>${lab.length}/${S.length}</b><span>נגיעות במדגם שתויגו</span></div><div class="kpi"><b>${lab.length?Math.round(100*right/lab.length)+'%':'–'}</b><span>הניחוש האוטומטי צדק: ${right}/${lab.length}${lab.length?` (${ci[0]}–${ci[1]}%)`:''}</span></div>
+ <div class="kpi"><b>${F.filter(t=>done(t.id)).length}/${F.length}</b><span>נגיעה ראשונה: ${F.filter(t=>A[t.id]&&A[t.id].action==='set').length} הגבהות במקום קבלה</span></div><div class="kpi"><b>${spDone}/${SPECIAL.length}</b><span>שאלות פתוחות שנסגרו</span></div></div>
+ <div class="grid2"><div class="sec"><h2>יציבות קבלה: לפני ועכשיו</h2>
+ <div class="meta">קבלה שהאחזקה שלה הגיעה להתקפה. "לפני" לפי הפעולות האוטומטיות, "עכשיו" עם התיקונים שלך במדגם. שאר הנגיעות נשארות לפי הניחוש.</div>
+ <div class="scroll"><table><thead><tr><th></th><th>מול הגשה, לפני</th><th>עכשיו</th><th>מול התקפה, לפני</th><th>עכשיו</th></tr></thead><tbody>${recT}</tbody></table></div></div>
+ <div class="sec"><h2>עמידה ברגע הנגיעה</h2><div class="legend"><span><i style="background:var(--sea2)"></i>עומד יציב</span><span><i style="background:var(--yel)"></i>בתנועה</span><span><i style="background:var(--bad)"></i>בקפיצה</span></div>${stRows}
+ <h2>שאלות פתוחות</h2><table><tbody>${pts}</tbody></table></div></div>
+ <div class="sec"><h2>פעולות שתיקנת</h2>${changed.length?`<div class="scroll"><table><thead><tr><th>נקודה</th><th>נגיעה</th><th>שחקן</th><th>ניחוש ← תיקון</th></tr></thead><tbody>${ch}</tbody></table></div>${changed.length>40?`<div class="meta">ועוד ${changed.length-40}</div>`:''}`:'<div class="meta">עדיין לא תיקנת פעולות.</div>'}</div>`;
+}
+
+function route(){const live=location.hash==='#live';$('v-play').classList.toggle('hidden',live);$('v-live').classList.toggle('hidden',!live);
+ $('tab-play').setAttribute('aria-current',String(!live));$('tab-live').setAttribute('aria-current',String(live));if(D){if(live)renderLive();else{$('video').play().catch(()=>{})}}if(live)$('video').pause()}
+window.addEventListener('hashchange',route);
+
+async function boot(){
+ speeds(); route();
+ try{D=await (await fetch('items.json')).json()}catch(e){$('status').textContent='לא הצלחתי לטעון את רשימת הנגיעות.';return}
+ render();
+ $('status').textContent='מתחבר למסד הנתונים…';
+ const timer=setTimeout(()=>{$('status').textContent='מסד הנתונים לא עונה עדיין. אפשר לצפות, אבל התשובות לא יישמרו עד שיתחבר.'},10000);
+ try{db=await window.claude?.use('db')}catch(e){db=null}
+ if(!db){clearTimeout(timer);$('status').textContent='אין גישה למסד הנתונים בתצוגה הזו, ולכן התשובות לא יישמרו. פתח את הדף כשאתה מחובר.';return}
+ col=db.collection('answers');
+ col.onSnapshot(s=>{if(!s.metadata.fromCache){clearTimeout(timer);$('status').classList.add('hidden')}
+  A={};s.docs.forEach(d=>{A[d.id]=d.data()});render()},
+  e=>{clearTimeout(timer);$('status').classList.remove('hidden');$('status').textContent='החיבור למסד הנתונים נותק. רענן את הדף.'});
+}
+boot();
+}
+</script>
+</body>
+</html>

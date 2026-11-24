@@ -1,0 +1,14 @@
+team,player,action,chest,foot,head,knee,shin,shoulder,All
+BRA,Franklin,attack,2,13,23,0,0,1,39
+BRA,Franklin,reception,8,18,6,0,0,0,32
+BRA,Franklin,set,10,5,0,0,0,0,15
+BRA,Hiltinho,attack,0,15,10,0,0,0,25
+BRA,Hiltinho,reception,3,10,2,0,0,0,15
+BRA,Hiltinho,set,24,6,1,0,0,2,33
+ISR,Maor_Haas,attack,1,6,36,0,0,3,46
+ISR,Maor_Haas,reception,11,10,3,2,1,1,28
+ISR,Maor_Haas,set,6,2,2,0,0,0,10
+ISR,Ron_Ben_Ishay,attack,1,9,7,0,0,2,19
+ISR,Ron_Ben_Ishay,reception,1,10,4,0,0,0,15
+ISR,Ron_Ben_Ishay,set,28,8,0,0,0,4,40
+All,,,95,112,94,2,1,13,317
