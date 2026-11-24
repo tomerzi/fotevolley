@@ -17,7 +17,8 @@
 "item": "M3",
 "rally": 11,
 "frame": 1468,
-"group": "label: no touch"
+"group": "label: no touch",
+"result": "owner 2026-11-24: no touch (clip 1440-1535); the label no_touch stands"
 },
 {
 "item": "M4",
