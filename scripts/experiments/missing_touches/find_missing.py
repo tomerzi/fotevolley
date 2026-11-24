@@ -5,13 +5,16 @@ Tests, inside each point (rally start -> verified end frame, v3 frames):
    player touch and whose upward speed jumps by >= MIN_DVZ m/s against the ball coming in (the end of the previous
    flight), and rises >= MIN_RISE m. A split of one continuous flight has no jump; a sand bounce barely rises (the
    sand absorbs the ball). A ball hidden for a while counts when it was falling and comes back higher and rising.
+   Flights that start within CUT frames of a camera cut (ball_boxes_v3video.csv `shot`) are dropped: the tracker
+   jumps to the ball's place in the new shot, which looks like a push.
 2. hang time: two consecutive in-play touches more than MAX_AIR s apart while the ball never reached the sand.
 3. net parity: between consecutive in-play touches by different teams the ball must cross the net (x = 8) an odd
    number of times; same team -> even.
 4. rule: more than 3 touches in one possession.
 
 inputs : data/analysis/ball_height_v2.csv, data/contacts/touches_master.csv, data/contacts/ball_contacts_v3.csv,
-         data/points/rallies_v3video.csv, data/points/point_end_verified.csv, data/mappings/frame_mapping_v3.csv
+         data/points/rallies_v3video.csv, data/points/point_end_verified.csv, data/mappings/frame_mapping_v3.csv,
+         data/boxes/ball_boxes_v3video.csv (camera cuts)
 output : data/experiments/missing_touches/candidates.csv
 """
 import os
@@ -19,7 +22,7 @@ import numpy as np, pandas as pd
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 os.chdir(ROOT)
 FPS, G = 25, 9.81
-MIN_RISE, MIN_DVZ, GAP, MAX_AIR, NET_BAND = 0.40, 3.0, 5, 3.2, 0.4
+MIN_RISE, MIN_DVZ, GAP, MAX_AIR, NET_BAND, CUT = 0.40, 3.0, 5, 3.2, 0.4, 3
 
 b = pd.read_csv('data/analysis/ball_height_v2.csv')
 fm = pd.read_csv('data/mappings/frame_mapping_v3.csv'); fm = fm[~fm.deleted]
@@ -29,6 +32,8 @@ t = pd.read_csv('data/contacts/touches_master.csv')
 ev = pd.read_csv('data/contacts/ball_contacts_v3.csv')
 ral = pd.read_csv('data/points/rallies_v3video.csv').set_index('rally')
 pe = pd.read_csv('data/points/point_end_verified.csv').set_index('point')
+shot = pd.read_csv('data/boxes/ball_boxes_v3video.csv', usecols=['frame', 'shot']).set_index('frame').shot
+cuts = shot.index[shot.diff().fillna(0) != 0].values
 lab = t[(t.kind == 'player')]
 real = lab.frame.values
 
@@ -63,7 +68,8 @@ for r, R in ral.iterrows():
             jump = vz0 - vz_in >= MIN_DVZ
         else:   # hidden or no ball before: it must come back higher than it went and rising
             jump = np.isfinite(before_h) and h[0] > before_h + MIN_RISE and vz0 > 0
-        if jump and rise >= MIN_RISE and near_label(s) > GAP:
+        at_cut = bool(len(cuts)) and int(np.abs(cuts - s).min()) <= CUT
+        if jump and rise >= MIN_RISE and near_label(s) > GAP and not at_cut:
             e = ev[(ev.frame - s).abs() <= GAP]
             rows.append(dict(rally=r, frame=s, test='impulse', rise_m=round(rise, 2), vz0=round(vz0, 1), vz_in=round(vz_in, 1) if np.isfinite(vz_in) else None,
                              h_start=round(float(h[0]), 2), h_before=round(before_h, 2) if before_h == before_h else None,

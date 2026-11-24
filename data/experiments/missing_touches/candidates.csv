@@ -2,8 +2,6 @@ rally,frame,test,rise_m,vz0,vz_in,h_start,h_before,hidden_frames,nearest_label,d
 3,176,impulse,1.66,7.8,-0.8,0.0,0.58,0.0,78.0,176:touch/Ron_Ben_Ishay,13.1,
 3,200,impulse,0.91,5.0,-1.2,0.18,0.8,0.0,102.0,196:touch/Ron_Ben_Ishay,14.6,
 3,383,impulse,1.52,5.5,-8.9,0.05,0.0,0.0,14.0,383:no_player (sand/net/tracking),11.9,
-4,434,impulse,0.87,4.1,-9.5,2.33,1.42,0.0,25.0,434:no_player (sand/net/tracking),3.5,
-7,784,impulse,0.71,3.7,,1.95,0.0,9.0,22.0,784:no_player (sand/net/tracking),2.9,
 7,874,net_parity,,,,,,,,,,Hiltinho(22)->Maor_Haas(23): 0 net crossings
 10,1335,impulse,0.65,3.6,-7.3,0.15,0.04,0.0,16.0,1334:no_player (sand/net/tracking),14.5,
 11,1468,impulse,0.81,4.0,-7.2,0.04,0.18,0.0,16.0,1468:touch/Maor_Haas,5.1,
@@ -16,10 +14,8 @@ rally,frame,test,rise_m,vz0,vz_in,h_start,h_before,hidden_frames,nearest_label,d
 23,3855,impulse,0.99,4.4,-10.3,0.1,0.0,0.0,23.0,3855:no_player (sand/net/tracking),15.4,
 25,4177,net_parity,,,,,,,,,,Franklin(112)->Ron_Ben_Ishay(113): 0 net crossings
 25,4239,impulse,0.45,2.8,-1.4,0.0,0.26,0.0,21.0,,6.6,
-26,4308,impulse,1.77,5.9,0.5,2.38,0.69,1.0,33.0,4308:no_player (sand/net/tracking),2.5,
 26,4528,impulse,0.55,3.3,-7.0,0.11,0.25,0.0,29.0,4528:no_player (sand/net/tracking),15.9,
 26,4558,impulse,0.55,2.4,-0.8,0.0,0.0,0.0,43.0,,17.4,
-27,5127,impulse,0.5,3.1,,3.04,0.39,37.0,20.0,5127:no_player (sand/net/tracking),9.2,
 28,5876,impulse,1.55,5.5,-0.2,2.95,1.78,0.0,6.0,,10.7,
 28,6015,impulse,1.15,4.7,-9.9,0.08,0.08,0.0,10.0,6015:touch/Ron_Ben_Ishay,11.1,
 28,6047,impulse,1.56,7.7,-0.8,0.0,0.0,0.0,16.0,,12.3,
