@@ -55,8 +55,8 @@ table on 48 of 56 points.
 ## Labelling game (2026-11-24, evening)
 
 `data/experiments/labelling_game/` (answers, page link), applied as "labelling game" rows in
-`data/contacts/owner_decisions.csv`; metrics recomputed in `coach_analysis/recomputed_2026-11-24/` (data/analysis not
-yet rerun):
+`data/contacts/owner_decisions.csv`; metrics recomputed in `coach_analysis/recomputed_2026-11-24/`; data/analysis rerun the same evening
+(all scripts that read the actions except touch_body.py):
 - Net faults: point 19 Ron_Ben_Ishay, 34 Maor_Haas, 50 Hiltinho. Point 56: Ron's added touch is a foot, about v3 12700.
 - Point 27: no touch is missing; Maor_Haas's set (foot, v3 5049) is the last touch. Replaces the note above.
 - Rally 19: touch 80 is a reception (Ron sets, then the net fault).

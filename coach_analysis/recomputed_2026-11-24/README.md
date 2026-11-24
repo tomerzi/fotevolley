@@ -1,9 +1,12 @@
 # Coach metrics after the labelling game (2026-11-24)
 
 Made by `scripts/analysis/round2_recompute.py` from `data/contacts/touches_master.csv` + every row of
-`data/contacts/owner_decisions.csv`. Nothing in `data/analysis/` was changed: the files there (touch_outcomes.csv,
-set_quality.csv, team_spacing_v3.csv, return_to_base.csv, phase_heatmaps.*) still predate these decisions and need the
-pipeline rerun (touch_actions.py -> build_touch_table.py -> the analysis scripts) to absorb them.
+`data/contacts/owner_decisions.csv`. The pipeline was then rerun with the same decisions (touch_actions.py ->
+build_touch_table.py -> touch_outcomes, team_spacing, phase_heatmaps, return_to_base, coverage_reach, chest_profile,
+reaction_times, audit); its touch_outcomes.csv agrees with touches.csv here on action and success for 317/317 touches.
+Not rerun: touch_body.py (needs the Sapiens2 pose file from Git LFS); its stance column lacks the 60 game labels, which
+are in touches.csv here. The files here add what the pipeline does not: touch numbers after an unfilmed reception
+(set = touch 2), the net-fault author per point, and the combined stance labels.
 
 Definitions:
 - Action = the owner's decision when there is one, else the possession rule (3 touches: reception, set, attack;
