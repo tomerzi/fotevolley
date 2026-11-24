@@ -6520,7 +6520,7 @@ v2_frame,team,distance,depth_gap,lateral_gap,front,formation,rally,set
 8250,BRA,5.11,4.56,2.33,Hiltinho,front_back,32,2
 8251,BRA,5.21,4.64,2.36,Hiltinho,front_back,32,2
 8252,BRA,5.28,4.72,2.36,Hiltinho,front_back,32,2
-8253,BRA,5.26,4.77,2.21,Hiltinho,front_back,32,2
+8253,BRA,5.28,4.77,2.26,Hiltinho,front_back,32,2
 8326,BRA,3.52,1.79,3.03,Franklin,side_side,33,2
 8327,BRA,3.51,1.82,3.0,Franklin,side_side,33,2
 8328,BRA,3.49,1.84,2.97,Franklin,side_side,33,2
@@ -17120,6 +17120,11 @@ v2_frame,team,distance,depth_gap,lateral_gap,front,formation,rally,set
 5800,ISR,2.83,0.25,2.82,Ron_Ben_Ishay,side_side,27,1
 5801,ISR,2.86,0.29,2.84,Ron_Ben_Ishay,side_side,27,1
 5802,ISR,2.89,0.33,2.87,Ron_Ben_Ishay,side_side,27,1
+5803,ISR,2.17,0.79,2.02,Maor_Haas,side_side,27,1
+5804,ISR,2.48,0.94,2.29,Maor_Haas,side_side,27,1
+5805,ISR,2.73,1.01,2.53,Maor_Haas,side_side,27,1
+5806,ISR,2.21,0.71,2.09,Maor_Haas,side_side,27,1
+5807,ISR,2.56,0.92,2.39,Maor_Haas,side_side,27,1
 5808,ISR,1.31,0.48,1.22,Maor_Haas,side_side,27,1
 5809,ISR,1.33,0.42,1.27,Maor_Haas,side_side,27,1
 5810,ISR,1.35,0.36,1.3,Maor_Haas,side_side,27,1
@@ -19617,6 +19622,8 @@ v2_frame,team,distance,depth_gap,lateral_gap,front,formation,rally,set
 9041,ISR,3.36,0.99,3.21,Ron_Ben_Ishay,side_side,34,2
 9042,ISR,3.36,1.01,3.21,Ron_Ben_Ishay,side_side,34,2
 9043,ISR,3.37,1.03,3.21,Ron_Ben_Ishay,side_side,34,2
+9044,ISR,4.15,1.58,3.84,Ron_Ben_Ishay,side_side,34,2
+9045,ISR,4.05,1.61,3.72,Ron_Ben_Ishay,side_side,34,2
 9046,ISR,2.55,1.6,1.99,Ron_Ben_Ishay,side_side,34,2
 9047,ISR,2.6,1.69,1.98,Ron_Ben_Ishay,side_side,34,2
 9048,ISR,2.66,1.77,1.98,Ron_Ben_Ishay,side_side,34,2
@@ -19792,8 +19799,8 @@ v2_frame,team,distance,depth_gap,lateral_gap,front,formation,rally,set
 9223,ISR,0.59,0.12,0.57,Maor_Haas,side_side,35,2
 9224,ISR,0.62,0.14,0.6,Maor_Haas,side_side,35,2
 9225,ISR,0.67,0.15,0.65,Maor_Haas,side_side,35,2
-9226,ISR,0.71,0.07,0.7,Maor_Haas,side_side,35,2
-9227,ISR,0.72,0.02,0.72,Maor_Haas,side_side,35,2
+9226,ISR,0.7,0.0,0.7,Ron_Ben_Ishay,side_side,35,2
+9227,ISR,0.72,0.01,0.72,Ron_Ben_Ishay,side_side,35,2
 9228,ISR,0.71,0.0,0.71,Maor_Haas,side_side,35,2
 9229,ISR,0.68,0.0,0.68,Ron_Ben_Ishay,side_side,35,2
 9230,ISR,0.64,0.0,0.64,Ron_Ben_Ishay,side_side,35,2
@@ -20299,6 +20306,7 @@ v2_frame,team,distance,depth_gap,lateral_gap,front,formation,rally,set
 9884,ISR,5.67,4.01,4.01,Maor_Haas,side_side,38,2
 9885,ISR,5.67,4.01,4.01,Maor_Haas,side_side,38,2
 9886,ISR,5.67,4.01,4.01,Maor_Haas,side_side,38,2
+9887,ISR,5.54,3.93,3.91,Maor_Haas,front_back,38,2
 9888,ISR,5.14,3.75,3.51,Maor_Haas,front_back,38,2
 9889,ISR,5.1,3.71,3.5,Maor_Haas,front_back,38,2
 9890,ISR,5.06,3.67,3.48,Maor_Haas,front_back,38,2
@@ -21786,6 +21794,9 @@ v2_frame,team,distance,depth_gap,lateral_gap,front,formation,rally,set
 11771,ISR,2.42,1.1,2.16,Maor_Haas,side_side,43,2
 11772,ISR,2.41,1.1,2.14,Maor_Haas,side_side,43,2
 11773,ISR,2.4,1.1,2.13,Maor_Haas,side_side,43,2
+11775,ISR,2.86,0.85,2.74,Ron_Ben_Ishay,side_side,44,2
+11776,ISR,2.83,0.85,2.7,Ron_Ben_Ishay,side_side,44,2
+11777,ISR,2.79,0.83,2.66,Ron_Ben_Ishay,side_side,44,2
 11778,ISR,2.32,0.68,2.22,Ron_Ben_Ishay,side_side,44,2
 11779,ISR,2.32,0.69,2.21,Ron_Ben_Ishay,side_side,44,2
 11780,ISR,2.32,0.7,2.22,Ron_Ben_Ishay,side_side,44,2
@@ -24307,6 +24318,7 @@ v2_frame,team,distance,depth_gap,lateral_gap,front,formation,rally,set
 14562,ISR,3.88,1.94,3.36,Maor_Haas,both_net,55,2
 14563,ISR,3.89,1.96,3.36,Maor_Haas,both_net,55,2
 14564,ISR,3.89,1.99,3.35,Maor_Haas,both_net,55,2
+14582,ISR,8.46,5.23,0.99,Ron_Ben_Ishay,front_back,56,2
 14584,ISR,7.69,4.13,0.6,Ron_Ben_Ishay,front_back,56,2
 14585,ISR,7.73,4.02,0.62,Ron_Ben_Ishay,front_back,56,2
 14586,ISR,7.76,3.92,0.64,Ron_Ben_Ishay,front_back,56,2

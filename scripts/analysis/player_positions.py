@@ -25,7 +25,7 @@ by 8/9 (Q_ACC by 64/81) so a re-run gives the same result in metres.
 
 inputs : data/boxes/player_boxes_v3video.csv, data/pose/sapiens2/sapiens2_pose_v3_00000-13494.csv,
          data/boxes/ball_boxes_v3video.csv (camera shot of each frame), data/mappings/homography_px_to_m.npy,
-         data/contacts/touch_labels_final.csv
+         data/contacts/touch_labels_final.csv, data/experiments/owner_checks_2026-11-24/position_squares.csv
 output : data/analysis/player_positions_v3.csv  one row per (frame, player) from the first to the last frame of each
          track: posture, raw ground point, jump correction, smoothed x/y, vx/vy/speed (m/s), side, 3x3 square
 usage: python scripts/analysis/player_positions.py"""
@@ -86,6 +86,7 @@ SEED_V_MAX = 7.11    # m/s, cap on the velocity a reset starts from
 LOOKAHEAD = 3        # measurements after a rejected run: if 2 of them are back on the old track, it was a glitch
 MAX_GAP = 25         # frames without a measurement that the smoother may bridge (a bicycle kick lasts ~20)
 FILL_MAX = 50        # frames each side: a hidden player with no position is placed on a line between his own positions
+OWNER_SQUARES = os.path.join(ROOT, 'data', 'experiments', 'owner_checks_2026-11-24', 'position_squares.csv')
 FILL_SPEED = 8.0     # m/s: a box point further than this from the player's own positions is not trusted
 V0_SIGMA = 2.67      # m/s, velocity uncertainty at a track start
 
@@ -463,6 +464,20 @@ def camera_segments(ball):
     return pd.Series(pd.factorize(seg)[0], index=ball.index)
 
 
+def into_square(x, y, sq, eps=0.05):
+    """The point nearest to (x, y) inside square sq (as in square()); 'out': nearest point just outside the court."""
+    if sq == 'out':
+        if not (0 <= x <= 16 and 0 <= y <= 8):
+            return x, y
+        d = {'x0': x, 'x16': 16 - x, 'y0': y, 'y8': 8 - y}
+        k = min(d, key=d.get)
+        return {'x0': (-eps, y), 'x16': (16 + eps, y), 'y0': (x, -eps), 'y8': (x, 8 + eps)}[k]
+    i = int(sq[1:]) - 1
+    x_lo = (0 if sq[0] == 'L' else 8) + (i % 3) * 8 / 3
+    y_lo = (i // 3) * 8 / 3
+    return (float(np.clip(x, x_lo + eps, x_lo + 8 / 3 - eps)), float(np.clip(y, y_lo + eps, y_lo + 8 / 3 - eps)))
+
+
 def fill_rows(b, s):
     """Box rows the smoother left without a position (box cut by the image border, player hidden behind the
     teammate, a track too short to smooth). The player was there, so squares and coverage get a position (owner,
@@ -473,13 +488,20 @@ def fill_rows(b, s):
     need more than FILL_SPEED m/s to or from the player's nearest own positions (same camera segment) is not trusted
     (a box narrowed by the image border): the line is used instead, or, with no position on both sides, nothing.
     Box points in a run of consecutive frames are smoothed with a 5-frame running median (border jitter).
-    Boxes whose bottom is cut by the image border (feet out of the picture) get nothing."""
+    Boxes whose bottom is cut by the image border (feet out of the picture) get nothing.
+    Where the owner named the square for such a frame (OWNER_SQUARES), the point (box, line or, with neither, the
+    box bottom) is moved to the nearest point inside that square (or just outside the court for 'out'); src
+    'owner_square'."""
     have = pd.MultiIndex.from_arrays([s.frame, s.player])
     m = b[~pd.MultiIndex.from_arrays([b.frame, b.player]).isin(have)]
     m = m[m.y2 < H_IMG - 1 - EDGE_PX]
     if not len(m):
         return pd.DataFrame(columns=s.columns)
     bx, by, _ = to_court(m.feet_x.values.astype(float), m.feet_y.values.astype(float))
+    owner = {}
+    for o in pd.read_csv(OWNER_SQUARES).itertuples():
+        for fr in range(o.start_frame, o.end_frame + 1):
+            owner[(fr, o.player)] = o.square
     rows = []
     for (r, x0, y0) in zip(m.itertuples(), bx, by):
         g = s[(s.player == r.player) & (s.cam_seg == r.cam_seg)]
@@ -491,11 +513,18 @@ def fill_rows(b, s):
                    for q in (a, c) if q is not None)
         if r.occluded or fast:
             if a is None or c is None:
-                continue
-            k = (r.frame - a.frame) / (c.frame - a.frame)
-            x, y, src = a.x + k * (c.x - a.x), a.y + k * (c.y - a.y), 'line_fill'
+                x = y = src = None
+            else:
+                k = (r.frame - a.frame) / (c.frame - a.frame)
+                x, y, src = a.x + k * (c.x - a.x), a.y + k * (c.y - a.y), 'line_fill'
         else:
             x, y, src = x0, y0, 'box_fill'
+        sq = owner.get((r.frame, r.player))
+        if sq is not None:                       # the owner named the square: nearest point inside it
+            x, y = into_square(x0 if x is None else x, y0 if y is None else y, sq)
+            src = 'owner_square'
+        if src is None:
+            continue
         rows.append(dict(frame=r.frame, player=r.player, cam_seg=r.cam_seg, posture='filled', src=src,
                          near_touch=bool(r.near_touch), occluded=bool(r.occluded), edge=bool(r.edge), jump=False,
                          bump=0.0, u=r.feet_x, v=r.feet_y, raw_x=x0, raw_y=y0, airborne=False, outlier=False,
