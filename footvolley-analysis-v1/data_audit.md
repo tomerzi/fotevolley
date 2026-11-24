@@ -49,7 +49,8 @@ Scope: the single match in `tomerzi/fotevolley` at commit `64c0e79`. Source file
 ## 5. Contact candidates and pose
 - No contact, action or body-part labels exist in the repository.
 - `contact_candidates.csv` (281 rows) flags points where the 2D ball path is at its lowest image point and reverses vertically next to a player box. These are **inferred and unverified**. 62% fall in the "head" band of the box, a likely bias: low foot and chest contacts are more often occluded or missed (see `ball_hidden` and `no_detection` reasons). 90 of 237 possession runs have zero candidates. Coarse body region is therefore **not** used for coaching findings.
-- Pose (`vitpose_body25.csv`) was computed on an earlier box set: box_source counts differ from v9, and `players/FIX_PLAN.md` lists phantom and missing boxes. With no verified contacts there is no valid anchor for technique angles, so pose-based technique metrics are **unavailable** in this run.
+- Pose (`vitpose_body25.csv`, 2D ViTPose-L WholeBody mapped to BODY_25, image pixels) was computed on an earlier box set (`players/player_boxes.csv`), and `players/FIX_PLAN.md` lists phantom and missing boxes. A join check on (frame, player) shows that 99.69% of v9 rows have a pose row, and 99.32% of the joined necks fall inside the v9 box. The two sets are therefore usable together, with a keypoint score gate of ≥ 0.5. Median scores are 0.82–0.91 for the body and 0.67 for the toes.
+- v2 use of pose: nearest-keypoint contact region (F4), head-yaw proxy and 2D knee angle at the incoming anchors (not retained). All angles are 2D image proxies from a single camera and are **not** 3D joint angles. Verified-contact technique metrics (preparation, recovery, contact angles) remain **unavailable**.
 
 ## 6. Quality gates applied
 | Gate | Rule |

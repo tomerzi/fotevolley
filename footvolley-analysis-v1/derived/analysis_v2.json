@@ -1,0 +1,196 @@
+{
+ "pose_join": {
+  "pose_rows": 60511,
+  "joined_to_v9": 60357
+ },
+ "H6_head_orientation_vs_fail": {
+  "offset_0f": {
+   "player_rows_known": 158,
+   "pct_toward_ball_by_team": {
+    "BRA": 0.988,
+    "ISR": 1.0
+   },
+   "ISR": {
+    "both_toward_fail": "9/39",
+    "not_both_fail": "0/0",
+    "rallies": 30
+   },
+   "BRA": {
+    "both_toward_fail": "4/39",
+    "not_both_fail": "0/1",
+    "rallies": 29
+   },
+   "ALL": {
+    "both_toward_fail": "13/78",
+    "not_both_fail": "0/1",
+    "rallies": 39
+   }
+  },
+  "offset_5f": {
+   "player_rows_known": 149,
+   "pct_toward_ball_by_team": {
+    "BRA": 1.0,
+    "ISR": 0.986
+   },
+   "ISR": {
+    "both_toward_fail": "7/35",
+    "not_both_fail": "0/0",
+    "rallies": 28
+   },
+   "BRA": {
+    "both_toward_fail": "4/37",
+    "not_both_fail": "0/0",
+    "rallies": 28
+   },
+   "ALL": {
+    "both_toward_fail": "11/72",
+    "not_both_fail": "0/0",
+    "rallies": 37
+   }
+  },
+  "offset_10f": {
+   "player_rows_known": 145,
+   "pct_toward_ball_by_team": {
+    "BRA": 1.0,
+    "ISR": 0.972
+   },
+   "ISR": {
+    "both_toward_fail": "6/33",
+    "not_both_fail": "1/2",
+    "rallies": 28
+   },
+   "BRA": {
+    "both_toward_fail": "4/37",
+    "not_both_fail": "0/0",
+    "rallies": 27
+   },
+   "ALL": {
+    "both_toward_fail": "10/70",
+    "not_both_fail": "1/2",
+    "rallies": 37
+   }
+  }
+ },
+ "H7_stance_vs_fail": {
+  "offset_0f": {
+   "BRA": {
+    "returned_median_min_knee2d": 121.0,
+    "failed_median_min_knee2d": 107.4,
+    "returned_median_min_hip_rel_h": 0.47,
+    "failed_median_min_hip_rel_h": 0.482,
+    "n_ret": 36,
+    "n_fail": 4
+   },
+   "ISR": {
+    "returned_median_min_knee2d": 109.6,
+    "failed_median_min_knee2d": 121.3,
+    "returned_median_min_hip_rel_h": 0.438,
+    "failed_median_min_hip_rel_h": 0.441,
+    "n_ret": 30,
+    "n_fail": 9
+   }
+  },
+  "offset_5f": {
+   "BRA": {
+    "returned_median_min_knee2d": 124.0,
+    "failed_median_min_knee2d": 121.2,
+    "returned_median_min_hip_rel_h": 0.487,
+    "failed_median_min_hip_rel_h": 0.494,
+    "n_ret": 36,
+    "n_fail": 4
+   },
+   "ISR": {
+    "returned_median_min_knee2d": 118.5,
+    "failed_median_min_knee2d": 123.5,
+    "returned_median_min_hip_rel_h": 0.46,
+    "failed_median_min_hip_rel_h": 0.46,
+    "n_ret": 30,
+    "n_fail": 9
+   }
+  },
+  "offset_10f": {
+   "BRA": {
+    "returned_median_min_knee2d": 127.2,
+    "failed_median_min_knee2d": 126.8,
+    "returned_median_min_hip_rel_h": 0.484,
+    "failed_median_min_hip_rel_h": 0.508,
+    "n_ret": 36,
+    "n_fail": 4
+   },
+   "ISR": {
+    "returned_median_min_knee2d": 120.2,
+    "failed_median_min_knee2d": 117.8,
+    "returned_median_min_hip_rel_h": 0.457,
+    "failed_median_min_hip_rel_h": 0.455,
+    "n_ret": 30,
+    "n_fail": 9
+   }
+  }
+ },
+ "H8_transition": {
+  "transitions": 121,
+  "labelled": 33,
+  "BRA": {
+   "n": 58,
+   "median_net_depth_at_attack_m": 1.3,
+   "median_net_depth_at_next_incoming_m": 3.59,
+   "median_recovery_m": 1.89,
+   "median_opp_time_s": 2.84,
+   "net_player_counts": {
+    "BRA_A": 31,
+    "BRA_B": 27
+   },
+   "net_depth_in<3m": "1/1",
+   "net_depth_in>=3m": "0/13",
+   "net_player_recovered>=1.5m": "0/10",
+   "recovered<1.5m": "1/4"
+  },
+  "ISR": {
+   "n": 63,
+   "median_net_depth_at_attack_m": 1.26,
+   "median_net_depth_at_next_incoming_m": 3.4,
+   "median_recovery_m": 1.9,
+   "median_opp_time_s": 3.4,
+   "net_player_counts": {
+    "ISR_B": 38,
+    "ISR_A": 25
+   },
+   "net_depth_in<3m": "0/3",
+   "net_depth_in>=3m": "3/16",
+   "net_player_recovered>=1.5m": "2/13",
+   "recovered<1.5m": "1/6"
+  }
+ },
+ "H9_pose_contact_region": {
+  "candidates": 281,
+  "with_pose_region": 281,
+  "close_to_keypoint(<=15% box h)": 220,
+  "agreement_with_box_band": 0.682,
+  "region_by_player_close": {
+   "BRA_A": {
+    "chest": 5,
+    "foot": 18,
+    "head": 31,
+    "thigh": 5
+   },
+   "BRA_B": {
+    "chest": 5,
+    "foot": 14,
+    "head": 29,
+    "thigh": 3
+   },
+   "ISR_A": {
+    "chest": 7,
+    "foot": 7,
+    "head": 32,
+    "thigh": 3
+   },
+   "ISR_B": {
+    "chest": 13,
+    "foot": 11,
+    "head": 31,
+    "thigh": 6
+   }
+  }
+ }
+}
