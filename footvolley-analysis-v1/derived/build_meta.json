@@ -1,0 +1,17 @@
+{
+  "fps": 25.0,
+  "net_px_far": [
+    996.9,
+    420.1
+  ],
+  "net_px_near": [
+    1057.2,
+    985.2
+  ],
+  "net_band_px": 40,
+  "rallies": 58,
+  "eligible_rallies": 56,
+  "possession_runs": 237,
+  "contact_candidates": 281,
+  "snapshot_rows": 258
+}

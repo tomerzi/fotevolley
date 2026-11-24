@@ -1,0 +1,476 @@
+{
+  "H1_scoreboard": {
+    "ISR": {
+      "won_after_winning_prev (serve if winner-serves rule)": "9/24",
+      "won_after_losing_prev (receive if winner-serves rule)": "15/34"
+    },
+    "BRA": {
+      "won_after_winning_prev (serve if winner-serves rule)": "19/34",
+      "won_after_losing_prev (receive if winner-serves rule)": "15/24"
+    },
+    "total_points": {
+      "ISR": 24,
+      "BRA": 36
+    },
+    "set_scores": "Set1 BRA 18-13, Set2 BRA 18-11",
+    "streaks_ge3": [
+      {
+        "team": "ISR",
+        "set": 1,
+        "start": 10,
+        "end": 12,
+        "len": 3
+      },
+      {
+        "team": "BRA",
+        "set": 1,
+        "start": 18,
+        "end": 22,
+        "len": 5
+      },
+      {
+        "team": "BRA",
+        "set": 1,
+        "start": 27,
+        "end": 29,
+        "len": 3
+      },
+      {
+        "team": "BRA",
+        "set": 2,
+        "start": 32,
+        "end": 36,
+        "len": 5
+      },
+      {
+        "team": "BRA",
+        "set": 2,
+        "start": 39,
+        "end": 47,
+        "len": 9
+      },
+      {
+        "team": "ISR",
+        "set": 2,
+        "start": 50,
+        "end": 53,
+        "len": 4
+      },
+      {
+        "team": "ISR",
+        "set": 2,
+        "start": 55,
+        "end": 57,
+        "len": 3
+      }
+    ],
+    "ISR_sideout_rate": 0.441,
+    "BRA_sideout_rate": 0.625,
+    "sideouts_by_set": {
+      "1": {
+        "ISR": "10/17",
+        "BRA": "10/13"
+      },
+      "2": {
+        "ISR": "5/17",
+        "BRA": "5/11"
+      }
+    }
+  },
+  "H2_incoming_shape_vs_outcome": {
+    "eligible_incoming_possessions": 122,
+    "with_complete_observed_pair": 121,
+    "outcome_counts": {
+      "returned": 66,
+      "returned_unclean": 33,
+      "terminal_lost": 13,
+      "terminal_won": 10
+    },
+    "labeled_returned_or_lost": 78,
+    "rally_clusters": 39,
+    "shape_by_team": {
+      "ISR": {
+        "n": 39,
+        "fail_rate": 0.231,
+        "sep_m": {
+          "median": 3.58,
+          "iqr": [
+            3.01,
+            3.94
+          ]
+        },
+        "width_m": {
+          "median": 3.19,
+          "iqr": [
+            2.42,
+            3.54
+          ]
+        },
+        "stagger_m": {
+          "median": 0.8,
+          "iqr": [
+            0.4,
+            1.81
+          ]
+        },
+        "mean_depth_m": {
+          "median": 4.22,
+          "iqr": [
+            3.66,
+            5.02
+          ]
+        },
+        "front_depth_m": {
+          "median": 3.78,
+          "iqr": [
+            2.8,
+            4.79
+          ]
+        },
+        "back_depth_m": {
+          "median": 5.01,
+          "iqr": [
+            4.71,
+            5.42
+          ]
+        }
+      },
+      "BRA": {
+        "n": 39,
+        "fail_rate": 0.103,
+        "sep_m": {
+          "median": 3.21,
+          "iqr": [
+            3.02,
+            3.47
+          ]
+        },
+        "width_m": {
+          "median": 3.04,
+          "iqr": [
+            2.75,
+            3.34
+          ]
+        },
+        "stagger_m": {
+          "median": 0.84,
+          "iqr": [
+            0.48,
+            1.0
+          ]
+        },
+        "mean_depth_m": {
+          "median": 4.5,
+          "iqr": [
+            4.08,
+            4.71
+          ]
+        },
+        "front_depth_m": {
+          "median": 4.07,
+          "iqr": [
+            3.46,
+            4.5
+          ]
+        },
+        "back_depth_m": {
+          "median": 4.86,
+          "iqr": [
+            4.64,
+            5.12
+          ]
+        }
+      }
+    },
+    "fail_by_shape_ISR": {
+      "stagger>=2m": {
+        "fails": 4,
+        "n": 10,
+        "rate": 0.4
+      },
+      "stagger<2m": {
+        "fails": 5,
+        "n": 29,
+        "rate": 0.172
+      },
+      "sep>=4m": {
+        "fails": 6,
+        "n": 8,
+        "rate": 0.75
+      },
+      "sep<4m": {
+        "fails": 3,
+        "n": 31,
+        "rate": 0.097
+      },
+      "back_depth>=6m": {
+        "fails": 0,
+        "n": 0,
+        "rate": null
+      },
+      "back_depth<6m": {
+        "fails": 9,
+        "n": 39,
+        "rate": 0.231
+      }
+    },
+    "fail_by_shape_BRA": {
+      "stagger>=2m": {
+        "fails": 0,
+        "n": 1,
+        "rate": 0.0
+      },
+      "stagger<2m": {
+        "fails": 4,
+        "n": 38,
+        "rate": 0.105
+      },
+      "sep>=4m": {
+        "fails": 0,
+        "n": 2,
+        "rate": 0.0
+      },
+      "sep<4m": {
+        "fails": 4,
+        "n": 37,
+        "rate": 0.108
+      },
+      "back_depth>=6m": {
+        "fails": 0,
+        "n": 2,
+        "rate": 0.0
+      },
+      "back_depth<6m": {
+        "fails": 4,
+        "n": 37,
+        "rate": 0.108
+      }
+    },
+    "fail_by_shape_ALL": {
+      "stagger>=2m": {
+        "fails": 4,
+        "n": 11,
+        "rate": 0.364
+      },
+      "stagger<2m": {
+        "fails": 9,
+        "n": 67,
+        "rate": 0.134
+      },
+      "sep>=4m": {
+        "fails": 6,
+        "n": 10,
+        "rate": 0.6
+      },
+      "sep<4m": {
+        "fails": 7,
+        "n": 68,
+        "rate": 0.103
+      },
+      "back_depth>=6m": {
+        "fails": 0,
+        "n": 2,
+        "rate": 0.0
+      },
+      "back_depth<6m": {
+        "fails": 13,
+        "n": 76,
+        "rate": 0.171
+      }
+    },
+    "diff_fail_stagger_m_ge2.0_minus_lt": {
+      "point": 0.229,
+      "rally_bootstrap_95": [
+        -0.067,
+        0.583
+      ]
+    },
+    "diff_fail_sep_m_ge4.0_minus_lt": {
+      "point": 0.497,
+      "rally_bootstrap_95": [
+        0.172,
+        0.785
+      ]
+    },
+    "diff_fail_back_depth_m_ge6.0_minus_lt": {
+      "point": -0.171,
+      "rally_bootstrap_95": [
+        -0.274,
+        -0.097
+      ]
+    }
+  },
+  "H3_occupancy": {
+    "active_player_frames": 51952,
+    "occupancy_fraction": {
+      "BRA_A": {
+        "front-left": 0.008,
+        "front-centre": 0.209,
+        "front-right": 0.102,
+        "mid-left": 0.0,
+        "mid-centre": 0.245,
+        "mid-right": 0.348,
+        "back-left": 0.0,
+        "back-centre": 0.029,
+        "back-right": 0.059
+      },
+      "BRA_B": {
+        "front-left": 0.107,
+        "front-centre": 0.175,
+        "front-right": 0.012,
+        "mid-left": 0.201,
+        "mid-centre": 0.424,
+        "mid-right": 0.008,
+        "back-left": 0.023,
+        "back-centre": 0.047,
+        "back-right": 0.005
+      },
+      "ISR_A": {
+        "front-left": 0.029,
+        "front-centre": 0.241,
+        "front-right": 0.087,
+        "mid-left": 0.016,
+        "mid-centre": 0.403,
+        "mid-right": 0.156,
+        "back-left": 0.005,
+        "back-centre": 0.044,
+        "back-right": 0.02
+      },
+      "ISR_B": {
+        "front-left": 0.208,
+        "front-centre": 0.173,
+        "front-right": 0.003,
+        "mid-left": 0.371,
+        "mid-centre": 0.145,
+        "mid-right": 0.001,
+        "back-left": 0.063,
+        "back-centre": 0.027,
+        "back-right": 0.01
+      }
+    },
+    "median_lateral_m": {
+      "BRA_A": 6.03,
+      "BRA_B": 3.44,
+      "ISR_A": 5.43,
+      "ISR_B": 2.54
+    },
+    "median_depth_m": {
+      "BRA_A": 3.87,
+      "BRA_B": 4.22,
+      "ISR_A": 3.89,
+      "ISR_B": 3.57
+    },
+    "roles_at_incoming": {
+      "ISR": {
+        "player_on_left_at_incoming": {
+          "ISR_B": 62,
+          "ISR_A": 2
+        },
+        "deeper_player_at_incoming": {
+          "ISR_A": 43,
+          "ISR_B": 21
+        }
+      },
+      "BRA": {
+        "player_on_left_at_incoming": {
+          "BRA_B": 64
+        },
+        "deeper_player_at_incoming": {
+          "BRA_B": 36,
+          "BRA_A": 28
+        }
+      }
+    },
+    "interpolated_fraction_by_player": {
+      "BRA_A": 0.0113,
+      "BRA_B": 0.0116,
+      "ISR_A": 0.0064,
+      "ISR_B": 0.0048
+    }
+  },
+  "H4_contact_candidates": {
+    "candidates_total": 281,
+    "assigned_to_possession": 281,
+    "ambiguous_player": 9,
+    "region_by_player": {
+      "BRA_A": {
+        "chest_shoulder": 12,
+        "head": 45,
+        "lower_leg_foot": 7,
+        "thigh_hip": 7
+      },
+      "BRA_B": {
+        "chest_shoulder": 8,
+        "head": 46,
+        "lower_leg_foot": 4,
+        "thigh_hip": 8
+      },
+      "ISR_A": {
+        "chest_shoulder": 10,
+        "head": 42,
+        "lower_leg_foot": 8,
+        "thigh_hip": 3
+      },
+      "ISR_B": {
+        "chest_shoulder": 13,
+        "head": 56,
+        "lower_leg_foot": 5,
+        "thigh_hip": 7
+      }
+    },
+    "candidates_per_possession": {
+      "0": 90,
+      "1": 53,
+      "2": 56,
+      "3": 37,
+      "5": 1
+    },
+    "first_touch_region_vs_fail": {
+      "chest_shoulder": {
+        "fails": 1,
+        "n": 16
+      },
+      "head": {
+        "fails": 2,
+        "n": 31
+      },
+      "lower_leg_foot": {
+        "fails": 2,
+        "n": 13
+      },
+      "thigh_hip": {
+        "fails": 0,
+        "n": 8
+      }
+    }
+  },
+  "H5_linked_touches": {
+    "0_candidates": {
+      "fails": 8,
+      "n": 11
+    },
+    "1_candidates": {
+      "fails": 4,
+      "n": 14
+    },
+    "2_candidates": {
+      "fails": 1,
+      "n": 24
+    },
+    "3+_candidates": {
+      "fails": 0,
+      "n": 30
+    },
+    "note": "0 candidates often means tracking/occlusion, not zero touches",
+    "possession_duration_s_returned": {
+      "BRA": {
+        "median": 3.38,
+        "n": 36
+      },
+      "ISR": {
+        "median": 3.14,
+        "n": 30
+      }
+    }
+  }
+}

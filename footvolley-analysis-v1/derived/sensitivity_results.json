@@ -1,0 +1,323 @@
+{
+  "grid": [
+    {
+      "offset_frames": 0,
+      "thr_m": 3.5,
+      "team": "ISR",
+      "wide_fail": "7/20",
+      "narrow_fail": "2/19"
+    },
+    {
+      "offset_frames": 0,
+      "thr_m": 3.5,
+      "team": "BRA",
+      "wide_fail": "0/9",
+      "narrow_fail": "4/30"
+    },
+    {
+      "offset_frames": 0,
+      "thr_m": 4.0,
+      "team": "ISR",
+      "wide_fail": "6/8",
+      "narrow_fail": "3/31"
+    },
+    {
+      "offset_frames": 0,
+      "thr_m": 4.0,
+      "team": "BRA",
+      "wide_fail": "0/2",
+      "narrow_fail": "4/37"
+    },
+    {
+      "offset_frames": 0,
+      "thr_m": 4.5,
+      "team": "ISR",
+      "wide_fail": "0/0",
+      "narrow_fail": "9/39"
+    },
+    {
+      "offset_frames": 0,
+      "thr_m": 4.5,
+      "team": "BRA",
+      "wide_fail": "0/2",
+      "narrow_fail": "4/37"
+    },
+    {
+      "offset_frames": 5,
+      "thr_m": 3.5,
+      "team": "ISR",
+      "wide_fail": "7/26",
+      "narrow_fail": "2/13"
+    },
+    {
+      "offset_frames": 5,
+      "thr_m": 3.5,
+      "team": "BRA",
+      "wide_fail": "0/3",
+      "narrow_fail": "4/37"
+    },
+    {
+      "offset_frames": 5,
+      "thr_m": 4.0,
+      "team": "ISR",
+      "wide_fail": "2/8",
+      "narrow_fail": "7/31"
+    },
+    {
+      "offset_frames": 5,
+      "thr_m": 4.0,
+      "team": "BRA",
+      "wide_fail": "0/1",
+      "narrow_fail": "4/39"
+    },
+    {
+      "offset_frames": 5,
+      "thr_m": 4.5,
+      "team": "ISR",
+      "wide_fail": "2/5",
+      "narrow_fail": "7/34"
+    },
+    {
+      "offset_frames": 5,
+      "thr_m": 4.5,
+      "team": "BRA",
+      "wide_fail": "0/0",
+      "narrow_fail": "4/40"
+    },
+    {
+      "offset_frames": 10,
+      "thr_m": 3.5,
+      "team": "ISR",
+      "wide_fail": "6/23",
+      "narrow_fail": "3/16"
+    },
+    {
+      "offset_frames": 10,
+      "thr_m": 3.5,
+      "team": "BRA",
+      "wide_fail": "0/2",
+      "narrow_fail": "4/38"
+    },
+    {
+      "offset_frames": 10,
+      "thr_m": 4.0,
+      "team": "ISR",
+      "wide_fail": "3/13",
+      "narrow_fail": "6/26"
+    },
+    {
+      "offset_frames": 10,
+      "thr_m": 4.0,
+      "team": "BRA",
+      "wide_fail": "0/1",
+      "narrow_fail": "4/39"
+    },
+    {
+      "offset_frames": 10,
+      "thr_m": 4.5,
+      "team": "ISR",
+      "wide_fail": "2/6",
+      "narrow_fail": "7/33"
+    },
+    {
+      "offset_frames": 10,
+      "thr_m": 4.5,
+      "team": "BRA",
+      "wide_fail": "0/1",
+      "narrow_fail": "4/39"
+    },
+    {
+      "offset_frames": 15,
+      "thr_m": 3.5,
+      "team": "ISR",
+      "wide_fail": "5/26",
+      "narrow_fail": "4/13"
+    },
+    {
+      "offset_frames": 15,
+      "thr_m": 3.5,
+      "team": "BRA",
+      "wide_fail": "0/3",
+      "narrow_fail": "4/37"
+    },
+    {
+      "offset_frames": 15,
+      "thr_m": 4.0,
+      "team": "ISR",
+      "wide_fail": "3/16",
+      "narrow_fail": "6/23"
+    },
+    {
+      "offset_frames": 15,
+      "thr_m": 4.0,
+      "team": "BRA",
+      "wide_fail": "0/3",
+      "narrow_fail": "4/37"
+    },
+    {
+      "offset_frames": 15,
+      "thr_m": 4.5,
+      "team": "ISR",
+      "wide_fail": "1/6",
+      "narrow_fail": "8/33"
+    },
+    {
+      "offset_frames": 15,
+      "thr_m": 4.5,
+      "team": "BRA",
+      "wide_fail": "0/1",
+      "narrow_fail": "4/39"
+    }
+  ],
+  "isr_wide_events": [
+    {
+      "event_id": "s1_p3_in2",
+      "rally_id": "s1_p3",
+      "phase": "later_incoming",
+      "anchor_frame": 442,
+      "sep_m": 4.07,
+      "width_m": 2.15,
+      "stagger_m": 3.46,
+      "front_depth_m": 2.23,
+      "back_depth_m": 5.69,
+      "outcome": "returned",
+      "n_candidate_contacts": 1
+    },
+    {
+      "event_id": "s1_p18_in1",
+      "rally_id": "s1_p18",
+      "phase": "first_incoming_in_window",
+      "anchor_frame": 2999,
+      "sep_m": 4.22,
+      "width_m": 3.26,
+      "stagger_m": 2.68,
+      "front_depth_m": 2.16,
+      "back_depth_m": 4.84,
+      "outcome": "terminal_lost",
+      "n_candidate_contacts": 1
+    },
+    {
+      "event_id": "s1_p20_in6",
+      "rally_id": "s1_p20",
+      "phase": "later_incoming",
+      "anchor_frame": 3875,
+      "sep_m": 4.36,
+      "width_m": 4.36,
+      "stagger_m": 0.01,
+      "front_depth_m": 4.22,
+      "back_depth_m": 4.23,
+      "outcome": "terminal_lost",
+      "n_candidate_contacts": 0
+    },
+    {
+      "event_id": "s1_p24_in2",
+      "rally_id": "s1_p24",
+      "phase": "later_incoming",
+      "anchor_frame": 4500,
+      "sep_m": 4.04,
+      "width_m": 0.72,
+      "stagger_m": 3.98,
+      "front_depth_m": 0.87,
+      "back_depth_m": 4.85,
+      "outcome": "terminal_lost",
+      "n_candidate_contacts": 0
+    },
+    {
+      "event_id": "s1_p27_in3",
+      "rally_id": "s1_p27",
+      "phase": "later_incoming",
+      "anchor_frame": 5543,
+      "sep_m": 4.27,
+      "width_m": 4.24,
+      "stagger_m": 0.53,
+      "front_depth_m": 3.38,
+      "back_depth_m": 3.91,
+      "outcome": "returned",
+      "n_candidate_contacts": 3
+    },
+    {
+      "event_id": "s1_p27_in10",
+      "rally_id": "s1_p27",
+      "phase": "later_incoming",
+      "anchor_frame": 6171,
+      "sep_m": 4.04,
+      "width_m": 3.89,
+      "stagger_m": 1.09,
+      "front_depth_m": 4.0,
+      "back_depth_m": 5.09,
+      "outcome": "terminal_lost",
+      "n_candidate_contacts": 1
+    },
+    {
+      "event_id": "s2_p41_in2",
+      "rally_id": "s2_p41",
+      "phase": "later_incoming",
+      "anchor_frame": 11084,
+      "sep_m": 4.25,
+      "width_m": 3.93,
+      "stagger_m": 1.62,
+      "front_depth_m": 3.11,
+      "back_depth_m": 4.73,
+      "outcome": "terminal_lost",
+      "n_candidate_contacts": 0
+    },
+    {
+      "event_id": "s2_p49_in1",
+      "rally_id": "s2_p49",
+      "phase": "first_incoming_in_window",
+      "anchor_frame": 13111,
+      "sep_m": 4.01,
+      "width_m": 3.99,
+      "stagger_m": 0.43,
+      "front_depth_m": 4.85,
+      "back_depth_m": 5.28,
+      "outcome": "terminal_lost",
+      "n_candidate_contacts": 1
+    }
+  ],
+  "isr_wide_rally_clusters": 7,
+  "isr_narrow_fail_events": [
+    {
+      "event_id": "s1_p1_in1",
+      "anchor_frame": 38,
+      "sep_m": 3.84,
+      "phase": "first_incoming_in_window"
+    },
+    {
+      "event_id": "s1_p16_in1",
+      "anchor_frame": 2633,
+      "sep_m": 3.01,
+      "phase": "first_incoming_in_window"
+    },
+    {
+      "event_id": "s2_p46_in2",
+      "anchor_frame": 12333,
+      "sep_m": 2.32,
+      "phase": "later_incoming"
+    }
+  ],
+  "phase_split": {
+    "BRA/first_incoming_in_window": {
+      "wide": "0/0",
+      "narrow": "3/19"
+    },
+    "BRA/later_incoming": {
+      "wide": "0/2",
+      "narrow": "1/18"
+    },
+    "ISR/first_incoming_in_window": {
+      "wide": "2/2",
+      "narrow": "2/13"
+    },
+    "ISR/later_incoming": {
+      "wide": "4/6",
+      "narrow": "1/18"
+    }
+  },
+  "isr_rally_level": {
+    "rallies_with_wide": "6/7 ended in ISR failed defence",
+    "rallies_without_wide": "3/23"
+  },
+  "isr_fisher_two_sided_p_event_level": 0.0006,
+  "tests_run_in_H2": "three predeclared shape splits x 2 teams (6 tests); Bonferroni alpha 0.05/6=0.0083"
+}

@@ -1,0 +1,142 @@
+{
+ "cov_h0.8_v3": {
+  "assumptions": {
+   "width_m": 9.0,
+   "depth_m": 9.0,
+   "horizon_s": 0.8,
+   "reaction_s": 0.25,
+   "speed_mps": 3.0,
+   "base_reach_m": 1.0,
+   "radius_m": 2.6500000000000004,
+   "nx": 30,
+   "ny": 30
+  },
+  "eligible": 128,
+  "excluded": 1,
+  "by_team_median": {
+   "BRA": {
+    "union": 0.463,
+    "uncovered": 0.537,
+    "overlap": 0.071,
+    "back_row_uncovered": 0.738
+   },
+   "ISR": {
+    "union": 0.471,
+    "uncovered": 0.529,
+    "overlap": 0.058,
+    "back_row_uncovered": 0.745
+   }
+  },
+  "by_team_fail_median_uncovered": {
+   "BRA_fail0": 0.543,
+   "BRA_fail1": 0.549,
+   "ISR_fail0": 0.535,
+   "ISR_fail1": 0.523
+  }
+ },
+ "cov_h0.8_v4.5": {
+  "assumptions": {
+   "width_m": 9.0,
+   "depth_m": 9.0,
+   "horizon_s": 0.8,
+   "reaction_s": 0.25,
+   "speed_mps": 4.5,
+   "base_reach_m": 1.0,
+   "radius_m": 3.475,
+   "nx": 30,
+   "ny": 30
+  },
+  "eligible": 128,
+  "excluded": 1,
+  "by_team_median": {
+   "BRA": {
+    "union": 0.685,
+    "uncovered": 0.315,
+    "overlap": 0.194,
+    "back_row_uncovered": 0.448
+   },
+   "ISR": {
+    "union": 0.692,
+    "uncovered": 0.308,
+    "overlap": 0.174,
+    "back_row_uncovered": 0.487
+   }
+  },
+  "by_team_fail_median_uncovered": {
+   "BRA_fail0": 0.318,
+   "BRA_fail1": 0.334,
+   "ISR_fail0": 0.323,
+   "ISR_fail1": 0.303
+  }
+ },
+ "cov_h1.2_v3": {
+  "assumptions": {
+   "width_m": 9.0,
+   "depth_m": 9.0,
+   "horizon_s": 1.2,
+   "reaction_s": 0.25,
+   "speed_mps": 3.0,
+   "base_reach_m": 1.0,
+   "radius_m": 3.8499999999999996,
+   "nx": 30,
+   "ny": 30
+  },
+  "eligible": 128,
+  "excluded": 1,
+  "by_team_median": {
+   "BRA": {
+    "union": 0.774,
+    "uncovered": 0.226,
+    "overlap": 0.272,
+    "back_row_uncovered": 0.322
+   },
+   "ISR": {
+    "union": 0.777,
+    "uncovered": 0.223,
+    "overlap": 0.246,
+    "back_row_uncovered": 0.342
+   }
+  },
+  "by_team_fail_median_uncovered": {
+   "BRA_fail0": 0.227,
+   "BRA_fail1": 0.236,
+   "ISR_fail0": 0.236,
+   "ISR_fail1": 0.223
+  }
+ },
+ "cov_h1.2_v4.5": {
+  "assumptions": {
+   "width_m": 9.0,
+   "depth_m": 9.0,
+   "horizon_s": 1.2,
+   "reaction_s": 0.25,
+   "speed_mps": 4.5,
+   "base_reach_m": 1.0,
+   "radius_m": 5.2749999999999995,
+   "nx": 30,
+   "ny": 30
+  },
+  "eligible": 128,
+  "excluded": 1,
+  "by_team_median": {
+   "BRA": {
+    "union": 0.977,
+    "uncovered": 0.023,
+    "overlap": 0.626,
+    "back_row_uncovered": 0.01
+   },
+   "ISR": {
+    "union": 0.97,
+    "uncovered": 0.03,
+    "overlap": 0.593,
+    "back_row_uncovered": 0.033
+   }
+  },
+  "by_team_fail_median_uncovered": {
+   "BRA_fail0": 0.03,
+   "BRA_fail1": 0.032,
+   "ISR_fail0": 0.033,
+   "ISR_fail1": 0.03
+  }
+ }
+}

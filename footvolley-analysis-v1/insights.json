@@ -1,0 +1,90 @@
+{
+  "scope": "One match ISR vs BRA (2 sets, 60 scoreboard points, cleaned broadcast video timebase, 25 fps), repo tomerzi/fotevolley commit 64c0e79. Exploratory single-match analysis; no video was available for visual verification.",
+  "match_id": "ISR-BRA",
+  "video_verified": false,
+  "findings": [
+    {
+      "id": "F1",
+      "title": "ISR conversion after losing a point collapsed in set 2",
+      "hypothesis": "ISR's ability to win the next point after conceding (side-out under the winner-serves rule) differs between sets",
+      "unit": "scoreboard point",
+      "comparison": "ISR points won immediately after BRA won the previous point: set 1 vs set 2; plus BRA reference",
+      "effect": "ISR 10/17 (59%) in set 1 vs 5/17 (29%) in set 2, -29 percentage points; BRA 10/13 (77%) vs 5/11 (45%). In set 2 BRA had runs of 5 (points 32-36) and 9 (points 39-47). ISR also won only 9/24 (38%) points right after winning one, vs BRA 19/34 (56%).",
+      "eligible_n": 58,
+      "excluded_n": 2,
+      "independent_clusters": 2,
+      "evidence_class": "measured",
+      "confidence": "moderate",
+      "interpretation": "The scoreboard sequence is verified. The decisive gap is ISR's inability to stop BRA runs in set 2 and to keep a point after winning one. Under the standard rally-scoring rule (point winner serves) this means ISR's receive phase failed in set 2 and ISR's serve gave little advantage, but serve identity was not observed in the data.",
+      "limitations": "Only 2 sets; consecutive points are serially dependent so rates have wide uncertainty (17 opportunities per set). Serve team is a rule assumption; rally windows could not be aligned to serves. No information on why points were lost (errors vs opponent winners).",
+      "counterexample": "ISR closed set 2 with streaks of 4 (points 50-53) and 3 (55-57), so the set-2 collapse is concentrated in points 32-47, not uniform.",
+      "practice_drill": "Pressure side-out game: coach serves to ISR repeatedly; ISR must win 2 consecutive rallies after any lost rally to score; track receive-to-attack success per block of 10.",
+      "follow_up_measure": "Next match: ISR win rate on the point after conceding (target >= 50% in every set), plus manual serve labels to confirm receive vs serve split.",
+      "sources": [
+        {"path": "point_events_FINAL_VERIFIED.csv", "fields": "point_number,country,ISR_score_after,BRA_score_after,event_type,timestamp_precision", "selection": "all 60 points; first point of each set has no previous winner"}
+      ],
+      "clips": []
+    },
+    {
+      "id": "F2",
+      "title": "Fixed left/right roles in both pairs; ISR shape more variable and shifted to the left",
+      "hypothesis": "The two pairs use different defensive formations when the ball crosses into their half",
+      "unit": "incoming ball crossing (pair snapshot), clustered by rally",
+      "comparison": "ISR vs BRA pair geometry at the frame the ball crosses the net into their half; player occupancy during active play",
+      "effect": "Left-side player fixed: ISR_B left in 62/64 snapshots, BRA_B in 64/64. ISR_A was the deeper partner in 43/64 (67%) vs BRA balanced 36/28. Separation median ISR 3.58 m (IQR 3.01-3.94) vs BRA 3.21 m (3.02-3.47); depth stagger IQR ISR 0.40-1.81 m vs BRA 0.48-1.00 m. ISR_B spent 64% of active frames in the left third (team view); ISR_A 69% in the centre third and only 26% in the right third, whereas BRA_A spent 51% in the right third.",
+      "eligible_n": 129,
+      "excluded_n": 1,
+      "independent_clusters": 53,
+      "evidence_class": "measured",
+      "confidence": "moderate",
+      "interpretation": "Both teams keep specialised sides. BRA holds a compact, nearly side-by-side shape around 3.0-3.5 m. ISR alternates between side-by-side and a front/back split with ISR_A deep, and as a pair sits left of centre, leaving the right channel (team view) to a centrally positioned ISR_A.",
+      "limitations": "Positions use bounding-box feet through a homography with no landmark residuals; airborne players are mis-projected. 99.5% of boxes are not manually verified. Anchor is the ball crossing frame, not the opponent contact. Occupancy describes positioning, not success. Descriptive only.",
+      "counterexample": "In 21/64 ISR snapshots ISR_B was the deeper player, so the front/back split is a tendency, not a fixed rule; ISR stagger <2 m in 29/39 labelled events.",
+      "practice_drill": "Shadow-defence drill: coach signals opponent attack from three zones; ISR pair must arrive in a pre-agreed side-by-side base (3.0-3.5 m apart, both 4-5 m from net) before the signal; ISR_A rehearses covering the right channel.",
+      "follow_up_measure": "Next match: share of ISR incoming snapshots with separation 3.0-3.5 m and stagger <1 m, and ISR_A right-third occupancy.",
+      "sources": [
+        {"path": "correct_bbox/player_boxes_v9.csv", "fields": "frame,player,team,court_x,court_y,source", "selection": "non-interpolated boxes; anchor frames from ball crossings and frames inside possession runs"},
+        {"path": "correct_bbox/ball_boxes_corrected3.csv", "fields": "frame,center_x,center_y,source,shot", "selection": "observed (detected/rescued/manual) frames for side-of-net runs"},
+        {"path": "homography_px_to_m.npy", "fields": "3x3 px->m", "selection": "net line projection only"}
+      ],
+      "clips": []
+    },
+    {
+      "id": "F3",
+      "title": "ISR lost most incoming balls when caught >= 4 m apart at the crossing - but only at the crossing moment",
+      "hypothesis": "Wide partner separation when the opponent's ball crosses the net is associated with failing to return it",
+      "unit": "incoming possession, clustered by rally",
+      "comparison": "Failed defence (rally ended on their half and they lost) vs returned, by separation >= 4 m vs < 4 m at the crossing frame",
+      "effect": "ISR: 6/8 (75%) failed when >= 4 m vs 3/31 (10%) when < 4 m; rally-bootstrap difference (both teams) +50 pp, 95% CI 17-79 pp. Rally level: 6/7 ISR rallies containing a wide crossing ended in failed defence vs 3/23 others. BRA was almost never >= 4 m apart (2/39). Modeled coverage (coverage.py, 4 scenarios, R 2.65-5.27 m) showed no difference in uncovered area between failed and returned balls.",
+      "eligible_n": 78,
+      "excluded_n": 44,
+      "independent_clusters": 39,
+      "evidence_class": "exploratory",
+      "confidence": "low",
+      "interpretation": "Separation at the crossing is more likely a symptom of being pulled apart (one partner already chasing, blocking or out of position after the previous attack) than a chosen formation: measured 0.2 s earlier the association disappears (2/8 vs 7/31). The coaching-relevant question is transition: how ISR recovers into a connected shape after its own attack.",
+      "limitations": "Outcome label depends on unverified scoreboard-to-play alignment; 33 unclean and 10 terminal_won possessions excluded; 8 wide events in 7 rallies; anchor sensitivity fails; feet projection wrong during jumps; threshold 4 m chosen from a 3-split predeclared grid (6 tests). No video check.",
+      "counterexample": "s1_p3 (frame 442) and s1_p27 (frame 5543): ISR >= 4 m apart and still returned the ball. Three ISR failures occurred with separation 2.3-3.8 m.",
+      "practice_drill": "Attack-and-recover drill: ISR attacks a fed ball, coach immediately counter-attacks; pair must close to <= 3.5 m and both be 3-5 m from net before the counter-ball crosses; score only rallies where the recovery shape is reached.",
+      "follow_up_measure": "After manual serve/contact labels: ISR separation at the opponent's attack contact (not the crossing), and failed-defence rate by recovery shape; check if the effect replicates in a second match.",
+      "model_assumptions": "coverage.py isotropic reach on a 9x9 m half, 30x30 grid, reaction 0.25 s, base reach 1.0 m, horizons 0.8/1.2 s, speeds 3/4.5 m/s; ground-plane only, ignores ball trajectory and jumps.",
+      "sources": [
+        {"path": "correct_bbox/player_boxes_v9.csv", "fields": "frame,player,team,court_x,court_y,source", "selection": "both partners observed at anchor frame"},
+        {"path": "correct_bbox/ball_boxes_corrected3.csv", "fields": "frame,center_x,center_y,source,shot", "selection": "observed frames; clean crossings within same shot"},
+        {"path": "point_events_FINAL_VERIFIED.csv", "fields": "frame,country", "selection": "single-point windows (56/58)"},
+        {"path": "team_side_ranges_full_video.csv", "fields": "start_frame,end_frame,blue_side,yellow_side", "selection": "half at each ball run's first frame"}
+      ],
+      "clips": [
+        {"video": "main_camera_clean_v2.mp4 (Git LFS; not fetched, unverified)", "start_s": 117.0, "end_s": 123.0, "label": "s1_p18 ISR wide, failed"},
+        {"video": "main_camera_clean_v2.mp4 (Git LFS; not fetched, unverified)", "start_s": 152.0, "end_s": 158.0, "label": "s1_p20 ISR wide, failed"},
+        {"video": "main_camera_clean_v2.mp4 (Git LFS; not fetched, unverified)", "start_s": 177.0, "end_s": 183.0, "label": "s1_p24 ISR wide, failed"},
+        {"video": "main_camera_clean_v2.mp4 (Git LFS; not fetched, unverified)", "start_s": 243.8, "end_s": 249.8, "label": "s1_p27 ISR wide, failed"},
+        {"video": "main_camera_clean_v2.mp4 (Git LFS; not fetched, unverified)", "start_s": 440.4, "end_s": 446.4, "label": "s2_p41 ISR wide, failed"},
+        {"video": "main_camera_clean_v2.mp4 (Git LFS; not fetched, unverified)", "start_s": 521.4, "end_s": 527.4, "label": "s2_p49 ISR wide, failed"},
+        {"video": "main_camera_clean_v2.mp4 (Git LFS; not fetched, unverified)", "start_s": 14.7, "end_s": 20.7, "label": "counterexample s1_p3 ISR wide, returned"},
+        {"video": "main_camera_clean_v2.mp4 (Git LFS; not fetched, unverified)", "start_s": 218.7, "end_s": 224.7, "label": "counterexample s1_p27 ISR wide, returned"}
+      ]
+    }
+  ],
+  "not_retained": ["T1 contact-region mix (unverified detector, head-biased)", "T2 first-touch region vs return (5 failures)", "L2 touch count vs return (tautological)", "A3 modeled coverage by team (null)"],
+  "unavailable": ["reception control rate", "set attackability", "attack conversion", "preparation/recovery latency", "pose contact angles", "actual seam vulnerability"]
+}
