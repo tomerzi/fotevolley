@@ -17,6 +17,8 @@ What the owner checked by hand, and the files that hold it (ground truth; automa
 |---|---|---|
 | Who is who in Israel: Ron Ben Ishay wears the white armband (box code ISR_A), Maor Haas is ISR_B; the two names were swapped in all box-derived data and are now corrected | `coach_analysis/graz2022_final_player_names.csv` | labelling page: 6 blind frames, 5 marked touches, 24 points |
 | Last touch of disputed points, dead ball at point 2, a missing touch at point 56, actions in rallies 2, 39, 50 | `data/contacts/owner_decisions.csv` | doubts tool |
+| Ron Ben Ishay's box is Ron along the whole match: 32 frames (24 spread evenly, 8 right after Ron and Maor cross), all Ron (2026-11-24) | `data/experiments/owner_checks_2026-11-24/ron_identity_frames.csv` | contact sheets |
+| Touch labels (player, body part, side) at 97 touches: 40 sampled + all 57 others the detector disagrees with or is unsure of; every player right, 2 fixes (touch 40 right foot, touch 246 Ron right foot) (2026-11-24) | `data/experiments/owner_checks_2026-11-24/touch_check.csv`; fixes in `data/contacts/touch_labels_final.csv` | contact sheets |
 | Stance at 69 touches (stood set / moving / jumped), facing at 60 frames, feet at 40 touches | `data/experiments/feet_isr_labels/answers_final.csv`, `data/experiments/doubts/answers.csv`; as columns `stance_label`, `facing_label` in `data/analysis/touch_body.csv` | labelling page, doubts tool |
 
 Coach metrics built on it (heat maps by phase, touch success, error chain, set quality, joint angles, return to

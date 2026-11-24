@@ -2,7 +2,7 @@ touch,frame,time_sec,rally,in_play,player,body_part,side,kind
 1,8,0.31,1,True,Franklin,chest,,player
 2,38,1.52,1,True,Hiltinho,foot,left,player
 3,85,3.4,2,True,Franklin,foot,right,player
-4,98,3.9,2,True,Hiltinho,foot,right,player
+4,98,3.9,2,False,Hiltinho,foot,right,player
 5,176,7.02,3,False,,,,pre_serve
 6,196,7.82,3,False,,,,pre_serve
 7,214,8.57,3,False,,,,pre_serve
@@ -38,7 +38,7 @@ touch,frame,time_sec,rally,in_play,player,body_part,side,kind
 37,1418,56.71,11,True,Franklin,chest,,player
 38,1452,58.1,11,True,Hiltinho,foot,left,player
 39,1468,58.7,11,True,,,,no_touch
-40,1527,61.08,12,True,Hiltinho,foot,left,player
+40,1527,61.08,12,True,Hiltinho,foot,right,player
 41,1562,62.49,12,True,Franklin,foot,right,player
 42,1601,64.04,12,True,Hiltinho,head,,player
 43,1631,65.25,13,True,Franklin,chest,,player
@@ -244,7 +244,7 @@ touch,frame,time_sec,rally,in_play,player,body_part,side,kind
 243,8864,354.56,39,True,Maor_Haas,foot,right,player
 244,8898,355.91,39,True,Hiltinho,foot,left,player
 245,8933,357.31,39,True,Franklin,chest,,player
-246,8966,358.63,39,True,,,,no_touch
+246,8966,358.63,39,True,Ron_Ben_Ishay,foot,right,player
 247,8982,359.28,39,True,Franklin,foot,right,player
 248,9023,360.91,39,True,Hiltinho,chest,,player
 249,9052,362.08,39,True,Franklin,head,,player

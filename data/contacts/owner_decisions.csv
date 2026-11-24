@@ -9,3 +9,7 @@ point,,13,,Maor_Haas,last_touch,Maor_Haas,"owner 2026-11-24: touch table confirm
 point,,2,,Franklin,last_touch,Franklin,"owner 2026-11-24"
 point,,27,,Maor_Haas,last_touch,Maor_Haas,"owner 2026-11-24 (clip 5030-5150): Maor_Haas touched last, the ball went out. The ball is hidden at v3 5092-5124 and comes back rising at 5128, so a touch there is missing from the table (the table's last touch is Maor_Haas's set at 5049)"
 point,,28,,Franklin,last_touch,Franklin,"owner 2026-11-24 (clip 5985-6052): Franklin touched last (attack at 6005); the ball passed the Israeli defender at ~6015 without a touch. The earlier review (Ron_Ben_Ishay) was wrong"
+touch,40,12,1527,Hiltinho,limb_side,right,"owner 2026-11-24 touch check: right foot, not left (applied in touch_labels_final.csv)"
+touch,246,39,8966,Ron_Ben_Ishay,kind,player,"owner 2026-11-21 (doubt page, rally 39): an untagged Ron_Ben_Ishay touch splits Brazil's possession; until now only patched into touches_master.csv (applied in touch_labels_final.csv)"
+touch,246,39,8966,Ron_Ben_Ishay,body_part,foot,"owner 2026-11-24 touch check: right foot (applied in touch_labels_final.csv)"
+touch,3,2,85,Franklin,action,reception,"owner 2026-11-24 (with the dead ball at touch 4): Franklin's touch 3 is the reception, not a serve"

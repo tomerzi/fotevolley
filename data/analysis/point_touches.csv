@@ -1,6 +1,6 @@
 rally,set,winner,end_type,owner_category,last_player,last_team,body_part,side,action,touch_in_possession,possession_len,kind,matches_owner_last_touch,last_touch_seen,owner_last_touch,x,y,square,matches_owner_final
 1,1,BRA,landed_in,relabel,Hiltinho,BRA,foot,left,attack,2.0,2.0,winning_touch,True,True,Hiltinho,14.26,5.11,R6,True
-2,1,ISR,landed_in,ok,Franklin,BRA,foot,right,reception,1.0,2.0,losing_touch,True,True,Franklin,5.09,3.3,L5,True
+2,1,ISR,landed_in,ok,Franklin,BRA,foot,right,reception,1.0,1.0,losing_touch,True,True,Franklin,5.09,3.3,L5,True
 3,1,BRA,landed_in,relabel,Hiltinho,BRA,foot,left,attack,2.0,2.0,winning_touch,True,True,Hiltinho,12.0,5.91,R8,True
 4,1,ISR,landed_in,relabel,Maor_Haas,ISR,head,,attack,3.0,3.0,winning_touch,True,True,Maor_Haas,6.02,6.67,L9,True
 5,1,BRA,landed_in,relabel,Franklin,BRA,head,,attack,2.0,2.0,winning_touch,True,True,Franklin,9.69,4.33,R4,True

@@ -3,8 +3,8 @@ per item) to the analysis data:
 - landings: a click on the ball at its landing frame -> court x, y on the sand (camera ray at z = 0.11 m); a click
   with "ברשת" -> the point on the net plane (x = 8). The verdict sets the kind (in_court / out / net). "לא רואים"
   keeps the old values. Source becomes "hand-marked (doubt page)".
-- rally 39: the untagged touch at v2 frame 10506 is Ron Ben Ishay (user), which splits Brazil's possession.
-Writes data/analysis/point_landings.csv and data/contacts/touches_master.csv in place (originals kept as *_before_doubt.csv).
+Writes data/analysis/point_landings.csv in place (original kept as point_landings_before_doubt.csv). The rally 39 touch
+(v2 frame 10506) is now in the touch labels, not patched here.
 """
 import os, sys, json, glob, shutil
 import numpy as np, pandas as pd
@@ -55,27 +55,9 @@ for k, m in marks.items():
     n += 1
 land.to_csv(LP, index=False)
 print('landings updated:', n)
-# rally 39
-TP = 'data/contacts/touches_master.csv'
-if not os.path.exists(TP.replace('.csv', '_before_doubt.csv')):
-    shutil.copy(TP, TP.replace('.csv', '_before_doubt.csv'))
-t = pd.read_csv(TP.replace('.csv', '_before_doubt.csv'))
-if marks.get('touch_39'):
-    i = t.index[(t.rally == 39) & (t.v2_frame == 10506)][0]
-    t.loc[i, ['kind', 'player', 'team', 'in_play', 'action']] = ['player', 'Ron_Ben_Ishay', 'ISR', True, 'attack']
-    t.loc[i, 'action_subtype'] = 'returned'
-    # possessions of rally 39 rebuilt from the team sequence
-    r = t[(t.rally == 39) & (t.kind == 'player')].sort_values('v2_frame')
-    pos, k, last = 0, 0, None
-    for j in r.index:
-        if t.loc[j, 'team'] != last:
-            pos += 1; k = 0; last = t.loc[j, 'team']
-        k += 1; t.loc[j, 'possession'] = pos; t.loc[j, 'touch_in_possession'] = k
-    for p_, g in t[(t.rally == 39) & (t.kind == 'player')].groupby('possession'):
-        t.loc[g.index, 'possession_len'] = len(g)
-    j = r.index[r.v2_frame == 10522][0]; t.loc[j, 'action'] = 'reception'; t.loc[j, 'action_subtype'] = 'after_attack'
-    t.to_csv(TP, index=False)
-    print(t[t.rally == 39][['v2_frame', 'player', 'team', 'action', 'possession', 'touch_in_possession', 'possession_len']].to_string())
+# rally 39 (the untagged touch at v3 frame 8966 is Ron_Ben_Ishay) now lives in the source labels
+# (data/contacts/touch_labels_final.csv, touch 246; data/contacts/owner_decisions.csv); this script no longer
+# patches data/contacts/touches_master.csv, which scripts/contacts/build_touch_table.py rebuilds.
 print(land[land.source == 'hand-marked (doubt page)'][['rally', 'winner', 'kind', 'x', 'y', 'height_m']].to_string())
 
 # ---- partner gap: 4 clicks = both feet of each defender at the opponent's attack -> sand plane (z = 0.03 m),

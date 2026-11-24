@@ -2,7 +2,7 @@ touch,frame,rally,in_play,player,body_part,approach_speed,approach_frames,speed_
 1,8,1,True,Franklin,chest,0.714,8,0.736
 2,38,1,True,Hiltinho,foot,0.817,12,1.132
 3,85,2,True,Franklin,foot,4.116,12,4.165
-4,98,2,True,Hiltinho,foot,1.571,12,0.374
+4,98,2,False,Hiltinho,foot,1.571,12,0.374
 8,336,3,True,Franklin,chest,1.501,12,0.822
 9,369,3,True,Hiltinho,foot,1.416,12,2.495
 10,408,3,False,Maor_Haas,foot,1.362,12,1.295
@@ -224,6 +224,7 @@ touch,frame,rally,in_play,player,body_part,approach_speed,approach_frames,speed_
 243,8864,39,True,Maor_Haas,foot,3.116,12,3.354
 244,8898,39,True,Hiltinho,foot,3.227,12,0.971
 245,8933,39,True,Franklin,chest,2.066,12,0.068
+246,8966,39,True,Ron_Ben_Ishay,foot,2.198,12,1.932
 247,8982,39,True,Franklin,foot,1.536,12,3.296
 248,9023,39,True,Hiltinho,chest,1.211,12,0.811
 249,9052,39,True,Franklin,head,1.02,12,1.458

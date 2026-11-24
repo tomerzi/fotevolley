@@ -111,7 +111,7 @@ touch,rally,set,player,team,action,body_part,to,next_action,quality,air_time_s,a
 239.0,39,2,Hiltinho,BRA,reception,chest,Franklin,attack,to_attack,1.2,3.8,0.08,3.92
 241.0,39,2,Maor_Haas,ISR,reception,foot,Ron_Ben_Ishay,set,to_attack,1.64,3.89,0.08,1.91
 242.0,39,2,Ron_Ben_Ishay,ISR,set,shoulder,Maor_Haas,attack,to_attack,0.96,1.96,0.08,2.71
-244.0,39,2,Hiltinho,BRA,attack,foot,Franklin,set,returned,1.4,3.67,0.25,2.6
+244.0,39,2,Hiltinho,BRA,attack,foot,Franklin,attack,returned,1.4,3.67,0.25,2.6
 247.0,39,2,Franklin,BRA,attack,foot,Hiltinho,set,returned,1.64,4.52,0.08,1.94
 248.0,39,2,Hiltinho,BRA,set,chest,Franklin,attack,to_attack,1.16,3.8,0.08,1.02
 250.0,39,2,Ron_Ben_Ishay,ISR,reception,foot,Maor_Haas,set,to_attack,0.28,1.66,0.1,0.02

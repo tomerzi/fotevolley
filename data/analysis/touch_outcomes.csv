@@ -1,7 +1,7 @@
 touch,frame,v2_frame,time_sec,rally,set,player,team,body_part,limb_side,action,action_subtype,possession,touch_in_possession,possession_len,next_player,last,shown,lost,won_point,success,quality,end_type
 1.0,8,8.0,0.32,1,1,Franklin,BRA,chest,,reception,after_serve,1.0,1.0,2.0,Hiltinho,False,True,False,False,1.0,to_attack,landed_in
 2.0,38,38.0,1.52,1,1,Hiltinho,BRA,foot,left,attack,kill,1.0,2.0,2.0,,True,True,False,True,1.0,kill,landed_in
-3.0,85,122.0,3.4,2,1,Franklin,BRA,foot,right,reception,after_serve,1.0,1.0,2.0,,True,True,True,False,0.0,lost,landed_in
+3.0,85,122.0,3.4,2,1,Franklin,BRA,foot,right,reception,owner,1.0,1.0,1.0,,True,True,True,False,0.0,lost,landed_in
 8.0,336,408.0,13.44,3,1,Franklin,BRA,chest,,reception,after_serve,1.0,1.0,2.0,Hiltinho,False,True,False,False,1.0,to_attack,landed_in
 9.0,369,441.0,14.76,3,1,Hiltinho,BRA,foot,left,attack,kill,1.0,2.0,2.0,,True,True,False,True,1.0,kill,landed_in
 11.0,459,531.0,18.36,4,1,Maor_Haas,ISR,chest,,reception,after_serve,1.0,1.0,3.0,Ron_Ben_Ishay,False,True,False,False,1.0,to_attack,landed_in
@@ -31,7 +31,7 @@ touch,frame,v2_frame,time_sec,rally,set,player,team,body_part,limb_side,action,a
 36.0,1383,1573.0,55.32,11,1,Hiltinho,BRA,chest,,reception,after_serve,1.0,1.0,3.0,Franklin,False,True,False,False,1.0,to_attack,landed_out
 37.0,1418,1608.0,56.72,11,1,Franklin,BRA,chest,,set,,1.0,2.0,3.0,Hiltinho,False,True,False,False,1.0,to_attack,landed_out
 38.0,1452,1642.0,58.08,11,1,Hiltinho,BRA,foot,left,attack,error,1.0,3.0,3.0,,True,True,True,False,0.0,lost,landed_out
-40.0,1527,1870.0,61.08,12,1,Hiltinho,BRA,foot,left,reception,after_serve,1.0,1.0,3.0,Franklin,False,True,False,False,1.0,to_attack,net
+40.0,1527,1870.0,61.08,12,1,Hiltinho,BRA,foot,right,reception,after_serve,1.0,1.0,3.0,Franklin,False,True,False,False,1.0,to_attack,net
 41.0,1562,1905.0,62.48,12,1,Franklin,BRA,foot,right,set,,1.0,2.0,3.0,Hiltinho,False,True,False,False,1.0,to_attack,net
 42.0,1601,1944.0,64.04,12,1,Hiltinho,BRA,head,,attack,error,1.0,3.0,3.0,,True,True,True,False,0.0,lost,net
 43.0,1631,1989.0,65.24,13,1,Franklin,BRA,chest,,reception,after_serve,1.0,1.0,2.0,Hiltinho,False,True,False,False,1.0,to_attack,out
@@ -203,10 +203,10 @@ touch,frame,v2_frame,time_sec,rally,set,player,team,body_part,limb_side,action,a
 241.0,8799,10339.0,351.96,39,2,Maor_Haas,ISR,foot,right,reception,after_attack,2.0,1.0,3.0,Ron_Ben_Ishay,False,True,False,False,1.0,to_attack,landed_in
 242.0,8840,10380.0,353.6,39,2,Ron_Ben_Ishay,ISR,shoulder,right,set,,2.0,2.0,3.0,Maor_Haas,False,True,False,False,1.0,to_attack,landed_in
 243.0,8864,10404.0,354.56,39,2,Maor_Haas,ISR,foot,right,attack,returned,2.0,3.0,3.0,Hiltinho,False,True,False,False,1.0,returned,landed_in
-244.0,8898,10438.0,355.92,39,2,Hiltinho,BRA,foot,left,attack,after_attack,3.0,1.0,2.0,Franklin,False,True,False,False,1.0,returned,landed_in
-245.0,8933,10473.0,357.32,39,2,Franklin,BRA,chest,,set,,3.0,2.0,2.0,Ron_Ben_Ishay,False,True,False,False,1.0,kept,landed_in
-246.0,8966,10506.0,358.64,39,2,Ron_Ben_Ishay,ISR,,,attack,returned,4.0,1.0,1.0,Franklin,False,True,False,False,1.0,returned,landed_in
-247.0,8982,10522.0,359.28,39,2,Franklin,BRA,foot,right,attack,after_attack,5.0,1.0,3.0,Hiltinho,False,True,False,False,1.0,returned,landed_in
+244.0,8898,10438.0,355.92,39,2,Hiltinho,BRA,foot,left,attack,owner,3.0,1.0,2.0,Franklin,False,True,False,False,1.0,returned,landed_in
+245.0,8933,10473.0,357.32,39,2,Franklin,BRA,chest,,attack,returned,3.0,2.0,2.0,Ron_Ben_Ishay,False,True,False,False,1.0,returned,landed_in
+246.0,8966,10506.0,358.64,39,2,Ron_Ben_Ishay,ISR,foot,right,attack,returned,4.0,1.0,1.0,Franklin,False,True,False,False,1.0,returned,landed_in
+247.0,8982,10522.0,359.28,39,2,Franklin,BRA,foot,right,attack,owner,5.0,1.0,3.0,Hiltinho,False,True,False,False,1.0,returned,landed_in
 248.0,9023,10563.0,360.92,39,2,Hiltinho,BRA,chest,,set,,5.0,2.0,3.0,Franklin,False,True,False,False,1.0,to_attack,landed_in
 249.0,9052,10592.0,362.08,39,2,Franklin,BRA,head,,attack,returned,5.0,3.0,3.0,Ron_Ben_Ishay,False,True,False,False,1.0,returned,landed_in
 250.0,9071,10611.0,362.84,39,2,Ron_Ben_Ishay,ISR,foot,left,reception,after_attack,6.0,1.0,3.0,Maor_Haas,False,True,False,False,1.0,to_attack,landed_in

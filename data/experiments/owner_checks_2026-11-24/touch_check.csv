@@ -1,0 +1,98 @@
+sheet,item,touch,frame,label_player,label_part,label_side,why_shown,owner_answer
+sample,1,4,98,Hiltinho,foot,right,stratified,correct
+sample,2,8,336,Franklin,chest,,stratified,correct
+sample,3,11,459,Maor_Haas,chest,,stratified,correct
+sample,4,15,603,Franklin,head,,stratified,correct
+sample,5,26,1040,Hiltinho,chest,,stratified,correct
+sample,6,31,1198,Hiltinho,foot,left,risky,correct
+sample,7,40,1527,Hiltinho,foot,left,stratified,limb_side=right
+sample,8,43,1631,Franklin,chest,,risky,correct
+sample,9,69,2477,Ron_Ben_Ishay,chest,,stratified,correct
+sample,10,86,3011,Franklin,foot,right,stratified,correct
+sample,11,87,3049,Hiltinho,foot,left,risky,correct
+sample,12,98,3513,Ron_Ben_Ishay,foot,right,risky,correct
+sample,13,101,3659,Ron_Ben_Ishay,foot,left,risky,correct
+sample,14,124,4675,Ron_Ben_Ishay,head,,stratified,correct
+sample,15,133,4944,Hiltinho,head,,stratified,correct
+sample,16,136,5040,Ron_Ben_Ishay,foot,left,stratified,correct
+sample,17,165,6074,Franklin,head,,risky,correct
+sample,18,179,6572,Maor_Haas,foot,right,stratified,correct
+sample,19,187,6892,Franklin,chest,,stratified,correct
+sample,20,243,8864,Maor_Haas,foot,right,stratified,correct
+sample,21,248,9023,Hiltinho,chest,,risky,correct
+sample,22,250,9071,Ron_Ben_Ishay,foot,left,risky,correct
+sample,23,251,9078,Maor_Haas,chest,,risky,correct
+sample,24,264,9678,Maor_Haas,head,,stratified,correct
+sample,25,271,10061,Ron_Ben_Ishay,shoulder,right,risky,correct
+sample,26,278,10362,Hiltinho,head,,risky,correct
+sample,27,287,10755,Hiltinho,chest,,risky,correct
+sample,28,288,10786,Franklin,head,,stratified,correct
+sample,29,298,11122,Ron_Ben_Ishay,chest,,stratified,correct
+sample,30,302,11263,Ron_Ben_Ishay,foot,right,stratified,correct
+sample,31,304,11334,Maor_Haas,chest,,risky,correct
+sample,32,308,11456,Franklin,chest,,risky,correct
+sample,33,309,11494,Hiltinho,head,,stratified,correct
+sample,34,311,11541,Hiltinho,chest,,stratified,correct
+sample,35,316,11686,Franklin,foot,right,risky,correct
+sample,36,318,11760,Maor_Haas,chest,,stratified,correct
+sample,37,325,11966,Maor_Haas,head,,stratified,correct
+sample,38,326,12001,Ron_Ben_Ishay,head,,stratified,correct
+sample,39,327,12025,Franklin,foot,left,stratified,correct
+sample,40,344,12778,Hiltinho,chest,,risky,correct
+uncertain,U1,3,85,Franklin,foot,right,part; action check,correct
+uncertain,U2,17,661,Ron_Ben_Ishay,chest,,part,correct
+uncertain,U3,24,921,Ron_Ben_Ishay,chest,,part,correct
+uncertain,U4,28,1109,Ron_Ben_Ishay,shoulder,right,part; side,correct
+uncertain,U5,48,1773,Franklin,foot,left,part; side,correct
+uncertain,U6,58,2144,Maor_Haas,chest,,2nd player close: Ron thigh; low confidence,correct
+uncertain,U7,60,2189,Franklin,foot,left,part,correct
+uncertain,U8,63,2288,Ron_Ben_Ishay,arm,right,part; side,correct
+uncertain,U9,76,2694,Franklin,foot,right,part,correct
+uncertain,U10,91,3223,Franklin,chest,,part,correct
+uncertain,U11,92,3264,Hiltinho,shoulder,right,part; side,correct
+uncertain,U12,104,3799,Ron_Ben_Ishay,chest,,2nd player close: Maor shin; low confidence,correct
+uncertain,U13,110,4117,Maor_Haas,head,,2nd player close: Ron head; low confidence,correct
+uncertain,U14,115,4341,Maor_Haas,chest,,part,correct
+uncertain,U15,118,4430,Franklin,head,,part,correct
+uncertain,U16,121,4601,Franklin,chest,,part,correct
+uncertain,U17,137,5049,Maor_Haas,foot,right,part; side,correct
+uncertain,U18,145,5419,Franklin,foot,right,part,correct
+uncertain,U19,147,5473,Ron_Ben_Ishay,head,,part,correct
+uncertain,U20,153,5716,Ron_Ben_Ishay,foot,right,part,correct
+uncertain,U21,154,5744,Maor_Haas,foot,right,part; side,correct
+uncertain,U22,159,5906,Maor_Haas,shoulder,right,part; side,correct
+uncertain,U23,162,6005,Franklin,foot,right,side,correct
+uncertain,U24,169,6186,Ron_Ben_Ishay,foot,left,part,correct
+uncertain,U25,170,6222,Maor_Haas,foot,right,part; side,correct
+uncertain,U26,176,6460,Maor_Haas,head,,2nd player close: Ron chest; low confidence,correct
+uncertain,U27,177,6520,Hiltinho,chest,,part,correct
+uncertain,U28,189,6934,Maor_Haas,knee,right,part,correct
+uncertain,U29,190,7020,Maor_Haas,shoulder,right,part; side,correct
+uncertain,U30,196,7206,Ron_Ben_Ishay,foot,left,part; side,correct
+uncertain,U31,202,7382,Ron_Ben_Ishay,foot,left,part; side,correct
+uncertain,U32,204,7401,Maor_Haas,chest,,part,correct
+uncertain,U33,229,8276,Hiltinho,foot,right,side,correct
+uncertain,U34,234,8532,Hiltinho,shoulder,left,part; side,correct
+uncertain,U35,242,8840,Ron_Ben_Ishay,shoulder,right,part; side,correct
+uncertain,U36,244,8898,Hiltinho,foot,left,action check,correct
+uncertain,U37,245,8933,Franklin,chest,,action check,correct
+uncertain,U38,246,8966,Ron_Ben_Ishay,,,part; 2nd player close: Hiltinho foot; low confidence,body_part=foot; limb_side=right
+uncertain,U39,247,8982,Franklin,foot,right,2nd player close: Hiltinho torso; low confidence; action check,correct
+uncertain,U40,249,9052,Franklin,head,,action check,correct
+uncertain,U41,259,9393,Hiltinho,foot,right,low confidence,correct
+uncertain,U42,260,9426,Franklin,foot,right,side,correct
+uncertain,U43,267,9892,Maor_Haas,head,,2nd player close: Ron shoulder; low confidence,correct
+uncertain,U44,273,10145,Franklin,shoulder,left,part; side,correct
+uncertain,U45,281,10455,Maor_Haas,shoulder,right,part; side,correct
+uncertain,U46,297,11084,Maor_Haas,knee,right,part,correct
+uncertain,U47,299,11157,Maor_Haas,shoulder,right,part; side,correct
+uncertain,U48,305,11369,Ron_Ben_Ishay,chest,,action check,correct
+uncertain,U49,306,11403,Maor_Haas,head,,action check,correct
+uncertain,U50,323,11921,Franklin,foot,right,part; 2nd player close: Hiltinho foot; low confidence,correct
+uncertain,U51,338,12514,Maor_Haas,chest,,part,correct
+uncertain,U52,339,12553,Ron_Ben_Ishay,shoulder,right,part; side,correct
+uncertain,U53,346,12825,Ron_Ben_Ishay,foot,right,side,correct
+uncertain,U54,352,13022,Ron_Ben_Ishay,foot,right,part,correct
+uncertain,U55,354,13067,Franklin,foot,right,part; side,correct
+uncertain,U56,357,13146,Maor_Haas,foot,right,part; side,correct
+uncertain,U57,359,13296,Hiltinho,foot,left,part; side,correct

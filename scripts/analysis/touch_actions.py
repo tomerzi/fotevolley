@@ -16,7 +16,7 @@ the serving team (winner of the previous rally) that is a lone foot touch is the
 row is added at the rally start (team = previous winner; in rally 1 the team that did not receive), player unknown.
 Out-of-play touches (pre-serve juggling, after the ball died) get action 'dead'.
 
-inputs : data/contacts/touch_labels_final.csv, data/points/rallies_v3video.csv
+inputs : data/contacts/touch_labels_final.csv, data/points/rallies_v3video.csv, data/contacts/owner_decisions.csv (action overrides)
 output : data/analysis/touch_actions_v3.csv
 usage: python scripts/analysis/touch_actions.py"""
 import os
@@ -48,6 +48,10 @@ def main():
     ev = pd.read_csv(os.path.join(ROOT, 'data', 'contacts', 'ball_contacts_v3.csv'))
     ev = ev[ev.in_play & (ev.event_type != 'touch')]
     pos = pd.read_csv(os.path.join(OUT, 'player_positions_v3.csv'), usecols=['frame', 'team', 'x'])
+    # the owner's action decisions (data/contacts/owner_decisions.csv)
+    dec = pd.read_csv(os.path.join(ROOT, 'data', 'contacts', 'owner_decisions.csv'))
+    dec = dec[(dec.kind == 'touch') & (dec.field == 'action')]
+    owner_action = dict(zip(dec.touch.astype(int), dec.value))
     rows = []
     for r in rallies.itertuples():
         tr = t[t.rally == r.rally].sort_values('frame')
@@ -60,7 +64,7 @@ def main():
         runs = (play.team != play.team.shift()).cumsum().values
         poss = [g for _, g in play.groupby(runs, sort=False)]
         serve_seen = bool(poss) and poss[0].team.iloc[0] == server and len(poss[0]) == 1 and \
-            poss[0].body_part.iloc[0] == 'foot'
+            poss[0].body_part.iloc[0] == 'foot' and owner_action.get(int(poss[0].touch.iloc[0]), 'serve') == 'serve'
         if not serve_seen and server is not None:
             rows.append(dict(touch=np.nan, frame=r.start_frame, rally=r.rally, set=r.set, player=None, team=server,
                              body_part=None, in_play=True, action='serve', subtype='inferred', inferred=True,
@@ -96,6 +100,13 @@ def main():
                                  inferred=False, possession=k + 1, touch_in_possession=i + 1, possession_len=len(g),
                                  check=len(g) > 3 or (k == 0 and not serve_seen and d.team == server)))
     df = pd.DataFrame(rows).sort_values(['frame', 'touch'], na_position='first')
+    # the owner's action decisions override the possession rule; the possession structure around them is left as
+    # computed and the overridden rows are flagged for checking
+    for tch, a in owner_action.items():
+        sel = df.touch == tch
+        assert sel.sum() == 1, f'owner decision on touch {tch}: no single touch in the labels'
+        if df.loc[sel, 'action'].iloc[0] != a:
+            df.loc[sel, ['action', 'subtype', 'check']] = [a, 'owner', True]
     df['time_sec'] = (df.frame / FPS).round(2)
     df['inferred'] = df.inferred.fillna(False).astype(bool)
     df['check'] = df.check.fillna(False).astype(bool)

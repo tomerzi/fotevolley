@@ -61,7 +61,7 @@ touch,frame,v2_frame,time_sec,set,point,team,player,stature_m,action,subtype,los
 230,8310,9698,332.4,2,37.0,ISR,Ron_Ben_Ishay,1.742,reception,after_serve,False,True,1.31,0.08,flight_fit,0.75,6.5,63.0,stand,False,True,0.711,0.665,0.25,0.664,0.253,moving,moving,0,1.108,1.293,2.16,3.1,L6
 233,8494,9897,339.77,2,38.0,BRA,Franklin,1.791,reception,after_serve,False,False,0.91,0.08,flight_fit,0.51,10.9,31.0,stand,False,True,0.961,0.89,0.363,0.809,0.519,planted,moving,1,1.571,0.549,5.36,3.99,L4
 239,8756,10296,350.22,2,39.0,BRA,Hiltinho,1.686,reception,after_serve,False,True,1.24,0.25,flight_fit,0.73,7.7,77.0,stand,False,True,0.631,0.625,0.082,0.629,0.042,moving,moving,0,0.576,0.611,3.33,2.85,L5
-245,8933,10473,357.31,2,39.0,BRA,Franklin,1.791,set,,False,True,1.55,0.08,flight_fit,0.87,5.8,76.0,stand,False,True,0.546,0.486,0.248,0.478,0.265,moving,moving,0,2.066,0.068,1.46,3.18,L6
+245,8933,10473,357.31,2,39.0,BRA,Franklin,1.791,attack,returned,False,True,1.55,0.08,flight_fit,0.87,5.8,76.0,stand,False,True,0.546,0.486,0.248,0.478,0.265,moving,moving,0,2.066,0.068,1.46,3.18,L6
 248,9023,10563,360.91,2,39.0,BRA,Hiltinho,1.686,set,,False,True,1.73,0.08,flight_fit,1.03,5.8,70.0,stand,False,True,0.32,0.32,0.015,0.32,0.002,moving,moving,0,1.211,0.811,1.87,2.04,L3
 251,9078,10618,363.13,2,39.0,ISR,Maor_Haas,1.722,set,,False,False,1.66,0.1,touch_depth,0.96,7.0,-15.0,stand,False,True,0.692,0.668,0.18,0.692,0.007,planted,planted,2,0.647,0.076,4.74,2.33,R8
 253,9138,10727,365.52,2,,ISR,Ron_Ben_Ishay,1.742,dead,,,,1.32,0.08,flight_fit,0.75,6.7,70.0,stand,False,True,0.73,0.695,0.224,0.725,0.085,moving,moving,0,0.358,0.165,1.63,2.71,R4
