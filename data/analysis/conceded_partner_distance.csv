@@ -11,18 +11,18 @@ rally,set,loser,score,point_frame,time_sec,source,distance_m,uncertain,reason
 10,1,BRA,5-5,1524,60.96,hand-marked moment,3.07,False,
 11,1,BRA,6-5,1657,66.28,hand-marked moment,2.99,False,
 12,1,BRA,7-5,1947,77.88,hand-marked moment,6.74,False,
-13,1,ISR,7-6,2206,88.24,own error (last touch),3.78,True,marked unclear by hand
+13,1,ISR,7-6,2206,88.24,own error (last touch),3.79,True,marked unclear by hand
 14,1,BRA,8-6,2410,96.4,hand-marked moment,4.02,False,
 15,1,BRA,9-6,2560,102.4,hand-marked moment,2.47,False,
 16,1,ISR,9-7,2659,106.36,own error (last touch),2.5,False,
-17,1,BRA,10-7,2925,117.0,hand-marked landing,3.31,False,
+17,1,BRA,10-7,2925,117.0,hand-marked landing,3.32,False,
 18,1,ISR,10-8,3012,120.48,hand-marked landing,2.16,False,
 19,1,ISR,10-9,3252,130.08,hand-marked moment,3.31,False,
 20,1,ISR,10-10,3884,155.36,hand-marked moment,3.92,False,
 21,1,ISR,10-11,4020,160.8,own error (last touch),3.3,False,
 22,1,ISR,10-12,4166,166.64,own error (last touch),2.06,False,
 23,1,BRA,11-12,4323,172.92,hand-marked landing,4.43,False,
-24,1,ISR,11-13,4512,180.48,hand-marked landing,3.73,False,
+24,1,ISR,11-13,4512,180.48,hand-marked landing,3.72,False,
 25,1,ISR,11-14,4931,197.24,own error (last touch),2.88,False,
 26,1,BRA,12-14,5212,208.48,own error (last touch),3.95,False,
 27,1,ISR,12-15,6186,247.44,own error (last touch),2.5,False,
@@ -36,8 +36,8 @@ rally,set,loser,score,point_frame,time_sec,source,distance_m,uncertain,reason
 35,2,ISR,0-4,9263,370.52,ball track landing,0.96,True,last touch at sand level (maybe after the point); marked unclear by hand; a player hidden from the camera; unusual distance 0.96 m
 36,2,ISR,0-5,9658,386.32,hand-marked moment,3.34,False,
 37,2,BRA,1-5,9756,390.24,own error (last touch),3.41,False,
-38,2,BRA,2-5,9967,398.68,own error (last touch),2.6,False,
-39,2,ISR,2-6,10634,425.36,own error (last touch),2.22,False,
+38,2,BRA,2-5,9967,398.68,own error (last touch),2.59,False,
+39,2,ISR,2-6,10634,425.36,own error (last touch),2.21,False,
 40,2,ISR,2-7,10727,429.08,own error (last touch),2.43,False,
 41,2,ISR,2-8,11159,446.36,rally end (fallback),3.67,True,no clear landing (near the net or hidden); marked unclear by hand
 42,2,ISR,2-9,11316,452.64,hand-marked moment,2.4,False,
