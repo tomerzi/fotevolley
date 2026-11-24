@@ -26,14 +26,25 @@ files (data, scripts, docs, reports, site pages); not swapped: the owner's own m
 sheets, site stills) still show the old names until they are re-rendered. The owner review now agrees with the touch
 table on 48 of 56 points.
 
-## Open
+## Owner decisions (doubts tool, 2026-11-24)
 
-1. Points 13 and 27 (ISR, ball out): the touch table now says Maor_Haas touched last, the owner review Ron_Ben_Ishay.
-   Points 28 and 56: the owner review says Ron_Ben_Ishay, the touch table Franklin (the owner chose Franklin for 28 on
-   the labelling page). Point 2: Hiltinho (table) vs Franklin (review), not visible.
-2. Stance: calibrated on the 40 labelled touches (`stance_cal` in `touch_body.csv`): jump from the jump test (10 of
-   12), else set when the body moves < 1.3 m/s at the touch; 67% leave-one-out over set / moving / jump. Foot-by-foot
-   planted / sliding / air from the pose stays weak (about 45%) and is not used for conclusions.
-3. Facing: 25 of 40 against the labels; side-on players are often called 'camera'.
-4. Position from heel + toes instead of ankles was tested (`POS_GROUND=sole` in `player_positions.py`): noisier in
-   the sand (outliers 3.1% vs 2.2%), shift 6 cm median, so the ankle stays the default.
+`data/contacts/owner_decisions.csv`, applied by `touch_outcomes.py` (answers in `data/experiments/doubts/answers.csv`):
+- Point 2: Hiltinho's touch 4 is a dead ball; Franklin (reception, foot) touched last. Point 13: Maor_Haas (touch
+  table right, the earlier review wrong). Point 56: Ron_Ben_Ishay touched last after Franklin's attack, a touch the
+  table missed (added, body part unknown). Points 27 and 28: last touch not visible (`last_touch_seen = False`).
+- Rally 39: touches 244 and 247 are attacks that crossed the net. The sequence is still odd (Brazil touches again
+  right after both, with no Israeli touch in the table), so one or two Israeli touches may be missing there.
+- Rally 50: reception / set / attack confirmed.
+- The touch table and the owner review now differ only at the 3 net faults (no last touch in the review) and the
+  points above.
+
+## Stance and facing: what to trust
+
+- Stance (stood set / arrived moving / jumped) is **not** measurable reliably from this one camera: on the owner's
+  69 labelled touches the best rule (jump test + body speed at the touch) scores 52%, and the jump test finds about
+  half the jumps. Use `stance_label` (the owner's 69 labels) for any statement about stance.
+- Facing: shoulder-width threshold raised to 0.4 (`SIDE_W`), 65% on the 60 labelled frames; `facing_label` holds
+  the owner's labels.
+- Foot-by-foot planted / sliding / air from the pose: about 45%, not used.
+- Position from heel + toes instead of ankles was tested (`POS_GROUND=sole` in `player_positions.py`): noisier in
+  the sand (outliers 3.1% vs 2.2%), shift 6 cm median, so the ankle stays the default.

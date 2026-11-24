@@ -39,6 +39,7 @@ DT = 1
 PLANT_DT = 2
 PLANT_MOVE = 0.06
 SET_SPEED = 1.3     # m/s at the touch: below = stood set (calibrated, see stance_cal)
+SIDE_W = 0.4        # shoulder width / trunk length below this = side-on (calibrated on 60 owner labels: 72% in sample, 62% leave-one-out; was 0.25)
 LIFT_FRAC = 0.5
 OLD = {'BRA_A': 'Franklin', 'BRA_B': 'Hiltinho', 'ISR_A': 'Ron_Ben_Ishay', 'ISR_B': 'Maor_Haas'}
 J = ['nose', 'left_eye', 'right_eye', 'left_ear', 'right_ear', 'neck', 'left_shoulder', 'right_shoulder', 'left_elbow',
@@ -129,7 +130,7 @@ def body(d, p):
     sh = P(d, 'left_shoulder')[:, 0] - P(d, 'right_shoulder')[:, 0]
     width = np.abs(sh) / np.maximum(np.linalg.norm(tr, axis=1), 1)
     face = np.maximum(S(d, 'nose'), np.maximum(S(d, 'left_eye'), S(d, 'right_eye')))
-    out['facing'] = np.select([width < 0.25, (sh > 0) & (face >= S_OK), (sh < 0) | (face < 0.3)],
+    out['facing'] = np.select([width < SIDE_W, (sh > 0) & (face >= S_OK), (sh < 0) | (face < 0.3)],
                               ['side', 'camera', 'away'], 'side')
     out['face_score'] = face
     return out
@@ -185,13 +186,21 @@ for r in t.itertuples():
                      'set' if npl == 2 else 'one_foot' if npl == 1 else 'moving')
     row['approach_speed'] = spd.approach_speed.get(r.touch, np.nan)
     row['speed_at_touch'] = spd.speed_at_touch.get(r.touch, np.nan)
-    # calibrated on the owner's 40 hand-labelled touches (data/experiments/feet_isr_labels/answers_final.csv):
-    # jump = the jump / both-feet-raised test (10 of 12 jumps), else 'set' when the body moves slower than
-    # SET_SPEED at the touch; leave-one-out accuracy 67% over set / moving / jump (foot-motion stance: 54%)
+    # jump = the jump / both-feet-raised test, else 'set' when the body moves slower than SET_SPEED at the touch.
+    # Checked on the owner's 69 labelled touches (feet_isr_labels + doubts): 52% over set / moving / jump; the jump
+    # test finds about half the jumps (small jumps barely move the ground point). NOT reliable: use stance_label.
     row['stance_cal'] = ('jump' if row['stance'] == 'air' else
                          'set' if row['speed_at_touch'] < SET_SPEED else 'moving')
     rows.append(row)
 out = pd.DataFrame(rows)
+# the owner's own labels where given (ground truth): stance and facing
+lab = pd.concat([pd.read_csv('data/experiments/feet_isr_labels/answers_final.csv'), pd.read_csv('data/experiments/doubts/answers.csv')])
+lab = lab[lab.id.str[0].isin(['f', 's', 'c'])].copy()
+lab['touch'] = lab.id.str[1:].astype(int)
+st_lab = lab[lab.stance.isin(['set', 'moving', 'jump'])].drop_duplicates('touch', keep='last').set_index('touch').stance
+fc_lab = lab[lab.facing.isin(['camera', 'away', 'side'])].drop_duplicates('touch', keep='last').set_index('touch').facing
+out['stance_label'] = out.touch.map(st_lab)
+out['facing_label'] = out.touch.map(fc_lab)
 out.to_csv('data/analysis/touch_body.csv', index=False)
 
 ANG = ['knee_l', 'knee_r', 'hip_l', 'hip_r', 'elbow_l', 'elbow_r', 'arm_l', 'arm_r', 'trunk_lean', 'neck']

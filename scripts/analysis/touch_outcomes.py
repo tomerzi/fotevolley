@@ -30,7 +30,22 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 os.chdir(ROOT)
 FPS = 25
 t = pd.read_csv('data/contacts/touches_master.csv')
-t = t[(t.kind == 'player') & t.in_play & t.player.notna()].sort_values(['rally', 'frame']).reset_index(drop=True)
+# owner's decisions (doubts tool, 2026-11-24): dead touches, corrected actions, a missing last touch, unseen endings
+dec = pd.read_csv('data/contacts/owner_decisions.csv')
+for d in dec[dec.kind == 'touch'].itertuples():
+    sel = t.touch == int(d.touch)
+    if d.field == 'in_play':
+        t.loc[sel, 'in_play'] = d.value == 'True'
+    elif d.field == 'action':
+        t.loc[sel, 'action'] = d.value
+for d in dec[dec.kind == 'add'].itertuples():
+    team = 'ISR' if d.player in ('Maor_Haas', 'Ron_Ben_Ishay') else 'BRA'
+    base = t[t.rally == d.rally].iloc[-1]
+    t = pd.concat([t, pd.DataFrame([dict(touch=float(t.touch.max() + 1), frame=int(d.frame), v2_frame=np.nan, time_sec=int(d.frame) / FPS,
+                                         rally=int(d.rally), set=base.set, in_play=True, kind='player', player=d.player, team=team,
+                                         body_part='unknown', action='attack', action_subtype='added_by_owner')])], ignore_index=True)
+UNSEEN = set(dec[(dec.kind == 'point') & (dec.field == 'last_touch_seen') & (dec.value == 'False')].rally.astype(int))
+t = t[(t.kind == 'player') & t.in_play.astype(bool) & t.player.notna()].sort_values(['rally', 'frame']).reset_index(drop=True)
 e = pd.read_csv('data/points/point_end_verified.csv').rename(columns={'point': 'rally'}).set_index('rally')
 bh = pd.read_csv('data/analysis/ball_height_v2.csv', usecols=['frame', 'height_m', 'height_sigma_m']).set_index('frame')
 pos = pd.read_csv('data/analysis/player_positions_v3.csv', usecols=['frame', 'player', 'x', 'y']).drop_duplicates(['frame', 'player']).set_index(['frame', 'player'])
@@ -91,6 +106,7 @@ for rally, g in t.groupby('rally'):
                    touch_in_possession=l.touch_in_possession, possession_len=l.possession_len,
                    kind='winning_touch' if l.won_point else 'losing_touch',
                    matches_owner_last_touch=l.player == e.loc[rally, 'last_touch'],
+                   last_touch_seen=rally not in UNSEEN,
                    x=e.loc[rally, 'x'], y=e.loc[rally, 'y'], square=e.loc[rally, 'square']))
 pt = pd.DataFrame(pt)
 
