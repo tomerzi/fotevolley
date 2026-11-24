@@ -4,7 +4,7 @@ touch,244,39,8898,Hiltinho,action,set,"owner 2026-11-24 (rally 39 sheet): set to
 touch,247,39,8982,Franklin,action,reception,"owner 2026-11-24 (rally 39 sheet): reception of Ron's attack (246); replaces the earlier 'attack, the ball crossed the net'"
 touch,249,39,9052,Franklin,crossed,True,owner 2026-11-24
 touch,306,50,11403,Maor_Haas,crossed,True,owner 2026-11-24: reception / set / attack confirmed
-add,,56,12736,Ron_Ben_Ishay,last_touch,Ron_Ben_Ishay,"owner 2026-11-24: Ron touched the ball last (after Franklin's attack, touch 343); frame and body part not marked (frame = middle of 12699-12774)"
+add,,56,12700,Ron_Ben_Ishay,last_touch,Ron_Ben_Ishay,"owner 2026-11-24: Ron touched the ball last (after Franklin's attack, touch 343); frame and body part not marked (frame = middle of 12699-12774); frame set to 12700 by the owner (labelling game, 2026-11-24)"
 point,,13,,Maor_Haas,last_touch,Maor_Haas,owner 2026-11-24: touch table confirmed (the earlier review said Ron_Ben_Ishay)
 point,,2,,Franklin,last_touch,Franklin,owner 2026-11-24
 point,,27,,Maor_Haas,last_touch,Maor_Haas,"owner 2026-11-24 (clip 5030-5150): Maor_Haas touched last, the ball went out. The ball is hidden at v3 5092-5124 and comes back rising at 5128, so a touch there is missing from the table (the table's last touch is Maor_Haas's set at 5049)"
@@ -13,3 +13,44 @@ touch,40,12,1527,Hiltinho,limb_side,right,"owner 2026-11-24 touch check: right f
 touch,246,39,8966,Ron_Ben_Ishay,kind,player,"owner 2026-11-21 (doubt page, rally 39): an untagged Ron_Ben_Ishay touch splits Brazil's possession; until now only patched into touches_master.csv (applied in touch_labels_final.csv)"
 touch,246,39,8966,Ron_Ben_Ishay,body_part,foot,owner 2026-11-24 touch check: right foot (applied in touch_labels_final.csv)
 touch,3,2,85,Franklin,action,reception,"owner 2026-11-24 (with the dead ball at touch 4): Franklin's touch 3 is the reception, not a serve"
+touch,1,1,8,Franklin,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,8,3,336,Franklin,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,14,5,570,Hiltinho,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,17,6,661,Ron_Ben_Ishay,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,24,8,921,Ron_Ben_Ishay,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,26,9,1040,Hiltinho,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,28,10,1109,Ron_Ben_Ishay,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,55,15,2072,Franklin,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,64,17,2328,Ron_Ben_Ishay,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,84,20,2970,Ron_Ben_Ishay,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,98,21,3513,Ron_Ben_Ishay,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,109,25,4086,Ron_Ben_Ishay,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,148,28,5571,Ron_Ben_Ishay,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,175,30,6435,Ron_Ben_Ishay,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,177,31,6520,Hiltinho,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,185,32,6790,Ron_Ben_Ishay,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,205,34,7437,Ron_Ben_Ishay,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,222,36,8026,Ron_Ben_Ishay,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,230,37,8310,Ron_Ben_Ishay,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,239,39,8756,Hiltinho,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,257,41,9334,Ron_Ben_Ishay,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,266,43,9856,Ron_Ben_Ishay,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,274,45,10241,Ron_Ben_Ishay,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,284,47,10662,Ron_Ben_Ishay,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,292,48,10952,Ron_Ben_Ishay,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,311,51,11541,Hiltinho,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,322,52,11890,Hiltinho,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,336,54,12428,Franklin,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,342,56,12666,Hiltinho,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,344,57,12778,Hiltinho,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,349,58,12950,Hiltinho,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,362,60,13417,Hiltinho,action,set,owner 2026-11-24 labelling game: first filmed touch of the rally is the set; the serve reception was not filmed
+touch,23,7,887,Maor_Haas,action,attack,"owner 2026-11-24 labelling game: first-touch attack that went out (marked ""dead ball"" = failed attack), not a reception"
+touch,80,19,2832,Maor_Haas,action,reception,"owner 2026-11-24 labelling game: rally 19 check: Maor's shin touch is a reception, Ron set and then touched the net (supersedes the sample answer ""dead ball"")"
+touch,252,39,9094,Ron_Ben_Ishay,action,attack,"owner 2026-11-24 labelling game: failed attack (marked ""dead ball"" = failed attack); unchanged"
+point,,19,,Ron_Ben_Ishay,fault_by,Ron_Ben_Ishay,owner 2026-11-24 labelling game: net fault committed by Ron_Ben_Ishay
+point,,34,,Maor_Haas,fault_by,Maor_Haas,owner 2026-11-24 labelling game: net fault committed by Maor_Haas
+point,,50,,Hiltinho,fault_by,Hiltinho,owner 2026-11-24 labelling game: net fault committed by Hiltinho
+point,,27,,Maor_Haas,missing_touch,False,"owner 2026-11-24 labelling game: the last touch is Maor's set (foot) at v3 5049 (marked 5050); no touch is missing; replaces the earlier ""a touch at 5092-5124 is missing"""
+point,,39,,,missing_touch,False,"owner 2026-11-24 labelling game: the moment marked (Maor, 9080) is touch 251 at 9078; no touch missing"
+add_detail,,56,12700,Ron_Ben_Ishay,body_part,foot,"owner 2026-11-24 labelling game: Ron's added last touch: foot, about v3 12700"
