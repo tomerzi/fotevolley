@@ -9,6 +9,19 @@ renamed copy could not be uploaded from the cloud session); map them with `coach
 Footvolley match analysis (Israel vs Brazil, main camera): ball and player boxes,
 poses, rallies and points.
 
+## Owner-verified data (2026-11-22 .. 2026-11-24, git tag `graz2022-owner-verified-2026-11-24`)
+
+What the owner checked by hand, and the files that hold it (ground truth; automatic results are checked against it):
+
+| What | File | Source |
+|---|---|---|
+| Who is who in Israel: Ron Ben Ishay wears the white armband (box code ISR_A), Maor Haas is ISR_B; the two names were swapped in all box-derived data and are now corrected | `coach_analysis/graz2022_final_player_names.csv` | labelling page: 6 blind frames, 5 marked touches, 24 points |
+| Last touch of disputed points, dead ball at point 2, a missing touch at point 56, actions in rallies 2, 39, 50 | `data/contacts/owner_decisions.csv` | doubts tool |
+| Stance at 69 touches (stood set / moving / jumped), facing at 60 frames, feet at 40 touches | `data/experiments/feet_isr_labels/answers_final.csv`, `data/experiments/doubts/answers.csv`; as columns `stance_label`, `facing_label` in `data/analysis/touch_body.csv` | labelling page, doubts tool |
+
+Coach metrics built on it (heat maps by phase, touch success, error chain, set quality, joint angles, return to
+base) and what to trust in each: `docs/COACH_METRICS.md`.
+
 ## Verified points (owner review, 2026-10-31)
 
 - `data/points/landing_marks_owner.json`: the project owner's review of all 60 points, made on the review page
