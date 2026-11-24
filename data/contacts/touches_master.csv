@@ -242,10 +242,10 @@ touch,frame,v2_frame,time_sec,rally,set,in_play,kind,player,team,body_part,limb_
 241,8799,10339,351.96,39,2,True,player,Maor_Haas,ISR,foot,right,reception,after_attack,2.0,1.0,3.0,False,0.45,0.08,12.621,4.144,flight_fit,Maor_Haas,foot,right,True,1.0,auto,,,10.0,False,True,True
 242,8840,10380,353.6,39,2,True,player,Ron_Ben_Ishay,ISR,shoulder,right,set,,2.0,2.0,3.0,False,0.807,0.08,10.136,5.452,flight_fit,Ron_Ben_Ishay,chest,,True,1.0,auto,,,10.0,False,True,False
 243,8864,10404,354.56,39,2,True,player,Maor_Haas,ISR,foot,right,attack,returned,2.0,3.0,3.0,False,0.968,0.08,8.905,5.382,flight_fit,Maor_Haas,foot,right,True,1.0,auto,,,10.0,False,True,True
-244,8898,10438,355.92,39,2,True,player,Hiltinho,BRA,foot,left,attack,owner,3.0,1.0,2.0,True,0.873,0.08,5.961,1.119,flight_fit,Hiltinho,foot,left,True,1.0,auto,,,10.0,False,True,True
+244,8898,10438,355.92,39,2,True,player,Hiltinho,BRA,foot,left,set,owner,3.0,1.0,2.0,True,0.873,0.08,5.961,1.119,flight_fit,Hiltinho,foot,left,True,1.0,auto,,,10.0,False,True,True
 245,8933,10473,357.32,39,2,True,player,Franklin,BRA,chest,,attack,returned,3.0,2.0,2.0,False,1.554,0.08,6.572,3.896,flight_fit,Franklin,chest,,True,0.67,auto,Hiltinho,foot,1.05,False,True,True
 246,8966,10506,358.64,39,2,True,player,Ron_Ben_Ishay,ISR,foot,right,attack,returned,4.0,1.0,1.0,False,2.158,0.25,7.886,2.565,flight_fit,Ron_Ben_Ishay,foot,right,True,0.19,auto,Hiltinho,foot,0.31,False,True,True
-247,8982,10522,359.28,39,2,True,player,Franklin,BRA,foot,right,attack,owner,5.0,1.0,3.0,True,0.719,0.25,7.357,4.414,flight_fit,Franklin,foot,right,True,0.19,auto,Hiltinho,torso,-0.04,False,True,True
+247,8982,10522,359.28,39,2,True,player,Franklin,BRA,foot,right,reception,after_attack,5.0,1.0,3.0,False,0.719,0.25,7.357,4.414,flight_fit,Franklin,foot,right,True,0.19,auto,Hiltinho,torso,-0.04,False,True,True
 248,9023,10563,360.92,39,2,True,player,Hiltinho,BRA,chest,,set,,5.0,2.0,3.0,False,1.73,0.08,6.095,2.733,flight_fit,Hiltinho,chest,,True,1.0,auto,,,10.0,False,True,True
 249,9052,10592,362.08,39,2,True,player,Franklin,BRA,head,,attack,returned,5.0,3.0,3.0,False,2.471,0.25,6.687,4.818,flight_fit,Franklin,head,,True,1.0,auto,,,10.0,False,True,True
 250,9071,10611,362.84,39,2,True,player,Ron_Ben_Ishay,ISR,foot,left,reception,after_attack,6.0,1.0,3.0,False,0.835,0.08,13.787,3.816,flight_fit,Ron_Ben_Ishay,foot,left,True,1.0,auto,Maor_Haas,head,3.35,False,True,True

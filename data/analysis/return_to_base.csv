@@ -121,10 +121,9 @@ touch,frame,rally,set,player,team,action,body_part,dist_from_base_m,min_dist_m,r
 240,8786,39,2,Franklin,BRA,attack,foot,2.39,0.06,2.8,False,own_touch
 242,8840,39,2,Ron_Ben_Ishay,ISR,set,shoulder,2.51,0.23,2.04,False,own_touch
 243,8864,39,2,Maor_Haas,ISR,attack,foot,2.08,0.38,2.56,False,own_touch
-244,8898,39,2,Hiltinho,BRA,attack,foot,1.93,1.78,5.0,True,own_touch
+244,8898,39,2,Hiltinho,BRA,set,foot,1.93,1.78,5.0,True,own_touch
 245,8933,39,2,Franklin,BRA,attack,chest,2.93,1.95,1.96,True,own_touch
 246,8966,39,2,Ron_Ben_Ishay,ISR,attack,foot,3.14,0.61,2.2,False,own_touch
-247,8982,39,2,Franklin,BRA,attack,foot,1.95,1.52,2.8,True,own_touch
 248,9023,39,2,Hiltinho,BRA,set,chest,1.81,0.88,3.0,False,rally_end
 249,9052,39,2,Franklin,BRA,attack,head,1.92,0.57,1.4,False,rally_end
 251,9078,39,2,Maor_Haas,ISR,set,chest,1.6,1.33,1.88,True,rally_end

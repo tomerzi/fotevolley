@@ -261,10 +261,10 @@ touch,frame,time_sec,rally,set,player,team,body_part,in_play,action,subtype,infe
 241.0,8799,351.96,39,2,Maor_Haas,ISR,foot,True,reception,after_attack,False,2.0,1.0,3.0,False
 242.0,8840,353.6,39,2,Ron_Ben_Ishay,ISR,shoulder,True,set,,False,2.0,2.0,3.0,False
 243.0,8864,354.56,39,2,Maor_Haas,ISR,foot,True,attack,returned,False,2.0,3.0,3.0,False
-244.0,8898,355.92,39,2,Hiltinho,BRA,foot,True,attack,owner,False,3.0,1.0,2.0,True
+244.0,8898,355.92,39,2,Hiltinho,BRA,foot,True,set,owner,False,3.0,1.0,2.0,True
 245.0,8933,357.32,39,2,Franklin,BRA,chest,True,attack,returned,False,3.0,2.0,2.0,False
 246.0,8966,358.64,39,2,Ron_Ben_Ishay,ISR,foot,True,attack,returned,False,4.0,1.0,1.0,False
-247.0,8982,359.28,39,2,Franklin,BRA,foot,True,attack,owner,False,5.0,1.0,3.0,True
+247.0,8982,359.28,39,2,Franklin,BRA,foot,True,reception,after_attack,False,5.0,1.0,3.0,False
 248.0,9023,360.92,39,2,Hiltinho,BRA,chest,True,set,,False,5.0,2.0,3.0,False
 249.0,9052,362.08,39,2,Franklin,BRA,head,True,attack,returned,False,5.0,3.0,3.0,False
 250.0,9071,362.84,39,2,Ron_Ben_Ishay,ISR,foot,True,reception,after_attack,False,6.0,1.0,3.0,False

@@ -203,10 +203,10 @@ touch,frame,v2_frame,time_sec,rally,set,player,team,body_part,limb_side,action,a
 241.0,8799,10339.0,351.96,39,2,Maor_Haas,ISR,foot,right,reception,after_attack,2.0,1.0,3.0,Ron_Ben_Ishay,False,True,False,False,1.0,to_attack,landed_in
 242.0,8840,10380.0,353.6,39,2,Ron_Ben_Ishay,ISR,shoulder,right,set,,2.0,2.0,3.0,Maor_Haas,False,True,False,False,1.0,to_attack,landed_in
 243.0,8864,10404.0,354.56,39,2,Maor_Haas,ISR,foot,right,attack,returned,2.0,3.0,3.0,Hiltinho,False,True,False,False,1.0,returned,landed_in
-244.0,8898,10438.0,355.92,39,2,Hiltinho,BRA,foot,left,attack,owner,3.0,1.0,2.0,Franklin,False,True,False,False,1.0,returned,landed_in
+244.0,8898,10438.0,355.92,39,2,Hiltinho,BRA,foot,left,set,owner,3.0,1.0,2.0,Franklin,False,True,False,False,1.0,to_attack,landed_in
 245.0,8933,10473.0,357.32,39,2,Franklin,BRA,chest,,attack,returned,3.0,2.0,2.0,Ron_Ben_Ishay,False,True,False,False,1.0,returned,landed_in
 246.0,8966,10506.0,358.64,39,2,Ron_Ben_Ishay,ISR,foot,right,attack,returned,4.0,1.0,1.0,Franklin,False,True,False,False,1.0,returned,landed_in
-247.0,8982,10522.0,359.28,39,2,Franklin,BRA,foot,right,attack,owner,5.0,1.0,3.0,Hiltinho,False,True,False,False,1.0,returned,landed_in
+247.0,8982,10522.0,359.28,39,2,Franklin,BRA,foot,right,reception,after_attack,5.0,1.0,3.0,Hiltinho,False,True,False,False,1.0,to_attack,landed_in
 248.0,9023,10563.0,360.92,39,2,Hiltinho,BRA,chest,,set,,5.0,2.0,3.0,Franklin,False,True,False,False,1.0,to_attack,landed_in
 249.0,9052,10592.0,362.08,39,2,Franklin,BRA,head,,attack,returned,5.0,3.0,3.0,Ron_Ben_Ishay,False,True,False,False,1.0,returned,landed_in
 250.0,9071,10611.0,362.84,39,2,Ron_Ben_Ishay,ISR,foot,left,reception,after_attack,6.0,1.0,3.0,Maor_Haas,False,True,False,False,1.0,to_attack,landed_in
