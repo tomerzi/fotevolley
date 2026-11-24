@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="he" dir="rtl"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>בדיקת שלד · גראץ 2022</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f1f4f1;color:#192c27;font-family:Arial,sans-serif}main{max-width:1320px;margin:auto;padding:22px 24px 38px}header,.meta,.options,.controls,.decision,.vote,.caption,nav{display:flex;align-items:center;gap:12px;flex-wrap:wrap}header{justify-content:space-between;margin-bottom:15px}h1{font-size:clamp(24px,3vw,38px);margin:3px 0}header p,.note{font-size:14px;color:#4d6058;margin:5px 0;line-height:1.45}select,button,input{font:inherit;color:inherit;border:1px solid #afbbb5;border-radius:7px;background:#fff;padding:7px 10px;min-height:36px}button{cursor:pointer}button:hover{background:#e7f1e9}button:focus-visible,select:focus-visible{outline:3px solid #bf7402}button.on{background:#185244;color:white;border-color:#185244}.options,.controls,.decision{padding:10px 14px;background:white;border:1px solid #cbd5ce;border-radius:9px}.options{gap:10px 20px;margin:8px 0}.options label{font-size:14px;display:flex;align-items:center;gap:6px}.opts input{min-height:0}.options input[type=checkbox]{min-height:0;width:17px;height:17px;accent-color:#157061}.viewer{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0}figure{margin:0;overflow:hidden;border:1px solid #becbc3;border-radius:10px;background:#16251f}figcaption{padding:8px 13px;background:#203b33;color:white;font-size:14px;font-weight:700}canvas{display:block;width:100%;height:auto;aspect-ratio:4/3}.meta{font-weight:700;margin:10px 0 4px}.meta b{color:#006148}.controls{gap:8px}.controls input[type=range]{width:100%;min-height:14px;accent-color:#16715a;padding:0}.controls input[type=number]{width:88px}.controls label,.decision label{font-size:14px}.decision{margin-top:10px}.decision input{width:min(260px,55vw)}.decision strong{font-size:15px}#msg{min-height:17px}#vid{display:none}.legend{color:#415d51;font-size:13px}#err{color:#8a3419;font-size:14px}bdi{direction:ltr}.subhead{font-size:13px;color:#456c5c;font-weight:bold}.reviewer{margin-inline-start:auto}#where{font-variant-numeric:tabular-nums}@media(max-width:760px){main{padding:12px}.viewer{gap:5px}.options{gap:8px}.reviewer{margin:0}button,select,input{font-size:14px}figure{border-radius:5px}figcaption{padding:6px;font-size:12px}.decision,.controls{padding:8px}}
+</style>
+<main>
+<header><div><div class="subhead">נבחרת ישראל · גמר גראץ 2022</div><h1>בדיקת השלד מול הווידאו</h1><p>השוו בין שתי התמונות מאותו פריים. כל מפרק שהמודל מיקם מוצג, בכל ציון ביטחון.</p></div><button id="export">ייצוא ההחלטות ל־CSV</button></header>
+<div class="options">
+<label>קפיצה למהלך <select id="cases" aria-label="קפיצה למהלך"></select></label>
+<label>שחקן <select id="who"><option value="1">מאור האס</option><option value="0">רון בן ישי</option></select></label>
+<label><input type="checkbox" id="wide">מגרש מלא</label>
+<label><input type="checkbox" id="dense">כל 308 הנקודות</label>
+<label><input type="checkbox" id="color">צבע לפי ביטחון</label>
+</div>
+<div class="meta"><b id="name"></b><span id="where"></span><span class="legend" id="legend"></span></div>
+<div class="viewer">
+<figure><figcaption>הצילום המקורי</figcaption><canvas id="original" width="960" height="720"></canvas></figure>
+<figure><figcaption>הצעת המודל</figcaption><canvas id="overlay" width="960" height="720"></canvas></figure>
+</div>
+<div id="err" role="alert"></div>
+<div class="controls"><button id="play">ניגון</button><button id="prev">פריים קודם</button><button id="next">פריים הבא</button>
+<label>מהירות <select id="speed"><option value=".25">×0.25</option><option value=".5" selected>×0.5</option><option value="1">×1</option></select></label>
+<label>מעבר לפריים <input id="frame" type="number" min="0" max="13494" step="1" dir="ltr"></label><button id="go">הצגה</button>
+<input type="range" id="slider" min="0" max="13494" step="1" dir="ltr" aria-label="מיקום בווידאו"></div>
+<div class="decision"><strong>ההחלטה שלך לפריים ולשחקן</strong><button id="ok">תקין</button><button id="manual">צריך תיוג ידני</button><button id="clear">ביטול סימון</button><label>הערה <input id="comment" placeholder="למשל, הקרסול השמאלי"></label><span id="saved" aria-live="polite"></span></div>
+<div class="note" id="msg" aria-live="polite"></div>
+<p class="note">הזמנים מתייחסים לווידאו המקוצר v3, בקצב 25 פריימים לשנייה. כשהמודל לא החזיר שלד לשחקן, מופיעה הודעה על הפריים. ההחלטות נשמרות בדפדפן זה וניתנות לייצוא.</p>
+</main><video muted playsinline preload="auto" id="vid" src="../../video/main_camera_clean_v3.mp4"></video>
+<script src="data/joints.js"></script><script src="data/touches.js"></script><script src="review.js"></script></html>
