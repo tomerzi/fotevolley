@@ -19,6 +19,7 @@
   --isr: #4b9bf0; --bra: #f09a3a; --heat: 90, 165, 245; --sand: #2a2419; --court: #6d6046;
   --good: #3fbf6f; --bad: #ef6b5b; color-scheme: dark }
 * { box-sizing: border-box }
+[hidden] { display: none !important }
 body { background: var(--bg); color: var(--ink); font: 16px/1.6 var(--body); direction: rtl;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 4rem }
 main { max-width: 1060px; margin: 0 auto; display: grid; gap: 2.5rem }
@@ -69,6 +70,27 @@ tbody tr:last-child td { border-bottom: 0 }
 .stack { display: flex; height: 1.3rem; gap: 2px; direction: ltr }
 .stack span { display: block; height: 100%; border-radius: 3px }
 #tip { position: fixed; pointer-events: none; background: var(--ink); color: var(--bg); font-size: .82rem; padding: .3rem .55rem; border-radius: 6px; z-index: 5 }
+.ev { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline dotted color-mix(in srgb, var(--isr) 70%, transparent); text-underline-offset: 3px; text-decoration-thickness: 1.5px; border-radius: 3px }
+.ev:hover { background: color-mix(in srgb, var(--isr) 12%, transparent) }
+.ev:focus-visible { outline: 2px solid var(--isr); outline-offset: 2px }
+.evhint { font-size: .88rem; color: var(--mut); display: flex; gap: .5rem; align-items: center }
+.evhint .ev { color: var(--isr) }
+dialog#viewer { width: min(1180px, 100vw - 24px); max-height: calc(100dvh - 24px); border: 1px solid var(--line); border-radius: 12px; padding: 0; background: var(--bg); color: var(--ink) }
+dialog#viewer::backdrop { background: rgb(0 0 0 / .55) }
+.vh { position: sticky; top: 0; z-index: 2; background: var(--surface); border-bottom: 1px solid var(--line); padding: .8rem 1rem; display: grid; grid-template-columns: 1fr auto; gap: .2rem .8rem; align-items: start }
+.vh h3 { margin: 0 } .vh p { font-size: .88rem; color: var(--mut); grid-column: 1 }
+.vh button { grid-row: 1 / span 2; grid-column: 2; font: 600 .9rem var(--body); border: 1px solid var(--line); background: var(--bg); color: var(--ink); border-radius: 8px; padding: .35rem .8rem; cursor: pointer }
+.vb { padding: 1rem; display: grid; gap: 1rem }
+.stage { display: grid; gap: .6rem }
+.stage img, .stage video { width: 100%; height: auto; border-radius: 8px; background: #000; display: block }
+.stage .bar2 { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; font-size: .9rem }
+.stage .bar2 button { font: 600 .88rem var(--body); border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 8px; padding: .3rem .75rem; cursor: pointer }
+.thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: .6rem }
+.thumbs button { display: grid; gap: .25rem; text-align: right; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: .35rem; cursor: pointer; color: var(--ink); font: .8rem/1.35 var(--body) }
+.thumbs button[aria-current="true"] { outline: 2px solid var(--isr) }
+.thumbs img { width: 100%; aspect-ratio: 1100 / 450; object-fit: cover; border-radius: 5px; background: var(--line) }
+.court circle.hit { cursor: pointer }
+.g9 div.click { cursor: pointer }
 footer { color: var(--mut); font-size: .85rem; border-top: 1px solid var(--line); padding-top: 1rem }
 code { font-size: .85em; direction: ltr; unicode-bidi: embed }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important } }
@@ -81,17 +103,18 @@ code { font-size: .85em; direction: ltr; unicode-bidi: embed }
   <div class="score"><span><b>ברזיל</b> (פרנקלין, הילטיניו) ניצחה 2–0</span><span>על המגרש: <b>18–14, 18–9</b></span><span>60 נקודות מצולמות · 317 נגיעות במשחק</span></div>
   <p class="lead">כל המספרים חושבו מחדש מהנתונים בריפו אחרי כל ההחלטות של בעל הפרויקט (24.11), ומאחדים את שני הענפים שהתפצלו באותו יום. ליד כל נושא מסומן כמה אפשר לסמוך עליו:
     <span class="trust ok">נבדק ידנית</span> או <span class="trust est">הערכה אוטומטית</span>. מרחקים במטרים על מגרש 16×8.</p>
+  <p class="evhint">כל מספר עם קו מנוקד נפתח לתמונות ולסרטונים שמהם הוא חושב: <button class="ev" data-k="t" data-ids="244" data-t="דוגמה: נגיעה 244" data-n="">נסו כאן</button></p>
 </header>
 
 <div class="key">
   <h3>השורה התחתונה לישראל</h3>
   <ul>
-    <li><b>חלוקת תפקידים ברורה.</b> מאור משחק בצד שמאל (93% מהזמן בחצי השמאלי שלו) ורון בימין (81%). רון הוא המגביה (40 הגבהות, 28 בחזה) ומאור התוקף (46 התקפות, 36 בראש).</li>
-    <li><b>ההגנה היא הפער מול ברזיל.</b> קבלת התקפה של ישראל הגיעה להתקפה ב־77% מהמקרים, וברזיל ב־89%. קבלת ההגשה המצולמת של ישראל מושלמת: 12 מ־12.</li>
-    <li><b>הטעויות מגיעות בנגיעה הראשונה.</b> ישראל הפסידה 16 נקודות מטעויות שלה, 8 מהן בנגיעה 1 (קבלה או החזרה ישירה), ו־10 מהן ברגל. 17 נקודות נוספות הלכו לווינרים של ברזיל.</li>
-    <li><b>הקבלה ברגל של רון נמוכה.</b> אחרי קבלה ברגל הכדור של רון עולה לחציון של 2.3 מ׳ בלבד (אצל השאר 3.4–3.8 מ׳), כך שלמאור יש פחות מ־1 שנייה עד הנגיעה הבאה.</li>
-    <li><b>ההגבהה של רון יציבה.</b> 39 מ־40 הגבהות הגיעו להתקפה, ב־14 מ־22 התיוגים הוא עמד יציב (הכי הרבה מכל השחקנים). גובה השיא שלו מפוזר יותר (3.6–4.4 מ׳).</li>
-    <li><b>כשמפסידים נקודה מווינר, הזוג רחוק.</b> במגע ההגנה הכושל המרחק בין רון למאור הוא 3.65 מ׳, ובברזיל 3.08 מ׳.</li>
+    <li><b>חלוקת תפקידים ברורה.</b> מאור משחק בצד שמאל (93% מהזמן בחצי השמאלי שלו) ורון בימין (81%) ({{k_roles}}). רון הוא המגביה (40 הגבהות, 28 בחזה) ומאור התוקף (46 התקפות, 36 בראש).</li>
+    <li><b>ההגנה היא הפער מול ברזיל.</b> קבלת התקפה של ישראל הגיעה להתקפה ב־{{k_rec}} מהמקרים, וברזיל ב־{{k_rec_b}}. קבלת ההגשה המצולמת של ישראל מושלמת: 12 מ־12.</li>
+    <li><b>הטעויות מגיעות בנגיעה הראשונה.</b> ישראל הפסידה {{k_err}} מטעויות שלה, 8 מהן בנגיעה 1 (קבלה או החזרה ישירה), ו־10 מהן ברגל. 17 נקודות נוספות הלכו לווינרים של ברזיל.</li>
+    <li><b>הקבלה ברגל של רון נמוכה.</b> אחרי קבלה ברגל הכדור של רון עולה לחציון של {{k_ronrec}} בלבד (אצל השאר 3.4–3.8 מ׳), כך שלמאור יש פחות מ־1 שנייה עד הנגיעה הבאה.</li>
+    <li><b>ההגבהה של רון יציבה.</b> {{k_ronset}} הגבהות הגיעו להתקפה, ב־14 מ־22 התיוגים הוא עמד יציב (הכי הרבה מכל השחקנים). גובה השיא שלו מפוזר יותר (3.6–4.4 מ׳).</li>
+    <li><b>כשמפסידים נקודה מווינר, הזוג רחוק.</b> במגע ההגנה הכושל המרחק בין רון למאור הוא {{k_def}}, ובברזיל 3.08 מ׳.</li>
   </ul>
 </div>
 
@@ -108,6 +131,7 @@ code { font-size: .85em; direction: ltr; unicode-bidi: embed }
   <div class="hmgrid" id="hmgrid"></div>
   <h3>חלוקת תפקידים: כמה זמן כל שחקן בחצי השמאלי, ועד כמה בני הזוג חופפים</h3>
   {{phase_table}}
+  <p class="evhint">{{heat_ev}}</p>
   <p class="note">חפיפה 0 פירושה ששני השחקנים אף פעם לא באותו מקום, ו־1 פירושה שהם מכסים אותו שטח. בשתי הקבוצות החפיפה הכי נמוכה בהגשה ובהגנה (כל אחד בצד שלו) והכי גבוהה בבניית המתקפה. בבנייה ישראל חופפת יותר (0.57 מול 0.45): רון מגיע לכדור גם בצד של מאור.</p>
 </section>
 
@@ -121,12 +145,12 @@ code { font-size: .85em; direction: ltr; unicode-bidi: embed }
   <h2><span class="no">4</span>הגוף בנגיעת חזה <span class="trust est">הערכה אוטומטית</span></h2>
   <p>הזוויות נמדדות בתמונה. ברך או ירך של 180° פירושן רגל ישרה, ומספר קטן יותר פירושו כיפוף. הטיית הגו היא ביחס לאנך, וברוב הנגיעות השחקן נשען אחורה. ערך מוצג רק כשהמפרק נראה היטב.</p>
   {{chest}}
-  <p class="note">לרון יש העמידה הרחבה ביותר (0.71 מ׳) והוא הכי קרוב לרשת (1.75 מ׳). מאור מקבל בחזה הכי רחוק מהרשת (4 מ׳) ועם הכדור המהיר ביותר (9.4 מ׳/ש׳), כי רוב נגיעות החזה שלו הן קבלות. נגיעת החזה היחידה שבה איבדו כדור היא של רון, בנקודה 46.</p>
+  <p class="note">לרון יש העמידה הרחבה ביותר (0.71 מ׳) והוא הכי קרוב לרשת (1.75 מ׳). מאור מקבל בחזה הכי רחוק מהרשת (4 מ׳) ועם הכדור המהיר ביותר (9.4 מ׳/ש׳), כי רוב נגיעות החזה שלו הן קבלות. נגיעת החזה היחידה שבה איבדו כדור היא של רון, ב{{chest46}}.</p>
 </section>
 
 <section id="points">
   <h2><span class="no">5</span>איפה נגמרו הנקודות <span class="trust ok">נבדק ידנית</span></h2>
-  <p>כל נקודה מסומנת במקום שבו הכדור נחת. המגרש מסובב כך שישראל תמיד בצד שמאל. הצבע מראה מי זכה בנקודה, ועיגול חלול פירושו שהכדור נחת מחוץ לקווים.</p>
+  <p>כל נקודה מסומנת במקום שבו הכדור נחת. לחיצה על נקודה פותחת אותה. המגרש מסובב כך שישראל תמיד בצד שמאל. הצבע מראה מי זכה בנקודה, ועיגול חלול פירושו שהכדור נחת מחוץ לקווים.</p>
   <div class="legend"><span><i class="sw" style="background:var(--isr)"></i>ישראל זכתה</span><span><i class="sw" style="background:var(--bra)"></i>ברזיל זכתה</span></div>
   <svg class="court" id="court" viewBox="-1.2 -1.2 18.4 10.4" role="img" aria-label="מפת נחיתות הכדור"></svg>
   <h3>חלוקה ל־9 ריבועים (רק כדורים שנחתו בתוך המגרש, הרשת למעלה, שמאל וימין כפי שהקבוצה שספגה רואה אותם)</h3>
@@ -199,6 +223,7 @@ code { font-size: .85em; direction: ltr; unicode-bidi: embed }
   <h2><span class="no">13</span>כיווני גוף <span class="trust est">הערכה אוטומטית</span></h2>
   <p>הכיוון מחושב מקו הכתפיים בכל פריים של המשחק. מודל השלד צדק ב־65% מ־60 פריימים שתויגו ידנית, ולכן זו תמונה כללית בלבד.</p>
   <div class="bars" id="dirbars"></div>
+  <p class="evhint">{{dir_ev}}</p>
   <h3>לאן הגוף פונה ברגע הנגיעה (ביחס למצלמה)</h3>
   {{facing_touch}}
 </section>
@@ -208,6 +233,17 @@ code { font-size: .85em; direction: ltr; unicode-bidi: embed }
 </footer>
 </main>
 <div id="tip" hidden></div>
+<dialog id="viewer" aria-labelledby="vtitle">
+  <div class="vh"><h3 id="vtitle"></h3><p id="vnote"></p><button id="vclose" type="button">סגירה</button></div>
+  <div class="vb">
+    <div class="stage">
+      <img id="vimg" alt="">
+      <video id="vvid" controls playsinline preload="none" hidden></video>
+      <div class="bar2"><button id="vplay" type="button">▶ הקליפ מהרגע הזה</button><button id="vimgbtn" type="button" hidden>חזרה לתמונה</button><span id="vcap" class="mut"></span></div>
+    </div>
+    <div class="thumbs" id="vthumbs"></div>
+  </div>
+</dialog>
 
 <script>
 /*DATA*/
@@ -216,6 +252,51 @@ const css = k => getComputedStyle(document.documentElement).getPropertyValue(k).
 const tip = document.getElementById('tip');
 function showTip(e, t) { tip.textContent = t; tip.hidden = false; tip.style.left = (e.clientX + 12) + 'px'; tip.style.top = (e.clientY + 12) + 'px'; }
 function hideTip() { tip.hidden = true; }
+
+// evidence viewer
+const dlg = document.getElementById('viewer'), vimg = document.getElementById('vimg'), vvid = document.getElementById('vvid');
+let cur = null;
+function item(k, id) {
+  if (k === 't') { const e = D.EV.touches[id]; return e && { img: `evidence/touches/t${id}.jpg`, rally: e[0], t: e[1], cap: e[2] }; }
+  if (k === 'p') { const e = D.EV.points[id]; return e && { img: `evidence/points/p${id}.jpg`, rally: e[0], t: e[1], cap: e[2] }; }
+  const e = D.EV.points[id]; return { img: `evidence/points/p${id}.jpg`, rally: id, t: 0, cap: `ראלי ${id} · הקליף המלא` };
+}
+function show(it, btn) {
+  cur = it; vvid.pause(); vvid.hidden = true; vimg.hidden = false; vimg.src = it.img; vimg.alt = it.cap;
+  document.getElementById('vimgbtn').hidden = true;
+  document.getElementById('vcap').textContent = it.cap;
+  document.querySelectorAll('#vthumbs button').forEach(b => b.setAttribute('aria-current', b === btn));
+}
+function play() {
+  if (!cur) return; const src = `evidence/clips/r${cur.rally}.mp4`;
+  vimg.hidden = true; vvid.hidden = false; document.getElementById('vimgbtn').hidden = false;
+  const start = Math.max(0, cur.t - 1.5);
+  const go = () => { try { vvid.currentTime = start; } catch (e) {} vvid.play().catch(() => {}); };
+  if (!vvid.src.endsWith(src)) { vvid.src = src; vvid.addEventListener('loadedmetadata', go, { once: true }); vvid.load(); } else go();
+}
+document.getElementById('vplay').onclick = play;
+document.getElementById('vimgbtn').onclick = () => cur && show(cur, document.querySelector('#vthumbs [aria-current="true"]'));
+document.getElementById('vclose').onclick = () => { vvid.pause(); dlg.close(); };
+dlg.addEventListener('close', () => vvid.pause());
+dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+function openEv(k, ids, title, note) {
+  const items = ids.map(i => item(k, i)).filter(Boolean);
+  document.getElementById('vtitle').textContent = `${title} · ${items.length} ${k === 't' ? 'נגיעות' : k === 'p' ? 'נקודות' : 'ראלים'}`;
+  document.getElementById('vnote').textContent = note || (k === 'r' ? D.NOTE_DIR : '');
+  const th = document.getElementById('vthumbs'); th.innerHTML = '';
+  items.forEach((it, i) => {
+    const b = document.createElement('button'); b.type = 'button';
+    b.innerHTML = `<img loading="lazy" alt="" src="${it.img}"><span></span>`; b.querySelector('span').textContent = it.cap;
+    b.onclick = () => { show(it, b); if (k === 'r') play(); dlg.querySelector('.vb').scrollTo?.(0, 0); dlg.scrollTo?.(0, 0); };
+    th.append(b);
+    if (i === 0) setTimeout(() => show(it, b));
+  });
+  if (!dlg.open) dlg.showModal();
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('button.ev'); if (!b) return;
+  openEv(b.dataset.k, b.dataset.ids.split(',').map(Number), b.dataset.t, b.dataset.n);
+});
 
 // heat maps: array [x][y], x = distance from own baseline (net at 8), y = across (0 = player's left)
 let phase = 'all';
@@ -267,7 +348,9 @@ drawHM();
     const c = el('circle', { cx: d.x, cy: d.y, r: .24, fill: out ? 'var(--surface)' : col, stroke: out ? col : 'var(--surface)', 'stroke-width': out ? .09 : .05 });
     const t = `נקודה ${d.p} · ${d.w === 'ISR' ? 'ישראל' : 'ברזיל'} זכתה · ${out ? 'בחוץ' : 'נחת בפנים'}${d.lt ? ' · נגיעה אחרונה: ' + d.lt : ''}`;
     c.addEventListener('mousemove', e => showTip(e, t)); c.addEventListener('mouseleave', hideTip);
-    el('circle', { cx: d.x, cy: d.y, r: .45, fill: 'transparent' }).addEventListener('mousemove', e => showTip(e, t));
+    const hit = el('circle', { cx: d.x, cy: d.y, r: .45, fill: 'transparent', class: 'hit', tabindex: 0, role: 'button', 'aria-label': t });
+    hit.addEventListener('mousemove', e => showTip(e, t)); hit.addEventListener('mouseleave', hideTip);
+    hit.addEventListener('click', () => openEv('p', [d.p], t, '')); hit.addEventListener('keydown', e => { if (e.key === 'Enter') openEv('p', [d.p], t, ''); });
   }
   s.addEventListener('mouseleave', hideTip);
 })();
@@ -278,9 +361,11 @@ drawHM();
   for (const [t, cap] of [['ISR', 'ישראל ספגה (נחת אצלנו)'], ['BRA', 'ישראל זכתה (נחת אצל ברזיל)']]) {
     const g = D.GRID[t], box = document.createElement('div'); box.className = 'grid9';
     const nine = document.createElement('div'); nine.className = 'g9';
-    const max = Math.max(...Object.values(g), 1);
+    const max = Math.max(...Object.values(g).map(a => a.length), 1);
     for (const d of ['net', 'mid', 'base']) for (const l of ['left', 'mid', 'right']) {
-      const v = g[d + '_' + l], c = document.createElement('div'); c.textContent = v || '';
+      const ids = g[d + '_' + l], v = ids.length, c = document.createElement('div'); c.textContent = v || '';
+      if (v) { c.className = 'click'; c.tabIndex = 0; c.setAttribute('role', 'button'); const ttl = `${cap} · ${d === 'net' ? 'רשת' : d === 'mid' ? 'אמצע' : 'בסיס'} · ${l === 'left' ? 'שמאל' : l === 'mid' ? 'מרכז' : 'ימין'}`;
+        c.onclick = () => openEv('p', ids, ttl, ''); c.onkeydown = e => { if (e.key === 'Enter') openEv('p', ids, ttl, ''); }; }
       c.style.background = v ? `color-mix(in srgb, var(${t === 'ISR' ? '--bra' : '--isr'}) ${Math.round(15 + 70 * v / max)}%, var(--sand))` : '';
       nine.append(c);
     }
