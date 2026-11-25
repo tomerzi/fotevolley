@@ -1,0 +1,143 @@
+[
+{
+"item": "M1",
+"rally": 4,
+"frame": 434,
+"group": "mid-air",
+"result": "camera cut (not a touch)"
+},
+{
+"item": "M2",
+"rally": 7,
+"frame": 784,
+"group": "mid-air",
+"result": "camera cut (not a touch)"
+},
+{
+"item": "M3",
+"rally": 11,
+"frame": 1468,
+"group": "label: no touch",
+"result": "owner 2026-11-24: no touch (clip 1440-1535); the label no_touch stands"
+},
+{
+"item": "M4",
+"rally": 18,
+"frame": 2607,
+"group": "label: no touch",
+"result": "owner 2026-11-24: no touch"
+},
+{
+"item": "M5",
+"rally": 25,
+"frame": 4239,
+"group": "ball at rest, then up",
+"result": "owner 2026-11-24: no touch"
+},
+{
+"item": "M6",
+"rally": 26,
+"frame": 4308,
+"group": "mid-air",
+"result": "camera cut (not a touch)"
+},
+{
+"item": "M7",
+"rally": 26,
+"frame": 4558,
+"group": "ball at rest, then up",
+"result": "owner 2026-11-24: no touch"
+},
+{
+"item": "M8",
+"rally": 27,
+"frame": 5127,
+"group": "mid-air",
+"note": "camera cut at 5127; the owner already said a touch is missing here (point 27)",
+"result": "camera cut; the owner decision of 2026-11-24 (point 27: a missing Maor_Haas touch, hidden 5092-5124) stands"
+},
+{
+"item": "M9",
+"rally": 28,
+"frame": 5876,
+"group": "mid-air",
+"result": "owner 2026-11-24: no touch"
+},
+{
+"item": "M10",
+"rally": 28,
+"frame": 6047,
+"group": "ball at rest, then up",
+"result": "owner 2026-11-24: no touch"
+},
+{
+"item": "M11",
+"rally": 29,
+"frame": 6336,
+"group": "label: no touch",
+"result": "owner 2026-11-24: no touch"
+},
+{
+"item": "M12",
+"rally": 30,
+"frame": 6403,
+"group": "mid-air",
+"result": "owner 2026-11-24: no touch"
+},
+{
+"item": "M13",
+"rally": 33,
+"frame": 7335,
+"group": "mid-air",
+"result": "owner 2026-11-24: no touch"
+},
+{
+"item": "M14",
+"rally": 35,
+"frame": 7959,
+"group": "label: no touch",
+"result": "owner 2026-11-24: no touch"
+},
+{
+"item": "M15",
+"rally": 40,
+"frame": 9184,
+"group": "mid-air",
+"result": "owner 2026-11-24: no touch"
+},
+{
+"item": "M16",
+"rally": 44,
+"frame": 10215,
+"group": "ball at rest, then up",
+"result": "owner 2026-11-24: no touch"
+},
+{
+"item": "M17",
+"rally": 44,
+"frame": 10227,
+"group": "ball at rest, then up",
+"result": "owner 2026-11-24: no touch"
+},
+{
+"item": "M18",
+"rally": 45,
+"frame": 10493,
+"group": "ball at rest, then up",
+"result": "owner 2026-11-24: no touch"
+},
+{
+"item": "M19",
+"rally": 46,
+"frame": 10513,
+"group": "mid-air",
+"result": "owner 2026-11-24: no touch"
+},
+{
+"item": "M20",
+"rally": 50,
+"frame": 11468,
+"group": "mid-air",
+"result": "owner 2026-11-24: no touch"
+}
+]

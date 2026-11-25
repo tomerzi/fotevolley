@@ -18,3 +18,10 @@ Owner: every player label right; two corrections, both applied in `data/contacts
 in `data/contacts/owner_decisions.csv`: touch 40 (Hiltinho, frame 1527) right foot, not left; touch 246 (Ron, frame
 8966) right foot (body part was empty). Note that touch 40's wrong side agreed with the detector, so left / right
 labels outside these 97 touches are not proven by this check.
+
+## Player positions where the tracking was unsure (`position_squares.csv`)
+134 on-court box frames had no smoothed position (box cut by the image border, player hidden behind the teammate,
+short tracks). They were shown in 32 groups (Q1-Q32) with the 3x3 squares drawn on the court. The owner named the
+square for 13 groups (58 frames); `scripts/analysis/player_positions.py` moves those points to the nearest point
+inside the named square (src `owner_square`). The other groups keep the automatic point (box bottom); Q12 (Maor_Haas,
+frame 4638) stays without a position.

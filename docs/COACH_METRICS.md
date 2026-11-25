@@ -64,3 +64,13 @@ table on 48 of 56 points.
   receptions. 32 of the 53 rallies whose first filmed touch was called a serve reception actually start with the
   set (the camera picked the rally up late): serve-reception rates now use only the 21 filmed serve receptions.
 - Stance: 60 more owner labels (128 in all).
+
+## Coach summary page (2026-11-25)
+
+`coach_analysis/match_summary_he.html` (Hebrew, built by `scripts/site/build_summary.py` + `summary_template.html`):
+every metric above in one page. Before building it, the branch `claude/tender-babbage-0996wx` (filled positions,
+missing-touch review, owner's position squares) was merged with the labelling-game line and the whole pipeline was
+rerun, `touch_body.py` included (the Sapiens2 file was pulled from LFS). New in `data/analysis/` from
+`scripts/analysis/summary_extras.py`: `ball_after_touch.csv` (ball apex and time to the next touch after every
+touch), `set_partner.csv` (partner distance, movement and facing at every set), `set_foot_side.csv` (ball/foot left,
+middle or right of the setter's body at every foot set, 0.15 m middle band; 19 sets).

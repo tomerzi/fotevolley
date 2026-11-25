@@ -1,0 +1,308 @@
+<title>גמר גראץ 2022 · סיכום מאמן</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700&family=Assistant:wght@400;600;700&display=swap">
+<style>
+/* Layout: one reading column of numbered match-analysis sections; court drawings (net always on top) carry the spatial data. */
+:root {
+  --bg: #f3f5f7; --surface: #ffffff; --ink: #14202b; --mut: #5d6b78; --line: #d9e0e6;
+  --isr: #257de0; --bra: #e5871a; --heat: 37, 125, 224; --sand: #efe6d2; --court: #c9b98f;
+  --good: #0f7a3a; --bad: #c0392b;
+  --display: 'Rubik', 'Assistant', system-ui, sans-serif; --body: 'Assistant', system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #10161c; --surface: #18212a; --ink: #e8edf1; --mut: #9aa8b4; --line: #2b3742;
+  --isr: #4b9bf0; --bra: #f09a3a; --heat: 90, 165, 245; --sand: #2a2419; --court: #6d6046;
+  --good: #3fbf6f; --bad: #ef6b5b; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #10161c; --surface: #18212a; --ink: #e8edf1; --mut: #9aa8b4; --line: #2b3742;
+  --isr: #4b9bf0; --bra: #f09a3a; --heat: 90, 165, 245; --sand: #2a2419; --court: #6d6046;
+  --good: #3fbf6f; --bad: #ef6b5b; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font: 16px/1.6 var(--body); direction: rtl;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 4rem }
+main { max-width: 1060px; margin: 0 auto; display: grid; gap: 2.5rem }
+header { padding-block: 2.5rem 0.5rem; display: grid; gap: .6rem }
+.eyebrow { font: 600 .8rem var(--body); letter-spacing: .08em; color: var(--mut) }
+h1 { font: 700 clamp(1.8rem, 4.5vw, 2.7rem)/1.15 var(--display); margin: 0; text-wrap: balance }
+h2 { font: 700 1.35rem/1.3 var(--display); margin: 0; text-wrap: balance; display: flex; gap: .6rem; align-items: baseline }
+h2 .no { font: 500 .95rem var(--display); color: var(--mut); font-variant-numeric: tabular-nums }
+h3 { font: 600 1.02rem var(--display); margin: .4rem 0 0 }
+p { margin: 0; max-width: 68ch }
+.lead { font-size: 1.08rem; color: var(--mut); max-width: 70ch }
+section { display: grid; gap: .9rem; min-width: 0 }
+.mut { color: var(--mut); font-size: .85em }
+.score { display: flex; flex-wrap: wrap; gap: .5rem 1.6rem; font-variant-numeric: tabular-nums; color: var(--mut) }
+.score b { color: var(--ink) }
+.key { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.3rem; display: grid; gap: .55rem }
+.key ul { margin: 0; padding-inline-start: 1.2rem; display: grid; gap: .45rem }
+.key li { max-width: 80ch }
+.trust { display: inline-block; font: 600 .72rem var(--body); padding: .05rem .5rem; border-radius: 99px; border: 1px solid var(--line); color: var(--mut); vertical-align: middle; margin-inline-start: .3rem }
+.trust.ok { color: var(--good); border-color: currentColor }
+.trust.est { color: var(--bra); border-color: currentColor }
+.tw { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 10px }
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; font-size: .92rem }
+th, td { padding: .45rem .7rem; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap }
+th { font-weight: 600; color: var(--mut); font-size: .8rem; vertical-align: bottom; white-space: normal; min-width: 4.5rem }
+tbody tr:last-child td { border-bottom: 0 }
+.note { font-size: .9rem; color: var(--mut); max-width: 80ch }
+.row { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-start }
+.row > * { min-width: 0 }
+.tabs { display: flex; flex-wrap: wrap; gap: .4rem }
+.tabs button { font: 600 .88rem var(--body); padding: .35rem .85rem; border-radius: 99px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer }
+.tabs button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink) }
+.tabs button:focus-visible { outline: 2px solid var(--isr); outline-offset: 2px }
+.hmgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .8rem }
+@media (max-width: 720px) { .hmgrid { grid-template-columns: repeat(2, minmax(0, 1fr)) } }
+.hm { display: grid; gap: .3rem; justify-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: .6rem }
+.hm canvas { width: 100%; max-width: 220px; aspect-ratio: 111 / 106; height: auto }
+.hm .nm { font: 600 .9rem var(--display) }
+.legend { display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; font-size: .85rem; color: var(--mut); align-items: center }
+.sw { display: inline-block; width: .8rem; height: .8rem; border-radius: 50%; vertical-align: -.1rem; margin-inline-end: .3rem }
+.court { width: 100%; max-width: 720px; height: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 10px }
+.grid9 { display: grid; gap: .3rem; justify-items: center }
+.g9 { display: grid; grid-template-columns: repeat(3, 3.6rem); grid-template-rows: repeat(3, 3.1rem); gap: 3px; background: var(--court); padding: 3px; border-radius: 4px; direction: ltr }
+.g9 div { display: grid; place-items: center; font: 700 1rem var(--display); color: var(--ink); background: var(--sand) }
+.g9cap { font-size: .82rem; color: var(--mut); text-align: center }
+.bars { display: grid; gap: .5rem; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1rem }
+.bar { display: grid; grid-template-columns: 6.5rem 1fr; gap: .6rem; align-items: center; font-size: .88rem }
+.stack { display: flex; height: 1.3rem; gap: 2px; direction: ltr }
+.stack span { display: block; height: 100%; border-radius: 3px }
+#tip { position: fixed; pointer-events: none; background: var(--ink); color: var(--bg); font-size: .82rem; padding: .3rem .55rem; border-radius: 6px; z-index: 5 }
+footer { color: var(--mut); font-size: .85rem; border-top: 1px solid var(--line); padding-top: 1rem }
+code { font-size: .85em; direction: ltr; unicode-bidi: embed }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important } }
+</style>
+
+<main>
+<header>
+  <div class="eyebrow">EFVL World Challenge · גראץ 2022 · גמר הגברים</div>
+  <h1>ישראל מול ברזיל: מה המצלמה מספרת</h1>
+  <div class="score"><span><b>ברזיל</b> (פרנקלין, הילטיניו) ניצחה 2–0</span><span>על המגרש: <b>18–14, 18–9</b></span><span>60 נקודות מצולמות · 317 נגיעות במשחק</span></div>
+  <p class="lead">כל המספרים חושבו מחדש מהנתונים בריפו אחרי כל ההחלטות של בעל הפרויקט (24.11), ומאחדים את שני הענפים שהתפצלו באותו יום. ליד כל נושא מסומן כמה אפשר לסמוך עליו:
+    <span class="trust ok">נבדק ידנית</span> או <span class="trust est">הערכה אוטומטית</span>. מרחקים במטרים על מגרש 16×8.</p>
+</header>
+
+<div class="key">
+  <h3>השורה התחתונה לישראל</h3>
+  <ul>
+    <li><b>חלוקת תפקידים ברורה.</b> מאור משחק בצד שמאל (93% מהזמן בחצי השמאלי שלו) ורון בימין (81%). רון הוא המגביה (40 הגבהות, 28 בחזה) ומאור התוקף (46 התקפות, 36 בראש).</li>
+    <li><b>ההגנה היא הפער מול ברזיל.</b> קבלת התקפה של ישראל הגיעה להתקפה ב־77% מהמקרים, וברזיל ב־89%. קבלת ההגשה המצולמת של ישראל מושלמת: 12 מ־12.</li>
+    <li><b>הטעויות מגיעות בנגיעה הראשונה.</b> ישראל הפסידה 16 נקודות מטעויות שלה, 8 מהן בנגיעה 1 (קבלה או החזרה ישירה), ו־10 מהן ברגל. 17 נקודות נוספות הלכו לווינרים של ברזיל.</li>
+    <li><b>הקבלה ברגל של רון נמוכה.</b> אחרי קבלה ברגל הכדור של רון עולה לחציון של 2.3 מ׳ בלבד (אצל השאר 3.4–3.8 מ׳), כך שלמאור יש פחות מ־1 שנייה עד הנגיעה הבאה.</li>
+    <li><b>ההגבהה של רון יציבה.</b> 39 מ־40 הגבהות הגיעו להתקפה, ב־14 מ־22 התיוגים הוא עמד יציב (הכי הרבה מכל השחקנים). גובה השיא שלו מפוזר יותר (3.6–4.4 מ׳).</li>
+    <li><b>כשמפסידים נקודה מווינר, הזוג רחוק.</b> במגע ההגנה הכושל המרחק בין רון למאור הוא 3.65 מ׳, ובברזיל 3.08 מ׳.</li>
+  </ul>
+</div>
+
+<section id="coverage">
+  <h2><span class="no">1</span>שטח כיסוי ומהירות <span class="trust est">הערכה אוטומטית</span></h2>
+  <p>שטח ליבה הוא השטח הקטן ביותר שבו השחקן בילה חצי מהזמן, ושטח 90% הוא כמעט כל המשחק שלו. המעטפת כוללת גם ריצות נדירות. מהירות ומרחק נמדדים רק בתוך ראלים.</p>
+  {{coverage}}
+</section>
+
+<section id="heat">
+  <h2><span class="no">2</span>מפות חום לפי שלב במהלך <span class="trust est">הערכה אוטומטית</span></h2>
+  <p>כל שחקן מוצג בחצי שלו כפי שהוא רואה אותו: הרשת למעלה, הבסיס למטה, השמאל שלו משמאל. ככל שהצבע כהה יותר, השחקן בילה שם יותר זמן (כל מפה מנורמלת לעצמה).</p>
+  <div class="tabs" id="phaseTabs" role="group" aria-label="שלב במהלך"></div>
+  <div class="hmgrid" id="hmgrid"></div>
+  <h3>חלוקת תפקידים: כמה זמן כל שחקן בחצי השמאלי, ועד כמה בני הזוג חופפים</h3>
+  {{phase_table}}
+  <p class="note">חפיפה 0 פירושה ששני השחקנים אף פעם לא באותו מקום, ו־1 פירושה שהם מכסים אותו שטח. בשתי הקבוצות החפיפה הכי נמוכה בהגשה ובהגנה (כל אחד בצד שלו) והכי גבוהה בבניית המתקפה. בבנייה ישראל חופפת יותר (0.57 מול 0.45): רון מגיע לכדור גם בצד של מאור.</p>
+</section>
+
+<section id="spacing">
+  <h2><span class="no">3</span>מרחקים בין השחקנים <span class="trust est">הערכה אוטומטית</span></h2>
+  {{spacing}}
+  <p class="note">"בהגנה" הוא המרחק בין שני המגינים ברגע ההתקפה של היריב. המרחק ברגע שהפסידו נקודה נמדד ברגע הטעות או ברגע שהכדור נגע בחול (23 רגעים סומנו ידנית).</p>
+</section>
+
+<section id="chest">
+  <h2><span class="no">4</span>הגוף בנגיעת חזה <span class="trust est">הערכה אוטומטית</span></h2>
+  <p>הזוויות נמדדות בתמונה. ברך או ירך של 180° פירושן רגל ישרה, ומספר קטן יותר פירושו כיפוף. הטיית הגו היא ביחס לאנך, וברוב הנגיעות השחקן נשען אחורה. ערך מוצג רק כשהמפרק נראה היטב.</p>
+  {{chest}}
+  <p class="note">לרון יש העמידה הרחבה ביותר (0.71 מ׳) והוא הכי קרוב לרשת (1.75 מ׳). מאור מקבל בחזה הכי רחוק מהרשת (4 מ׳) ועם הכדור המהיר ביותר (9.4 מ׳/ש׳), כי רוב נגיעות החזה שלו הן קבלות. נגיעת החזה היחידה שבה איבדו כדור היא של רון, בנקודה 46.</p>
+</section>
+
+<section id="points">
+  <h2><span class="no">5</span>איפה נגמרו הנקודות <span class="trust ok">נבדק ידנית</span></h2>
+  <p>כל נקודה מסומנת במקום שבו הכדור נחת. המגרש מסובב כך שישראל תמיד בצד שמאל. הצבע מראה מי זכה בנקודה, ועיגול חלול פירושו שהכדור נחת מחוץ לקווים.</p>
+  <div class="legend"><span><i class="sw" style="background:var(--isr)"></i>ישראל זכתה</span><span><i class="sw" style="background:var(--bra)"></i>ברזיל זכתה</span></div>
+  <svg class="court" id="court" viewBox="-1.2 -1.2 18.4 10.4" role="img" aria-label="מפת נחיתות הכדור"></svg>
+  <h3>חלוקה ל־9 ריבועים (רק כדורים שנחתו בתוך המגרש, הרשת למעלה, שמאל וימין כפי שהקבוצה שספגה רואה אותם)</h3>
+  <div class="row" id="grids"></div>
+  {{end_types}}
+  <h3>איפה עמדו השחקנים ברגע שהנקודה נגמרה</h3>
+  {{pp}}
+  <p class="note">בנקודות שישראל הפסידה, מאור היה באמצע המגרש (לא ברשת ולא בבסיס) 18 מתוך 29 פעמים.</p>
+</section>
+
+<section id="winners">
+  <h2><span class="no">6</span>באיזה איבר הושגו הנקודות <span class="trust ok">נבדק ידנית</span></h2>
+  <p>ווינר הוא נגיעה אחרונה של הקבוצה שזכתה, שהיריב לא הצליח להחזיר.</p>
+  {{win_parts}}
+  <p class="note">כל 8 הווינרים של מאור היו בראש או בכתף, וכל 3 הווינרים של רון היו ברגל. אצל ברזיל רוב הווינרים היו ברגל (10 מתוך 17).</p>
+</section>
+
+<section id="parts">
+  <h2><span class="no">7</span>כמות נגיעות לפי איבר <span class="trust ok">נבדק ידנית</span></h2>
+  {{touch_parts}}
+  <p class="note">את האיבר תייג בעל הפרויקט. הפעולה (קבלה, הגבהה או התקפה) מוסקת מסדר הנגיעות בכל החזקה ונבדקה על מדגם: 20 מ־20 בהתקפות ובהגבהות, ו־14 מ־20 בקבלות. הגשה לא מופיעה כי ההגשות כמעט לא צולמו.</p>
+</section>
+
+<section id="success">
+  <h2><span class="no">8</span>אחוז הצלחה לפי סוג נגיעה, ואיזו קבלה הכי יציבה <span class="trust ok">נבדק ידנית</span></h2>
+  <p>נגיעה מוצלחת היא נגיעה שבה הקבוצה לא הפסידה את הנקודה. ליד כל אחוז מוצגים מספר המקרים ורווח סמך של 95%.</p>
+  {{success}}
+  <h3>יציבות הקבלה: האם החזקה הגיעה להתקפה</h3>
+  {{rec_team}}
+  <h3>לפי טכניקה</h3>
+  {{reception}}
+  <p class="note">הקבלה בחזה היא היציבה ביותר: 23 מ־23 הגיעו להתקפה, וכל 18 קבלות ההגשה בחזה הצליחו. ברגל יש יותר איבודים (קבלת התקפה ברגל: 38 מ־46). בישראל, מאור הצליח בכל 11 הקבלות שלו בחזה, ואילו הקבלה ברגל של רון נמוכה ומהירה.</p>
+</section>
+
+<section id="sets">
+  <h2><span class="no">9</span>איכות ההגבהה וזמן הכדור באוויר <span class="trust est">גובה: הערכה · זמן: נבדק</span></h2>
+  <p>זמן באוויר הוא הזמן מנגיעת ההגבהה עד ההתקפה, וגובה השיא הוא הנקודה הגבוהה ביותר של הכדור ביניהן. הגובה משוחזר מהמסלול ומהצל של הכדור, עם שגיאה טיפוסית של כ־10 ס״מ.</p>
+  {{sets}}
+  <h3>גובה הכדור אחרי כל סוג נגיעה</h3>
+  {{apex_parts}}
+  <h3>איך עומד התוקף כשבן הזוג מגביה</h3>
+  {{partner}}
+  <p class="note">כשרון מגביה, מאור כבר בריצה (87% מהמקרים, 3.3 מ׳/ש׳) ומגיע מאחור. כשמאור מגביה (10 פעמים בלבד), רון עומד במקום בחצי מהמקרים ופונה בצד לרשת (73° בחציון). הזווית לרשת מחושבת מקו הכתפיים בכל פריים.</p>
+  <h3>איפה הרגל בהגבהה ברגל (ביחס לגוף, בכיוון שהשחקן פונה אליו)</h3>
+  {{footside}}
+  <p class="note">"מרכז" הוא עד 15 ס״מ ממרכז הגוף. יש רק 19 הגבהות ברגל, ולכן זו תמונה ראשונית. רון מגביה ברגל ימין ומימין לגוף ב־4 מתוך 6 פעמים, ובהגבהה היחידה שאיבד הכדור היה משמאל לגוף ונמוך (0.9 מ׳).</p>
+</section>
+
+<section id="stance">
+  <h2><span class="no">10</span>עמד יציב או הגיע בתנועה <span class="trust ok">תיוג ידני</span></h2>
+  <p>המצלמה לא מספיקה כדי למדוד את זה אוטומטית (כלל אוטומטי הצליח רק ב־52% מהמקרים), ולכן מוצגים כאן רק 128 התיוגים של בעל הפרויקט.</p>
+  {{stance}}
+</section>
+
+<section id="errors">
+  <h2><span class="no">11</span>שרשרת הטעויות <span class="trust ok">נבדק ידנית</span></h2>
+  {{err_summary}}
+  <h3>כל הנקודות שישראל הפסידה מטעות שלה</h3>
+  {{err_rows}}
+  <p class="note">"נגיעה מתוך 3" היא מספר הנגיעה בהחזקה. נגיעה 1 בהתקפה היא החזרה ישירה של הכדור. ב־17 נקודות נוספות ישראל הפסידה מווינר של ברזיל, ושם אין נגיעה אחרונה שלה. 3 הנקודות הנותרות לא צולמו.</p>
+</section>
+
+<section id="base">
+  <h2><span class="no">12</span>חזרה לבסיס <span class="trust est">הערכה אוטומטית</span></h2>
+  <p>הבסיס הוא המיקום הממוצע של השחקן. הזמן נמדד מהנגיעה ועד שהשחקן חוזר למרחק של עד 1 מ׳ מהבסיס.</p>
+  {{base}}
+</section>
+
+<section id="direction">
+  <h2><span class="no">13</span>כיווני גוף <span class="trust est">הערכה אוטומטית</span></h2>
+  <p>הכיוון מחושב מקו הכתפיים בכל פריים של המשחק. מודל השלד צדק ב־65% מ־60 פריימים שתויגו ידנית, ולכן זו תמונה כללית בלבד.</p>
+  <div class="bars" id="dirbars"></div>
+  <h3>לאן הגוף פונה ברגע הנגיעה (ביחס למצלמה)</h3>
+  {{facing_touch}}
+</section>
+
+<footer>
+  נבנה על ידי <code>scripts/site/build_summary.py</code> מתוך <code>data/analysis/</code>, <code>data/points/point_end_verified.csv</code> ו־<code>coach_analysis/recomputed_2026-11-24/</code>. מקורות ומגבלות: <code>docs/COACH_METRICS.md</code>.
+</footer>
+</main>
+<div id="tip" hidden></div>
+
+<script>
+/*DATA*/
+const PL = Object.keys(D.NAMES);
+const css = k => getComputedStyle(document.documentElement).getPropertyValue(k).trim();
+const tip = document.getElementById('tip');
+function showTip(e, t) { tip.textContent = t; tip.hidden = false; tip.style.left = (e.clientX + 12) + 'px'; tip.style.top = (e.clientY + 12) + 'px'; }
+function hideTip() { tip.hidden = true; }
+
+// heat maps: array [x][y], x = distance from own baseline (net at 8), y = across (0 = player's left)
+let phase = 'all';
+function drawHM() {
+  const g = document.getElementById('hmgrid'); g.innerHTML = '';
+  const rgb = css('--heat'), line = css('--mut'), surf = css('--surface');
+  for (const p of PL) {
+    const m = D.HM.maps[p][phase]; const nx = m.length, ny = m[0].length, c = D.HM.cell;
+    const box = document.createElement('div'); box.className = 'hm';
+    const cv = document.createElement('canvas'); const S = 4; cv.width = ny * S; cv.height = nx * S;
+    const ctx = cv.getContext('2d'); ctx.fillStyle = surf; ctx.fillRect(0, 0, cv.width, cv.height);
+    for (let i = 0; i < nx; i++) for (let j = 0; j < ny; j++) {
+      const v = m[i][j]; if (v <= 0) continue;
+      ctx.fillStyle = `rgba(${rgb},${Math.min(1, Math.sqrt(v / 99)).toFixed(3)})`;
+      ctx.fillRect(j * S, (nx - 1 - i) * S, S, S);   // net (x = 8) at the top
+    }
+    const X = x => (nx - (x - D.HM.x0) / c) * S, Y = y => (y - D.HM.y0) / c * S;
+    ctx.strokeStyle = line; ctx.lineWidth = 2;
+    ctx.strokeRect(Y(0), X(8), Y(8) - Y(0), X(0) - X(8));
+    ctx.setLineDash([6, 5]); ctx.lineWidth = 1;
+    for (const d of [8 / 3, 16 / 3]) { ctx.beginPath(); ctx.moveTo(Y(0), X(d)); ctx.lineTo(Y(8), X(d)); ctx.stroke(); ctx.beginPath(); ctx.moveTo(Y(d), X(0)); ctx.lineTo(Y(d), X(8)); ctx.stroke(); }
+    ctx.setLineDash([]); ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(Y(-0.6), X(8)); ctx.lineTo(Y(8.6), X(8)); ctx.stroke();
+    cv.setAttribute('role', 'img'); cv.setAttribute('aria-label', `מפת חום ${D.NAMES[p]} – ${D.PHASES[phase]}`);
+    const nm = document.createElement('div'); nm.className = 'nm'; nm.textContent = D.NAMES[p];
+    const cap = document.createElement('div'); cap.className = 'mut'; cap.textContent = 'רשת ↑  ·  בסיס ↓';
+    box.append(nm, cv, cap); g.append(box);
+  }
+}
+const tabs = document.getElementById('phaseTabs');
+for (const [k, v] of Object.entries(D.PHASES)) {
+  const b = document.createElement('button'); b.textContent = v; b.id = 'ph-' + k; b.setAttribute('aria-pressed', k === phase);
+  b.onclick = () => { phase = k; tabs.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); drawHM(); };
+  tabs.append(b);
+}
+drawHM();
+
+// landing map, Israel always on the left half
+(function () {
+  const s = document.getElementById('court'), NS = 'http://www.w3.org/2000/svg';
+  const el = (t, a) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); s.append(e); return e; };
+  el('rect', { x: 0, y: 0, width: 16, height: 8, fill: 'var(--sand)', stroke: 'var(--court)', 'stroke-width': .08 });
+  for (const x of [8 / 3, 16 / 3, 8 + 8 / 3, 8 + 16 / 3]) el('line', { x1: x, y1: 0, x2: x, y2: 8, stroke: 'var(--court)', 'stroke-width': .03, 'stroke-dasharray': '.2 .2' });
+  for (const y of [8 / 3, 16 / 3]) el('line', { x1: 0, y1: y, x2: 16, y2: y, stroke: 'var(--court)', 'stroke-width': .03, 'stroke-dasharray': '.2 .2' });
+  el('line', { x1: 8, y1: -.5, x2: 8, y2: 8.5, stroke: 'var(--ink)', 'stroke-width': .1 });
+  const lab = (x, y, t) => { const e = el('text', { x, y, 'text-anchor': 'middle', 'font-size': .5, fill: 'var(--mut)', 'font-family': 'Assistant, sans-serif' }); e.textContent = t; };
+  lab(4, -.45, 'ישראל'); lab(12, -.45, 'ברזיל'); lab(8, 9.1, 'רשת');
+  for (const d of D.LAND) {
+    const col = d.w === 'ISR' ? 'var(--isr)' : 'var(--bra)', out = d.e !== 'landed_in';
+    const c = el('circle', { cx: d.x, cy: d.y, r: .24, fill: out ? 'var(--surface)' : col, stroke: out ? col : 'var(--surface)', 'stroke-width': out ? .09 : .05 });
+    const t = `נקודה ${d.p} · ${d.w === 'ISR' ? 'ישראל' : 'ברזיל'} זכתה · ${out ? 'בחוץ' : 'נחת בפנים'}${d.lt ? ' · נגיעה אחרונה: ' + d.lt : ''}`;
+    c.addEventListener('mousemove', e => showTip(e, t)); c.addEventListener('mouseleave', hideTip);
+    el('circle', { cx: d.x, cy: d.y, r: .45, fill: 'transparent' }).addEventListener('mousemove', e => showTip(e, t));
+  }
+  s.addEventListener('mouseleave', hideTip);
+})();
+
+// 3x3 grids: rows net / mid / base, columns left / mid / right as the conceding team sees them
+(function () {
+  const w = document.getElementById('grids');
+  for (const [t, cap] of [['ISR', 'ישראל ספגה (נחת אצלנו)'], ['BRA', 'ישראל זכתה (נחת אצל ברזיל)']]) {
+    const g = D.GRID[t], box = document.createElement('div'); box.className = 'grid9';
+    const nine = document.createElement('div'); nine.className = 'g9';
+    const max = Math.max(...Object.values(g), 1);
+    for (const d of ['net', 'mid', 'base']) for (const l of ['left', 'mid', 'right']) {
+      const v = g[d + '_' + l], c = document.createElement('div'); c.textContent = v || '';
+      c.style.background = v ? `color-mix(in srgb, var(${t === 'ISR' ? '--bra' : '--isr'}) ${Math.round(15 + 70 * v / max)}%, var(--sand))` : '';
+      nine.append(c);
+    }
+    const cp = document.createElement('div'); cp.className = 'g9cap'; cp.innerHTML = `<b>${cap}</b><br>רשת למעלה · שמאל ← → ימין`;
+    box.append(cp, nine); w.append(box);
+  }
+})();
+
+// body direction stacked bars
+(function () {
+  const w = document.getElementById('dirbars');
+  const cols = ['var(--isr)', 'color-mix(in srgb, var(--isr) 55%, var(--surface))', 'color-mix(in srgb, var(--bra) 55%, var(--surface))', 'var(--bra)'];
+  const lg = document.createElement('div'); lg.className = 'legend';
+  D.DIRBINS.forEach((b, i) => { lg.insertAdjacentHTML('beforeend', `<span><i class="sw" style="background:${cols[i]}"></i>${b}</span>`); });
+  w.append(lg);
+  for (const p of PL) {
+    const r = document.createElement('div'); r.className = 'bar';
+    r.innerHTML = `<span>${D.NAMES[p]}</span>`;
+    const st = document.createElement('div'); st.className = 'stack';
+    D.DIR[p].forEach((v, i) => { const s = document.createElement('span'); s.style.width = v + '%'; s.style.background = cols[i];
+      s.addEventListener('mousemove', e => showTip(e, `${D.NAMES[p]} · ${D.DIRBINS[i]}: ${v}%`)); s.addEventListener('mouseleave', hideTip); st.append(s); });
+    r.append(st); w.append(r);
+  }
+})();
+</script>
