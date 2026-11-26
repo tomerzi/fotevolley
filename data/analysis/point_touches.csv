@@ -5,7 +5,7 @@ rally,set,winner,end_type,owner_category,last_player,last_team,body_part,side,ac
 4,1,ISR,landed_in,relabel,Maor_Haas,ISR,head,,attack,3.0,3.0,winning_touch,True,True,Maor_Haas,6.02,6.67,L9,True
 5,1,BRA,landed_in,relabel,Franklin,BRA,head,,attack,2.0,2.0,winning_touch,True,True,Franklin,9.69,4.33,R4,True
 6,1,ISR,landed_in,ok,Hiltinho,BRA,foot,left,attack,1.0,1.0,losing_touch,True,True,Hiltinho,7.67,3.72,L6,True
-7,1,BRA,out,out,Maor_Haas,ISR,foot,right,reception,1.0,1.0,losing_touch,True,True,Maor_Haas,,,,True
+7,1,BRA,out,out,Maor_Haas,ISR,foot,right,attack,1.0,1.0,losing_touch,True,True,Maor_Haas,,,,True
 8,1,ISR,landed_in,relabel,Maor_Haas,ISR,head,,attack,2.0,2.0,winning_touch,True,True,Maor_Haas,15.95,0.96,R3,True
 9,1,BRA,landed_in,ok,Franklin,BRA,foot,right,attack,2.0,2.0,winning_touch,True,True,Franklin,6.39,4.4,L6,True
 10,1,ISR,landed_in,ok,Maor_Haas,ISR,head,,attack,3.0,3.0,winning_touch,True,True,Maor_Haas,14.32,0.11,R3,True

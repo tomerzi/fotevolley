@@ -1,0 +1,14 @@
+player,action,jump,moving,set,All
+Franklin,attack,9,2,0,11
+Franklin,reception,2,7,2,11
+Franklin,set,2,3,5,10
+Hiltinho,attack,9,1,1,11
+Hiltinho,reception,2,1,1,4
+Hiltinho,set,3,7,3,13
+Maor_Haas,attack,5,6,1,12
+Maor_Haas,reception,1,7,2,10
+Maor_Haas,set,3,3,3,9
+Ron_Ben_Ishay,attack,5,5,1,11
+Ron_Ben_Ishay,reception,0,4,0,4
+Ron_Ben_Ishay,set,4,4,14,22
+All,,45,50,33,128

@@ -99,7 +99,7 @@ os.makedirs('data/experiments/missing_touches', exist_ok=True)
 out.to_csv('data/experiments/missing_touches/candidates.csv', index=False)
 print(out.test.value_counts().to_string())
 
-# Result (2026-11-24): the impulse test finds both touches the owner already knew were missing (point 27 at 5127,
-# point 56 at 12737). Of the 20 other suspects, 3 were camera cuts (now filtered) and the owner checked the other 17
+# Result (2026-11-24): the impulse test finds point 56's missing touch (12737) and flags point 27 at 5127, which is a
+# camera cut (the labelling game later settled that no touch is missing at point 27). Of the 20 other suspects, 3 were camera cuts (now filtered) and the owner checked the other 17
 # (data/experiments/missing_touches/review_items.json): none is a touch. Net-parity flags all sit on a touch at the
 # net (x within 0.4 m); the one hang-time flag is rally 34's replayed point.
