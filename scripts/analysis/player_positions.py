@@ -576,6 +576,12 @@ def main():
         s[c] = s[c].fillna(False).astype(bool)
     s['airborne'] = s.jump | (s.posture == 'air')
     s = pd.concat([s, fill_rows(b, s)], ignore_index=True)
+    # the owner's squares also hold for frames that have a measured position (court-zone checks)
+    for o in pd.read_csv(OWNER_SQUARES).itertuples():
+        sel = (s.player == o.player) & s.frame.between(o.start_frame, o.end_frame) & (s.src != 'owner_square')
+        for i in s.index[sel]:
+            s.loc[i, ['x', 'y']] = into_square(s.at[i, 'x'], s.at[i, 'y'], o.square)
+            s.loc[i, 'src'] = 'owner_square'
     s['track'] = s.track.astype('Int64')
     s = s.merge(ball[['frame', 'v2_frame']], on='frame')
     s['time_sec'] = (s.frame / FPS).round(2)

@@ -11281,7 +11281,7 @@ frame,v2_frame,time_sec,player,team,track,posture,src,near_touch,occluded,edge,u
 2890,3296,115.6,Ron_Ben_Ishay,ISR,222,lying,hips,False,False,False,921.4,688.3,7.214,4.943,False,0.0,False,False,False,7.3,5.226,0.627,-0.442,0.767,LEFT,L6
 2891,3297,115.64,Franklin,BRA,21,stand,ankles,False,False,False,1477.9,521.0,12.227,2.182,False,0.0,False,False,False,12.223,2.186,0.581,-0.788,0.979,RIGHT,R2
 2891,3297,115.64,Hiltinho,BRA,87,stand,ankles,False,False,False,1281.9,658.1,10.011,4.48,False,0.0,False,False,False,10.023,4.584,2.163,2.634,3.408,RIGHT,R4
-2891,3297,115.64,Maor_Haas,ISR,153,stand,ankles,True,False,False,897.8,421.6,6.975,0.043,False,0.0,False,False,False,6.962,-0.445,-0.727,-3.102,3.186,LEFT,out
+2891,3297,115.64,Maor_Haas,ISR,153,stand,owner_square,True,False,False,897.8,421.6,6.975,0.043,False,0.0,False,False,False,6.962,0.05,-0.727,-3.102,3.186,LEFT,L3
 2891,3297,115.64,Ron_Ben_Ishay,ISR,222,stand,ankle,False,False,False,987.2,722.1,7.694,5.373,False,0.0,False,True,False,7.33,5.228,0.806,0.509,0.953,LEFT,L6
 2892,3298,115.68,Franklin,BRA,21,stand,ankles,False,False,False,1479.3,518.9,12.251,2.143,False,0.0,False,False,False,12.241,2.16,0.329,-0.493,0.593,RIGHT,R2
 2892,3298,115.68,Hiltinho,BRA,87,stand,planted,False,False,False,1307.9,681.6,10.14,4.804,False,0.0,False,False,False,10.114,4.675,2.216,1.62,2.745,RIGHT,R4

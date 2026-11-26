@@ -62,7 +62,7 @@ touch,frame,rally,set,player,team,action,body_part,dist_from_base_m,min_dist_m,r
 98,3513,21,1,Ron_Ben_Ishay,ISR,set,foot,1.95,0.57,1.08,False,rally_end
 99,3552,21,1,Maor_Haas,ISR,attack,head,1.37,0.75,0.24,False,rally_end
 101,3659,22,1,Ron_Ben_Ishay,ISR,set,foot,1.41,0.27,0.52,False,rally_end
-102,3698,22,1,Maor_Haas,ISR,attack,head,0.64,0.59,0.0,False,rally_end
+102,3698,22,1,Maor_Haas,ISR,attack,head,0.64,0.58,0.0,False,rally_end
 104,3799,23,1,Ron_Ben_Ishay,ISR,set,chest,1.88,0.06,1.48,False,rally_end
 105,3832,23,1,Maor_Haas,ISR,attack,head,2.28,2.28,1.96,True,rally_end
 107,4000,24,1,Hiltinho,BRA,set,chest,2.72,1.26,2.28,True,rally_end
